@@ -1,0 +1,14 @@
+<?xml-model href="https://raw.githubusercontent.com/microsoft/vs-solutionpersistence/refs/heads/main/src/Microsoft.VisualStudio.SolutionPersistence/Serializer/Xml/Slnx.xsd"?>
+<Solution>
+  <Project Path="WaylandScanner/WaylandScanner.csproj" />
+  <Project Path="WaylandDotnet/WaylandDotnet.csproj" />
+
+  <Project Path="WaylandDotnet.Tests/WaylandDotnet.Tests.csproj" />
+
+  <Folder Name="/Examples/">
+    <Project Path="Examples/HelloWorld/HelloWorld.csproj" />
+    <Project Path="Examples/LayerShell/LayerShell.csproj" />
+  </Folder>
+
+  <Project Path="DocGenerator/DocGenerator.csproj" />
+</Solution>

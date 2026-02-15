@@ -1,0 +1,60 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug HelloWorld",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/Examples/HelloWorld/bin/Debug/net10.0/HelloWorld",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "env": {
+                "WAYLAND_DEBUG": "1",
+            }
+        },
+        {
+            "name": "Debug LayerShell",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/Examples/LayerShell/bin/Debug/net10.0/LayerShell",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "env": {
+                "WAYLAND_DEBUG": "1",
+            }
+        },
+        {
+            "name": "Native Debug LLDB",
+            "type": "lldb-dap",
+            "request": "launch",
+            "program": "${workspaceFolder}/Example/bin/Debug/net10.0/Example",
+            "args": [],
+            "env": [
+                "WAYLAND_DEBUG=1"
+            ],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Native Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/Example/bin/Debug/net10.0/Example",
+            "MIMode": "gdb",
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "environment": [
+                {
+                    "name": "WAYLAND_DEBUG",
+                    "value": "1"
+                }
+            ]
+        }
+    ],
+}
