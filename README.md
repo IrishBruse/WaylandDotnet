@@ -22,7 +22,7 @@ dotnet test
 cd WaylandScanner && dotnet run
 
 # Run the example window creation application
-cd Examples/HelloWorld && dotnet run
+cd Examples/Minimal && dotnet run
 
 # Run the example wlr_layer_shell application
 cd Examples/LayerShell && dotnet run
@@ -64,4 +64,4 @@ registry.OnGlobal += (name, interfaceName, version) => {
 display.Roundtrip();
 ```
 
-See the [Example/](Example/) directory for a complete GPU-accelerated overlay application.
+See the [Examples/](Examples/) directory for a complete GPU-accelerated overlay application.

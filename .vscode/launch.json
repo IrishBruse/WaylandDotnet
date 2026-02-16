@@ -2,10 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug HelloWorld",
+            "name": "Debug Minimal",
             "type": "coreclr",
             "request": "launch",
-            "program": "${workspaceFolder}/Examples/HelloWorld/bin/Debug/net10.0/HelloWorld",
+            "program": "${workspaceFolder}/Examples/Minimal/bin/Debug/net10.0/Minimal",
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "env": {

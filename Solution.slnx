@@ -6,7 +6,7 @@
   <Project Path="WaylandDotnet.Tests/WaylandDotnet.Tests.csproj" />
 
   <Folder Name="/Examples/">
-    <Project Path="Examples/HelloWorld/HelloWorld.csproj" />
+    <Project Path="Examples/Minimal/Minimal.csproj" />
     <Project Path="Examples/LayerShell/LayerShell.csproj" />
   </Folder>
 
