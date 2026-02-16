@@ -54,8 +54,6 @@ using WaylandDotnet;
 // Connect to Wayland display
 var display = WlDisplay.Connect();
 
-
-
 // Get registry and bind globals
 var registry = display.GetRegistry();
 registry.OnGlobal += (name, interfaceName, version) => {

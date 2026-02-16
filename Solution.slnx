@@ -9,6 +9,4 @@
     <Project Path="Examples/Minimal/Minimal.csproj" />
     <Project Path="Examples/LayerShell/LayerShell.csproj" />
   </Folder>
-
-  <Project Path="DocGenerator/DocGenerator.csproj" />
 </Solution>
