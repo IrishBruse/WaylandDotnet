@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PublishAot>true</PublishAot>
+    <DisableDynamicCode>true</DisableDynamicCode>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- TODO: XML doc comment everything! -->
+    <NoWarn>CS1591</NoWarn>
+  </PropertyGroup>
+
+</Project>
