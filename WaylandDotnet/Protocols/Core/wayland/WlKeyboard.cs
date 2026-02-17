@@ -88,6 +88,19 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
 
     private KeymapHandler? _onKeymap;
 
+    /// <summary>
+    ///Keyboard mapping
+    /// <para>
+    ///
+    ///This event provides a file descriptor to the client which can be
+    ///memory-mapped in read-only mode to provide a keyboard mapping
+    ///description.
+    ///
+    ///From version 7 onwards, the fd must be mapped with MAP_PRIVATE by
+    ///the recipient, as MAP_SHARED may fail.
+    ///
+    /// </para>
+    /// </summary>
     public event KeymapHandler? OnKeymap
     {
         add
@@ -107,6 +120,26 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
 
     private EnterHandler? _onEnter;
 
+    /// <summary>
+    ///Enter event
+    /// <para>
+    ///
+    ///Notification that this seat's keyboard focus is on a certain
+    ///surface.
+    ///
+    ///The compositor must send the wl_keyboard.modifiers event after this
+    ///event.
+    ///
+    ///In the wl_keyboard logical state, this event sets the active surface to
+    ///the surface argument and the keys currently logically down to the keys
+    ///in the keys argument. The compositor must not send this event if the
+    ///wl_keyboard already had an active surface immediately before this event.
+    ///
+    ///Clients should not use the list of pressed keys to emulate key-press
+    ///events. The order of keys in the list is unspecified.
+    ///
+    /// </para>
+    /// </summary>
     public event EnterHandler? OnEnter
     {
         add
@@ -126,6 +159,23 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
 
     private LeaveHandler? _onLeave;
 
+    /// <summary>
+    ///Leave event
+    /// <para>
+    ///
+    ///Notification that this seat's keyboard focus is no longer on
+    ///a certain surface.
+    ///
+    ///The leave notification is sent before the enter notification
+    ///for the new focus.
+    ///
+    ///In the wl_keyboard logical state, this event resets all values to their
+    ///defaults. The compositor must not send this event if the active surface
+    ///of the wl_keyboard was not equal to the surface argument immediately
+    ///before this event.
+    ///
+    /// </para>
+    /// </summary>
     public event LeaveHandler? OnLeave
     {
         add
@@ -145,6 +195,36 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
 
     private KeyHandler? _onKey;
 
+    /// <summary>
+    ///Key event
+    /// <para>
+    ///
+    ///A key was pressed or released.
+    ///The time argument is a timestamp with millisecond
+    ///granularity, with an undefined base.
+    ///
+    ///The key is a platform-specific key code that can be interpreted
+    ///by feeding it to the keyboard mapping (see the keymap event).
+    ///
+    ///If this event produces a change in modifiers, then the resulting
+    ///wl_keyboard.modifiers event must be sent after this event.
+    ///
+    ///In the wl_keyboard logical state, this event adds the key to the keys
+    ///currently logically down (if the state argument is pressed) or removes
+    ///the key from the keys currently logically down (if the state argument is
+    ///released). The compositor must not send this event if the wl_keyboard
+    ///did not have an active surface immediately before this event. The
+    ///compositor must not send this event if state is pressed (resp. released)
+    ///and the key was already logically down (resp. was not logically down)
+    ///immediately before this event.
+    ///
+    ///Since version 10, compositors may send key events with the "repeated"
+    ///key state when a wl_keyboard.repeat_info event with a rate argument of
+    ///0 has been received. This allows the compositor to take over the
+    ///responsibility of key repetition.
+    ///
+    /// </para>
+    /// </summary>
     public event KeyHandler? OnKey
     {
         add
@@ -164,6 +244,26 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
 
     private ModifiersHandler? _onModifiers;
 
+    /// <summary>
+    ///Modifier and group state
+    /// <para>
+    ///
+    ///Notifies clients that the modifier and/or group state has
+    ///changed, and it should update its local state.
+    ///
+    ///The compositor may send this event without a surface of the client
+    ///having keyboard focus, for example to tie modifier information to
+    ///pointer focus instead. If a modifier event with pressed modifiers is sent
+    ///without a prior enter event, the client can assume the modifier state is
+    ///valid until it receives the next wl_keyboard.modifiers event. In order to
+    ///reset the modifier state again, the compositor can send a
+    ///wl_keyboard.modifiers event with no pressed modifiers.
+    ///
+    ///In the wl_keyboard logical state, this event updates the modifiers and
+    ///group.
+    ///
+    /// </para>
+    /// </summary>
     public event ModifiersHandler? OnModifiers
     {
         add
@@ -183,6 +283,25 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
 
     private RepeatInfoHandler? _onRepeatInfo;
 
+    /// <summary>
+    ///Repeat rate and delay
+    /// <para>
+    ///
+    ///Informs the client about the keyboard's repeat rate and delay.
+    ///
+    ///This event is sent as soon as the wl_keyboard object has been created,
+    ///and is guaranteed to be received by the client before any key press
+    ///event.
+    ///
+    ///Negative values for either rate or delay are illegal. A rate of zero
+    ///will disable any repeating (regardless of the value of delay).
+    ///
+    ///This event can be sent later on as well with a new value if necessary,
+    ///so clients should continue listening for the event past the creation
+    ///of wl_keyboard.
+    ///
+    /// </para>
+    /// </summary>
     public event RepeatInfoHandler? OnRepeatInfo
     {
         add

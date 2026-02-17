@@ -131,6 +131,15 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
 
     private PingHandler? _onPing;
 
+    /// <summary>
+    ///Ping client
+    /// <para>
+    ///
+    ///Ping a client to check if it is receiving events and sending
+    ///requests. A client is expected to reply with a pong request.
+    ///
+    /// </para>
+    /// </summary>
     public event PingHandler? OnPing
     {
         add
@@ -150,6 +159,30 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
 
     private ConfigureHandler? _onConfigure;
 
+    /// <summary>
+    ///Suggest resize
+    /// <para>
+    ///
+    ///The configure event asks the client to resize its surface.
+    ///
+    ///The size is a hint, in the sense that the client is free to
+    ///ignore it if it doesn't resize, pick a smaller size (to
+    ///satisfy aspect ratio or resize in steps of NxM pixels).
+    ///
+    ///The edges parameter provides a hint about how the surface
+    ///was resized. The client may use this information to decide
+    ///how to adjust its content to the new size (e.g. a scrolling
+    ///area might adjust its content position to leave the viewable
+    ///content unmoved).
+    ///
+    ///The client is free to dismiss all but the last configure
+    ///event it received.
+    ///
+    ///The width and height arguments specify the size of the window
+    ///in surface-local coordinates.
+    ///
+    /// </para>
+    /// </summary>
     public event ConfigureHandler? OnConfigure
     {
         add
@@ -169,6 +202,16 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
 
     private PopupDoneHandler? _onPopupDone;
 
+    /// <summary>
+    ///Popup interaction is done
+    /// <para>
+    ///
+    ///The popup_done event is sent out when a popup grab is broken,
+    ///that is, when the user clicks a surface that doesn't belong
+    ///to the client owning the popup surface.
+    ///
+    /// </para>
+    /// </summary>
     public event PopupDoneHandler? OnPopupDone
     {
         add

@@ -79,6 +79,20 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
 
     private ErrorHandler? _onError;
 
+    /// <summary>
+    ///Fatal error event
+    /// <para>
+    ///
+    ///The error event is sent out when a fatal (non-recoverable)
+    ///error has occurred. The object_id argument is the object
+    ///where the error occurred, most often in response to a request
+    ///to that object. The code identifies the error and is defined
+    ///by the object interface. As such, each interface defines its
+    ///own set of error codes. The message is a brief description
+    ///of the error, for (debugging) convenience.
+    ///
+    /// </para>
+    /// </summary>
     public event ErrorHandler? OnError
     {
         add
@@ -98,6 +112,18 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
 
     private DeleteIdHandler? _onDeleteId;
 
+    /// <summary>
+    ///Acknowledge object ID deletion
+    /// <para>
+    ///
+    ///This event is used internally by the object ID management
+    ///logic. When a client deletes an object that it had created,
+    ///the server will send this event to acknowledge that it has
+    ///seen the delete request. When the client receives this event,
+    ///it will know that it can safely reuse the object ID.
+    ///
+    /// </para>
+    /// </summary>
     public event DeleteIdHandler? OnDeleteId
     {
         add

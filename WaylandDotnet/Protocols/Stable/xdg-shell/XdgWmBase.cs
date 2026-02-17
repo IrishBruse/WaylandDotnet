@@ -91,6 +91,26 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
 
     private PingHandler? _onPing;
 
+    /// <summary>
+    ///Check if the client is alive
+    /// <para>
+    ///
+    ///The ping event asks the client if it's still alive. Pass the
+    ///serial specified in the event back to the compositor by sending
+    ///a "pong" request back with the specified serial. See xdg_wm_base.pong.
+    ///
+    ///Compositors can use this to determine if the client is still
+    ///alive. It's unspecified what will happen if the client doesn't
+    ///respond to the ping request, or in what timeframe. Clients should
+    ///try to respond in a reasonable amount of time. The “unresponsive”
+    ///error is provided for compositors that wish to disconnect unresponsive
+    ///clients.
+    ///
+    ///A compositor is free to ping in any way it wants, but a client must
+    ///always respond to any xdg_wm_base object it created.
+    ///
+    /// </para>
+    /// </summary>
     public event PingHandler? OnPing
     {
         add

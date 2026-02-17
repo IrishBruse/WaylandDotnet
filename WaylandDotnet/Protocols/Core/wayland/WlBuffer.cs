@@ -52,6 +52,27 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
 
     private ReleaseHandler? _onRelease;
 
+    /// <summary>
+    ///Compositor releases buffer
+    /// <para>
+    ///
+    ///Sent when this wl_buffer is no longer used by the compositor.
+    ///
+    ///For more information on when release events may or may not be sent,
+    ///and what consequences it has, please see the description of
+    ///wl_surface.attach.
+    ///
+    ///If a client receives a release event before the frame callback
+    ///requested in the same wl_surface.commit that attaches this
+    ///wl_buffer to a surface, then the client is immediately free to
+    ///reuse the buffer and its backing storage, and does not need a
+    ///second buffer for the next surface content update. Typically
+    ///this is possible, when the compositor maintains a copy of the
+    ///wl_surface contents, e.g. as a GL texture. This is an important
+    ///optimization for GL(ES) compositors with wl_shm clients.
+    ///
+    /// </para>
+    /// </summary>
     public event ReleaseHandler? OnRelease
     {
         add

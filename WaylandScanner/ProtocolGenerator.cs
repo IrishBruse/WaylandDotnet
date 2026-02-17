@@ -225,7 +225,7 @@ public partial class ProtocolGenerator
                     var request = iface.Requests[i];
                     var signature = GenerateSignature(request.Args);
 
-                    var types = GenerateTypesArray(request.Args);
+                    var types = GenerateTypesArray(request.Args, iface.Name);
 
                     var (finalSignature, finalTypes) = ExpandUntypedNewId(request, signature, types);
 
@@ -251,7 +251,7 @@ public partial class ProtocolGenerator
                     var evt = iface.Events[i];
                     var signature = GenerateSignature(evt.Args);
 
-                    var types = GenerateTypesArray(evt.Args);
+                    var types = GenerateTypesArray(evt.Args, iface.Name);
 
                     WriteLine($"events[{i}] = new WlMessage");
                     BeginBlock();
@@ -352,7 +352,7 @@ public partial class ProtocolGenerator
     }
 
     /// <summary> Generate the types array for interface references </summary>
-    private string GenerateTypesArray(List<WaylandArg> args)
+    private string GenerateTypesArray(List<WaylandArg> args, string? currentInterfaceName = null)
     {
         // Always create a types array matching the signature length
         // Each entry is either the interface type or null for non-interface types
@@ -366,7 +366,16 @@ public partial class ProtocolGenerator
         {
             if ((arg.Type == "object" || arg.Type == "new_id") && !string.IsNullOrEmpty(arg.Interface))
             {
-                types.Add($"{arg.Interface.ToPascal()}");
+                // Avoid infinite recursion when an interface references itself
+                // during its own creation by using IntPtr.Zero for self-references
+                if (arg.Interface == currentInterfaceName)
+                {
+                    types.Add("(WlInterface*)IntPtr.Zero");
+                }
+                else
+                {
+                    types.Add($"{arg.Interface.ToPascal()}");
+                }
             }
             else
             {
@@ -534,7 +543,18 @@ public partial class ProtocolGenerator
             WriteLine($"private {delegateName}? _on{eventName};");
             WriteLine();
 
+
+
             // Generate event property with lazy registration
+            WriteLine("/// <summary>");
+            WriteLine($"///{evt.Description.Summary.CapitalizeFirst()}");
+            WriteLine("/// <para>");
+            foreach (var line in evt.Description.Text.EnumerateLines())
+            {
+                WriteLine($"///{line.TrimStart()}");
+            }
+            WriteLine("/// </para>");
+            WriteLine("/// </summary>");
             WriteLine($"public event {delegateName}? On{eventName}");
             BeginBlock();
             {

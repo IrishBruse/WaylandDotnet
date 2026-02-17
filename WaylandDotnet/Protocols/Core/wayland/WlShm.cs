@@ -652,6 +652,16 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
 
     private FormatHandler? _onFormat;
 
+    /// <summary>
+    ///Pixel format description
+    /// <para>
+    ///
+    ///Informs the client about a valid pixel format that
+    ///can be used for buffers. Known formats include
+    ///argb8888 and xrgb8888.
+    ///
+    /// </para>
+    /// </summary>
     public event FormatHandler? OnFormat
     {
         add

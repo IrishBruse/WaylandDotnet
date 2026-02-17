@@ -9,6 +9,11 @@ public static class WaylandMarshal
 
     public unsafe static byte[] ToSpan(WlArray* array)
     {
+        if (array == null || array->data == null || array->size == 0)
+        {
+            return [];
+        }
+
         return new ReadOnlySpan<byte>(array->data, array->size).ToArray();
     }
 }

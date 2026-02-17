@@ -122,6 +122,33 @@ public sealed partial class ZwlrLayerSurfaceV1 : WaylandObject, IWaylandObjectFa
 
     private ConfigureHandler? _onConfigure;
 
+    /// <summary>
+    ///Suggest a surface change
+    /// <para>
+    ///
+    ///The configure event asks the client to resize its surface.
+    ///
+    ///Clients should arrange their surface for the new states, and then send
+    ///an ack_configure request with the serial sent in this configure event at
+    ///some point before committing the new surface.
+    ///
+    ///The client is free to dismiss all but the last configure event it
+    ///received.
+    ///
+    ///The width and height arguments specify the size of the window in
+    ///surface-local coordinates.
+    ///
+    ///The size is a hint, in the sense that the client is free to ignore it if
+    ///it doesn't resize, pick a smaller size (to satisfy aspect ratio or
+    ///resize in steps of NxM pixels). If the client picks a smaller size and
+    ///is anchored to two opposite anchors (e.g. 'top' and 'bottom'), the
+    ///surface will be centered on this axis.
+    ///
+    ///If the width or height arguments are zero, it means the client should
+    ///decide its own window dimension.
+    ///
+    /// </para>
+    /// </summary>
     public event ConfigureHandler? OnConfigure
     {
         add
@@ -141,6 +168,18 @@ public sealed partial class ZwlrLayerSurfaceV1 : WaylandObject, IWaylandObjectFa
 
     private ClosedHandler? _onClosed;
 
+    /// <summary>
+    ///Surface should be closed
+    /// <para>
+    ///
+    ///The closed event is sent by the compositor when the surface will no
+    ///longer be shown. The output may have been destroyed or the user may
+    ///have asked for it to be removed. Further changes to the surface will be
+    ///ignored. The client should destroy the resource after receiving this
+    ///event, and create a new surface if they so choose.
+    ///
+    /// </para>
+    /// </summary>
     public event ClosedHandler? OnClosed
     {
         add

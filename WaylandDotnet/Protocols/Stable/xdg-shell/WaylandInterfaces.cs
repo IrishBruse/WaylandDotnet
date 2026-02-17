@@ -264,7 +264,7 @@ public static unsafe partial class WaylandInterfaces
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("get_popup"),
             Signature = Utf8StringMarshaller.ConvertToUnmanaged("n?oo"),
-            Types = (WlInterface**)CreateTypesArray([XdgPopup, XdgSurface, XdgPositioner])
+            Types = (WlInterface**)CreateTypesArray([XdgPopup, (WlInterface*)IntPtr.Zero, XdgPositioner])
         };
         requests[3] = new WlMessage
         {
@@ -324,7 +324,7 @@ public static unsafe partial class WaylandInterfaces
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("set_parent"),
             Signature = Utf8StringMarshaller.ConvertToUnmanaged("?o"),
-            Types = (WlInterface**)CreateTypesArray([XdgToplevel])
+            Types = (WlInterface**)CreateTypesArray([(WlInterface*)IntPtr.Zero])
         };
         requests[2] = new WlMessage
         {

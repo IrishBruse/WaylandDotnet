@@ -52,6 +52,18 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
 
     private GlobalHandler? _onGlobal;
 
+    /// <summary>
+    ///Announce global object
+    /// <para>
+    ///
+    ///Notify the client of global objects.
+    ///
+    ///The event notifies the client that a global object with
+    ///the given name is now available, and it implements the
+    ///given version of the given interface.
+    ///
+    /// </para>
+    /// </summary>
     public event GlobalHandler? OnGlobal
     {
         add
@@ -71,6 +83,23 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
 
     private GlobalRemoveHandler? _onGlobalRemove;
 
+    /// <summary>
+    ///Announce removal of global object
+    /// <para>
+    ///
+    ///Notify the client of removed global objects.
+    ///
+    ///This event notifies the client that the global identified
+    ///by name is no longer available. If the client bound to
+    ///the global using the bind request, the client should now
+    ///destroy that object.
+    ///
+    ///The object remains valid and requests to the object will be
+    ///ignored until the client destroys it, to avoid races between
+    ///the global going away and a client sending a request to it.
+    ///
+    /// </para>
+    /// </summary>
     public event GlobalRemoveHandler? OnGlobalRemove
     {
         add

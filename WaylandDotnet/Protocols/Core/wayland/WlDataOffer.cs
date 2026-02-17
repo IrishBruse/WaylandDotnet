@@ -79,6 +79,15 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
 
     private OfferHandler? _onOffer;
 
+    /// <summary>
+    ///Advertise offered mime type
+    /// <para>
+    ///
+    ///Sent immediately after creating the wl_data_offer object. One
+    ///event per offered mime type.
+    ///
+    /// </para>
+    /// </summary>
     public event OfferHandler? OnOffer
     {
         add
@@ -98,6 +107,17 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
 
     private SourceActionsHandler? _onSourceActions;
 
+    /// <summary>
+    ///Notify the source-side available actions
+    /// <para>
+    ///
+    ///This event indicates the actions offered by the data source. It
+    ///will be sent immediately after creating the wl_data_offer object,
+    ///or anytime the source side changes its offered actions through
+    ///wl_data_source.set_actions.
+    ///
+    /// </para>
+    /// </summary>
     public event SourceActionsHandler? OnSourceActions
     {
         add
@@ -117,6 +137,48 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
 
     private ActionHandler? _onAction;
 
+    /// <summary>
+    ///Notify the selected action
+    /// <para>
+    ///
+    ///This event indicates the action selected by the compositor after
+    ///matching the source/destination side actions. Only one action (or
+    ///none) will be offered here.
+    ///
+    ///This event can be emitted multiple times during the drag-and-drop
+    ///operation in response to destination side action changes through
+    ///wl_data_offer.set_actions.
+    ///
+    ///This event will no longer be emitted after wl_data_device.drop
+    ///happened on the drag-and-drop destination, the client must
+    ///honor the last action received, or the last preferred one set
+    ///through wl_data_offer.set_actions when handling an "ask" action.
+    ///
+    ///Compositors may also change the selected action on the fly, mainly
+    ///in response to keyboard modifier changes during the drag-and-drop
+    ///operation.
+    ///
+    ///The most recent action received is always the valid one. Prior to
+    ///receiving wl_data_device.drop, the chosen action may change (e.g.
+    ///due to keyboard modifiers being pressed). At the time of receiving
+    ///wl_data_device.drop the drag-and-drop destination must honor the
+    ///last action received.
+    ///
+    ///Action changes may still happen after wl_data_device.drop,
+    ///especially on "ask" actions, where the drag-and-drop destination
+    ///may choose another action afterwards. Action changes happening
+    ///at this stage are always the result of inter-client negotiation, the
+    ///compositor shall no longer be able to induce a different action.
+    ///
+    ///Upon "ask" actions, it is expected that the drag-and-drop destination
+    ///may potentially choose a different action and/or mime type,
+    ///based on wl_data_offer.source_actions and finally chosen by the
+    ///user (e.g. popping up a menu with the available options). The
+    ///final wl_data_offer.set_actions and wl_data_offer.accept requests
+    ///must happen before the call to wl_data_offer.finish.
+    ///
+    /// </para>
+    /// </summary>
     public event ActionHandler? OnAction
     {
         add

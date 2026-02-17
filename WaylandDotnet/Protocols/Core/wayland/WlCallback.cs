@@ -52,6 +52,14 @@ public sealed partial class WlCallback : WaylandObject, IWaylandObjectFactory<Wl
 
     private DoneHandler? _onDone;
 
+    /// <summary>
+    ///Done event
+    /// <para>
+    ///
+    ///Notify the client when the related request is done.
+    ///
+    /// </para>
+    /// </summary>
     public event DoneHandler? OnDone
     {
         add

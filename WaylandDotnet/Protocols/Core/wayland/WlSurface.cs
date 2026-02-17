@@ -83,6 +83,18 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
 
     private EnterHandler? _onEnter;
 
+    /// <summary>
+    ///Surface enters an output
+    /// <para>
+    ///
+    ///This is emitted whenever a surface's creation, movement, or resizing
+    ///results in some part of it being within the scanout region of an
+    ///output.
+    ///
+    ///Note that a surface may be overlapping with zero or more outputs.
+    ///
+    /// </para>
+    /// </summary>
     public event EnterHandler? OnEnter
     {
         add
@@ -102,6 +114,22 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
 
     private LeaveHandler? _onLeave;
 
+    /// <summary>
+    ///Surface leaves an output
+    /// <para>
+    ///
+    ///This is emitted whenever a surface's creation, movement, or resizing
+    ///results in it no longer having any part of it within the scanout region
+    ///of an output.
+    ///
+    ///Clients should not use the number of outputs the surface is on for frame
+    ///throttling purposes. The surface might be hidden even if no leave event
+    ///has been sent, and the compositor might expect new surface content
+    ///updates even if no enter event has been sent. The frame event should be
+    ///used instead.
+    ///
+    /// </para>
+    /// </summary>
     public event LeaveHandler? OnLeave
     {
         add
@@ -121,6 +149,25 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
 
     private PreferredBufferScaleHandler? _onPreferredBufferScale;
 
+    /// <summary>
+    ///Preferred buffer scale for the surface
+    /// <para>
+    ///
+    ///This event indicates the preferred buffer scale for this surface. It is
+    ///sent whenever the compositor's preference changes.
+    ///
+    ///Before receiving this event the preferred buffer scale for this surface
+    ///is 1.
+    ///
+    ///It is intended that scaling aware clients use this event to scale their
+    ///content and use wl_surface.set_buffer_scale to indicate the scale they
+    ///have rendered with. This allows clients to supply a higher detail
+    ///buffer.
+    ///
+    ///The compositor shall emit a scale value greater than 0.
+    ///
+    /// </para>
+    /// </summary>
     public event PreferredBufferScaleHandler? OnPreferredBufferScale
     {
         add
@@ -140,6 +187,22 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
 
     private PreferredBufferTransformHandler? _onPreferredBufferTransform;
 
+    /// <summary>
+    ///Preferred buffer transform for the surface
+    /// <para>
+    ///
+    ///This event indicates the preferred buffer transform for this surface.
+    ///It is sent whenever the compositor's preference changes.
+    ///
+    ///Before receiving this event the preferred buffer transform for this
+    ///surface is normal.
+    ///
+    ///Applying this transformation to the surface buffer contents and using
+    ///wl_surface.set_buffer_transform might allow the compositor to use the
+    ///surface buffer more efficiently.
+    ///
+    /// </para>
+    /// </summary>
     public event PreferredBufferTransformHandler? OnPreferredBufferTransform
     {
         add

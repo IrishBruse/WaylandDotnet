@@ -67,6 +67,25 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
 
     private ConfigureHandler? _onConfigure;
 
+    /// <summary>
+    ///Configure the popup surface
+    /// <para>
+    ///
+    ///This event asks the popup surface to configure itself given the
+    ///configuration. The configured state should not be applied immediately.
+    ///See xdg_surface.configure for details.
+    ///
+    ///The x and y arguments represent the position the popup was placed at
+    ///given the xdg_positioner rule, relative to the upper left corner of the
+    ///window geometry of the parent surface.
+    ///
+    ///For version 2 or older, the configure event for an xdg_popup is only
+    ///ever sent once for the initial configuration. Starting with version 3,
+    ///it may be sent again if the popup is setup with an xdg_positioner with
+    ///set_reactive requested, or in response to xdg_popup.reposition requests.
+    ///
+    /// </para>
+    /// </summary>
     public event ConfigureHandler? OnConfigure
     {
         add
@@ -86,6 +105,16 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
 
     private PopupDoneHandler? _onPopupDone;
 
+    /// <summary>
+    ///Popup interaction is done
+    /// <para>
+    ///
+    ///The popup_done event is sent out when a popup is dismissed by the
+    ///compositor. The client should destroy the xdg_popup object at this
+    ///point.
+    ///
+    /// </para>
+    /// </summary>
     public event PopupDoneHandler? OnPopupDone
     {
         add
@@ -105,6 +134,28 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
 
     private RepositionedHandler? _onRepositioned;
 
+    /// <summary>
+    ///Signal the completion of a repositioned request
+    /// <para>
+    ///
+    ///The repositioned event is sent as part of a popup configuration
+    ///sequence, together with xdg_popup.configure and lastly
+    ///xdg_surface.configure to notify the completion of a reposition request.
+    ///
+    ///The repositioned event is to notify about the completion of a
+    ///xdg_popup.reposition request. The token argument is the token passed
+    ///in the xdg_popup.reposition request.
+    ///
+    ///Immediately after this event is emitted, xdg_popup.configure and
+    ///xdg_surface.configure will be sent with the updated size and position,
+    ///as well as a new configure serial.
+    ///
+    ///The client should optionally update the content of the popup, but must
+    ///acknowledge the new popup configuration for the new position to take
+    ///effect. See xdg_surface.ack_configure for details.
+    ///
+    /// </para>
+    /// </summary>
     public event RepositionedHandler? OnRepositioned
     {
         add
