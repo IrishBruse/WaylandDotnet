@@ -1,0 +1,129 @@
+:root {
+  --background-color: #18181b;
+  --input-color: #27272a;
+  --border-color: #3f3f46;
+  --navbar-headers: #52525b;
+
+  --accent-color: #38a755;
+
+  --sidebar-header-color: rgb(82, 82, 91);
+  --sidebar-link-color: #a1a1aa;
+
+  --base-background-color: var(--background-color);
+  --base-color: #fff;
+}
+
+.search {
+  background-color: var(--input-color);
+  border-color: var(--border-color);
+  border-width: 1px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Inter", codicon;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 24px;
+  tab-size: 4;
+
+  color: white;
+
+  background-color: var(--background-color);
+
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  letter-spacing: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.markdown-section {
+  .anchor {
+    color: white;
+    text-decoration: none;
+  }
+
+  .anchor:visited,
+  .anchor:active,
+  .anchor:hover,
+  .anchor:link,
+  .sidebar-nav a {
+    text-decoration: none;
+  }
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.75px;
+}
+
+.markdown-section hr {
+  margin-bottom: 40px;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+}
+
+html,
+.sidebar,
+code {
+  scrollbar-color: var(--border-color) var(--background-color);
+}
+
+.markdown-section table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.markdown-section th {
+  font-weight: bold;
+  color: rgb(82, 82, 91);
+  text-align: left;
+}
+
+.markdown-section th,
+.markdown-section td {
+  border-bottom: 1px solid var(--border-color);
+  padding: 6px 13px;
+}
+
+.app-name .sidebar-nav h3 > a {
+  color: var(--navbar-headers);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  margin-top: 24px;
+}
+
+/* Breadcrumb */
+h5 {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+
+  .breadcrumb-arrow {
+    width: 20px;
+    height: 20px;
+    margin: 0 4px;
+    margin-bottom: 2px;
+  }
+
+  a {
+    color: rgb(113, 113, 122);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: rgb(63 63 70);
+  }
+}

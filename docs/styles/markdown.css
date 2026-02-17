@@ -1,0 +1,60 @@
+.markdown-section {
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .interface,
+  .request {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+
+    & > :first-child {
+      margin-right: auto;
+    }
+  }
+
+  .interface {
+    a {
+      color: rgb(59, 130, 246);
+    }
+  }
+
+  .request {
+    a {
+      color: rgb(59, 130, 246);
+    }
+
+    .method {
+      color: rgb(236, 72, 153);
+    }
+  }
+
+  .pill {
+    background-color: white;
+    color: black;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+
+    margin: 0 8px;
+    padding: 4px 10px;
+  }
+
+  .destructor {
+    background-color: rgb(252, 231, 243);
+    color: rgb(157, 23, 77);
+  }
+
+  .decleration {
+    margin-top: 44px;
+  }
+
+  pre {
+    background-color: rgb(39, 39, 42);
+    padding: 8px;
+    overflow-x: auto;
+  }
+}

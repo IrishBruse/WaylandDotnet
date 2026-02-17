@@ -1,0 +1,474 @@
+* {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+}
+
+body:not(.ready) {
+  overflow: hidden;
+}
+
+body:not(.ready) [data-cloak],
+body:not(.ready) .app-nav,
+body:not(.ready) > nav {
+  display: none;
+}
+
+div#app {
+  margin: 40vh auto;
+  font-size: 30px;
+  font-weight: lighter;
+  text-align: center;
+}
+
+div#app:empty::before {
+  content: "Loading...";
+}
+
+img.emoji {
+  vertical-align: middle;
+  height: 1.2em;
+}
+
+span.emoji {
+  vertical-align: middle;
+  font-family:
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1.2em;
+}
+
+.progress {
+  position: fixed;
+  z-index: 999999;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  transition:
+    width 0.2s,
+    opacity 0.4s;
+  width: 0%;
+  height: 2px;
+  background-color: #000;
+  background-color: var(--theme-color, #000);
+}
+
+.search a:hover {
+  color: #000;
+  color: var(--theme-color, #000);
+}
+
+.search .search-keyword {
+  color: #000;
+  color: var(--theme-color, #000);
+  font-weight: bold;
+  font-style: normal;
+}
+
+img {
+  max-width: 100%;
+}
+
+a[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+kbd {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 3px;
+  border: solid 1px #ccc;
+  border-radius: 3px;
+  padding: 3px 5px;
+  font-size: 12px !important;
+  line-height: 12px;
+}
+
+li input[type="checkbox"] {
+  vertical-align: middle;
+  margin: 0 0.2em 0.25em 0;
+}
+
+.app-nav {
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  margin: 25px 60px 0 0;
+  text-align: right;
+  /* navbar dropdown */
+}
+
+.app-nav.no-badge {
+  margin-right: 25px;
+}
+
+.app-nav p {
+  margin: 0;
+}
+
+.app-nav > a {
+  margin: 0 1rem;
+  padding: 5px 0;
+}
+
+.app-nav ul,
+.app-nav li {
+  display: inline-block;
+  margin: 0;
+  list-style: none;
+}
+
+.app-nav a {
+  transition: color 0.3s;
+  color: inherit;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.app-nav a:hover {
+  color: #000;
+  color: var(--theme-color, #000);
+}
+
+.app-nav a.active {
+  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--theme-color, #000);
+  color: #000;
+  color: var(--theme-color, #000);
+}
+
+.app-nav li {
+  position: relative;
+  display: inline-block;
+  margin: 0 1rem;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.app-nav li ul {
+  position: absolute;
+  top: 100%;
+  right: -15px;
+  display: none;
+  overflow-y: auto;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-bottom-color: #ccc;
+  border-radius: 4px;
+  max-height: calc(100vh - 61px);
+  padding: 10px 0;
+  background-color: #fff;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.app-nav li ul li {
+  display: block;
+  margin: 0;
+  margin: 8px 14px;
+  font-size: 14px;
+  line-height: 1rem;
+  white-space: nowrap;
+}
+
+.app-nav li ul a {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+.app-nav li ul a.active {
+  border-bottom: 0;
+}
+
+.app-nav li:hover ul {
+  display: block;
+}
+
+main {
+  position: relative;
+  z-index: 0;
+  display: block;
+  width: 100vw;
+  height: 100%;
+}
+
+main.hidden {
+  display: none;
+}
+
+.sidebar {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  transition: transform 250ms ease-out;
+  border-right: 1px solid rgba(0, 0, 0, 0.07);
+  width: 300px;
+  padding: 40px 0 0;
+}
+
+.sidebar > h1 {
+  margin: 0 auto 1rem;
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+.sidebar > h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sidebar > h1 .app-nav {
+  position: static;
+  display: block;
+}
+
+.sidebar .sidebar-nav {
+  padding-bottom: 40px;
+  line-height: 2em;
+}
+
+body.sticky .sidebar {
+  position: fixed;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 300px;
+  right: 0;
+  transition: left 250ms ease;
+  padding-top: 60px;
+}
+
+.markdown-section {
+  position: relative;
+  margin: 0 auto;
+  max-width: 80%;
+  padding: 30px 15px 40px 15px;
+}
+
+.markdown-section > :first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-section iframe {
+  border: 1px solid #eee;
+  /* fix horizontal overflow on iOS Safari */
+  width: 1px;
+  min-width: 100%;
+}
+
+.markdown-section p.tip code {
+  background-color: #efefef;
+}
+
+.markdown-section p.tip em {
+  color: #000;
+}
+
+.markdown-section p.warn {
+  border-radius: 2px;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.markdown-section ul.task-list > li {
+  list-style-type: none;
+}
+
+body.close .sidebar {
+  transform: translateX(-300px);
+}
+
+body.close .content {
+  left: 0;
+}
+
+@media print {
+  .github-corner,
+  .sidebar-toggle,
+  .sidebar,
+  .app-nav {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .github-corner,
+  .sidebar {
+    position: fixed;
+  }
+  .app-nav {
+    margin-top: 16px;
+  }
+  .app-nav li ul {
+    top: 30px;
+  }
+  main {
+    overflow-x: hidden;
+    height: auto;
+    min-height: 100vh;
+  }
+  .sidebar {
+    left: -300px;
+    transition: transform 250ms ease-out;
+  }
+  .content {
+    position: static;
+    left: 0;
+    transition: transform 250ms ease;
+    max-width: 100vw;
+    padding-top: 20px;
+  }
+  .app-nav,
+  .github-corner {
+    transition: transform 250ms ease-out;
+  }
+  body.close .sidebar {
+    transform: translateX(300px);
+  }
+  body.close .content {
+    transform: translateX(300px);
+  }
+  body.close .app-nav,
+  body.close .github-corner {
+    display: none;
+  }
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
+
+section.cover {
+  position: relative;
+  display: none;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+section.cover.show {
+  display: flex;
+}
+
+section.cover.has-mask .mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  opacity: 0.8;
+  width: 100%;
+  background-color: #fff;
+}
+
+section.cover .cover-main {
+  position: relative;
+  flex: 1;
+  margin: 0 16px;
+  text-align: center;
+}
+
+section.cover a {
+  color: inherit;
+  text-decoration: none;
+}
+
+section.cover a:hover {
+  text-decoration: none;
+}
+
+section.cover p {
+  margin: 1em 0;
+  line-height: 1.5rem;
+}
+
+section.cover h1 {
+  position: relative;
+  margin: 0.625rem 0 2.5rem;
+  color: inherit;
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+section.cover h1 a {
+  display: block;
+}
+
+section.cover h1 small {
+  position: absolute;
+  bottom: -0.4375rem;
+  font-size: 1rem;
+}
+
+section.cover blockquote {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+section.cover ul {
+  margin: 1em auto;
+  max-width: 500px;
+  padding: 0;
+  line-height: 1.8;
+  list-style-type: none;
+}
+
+section.cover .cover-main > p:last-child a {
+  display: inline-block;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+  margin: 0.5rem 1rem;
+  border-color: #000;
+  border-color: var(--theme-color, #000);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2rem;
+  padding: 0.75em 2rem;
+  color: #000;
+  color: var(--theme-color, #000);
+  font-size: 1.05rem;
+  text-decoration: none;
+  letter-spacing: 0.1rem;
+}
+
+section.cover .cover-main > p:last-child a:last-child {
+  background-color: #000;
+  background-color: var(--theme-color, #000);
+  color: #fff;
+}
+
+section.cover .cover-main > p:last-child a:last-child:hover {
+  opacity: 0.8;
+  color: inherit;
+}
+
+section.cover .cover-main > p:last-child a:hover {
+  color: inherit;
+}
+
+section.cover blockquote > p > a {
+  transition: color 0.3s;
+  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--theme-color, #000);
+}
+
+section.cover blockquote > p > a:hover {
+  color: #000;
+  color: var(--theme-color, #000);
+}
