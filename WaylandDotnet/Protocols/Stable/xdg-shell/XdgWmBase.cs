@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<XdgWmBase>
 {
     public const string InterfaceName = "xdg_wm_base";
+    public static string _StaticInterfaceName => "xdg_wm_base";
     public const int InterfaceVersion = 7;
 
     private GCHandle gcHandle;

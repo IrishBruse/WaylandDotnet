@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class WlRegion : WaylandObject, IWaylandObjectFactory<WlRegion>
 {
     public const string InterfaceName = "wl_region";
+    public static string _StaticInterfaceName => "wl_region";
     public const int InterfaceVersion = 1;
 
 

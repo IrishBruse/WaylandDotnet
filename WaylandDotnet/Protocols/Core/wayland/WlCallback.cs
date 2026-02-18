@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class WlCallback : WaylandObject, IWaylandObjectFactory<WlCallback>
 {
     public const string InterfaceName = "wl_callback";
+    public static string _StaticInterfaceName => "wl_callback";
     public const int InterfaceVersion = 1;
 
     private GCHandle gcHandle;

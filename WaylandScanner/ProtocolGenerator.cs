@@ -417,6 +417,7 @@ public partial class ProtocolGenerator
         BeginBlock();
         {
             WriteLine($"public const string InterfaceName = \"{iface.Name}\";");
+            WriteLine($"public static string _StaticInterfaceName => \"{iface.Name}\";");
             WriteLine($"public const int InterfaceVersion = {iface.Version};");
             WriteLine();
 

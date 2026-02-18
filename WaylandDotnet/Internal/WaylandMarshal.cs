@@ -20,5 +20,7 @@ public static class WaylandMarshal
 
 public interface IWaylandObjectFactory<T> where T : WaylandObject
 {
-    static abstract T Create(nint handle, WlDisplay display);
+    /// <summary> Used interally for generics </summary>
+    public static abstract string _StaticInterfaceName { get; }
+    public static abstract T Create(nint handle, WlDisplay display);
 }

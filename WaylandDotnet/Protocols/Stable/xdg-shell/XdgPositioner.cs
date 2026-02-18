@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory<XdgPositioner>
 {
     public const string InterfaceName = "xdg_positioner";
+    public static string _StaticInterfaceName => "xdg_positioner";
     public const int InterfaceVersion = 7;
 
 

@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<WlKeyboard>
 {
     public const string InterfaceName = "wl_keyboard";
+    public static string _StaticInterfaceName => "wl_keyboard";
     public const int InterfaceVersion = 10;
 
     private GCHandle gcHandle;

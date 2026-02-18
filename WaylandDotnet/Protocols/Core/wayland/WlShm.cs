@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
 {
     public const string InterfaceName = "wl_shm";
+    public static string _StaticInterfaceName => "wl_shm";
     public const int InterfaceVersion = 2;
 
     private GCHandle gcHandle;

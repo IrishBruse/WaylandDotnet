@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgPopup>
 {
     public const string InterfaceName = "xdg_popup";
+    public static string _StaticInterfaceName => "xdg_popup";
     public const int InterfaceVersion = 7;
 
     private GCHandle gcHandle;

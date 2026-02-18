@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBuffer>
 {
     public const string InterfaceName = "wl_buffer";
+    public static string _StaticInterfaceName => "wl_buffer";
     public const int InterfaceVersion = 1;
 
     private GCHandle gcHandle;

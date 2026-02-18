@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTouch>
 {
     public const string InterfaceName = "wl_touch";
+    public static string _StaticInterfaceName => "wl_touch";
     public const int InterfaceVersion = 10;
 
     private GCHandle gcHandle;

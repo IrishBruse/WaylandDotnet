@@ -38,15 +38,15 @@ public class Example
         switch (interfaceName)
         {
             case WlCompositor.InterfaceName:
-                wlCompositor = wlRegistry.Bind<WlCompositor>(interfaceName, version, name);
+                wlCompositor = wlRegistry.Bind<WlCompositor>(name, version);
                 break;
 
             case ZwlrLayerShellV1.InterfaceName:
-                layerShell = wlRegistry.Bind<ZwlrLayerShellV1>(interfaceName, version, name);
+                layerShell = wlRegistry.Bind<ZwlrLayerShellV1>(name, version);
                 break;
 
             case WlOutput.InterfaceName:
-                wlOutput = wlRegistry.Bind<WlOutput>(interfaceName, version, name);
+                wlOutput = wlRegistry.Bind<WlOutput>(name, version);
                 break;
         }
     }

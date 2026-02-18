@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class WlDataDeviceManager : WaylandObject, IWaylandObjectFactory<WlDataDeviceManager>
 {
     public const string InterfaceName = "wl_data_device_manager";
+    public static string _StaticInterfaceName => "wl_data_device_manager";
     public const int InterfaceVersion = 3;
 
 

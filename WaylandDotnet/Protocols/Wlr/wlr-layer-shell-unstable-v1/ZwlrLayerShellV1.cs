@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class ZwlrLayerShellV1 : WaylandObject, IWaylandObjectFactory<ZwlrLayerShellV1>
 {
     public const string InterfaceName = "zwlr_layer_shell_v1";
+    public static string _StaticInterfaceName => "zwlr_layer_shell_v1";
     public const int InterfaceVersion = 5;
 
 

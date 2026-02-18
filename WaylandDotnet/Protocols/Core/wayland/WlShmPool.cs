@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlShmPool>
 {
     public const string InterfaceName = "wl_shm_pool";
+    public static string _StaticInterfaceName => "wl_shm_pool";
     public const int InterfaceVersion = 2;
 
 

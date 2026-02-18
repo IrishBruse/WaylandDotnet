@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class WlShell : WaylandObject, IWaylandObjectFactory<WlShell>
 {
     public const string InterfaceName = "wl_shell";
+    public static string _StaticInterfaceName => "wl_shell";
     public const int InterfaceVersion = 1;
 
 

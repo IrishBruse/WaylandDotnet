@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class WlFixes : WaylandObject, IWaylandObjectFactory<WlFixes>
 {
     public const string InterfaceName = "wl_fixes";
+    public static string _StaticInterfaceName => "wl_fixes";
     public const int InterfaceVersion = 1;
 
 

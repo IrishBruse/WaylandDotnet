@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<WlDataDevice>
 {
     public const string InterfaceName = "wl_data_device";
+    public static string _StaticInterfaceName => "wl_data_device";
     public const int InterfaceVersion = 3;
 
     private GCHandle gcHandle;

@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<WlCompositor>
 {
     public const string InterfaceName = "wl_compositor";
+    public static string _StaticInterfaceName => "wl_compositor";
     public const int InterfaceVersion = 6;
 
 

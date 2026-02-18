@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlDisplay>
 {
     public const string InterfaceName = "wl_display";
+    public static string _StaticInterfaceName => "wl_display";
     public const int InterfaceVersion = 1;
 
     private GCHandle gcHandle;

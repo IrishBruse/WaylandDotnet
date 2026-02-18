@@ -5,11 +5,13 @@ using WaylandDotnet.Internal;
 
 public sealed partial class WlRegistry : WaylandObject
 {
-    public unsafe T Bind<T>(string interfaceName, uint version, uint name) where T : WaylandObject, IWaylandObjectFactory<T>
+    public unsafe T Bind<T>(uint name, uint version) where T : WaylandObject, IWaylandObjectFactory<T>
     {
         CheckDisposed();
 
         const uint opcode = 0;
+
+        var interfaceName = T._StaticInterfaceName;
 
         var ifacePtr = WaylandInterfaces.GetInterfacePtr(interfaceName);
 

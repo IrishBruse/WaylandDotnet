@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<XdgToplevel>
 {
     public const string InterfaceName = "xdg_toplevel";
+    public static string _StaticInterfaceName => "xdg_toplevel";
     public const int InterfaceVersion = 7;
 
     private GCHandle gcHandle;

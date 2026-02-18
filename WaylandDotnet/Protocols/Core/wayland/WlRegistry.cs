@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<WlRegistry>
 {
     public const string InterfaceName = "wl_registry";
+    public static string _StaticInterfaceName => "wl_registry";
     public const int InterfaceVersion = 1;
 
     private GCHandle gcHandle;

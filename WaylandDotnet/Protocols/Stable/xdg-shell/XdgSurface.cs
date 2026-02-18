@@ -30,6 +30,7 @@ using WaylandDotnet.Wlr;
 public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<XdgSurface>
 {
     public const string InterfaceName = "xdg_surface";
+    public static string _StaticInterfaceName => "xdg_surface";
     public const int InterfaceVersion = 7;
 
     private GCHandle gcHandle;
