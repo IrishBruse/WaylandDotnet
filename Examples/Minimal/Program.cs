@@ -17,9 +17,18 @@ public class Program
         WlShm? shm = null;
         registry.OnGlobal += (name, interfaceName, version) =>
         {
-            if (interfaceName == WlCompositor.InterfaceName) compositor = registry.Bind<WlCompositor>(name, version);
-            if (interfaceName == XdgWmBase.InterfaceName) xdg = registry.Bind<XdgWmBase>(name, version);
-            if (interfaceName == WlShm.InterfaceName) shm = registry.Bind<WlShm>(name, version);
+            switch (interfaceName)
+            {
+                case WlCompositor.InterfaceName:
+                    compositor = registry.Bind<WlCompositor>(name, version);
+                    break;
+                case XdgWmBase.InterfaceName:
+                    xdg = registry.Bind<XdgWmBase>(name, version);
+                    break;
+                case WlShm.InterfaceName:
+                    shm = registry.Bind<WlShm>(name, version);
+                    break;
+            }
         };
         display.Roundtrip();
 

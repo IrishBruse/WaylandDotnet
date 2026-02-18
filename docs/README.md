@@ -34,9 +34,9 @@ XdgWmBase? xdg = null;
 registry.OnGlobal += (name, interfaceName, version) =>
 {
     if (interfaceName == WlCompositor.InterfaceName)
-        compositor = registry.Bind<WlCompositor>(interfaceName, version, name);
+        compositor = registry.Bind<WlCompositor>(name, version);
     if (interfaceName == XdgWmBase.InterfaceName)
-        xdg = registry.Bind<XdgWmBase>(interfaceName, version, name);
+        xdg = registry.Bind<XdgWmBase>(name, version);
 };
 
 display.Roundtrip();

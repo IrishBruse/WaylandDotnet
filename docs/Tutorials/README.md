@@ -32,7 +32,7 @@ In C, you use `wl_registry_bind` with interface pointers. In WaylandDotnet, prot
 registry.OnGlobal += (name, interfaceName, version) =>
 {
     if (interfaceName == WlCompositor.InterfaceName)
-        compositor = registry.Bind<WlCompositor>(interfaceName, version, name);
+        compositor = registry.Bind<WlCompositor>(name, version);
 };
 ```
 
