@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package>
   <metadata>
-    <id>WaylandScanner</id>
-    <version>1.0.0</version>
+    <id>WaylandDotnet.Scanner</id>
+    <version>0.1.0</version>
     <authors>Ethan Conneely</authors>
-    <description>A .NET tool for generating C# bindings from Wayland XML protocol definitions. Parses Wayland protocol XML files and generates type-safe C# code for use with WaylandDotnet.</description>
+    <description>A .NET tool for generating C# bindings from Wayland XML protocol definitions.
+      Parses Wayland protocol XML files and generates type-safe C# code for use with WaylandDotnet.</description>
     <tags>wayland;linux;dotnet;code-generator;scanner;protocol</tags>
     <readme>README.md</readme>
     <license type="expression">MIT</license>
-    <projectUrl>https://github.com/i8beef/WaylandDotnet</projectUrl>
-    <repository type="git" url="https://github.com/i8beef/WaylandDotnet.git" />
+    <projectUrl>https://github.com/IrishBruse/WaylandDotnet</projectUrl>
+    <repository type="git" url="https://github.com/IrishBruse/WaylandDotnet.git" />
     <packageTypes>
       <packageType name="DotnetTool" />
     </packageTypes>
