@@ -11,6 +11,7 @@ public class ProtocolRegistry
         protocols.Add(CreateMetadata("Core", "wayland", "Wayland"));
         protocols.Add(CreateMetadata("Stable", "xdg-shell", "XDG shell"));
         protocols.Add(CreateMetadata("Wlr", "wlr-layer-shell-unstable-v1", "Layer Shell"));
+        protocols.Add(CreateMetadata("River", "river-window-management-v1", "River Window Management"));
 
         return protocols.ToArray();
     }

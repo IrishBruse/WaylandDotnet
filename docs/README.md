@@ -49,13 +49,6 @@ toplevel.SetTitle("Hello Wayland");
 surface.Commit();
 ```
 
-## Supported Protocols
-
-| Protocol                                                    | Status | Namespace              |
-| ----------------------------------------------------------- | ------ | ---------------------- |
-| [wayland](Protocols/wayland.md)                             | Core   | `WaylandDotnet`        |
-| [xdg-shell](Protocols/xdg-shell.md)                         | Stable | `WaylandDotnet.Stable` |
-| [wlr-layer-shell](Protocols/wlr-layer-shell-unstable-v1.md) | Wlr    | `WaylandDotnet.Wlr`    |
 
 ## Requirements
 

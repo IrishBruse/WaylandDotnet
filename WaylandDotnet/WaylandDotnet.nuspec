@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>WaylandDotnet</id>
+    <version>1.0.0</version>
+    <authors>Ethan Conneely</authors>
+    <description>A .NET 10 C# binding for the Wayland display server protocol. Provides type-safe access to Wayland client functionality with Native AOT compilation support.</description>
+    <tags>wayland;linux;dotnet;aot;native;bindings;display;protocol</tags>
+    <readme>README.md</readme>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/i8beef/WaylandDotnet</projectUrl>
+    <repository type="git" url="https://github.com/i8beef/WaylandDotnet.git" />
+    <dependencies>
+      <group targetFramework="net10.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\net10.0\WaylandDotnet.dll" target="lib\net10.0\" />
+    <file src="..\README.md" target="" />
+  </files>
+</package>

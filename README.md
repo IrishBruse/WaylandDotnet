@@ -30,9 +30,7 @@ cd Examples/LayerShell && dotnet run
 
 ## Supported Protocols
 
-- **Core**: wayland
-- **Stable**: xdg-shell
-- **Wlr**: wlr-layer-shell-v1
+See [Protocols](https://ethanconneely.com/WaylandDotnet/#/Protocols/)
 
 ## Features
 
