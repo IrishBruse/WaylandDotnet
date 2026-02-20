@@ -192,9 +192,9 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
     ///The mode event describes an available mode for the output.
     ///
     ///The event is sent when binding to the output object and there
-    ///will always be one mode, the current mode. The event is sent
+    ///will always be one mode, the current mode.  The event is sent
     ///again if an output changes mode, for the mode that is now
-    ///current. In other words, the current mode is always the last
+    ///current.  In other words, the current mode is always the last
     ///mode that was received with the current flag set.
     ///
     ///Non-current modes are deprecated. A compositor can decide to only

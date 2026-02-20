@@ -52,9 +52,9 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
     /// Create a wl_buffer object from the pool.<br/>
     /// <br/>
     /// The buffer is created offset bytes into the pool and has<br/>
-    /// width and height as specified. The stride argument specifies<br/>
+    /// width and height as specified.  The stride argument specifies<br/>
     /// the number of bytes from the beginning of one row to the beginning<br/>
-    /// of the next. The format is the pixel format of the buffer and<br/>
+    /// of the next.  The format is the pixel format of the buffer and<br/>
     /// must be one of those advertised through the wl_shm.format event.<br/>
     /// <br/>
     /// A buffer will keep a reference to the pool it was created from<br/>
@@ -125,7 +125,7 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
     /// <br/>
     /// This request will cause the server to remap the backing memory<br/>
     /// for the pool from the file descriptor passed when the pool was<br/>
-    /// created, but using the new size. This request can only be<br/>
+    /// created, but using the new size.  This request can only be<br/>
     /// used to make the pool bigger.<br/>
     /// <br/>
     /// This request only changes the amount of bytes that are mmapped<br/>

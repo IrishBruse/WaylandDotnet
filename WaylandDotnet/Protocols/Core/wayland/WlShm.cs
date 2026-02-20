@@ -752,7 +752,7 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
     /// Create a new wl_shm_pool object.<br/>
     /// <br/>
     /// The pool can be used to create shared memory based buffer<br/>
-    /// objects. The server will mmap size bytes of the passed file<br/>
+    /// objects.  The server will mmap size bytes of the passed file<br/>
     /// descriptor, to use as backing memory for the pool.<br/>
     /// <br/>
     /// </para>

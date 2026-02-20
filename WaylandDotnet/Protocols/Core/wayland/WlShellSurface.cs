@@ -485,7 +485,7 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     /// <br/>
     /// The framerate parameter is used only when the method is set<br/>
     /// to "driver", to indicate the preferred framerate. A value of 0<br/>
-    /// indicates that the client does not care about framerate. The<br/>
+    /// indicates that the client does not care about framerate.  The<br/>
     /// framerate is specified in mHz, that is framerate of 60000 is 60Hz.<br/>
     /// <br/>
     /// A method of "scale" or "driver" implies a scaling operation of<br/>

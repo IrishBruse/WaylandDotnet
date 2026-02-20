@@ -91,7 +91,7 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
     ///Notify the client of removed global objects.
     ///
     ///This event notifies the client that the global identified
-    ///by name is no longer available. If the client bound to
+    ///by name is no longer available.  If the client bound to
     ///the global using the bind request, the client should now
     ///destroy that object.
     ///

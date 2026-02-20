@@ -549,7 +549,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     /// <br/>
     /// The opaque region is an optimization hint for the compositor<br/>
     /// that lets it optimize the redrawing of content behind opaque<br/>
-    /// regions. Setting an opaque region is not required for correct<br/>
+    /// regions.  Setting an opaque region is not required for correct<br/>
     /// behaviour, but marking transparent content as opaque will result<br/>
     /// in repaint artifacts.<br/>
     /// <br/>
@@ -723,6 +723,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     /// Buffer transform is double-buffered state, see wl_surface.commit.<br/>
     /// <br/>
     /// A newly created surface has its buffer transformation set to normal.<br/>
+    /// <br/>
     /// wl_surface.set_buffer_transform changes the pending buffer<br/>
     /// transformation. wl_surface.commit copies the pending buffer<br/>
     /// transformation to the current one. Otherwise, the pending and current<br/>

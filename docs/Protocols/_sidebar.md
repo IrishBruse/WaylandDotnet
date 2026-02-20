@@ -13,6 +13,3 @@ Stable
 Wlr
 - [Layer Shell](/Protocols/Wlr/wlr-layer-shell-unstable-v1.md)
 
-River
-- [River Window Management](/Protocols/River/river-window-management-v1.md)
-

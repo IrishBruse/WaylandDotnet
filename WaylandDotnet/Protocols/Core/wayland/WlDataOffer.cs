@@ -84,7 +84,7 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
     ///Advertise offered mime type
     /// <para>
     ///
-    ///Sent immediately after creating the wl_data_offer object. One
+    ///Sent immediately after creating the wl_data_offer object.  One
     ///event per offered mime type.
     ///
     /// </para>
@@ -322,9 +322,9 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
     /// <para>
     /// <br/>
     /// To transfer the offered data, the client issues this request<br/>
-    /// and indicates the mime type it wants to receive. The transfer<br/>
+    /// and indicates the mime type it wants to receive.  The transfer<br/>
     /// happens through the passed file descriptor (typically created<br/>
-    /// with the pipe system call). The source client writes the data<br/>
+    /// with the pipe system call).  The source client writes the data<br/>
     /// in the mime type representation requested and then closes the<br/>
     /// file descriptor.<br/>
     /// <br/>

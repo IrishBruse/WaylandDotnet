@@ -15,7 +15,7 @@
 Core global object
 
 
-The core global object. This is a special singleton object. It
+The core global object.  This is a special singleton object.  It
 is used for internal Wayland protocol features.
 
 
@@ -38,7 +38,7 @@ WlCallback Sync()
 **Asynchronous roundtrip**
 
 The sync request asks the server to emit the 'done' event
-on the returned wl_callback object. Since requests are
+on the returned wl_callback object.  Since requests are
 handled in-order and events are delivered in-order, this can
 be used as a barrier to ensure all previous requests and the
 resulting events have been handled.
@@ -88,24 +88,24 @@ possible to avoid wasting memory.
 Global registry object
 
 
-The singleton global registry object. The server has a number of
-global objects that are available to all clients. These objects
+The singleton global registry object.  The server has a number of
+global objects that are available to all clients.  These objects
 typically represent an actual object in the server (for example,
 an input device) or they are singleton objects that provide
 extension functionality.
 
 When a client creates a registry object, the registry object
 will emit a global event for each global currently in the
-registry. Globals come and go as a result of device or
+registry.  Globals come and go as a result of device or
 monitor hotplugs, reconfiguration or other events, and the
 registry will send out global and global_remove events to
-keep the client up to date with the changes. To mark the end
+keep the client up to date with the changes.  To mark the end
 of the initial burst of events, the client can use the
 wl_display.sync request immediately after calling
 wl_display.get_registry.
 
 A client can bind to a global object by using the bind
-request. This creates a client-side handle that lets the object
+request.  This creates a client-side handle that lets the object
 emit events to the client and lets the client invoke requests on
 the object.
 
@@ -161,7 +161,7 @@ factory interfaces, the wl_callback interface is frozen at version 1.
 The compositor singleton
 
 
-A compositor. This object is a singleton global. The
+A compositor.  This object is a singleton global.  The
 compositor is in charge of combining the contents of multiple
 surfaces into one displayable output.
 
@@ -218,7 +218,7 @@ A shared memory pool
 
 
 The wl_shm_pool object encapsulates a piece of memory shared
-between the compositor and client. Through the wl_shm_pool
+between the compositor and client.  Through the wl_shm_pool
 object, the client can allocate shared memory wl_buffer objects.
 All objects created through the same pool share the same
 underlying mapped memory. Reusing the mapped memory avoids the
@@ -252,9 +252,9 @@ WlBuffer CreateBuffer(int offset, int width, int height, int stride, uint format
 Create a wl_buffer object from the pool.
 
 The buffer is created offset bytes into the pool and has
-width and height as specified. The stride argument specifies
+width and height as specified.  The stride argument specifies
 the number of bytes from the beginning of one row to the beginning
-of the next. The format is the pixel format of the buffer and
+of the next.  The format is the pixel format of the buffer and
 must be one of those advertised through the wl_shm.format event.
 
 A buffer will keep a reference to the pool it was created from
@@ -302,7 +302,7 @@ void Resize(int size)
 
 This request will cause the server to remap the backing memory
 for the pool from the file descriptor passed when the pool was
-created, but using the new size. This request can only be
+created, but using the new size.  This request can only be
 used to make the pool bigger.
 
 This request only changes the amount of bytes that are mmapped
@@ -356,7 +356,7 @@ WlShmPool CreatePool(int fd, int size)
 Create a new wl_shm_pool object.
 
 The pool can be used to create shared memory based buffer
-objects. The server will mmap size bytes of the passed file
+objects.  The server will mmap size bytes of the passed file
 descriptor, to use as backing memory for the pool.
 
 <h3 class="decleration request">
@@ -439,8 +439,8 @@ Offer to transfer data
 
 
 A wl_data_offer represents a piece of data offered for transfer
-by another client (the source client). It is used by the
-copy-and-paste and drag-and-drop mechanisms. The offer
+by another client (the source client).  It is used by the
+copy-and-paste and drag-and-drop mechanisms.  The offer
 describes the different mime types that the data can be
 converted to and provides the mechanism for transferring the
 data directly from the source client.
@@ -500,9 +500,9 @@ void Receive(string mimeType, int fd)
 **Request that the data is transferred**
 
 To transfer the offered data, the client issues this request
-and indicates the mime type it wants to receive. The transfer
+and indicates the mime type it wants to receive.  The transfer
 happens through the passed file descriptor (typically created
-with the pipe system call). The source client writes the data
+with the pipe system call).  The source client writes the data
 in the mime type representation requested and then closes the
 file descriptor.
 
@@ -649,7 +649,7 @@ void Offer(string mimeType)
 **Add an offered mime type**
 
 This request adds a mime type to the set of mime types
-advertised to targets. Can be called several times to offer
+advertised to targets.  Can be called several times to offer
 multiple types.
 
 <h3 class="decleration request">
@@ -755,7 +755,7 @@ the client must have an active implicit grab that matches the
 serial.
 
 The icon surface is an optional (can be NULL) surface that
-provides an icon to be moved around with the cursor. Initially,
+provides an icon to be moved around with the cursor.  Initially,
 the top-left corner of the icon surface is placed at the cursor
 hotspot, but subsequent wl_surface.offset requests can move the
 relative position. Attach requests must be confirmed with
@@ -828,7 +828,7 @@ Data transfer interface
 
 The wl_data_device_manager is a singleton global object that
 provides access to inter-client data transfer mechanisms such as
-copy-and-paste and drag-and-drop. These mechanisms are tied to
+copy-and-paste and drag-and-drop.  These mechanisms are tied to
 a wl_seat and this interface lets a client get a wl_data_device
 corresponding to a wl_seat.
 
@@ -1104,7 +1104,7 @@ through the method parameter.
 
 The framerate parameter is used only when the method is set
 to "driver", to indicate the preferred framerate. A value of 0
-indicates that the client does not care about framerate. The
+indicates that the client does not care about framerate.  The
 framerate is specified in mHz, that is framerate of 60000 is 60Hz.
 
 A method of "scale" or "driver" implies a scaling operation of
@@ -1530,7 +1530,7 @@ opaque content.
 
 The opaque region is an optimization hint for the compositor
 that lets it optimize the redrawing of content behind opaque
-regions. Setting an opaque region is not required for correct
+regions.  Setting an opaque region is not required for correct
 behaviour, but marking transparent content as opaque will result
 in repaint artifacts.
 
@@ -1681,6 +1681,7 @@ uses the buffer contents.
 Buffer transform is double-buffered state, see wl_surface.commit.
 
 A newly created surface has its buffer transformation set to normal.
+
 wl_surface.set_buffer_transform changes the pending buffer
 transformation. wl_surface.commit copies the pending buffer
 transformation to the current one. Otherwise, the pending and current
@@ -1846,7 +1847,7 @@ Group of input devices
 
 A seat is a group of keyboards, pointer and touch devices. This
 object is published as a global during start up, or when such a
-device is hot plugged. A seat typically has a pointer and
+device is hot plugged.  A seat typically has a pointer and
 maintains a keyboard focus and a pointer focus.
 
 
@@ -2133,11 +2134,11 @@ release
 Compositor output region
 
 
-An output describes part of the compositor geometry. The
+An output describes part of the compositor geometry.  The
 compositor works in the 'compositor coordinate system' and an
 output corresponds to a rectangular area in that space that is
-actually visible. This typically corresponds to a monitor that
-displays part of the compositor space. This object is published
+actually visible.  This typically corresponds to a monitor that
+displays part of the compositor space.  This object is published
 as global during start up, or when a monitor is hotplugged.
 
 
@@ -2191,7 +2192,7 @@ void Destroy()
 
 **Destroy region**
 
-Destroy the region. This will invalidate the object ID.
+Destroy the region.  This will invalidate the object ID.
 
 <h3 class="decleration request">
     <a href="?id=WlRegion_Add" id="WlRegion_Add">

@@ -49,7 +49,7 @@ public sealed partial class WlRegion : WaylandObject, IWaylandObjectFactory<WlRe
     /// Destroy region
     /// <para>
     /// <br/>
-    /// Destroy the region. This will invalidate the object ID.<br/>
+    /// Destroy the region.  This will invalidate the object ID.<br/>
     /// <br/>
     /// </para>
     /// </summary>

@@ -85,11 +85,11 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     /// <para>
     ///
     ///The error event is sent out when a fatal (non-recoverable)
-    ///error has occurred. The object_id argument is the object
+    ///error has occurred.  The object_id argument is the object
     ///where the error occurred, most often in response to a request
-    ///to that object. The code identifies the error and is defined
-    ///by the object interface. As such, each interface defines its
-    ///own set of error codes. The message is a brief description
+    ///to that object.  The code identifies the error and is defined
+    ///by the object interface.  As such, each interface defines its
+    ///own set of error codes.  The message is a brief description
     ///of the error, for (debugging) convenience.
     ///
     /// </para>
@@ -221,7 +221,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     /// <para>
     /// <br/>
     /// The sync request asks the server to emit the 'done' event<br/>
-    /// on the returned wl_callback object. Since requests are<br/>
+    /// on the returned wl_callback object.  Since requests are<br/>
     /// handled in-order and events are delivered in-order, this can<br/>
     /// be used as a barrier to ensure all previous requests and the<br/>
     /// resulting events have been handled.<br/>

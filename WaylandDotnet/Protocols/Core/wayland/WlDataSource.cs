@@ -76,7 +76,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     ///A target accepts an offered mime type
     /// <para>
     ///
-    ///Sent when a target accepts pointer_focus or motion events. If
+    ///Sent when a target accepts pointer_focus or motion events.  If
     ///a target does not accept any of the offered types, type is NULL.
     ///
     ///Used for feedback during drag-and-drop.
@@ -106,7 +106,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     ///Send the data
     /// <para>
     ///
-    ///Request for data from the client. Send the data as the
+    ///Request for data from the client.  Send the data as the
     ///specified mime type over the passed file descriptor, then
     ///close it.
     ///
@@ -396,7 +396,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     /// <para>
     /// <br/>
     /// This request adds a mime type to the set of mime types<br/>
-    /// advertised to targets. Can be called several times to offer<br/>
+    /// advertised to targets.  Can be called several times to offer<br/>
     /// multiple types.<br/>
     /// <br/>
     /// </para>

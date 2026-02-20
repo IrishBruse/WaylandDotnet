@@ -79,7 +79,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     ///The data_offer event introduces a new wl_data_offer object,
     ///which will subsequently be used in either the
     ///data_device.enter event (for drag-and-drop) or the
-    ///data_device.selection event (for selections). Immediately
+    ///data_device.selection event (for selections).  Immediately
     ///following the data_device.data_offer event, the new data_offer
     ///object will send out data_offer.offer events to describe the
     ///mime types it offers.
@@ -110,7 +110,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     /// <para>
     ///
     ///This event is sent when an active drag-and-drop pointer enters
-    ///a surface owned by the client. The position of the pointer at
+    ///a surface owned by the client.  The position of the pointer at
     ///enter time is provided by the x and y arguments, in surface-local
     ///coordinates.
     ///
@@ -140,7 +140,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     /// <para>
     ///
     ///This event is sent when the drag-and-drop pointer leaves the
-    ///surface and the session ends. The client must destroy the
+    ///surface and the session ends.  The client must destroy the
     ///wl_data_offer introduced at enter time at this point.
     ///
     /// </para>
@@ -238,16 +238,16 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     /// <para>
     ///
     ///The selection event is sent out to notify the client of a new
-    ///wl_data_offer for the selection for this device. The
+    ///wl_data_offer for the selection for this device.  The
     ///data_device.data_offer and the data_offer.offer events are
     ///sent out immediately before this event to introduce the data
-    ///offer object. The selection event is sent to a client
+    ///offer object.  The selection event is sent to a client
     ///immediately before receiving keyboard focus and when a new
-    ///selection is set while the client has keyboard focus. The
+    ///selection is set while the client has keyboard focus.  The
     ///data_offer is valid until a new data_offer or NULL is received
-    ///or until the client loses keyboard focus. Switching surface with
+    ///or until the client loses keyboard focus.  Switching surface with
     ///keyboard focus within the same client doesn't mean a new selection
-    ///will be sent. The client must destroy the previous selection
+    ///will be sent.  The client must destroy the previous selection
     ///data_offer, if any, upon receiving this event.
     ///
     /// </para>
@@ -400,7 +400,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     /// serial.<br/>
     /// <br/>
     /// The icon surface is an optional (can be NULL) surface that<br/>
-    /// provides an icon to be moved around with the cursor. Initially,<br/>
+    /// provides an icon to be moved around with the cursor.  Initially,<br/>
     /// the top-left corner of the icon surface is placed at the cursor<br/>
     /// hotspot, but subsequent wl_surface.offset requests can move the<br/>
     /// relative position. Attach requests must be confirmed with<br/>
