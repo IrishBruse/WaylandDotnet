@@ -7,4 +7,5 @@ public record ProtocolMetadata
     public required string OutputDir { get; init; }
     public required string Namespace { get; init; }
     public required string Link { get; init; }
+    public string? DocsDir { get; init; }
 }

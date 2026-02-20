@@ -64,7 +64,17 @@ public partial class ProtocolGenerator
     public void Generate(ProtocolMetadata metadata)
     {
         string mdFile = Path.GetFileNameWithoutExtension(metadata.XmlFile);
-        md = new($"../docs/Protocols/{metadata.Namespace}/{mdFile}.md");
+
+        if (metadata.DocsDir != null)
+        {
+            var docsPath = Path.Combine(metadata.DocsDir, "Protocols", metadata.Namespace);
+            Directory.CreateDirectory(docsPath);
+            md = new(Path.Combine(docsPath, $"{mdFile}.md"));
+        }
+        else
+        {
+            md = new("");
+        }
 
         string ArrowSVG = "![](../../assets/arrow.svg ':class=breadcrumb-arrow')";
 
