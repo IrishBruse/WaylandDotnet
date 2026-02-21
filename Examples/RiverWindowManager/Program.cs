@@ -4,12 +4,11 @@ using System;
 using System.Collections.Generic;
 using WaylandDotnet;
 using WaylandDotnet.River;
-using WaylandDotnet.Stable;
 
 public class Program
 {
-    private static RiverWindowManagerV1? manager;
-    private static RiverOutputV1? output;
+    private static RiverWindowManagerV1 manager = null!;
+    private static RiverOutputV1 output = null!;
     private static int outWidth;
     private static int outHeight;
     private static readonly List<(RiverWindowV1 window, RiverNodeV1 node)> windows = new();

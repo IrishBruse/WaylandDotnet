@@ -6,43 +6,11 @@ A .NET 10 C# binding for the Wayland display server protocol. This library provi
 
 - **WaylandDotnet** - Core library for Wayland client communication
 - **WaylandScanner** - XML protocol parser and C# code generator
-- **Example** - Sample application using SDL3 GPU with wlr-layer-shell
+- **Examples/Minimal** - Minimal window creation example
+- **Examples/LayerShell** - GPU-accelerated overlay using SDL3 and wlr-layer-shell
+- **Examples/RiverWindowManager** - Custom window manager using river-window-management-v1
 - **WaylandDotnet.Tests** - xUnit test suite
 
-## Quick Start
-
-```bash
-# Build the solution
-dotnet build
-
-# Run tests
-dotnet test
-
-# Generate protocol code (rebuilds C# from XML)
-cd WaylandScanner && dotnet run
-
-# Run the example window creation application
-cd Examples/Minimal && dotnet run
-
-# Run the example wlr_layer_shell application
-cd Examples/LayerShell && dotnet run
-```
-
-## Supported Protocols
-
-See [Protocols](https://ethanconneely.com/WaylandDotnet/#/Protocols/)
-
-## Features
-
-- Native AOT compatible (LibraryImport instead of DllImport)
-- Automatic code generation from Wayland XML protocols
-- Type-safe event handling with C# events
-
-## Requirements
-
-- .NET 10.0 SDK
-- libwayland-client
-- Wayland compositor (for running examples)
 
 ## Example Usage
 
@@ -60,4 +28,43 @@ registry.OnGlobal += (name, interfaceName, version) => {
 display.Roundtrip();
 ```
 
-See the [Examples/](Examples/) directory for a complete GPU-accelerated overlay application.
+
+## Supported Protocols
+
+See [Protocols](https://ethanconneely.com/WaylandDotnet/#/Protocols/)
+
+## Features
+
+- Native AOT compatible (LibraryImport instead of DllImport)
+- Automatic code generation from Wayland XML protocols
+- Type-safe event handling with C# events
+
+## Requirements
+
+- .NET 10.0 SDK
+- libwayland-client
+- Wayland compositor
+
+## Development
+
+```bash
+# Build the solution
+dotnet build
+
+# Run tests
+dotnet test
+
+# Generate protocol code (rebuilds C# from XML)
+cd WaylandScanner && dotnet run
+
+# Run the minimal window creation example
+cd Examples/Minimal && dotnet run
+
+# Run the wlr-layer-shell overlay example
+cd Examples/LayerShell && dotnet run
+
+# Run the river window manager example
+cd Examples/RiverWindowManager && dotnet run
+```
+
+See the [Examples/](Examples/) directory for complete working applications.

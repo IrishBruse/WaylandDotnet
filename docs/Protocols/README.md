@@ -25,6 +25,12 @@ Protocols from wlroots, widely supported by compositors like Sway, Hyprland, and
 
 - **wlr-layer-shell** - Layer-based surfaces for panels, overlays, lock screens, and backgrounds
 
+### River
+
+Protocols from the River compositor for building custom window managers.
+
+- **river-window-management-v1** - Window management protocol for building Wayland compositors/window managers
+
 ## Using Protocols
 
 WaylandDotnet namespaces protocols to keep them organized:
@@ -32,6 +38,7 @@ WaylandDotnet namespaces protocols to keep them organized:
 - `WaylandDotnet` - Core protocol
 - `WaylandDotnet.Stable` - Stable protocols
 - `WaylandDotnet.Wlr` - Wlr protocols
+- `WaylandDotnet.River` - River protocols
 
 ## Protocol Discovery
 
