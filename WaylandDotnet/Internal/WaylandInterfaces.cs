@@ -4,19 +4,7 @@ using System.Runtime.InteropServices;
 
 public unsafe static partial class WaylandInterfaces
 {
-    // Static constructor ensures Core interfaces are initialized first
-    // before Unstable/Stable interfaces that depend on them
-    static WaylandInterfaces()
-    {
-        // Force initialization of Core interface static fields
-        // by accessing them before any Unstable/Stable interfaces are created
-        _ = WlDisplay;
-        _ = WlRegistry;
-        _ = WlCompositor;
-        _ = WlSurface;
-        _ = WlOutput;
-        _ = WlShm;
-    }
+    private static Dictionary<string, IntPtr> Interfaces = new();
 
     private static IntPtr CreateTypesArray(WlInterface*[] types)
     {
@@ -38,12 +26,18 @@ public unsafe static partial class WaylandInterfaces
 
     public static WlInterface* GetInterfacePtr(string interfaceName)
     {
-        var ptr =
-            GetCoreRuntimeInterface(interfaceName) ??
-            GetStableRuntimeInterface(interfaceName) ??
-            GetWlrRuntimeInterface(interfaceName) ??
-            throw new InvalidOperationException($"Interface '{interfaceName}' not found");
+        if (Interfaces.TryGetValue(interfaceName, out nint ptr))
+        {
+            return (WlInterface*)ptr;
+        }
 
-        return (WlInterface*)ptr;
+        throw new InvalidOperationException($"Interface {interfaceName} not found");
+    }
+
+    private static WlInterface* AllocateInterface()
+    {
+        var size = Marshal.SizeOf<WlInterface>();
+        var ptr = (WlInterface*)Marshal.AllocHGlobal(size);
+        return ptr;
     }
 }

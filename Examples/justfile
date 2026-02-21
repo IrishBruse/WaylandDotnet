@@ -8,3 +8,7 @@ Minimal:
 [working-directory: 'LayerShell']
 LayerShell:
     dotnet run
+
+[working-directory: 'RiverWindowManager']
+RiverWindowManager:
+    WAYLAND_DISPLAY=wayland-2 dotnet run

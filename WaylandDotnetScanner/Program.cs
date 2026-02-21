@@ -1,11 +1,11 @@
-namespace WaylandScanner;
+namespace WaylandDotnetScanner;
 
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 using WaylandDotnet;
-using WaylandScanner.Data;
+using WaylandDotnetScanner.Data;
 
 public class Program
 {

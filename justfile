@@ -31,4 +31,4 @@ wayland-scanner:
 
 pack:
     dotnet pack WaylandDotnet/WaylandDotnet.csproj /p:NuspecFile=WaylandDotnet.nuspec
-    dotnet pack WaylandScanner/WaylandScanner.csproj /p:NuspecFile=WaylandScanner.nuspec
+    dotnet pack WaylandDotnetScanner/WaylandDotnetScanner.csproj /p:NuspecFile=WaylandScanner.nuspec

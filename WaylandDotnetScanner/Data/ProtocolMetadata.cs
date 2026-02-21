@@ -1,4 +1,4 @@
-namespace WaylandScanner.Data;
+namespace WaylandDotnetScanner.Data;
 
 public record ProtocolMetadata
 {
