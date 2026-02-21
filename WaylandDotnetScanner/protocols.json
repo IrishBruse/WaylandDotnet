@@ -1,29 +1,26 @@
-[
-  {
-    "Name": "Wayland",
-    "XmlFile": "Protocols/Core/wayland.xml",
-    "OutputDir": "../WaylandDotnet/Protocols/Core/wayland/",
-    "Namespace": "Core",
-    "DocsDir": "../docs"
-  },
-  {
-    "Name": "XDG shell",
-    "XmlFile": "Protocols/Stable/xdg-shell.xml",
-    "OutputDir": "../WaylandDotnet/Protocols/Stable/xdg-shell/",
-    "Namespace": "Stable",
-    "DocsDir": "../docs"
-  },
-  {
-    "Name": "Layer Shell",
-    "XmlFile": "Protocols/Wlr/wlr-layer-shell-unstable-v1.xml",
-    "OutputDir": "../WaylandDotnet/Protocols/Wlr/wlr-layer-shell-unstable-v1/",
-    "Namespace": "Wlr",
-    "DocsDir": "../docs"
-  },
-  {
-    "Name": "River Window Management",
-    "XmlFile": "Protocols/River/river-window-management-v1.xml",
-    "OutputDir": "../WaylandDotnet/Protocols/River/river-window-management-v1/",
-    "Namespace": "River"
-  }
-]
+{
+  "OutputRoot": "../WaylandDotnet/Protocols",
+  "DocsDir": "../docs",
+  "Protocols": [
+    {
+      "Name": "Wayland",
+      "XmlFile": "Protocols/Core/wayland.xml",
+      "Namespace": "Core"
+    },
+    {
+      "Name": "XDG Shell",
+      "XmlFile": "Protocols/Stable/xdg-shell.xml",
+      "Namespace": "Stable"
+    },
+    {
+      "Name": "Layer Shell",
+      "XmlFile": "Protocols/Wlr/wlr-layer-shell-unstable-v1.xml",
+      "Namespace": "Wlr"
+    },
+    {
+      "Name": "River Window Management",
+      "XmlFile": "Protocols/River/river-window-management-v1.xml",
+      "Namespace": "River"
+    }
+  ]
+}

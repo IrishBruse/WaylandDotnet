@@ -5,10 +5,14 @@ mod run 'Examples'
 build:
     dotnet build
 
-[working-directory: 'WaylandScanner']
+[working-directory: 'WaylandDotnetScanner']
 gen:
+    dotnet run -- ./protocols.json
+
+[working-directory: 'WaylandDotnetScanner']
+wayland-dotnet-scanner *args:
     clear
-    dotnet run
+    dotnet run -- {{args}}
 
 docs:
     docsify serve docs

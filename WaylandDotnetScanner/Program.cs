@@ -9,12 +9,12 @@ using WaylandScanner.Data;
 
 public class Program
 {
-    static async Task<int> Main(string[] args)
+    public static int Main(string[] args)
     {
         var inputArg = new Argument<FileInfo?>("input")
         {
-            Description = "Input XML protocol file",
-            Arity = ArgumentArity.ZeroOrOne
+            Description = "Input XML protocol file or JSON config file",
+            Arity = ArgumentArity.ZeroOrOne,
         };
 
         var outputArg = new Argument<DirectoryInfo?>("output")
@@ -33,53 +33,45 @@ public class Program
             Description = "Display name for the protocol"
         };
 
-        var linkOption = new Option<string?>("--link")
-        {
-            Description = "Link to protocol documentation"
-        };
-
-        var docsOption = new Option<DirectoryInfo?>("--docs")
-        {
-            Description = "Output directory for generated documentation"
-        };
-
-        var configOption = new Option<FileInfo?>("--config", "-c")
-        {
-            DefaultValueFactory = (_) => new FileInfo("./protocols.json"),
-            Description = "JSON config file with multiple protocols"
-        };
-
         var rootCommand = new RootCommand("Wayland protocol scanner - Generate C# bindings from Wayland XML protocols")
         {
             inputArg,
             outputArg,
             namespaceOption,
-            nameOption,
-            linkOption,
-            docsOption,
-            configOption
+            nameOption
         };
 
         rootCommand.SetAction((parseResult) =>
         {
-            var config = parseResult.GetValue(configOption);
-
-            if (config != null)
-            {
-                GenerateFromConfig(config);
-                return;
-            }
-
             var input = parseResult.GetValue(inputArg);
             var output = parseResult.GetValue(outputArg);
             var ns = parseResult.GetValue(namespaceOption);
             var name = parseResult.GetValue(nameOption);
-            var link = parseResult.GetValue(linkOption);
-            var docs = parseResult.GetValue(docsOption);
 
-            if (input == null || output == null)
+            if (File.Exists("protocols.json"))
             {
-                Console.Error.WriteLine("Error: input and output are required");
+                input = new FileInfo("protocols.json");
+            }
+
+            if (input == null)
+            {
+                Console.Error.WriteLine("Usage: WaylandScanner <input.xml|protocols.json> [output-dir] [options]");
+                return;
+            }
+
+            Environment.CurrentDirectory = input.DirectoryName ?? Environment.CurrentDirectory;
+
+            var isJson = string.Equals(input.Extension, ".json", StringComparison.OrdinalIgnoreCase);
+
+            if (isJson && output == null)
+            {
+                GenerateFromConfig(input);
+                return;
+            }
+
+            if (output == null)
+            {
+                Console.Error.WriteLine("Error: output directory is required for XML input");
                 Console.Error.WriteLine("Usage: WaylandScanner <input.xml> <output-dir> [options]");
                 return;
             }
@@ -89,27 +81,33 @@ public class Program
                 Name = name ?? Path.GetFileNameWithoutExtension(input.Name),
                 XmlFile = input.FullName,
                 OutputDir = output.FullName,
-                Namespace = ns ?? "Generated",
-                Link = link ?? $"https://wayland.app/protocols/{Path.GetFileNameWithoutExtension(input.Name)}",
-                DocsDir = docs?.FullName
+                Namespace = ns ?? "Generated"
             };
 
             GenerateProtocol(metadata);
         });
 
         var listCommand = new Command("list", "List available protocols in config file");
-        listCommand.Add(configOption);
+        listCommand.Add(inputArg);
 
         listCommand.SetAction((parseResult) =>
         {
-            var config = parseResult.GetValue(configOption);
-            if (config == null || !config.Exists)
+            var input = parseResult.GetValue(inputArg);
+
+            if (File.Exists("protocols.json"))
+            {
+                input = new FileInfo("protocols.json");
+            }
+
+            if (input == null || !input.Exists)
             {
                 Console.Error.WriteLine("Error: Config file not found");
                 return;
             }
 
-            var protocols = LoadConfig(config);
+            Environment.CurrentDirectory = input.DirectoryName ?? Environment.CurrentDirectory;
+
+            var protocols = LoadConfig(input);
             foreach (var p in protocols)
             {
                 Console.WriteLine($"{p.Namespace}/{p.Name}: {p.XmlFile}");
@@ -118,18 +116,18 @@ public class Program
 
         rootCommand.Subcommands.Add(listCommand);
 
-        return rootCommand.Parse(args).InvokeAsync().Result;
+        return rootCommand.Parse(args).Invoke();
     }
 
-    static void GenerateFromConfig(FileInfo config)
+    static void GenerateFromConfig(FileInfo input)
     {
-        if (!config.Exists)
+        if (!input.Exists)
         {
-            Console.Error.WriteLine($"Error: Config file '{config.FullName}' not found.");
+            Console.Error.WriteLine($"Error: Config file '{input.FullName}' not found.");
             return;
         }
 
-        var protocols = LoadConfig(config);
+        var protocols = LoadConfig(input);
 
         foreach (var protocol in protocols)
         {
@@ -175,27 +173,33 @@ public class Program
         Console.WriteLine("Code generation complete");
     }
 
-    static ProtocolMetadata[] LoadConfig(FileInfo config)
+    static ProtocolMetadata[] LoadConfig(FileInfo input)
     {
-        var json = File.ReadAllText(config.FullName);
+        var json = File.ReadAllText(input.FullName);
         var options = new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true
         };
 
-        var configs = JsonSerializer.Deserialize<ProtocolConfig[]>(json, options)
-            ?? Array.Empty<ProtocolConfig>();
+        var rootConfig = JsonSerializer.Deserialize<RootConfig>(json, options)
+            ?? throw new InvalidOperationException("Failed to parse config file");
 
-        var baseDir = config.Directory?.FullName ?? Directory.GetCurrentDirectory();
+        var baseDir = input.Directory?.FullName ?? Directory.GetCurrentDirectory();
+        var outputRoot = Path.GetFullPath(rootConfig.OutputRoot, baseDir);
+        var docsDir = rootConfig.DocsDir != null ? Path.GetFullPath(rootConfig.DocsDir, baseDir) : null;
 
-        return configs.Select(c => new ProtocolMetadata
+        return rootConfig.Protocols.Select(c =>
         {
-            Name = c.Name,
-            XmlFile = Path.GetFullPath(c.XmlFile, baseDir),
-            OutputDir = Path.GetFullPath(c.OutputDir, baseDir),
-            Namespace = c.Namespace,
-            Link = c.Link ?? $"https://wayland.app/protocols/{Path.GetFileNameWithoutExtension(c.XmlFile)}",
-            DocsDir = c.DocsDir != null ? Path.GetFullPath(c.DocsDir, baseDir) : null
+            var xmlFileName = Path.GetFileNameWithoutExtension(c.XmlFile);
+            return new ProtocolMetadata
+            {
+                Name = c.Name,
+                XmlFile = Path.GetFullPath(c.XmlFile, baseDir),
+                OutputDir = Path.Combine(outputRoot, c.Namespace, xmlFileName),
+                Namespace = c.Namespace,
+                Link = c.Link ?? $"https://wayland.app/protocols/{Path.GetFileNameWithoutExtension(c.XmlFile)}",
+                DocsDir = docsDir
+            };
         }).ToArray();
     }
 
@@ -242,12 +246,17 @@ public class Program
     }
 }
 
+internal class RootConfig
+{
+    public string OutputRoot { get; set; } = "";
+    public string? DocsDir { get; set; }
+    public ProtocolConfig[] Protocols { get; set; } = [];
+}
+
 internal class ProtocolConfig
 {
     public string Name { get; set; } = "";
     public string XmlFile { get; set; } = "";
-    public string OutputDir { get; set; } = "";
     public string Namespace { get; set; } = "";
     public string? Link { get; set; }
-    public string? DocsDir { get; set; }
 }
