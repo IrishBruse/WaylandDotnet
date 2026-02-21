@@ -1,4 +1,4 @@
-namespace WaylandDotnetScanner.Data;
+namespace WaylandDotnet.Scanner.Data;
 
 using System.Collections.Generic;
 using System.Xml.Serialization;

@@ -5,11 +5,11 @@ mod run 'Examples'
 build:
     dotnet build
 
-[working-directory: 'WaylandDotnetScanner']
+[working-directory: 'WaylandDotnet.Scanner']
 gen:
     dotnet run -- ./protocols.json
 
-[working-directory: 'WaylandDotnetScanner']
+[working-directory: 'WaylandDotnet.Scanner']
 wayland-dotnet-scanner *args:
     clear
     dotnet run -- {{args}}
@@ -31,4 +31,4 @@ wayland-scanner:
 
 pack:
     dotnet pack WaylandDotnet/WaylandDotnet.csproj /p:NuspecFile=WaylandDotnet.nuspec
-    dotnet pack WaylandDotnetScanner/WaylandDotnetScanner.csproj /p:NuspecFile=WaylandScanner.nuspec
+    dotnet pack WaylandDotnet.Scanner/WaylandDotnet.Scanner.csproj /p:NuspecFile=WaylandScanner.nuspec

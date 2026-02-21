@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>$(version)</Version>
+    <Authors>Ethan Conneely</Authors>
+    <Product>WaylandDotnet Scanner</Product>
+    <PackageId>WaylandDotnet.Scanner</PackageId>
+    <Description>Wayland protocol scanner that generates C# bindings from XML protocol definitions</Description>
+    <PackageProjectUrl>https://ethanconneely.com/WaylandDotnet/</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/IrishBruse/WaylandDotnet</RepositoryUrl>
+    <PackageTags>Wayland, Linux, DotNet, C#, Protocol</PackageTags>
+    <PackageIcon>../docs/logo.svg</PackageIcon>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>https://ethanconneely.com/WaylandDotnet/Changelog</PackageReleaseNotes>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>wayland-dotnet-scanner</ToolCommandName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.CommandLine" Version="2.0.3" />
+  </ItemGroup>
+
+</Project>

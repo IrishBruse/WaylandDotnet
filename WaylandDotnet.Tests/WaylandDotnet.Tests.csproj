@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WaylandDotnet\WaylandDotnet.csproj" />
-    <ProjectReference Include="..\WaylandDotnetScanner\WaylandDotnetScanner.csproj" />
+    <ProjectReference Include="..\WaylandDotnet.Scanner\WaylandDotnet.Scanner.csproj" />
   </ItemGroup>
 
   <ItemGroup>

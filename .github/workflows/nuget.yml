@@ -1,0 +1,59 @@
+name: Nuget Release
+
+run-name: Release ${{inputs.version}}
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version"
+        required: true
+        default: "1.0.0-beta"
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        project:
+          - "WaylandDotnet/WaylandDotnet.csproj"
+          - "WaylandDotnet.Scanner/WaylandDotnet.Scanner.csproj"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore "${{github.workspace}}/${{matrix.project}}"
+
+      - name: Pack
+        run: dotnet pack --configuration Release --no-build --output ${{github.workspace}}/Nuget --no-restore --include-source "${{github.workspace}}/${{matrix.project}}" /p:version=${{inputs.version}}
+
+      - name: Publish to Nuget
+        run: dotnet nuget push --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} ${{github.workspace}}/Nuget/*.nupkg --skip-duplicate
+
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+    if: ${{ ! endsWith(inputs.version, '-beta') }}
+    steps:
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release create "v${{inputs.version}}" \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="v${{inputs.version}}" \
+              --notes="https://ethanconneely.com/WaylandDotnet/" \
+              --generate-notes

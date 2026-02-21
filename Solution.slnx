@@ -1,6 +1,6 @@
 <?xml-model href="https://raw.githubusercontent.com/microsoft/vs-solutionpersistence/refs/heads/main/src/Microsoft.VisualStudio.SolutionPersistence/Serializer/Xml/Slnx.xsd"?>
 <Solution>
-  <Project Path="WaylandDotnetScanner/WaylandDotnetScanner.csproj" />
+  <Project Path="WaylandDotnet.Scanner/WaylandDotnet.Scanner.csproj" />
   <Project Path="WaylandDotnet/WaylandDotnet.csproj" />
 
   <Project Path="WaylandDotnet.Tests/WaylandDotnet.Tests.csproj" />

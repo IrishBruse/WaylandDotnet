@@ -1,11 +1,11 @@
-namespace WaylandDotnetScanner;
+namespace WaylandDotnet.Scanner;
 
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 using WaylandDotnet;
-using WaylandDotnetScanner.Data;
+using WaylandDotnet.Scanner.Data;
 
 public class Program
 {
@@ -56,6 +56,9 @@ public class Program
             if (input == null)
             {
                 Console.Error.WriteLine("Usage: WaylandScanner <input.xml|protocols.json> [output-dir] [options]");
+                Console.Error.WriteLine("       WaylandScanner init");
+                Console.Error.WriteLine();
+                Console.Error.WriteLine("Run 'WaylandScanner init' to create a protocols.json configuration file.");
                 return;
             }
 
@@ -115,6 +118,36 @@ public class Program
         });
 
         rootCommand.Subcommands.Add(listCommand);
+
+        var initCommand = new Command("init", "Create a default protocols.json configuration file");
+        initCommand.SetAction((parseResult) =>
+        {
+            const string defaultConfig = """"
+            {
+              "OutputRoot": "./Generated",
+              "DocsDir": null,
+              "Protocols": [
+                {
+                  "Name": "Wayland",
+                  "XmlFile": "Protocols/Core/wayland.xml",
+                  "Namespace": "Core"
+                }
+              ]
+            }
+            """";
+
+            if (File.Exists("protocols.json"))
+            {
+                Console.Error.WriteLine("Error: protocols.json already exists");
+                return;
+            }
+
+            File.WriteAllText("protocols.json", defaultConfig);
+            Console.WriteLine("Created protocols.json");
+            Console.WriteLine("Edit the file to configure your protocols, then run 'wayland-dotnet-scanner' to generate code.");
+        });
+
+        rootCommand.Subcommands.Add(initCommand);
 
         return rootCommand.Parse(args).Invoke();
     }

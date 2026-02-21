@@ -1,4 +1,4 @@
-namespace WaylandDotnet;
+namespace WaylandDotnet.Scanner.Data;
 
 public static class Extensions
 {
