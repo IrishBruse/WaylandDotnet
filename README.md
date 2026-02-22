@@ -1,4 +1,15 @@
-# WaylandDotnet
+<!-- center -->
+
+<p align="center">
+  <img src="./logo.png"><br>
+  <b>WaylandDotnet</b>
+</p>
+
+<p align="center">
+  <a href="https://www.nuget.org/packages/WaylandDotnet/"><img src="https://img.shields.io/nuget/v/WaylandDotnet?" /></a>
+  <a href="https://www.nuget.org/packages/WaylandDotnet.Scanner/"><img src="https://img.shields.io/nuget/v/WaylandDotnet.Scanner?" /></a>
+</p>
+
 
 A .NET 10 C# binding for the Wayland display server protocol. This library provides C# access to Wayland client functionality with AOT compilation support.
 
