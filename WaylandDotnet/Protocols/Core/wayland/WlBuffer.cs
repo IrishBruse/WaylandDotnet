@@ -37,18 +37,9 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public WlBuffer(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEventDelegates
-
     public delegate void ReleaseHandler();
 
     private ReleaseHandler? _onRelease;
@@ -88,12 +79,6 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
             _onRelease -= value;
         }
     }
-
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
 
     private unsafe void EnsureDispatcherRegistered()
     {
@@ -149,12 +134,6 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Destroy a buffer
     /// <para>
@@ -184,16 +163,10 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static WlBuffer Create(nint handle, WlDisplay display)
     {
         return new WlBuffer(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -202,7 +175,4 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

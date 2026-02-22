@@ -37,18 +37,9 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public RiverWindowManagerV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary>  </summary>
     public enum Error : uint
     {
@@ -65,12 +56,6 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         /// </summary>
         Unresponsive = 2,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
 
     public delegate void UnavailableHandler();
 
@@ -361,12 +346,6 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -478,12 +457,6 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Stop sending events
     /// <para>
@@ -688,16 +661,10 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         return new RiverShellSurfaceV1(newProxy, Display);
     }
 
-
-    #endregion // GenerateRequests
-
     public static RiverWindowManagerV1 Create(nint handle, WlDisplay display)
     {
         return new RiverWindowManagerV1(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -706,7 +673,4 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

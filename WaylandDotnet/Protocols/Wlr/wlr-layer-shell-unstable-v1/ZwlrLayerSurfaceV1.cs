@@ -37,18 +37,9 @@ public sealed partial class ZwlrLayerSurfaceV1 : WaylandObject, IWaylandObjectFa
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public ZwlrLayerSurfaceV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary> types of keyboard interaction possible for a layer shell surface </summary>
     public enum KeyboardInteractivity : uint
     {
@@ -112,12 +103,6 @@ public sealed partial class ZwlrLayerSurfaceV1 : WaylandObject, IWaylandObjectFa
         /// </summary>
         Right = 8,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
 
     public delegate void ConfigureHandler(uint serial, uint width, uint height);
 
@@ -196,12 +181,6 @@ public sealed partial class ZwlrLayerSurfaceV1 : WaylandObject, IWaylandObjectFa
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -265,12 +244,6 @@ public sealed partial class ZwlrLayerSurfaceV1 : WaylandObject, IWaylandObjectFa
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Sets the size of the surface
     /// <para>
@@ -636,16 +609,10 @@ public sealed partial class ZwlrLayerSurfaceV1 : WaylandObject, IWaylandObjectFa
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static ZwlrLayerSurfaceV1 Create(nint handle, WlDisplay display)
     {
         return new ZwlrLayerSurfaceV1(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -654,7 +621,4 @@ public sealed partial class ZwlrLayerSurfaceV1 : WaylandObject, IWaylandObjectFa
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

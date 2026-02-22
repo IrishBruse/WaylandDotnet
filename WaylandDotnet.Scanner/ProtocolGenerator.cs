@@ -1056,6 +1056,8 @@ public partial class ProtocolGenerator
 
     private void BeginRegion([CallerMemberName] string methodName = "")
     {
+        if (!metadata.Debug) return;
+
         WriteLine();
         WriteLine($"#region {methodName}");
         WriteLine();
@@ -1063,6 +1065,8 @@ public partial class ProtocolGenerator
 
     private void EndRegion([CallerMemberName] string methodName = "")
     {
+        if (!metadata.Debug) return;
+
         WriteLine();
         WriteLine($"#endregion // {methodName}");
         WriteLine();

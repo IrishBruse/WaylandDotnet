@@ -37,18 +37,9 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public XdgSurface(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary>  </summary>
     public enum Error : uint
     {
@@ -77,12 +68,6 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
         /// </summary>
         DefunctRoleObject = 6,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
 
     public delegate void ConfigureHandler(uint serial);
 
@@ -125,12 +110,6 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
             _onConfigure -= value;
         }
     }
-
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
 
     private unsafe void EnsureDispatcherRegistered()
     {
@@ -187,12 +166,6 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Destroy the xdg_surface
     /// <para>
@@ -419,16 +392,10 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static XdgSurface Create(nint handle, WlDisplay display)
     {
         return new XdgSurface(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -437,7 +404,4 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

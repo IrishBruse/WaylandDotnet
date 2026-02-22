@@ -37,18 +37,9 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public WlSeat(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary> seat capability bitmask </summary>
     [Flags]
     public enum CapabilityFlag : uint
@@ -75,12 +66,6 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
         /// </summary>
         MissingCapability = 0,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
 
     public delegate void CapabilitiesHandler(uint capabilities);
 
@@ -175,12 +160,6 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -243,12 +222,6 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Return pointer object
     /// <para>
@@ -384,16 +357,10 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static WlSeat Create(nint handle, WlDisplay display)
     {
         return new WlSeat(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -402,7 +369,4 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

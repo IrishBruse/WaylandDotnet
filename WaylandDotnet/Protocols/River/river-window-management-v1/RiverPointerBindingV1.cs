@@ -37,18 +37,9 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public RiverPointerBindingV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEventDelegates
-
     public delegate void PressedHandler();
 
     private PressedHandler? _onPressed;
@@ -130,12 +121,6 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -196,12 +181,6 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Destroy the pointer binding object
     /// <para>
@@ -290,16 +269,10 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static RiverPointerBindingV1 Create(nint handle, WlDisplay display)
     {
         return new RiverPointerBindingV1(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -308,7 +281,4 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

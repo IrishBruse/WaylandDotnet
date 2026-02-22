@@ -37,18 +37,9 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public XdgToplevel(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary>  </summary>
     public enum Error : uint
     {
@@ -184,12 +175,6 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
         /// </summary>
         Minimize = 4,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
 
     public delegate void ConfigureHandler(int width, int height, byte[] states);
 
@@ -357,12 +342,6 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -441,12 +420,6 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Destroy the xdg_toplevel
     /// <para>
@@ -1079,16 +1052,10 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static XdgToplevel Create(nint handle, WlDisplay display)
     {
         return new XdgToplevel(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -1097,7 +1064,4 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

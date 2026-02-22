@@ -33,18 +33,9 @@ public sealed partial class RiverShellSurfaceV1 : WaylandObject, IWaylandObjectF
     public static string _StaticInterfaceName => "river_shell_surface_v1";
     public const int InterfaceVersion = 3;
 
-
-    #region GenerateConstructor
-
     public RiverShellSurfaceV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary>  </summary>
     public enum Error : uint
     {
@@ -57,12 +48,6 @@ public sealed partial class RiverShellSurfaceV1 : WaylandObject, IWaylandObjectF
         /// </summary>
         NoCommit = 1,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateRequests
 
     /// <summary>
     /// Destroy the shell surface object
@@ -157,9 +142,6 @@ public sealed partial class RiverShellSurfaceV1 : WaylandObject, IWaylandObjectF
             (nint)args
         );
     }
-
-
-    #endregion // GenerateRequests
 
     public static RiverShellSurfaceV1 Create(nint handle, WlDisplay display)
     {

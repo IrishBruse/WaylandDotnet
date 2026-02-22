@@ -33,18 +33,9 @@ public sealed partial class ZwlrLayerShellV1 : WaylandObject, IWaylandObjectFact
     public static string _StaticInterfaceName => "zwlr_layer_shell_v1";
     public const int InterfaceVersion = 5;
 
-
-    #region GenerateConstructor
-
     public ZwlrLayerShellV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary>  </summary>
     public enum Error : uint
     {
@@ -82,12 +73,6 @@ public sealed partial class ZwlrLayerShellV1 : WaylandObject, IWaylandObjectFact
         /// </summary>
         Overlay = 3,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateRequests
 
     /// <summary>
     /// Create a layer_surface from a surface
@@ -169,9 +154,6 @@ public sealed partial class ZwlrLayerShellV1 : WaylandObject, IWaylandObjectFact
             (nint)args
         );
     }
-
-
-    #endregion // GenerateRequests
 
     public static ZwlrLayerShellV1 Create(nint handle, WlDisplay display)
     {

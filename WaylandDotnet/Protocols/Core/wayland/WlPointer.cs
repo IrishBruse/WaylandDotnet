@@ -37,18 +37,9 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public WlPointer(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary>  </summary>
     public enum Error : uint
     {
@@ -117,12 +108,6 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         /// </summary>
         Inverted = 1,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
 
     public delegate void EnterHandler(uint serial, WlSurface surface, WlFixed surfaceX, WlFixed surfaceY);
 
@@ -613,12 +598,6 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -762,12 +741,6 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Set the pointer surface
     /// <para>
@@ -860,16 +833,10 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static WlPointer Create(nint handle, WlDisplay display)
     {
         return new WlPointer(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -878,7 +845,4 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

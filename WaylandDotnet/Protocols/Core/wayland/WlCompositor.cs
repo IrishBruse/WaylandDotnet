@@ -33,18 +33,9 @@ public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<
     public static string _StaticInterfaceName => "wl_compositor";
     public const int InterfaceVersion = 6;
 
-
-    #region GenerateConstructor
-
     public WlCompositor(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Create new surface
     /// <para>
@@ -102,9 +93,6 @@ public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<
 
         return new WlRegion(newProxy, Display);
     }
-
-
-    #endregion // GenerateRequests
 
     public static WlCompositor Create(nint handle, WlDisplay display)
     {

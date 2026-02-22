@@ -37,18 +37,9 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public WlShellSurface(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary> edge values for resizing </summary>
     [Flags]
     public enum ResizeFlag : uint
@@ -121,12 +112,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
         /// </summary>
         Fill = 3,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
 
     public delegate void PingHandler(uint serial);
 
@@ -228,12 +213,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -304,12 +283,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Respond to a ping event
     /// <para>
@@ -687,16 +660,10 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static WlShellSurface Create(nint handle, WlDisplay display)
     {
         return new WlShellSurface(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -705,7 +672,4 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

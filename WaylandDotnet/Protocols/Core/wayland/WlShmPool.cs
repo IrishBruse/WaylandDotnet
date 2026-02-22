@@ -33,18 +33,9 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
     public static string _StaticInterfaceName => "wl_shm_pool";
     public const int InterfaceVersion = 2;
 
-
-    #region GenerateConstructor
-
     public WlShmPool(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Create a buffer from the pool
     /// <para>
@@ -154,9 +145,6 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
             (nint)args
         );
     }
-
-
-    #endregion // GenerateRequests
 
     public static WlShmPool Create(nint handle, WlDisplay display)
     {

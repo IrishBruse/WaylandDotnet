@@ -33,18 +33,9 @@ public sealed partial class RiverDecorationV1 : WaylandObject, IWaylandObjectFac
     public static string _StaticInterfaceName => "river_decoration_v1";
     public const int InterfaceVersion = 3;
 
-
-    #region GenerateConstructor
-
     public RiverDecorationV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary>  </summary>
     public enum Error : uint
     {
@@ -53,12 +44,6 @@ public sealed partial class RiverDecorationV1 : WaylandObject, IWaylandObjectFac
         /// </summary>
         NoCommit = 0,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateRequests
 
     /// <summary>
     /// Destroy the decoration object
@@ -156,9 +141,6 @@ public sealed partial class RiverDecorationV1 : WaylandObject, IWaylandObjectFac
             (nint)args
         );
     }
-
-
-    #endregion // GenerateRequests
 
     public static RiverDecorationV1 Create(nint handle, WlDisplay display)
     {

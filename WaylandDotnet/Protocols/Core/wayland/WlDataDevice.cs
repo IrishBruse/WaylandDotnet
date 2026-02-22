@@ -37,18 +37,9 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public WlDataDevice(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary>  </summary>
     public enum Error : uint
     {
@@ -61,12 +52,6 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
         /// </summary>
         UsedSource = 1,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
 
     public delegate void DataOfferHandler(WlDataOffer id);
 
@@ -267,12 +252,6 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -375,12 +354,6 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Start drag-and-drop operation
     /// <para>
@@ -500,16 +473,10 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static WlDataDevice Create(nint handle, WlDisplay display)
     {
         return new WlDataDevice(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -518,7 +485,4 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

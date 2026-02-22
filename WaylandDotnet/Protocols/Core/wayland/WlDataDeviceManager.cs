@@ -33,18 +33,9 @@ public sealed partial class WlDataDeviceManager : WaylandObject, IWaylandObjectF
     public static string _StaticInterfaceName => "wl_data_device_manager";
     public const int InterfaceVersion = 3;
 
-
-    #region GenerateConstructor
-
     public WlDataDeviceManager(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary> drag and drop actions </summary>
     [Flags]
     public enum DndActionFlag : uint
@@ -66,12 +57,6 @@ public sealed partial class WlDataDeviceManager : WaylandObject, IWaylandObjectF
         /// </summary>
         Ask = 4,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateRequests
 
     /// <summary>
     /// Create a new data source
@@ -131,9 +116,6 @@ public sealed partial class WlDataDeviceManager : WaylandObject, IWaylandObjectF
 
         return new WlDataDevice(newProxy, Display);
     }
-
-
-    #endregion // GenerateRequests
 
     public static WlDataDeviceManager Create(nint handle, WlDisplay display)
     {

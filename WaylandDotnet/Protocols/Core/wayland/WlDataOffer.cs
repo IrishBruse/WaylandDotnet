@@ -37,18 +37,9 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public WlDataOffer(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary>  </summary>
     public enum Error : uint
     {
@@ -69,12 +60,6 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
         /// </summary>
         InvalidOffer = 3,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
 
     public delegate void OfferHandler(string mimeType);
 
@@ -195,12 +180,6 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -270,12 +249,6 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Accept one of the offered mime types
     /// <para>
@@ -482,16 +455,10 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static WlDataOffer Create(nint handle, WlDisplay display)
     {
         return new WlDataOffer(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -500,7 +467,4 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

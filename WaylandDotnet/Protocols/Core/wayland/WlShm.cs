@@ -37,18 +37,9 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public WlShm(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary> wl_shm error values </summary>
     public enum Error : uint
     {
@@ -643,12 +634,6 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
         S416 = 0x36313453,
     }
 
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
-
     public delegate void FormatHandler(uint format);
 
     private FormatHandler? _onFormat;
@@ -677,12 +662,6 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
             _onFormat -= value;
         }
     }
-
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
 
     private unsafe void EnsureDispatcherRegistered()
     {
@@ -739,12 +718,6 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Create a shm pool
     /// <para>
@@ -809,16 +782,10 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static WlShm Create(nint handle, WlDisplay display)
     {
         return new WlShm(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -827,7 +794,4 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

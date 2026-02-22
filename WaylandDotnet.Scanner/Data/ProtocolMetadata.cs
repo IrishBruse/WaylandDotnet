@@ -8,4 +8,5 @@ public record ProtocolMetadata
     public required string Namespace { get; init; }
     public string? Link { get; init; }
     public string? DocsDir { get; init; }
+    public bool Debug { get; init; }
 }

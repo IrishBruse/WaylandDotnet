@@ -33,18 +33,9 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     public static string _StaticInterfaceName => "river_node_v1";
     public const int InterfaceVersion = 3;
 
-
-    #region GenerateConstructor
-
     public RiverNodeV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Destroy the decoration object
     /// <para>
@@ -236,9 +227,6 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
             (nint)args
         );
     }
-
-
-    #endregion // GenerateRequests
 
     public static RiverNodeV1 Create(nint handle, WlDisplay display)
     {

@@ -37,18 +37,9 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public XdgPopup(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary>  </summary>
     public enum Error : uint
     {
@@ -57,12 +48,6 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
         /// </summary>
         InvalidGrab = 0,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
 
     public delegate void ConfigureHandler(int x, int y, int width, int height);
 
@@ -172,12 +157,6 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -249,12 +228,6 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Remove xdg_popup interface
     /// <para>
@@ -399,16 +372,10 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static XdgPopup Create(nint handle, WlDisplay display)
     {
         return new XdgPopup(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -417,7 +384,4 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

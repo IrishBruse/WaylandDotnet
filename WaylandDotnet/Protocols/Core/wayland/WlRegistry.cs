@@ -37,18 +37,9 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public WlRegistry(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEventDelegates
-
     public delegate void GlobalHandler(uint name, string _interface, uint version);
 
     private GlobalHandler? _onGlobal;
@@ -116,12 +107,6 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -186,12 +171,6 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Bind an object to the display
     /// <para>
@@ -227,16 +206,10 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
         return new WaylandObject(newProxy, Display, interfaceName, version);
     }
 
-
-    #endregion // GenerateRequests
-
     public static WlRegistry Create(nint handle, WlDisplay display)
     {
         return new WlRegistry(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -245,7 +218,4 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

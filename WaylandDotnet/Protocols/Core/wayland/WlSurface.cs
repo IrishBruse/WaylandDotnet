@@ -37,18 +37,9 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public WlSurface(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary> wl_surface error values </summary>
     public enum Error : uint
     {
@@ -73,12 +64,6 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
         /// </summary>
         DefunctRoleObject = 4,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
 
     public delegate void EnterHandler(WlOutput output);
 
@@ -219,12 +204,6 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -305,12 +284,6 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Delete surface
     /// <para>
@@ -918,16 +891,10 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static WlSurface Create(nint handle, WlDisplay display)
     {
         return new WlSurface(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -936,7 +903,4 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

@@ -1,8 +1,7 @@
-namespace Example;
+namespace Minimal;
 
 using System.Threading;
 using WaylandDotnet;
-using WaylandDotnet.Internal;
 using WaylandDotnet.Stable;
 
 public class Program
@@ -15,6 +14,7 @@ public class Program
         WlCompositor? compositor = null;
         XdgWmBase? xdg = null;
         WlShm? shm = null;
+
         registry.OnGlobal += (name, interfaceName, version) =>
         {
             switch (interfaceName)
@@ -32,47 +32,26 @@ public class Program
         };
         display.Roundtrip();
 
-        WlSurface surface = compositor!.CreateSurface();
-        XdgSurface xdgSurface = xdg!.GetXdgSurface(surface);
-        XdgToplevel topLevel = xdgSurface.GetToplevel();
-        topLevel.SetTitle("Minimal");
+        if (compositor == null || xdg == null || shm == null)
+        {
+            throw new InvalidOperationException("Failed to bind required Wayland interfaces");
+        }
 
-        xdg!.OnPing += (serial) => xdg.Pong(serial);
+        WlSurface surface = compositor.CreateSurface();
+        XdgSurface xdgSurface = xdg.GetXdgSurface(surface);
+        XdgToplevel topLevel = xdgSurface.GetToplevel();
+        topLevel.SetTitle("Minimal Wayland Window");
+
+        xdg.OnPing += xdg.Pong;
+        xdgSurface.OnConfigure += xdgSurface.AckConfigure;
+
+        surface.Commit();
+        display.Roundtrip();
 
         int width = 800;
         int height = 600;
-        bool configured = false;
 
-        xdgSurface.OnConfigure += (serial) =>
-        {
-            xdgSurface.AckConfigure(serial);
-            configured = true;
-        };
-
-        topLevel.OnConfigure += (w, h, states) =>
-        {
-            if (w > 0 && h > 0)
-            {
-                width = w;
-                height = h;
-            }
-        };
-
-        surface.Commit();
-        display.Flush();
-
-        int attempts = 0;
-        while (!configured && attempts < 100)
-        {
-            display.Dispatch();
-            Thread.Sleep(10);
-            attempts++;
-        }
-
-        if (!configured || shm == null) return;
-
-        WlBuffer? buffer = ShmBuffer.CreateSolidColorBuffer(shm, width, height, 0xFF6495ED);
-        if (buffer == null) return;
+        WlBuffer buffer = shm.CreateCheckerboardColorBuffer(width, height, 0x6495EDFF, 0x5384DCFF)!;
 
         surface.Attach(buffer, 0, 0);
         surface.Damage(0, 0, width, height);
@@ -87,11 +66,5 @@ public class Program
             display.Dispatch();
             Thread.Sleep(16);
         }
-
-        buffer.Destroy();
-        surface.Destroy();
-        xdgSurface.Destroy();
-        topLevel.Destroy();
-        display.Disconnect();
     }
 }

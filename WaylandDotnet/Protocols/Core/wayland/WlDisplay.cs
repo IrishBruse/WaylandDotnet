@@ -37,18 +37,9 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public WlDisplay(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary> global error values </summary>
     public enum Error : uint
     {
@@ -69,12 +60,6 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
         /// </summary>
         Implementation = 3,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
 
     public delegate void ErrorHandler(WaylandObject objectId, uint code, string message);
 
@@ -140,12 +125,6 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -210,12 +189,6 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Asynchronous roundtrip
     /// <para>
@@ -292,16 +265,10 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
         return new WlRegistry(newProxy, Display);
     }
 
-
-    #endregion // GenerateRequests
-
     public static WlDisplay Create(nint handle, WlDisplay display)
     {
         return new WlDisplay(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -310,7 +277,4 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

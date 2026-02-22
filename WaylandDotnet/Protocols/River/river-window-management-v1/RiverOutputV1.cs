@@ -37,18 +37,9 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public RiverOutputV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEventDelegates
-
     public delegate void RemovedHandler();
 
     private RemovedHandler? _onRemoved;
@@ -210,12 +201,6 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -293,12 +278,6 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Destroy the output object
     /// <para>
@@ -329,16 +308,10 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static RiverOutputV1 Create(nint handle, WlDisplay display)
     {
         return new RiverOutputV1(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -347,7 +320,4 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

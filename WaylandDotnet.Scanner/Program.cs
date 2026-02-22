@@ -4,7 +4,6 @@ using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using WaylandDotnet;
 using WaylandDotnet.Scanner.Data;
 
 public class Program
@@ -33,6 +32,11 @@ public class Program
             Description = "Display name for the protocol"
         };
 
+        var debugOption = new Option<bool?>("--debug")
+        {
+            Description = "Enable debug output during generation"
+        };
+
         var rootCommand = new RootCommand("Wayland protocol scanner - Generate C# bindings from Wayland XML protocols")
         {
             inputArg,
@@ -47,6 +51,7 @@ public class Program
             var output = parseResult.GetValue(outputArg);
             var ns = parseResult.GetValue(namespaceOption);
             var name = parseResult.GetValue(nameOption);
+            var debug = parseResult.GetValue(debugOption) ?? false;
 
             if (File.Exists("protocols.json"))
             {
@@ -84,7 +89,8 @@ public class Program
                 Name = name ?? Path.GetFileNameWithoutExtension(input.Name),
                 XmlFile = input.FullName,
                 OutputDir = output.FullName,
-                Namespace = ns ?? "Generated"
+                Namespace = ns ?? "Generated",
+                Debug = debug
             };
 
             GenerateProtocol(metadata);

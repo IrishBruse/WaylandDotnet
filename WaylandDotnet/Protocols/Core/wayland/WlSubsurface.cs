@@ -33,18 +33,9 @@ public sealed partial class WlSubsurface : WaylandObject, IWaylandObjectFactory<
     public static string _StaticInterfaceName => "wl_subsurface";
     public const int InterfaceVersion = 1;
 
-
-    #region GenerateConstructor
-
     public WlSubsurface(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary>  </summary>
     public enum Error : uint
     {
@@ -53,12 +44,6 @@ public sealed partial class WlSubsurface : WaylandObject, IWaylandObjectFactory<
         /// </summary>
         BadSurface = 0,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateRequests
 
     /// <summary>
     /// Remove sub-surface interface
@@ -251,9 +236,6 @@ public sealed partial class WlSubsurface : WaylandObject, IWaylandObjectFactory<
             (nint)args
         );
     }
-
-
-    #endregion // GenerateRequests
 
     public static WlSubsurface Create(nint handle, WlDisplay display)
     {

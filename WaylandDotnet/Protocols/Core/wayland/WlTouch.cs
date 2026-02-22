@@ -37,18 +37,9 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public WlTouch(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEventDelegates
-
     public delegate void DownHandler(uint serial, uint time, WlSurface surface, int id, WlFixed x, WlFixed y);
 
     private DownHandler? _onDown;
@@ -303,12 +294,6 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -419,12 +404,6 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Release the touch object
     /// <para>
@@ -449,16 +428,10 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static WlTouch Create(nint handle, WlDisplay display)
     {
         return new WlTouch(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -467,7 +440,4 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

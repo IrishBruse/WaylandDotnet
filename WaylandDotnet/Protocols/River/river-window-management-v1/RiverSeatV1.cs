@@ -37,18 +37,9 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public RiverSeatV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary> a set of keyboard modifiers </summary>
     [Flags]
     public enum ModifiersFlag : uint
@@ -82,12 +73,6 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         /// </summary>
         Mod5 = 128,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
 
     public delegate void RemovedHandler();
 
@@ -425,12 +410,6 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -547,12 +526,6 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Destroy the seat object
     /// <para>
@@ -851,16 +824,10 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static RiverSeatV1 Create(nint handle, WlDisplay display)
     {
         return new RiverSeatV1(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -869,7 +836,4 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

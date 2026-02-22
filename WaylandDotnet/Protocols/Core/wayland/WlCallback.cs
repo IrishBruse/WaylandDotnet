@@ -37,18 +37,9 @@ public sealed partial class WlCallback : WaylandObject, IWaylandObjectFactory<Wl
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public WlCallback(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEventDelegates
-
     public delegate void DoneHandler(uint callbackData);
 
     private DoneHandler? _onDone;
@@ -75,12 +66,6 @@ public sealed partial class WlCallback : WaylandObject, IWaylandObjectFactory<Wl
             _onDone -= value;
         }
     }
-
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
 
     private unsafe void EnsureDispatcherRegistered()
     {
@@ -137,16 +122,10 @@ public sealed partial class WlCallback : WaylandObject, IWaylandObjectFactory<Wl
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
     public static WlCallback Create(nint handle, WlDisplay display)
     {
         return new WlCallback(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -155,7 +134,4 @@ public sealed partial class WlCallback : WaylandObject, IWaylandObjectFactory<Wl
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

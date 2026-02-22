@@ -37,18 +37,9 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public XdgWmBase(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary>  </summary>
     public enum Error : uint
     {
@@ -81,12 +72,6 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
         /// </summary>
         Unresponsive = 6,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
 
     public delegate void PingHandler(uint serial);
 
@@ -126,12 +111,6 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
             _onPing -= value;
         }
     }
-
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
 
     private unsafe void EnsureDispatcherRegistered()
     {
@@ -188,12 +167,6 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Destroy xdg_wm_base
     /// <para>
@@ -326,16 +299,10 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static XdgWmBase Create(nint handle, WlDisplay display)
     {
         return new XdgWmBase(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -344,7 +311,4 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }

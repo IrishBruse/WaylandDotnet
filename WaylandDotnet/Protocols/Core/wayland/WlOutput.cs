@@ -37,18 +37,9 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-
-    #region GenerateConstructor
-
     public WlOutput(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
-
-    #endregion // GenerateConstructor
-
-
-    #region GenerateEnums
-
     /// <summary> subpixel geometry information </summary>
     public enum Subpixel : uint
     {
@@ -128,12 +119,6 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
         /// </summary>
         Preferred = 0x2,
     }
-
-
-    #endregion // GenerateEnums
-
-
-    #region GenerateEventDelegates
 
     public delegate void GeometryHandler(int x, int y, int physicalWidth, int physicalHeight, int subpixel, string make, string model, int transform);
 
@@ -409,12 +394,6 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
         }
     }
 
-
-    #endregion // GenerateEventDelegates
-
-
-    #region GenerateEvents
-
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -514,12 +493,6 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
             return -1;
         }
     }
-
-    #endregion // GenerateEvents
-
-
-    #region GenerateRequests
-
     /// <summary>
     /// Release the output object
     /// <para>
@@ -547,16 +520,10 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
         );
     }
 
-
-    #endregion // GenerateRequests
-
     public static WlOutput Create(nint handle, WlDisplay display)
     {
         return new WlOutput(handle, display);
     }
-
-    #region GenerateDisposeOverride
-
     protected override void Dispose(bool disposing)
     {
         if (gcHandle.IsAllocated)
@@ -565,7 +532,4 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
         }
         base.Dispose(disposing);
     }
-
-    #endregion // GenerateDisposeOverride
-
 }
