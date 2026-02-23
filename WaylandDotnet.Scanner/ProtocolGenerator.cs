@@ -78,18 +78,13 @@ public partial class ProtocolGenerator
             md = new("");
         }
 
-        string ArrowSVG = "![](../../assets/arrow.svg ':class=breadcrumb-arrow')";
-
-        md.WriteLine($"# {metadata.Name}");
-        md.WriteLine();
-        md.WriteLine($"##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) {ArrowSVG} [{metadata.Namespace}](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/{metadata.Namespace})");
-        md.WriteLine();
-        md.WriteLine("---");
-        md.WriteLine();
-
         XmlSerializer serializer = new(typeof(WaylandProtocol));
         using FileStream fileStream = new(metadata.XmlFile, FileMode.Open);
         WaylandProtocol protocol = (WaylandProtocol)serializer.Deserialize(fileStream)!;
+
+        string ArrowSVG = "![](../../assets/arrow.svg ':class=breadcrumb-arrow')";
+
+        GenerateBreadcrumbDocumentation(metadata, protocol, ArrowSVG);
 
         foreach (var iface in protocol.Interfaces)
         {
@@ -112,6 +107,24 @@ public partial class ProtocolGenerator
         md.Save();
 
         Console.WriteLine();
+    }
+
+    private void GenerateBreadcrumbDocumentation(ProtocolMetadata metadata, WaylandProtocol protocol, string ArrowSVG)
+    {
+        string breadcrumb = "";
+
+        breadcrumb += $"[WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet)";
+        breadcrumb += $" {ArrowSVG} ";
+        breadcrumb += $"[{metadata.Namespace}](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/{metadata.Namespace})";
+        breadcrumb += $" {ArrowSVG} ";
+        breadcrumb += $"[{protocol.Name.ToPascal()}](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/{metadata.Namespace}/{Path.GetFileNameWithoutExtension(metadata.XmlFile)}/)";
+
+        md.WriteLine($"# {metadata.Name}");
+        md.WriteLine();
+        md.WriteLine($"##### {breadcrumb}");
+        md.WriteLine();
+        md.WriteLine("---");
+        md.WriteLine();
     }
 
     private void GenerateInterfacesClass(List<WaylandInterface> interfaces)
@@ -409,6 +422,7 @@ public partial class ProtocolGenerator
             GenerateEventDelegates(iface);
             GenerateEvents(iface);
             GenerateRequests(iface);
+            GenerateEventDocumentation(iface);
 
             WriteLine($"public static {className} Create(nint handle, WlDisplay display)");
             WriteLine("{");
@@ -553,6 +567,60 @@ public partial class ProtocolGenerator
             WriteLine();
         }
         EndRegion();
+    }
+
+    private void GenerateEventDocumentation(WaylandInterface iface)
+    {
+        if (iface.Events.Count == 0) return;
+
+        foreach (var evt in iface.Events)
+        {
+            var eventName = evt.Name.ToPascal();
+            var delegateName = eventName + "Handler";
+            var parameters = string.Join(", ", evt.Args.Select(arg => $"{MapTypeToCSharp(arg.Type, arg.Interface, arg.AllowNull)} {arg.Name.ToCamel()}"));
+            var delegateDeclaration = $"void {delegateName}({parameters})";
+
+            EventDocumentation(iface, evt, delegateDeclaration);
+        }
+    }
+
+    private void EventDocumentation(WaylandInterface iface, WaylandEvent evt, string delegateDeclaration)
+    {
+        var summary = EscapeXmlDoc(evt.Description?.Summary ?? evt.Name).CapitalizeFirst();
+        var docs = EscapeXmlDoc(evt.Description?.Text ?? evt.Name);
+        var eventName = evt.Name.ToPascal();
+        string urlEventName = "On" + iface.Name.ToPascal() + "_" + eventName;
+
+        var eventNode = Html.H3().Class("decleration event").Title($"{eventName} event")
+            .Child(Html.A().Href("?id=" + urlEventName).Id(urlEventName)
+                .Child(Html.Span().Class("codicon codicon-symbol-event event"))
+                .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("event").Text("On" + eventName)))
+            );
+
+        if (evt.Since > 0)
+        {
+            eventNode.Child(Html.Span().Class("pill").Text($"since {evt.Since}"));
+        }
+
+        md.WriteLine(eventNode.ToString());
+
+        md.WriteLine();
+        md.WriteLine("```csharp");
+        md.WriteLine(delegateDeclaration);
+        md.WriteLine("```");
+        md.WriteLine();
+        if (evt.Args.Count > 0)
+        {
+            md.WriteLine("| Argument | Type | Description |");
+            md.WriteLine("| --- | --- | --- |");
+        }
+        foreach (var arg in evt.Args)
+        {
+            md.WriteLine($"| {arg.Name} | {arg.Type} | {arg.Summary.CapitalizeFirst()} |");
+        }
+        md.WriteLine();
+        md.WriteLine($"**{summary}**");
+        md.WriteLine(docs);
     }
 
     public void GenerateEvents(WaylandInterface iface)
@@ -911,7 +979,7 @@ public partial class ProtocolGenerator
     {
         string urlMethodName = iface.Name.ToPascal() + "_" + methodName;
 
-        var h3Node = Html.H3().Class("decleration request")
+        var h3Node = Html.H3().Class("decleration request").Title($"{methodName} request")
             .Child(Html.A().Href("?id=" + urlMethodName).Id(urlMethodName)
                 .Child(Html.Span().Class("codicon codicon-symbol-method method"))
                 .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("method").Text(methodName)))

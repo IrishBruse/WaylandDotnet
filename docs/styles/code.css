@@ -1,4 +1,4 @@
-[data-page*="Tutorials/"] {
+:root {
   --code-theme-background: #f3f3f3;
   --code-theme-comment: #6e8090;
   --code-theme-function: #dd4a68;
@@ -7,74 +7,74 @@
   --code-theme-punctuation: #999;
   --code-theme-tag: #d19a66;
   --code-theme-text: #333;
+}
 
-  pre {
-    color: #c7cfdd;
-  }
+pre {
+  color: #c7cfdd;
+}
 
-  .token.comment,
-  .token.prolog,
-  .token.doctype,
-  .token.cdata {
-    color: var(--code-theme-comment);
-  }
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--code-theme-comment);
+}
 
-  .token.namespace {
-    color: #e5c07b;
-  }
-  .token.punctuation {
-    color: var(--code-theme-punctuation);
-  }
-  .token.property,
-  .token.tag,
-  .token.boolean,
-  .token.number,
-  .token.constant,
-  .token.symbol,
-  .token.deleted {
-    color: var(--code-theme-tag);
-  }
-  .token.selector,
-  .token.attr-name,
-  .token.string,
-  .token.char,
-  .token.builtin,
-  .token.inserted {
-    color: #669900;
-  }
-  .token.operator,
-  .token.entity,
-  .token.url,
-  .language-css .token.string,
-  .style .token.string {
-    color: var(--code-theme-operator);
-  }
-  .token.atrule,
-  .token.attr-value,
-  .token.keyword {
-    color: #c678dd;
-  }
-  .token.function {
-    color: #61afef;
-  }
-  .token.regex,
-  .token.important,
-  .token.variable {
-    color: #ee9900;
-  }
-  .token.important,
-  .token.bold {
-    font-weight: bold;
-  }
-  .token.italic {
-    font-style: italic;
-  }
-  .token.entity {
-    cursor: help;
-  }
-  .token.class-name {
-    color: #e5c07b;
-  }
+.token.namespace {
+  color: #e5c07b;
+}
+.token.punctuation {
+  color: var(--code-theme-punctuation);
+}
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: var(--code-theme-tag);
+}
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #669900;
+}
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: var(--code-theme-operator);
+}
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #c678dd;
+}
+.token.function {
+  color: #61afef;
+}
+.token.regex,
+.token.important,
+.token.variable {
+  color: #ee9900;
+}
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+.token.entity {
+  cursor: help;
+}
+.token.class-name {
+  color: #e5c07b;
 }
 
 [data-page*="Protocols/"] {

@@ -1,6 +1,6 @@
 ﻿# Layer Shell
 
-##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../assets/arrow.svg ':class=breadcrumb-arrow') [Wlr](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr)
+##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../assets/arrow.svg ':class=breadcrumb-arrow') [Wlr](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr) ![](../../assets/arrow.svg ':class=breadcrumb-arrow') [WlrLayerShellUnstableV1](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr/wlr-layer-shell-unstable-v1/)
 
 ---
 
@@ -24,7 +24,7 @@ many desktop shell components, and a broad number of other applications
 that interact with the desktop.
 
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="GetLayerSurface request">
     <a href="?id=ZwlrLayerShellV1_GetLayerSurface" id="ZwlrLayerShellV1_GetLayerSurface">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerShellV1.<span class="method">GetLayerSurface</span>
@@ -67,7 +67,7 @@ recently interacted with.
 Clients can specify a namespace that defines the purpose of the layer
 surface.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Destroy request">
     <a href="?id=ZwlrLayerShellV1_Destroy" id="ZwlrLayerShellV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerShellV1.<span class="method">Destroy</span>
@@ -115,7 +115,7 @@ The client can re-map the surface by performing a commit without any
 buffer attached, waiting for a configure event and handling it as usual.
 
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetSize request">
     <a href="?id=ZwlrLayerSurfaceV1_SetSize" id="ZwlrLayerSurfaceV1_SetSize">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetSize</span>
@@ -144,7 +144,7 @@ protocol error. Both values are 0 by default.
 
 Size is double-buffered, see wl_surface.commit.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetAnchor request">
     <a href="?id=ZwlrLayerSurfaceV1_SetAnchor" id="ZwlrLayerSurfaceV1_SetAnchor">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetAnchor</span>
@@ -169,7 +169,7 @@ will be centered on that edge, or in the center if none is specified.
 
 Anchor is double-buffered, see wl_surface.commit.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetExclusiveZone request">
     <a href="?id=ZwlrLayerSurfaceV1_SetExclusiveZone" id="ZwlrLayerSurfaceV1_SetExclusiveZone">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetExclusiveZone</span>
@@ -219,7 +219,7 @@ The default value is 0.
 
 Exclusive zone is double-buffered, see wl_surface.commit.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetMargin request">
     <a href="?id=ZwlrLayerSurfaceV1_SetMargin" id="ZwlrLayerSurfaceV1_SetMargin">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetMargin</span>
@@ -247,7 +247,7 @@ The exclusive zone includes the margin.
 
 Margin is double-buffered, see wl_surface.commit.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetKeyboardInteractivity request">
     <a href="?id=ZwlrLayerSurfaceV1_SetKeyboardInteractivity" id="ZwlrLayerSurfaceV1_SetKeyboardInteractivity">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetKeyboardInteractivity</span>
@@ -277,7 +277,7 @@ to an empty region.
 
 Keyboard interactivity is double-buffered, see wl_surface.commit.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="GetPopup request">
     <a href="?id=ZwlrLayerSurfaceV1_GetPopup" id="ZwlrLayerSurfaceV1_GetPopup">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">GetPopup</span>
@@ -302,7 +302,7 @@ initial state.
 See the documentation of xdg_popup for more details about what an
 xdg_popup is and how it is used.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="AckConfigure request">
     <a href="?id=ZwlrLayerSurfaceV1_AckConfigure" id="ZwlrLayerSurfaceV1_AckConfigure">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">AckConfigure</span>
@@ -335,7 +335,7 @@ A client may send multiple ack_configure requests before committing, but
 only the last request sent before a commit indicates which configure
 event the client really is responding to.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Destroy request">
     <a href="?id=ZwlrLayerSurfaceV1_Destroy" id="ZwlrLayerSurfaceV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">Destroy</span>
@@ -352,7 +352,7 @@ void Destroy()
 
 This request destroys the layer surface.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetLayer request">
     <a href="?id=ZwlrLayerSurfaceV1_SetLayer" id="ZwlrLayerSurfaceV1_SetLayer">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetLayer</span>
@@ -374,7 +374,7 @@ Change the layer that the surface is rendered on.
 
 Layer is double-buffered, see wl_surface.commit.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetExclusiveEdge request">
     <a href="?id=ZwlrLayerSurfaceV1_SetExclusiveEdge" id="ZwlrLayerSurfaceV1_SetExclusiveEdge">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetExclusiveEdge</span>
@@ -400,4 +400,64 @@ which one of the two corner edges should be used.
 
 The edge must be one the surface is anchored to, otherwise the
 invalid_exclusive_edge protocol error will be raised.
+
+<h3 class="decleration event" title="Configure event">
+    <a href="?id=OnZwlrLayerSurfaceV1_Configure" id="OnZwlrLayerSurfaceV1_Configure">
+        <span class="codicon codicon-symbol-event event"></span>
+        ZwlrLayerSurfaceV1.<span class="event">OnConfigure</span>
+    </a>
+</h3>
+
+```csharp
+void ConfigureHandler(uint serial, uint width, uint height)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| serial | uint |  |
+| width | uint |  |
+| height | uint |  |
+
+**Suggest a surface change**
+
+The configure event asks the client to resize its surface.
+
+Clients should arrange their surface for the new states, and then send
+an ack_configure request with the serial sent in this configure event at
+some point before committing the new surface.
+
+The client is free to dismiss all but the last configure event it
+received.
+
+The width and height arguments specify the size of the window in
+surface-local coordinates.
+
+The size is a hint, in the sense that the client is free to ignore it if
+it doesn't resize, pick a smaller size (to satisfy aspect ratio or
+resize in steps of NxM pixels). If the client picks a smaller size and
+is anchored to two opposite anchors (e.g. 'top' and 'bottom'), the
+surface will be centered on this axis.
+
+If the width or height arguments are zero, it means the client should
+decide its own window dimension.
+
+<h3 class="decleration event" title="Closed event">
+    <a href="?id=OnZwlrLayerSurfaceV1_Closed" id="OnZwlrLayerSurfaceV1_Closed">
+        <span class="codicon codicon-symbol-event event"></span>
+        ZwlrLayerSurfaceV1.<span class="event">OnClosed</span>
+    </a>
+</h3>
+
+```csharp
+void ClosedHandler()
+```
+
+
+**Surface should be closed**
+
+The closed event is sent by the compositor when the surface will no
+longer be shown. The output may have been destroyed or the user may
+have asked for it to be removed. Further changes to the surface will be
+ignored. The client should destroy the resource after receiving this
+event, and create a new surface if they so choose.
 

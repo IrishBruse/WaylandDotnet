@@ -1,6 +1,6 @@
 ﻿# XDG Shell
 
-##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../assets/arrow.svg ':class=breadcrumb-arrow') [Stable](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable)
+##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../assets/arrow.svg ':class=breadcrumb-arrow') [Stable](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable) ![](../../assets/arrow.svg ':class=breadcrumb-arrow') [XdgShell](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable/xdg-shell/)
 
 ---
 
@@ -22,7 +22,7 @@ create windows that can be dragged, resized, maximized, etc, as well as
 creating transient windows such as popup menus.
 
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Destroy request">
     <a href="?id=XdgWmBase_Destroy" id="XdgWmBase_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         XdgWmBase.<span class="method">Destroy</span>
@@ -43,7 +43,7 @@ Destroying a bound xdg_wm_base object while there are surfaces
 still alive created by this xdg_wm_base object instance is illegal
 and will result in a defunct_surfaces error.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="CreatePositioner request">
     <a href="?id=XdgWmBase_CreatePositioner" id="XdgWmBase_CreatePositioner">
         <span class="codicon codicon-symbol-method method"></span>
         XdgWmBase.<span class="method">CreatePositioner</span>
@@ -64,7 +64,7 @@ Create a positioner object. A positioner object is used to position
 surfaces relative to some parent surface. See the interface description
 and xdg_surface.get_popup for details.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="GetXdgSurface request">
     <a href="?id=XdgWmBase_GetXdgSurface" id="XdgWmBase_GetXdgSurface">
         <span class="codicon codicon-symbol-method method"></span>
         XdgWmBase.<span class="method">GetXdgSurface</span>
@@ -96,7 +96,7 @@ based surface roles.
 See the documentation of xdg_surface for more details about what an
 xdg_surface is and how it is used.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Pong request">
     <a href="?id=XdgWmBase_Pong" id="XdgWmBase_Pong">
         <span class="codicon codicon-symbol-method method"></span>
         XdgWmBase.<span class="method">Pong</span>
@@ -116,6 +116,37 @@ void Pong(uint serial)
 A client must respond to a ping event with a pong request or
 the client may be deemed unresponsive. See xdg_wm_base.ping
 and xdg_wm_base.error.unresponsive.
+
+<h3 class="decleration event" title="Ping event">
+    <a href="?id=OnXdgWmBase_Ping" id="OnXdgWmBase_Ping">
+        <span class="codicon codicon-symbol-event event"></span>
+        XdgWmBase.<span class="event">OnPing</span>
+    </a>
+</h3>
+
+```csharp
+void PingHandler(uint serial)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| serial | uint | Pass this to the pong request |
+
+**Check if the client is alive**
+
+The ping event asks the client if it's still alive. Pass the
+serial specified in the event back to the compositor by sending
+a "pong" request back with the specified serial. See xdg_wm_base.pong.
+
+Compositors can use this to determine if the client is still
+alive. It's unspecified what will happen if the client doesn't
+respond to the ping request, or in what timeframe. Clients should
+try to respond in a reasonable amount of time. The “unresponsive”
+error is provided for compositors that wish to disconnect unresponsive
+clients.
+
+A compositor is free to ping in any way it wants, but a client must
+always respond to any xdg_wm_base object it created.
 
 <h2 class="decleration interface">
     <a href="?id=XdgPositioner" id="XdgPositioner">
@@ -149,7 +180,7 @@ set_anchor_rect. Passing an incomplete xdg_positioner object when
 positioning a surface raises an invalid_positioner error.
 
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Destroy request">
     <a href="?id=XdgPositioner_Destroy" id="XdgPositioner_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">Destroy</span>
@@ -166,7 +197,7 @@ void Destroy()
 
 Notify the compositor that the xdg_positioner will no longer be used.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetSize request">
     <a href="?id=XdgPositioner_SetSize" id="XdgPositioner_SetSize">
         <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetSize</span>
@@ -190,7 +221,7 @@ window geometry. See xdg_surface.set_window_geometry.
 
 If a zero or negative size is set the invalid_input error is raised.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetAnchorRect request">
     <a href="?id=XdgPositioner_SetAnchorRect" id="XdgPositioner_SetAnchorRect">
         <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetAnchorRect</span>
@@ -221,7 +252,7 @@ positioned child's parent surface.
 
 If a negative size is set the invalid_input error is raised.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetAnchor request">
     <a href="?id=XdgPositioner_SetAnchor" id="XdgPositioner_SetAnchor">
         <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetAnchor</span>
@@ -245,7 +276,7 @@ positioned relative to. If a corner anchor is set (e.g. 'top_left' or
 otherwise, the derived anchor point will be centered on the specified
 edge, or in the center of the anchor rectangle if no edge is specified.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetGravity request">
     <a href="?id=XdgPositioner_SetGravity" id="XdgPositioner_SetGravity">
         <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetGravity</span>
@@ -270,7 +301,7 @@ surface will be centered over the anchor point on any axis that had no
 gravity specified. If the gravity is not in the ‘gravity’ enum, an
 invalid_input error is raised.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetConstraintAdjustment request">
     <a href="?id=XdgPositioner_SetConstraintAdjustment" id="XdgPositioner_SetConstraintAdjustment">
         <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetConstraintAdjustment</span>
@@ -301,7 +332,7 @@ are applied is specified in the corresponding adjustment descriptions.
 
 The default adjustment is none.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetOffset request">
     <a href="?id=XdgPositioner_SetOffset" id="XdgPositioner_SetOffset">
         <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetOffset</span>
@@ -331,7 +362,7 @@ An example use case is placing a popup menu on top of a user interface
 element, while aligning the user interface element of the parent surface
 with some user interface element placed somewhere in the popup surface.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetReactive request">
     <a href="?id=XdgPositioner_SetReactive" id="XdgPositioner_SetReactive">
         <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetReactive</span>
@@ -353,7 +384,7 @@ If the conditions changed and the popup was reconstrained, an
 xdg_popup.configure event is sent with updated geometry, followed by an
 xdg_surface.configure event.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetParentSize request">
     <a href="?id=XdgPositioner_SetParentSize" id="XdgPositioner_SetParentSize">
         <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetParentSize</span>
@@ -380,7 +411,7 @@ positioned against, the behavior is undefined.
 
 The arguments are given in the surface-local coordinate space.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetParentConfigure request">
     <a href="?id=XdgPositioner_SetParentConfigure" id="XdgPositioner_SetParentConfigure">
         <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetParentConfigure</span>
@@ -464,7 +495,7 @@ has not been destroyed, i.e. the client must perform the initial commit
 again before attaching a buffer.
 
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Destroy request">
     <a href="?id=XdgSurface_Destroy" id="XdgSurface_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         XdgSurface.<span class="method">Destroy</span>
@@ -483,7 +514,7 @@ Destroy the xdg_surface object. An xdg_surface must only be destroyed
 after its role object has been destroyed, otherwise
 a defunct_role_object error is raised.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="GetToplevel request">
     <a href="?id=XdgSurface_GetToplevel" id="XdgSurface_GetToplevel">
         <span class="codicon codicon-symbol-method method"></span>
         XdgSurface.<span class="method">GetToplevel</span>
@@ -506,7 +537,7 @@ the associated wl_surface the xdg_toplevel role.
 See the documentation of xdg_toplevel for more details about what an
 xdg_toplevel is and how it is used.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="GetPopup request">
     <a href="?id=XdgSurface_GetPopup" id="XdgSurface_GetPopup">
         <span class="codicon codicon-symbol-method method"></span>
         XdgSurface.<span class="method">GetPopup</span>
@@ -534,7 +565,7 @@ some other protocol, before committing the initial state.
 See the documentation of xdg_popup for more details about what an
 xdg_popup is and how it is used.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetWindowGeometry request">
     <a href="?id=XdgSurface_SetWindowGeometry" id="XdgSurface_SetWindowGeometry">
         <span class="codicon codicon-symbol-method method"></span>
         XdgSurface.<span class="method">SetWindowGeometry</span>
@@ -595,7 +626,7 @@ The width and height of the effective window geometry must be
 greater than zero. Setting an invalid size will raise an
 invalid_size error.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="AckConfigure request">
     <a href="?id=XdgSurface_AckConfigure" id="XdgSurface_AckConfigure">
         <span class="codicon codicon-symbol-method method"></span>
         XdgSurface.<span class="method">AckConfigure</span>
@@ -645,6 +676,40 @@ request referencing a serial from a configure event issued before the
 event identified by the last ack_configure request for the same
 xdg_surface. Doing so will raise an invalid_serial error.
 
+<h3 class="decleration event" title="Configure event">
+    <a href="?id=OnXdgSurface_Configure" id="OnXdgSurface_Configure">
+        <span class="codicon codicon-symbol-event event"></span>
+        XdgSurface.<span class="event">OnConfigure</span>
+    </a>
+</h3>
+
+```csharp
+void ConfigureHandler(uint serial)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| serial | uint | Serial of the configure event |
+
+**Suggest a surface change**
+
+The configure event marks the end of a configure sequence. A configure
+sequence is a set of one or more events configuring the state of the
+xdg_surface, including the final xdg_surface.configure event.
+
+Where applicable, xdg_surface surface roles will during a configure
+sequence extend this event as a latched state sent as events before the
+xdg_surface.configure event. Such events should be considered to make up
+a set of atomically applied configuration states, where the
+xdg_surface.configure commits the accumulated state.
+
+Clients should arrange their surface for the new states, and then send
+an ack_configure request with the serial sent in this configure event at
+some point before committing the new surface.
+
+If the client receives multiple configure events before it can respond
+to one, it is free to discard all but the last event it received.
+
 <h2 class="decleration interface">
     <a href="?id=XdgToplevel" id="XdgToplevel">
         <span class="codicon codicon-symbol-interface"></span>
@@ -679,7 +744,7 @@ xdg_surface description).
 Attaching a null buffer to a toplevel unmaps the surface.
 
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Destroy request">
     <a href="?id=XdgToplevel_Destroy" id="XdgToplevel_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">Destroy</span>
@@ -697,7 +762,7 @@ void Destroy()
 This request destroys the role surface and unmaps the surface;
 see "Unmapping" behavior in interface section for details.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetParent request">
     <a href="?id=XdgToplevel_SetParent" id="XdgToplevel_SetParent">
         <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetParent</span>
@@ -735,7 +800,7 @@ The parent toplevel must not be one of the child toplevel's
 descendants, and the parent must be different from the child toplevel,
 otherwise the invalid_parent protocol error is raised.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetTitle request">
     <a href="?id=XdgToplevel_SetTitle" id="XdgToplevel_SetTitle">
         <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetTitle</span>
@@ -760,7 +825,7 @@ compositor.
 
 The string must be encoded in UTF-8.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetAppId request">
     <a href="?id=XdgToplevel_SetAppId" id="XdgToplevel_SetAppId">
         <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetAppId</span>
@@ -801,7 +866,7 @@ names and .desktop files.
 
 [0] https://standards.freedesktop.org/desktop-entry-spec/
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="ShowWindowMenu request">
     <a href="?id=XdgToplevel_ShowWindowMenu" id="XdgToplevel_ShowWindowMenu">
         <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">ShowWindowMenu</span>
@@ -834,7 +899,7 @@ at all.
 This request must be used in response to some sort of user action
 like a button press, key press, or touch down event.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Move request">
     <a href="?id=XdgToplevel_Move" id="XdgToplevel_Move">
         <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">Move</span>
@@ -869,7 +934,7 @@ compositor to visually indicate that the move is taking place, such as
 updating a pointer cursor, during the move. There is no guarantee
 that the device focus will return when the move is completed.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Resize request">
     <a href="?id=XdgToplevel_Resize" id="XdgToplevel_Resize">
         <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">Resize</span>
@@ -920,7 +985,7 @@ for example when dragging the top left corner. The compositor may also
 use this information to adapt its behavior, e.g. choose an appropriate
 cursor image.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetMaxSize request">
     <a href="?id=XdgToplevel_SetMaxSize" id="XdgToplevel_SetMaxSize">
         <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetMaxSize</span>
@@ -972,7 +1037,7 @@ The width and height must be greater than or equal to zero. Using
 strictly negative values for width or height will result in a
 invalid_size error.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetMinSize request">
     <a href="?id=XdgToplevel_SetMinSize" id="XdgToplevel_SetMinSize">
         <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetMinSize</span>
@@ -1024,7 +1089,7 @@ The width and height must be greater than or equal to zero. Using
 strictly negative values for width and height will result in a
 invalid_size error.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetMaximized request">
     <a href="?id=XdgToplevel_SetMaximized" id="XdgToplevel_SetMaximized">
         <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetMaximized</span>
@@ -1058,7 +1123,7 @@ If the surface is in a fullscreen state, this request has no direct
 effect. It may alter the state the surface is returned to when
 unmaximized unless overridden by the compositor.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="UnsetMaximized request">
     <a href="?id=XdgToplevel_UnsetMaximized" id="XdgToplevel_UnsetMaximized">
         <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">UnsetMaximized</span>
@@ -1094,7 +1159,7 @@ If the surface is in a fullscreen state, this request has no direct
 effect. It may alter the state the surface is returned to when
 unmaximized unless overridden by the compositor.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetFullscreen request">
     <a href="?id=XdgToplevel_SetFullscreen" id="XdgToplevel_SetFullscreen">
         <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetFullscreen</span>
@@ -1135,7 +1200,7 @@ sure that other screen content not part of the same surface tree (made
 up of subsurfaces, popups or similarly coupled surfaces) are not
 visible below the fullscreened surface.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="UnsetFullscreen request">
     <a href="?id=XdgToplevel_UnsetFullscreen" id="XdgToplevel_UnsetFullscreen">
         <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">UnsetFullscreen</span>
@@ -1167,7 +1232,7 @@ the configure event, if applicable.
 The client must also acknowledge the configure when committing the new
 content (see ack_configure).
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetMinimized request">
     <a href="?id=XdgToplevel_SetMinimized" id="XdgToplevel_SetMinimized">
         <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetMinimized</span>
@@ -1189,6 +1254,142 @@ If you are looking to throttle redrawing when minimized, please
 instead use the wl_surface.frame event for this, as this will
 also work with live previews on windows in Alt-Tab, Expose or
 similar compositor features.
+
+<h3 class="decleration event" title="Configure event">
+    <a href="?id=OnXdgToplevel_Configure" id="OnXdgToplevel_Configure">
+        <span class="codicon codicon-symbol-event event"></span>
+        XdgToplevel.<span class="event">OnConfigure</span>
+    </a>
+</h3>
+
+```csharp
+void ConfigureHandler(int width, int height, byte[] states)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| width | int |  |
+| height | int |  |
+| states | array |  |
+
+**Suggest a surface change**
+
+This configure event asks the client to resize its toplevel surface or
+to change its state. The configured state should not be applied
+immediately. See xdg_surface.configure for details.
+
+The width and height arguments specify a hint to the window
+about how its surface should be resized in window geometry
+coordinates. See set_window_geometry.
+
+If the width or height arguments are zero, it means the client
+should decide its own window dimension. This may happen when the
+compositor needs to configure the state of the surface but doesn't
+have any information about any previous or expected dimension.
+
+The states listed in the event specify how the width/height
+arguments should be interpreted, and possibly how it should be
+drawn.
+
+Clients must send an ack_configure in response to this event. See
+xdg_surface.configure and xdg_surface.ack_configure for details.
+
+<h3 class="decleration event" title="Close event">
+    <a href="?id=OnXdgToplevel_Close" id="OnXdgToplevel_Close">
+        <span class="codicon codicon-symbol-event event"></span>
+        XdgToplevel.<span class="event">OnClose</span>
+    </a>
+</h3>
+
+```csharp
+void CloseHandler()
+```
+
+
+**Surface wants to be closed**
+
+The close event is sent by the compositor when the user
+wants the surface to be closed. This should be equivalent to
+the user clicking the close button in client-side decorations,
+if your application has any.
+
+This is only a request that the user intends to close the
+window. The client may choose to ignore this request, or show
+a dialog to ask the user to save their data, etc.
+
+<h3 class="decleration event" title="ConfigureBounds event">
+    <a href="?id=OnXdgToplevel_ConfigureBounds" id="OnXdgToplevel_ConfigureBounds">
+        <span class="codicon codicon-symbol-event event"></span>
+        XdgToplevel.<span class="event">OnConfigureBounds</span>
+    </a>
+    <span class="pill">since 4</span>
+</h3>
+
+```csharp
+void ConfigureBoundsHandler(int width, int height)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| width | int |  |
+| height | int |  |
+
+**Recommended window geometry bounds**
+
+The configure_bounds event may be sent prior to a xdg_toplevel.configure
+event to communicate the bounds a window geometry size is recommended
+to constrain to.
+
+The passed width and height are in surface coordinate space. If width
+and height are 0, it means bounds is unknown and equivalent to as if no
+configure_bounds event was ever sent for this surface.
+
+The bounds can for example correspond to the size of a monitor excluding
+any panels or other shell components, so that a surface isn't created in
+a way that it cannot fit.
+
+The bounds may change at any point, and in such a case, a new
+xdg_toplevel.configure_bounds will be sent, followed by
+xdg_toplevel.configure and xdg_surface.configure.
+
+<h3 class="decleration event" title="WmCapabilities event">
+    <a href="?id=OnXdgToplevel_WmCapabilities" id="OnXdgToplevel_WmCapabilities">
+        <span class="codicon codicon-symbol-event event"></span>
+        XdgToplevel.<span class="event">OnWmCapabilities</span>
+    </a>
+    <span class="pill">since 5</span>
+</h3>
+
+```csharp
+void WmCapabilitiesHandler(byte[] capabilities)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| capabilities | array | Array of 32-bit capabilities |
+
+**Compositor capabilities**
+
+This event advertises the capabilities supported by the compositor. If
+a capability isn't supported, clients should hide or disable the UI
+elements that expose this functionality. For instance, if the
+compositor doesn't advertise support for minimized toplevels, a button
+triggering the set_minimized request should not be displayed.
+
+The compositor will ignore requests it doesn't support. For instance,
+a compositor which doesn't advertise support for minimized will ignore
+set_minimized requests.
+
+Compositors must send this event once before the first
+xdg_surface.configure event. When the capabilities change, compositors
+must send this event again and then send an xdg_surface.configure
+event.
+
+The configured state should not be applied immediately. See
+xdg_surface.configure for details.
+
+The capabilities are sent as an array of 32-bit unsigned integers in
+native endianness.
 
 <h2 class="decleration interface">
     <a href="?id=XdgPopup" id="XdgPopup">
@@ -1227,7 +1428,7 @@ The client must call wl_surface.commit on the corresponding wl_surface
 for the xdg_popup state to take effect.
 
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Destroy request">
     <a href="?id=XdgPopup_Destroy" id="XdgPopup_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         XdgPopup.<span class="method">Destroy</span>
@@ -1248,7 +1449,7 @@ object will also dismiss the popup, and unmap the surface.
 If this xdg_popup is not the "topmost" popup, the
 xdg_wm_base.not_the_topmost_popup protocol error will be sent.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Grab request">
     <a href="?id=XdgPopup_Grab" id="XdgPopup_Grab">
         <span class="codicon codicon-symbol-method method"></span>
         XdgPopup.<span class="method">Grab</span>
@@ -1304,7 +1505,7 @@ and touch events for all their surfaces as normal (similar to an
 "owner-events" grab in X11 parlance), while the top most grabbing popup
 will always have keyboard focus.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Reposition request">
     <a href="?id=XdgPopup_Reposition" id="XdgPopup_Reposition">
         <span class="codicon codicon-symbol-method method"></span>
         XdgPopup.<span class="method">Reposition</span>
@@ -1346,4 +1547,89 @@ compositor to properly constrain the popup.
 If the popup is repositioned together with a parent that is being
 resized, but not in response to a configure event, the client should
 send an xdg_positioner.set_parent_size request.
+
+<h3 class="decleration event" title="Configure event">
+    <a href="?id=OnXdgPopup_Configure" id="OnXdgPopup_Configure">
+        <span class="codicon codicon-symbol-event event"></span>
+        XdgPopup.<span class="event">OnConfigure</span>
+    </a>
+</h3>
+
+```csharp
+void ConfigureHandler(int x, int y, int width, int height)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| x | int | X position relative to parent surface window geometry |
+| y | int | Y position relative to parent surface window geometry |
+| width | int | Window geometry width |
+| height | int | Window geometry height |
+
+**Configure the popup surface**
+
+This event asks the popup surface to configure itself given the
+configuration. The configured state should not be applied immediately.
+See xdg_surface.configure for details.
+
+The x and y arguments represent the position the popup was placed at
+given the xdg_positioner rule, relative to the upper left corner of the
+window geometry of the parent surface.
+
+For version 2 or older, the configure event for an xdg_popup is only
+ever sent once for the initial configuration. Starting with version 3,
+it may be sent again if the popup is setup with an xdg_positioner with
+set_reactive requested, or in response to xdg_popup.reposition requests.
+
+<h3 class="decleration event" title="PopupDone event">
+    <a href="?id=OnXdgPopup_PopupDone" id="OnXdgPopup_PopupDone">
+        <span class="codicon codicon-symbol-event event"></span>
+        XdgPopup.<span class="event">OnPopupDone</span>
+    </a>
+</h3>
+
+```csharp
+void PopupDoneHandler()
+```
+
+
+**Popup interaction is done**
+
+The popup_done event is sent out when a popup is dismissed by the
+compositor. The client should destroy the xdg_popup object at this
+point.
+
+<h3 class="decleration event" title="Repositioned event">
+    <a href="?id=OnXdgPopup_Repositioned" id="OnXdgPopup_Repositioned">
+        <span class="codicon codicon-symbol-event event"></span>
+        XdgPopup.<span class="event">OnRepositioned</span>
+    </a>
+    <span class="pill">since 3</span>
+</h3>
+
+```csharp
+void RepositionedHandler(uint token)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| token | uint | Reposition request token |
+
+**Signal the completion of a repositioned request**
+
+The repositioned event is sent as part of a popup configuration
+sequence, together with xdg_popup.configure and lastly
+xdg_surface.configure to notify the completion of a reposition request.
+
+The repositioned event is to notify about the completion of a
+xdg_popup.reposition request. The token argument is the token passed
+in the xdg_popup.reposition request.
+
+Immediately after this event is emitted, xdg_popup.configure and
+xdg_surface.configure will be sent with the updated size and position,
+as well as a new configure serial.
+
+The client should optionally update the content of the popup, but must
+acknowledge the new popup configuration for the new position to take
+effect. See xdg_surface.ack_configure for details.
 

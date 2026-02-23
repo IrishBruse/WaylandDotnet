@@ -247,14 +247,15 @@ body.sticky .sidebar {
   left: 300px;
   right: 0;
   transition: left 250ms ease;
-  padding-top: 60px;
+  /* padding-top: 60px; */
+  padding: 0 2rem;
 }
 
 .markdown-section {
   position: relative;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   max-width: 80%;
-  padding: 30px 15px 40px 15px;
+  padding-top: 1rem;
 }
 
 .markdown-section > :first-child {
@@ -328,7 +329,13 @@ body.close .content {
     left: 0;
     transition: transform 250ms ease;
     max-width: 100vw;
-    padding-top: 20px;
+    padding-top: 60px;
+  }
+
+  .markdown-section {
+    /* margin: 0 auto; */
+    max-width: 100%;
+    padding: 10px;
   }
   .app-nav,
   .github-corner {

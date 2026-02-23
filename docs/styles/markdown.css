@@ -21,13 +21,17 @@
     }
   }
 
-  .request {
+  .decleration {
     a {
       color: rgb(59, 130, 246);
     }
 
     .method {
       color: rgb(236, 72, 153);
+    }
+
+    .event {
+      color: rgb(16, 185, 129);
     }
   }
 

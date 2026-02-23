@@ -28,6 +28,7 @@ public class HTMLNode
     public HTMLNode Class(string value) => Attr("class", value);
     public HTMLNode Id(string value) => Attr("id", value);
     public HTMLNode Href(string value) => Attr("href", value);
+    public HTMLNode Title(string value) => Attr("title", value);
 
     public HTMLNode Child(HTMLNode child)
     {

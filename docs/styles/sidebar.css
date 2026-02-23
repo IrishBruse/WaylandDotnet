@@ -25,10 +25,9 @@
 
 .sidebar {
   line-height: 20px;
-
   padding: 0;
-
   border-right-color: var(--border-color);
+  background-color: var(--background-color);
 
   p {
     color: var(--sidebar-header-color);

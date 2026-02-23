@@ -1,6 +1,6 @@
 ﻿# River Window Management
 
-##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../assets/arrow.svg ':class=breadcrumb-arrow') [River](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River)
+##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../assets/arrow.svg ':class=breadcrumb-arrow') [River](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River) ![](../../assets/arrow.svg ':class=breadcrumb-arrow') [RiverWindowManagementV1](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-window-management-v1/)
 
 ---
 
@@ -89,7 +89,7 @@ It is a protocol error for the client to make a manage_finish or
 render_finish request that violates this ordering.
 
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Stop request">
     <a href="?id=RiverWindowManagerV1_Stop" id="RiverWindowManagerV1_Stop">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowManagerV1.<span class="method">Stop</span>
@@ -111,7 +111,7 @@ further events until the stop request is processed. The client must wait
 for a river_window_manager_v1.finished event before destroying this
 object.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Destroy request">
     <a href="?id=RiverWindowManagerV1_Destroy" id="RiverWindowManagerV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowManagerV1.<span class="method">Destroy</span>
@@ -135,7 +135,7 @@ river_window_manager_v1.finished event. Once the finished event is
 received it is safe to destroy this object and any other objects created
 through this interface.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="ManageFinish request">
     <a href="?id=RiverWindowManagerV1_ManageFinish" id="RiverWindowManagerV1_ManageFinish">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowManagerV1.<span class="method">ManageFinish</span>
@@ -161,7 +161,7 @@ manage_start event is received.
 See the description of the river_window_manager_v1 interface for a
 complete overview of the manage/render sequence loop.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="ManageDirty request">
     <a href="?id=RiverWindowManagerV1_ManageDirty" id="RiverWindowManagerV1_ManageDirty">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowManagerV1.<span class="method">ManageDirty</span>
@@ -184,7 +184,7 @@ The client may want to use this request due to an internal state change
 that the compositor is not aware of (e.g. a dbus event) which should
 affect window management or rendering state.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="RenderFinish request">
     <a href="?id=RiverWindowManagerV1_RenderFinish" id="RiverWindowManagerV1_RenderFinish">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowManagerV1.<span class="method">RenderFinish</span>
@@ -210,7 +210,7 @@ render_start event is received, whichever comes first.
 See the description of the river_window_manager_v1 interface for a
 complete overview of the manage/render sequence loop.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="GetShellSurface request">
     <a href="?id=RiverWindowManagerV1_GetShellSurface" id="RiverWindowManagerV1_GetShellSurface">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowManagerV1.<span class="method">GetShellSurface</span>
@@ -234,6 +234,205 @@ river_shell_surface_v1 role to the surface.
 Providing a wl_surface which already has a role or already has a buffer
 attached or committed is a protocol error.
 
+<h3 class="decleration event" title="Unavailable event">
+    <a href="?id=OnRiverWindowManagerV1_Unavailable" id="OnRiverWindowManagerV1_Unavailable">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowManagerV1.<span class="event">OnUnavailable</span>
+    </a>
+</h3>
+
+```csharp
+void UnavailableHandler()
+```
+
+
+**Window management unavailable**
+
+This event indicates that window management is not available to the
+client, perhaps due to another window management client already running.
+The circumstances causing this event to be sent are compositor policy.
+
+If sent, this event is guaranteed to be the first and only event sent by
+the server.
+
+The server will send no further events on this object. The client should
+destroy this object and all objects created through this interface.
+
+<h3 class="decleration event" title="Finished event">
+    <a href="?id=OnRiverWindowManagerV1_Finished" id="OnRiverWindowManagerV1_Finished">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowManagerV1.<span class="event">OnFinished</span>
+    </a>
+</h3>
+
+```csharp
+void FinishedHandler()
+```
+
+
+**The server has finished with the window manager**
+
+This event indicates that the server will send no further events on this
+object. The client should destroy the object. See
+river_window_manager_v1.destroy for more information.
+
+<h3 class="decleration event" title="ManageStart event">
+    <a href="?id=OnRiverWindowManagerV1_ManageStart" id="OnRiverWindowManagerV1_ManageStart">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowManagerV1.<span class="event">OnManageStart</span>
+    </a>
+</h3>
+
+```csharp
+void ManageStartHandler()
+```
+
+
+**Start a manage sequence**
+
+This event indicates that the server has sent events indicating all
+state changes since the last manage sequence.
+
+In response to this event, the client should make requests modifying
+window management state as it chooses. Then, the client must make the
+manage_finish request.
+
+See the description of the river_window_manager_v1 interface for a
+complete overview of the manage/render sequence loop.
+
+<h3 class="decleration event" title="RenderStart event">
+    <a href="?id=OnRiverWindowManagerV1_RenderStart" id="OnRiverWindowManagerV1_RenderStart">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowManagerV1.<span class="event">OnRenderStart</span>
+    </a>
+</h3>
+
+```csharp
+void RenderStartHandler()
+```
+
+
+**Start a render sequence**
+
+This event indicates that the server has sent all river_node_v1.position
+and river_window_v1.dimensions events necessary.
+
+In response to this event, the client should make requests modifying
+rendering state as it chooses. Then, the client must make the
+render_finish request.
+
+See the description of the river_window_manager_v1 interface for a
+complete overview of the manage/render sequence loop.
+
+<h3 class="decleration event" title="SessionLocked event">
+    <a href="?id=OnRiverWindowManagerV1_SessionLocked" id="OnRiverWindowManagerV1_SessionLocked">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowManagerV1.<span class="event">OnSessionLocked</span>
+    </a>
+</h3>
+
+```csharp
+void SessionLockedHandler()
+```
+
+
+**The session has been locked**
+
+This event indicates that the session has been locked.
+
+The window manager may wish to restrict which key bindings are available
+while locked or otherwise use this information.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="SessionUnlocked event">
+    <a href="?id=OnRiverWindowManagerV1_SessionUnlocked" id="OnRiverWindowManagerV1_SessionUnlocked">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowManagerV1.<span class="event">OnSessionUnlocked</span>
+    </a>
+</h3>
+
+```csharp
+void SessionUnlockedHandler()
+```
+
+
+**The session has been unlocked**
+
+This event indicates that the session has been unlocked.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="Window event">
+    <a href="?id=OnRiverWindowManagerV1_Window" id="OnRiverWindowManagerV1_Window">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowManagerV1.<span class="event">OnWindow</span>
+    </a>
+</h3>
+
+```csharp
+void WindowHandler(RiverWindowV1 id)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| id | new_id | New window |
+
+**New window**
+
+A new window has been created.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="Output event">
+    <a href="?id=OnRiverWindowManagerV1_Output" id="OnRiverWindowManagerV1_Output">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowManagerV1.<span class="event">OnOutput</span>
+    </a>
+</h3>
+
+```csharp
+void OutputHandler(RiverOutputV1 id)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| id | new_id | New output |
+
+**New output**
+
+A new logical output has been created, perhaps due to a new physical
+monitor being plugged in or perhaps due to a change in configuration.
+
+This event will be followed by river_output_v1.position and dimensions
+events as well as a manage_start event after all other new state has
+been sent by the server.
+
+<h3 class="decleration event" title="Seat event">
+    <a href="?id=OnRiverWindowManagerV1_Seat" id="OnRiverWindowManagerV1_Seat">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowManagerV1.<span class="event">OnSeat</span>
+    </a>
+</h3>
+
+```csharp
+void SeatHandler(RiverSeatV1 id)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| id | new_id | New seat |
+
+**New seat**
+
+A new seat has been created.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
 <h2 class="decleration interface">
     <a href="?id=RiverWindowV1" id="RiverWindowV1">
         <span class="codicon codicon-symbol-interface"></span>
@@ -254,7 +453,7 @@ sequence, the server replies with a dimensions event as part of a render
 sequence, and that render sequence is finished.
 
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Destroy request">
     <a href="?id=RiverWindowV1_Destroy" id="RiverWindowV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">Destroy</span>
@@ -276,7 +475,7 @@ This request should be made after the river_window_v1.closed event or
 river_window_manager_v1.finished is received to complete destruction of
 the window.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Close request">
     <a href="?id=RiverWindowV1_Close" id="RiverWindowV1_Close">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">Close</span>
@@ -300,7 +499,7 @@ has been closed.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="GetNode request">
     <a href="?id=RiverWindowV1_GetNode" id="RiverWindowV1_GetNode">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">GetNode</span>
@@ -322,7 +521,7 @@ Get the node in the render list corresponding to the window.
 It is a protocol error to make this request more than once for a single
 window.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="ProposeDimensions request">
     <a href="?id=RiverWindowV1_ProposeDimensions" id="RiverWindowV1_ProposeDimensions">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">ProposeDimensions</span>
@@ -366,7 +565,7 @@ decoration surfaces.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Hide request">
     <a href="?id=RiverWindowV1_Hide" id="RiverWindowV1_Hide">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">Hide</span>
@@ -389,7 +588,7 @@ the hide request.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Show request">
     <a href="?id=RiverWindowV1_Show" id="RiverWindowV1_Show">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">Show</span>
@@ -413,7 +612,7 @@ the hide request.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="UseCsd request">
     <a href="?id=RiverWindowV1_UseCsd" id="RiverWindowV1_UseCsd">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">UseCsd</span>
@@ -436,7 +635,7 @@ ever made.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="UseSsd request">
     <a href="?id=RiverWindowV1_UseSsd" id="RiverWindowV1_UseSsd">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">UseSsd</span>
@@ -459,7 +658,7 @@ decoration, see the decoration_hint event.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetBorders request">
     <a href="?id=RiverWindowV1_SetBorders" id="RiverWindowV1_SetBorders">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">SetBorders</span>
@@ -508,7 +707,7 @@ presence of borders or decoration surfaces.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetTiled request">
     <a href="?id=RiverWindowV1_SetTiled" id="RiverWindowV1_SetTiled">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">SetTiled</span>
@@ -539,7 +738,7 @@ informed that it is not part of a tiled layout.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="GetDecorationAbove request">
     <a href="?id=RiverWindowV1_GetDecorationAbove" id="RiverWindowV1_GetDecorationAbove">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">GetDecorationAbove</span>
@@ -564,7 +763,7 @@ rendering order, see the description of river_decoration_v1.
 Providing a wl_surface which already has a role or already has a buffer
 attached or committed is a protocol error.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="GetDecorationBelow request">
     <a href="?id=RiverWindowV1_GetDecorationBelow" id="RiverWindowV1_GetDecorationBelow">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">GetDecorationBelow</span>
@@ -589,7 +788,7 @@ rendering order, see the description of river_decoration_v1.
 Providing a wl_surface which already has a role or already has a buffer
 attached or committed is a protocol error.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="InformResizeStart request">
     <a href="?id=RiverWindowV1_InformResizeStart" id="RiverWindowV1_InformResizeStart">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">InformResizeStart</span>
@@ -613,7 +812,7 @@ dimensions of the window while it is resizing.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="InformResizeEnd request">
     <a href="?id=RiverWindowV1_InformResizeEnd" id="RiverWindowV1_InformResizeEnd">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">InformResizeEnd</span>
@@ -634,7 +833,7 @@ interactive resize that the interactive resize has ended for example.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetCapabilities request">
     <a href="?id=RiverWindowV1_SetCapabilities" id="RiverWindowV1_SetCapabilities">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">SetCapabilities</span>
@@ -666,7 +865,7 @@ inform windows that all capabilities are supported.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="InformMaximized request">
     <a href="?id=RiverWindowV1_InformMaximized" id="RiverWindowV1_InformMaximized">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">InformMaximized</span>
@@ -690,7 +889,7 @@ dimensions of the window while it is maximized.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="InformUnmaximized request">
     <a href="?id=RiverWindowV1_InformUnmaximized" id="RiverWindowV1_InformUnmaximized">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">InformUnmaximized</span>
@@ -711,7 +910,7 @@ example.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="InformFullscreen request">
     <a href="?id=RiverWindowV1_InformFullscreen" id="RiverWindowV1_InformFullscreen">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">InformFullscreen</span>
@@ -736,7 +935,7 @@ and exit_fullscreen requests for that.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="InformNotFullscreen request">
     <a href="?id=RiverWindowV1_InformNotFullscreen" id="RiverWindowV1_InformNotFullscreen">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">InformNotFullscreen</span>
@@ -761,7 +960,7 @@ and exit_fullscreen requests for that.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Fullscreen request">
     <a href="?id=RiverWindowV1_Fullscreen" id="RiverWindowV1_Fullscreen">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">Fullscreen</span>
@@ -811,7 +1010,7 @@ river_window_v1.inform_fullscreen and inform_not_fullscreen requests.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="ExitFullscreen request">
     <a href="?id=RiverWindowV1_ExitFullscreen" id="RiverWindowV1_ExitFullscreen">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">ExitFullscreen</span>
@@ -841,7 +1040,7 @@ river_window_v1.inform_fullscreen and inform_not_fullscreen requests.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetClipBox request">
     <a href="?id=RiverWindowV1_SetClipBox" id="RiverWindowV1_SetClipBox">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">SetClipBox</span>
@@ -877,7 +1076,7 @@ Both set_clip_box and set_content_clip_box may be enabled simultaneously.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetContentClipBox request">
     <a href="?id=RiverWindowV1_SetContentClipBox" id="RiverWindowV1_SetContentClipBox">
         <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">SetContentClipBox</span>
@@ -918,6 +1117,457 @@ Both set_clip_box and set_content_clip_box may be enabled simultaneously.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
+<h3 class="decleration event" title="Closed event">
+    <a href="?id=OnRiverWindowV1_Closed" id="OnRiverWindowV1_Closed">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnClosed</span>
+    </a>
+</h3>
+
+```csharp
+void ClosedHandler()
+```
+
+
+**The window has been closed**
+
+The window has been closed by the server, perhaps due to an
+xdg_toplevel.close request or similar.
+
+The server will send no further events on this object and ignore any
+request other than river_window_v1.destroy made after this event is
+sent. The client should destroy this object with the
+river_window_v1.destroy request to free up resources.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="DimensionsHint event">
+    <a href="?id=OnRiverWindowV1_DimensionsHint" id="OnRiverWindowV1_DimensionsHint">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnDimensionsHint</span>
+    </a>
+</h3>
+
+```csharp
+void DimensionsHintHandler(int minWidth, int minHeight, int maxWidth, int maxHeight)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| min_width | int | Minimum width |
+| min_height | int | Minimum height |
+| max_width | int | Maximum width |
+| max_height | int | Maximum height |
+
+**The window's preferred min/max dimensions**
+
+This event informs the window manager of the window's preferred min/max
+dimensions. These preferences are a hint, and the window manager is free
+to propose dimensions outside of these bounds.
+
+All min/max width/height values must be strictly greater than or equal
+to 0. A value of 0 indicates that the window has no preference for that
+value.
+
+The min_width/min_height must be strictly less than or equal to the
+max_width/max_height.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="Dimensions event">
+    <a href="?id=OnRiverWindowV1_Dimensions" id="OnRiverWindowV1_Dimensions">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnDimensions</span>
+    </a>
+</h3>
+
+```csharp
+void DimensionsHandler(int width, int height)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| width | int | Window content width |
+| height | int | Window content height |
+
+**Window dimensions**
+
+This event indicates the dimensions of the window in the compositor's
+logical coordinate space. The width and height must be strictly greater
+than zero.
+
+Note that the dimensions of a river_window_v1 refer to the dimensions of
+the window content and are unaffected by the presence of borders or
+decoration surfaces.
+
+This event is sent as part of a render sequence before the render_start
+event.
+
+It may be sent due to a propose_dimensions or fullscreen request in a
+previous manage sequence or because a window independently decides to
+change its dimensions.
+
+The window will not be displayed until the first dimensions event is
+received and the render sequence is finished.
+
+<h3 class="decleration event" title="AppId event">
+    <a href="?id=OnRiverWindowV1_AppId" id="OnRiverWindowV1_AppId">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnAppId</span>
+    </a>
+</h3>
+
+```csharp
+void AppIdHandler(string? appId)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| app_id | string | Window application ID |
+
+**The window set an application ID**
+
+The window set an application ID.
+
+The app_id argument will be null if the window has never set an
+application ID or if the window cleared its application ID. (Xwayland
+windows may do this for example, though xdg-toplevels may not.)
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="Title event">
+    <a href="?id=OnRiverWindowV1_Title" id="OnRiverWindowV1_Title">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnTitle</span>
+    </a>
+</h3>
+
+```csharp
+void TitleHandler(string? title)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| title | string | Window title |
+
+**The window set a title**
+
+The window set a title.
+
+The title argument will be null if the window has never set a title or
+if the window cleared its title. (Xwayland windows may do this for
+example, though xdg-toplevels may not.)
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="Parent event">
+    <a href="?id=OnRiverWindowV1_Parent" id="OnRiverWindowV1_Parent">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnParent</span>
+    </a>
+</h3>
+
+```csharp
+void ParentHandler(RiverWindowV1? parent)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| parent | object | Parent window, if any |
+
+**The window set a parent**
+
+The window set a parent window. If this event is never received or if
+the parent argument is null then the window has no parent.
+
+A surface with a parent set might be a dialog, file picker, or similar
+for the parent window.
+
+Child windows should generally be rendered directly above their parent.
+
+The compositor must guarantee that there are no loops in the window
+tree: a parent must not be the descendant of one of its children.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="DecorationHint event">
+    <a href="?id=OnRiverWindowV1_DecorationHint" id="OnRiverWindowV1_DecorationHint">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnDecorationHint</span>
+    </a>
+</h3>
+
+```csharp
+void DecorationHintHandler(uint hint)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| hint | uint | Decoration hint |
+
+**Supported/preferred decoration style**
+
+Information from the window about the supported and preferred client
+side/server side decoration options.
+
+This event may be sent multiple times over the lifetime of the window if
+the window changes its preferences.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="PointerMoveRequested event">
+    <a href="?id=OnRiverWindowV1_PointerMoveRequested" id="OnRiverWindowV1_PointerMoveRequested">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnPointerMoveRequested</span>
+    </a>
+</h3>
+
+```csharp
+void PointerMoveRequestedHandler(RiverSeatV1 seat)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| seat | object | Requested seat |
+
+**Window requested interactive pointer move**
+
+This event informs the window manager that the window has requested to
+be interactively moved using the pointer. The seat argument indicates the
+seat for the move.
+
+The xdg-shell protocol for example allows windows to request that an
+interactive move be started, perhaps when a client-side rendered
+titlebar is dragged.
+
+The window manager may use the river_seat_v1.op_start_pointer request to
+interactively move the window or ignore this event entirely.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="PointerResizeRequested event">
+    <a href="?id=OnRiverWindowV1_PointerResizeRequested" id="OnRiverWindowV1_PointerResizeRequested">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnPointerResizeRequested</span>
+    </a>
+</h3>
+
+```csharp
+void PointerResizeRequestedHandler(RiverSeatV1 seat, uint edges)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| seat | object | Requested seat |
+| edges | uint | Requested edges |
+
+**Window requested interactive pointer resize**
+
+This event informs the window manager that the window has requested to
+be interactively resized using the pointer. The seat argument indicates
+the seat for the resize.
+
+The edges argument indicates which edges the window has requested to be
+resized from. The edges argument will never be none and will never have
+both top and bottom or both left and right edges set.
+
+The xdg-shell protocol for example allows windows to request that an
+interactive resize be started, perhaps when the corner of client-side
+rendered decorations is dragged.
+
+The window manager may use the river_seat_v1.op_start_pointer request to
+interactively resize the window or ignore this event entirely.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="ShowWindowMenuRequested event">
+    <a href="?id=OnRiverWindowV1_ShowWindowMenuRequested" id="OnRiverWindowV1_ShowWindowMenuRequested">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnShowWindowMenuRequested</span>
+    </a>
+</h3>
+
+```csharp
+void ShowWindowMenuRequestedHandler(int x, int y)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| x | int | X offset from top left corner |
+| y | int | Y offset from top left corner |
+
+**Window requested that the window menu be shown**
+
+The xdg-shell protocol for example allows windows to request that a
+window menu be shown, for example when the user right clicks on client
+side window decorations.
+
+A window menu might include options to maximize or minimize the window.
+
+The window manager is free to ignore this request and decide what the
+window menu contains if it does choose to show one.
+
+The x and y arguments indicate where the window requested that the
+window menu be shown.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="MaximizeRequested event">
+    <a href="?id=OnRiverWindowV1_MaximizeRequested" id="OnRiverWindowV1_MaximizeRequested">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnMaximizeRequested</span>
+    </a>
+</h3>
+
+```csharp
+void MaximizeRequestedHandler()
+```
+
+
+**The window requested to be maximized**
+
+The xdg-shell protocol for example allows windows to request to be
+maximized.
+
+The window manager is free to honor this request using
+river_window_v1.inform_maximize or ignore it.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="UnmaximizeRequested event">
+    <a href="?id=OnRiverWindowV1_UnmaximizeRequested" id="OnRiverWindowV1_UnmaximizeRequested">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnUnmaximizeRequested</span>
+    </a>
+</h3>
+
+```csharp
+void UnmaximizeRequestedHandler()
+```
+
+
+**The window requested to be unmaximized**
+
+The xdg-shell protocol for example allows windows to request to be
+unmaximized.
+
+The window manager is free to honor this request using
+river_window_v1.inform_unmaximized or ignore it.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="FullscreenRequested event">
+    <a href="?id=OnRiverWindowV1_FullscreenRequested" id="OnRiverWindowV1_FullscreenRequested">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnFullscreenRequested</span>
+    </a>
+</h3>
+
+```csharp
+void FullscreenRequestedHandler(RiverOutputV1? output)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| output | object | Fullscreen output requested |
+
+**The window requested to be fullscreen**
+
+The xdg-shell protocol for example allows windows to request that they
+be made fullscreen and allows them to provide an output preference.
+
+The window manager is free to honor this request using
+river_window_v1.fullscreen or ignore it.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="ExitFullscreenRequested event">
+    <a href="?id=OnRiverWindowV1_ExitFullscreenRequested" id="OnRiverWindowV1_ExitFullscreenRequested">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnExitFullscreenRequested</span>
+    </a>
+</h3>
+
+```csharp
+void ExitFullscreenRequestedHandler()
+```
+
+
+**The window requested to exit fullscreen**
+
+The xdg-shell protocol for example allows windows to request to exit
+fullscreen.
+
+The window manager is free to honor this request using
+river_window_v1.exit_fullscreen or ignore it.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="MinimizeRequested event">
+    <a href="?id=OnRiverWindowV1_MinimizeRequested" id="OnRiverWindowV1_MinimizeRequested">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnMinimizeRequested</span>
+    </a>
+</h3>
+
+```csharp
+void MinimizeRequestedHandler()
+```
+
+
+**The window requested to be minimized**
+
+The xdg-shell protocol for example allows windows to request to be
+minimized.
+
+The window manager is free to ignore this request, hide the window, or
+do whatever else it chooses.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="UnreliablePid event">
+    <a href="?id=OnRiverWindowV1_UnreliablePid" id="OnRiverWindowV1_UnreliablePid">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnUnreliablePid</span>
+    </a>
+    <span class="pill">since 2</span>
+</h3>
+
+```csharp
+void UnreliablePidHandler(int unreliablePid)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| unreliable_pid | int | Unreliable PID |
+
+**Unreliable PID of the window's creator**
+
+This event gives an unreliable PID of the process that created the
+window. Obtaining this information is inherently racy due to PID reuse.
+Therefore, this PID must not be used for anything security sensitive.
+
+Note also that a single process may create multiple windows, so there is
+not necessarily a 1-to-1 mapping from PID to window. Multiple windows
+may have the same PID.
+
+This event is sent once when the river_window_v1 is created and never
+sent again.
+
 <h2 class="decleration interface">
     <a href="?id=RiverDecorationV1" id="RiverDecorationV1">
         <span class="codicon codicon-symbol-interface"></span>
@@ -940,7 +1590,7 @@ The relative ordering of decoration surfaces above/below a window is
 undefined by this protocol and left up to the compositor.
 
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Destroy request">
     <a href="?id=RiverDecorationV1_Destroy" id="RiverDecorationV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverDecorationV1.<span class="method">Destroy</span>
@@ -958,7 +1608,7 @@ void Destroy()
 This request indicates that the client will no longer use the decoration
 object and that it may be safely destroyed.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetOffset request">
     <a href="?id=RiverDecorationV1_SetOffset" id="RiverDecorationV1_SetOffset">
         <span class="codicon codicon-symbol-method method"></span>
         RiverDecorationV1.<span class="method">SetOffset</span>
@@ -985,7 +1635,7 @@ protocol and left up to the compositor.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SyncNextCommit request">
     <a href="?id=RiverDecorationV1_SyncNextCommit" id="RiverDecorationV1_SyncNextCommit">
         <span class="codicon codicon-symbol-method method"></span>
         RiverDecorationV1.<span class="method">SyncNextCommit</span>
@@ -1026,7 +1676,7 @@ background image, desktop notifications, launcher, desktop menu, or
 whatever else it wants.
 
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Destroy request">
     <a href="?id=RiverShellSurfaceV1_Destroy" id="RiverShellSurfaceV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverShellSurfaceV1.<span class="method">Destroy</span>
@@ -1044,7 +1694,7 @@ void Destroy()
 This request indicates that the client will no longer use the shell
 surface object and that it may be safely destroyed.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="GetNode request">
     <a href="?id=RiverShellSurfaceV1_GetNode" id="RiverShellSurfaceV1_GetNode">
         <span class="codicon codicon-symbol-method method"></span>
         RiverShellSurfaceV1.<span class="method">GetNode</span>
@@ -1066,7 +1716,7 @@ Get the node in the render list corresponding to the shell surface.
 It is a protocol error to make this request more than once for a single
 shell surface.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SyncNextCommit request">
     <a href="?id=RiverShellSurfaceV1_SyncNextCommit" id="RiverShellSurfaceV1_SyncNextCommit">
         <span class="codicon codicon-symbol-method method"></span>
         RiverShellSurfaceV1.<span class="method">SyncNextCommit</span>
@@ -1112,7 +1762,7 @@ manager client must use the place_above or place_below request to
 guarantee a specific rendering order.
 
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Destroy request">
     <a href="?id=RiverNodeV1_Destroy" id="RiverNodeV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverNodeV1.<span class="method">Destroy</span>
@@ -1130,7 +1780,7 @@ void Destroy()
 This request indicates that the client will no longer use the node
 object and that it may be safely destroyed.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetPosition request">
     <a href="?id=RiverNodeV1_SetPosition" id="RiverNodeV1_SetPosition">
         <span class="codicon codicon-symbol-method method"></span>
         RiverNodeV1.<span class="method">SetPosition</span>
@@ -1161,7 +1811,7 @@ this protocol and left up to the compositor.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="PlaceTop request">
     <a href="?id=RiverNodeV1_PlaceTop" id="RiverNodeV1_PlaceTop">
         <span class="codicon codicon-symbol-method method"></span>
         RiverNodeV1.<span class="method">PlaceTop</span>
@@ -1181,7 +1831,7 @@ render list.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="PlaceBottom request">
     <a href="?id=RiverNodeV1_PlaceBottom" id="RiverNodeV1_PlaceBottom">
         <span class="codicon codicon-symbol-method method"></span>
         RiverNodeV1.<span class="method">PlaceBottom</span>
@@ -1201,7 +1851,7 @@ render list.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="PlaceAbove request">
     <a href="?id=RiverNodeV1_PlaceAbove" id="RiverNodeV1_PlaceAbove">
         <span class="codicon codicon-symbol-method method"></span>
         RiverNodeV1.<span class="method">PlaceAbove</span>
@@ -1226,7 +1876,7 @@ Attempting to place a node above itself has no effect.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="PlaceBelow request">
     <a href="?id=RiverNodeV1_PlaceBelow" id="RiverNodeV1_PlaceBelow">
         <span class="codicon codicon-symbol-method method"></span>
         RiverNodeV1.<span class="method">PlaceBelow</span>
@@ -1269,7 +1919,7 @@ case of mirroring or tiled monitors depending on the hardware and
 compositor configuration.
 
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Destroy request">
     <a href="?id=RiverOutputV1_Destroy" id="RiverOutputV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverOutputV1.<span class="method">Destroy</span>
@@ -1289,6 +1939,134 @@ object and that it may be safely destroyed.
 
 This request should be made after the river_output_v1.removed event is
 received to complete destruction of the output.
+
+<h3 class="decleration event" title="Removed event">
+    <a href="?id=OnRiverOutputV1_Removed" id="OnRiverOutputV1_Removed">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverOutputV1.<span class="event">OnRemoved</span>
+    </a>
+</h3>
+
+```csharp
+void RemovedHandler()
+```
+
+
+**The output is removed**
+
+This event indicates that the logical output is no longer conceptually
+part of window management space.
+
+The server will send no further events on this object and ignore any
+request (other than river_output_v1.destroy) made after this event is
+sent. The client should destroy this object with the
+river_output_v1.destroy request to free up resources.
+
+This event may be sent because a corresponding physical output has been
+physically unplugged or because some output configuration has changed.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="WlOutput event">
+    <a href="?id=OnRiverOutputV1_WlOutput" id="OnRiverOutputV1_WlOutput">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverOutputV1.<span class="event">OnWlOutput</span>
+    </a>
+</h3>
+
+```csharp
+void WlOutputHandler(uint name)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| name | uint | Name of the wl_output global |
+
+**Corresponding wl_output**
+
+The wl_output object corresponding to the river_output_v1. The argument
+is the global name of the wl_output advertised with wl_registry.global.
+
+It is guaranteed that the corresponding wl_output is advertised before
+this event is sent.
+
+This event is sent exactly once. The wl_output associated with a
+river_output_v1 cannot change. It is guaranteed that there is a 1-to-1
+mapping between wl_output and river_output_v1 objects.
+
+The global_remove event for the corresponding wl_output may be sent
+before the river_output_v1.remove event. This is due to the fact that
+river_output_v1 state changes are synced to the river window management
+manage sequence while changes to globals are not.
+
+Rationale: The window manager may need information provided by the
+wl_output interface such as the name/description. It also may need the
+wl_output object to start screencopy for example.
+
+<h3 class="decleration event" title="Position event">
+    <a href="?id=OnRiverOutputV1_Position" id="OnRiverOutputV1_Position">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverOutputV1.<span class="event">OnPosition</span>
+    </a>
+</h3>
+
+```csharp
+void PositionHandler(int x, int y)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| x | int | Global x coordinate |
+| y | int | Global y coordinate |
+
+**Output position**
+
+This event indicates the position of the output in the compositor's
+logical coordinate space. The x and y coordinates may be positive or
+negative.
+
+This event is sent once when the river_output_v1 is created and again
+whenever the position changes.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+The server must guarantee that the position and dimensions events do not
+cause the areas of multiple logical outputs to overlap when the
+corresponding manage_start event is received.
+
+<h3 class="decleration event" title="Dimensions event">
+    <a href="?id=OnRiverOutputV1_Dimensions" id="OnRiverOutputV1_Dimensions">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverOutputV1.<span class="event">OnDimensions</span>
+    </a>
+</h3>
+
+```csharp
+void DimensionsHandler(int width, int height)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| width | int | Output width |
+| height | int | Output height |
+
+**Output dimensions**
+
+This event indicates the dimensions of the output in the compositor's
+logical coordinate space. The width and height will always be strictly
+greater than zero.
+
+This event is sent once when the river_output_v1 is created and again
+whenever the dimensions change.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+The server must guarantee that the position and dimensions events do not
+cause the areas of multiple logical outputs to overlap when the
+corresponding manage_start event is received.
 
 <h2 class="decleration interface">
     <a href="?id=RiverSeatV1" id="RiverSeatV1">
@@ -1311,7 +2089,7 @@ TODO:
 - tablet input
 
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Destroy request">
     <a href="?id=RiverSeatV1_Destroy" id="RiverSeatV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">Destroy</span>
@@ -1332,7 +2110,7 @@ object and that it may be safely destroyed.
 This request should be made after the river_seat_v1.removed event is
 received to complete destruction of the seat.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="FocusWindow request">
     <a href="?id=RiverSeatV1_FocusWindow" id="RiverSeatV1_FocusWindow">
         <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">FocusWindow</span>
@@ -1354,7 +2132,7 @@ Request that the compositor send keyboard input to the given window.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="FocusShellSurface request">
     <a href="?id=RiverSeatV1_FocusShellSurface" id="RiverSeatV1_FocusShellSurface">
         <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">FocusShellSurface</span>
@@ -1377,7 +2155,7 @@ surface.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="ClearFocus request">
     <a href="?id=RiverSeatV1_ClearFocus" id="RiverSeatV1_ClearFocus">
         <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">ClearFocus</span>
@@ -1396,7 +2174,7 @@ Request that the compositor not send keyboard input to any client.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="OpStartPointer request">
     <a href="?id=RiverSeatV1_OpStartPointer" id="RiverSeatV1_OpStartPointer">
         <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">OpStartPointer</span>
@@ -1427,7 +2205,7 @@ This request is ignored if an operation is already in progress.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="OpEnd request">
     <a href="?id=RiverSeatV1_OpEnd" id="RiverSeatV1_OpEnd">
         <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">OpEnd</span>
@@ -1448,7 +2226,7 @@ This request is ignored if there is no operation in progress.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="GetPointerBinding request">
     <a href="?id=RiverSeatV1_GetPointerBinding" id="RiverSeatV1_GetPointerBinding">
         <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">GetPointerBinding</span>
@@ -1476,7 +2254,7 @@ linux/input-event-codes.h header file (e.g. BTN_RIGHT).
 The new pointer binding is not enabled until initial configuration is
 completed and the enable request is made during a manage sequence.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="SetXcursorTheme request">
     <a href="?id=RiverSeatV1_SetXcursorTheme" id="RiverSeatV1_SetXcursorTheme">
         <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">SetXcursorTheme</span>
@@ -1502,7 +2280,7 @@ clients.
 Note: The window manager may also wish to set the XCURSOR_THEME and
 XCURSOR_SIZE environment variable for programs it starts.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="PointerWarp request">
     <a href="?id=RiverSeatV1_PointerWarp" id="RiverSeatV1_PointerWarp">
         <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">PointerWarp</span>
@@ -1529,6 +2307,264 @@ will be warped to the closest point inside an output instead.
 
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
+
+<h3 class="decleration event" title="Removed event">
+    <a href="?id=OnRiverSeatV1_Removed" id="OnRiverSeatV1_Removed">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverSeatV1.<span class="event">OnRemoved</span>
+    </a>
+</h3>
+
+```csharp
+void RemovedHandler()
+```
+
+
+**The seat is removed**
+
+This event indicates that seat is no longer in use and should be
+destroyed.
+
+The server will send no further events on this object and ignore any
+request (other than river_seat_v1.destroy) made after this event is
+sent.  The client should destroy this object with the
+river_seat_v1.destroy request to free up resources.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="WlSeat event">
+    <a href="?id=OnRiverSeatV1_WlSeat" id="OnRiverSeatV1_WlSeat">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverSeatV1.<span class="event">OnWlSeat</span>
+    </a>
+</h3>
+
+```csharp
+void WlSeatHandler(uint name)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| name | uint | Name of the wl_seat global |
+
+**Corresponding wl_seat**
+
+The wl_seat object corresponding to the river_seat_v1. The argument is
+the global name of the wl_seat advertised with wl_registry.global.
+
+It is guaranteed that the corresponding wl_seat is advertised before
+this event is sent.
+
+This event is sent exactly once. The wl_seat associated with a
+river_seat_v1 cannot change. It is guaranteed that there is a 1-to-1
+mapping between wl_seat and river_seat_v1 objects.
+
+The global_remove event for the corresponding wl_seat may be sent before
+the river_seat_v1.remove event. This is due to the fact that
+river_seat_v1 state changes are synced to the river window management
+manage sequence while changes to globals are not.
+
+Rationale: The window manager may want to trigger window management
+state changes based on normal input events received by its shell
+surfaces for example.
+
+<h3 class="decleration event" title="PointerEnter event">
+    <a href="?id=OnRiverSeatV1_PointerEnter" id="OnRiverSeatV1_PointerEnter">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverSeatV1.<span class="event">OnPointerEnter</span>
+    </a>
+</h3>
+
+```csharp
+void PointerEnterHandler(RiverWindowV1 window)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| window | object | Window entered |
+
+**Pointer entered a window**
+
+The seat's pointer entered the given window's area.
+
+The area of a window is defined to include the area defined by the
+window dimensions, borders configured using river_window_v1.set_borders,
+and the input regions of decoration surfaces. In particular, it does not
+include input regions of surfaces belonging to the window that extend
+outside the window dimensions.
+
+The pointer of a seat may only enter a single window at a time. When the
+pointer moves between windows, the pointer_leave event for the old
+window must be sent before the pointer_enter event for the new window.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="PointerLeave event">
+    <a href="?id=OnRiverSeatV1_PointerLeave" id="OnRiverSeatV1_PointerLeave">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverSeatV1.<span class="event">OnPointerLeave</span>
+    </a>
+</h3>
+
+```csharp
+void PointerLeaveHandler()
+```
+
+
+**Pointer left the entered window**
+
+The seat's pointer left the window for which pointer_enter was most
+recently sent. See pointer_enter for details.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="WindowInteraction event">
+    <a href="?id=OnRiverSeatV1_WindowInteraction" id="OnRiverSeatV1_WindowInteraction">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverSeatV1.<span class="event">OnWindowInteraction</span>
+    </a>
+</h3>
+
+```csharp
+void WindowInteractionHandler(RiverWindowV1 window)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| window | object | Window interacted with |
+
+**A window has been interacted with**
+
+A window has been interacted with beyond the pointer merely passing over
+it. This event might be sent due to a pointer button press or due to a
+touch/tablet tool interaction with the window.
+
+There are no guarantees regarding how this event is sent in relation to
+the pointer_enter and pointer_leave events as the interaction may use
+touch or tablet tool input.
+
+Rationale: this event gives window managers necessary information to
+determine when to send keyboard focus, raise a window that already has
+keyboard focus, etc. Rather than expose all pointer, touch, and tablet
+events to window managers, a policy over mechanism approach is taken.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="ShellSurfaceInteraction event">
+    <a href="?id=OnRiverSeatV1_ShellSurfaceInteraction" id="OnRiverSeatV1_ShellSurfaceInteraction">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverSeatV1.<span class="event">OnShellSurfaceInteraction</span>
+    </a>
+</h3>
+
+```csharp
+void ShellSurfaceInteractionHandler(RiverShellSurfaceV1 shellSurface)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| shell_surface | object | Shell surface interacted with |
+
+**A shell surface has been interacted with**
+
+A shell surface has been interacted with beyond the pointer merely
+passing over it. This event might be sent due to a pointer button press
+or due to a touch/tablet tool interaction with the shell_surface.
+
+There are no guarantees regarding how this event is sent in relation to
+the pointer_enter and pointer_leave events as the interaction may use
+touch or tablet tool input.
+
+Rationale: While the shell surface does receive all wl_pointer,
+wl_touch, etc. input events for the surface directly, these events do
+not necessarily trigger a manage sequence and therefore do not allow the
+window manager to update focus or perform other actions in response to
+the input in a race-free way.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="OpDelta event">
+    <a href="?id=OnRiverSeatV1_OpDelta" id="OnRiverSeatV1_OpDelta">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverSeatV1.<span class="event">OnOpDelta</span>
+    </a>
+</h3>
+
+```csharp
+void OpDeltaHandler(int dx, int dy)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| dx | int | Total change in x |
+| dy | int | Total change in y |
+
+**Total cumulative motion since op start**
+
+This event indicates the total change in position since the start of the
+operation of the pointer/touch point/etc.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="OpRelease event">
+    <a href="?id=OnRiverSeatV1_OpRelease" id="OnRiverSeatV1_OpRelease">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverSeatV1.<span class="event">OnOpRelease</span>
+    </a>
+</h3>
+
+```csharp
+void OpReleaseHandler()
+```
+
+
+**Operation input has been released**
+
+The input driving the current interactive operation has been released.
+For a pointer op for example, all pointer buttons have been released.
+
+Depending on the op type, op_delta events may continue to be sent until
+the op is ended with the op_end request.
+
+This event is sent at most once during an interactive operation.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="PointerPosition event">
+    <a href="?id=OnRiverSeatV1_PointerPosition" id="OnRiverSeatV1_PointerPosition">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverSeatV1.<span class="event">OnPointerPosition</span>
+    </a>
+    <span class="pill">since 2</span>
+</h3>
+
+```csharp
+void PointerPositionHandler(int x, int y)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| x | int | Global x coordinate |
+| y | int | Global y coordinate |
+
+**The current position of the pointer**
+
+The current position of the pointer in the compositor's logical
+coordinate space.
+
+This state is special in that a change in pointer position alone must
+not cause the compositor to start a manage sequence.
+
+Assuming the seat has a pointer, this event must be sent in every manage
+sequence unless there is no change in x/y position since the last time this
+event was sent.
 
 <h2 class="decleration interface">
     <a href="?id=RiverPointerBindingV1" id="RiverPointerBindingV1">
@@ -1557,7 +2593,7 @@ pointer binding(s) will receive press/release events or if all of the
 matched pointer bindings receive press/release events.
 
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Destroy request">
     <a href="?id=RiverPointerBindingV1_Destroy" id="RiverPointerBindingV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverPointerBindingV1.<span class="method">Destroy</span>
@@ -1575,7 +2611,7 @@ void Destroy()
 This request indicates that the client will no longer use the pointer
 binding object and that it may be safely destroyed.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Enable request">
     <a href="?id=RiverPointerBindingV1_Enable" id="RiverPointerBindingV1_Enable">
         <span class="codicon codicon-symbol-method method"></span>
         RiverPointerBindingV1.<span class="method">Enable</span>
@@ -1596,7 +2632,7 @@ to be triggered.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h3 class="decleration request">
+<h3 class="decleration request" title="Disable request">
     <a href="?id=RiverPointerBindingV1_Disable" id="RiverPointerBindingV1_Disable">
         <span class="codicon codicon-symbol-method method"></span>
         RiverPointerBindingV1.<span class="method">Disable</span>
@@ -1615,4 +2651,63 @@ may be later re-enabled with the enable request.
 
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
+
+<h3 class="decleration event" title="Pressed event">
+    <a href="?id=OnRiverPointerBindingV1_Pressed" id="OnRiverPointerBindingV1_Pressed">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverPointerBindingV1.<span class="event">OnPressed</span>
+    </a>
+</h3>
+
+```csharp
+void PressedHandler()
+```
+
+
+**The bound pointer button has been pressed**
+
+This event indicates that the pointer button triggering the binding has
+been pressed.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+The compositor should wait for the manage sequence to complete before
+processing further input events. This allows the window manager client
+to, for example, modify key bindings and keyboard focus without racing
+against future input events. The window manager should of course respond
+as soon as possible as the capacity of the compositor to buffer incoming
+input events is finite.
+
+<h3 class="decleration event" title="Released event">
+    <a href="?id=OnRiverPointerBindingV1_Released" id="OnRiverPointerBindingV1_Released">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverPointerBindingV1.<span class="event">OnReleased</span>
+    </a>
+</h3>
+
+```csharp
+void ReleasedHandler()
+```
+
+
+**The bound pointer button has been released**
+
+This event indicates that the pointer button triggering the binding has
+been released.
+
+Releasing the modifiers for the binding without releasing the pointer
+button does not trigger the release event. This event is sent when the
+pointer button is released, even if the modifiers have changed since the
+pressed event.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+The compositor should wait for the manage sequence to complete before
+processing further input events. This allows the window manager client
+to, for example, modify key bindings and keyboard focus without racing
+against future input events. The window manager should of course respond
+as soon as possible as the capacity of the compositor to buffer incoming
+input events is finite.
 
