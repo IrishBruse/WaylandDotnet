@@ -1,7 +1,6 @@
 namespace WaylandDotnet;
 
 using System;
-using WaylandDotnet.Internal;
 
 /// <summary>
 /// Base class for all Wayland objects

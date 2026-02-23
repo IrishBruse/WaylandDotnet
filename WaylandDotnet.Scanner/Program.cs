@@ -217,7 +217,9 @@ public class Program
         var json = File.ReadAllText(input.FullName);
         var options = new JsonSerializerOptions
         {
-            PropertyNameCaseInsensitive = true
+            PropertyNameCaseInsensitive = true,
+            ReadCommentHandling = JsonCommentHandling.Skip,
+            AllowTrailingCommas = true
         };
 
         var rootConfig = JsonSerializer.Deserialize<RootConfig>(json, options)

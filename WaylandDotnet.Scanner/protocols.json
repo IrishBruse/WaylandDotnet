@@ -2,10 +2,22 @@
   "OutputRoot": "../WaylandDotnet/Protocols",
   "DocsDir": "../docs",
   "Protocols": [
+    // Core protocols
     {
       "Name": "Wayland",
       "XmlFile": "Protocols/Core/wayland.xml",
       "Namespace": "Core"
+    },
+    // Stable protocols
+    {
+      "Name": "Presentation time",
+      "XmlFile": "Protocols/Stable/presentation-time.xml",
+      "Namespace": "Stable"
+    },
+    {
+      "Name": "Viewporter",
+      "XmlFile": "Protocols/Stable/viewporter.xml",
+      "Namespace": "Stable"
     },
     {
       "Name": "XDG Shell",
@@ -13,10 +25,22 @@
       "Namespace": "Stable"
     },
     {
+      "Name": "Linux DMA-BUF",
+      "XmlFile": "Protocols/Stable/linux-dmabuf-v1.xml",
+      "Namespace": "Stable"
+    },
+    {
+      "Name": "Tablet",
+      "XmlFile": "Protocols/Stable/tablet-v2.xml",
+      "Namespace": "Stable"
+    },
+    // Wlr protocols
+    {
       "Name": "Layer Shell",
       "XmlFile": "Protocols/Wlr/wlr-layer-shell-unstable-v1.xml",
       "Namespace": "Wlr"
     },
+    // River protocols
     {
       "Name": "River Window Management",
       "XmlFile": "Protocols/River/river-window-management-v1.xml",
