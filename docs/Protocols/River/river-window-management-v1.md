@@ -4,12 +4,12 @@
 
 ---
 
-<h2 class='decleration interface'>
-    <a href='?id=RiverWindowManagerV1' id='RiverWindowManagerV1'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=RiverWindowManagerV1" id="RiverWindowManagerV1">
+        <span class="codicon codicon-symbol-interface"></span>
         RiverWindowManagerV1
     </a>
-    <span class='pill'>version 3</span>
+    <span class="pill">version 3</span>
 </h2>
 
 Window manager global interface
@@ -91,10 +91,9 @@ render_finish request that violates this ordering.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowManagerV1_Stop" id="RiverWindowManagerV1_Stop">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowManagerV1.<span class="method">Stop</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -114,10 +113,10 @@ object.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowManagerV1_Destroy" id="RiverWindowManagerV1_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowManagerV1.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -138,10 +137,9 @@ through this interface.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowManagerV1_ManageFinish" id="RiverWindowManagerV1_ManageFinish">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowManagerV1.<span class="method">ManageFinish</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -165,10 +163,9 @@ complete overview of the manage/render sequence loop.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowManagerV1_ManageDirty" id="RiverWindowManagerV1_ManageDirty">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowManagerV1.<span class="method">ManageDirty</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -189,10 +186,9 @@ affect window management or rendering state.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowManagerV1_RenderFinish" id="RiverWindowManagerV1_RenderFinish">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowManagerV1.<span class="method">RenderFinish</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -216,10 +212,9 @@ complete overview of the manage/render sequence loop.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowManagerV1_GetShellSurface" id="RiverWindowManagerV1_GetShellSurface">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowManagerV1.<span class="method">GetShellSurface</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -239,12 +234,12 @@ river_shell_surface_v1 role to the surface.
 Providing a wl_surface which already has a role or already has a buffer
 attached or committed is a protocol error.
 
-<h2 class='decleration interface'>
-    <a href='?id=RiverWindowV1' id='RiverWindowV1'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=RiverWindowV1" id="RiverWindowV1">
+        <span class="codicon codicon-symbol-interface"></span>
         RiverWindowV1
     </a>
-    <span class='pill'>version 3</span>
+    <span class="pill">version 3</span>
 </h2>
 
 A logical window
@@ -261,10 +256,10 @@ sequence, and that render sequence is finished.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_Destroy" id="RiverWindowV1_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -283,10 +278,9 @@ the window.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_Close" id="RiverWindowV1_Close">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">Close</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -308,10 +302,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_GetNode" id="RiverWindowV1_GetNode">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">GetNode</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -331,10 +324,9 @@ window.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_ProposeDimensions" id="RiverWindowV1_ProposeDimensions">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">ProposeDimensions</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -376,10 +368,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_Hide" id="RiverWindowV1_Hide">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">Hide</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -400,10 +391,9 @@ render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_Show" id="RiverWindowV1_Show">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">Show</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -425,10 +415,9 @@ render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_UseCsd" id="RiverWindowV1_UseCsd">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">UseCsd</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -449,10 +438,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_UseSsd" id="RiverWindowV1_UseSsd">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">UseSsd</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -473,10 +461,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_SetBorders" id="RiverWindowV1_SetBorders">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">SetBorders</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -523,10 +510,9 @@ render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_SetTiled" id="RiverWindowV1_SetTiled">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">SetTiled</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -555,10 +541,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_GetDecorationAbove" id="RiverWindowV1_GetDecorationAbove">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">GetDecorationAbove</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -581,10 +566,9 @@ attached or committed is a protocol error.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_GetDecorationBelow" id="RiverWindowV1_GetDecorationBelow">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">GetDecorationBelow</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -607,10 +591,9 @@ attached or committed is a protocol error.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_InformResizeStart" id="RiverWindowV1_InformResizeStart">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">InformResizeStart</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -632,10 +615,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_InformResizeEnd" id="RiverWindowV1_InformResizeEnd">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">InformResizeEnd</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -654,10 +636,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_SetCapabilities" id="RiverWindowV1_SetCapabilities">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">SetCapabilities</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -687,10 +668,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_InformMaximized" id="RiverWindowV1_InformMaximized">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">InformMaximized</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -712,10 +692,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_InformUnmaximized" id="RiverWindowV1_InformUnmaximized">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">InformUnmaximized</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -734,10 +713,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_InformFullscreen" id="RiverWindowV1_InformFullscreen">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">InformFullscreen</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -760,10 +738,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_InformNotFullscreen" id="RiverWindowV1_InformNotFullscreen">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">InformNotFullscreen</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -786,10 +763,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_Fullscreen" id="RiverWindowV1_Fullscreen">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">Fullscreen</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -837,10 +813,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_ExitFullscreen" id="RiverWindowV1_ExitFullscreen">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">ExitFullscreen</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -868,10 +843,10 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_SetClipBox" id="RiverWindowV1_SetClipBox">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">SetClipBox</span>
     </a>
-    <span class='pill'>since 2</span>
+    <span class="pill">since 2</span>
 </h3>
 
 ```csharp
@@ -904,10 +879,10 @@ render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverWindowV1_SetContentClipBox" id="RiverWindowV1_SetContentClipBox">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverWindowV1.<span class="method">SetContentClipBox</span>
     </a>
-    <span class='pill'>since 3</span>
+    <span class="pill">since 3</span>
 </h3>
 
 ```csharp
@@ -943,12 +918,12 @@ Both set_clip_box and set_content_clip_box may be enabled simultaneously.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
-<h2 class='decleration interface'>
-    <a href='?id=RiverDecorationV1' id='RiverDecorationV1'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=RiverDecorationV1" id="RiverDecorationV1">
+        <span class="codicon codicon-symbol-interface"></span>
         RiverDecorationV1
     </a>
-    <span class='pill'>version 3</span>
+    <span class="pill">version 3</span>
 </h2>
 
 A window decoration
@@ -967,10 +942,10 @@ undefined by this protocol and left up to the compositor.
 
 <h3 class="decleration request">
     <a href="?id=RiverDecorationV1_Destroy" id="RiverDecorationV1_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverDecorationV1.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -985,10 +960,9 @@ object and that it may be safely destroyed.
 
 <h3 class="decleration request">
     <a href="?id=RiverDecorationV1_SetOffset" id="RiverDecorationV1_SetOffset">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverDecorationV1.<span class="method">SetOffset</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1013,10 +987,9 @@ render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverDecorationV1_SyncNextCommit" id="RiverDecorationV1_SyncNextCommit">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverDecorationV1.<span class="method">SyncNextCommit</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1037,12 +1010,12 @@ to do so is a protocol error.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
-<h2 class='decleration interface'>
-    <a href='?id=RiverShellSurfaceV1' id='RiverShellSurfaceV1'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=RiverShellSurfaceV1" id="RiverShellSurfaceV1">
+        <span class="codicon codicon-symbol-interface"></span>
         RiverShellSurfaceV1
     </a>
-    <span class='pill'>version 3</span>
+    <span class="pill">version 3</span>
 </h2>
 
 A surface for window manager UI
@@ -1055,10 +1028,10 @@ whatever else it wants.
 
 <h3 class="decleration request">
     <a href="?id=RiverShellSurfaceV1_Destroy" id="RiverShellSurfaceV1_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverShellSurfaceV1.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -1073,10 +1046,9 @@ surface object and that it may be safely destroyed.
 
 <h3 class="decleration request">
     <a href="?id=RiverShellSurfaceV1_GetNode" id="RiverShellSurfaceV1_GetNode">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverShellSurfaceV1.<span class="method">GetNode</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1096,10 +1068,9 @@ shell surface.
 
 <h3 class="decleration request">
     <a href="?id=RiverShellSurfaceV1_SyncNextCommit" id="RiverShellSurfaceV1_SyncNextCommit">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverShellSurfaceV1.<span class="method">SyncNextCommit</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1120,12 +1091,12 @@ so is a protocol error.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
-<h2 class='decleration interface'>
-    <a href='?id=RiverNodeV1' id='RiverNodeV1'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=RiverNodeV1" id="RiverNodeV1">
+        <span class="codicon codicon-symbol-interface"></span>
         RiverNodeV1
     </a>
-    <span class='pill'>version 3</span>
+    <span class="pill">version 3</span>
 </h2>
 
 A node in the render list
@@ -1143,10 +1114,10 @@ guarantee a specific rendering order.
 
 <h3 class="decleration request">
     <a href="?id=RiverNodeV1_Destroy" id="RiverNodeV1_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverNodeV1.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -1161,10 +1132,9 @@ object and that it may be safely destroyed.
 
 <h3 class="decleration request">
     <a href="?id=RiverNodeV1_SetPosition" id="RiverNodeV1_SetPosition">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverNodeV1.<span class="method">SetPosition</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1193,10 +1163,9 @@ render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverNodeV1_PlaceTop" id="RiverNodeV1_PlaceTop">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverNodeV1.<span class="method">PlaceTop</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1214,10 +1183,9 @@ render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverNodeV1_PlaceBottom" id="RiverNodeV1_PlaceBottom">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverNodeV1.<span class="method">PlaceBottom</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1235,10 +1203,9 @@ render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverNodeV1_PlaceAbove" id="RiverNodeV1_PlaceAbove">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverNodeV1.<span class="method">PlaceAbove</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1261,10 +1228,9 @@ render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverNodeV1_PlaceBelow" id="RiverNodeV1_PlaceBelow">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverNodeV1.<span class="method">PlaceBelow</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1285,12 +1251,12 @@ Attempting to place a node below itself has no effect.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
-<h2 class='decleration interface'>
-    <a href='?id=RiverOutputV1' id='RiverOutputV1'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=RiverOutputV1" id="RiverOutputV1">
+        <span class="codicon codicon-symbol-interface"></span>
         RiverOutputV1
     </a>
-    <span class='pill'>version 3</span>
+    <span class="pill">version 3</span>
 </h2>
 
 A logical output
@@ -1305,10 +1271,10 @@ compositor configuration.
 
 <h3 class="decleration request">
     <a href="?id=RiverOutputV1_Destroy" id="RiverOutputV1_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverOutputV1.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -1324,12 +1290,12 @@ object and that it may be safely destroyed.
 This request should be made after the river_output_v1.removed event is
 received to complete destruction of the output.
 
-<h2 class='decleration interface'>
-    <a href='?id=RiverSeatV1' id='RiverSeatV1'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=RiverSeatV1" id="RiverSeatV1">
+        <span class="codicon codicon-symbol-interface"></span>
         RiverSeatV1
     </a>
-    <span class='pill'>version 3</span>
+    <span class="pill">version 3</span>
 </h2>
 
 A window management seat
@@ -1347,10 +1313,10 @@ TODO:
 
 <h3 class="decleration request">
     <a href="?id=RiverSeatV1_Destroy" id="RiverSeatV1_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -1368,10 +1334,9 @@ received to complete destruction of the seat.
 
 <h3 class="decleration request">
     <a href="?id=RiverSeatV1_FocusWindow" id="RiverSeatV1_FocusWindow">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">FocusWindow</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1391,10 +1356,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverSeatV1_FocusShellSurface" id="RiverSeatV1_FocusShellSurface">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">FocusShellSurface</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1415,10 +1379,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverSeatV1_ClearFocus" id="RiverSeatV1_ClearFocus">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">ClearFocus</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1435,10 +1398,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverSeatV1_OpStartPointer" id="RiverSeatV1_OpStartPointer">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">OpStartPointer</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1467,10 +1429,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverSeatV1_OpEnd" id="RiverSeatV1_OpEnd">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">OpEnd</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1489,10 +1450,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverSeatV1_GetPointerBinding" id="RiverSeatV1_GetPointerBinding">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">GetPointerBinding</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1518,10 +1478,10 @@ completed and the enable request is made during a manage sequence.
 
 <h3 class="decleration request">
     <a href="?id=RiverSeatV1_SetXcursorTheme" id="RiverSeatV1_SetXcursorTheme">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">SetXcursorTheme</span>
     </a>
-    <span class='pill'>since 2</span>
+    <span class="pill">since 2</span>
 </h3>
 
 ```csharp
@@ -1544,10 +1504,10 @@ XCURSOR_SIZE environment variable for programs it starts.
 
 <h3 class="decleration request">
     <a href="?id=RiverSeatV1_PointerWarp" id="RiverSeatV1_PointerWarp">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverSeatV1.<span class="method">PointerWarp</span>
     </a>
-    <span class='pill'>since 3</span>
+    <span class="pill">since 3</span>
 </h3>
 
 ```csharp
@@ -1570,12 +1530,12 @@ will be warped to the closest point inside an output instead.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-<h2 class='decleration interface'>
-    <a href='?id=RiverPointerBindingV1' id='RiverPointerBindingV1'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=RiverPointerBindingV1" id="RiverPointerBindingV1">
+        <span class="codicon codicon-symbol-interface"></span>
         RiverPointerBindingV1
     </a>
-    <span class='pill'>version 3</span>
+    <span class="pill">version 3</span>
 </h2>
 
 Configure a pointer binding, receive trigger events
@@ -1599,10 +1559,10 @@ matched pointer bindings receive press/release events.
 
 <h3 class="decleration request">
     <a href="?id=RiverPointerBindingV1_Destroy" id="RiverPointerBindingV1_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverPointerBindingV1.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -1617,10 +1577,9 @@ binding object and that it may be safely destroyed.
 
 <h3 class="decleration request">
     <a href="?id=RiverPointerBindingV1_Enable" id="RiverPointerBindingV1_Enable">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverPointerBindingV1.<span class="method">Enable</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1639,10 +1598,9 @@ part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request">
     <a href="?id=RiverPointerBindingV1_Disable" id="RiverPointerBindingV1_Disable">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         RiverPointerBindingV1.<span class="method">Disable</span>
     </a>
-    
 </h3>
 
 ```csharp

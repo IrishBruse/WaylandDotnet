@@ -4,12 +4,12 @@
 
 ---
 
-<h2 class='decleration interface'>
-    <a href='?id=ZwlrLayerShellV1' id='ZwlrLayerShellV1'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=ZwlrLayerShellV1" id="ZwlrLayerShellV1">
+        <span class="codicon codicon-symbol-interface"></span>
         ZwlrLayerShellV1
     </a>
-    <span class='pill'>version 5</span>
+    <span class="pill">version 5</span>
 </h2>
 
 Create surfaces that are layers of the desktop
@@ -26,10 +26,9 @@ that interact with the desktop.
 
 <h3 class="decleration request">
     <a href="?id=ZwlrLayerShellV1_GetLayerSurface" id="ZwlrLayerShellV1_GetLayerSurface">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerShellV1.<span class="method">GetLayerSurface</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -70,10 +69,11 @@ surface.
 
 <h3 class="decleration request">
     <a href="?id=ZwlrLayerShellV1_Destroy" id="ZwlrLayerShellV1_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerShellV1.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span><span class='pill'>since 3</span>
+    <span class="pill">since 3</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -87,12 +87,12 @@ This request indicates that the client will not use the layer_shell
 object any more. Objects that have been created through this instance
 are not affected.
 
-<h2 class='decleration interface'>
-    <a href='?id=ZwlrLayerSurfaceV1' id='ZwlrLayerSurfaceV1'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=ZwlrLayerSurfaceV1" id="ZwlrLayerSurfaceV1">
+        <span class="codicon codicon-symbol-interface"></span>
         ZwlrLayerSurfaceV1
     </a>
-    <span class='pill'>version 5</span>
+    <span class="pill">version 5</span>
 </h2>
 
 Layer metadata interface
@@ -117,10 +117,9 @@ buffer attached, waiting for a configure event and handling it as usual.
 
 <h3 class="decleration request">
     <a href="?id=ZwlrLayerSurfaceV1_SetSize" id="ZwlrLayerSurfaceV1_SetSize">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetSize</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -147,10 +146,9 @@ Size is double-buffered, see wl_surface.commit.
 
 <h3 class="decleration request">
     <a href="?id=ZwlrLayerSurfaceV1_SetAnchor" id="ZwlrLayerSurfaceV1_SetAnchor">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetAnchor</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -173,10 +171,9 @@ Anchor is double-buffered, see wl_surface.commit.
 
 <h3 class="decleration request">
     <a href="?id=ZwlrLayerSurfaceV1_SetExclusiveZone" id="ZwlrLayerSurfaceV1_SetExclusiveZone">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetExclusiveZone</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -224,10 +221,9 @@ Exclusive zone is double-buffered, see wl_surface.commit.
 
 <h3 class="decleration request">
     <a href="?id=ZwlrLayerSurfaceV1_SetMargin" id="ZwlrLayerSurfaceV1_SetMargin">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetMargin</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -253,10 +249,9 @@ Margin is double-buffered, see wl_surface.commit.
 
 <h3 class="decleration request">
     <a href="?id=ZwlrLayerSurfaceV1_SetKeyboardInteractivity" id="ZwlrLayerSurfaceV1_SetKeyboardInteractivity">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetKeyboardInteractivity</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -284,10 +279,9 @@ Keyboard interactivity is double-buffered, see wl_surface.commit.
 
 <h3 class="decleration request">
     <a href="?id=ZwlrLayerSurfaceV1_GetPopup" id="ZwlrLayerSurfaceV1_GetPopup">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">GetPopup</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -310,10 +304,9 @@ xdg_popup is and how it is used.
 
 <h3 class="decleration request">
     <a href="?id=ZwlrLayerSurfaceV1_AckConfigure" id="ZwlrLayerSurfaceV1_AckConfigure">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">AckConfigure</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -344,10 +337,10 @@ event the client really is responding to.
 
 <h3 class="decleration request">
     <a href="?id=ZwlrLayerSurfaceV1_Destroy" id="ZwlrLayerSurfaceV1_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -361,10 +354,10 @@ This request destroys the layer surface.
 
 <h3 class="decleration request">
     <a href="?id=ZwlrLayerSurfaceV1_SetLayer" id="ZwlrLayerSurfaceV1_SetLayer">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetLayer</span>
     </a>
-    <span class='pill'>since 2</span>
+    <span class="pill">since 2</span>
 </h3>
 
 ```csharp
@@ -383,10 +376,10 @@ Layer is double-buffered, see wl_surface.commit.
 
 <h3 class="decleration request">
     <a href="?id=ZwlrLayerSurfaceV1_SetExclusiveEdge" id="ZwlrLayerSurfaceV1_SetExclusiveEdge">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetExclusiveEdge</span>
     </a>
-    <span class='pill'>since 5</span>
+    <span class="pill">since 5</span>
 </h3>
 
 ```csharp

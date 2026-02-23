@@ -4,12 +4,12 @@
 
 ---
 
-<h2 class='decleration interface'>
-    <a href='?id=XdgWmBase' id='XdgWmBase'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=XdgWmBase" id="XdgWmBase">
+        <span class="codicon codicon-symbol-interface"></span>
         XdgWmBase
     </a>
-    <span class='pill'>version 7</span>
+    <span class="pill">version 7</span>
 </h2>
 
 Create desktop-style surfaces
@@ -24,10 +24,10 @@ creating transient windows such as popup menus.
 
 <h3 class="decleration request">
     <a href="?id=XdgWmBase_Destroy" id="XdgWmBase_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgWmBase.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -45,10 +45,9 @@ and will result in a defunct_surfaces error.
 
 <h3 class="decleration request">
     <a href="?id=XdgWmBase_CreatePositioner" id="XdgWmBase_CreatePositioner">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgWmBase.<span class="method">CreatePositioner</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -67,10 +66,9 @@ and xdg_surface.get_popup for details.
 
 <h3 class="decleration request">
     <a href="?id=XdgWmBase_GetXdgSurface" id="XdgWmBase_GetXdgSurface">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgWmBase.<span class="method">GetXdgSurface</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -100,10 +98,9 @@ xdg_surface is and how it is used.
 
 <h3 class="decleration request">
     <a href="?id=XdgWmBase_Pong" id="XdgWmBase_Pong">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgWmBase.<span class="method">Pong</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -120,12 +117,12 @@ A client must respond to a ping event with a pong request or
 the client may be deemed unresponsive. See xdg_wm_base.ping
 and xdg_wm_base.error.unresponsive.
 
-<h2 class='decleration interface'>
-    <a href='?id=XdgPositioner' id='XdgPositioner'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=XdgPositioner" id="XdgPositioner">
+        <span class="codicon codicon-symbol-interface"></span>
         XdgPositioner
     </a>
-    <span class='pill'>version 7</span>
+    <span class="pill">version 7</span>
 </h2>
 
 Child surface positioner
@@ -154,10 +151,10 @@ positioning a surface raises an invalid_positioner error.
 
 <h3 class="decleration request">
     <a href="?id=XdgPositioner_Destroy" id="XdgPositioner_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -171,10 +168,9 @@ Notify the compositor that the xdg_positioner will no longer be used.
 
 <h3 class="decleration request">
     <a href="?id=XdgPositioner_SetSize" id="XdgPositioner_SetSize">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetSize</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -196,10 +192,9 @@ If a zero or negative size is set the invalid_input error is raised.
 
 <h3 class="decleration request">
     <a href="?id=XdgPositioner_SetAnchorRect" id="XdgPositioner_SetAnchorRect">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetAnchorRect</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -228,10 +223,9 @@ If a negative size is set the invalid_input error is raised.
 
 <h3 class="decleration request">
     <a href="?id=XdgPositioner_SetAnchor" id="XdgPositioner_SetAnchor">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetAnchor</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -253,10 +247,9 @@ edge, or in the center of the anchor rectangle if no edge is specified.
 
 <h3 class="decleration request">
     <a href="?id=XdgPositioner_SetGravity" id="XdgPositioner_SetGravity">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetGravity</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -279,10 +272,9 @@ invalid_input error is raised.
 
 <h3 class="decleration request">
     <a href="?id=XdgPositioner_SetConstraintAdjustment" id="XdgPositioner_SetConstraintAdjustment">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetConstraintAdjustment</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -311,10 +303,9 @@ The default adjustment is none.
 
 <h3 class="decleration request">
     <a href="?id=XdgPositioner_SetOffset" id="XdgPositioner_SetOffset">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetOffset</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -342,10 +333,10 @@ with some user interface element placed somewhere in the popup surface.
 
 <h3 class="decleration request">
     <a href="?id=XdgPositioner_SetReactive" id="XdgPositioner_SetReactive">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetReactive</span>
     </a>
-    <span class='pill'>since 3</span>
+    <span class="pill">since 3</span>
 </h3>
 
 ```csharp
@@ -364,10 +355,10 @@ xdg_surface.configure event.
 
 <h3 class="decleration request">
     <a href="?id=XdgPositioner_SetParentSize" id="XdgPositioner_SetParentSize">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetParentSize</span>
     </a>
-    <span class='pill'>since 3</span>
+    <span class="pill">since 3</span>
 </h3>
 
 ```csharp
@@ -391,10 +382,10 @@ The arguments are given in the surface-local coordinate space.
 
 <h3 class="decleration request">
     <a href="?id=XdgPositioner_SetParentConfigure" id="XdgPositioner_SetParentConfigure">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgPositioner.<span class="method">SetParentConfigure</span>
     </a>
-    <span class='pill'>since 3</span>
+    <span class="pill">since 3</span>
 </h3>
 
 ```csharp
@@ -412,12 +403,12 @@ used in response to. The compositor may use this information together
 with set_parent_size to determine what future state the popup should be
 constrained using.
 
-<h2 class='decleration interface'>
-    <a href='?id=XdgSurface' id='XdgSurface'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=XdgSurface" id="XdgSurface">
+        <span class="codicon codicon-symbol-interface"></span>
         XdgSurface
     </a>
-    <span class='pill'>version 7</span>
+    <span class="pill">version 7</span>
 </h2>
 
 Desktop user interface surface base interface
@@ -475,10 +466,10 @@ again before attaching a buffer.
 
 <h3 class="decleration request">
     <a href="?id=XdgSurface_Destroy" id="XdgSurface_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgSurface.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -494,10 +485,9 @@ a defunct_role_object error is raised.
 
 <h3 class="decleration request">
     <a href="?id=XdgSurface_GetToplevel" id="XdgSurface_GetToplevel">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgSurface.<span class="method">GetToplevel</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -518,10 +508,9 @@ xdg_toplevel is and how it is used.
 
 <h3 class="decleration request">
     <a href="?id=XdgSurface_GetPopup" id="XdgSurface_GetPopup">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgSurface.<span class="method">GetPopup</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -547,10 +536,9 @@ xdg_popup is and how it is used.
 
 <h3 class="decleration request">
     <a href="?id=XdgSurface_SetWindowGeometry" id="XdgSurface_SetWindowGeometry">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgSurface.<span class="method">SetWindowGeometry</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -609,10 +597,9 @@ invalid_size error.
 
 <h3 class="decleration request">
     <a href="?id=XdgSurface_AckConfigure" id="XdgSurface_AckConfigure">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgSurface.<span class="method">AckConfigure</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -658,12 +645,12 @@ request referencing a serial from a configure event issued before the
 event identified by the last ack_configure request for the same
 xdg_surface. Doing so will raise an invalid_serial error.
 
-<h2 class='decleration interface'>
-    <a href='?id=XdgToplevel' id='XdgToplevel'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=XdgToplevel" id="XdgToplevel">
+        <span class="codicon codicon-symbol-interface"></span>
         XdgToplevel
     </a>
-    <span class='pill'>version 7</span>
+    <span class="pill">version 7</span>
 </h2>
 
 Toplevel surface
@@ -694,10 +681,10 @@ Attaching a null buffer to a toplevel unmaps the surface.
 
 <h3 class="decleration request">
     <a href="?id=XdgToplevel_Destroy" id="XdgToplevel_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -712,10 +699,9 @@ see "Unmapping" behavior in interface section for details.
 
 <h3 class="decleration request">
     <a href="?id=XdgToplevel_SetParent" id="XdgToplevel_SetParent">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetParent</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -751,10 +737,9 @@ otherwise the invalid_parent protocol error is raised.
 
 <h3 class="decleration request">
     <a href="?id=XdgToplevel_SetTitle" id="XdgToplevel_SetTitle">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetTitle</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -777,10 +762,9 @@ The string must be encoded in UTF-8.
 
 <h3 class="decleration request">
     <a href="?id=XdgToplevel_SetAppId" id="XdgToplevel_SetAppId">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetAppId</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -819,10 +803,9 @@ names and .desktop files.
 
 <h3 class="decleration request">
     <a href="?id=XdgToplevel_ShowWindowMenu" id="XdgToplevel_ShowWindowMenu">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">ShowWindowMenu</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -853,10 +836,9 @@ like a button press, key press, or touch down event.
 
 <h3 class="decleration request">
     <a href="?id=XdgToplevel_Move" id="XdgToplevel_Move">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">Move</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -889,10 +871,9 @@ that the device focus will return when the move is completed.
 
 <h3 class="decleration request">
     <a href="?id=XdgToplevel_Resize" id="XdgToplevel_Resize">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">Resize</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -941,10 +922,9 @@ cursor image.
 
 <h3 class="decleration request">
     <a href="?id=XdgToplevel_SetMaxSize" id="XdgToplevel_SetMaxSize">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetMaxSize</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -994,10 +974,9 @@ invalid_size error.
 
 <h3 class="decleration request">
     <a href="?id=XdgToplevel_SetMinSize" id="XdgToplevel_SetMinSize">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetMinSize</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1047,10 +1026,9 @@ invalid_size error.
 
 <h3 class="decleration request">
     <a href="?id=XdgToplevel_SetMaximized" id="XdgToplevel_SetMaximized">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetMaximized</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1082,10 +1060,9 @@ unmaximized unless overridden by the compositor.
 
 <h3 class="decleration request">
     <a href="?id=XdgToplevel_UnsetMaximized" id="XdgToplevel_UnsetMaximized">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">UnsetMaximized</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1119,10 +1096,9 @@ unmaximized unless overridden by the compositor.
 
 <h3 class="decleration request">
     <a href="?id=XdgToplevel_SetFullscreen" id="XdgToplevel_SetFullscreen">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetFullscreen</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1161,10 +1137,9 @@ visible below the fullscreened surface.
 
 <h3 class="decleration request">
     <a href="?id=XdgToplevel_UnsetFullscreen" id="XdgToplevel_UnsetFullscreen">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">UnsetFullscreen</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1194,10 +1169,9 @@ content (see ack_configure).
 
 <h3 class="decleration request">
     <a href="?id=XdgToplevel_SetMinimized" id="XdgToplevel_SetMinimized">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgToplevel.<span class="method">SetMinimized</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1216,12 +1190,12 @@ instead use the wl_surface.frame event for this, as this will
 also work with live previews on windows in Alt-Tab, Expose or
 similar compositor features.
 
-<h2 class='decleration interface'>
-    <a href='?id=XdgPopup' id='XdgPopup'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=XdgPopup" id="XdgPopup">
+        <span class="codicon codicon-symbol-interface"></span>
         XdgPopup
     </a>
-    <span class='pill'>version 7</span>
+    <span class="pill">version 7</span>
 </h2>
 
 Short-lived, popup surfaces for menus
@@ -1255,10 +1229,10 @@ for the xdg_popup state to take effect.
 
 <h3 class="decleration request">
     <a href="?id=XdgPopup_Destroy" id="XdgPopup_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgPopup.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -1276,10 +1250,9 @@ xdg_wm_base.not_the_topmost_popup protocol error will be sent.
 
 <h3 class="decleration request">
     <a href="?id=XdgPopup_Grab" id="XdgPopup_Grab">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgPopup.<span class="method">Grab</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1333,10 +1306,10 @@ will always have keyboard focus.
 
 <h3 class="decleration request">
     <a href="?id=XdgPopup_Reposition" id="XdgPopup_Reposition">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         XdgPopup.<span class="method">Reposition</span>
     </a>
-    <span class='pill'>since 3</span>
+    <span class="pill">since 3</span>
 </h3>
 
 ```csharp

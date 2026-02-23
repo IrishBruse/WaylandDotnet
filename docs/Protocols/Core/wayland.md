@@ -4,12 +4,12 @@
 
 ---
 
-<h2 class='decleration interface'>
-    <a href='?id=WlDisplay' id='WlDisplay'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlDisplay" id="WlDisplay">
+        <span class="codicon codicon-symbol-interface"></span>
         WlDisplay
     </a>
-    <span class='pill'>version 1</span>
+    <span class="pill">version 1</span>
 </h2>
 
 Core global object
@@ -21,10 +21,9 @@ is used for internal Wayland protocol features.
 
 <h3 class="decleration request">
     <a href="?id=WlDisplay_Sync" id="WlDisplay_Sync">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlDisplay.<span class="method">Sync</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -51,10 +50,9 @@ The callback_data passed in the callback is undefined and should be ignored.
 
 <h3 class="decleration request">
     <a href="?id=WlDisplay_GetRegistry" id="WlDisplay_GetRegistry">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlDisplay.<span class="method">GetRegistry</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -77,12 +75,12 @@ client disconnects, not when the client side proxy is destroyed.
 Therefore, clients should invoke get_registry as infrequently as
 possible to avoid wasting memory.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlRegistry' id='WlRegistry'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlRegistry" id="WlRegistry">
+        <span class="codicon codicon-symbol-interface"></span>
         WlRegistry
     </a>
-    <span class='pill'>version 1</span>
+    <span class="pill">version 1</span>
 </h2>
 
 Global registry object
@@ -112,10 +110,9 @@ the object.
 
 <h3 class="decleration request">
     <a href="?id=WlRegistry_Bind" id="WlRegistry_Bind">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlRegistry.<span class="method">Bind</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -132,12 +129,12 @@ WaylandObject Bind(string interfaceName, uint version, uint name)
 Binds a new, client-created object to the server using the
 specified name as the identifier.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlCallback' id='WlCallback'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlCallback" id="WlCallback">
+        <span class="codicon codicon-symbol-interface"></span>
         WlCallback
     </a>
-    <span class='pill'>version 1</span>
+    <span class="pill">version 1</span>
 </h2>
 
 Callback object
@@ -150,12 +147,12 @@ Note, because wl_callback objects are created from multiple independent
 factory interfaces, the wl_callback interface is frozen at version 1.
 
 
-<h2 class='decleration interface'>
-    <a href='?id=WlCompositor' id='WlCompositor'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlCompositor" id="WlCompositor">
+        <span class="codicon codicon-symbol-interface"></span>
         WlCompositor
     </a>
-    <span class='pill'>version 6</span>
+    <span class="pill">version 6</span>
 </h2>
 
 The compositor singleton
@@ -168,10 +165,9 @@ surfaces into one displayable output.
 
 <h3 class="decleration request">
     <a href="?id=WlCompositor_CreateSurface" id="WlCompositor_CreateSurface">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlCompositor.<span class="method">CreateSurface</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -188,10 +184,9 @@ Ask the compositor to create a new surface.
 
 <h3 class="decleration request">
     <a href="?id=WlCompositor_CreateRegion" id="WlCompositor_CreateRegion">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlCompositor.<span class="method">CreateRegion</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -206,12 +201,12 @@ WlRegion CreateRegion()
 
 Ask the compositor to create a new region.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlShmPool' id='WlShmPool'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlShmPool" id="WlShmPool">
+        <span class="codicon codicon-symbol-interface"></span>
         WlShmPool
     </a>
-    <span class='pill'>version 2</span>
+    <span class="pill">version 2</span>
 </h2>
 
 A shared memory pool
@@ -228,10 +223,9 @@ a surface or for many small buffers.
 
 <h3 class="decleration request">
     <a href="?id=WlShmPool_CreateBuffer" id="WlShmPool_CreateBuffer">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShmPool.<span class="method">CreateBuffer</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -263,10 +257,10 @@ a buffer from it.
 
 <h3 class="decleration request">
     <a href="?id=WlShmPool_Destroy" id="WlShmPool_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShmPool.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -284,10 +278,9 @@ are gone.
 
 <h3 class="decleration request">
     <a href="?id=WlShmPool_Resize" id="WlShmPool_Resize">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShmPool.<span class="method">Resize</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -311,12 +304,12 @@ file descriptor passed at creation time. It is the client's
 responsibility to ensure that the file is at least as big as
 the new pool size.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlShm' id='WlShm'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlShm" id="WlShm">
+        <span class="codicon codicon-symbol-interface"></span>
         WlShm
     </a>
-    <span class='pill'>version 2</span>
+    <span class="pill">version 2</span>
 </h2>
 
 Shared memory support
@@ -335,10 +328,9 @@ that can be used for buffers.
 
 <h3 class="decleration request">
     <a href="?id=WlShm_CreatePool" id="WlShm_CreatePool">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShm.<span class="method">CreatePool</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -361,10 +353,11 @@ descriptor, to use as backing memory for the pool.
 
 <h3 class="decleration request">
     <a href="?id=WlShm_Release" id="WlShm_Release">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShm.<span class="method">Release</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span><span class='pill'>since 2</span>
+    <span class="pill">since 2</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -379,12 +372,12 @@ use the shm object anymore.
 
 Objects created via this interface remain unaffected.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlBuffer' id='WlBuffer'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlBuffer" id="WlBuffer">
+        <span class="codicon codicon-symbol-interface"></span>
         WlBuffer
     </a>
-    <span class='pill'>version 1</span>
+    <span class="pill">version 1</span>
 </h2>
 
 Content for a wl_surface
@@ -409,10 +402,10 @@ factory interfaces, the wl_buffer interface is frozen at version 1.
 
 <h3 class="decleration request">
     <a href="?id=WlBuffer_Destroy" id="WlBuffer_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlBuffer.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -427,12 +420,12 @@ storage is defined by the buffer factory interface.
 
 For possible side-effects to a surface, see wl_surface.attach.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlDataOffer' id='WlDataOffer'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlDataOffer" id="WlDataOffer">
+        <span class="codicon codicon-symbol-interface"></span>
         WlDataOffer
     </a>
-    <span class='pill'>version 3</span>
+    <span class="pill">version 3</span>
 </h2>
 
 Offer to transfer data
@@ -448,10 +441,9 @@ data directly from the source client.
 
 <h3 class="decleration request">
     <a href="?id=WlDataOffer_Accept" id="WlDataOffer_Accept">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlDataOffer.<span class="method">Accept</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -482,10 +474,9 @@ conjunction with wl_data_source.action for feedback.
 
 <h3 class="decleration request">
     <a href="?id=WlDataOffer_Receive" id="WlDataOffer_Receive">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlDataOffer.<span class="method">Receive</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -517,10 +508,10 @@ determine acceptance.
 
 <h3 class="decleration request">
     <a href="?id=WlDataOffer_Destroy" id="WlDataOffer_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlDataOffer.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -534,10 +525,10 @@ Destroy the data offer.
 
 <h3 class="decleration request">
     <a href="?id=WlDataOffer_Finish" id="WlDataOffer_Finish">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlDataOffer.<span class="method">Finish</span>
     </a>
-    <span class='pill'>since 3</span>
+    <span class="pill">since 3</span>
 </h3>
 
 ```csharp
@@ -564,10 +555,10 @@ operation, the invalid_finish protocol error is raised.
 
 <h3 class="decleration request">
     <a href="?id=WlDataOffer_SetActions" id="WlDataOffer_SetActions">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlDataOffer.<span class="method">SetActions</span>
     </a>
-    <span class='pill'>since 3</span>
+    <span class="pill">since 3</span>
 </h3>
 
 ```csharp
@@ -613,12 +604,12 @@ is expected to perform wl_data_offer.destroy right away.
 This request can only be made on drag-and-drop offers, a protocol error
 will be raised otherwise.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlDataSource' id='WlDataSource'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlDataSource" id="WlDataSource">
+        <span class="codicon codicon-symbol-interface"></span>
         WlDataSource
     </a>
-    <span class='pill'>version 3</span>
+    <span class="pill">version 3</span>
 </h2>
 
 Offer to transfer data
@@ -632,10 +623,9 @@ to requests to transfer the data.
 
 <h3 class="decleration request">
     <a href="?id=WlDataSource_Offer" id="WlDataSource_Offer">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlDataSource.<span class="method">Offer</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -654,10 +644,10 @@ multiple types.
 
 <h3 class="decleration request">
     <a href="?id=WlDataSource_Destroy" id="WlDataSource_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlDataSource.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -671,10 +661,10 @@ Destroy the data source.
 
 <h3 class="decleration request">
     <a href="?id=WlDataSource_SetActions" id="WlDataSource_SetActions">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlDataSource.<span class="method">SetActions</span>
     </a>
-    <span class='pill'>since 3</span>
+    <span class="pill">since 3</span>
 </h3>
 
 ```csharp
@@ -701,12 +691,12 @@ used in drag-and-drop, so it must be performed before
 wl_data_device.start_drag. Attempting to use the source other than
 for drag-and-drop will raise a protocol error.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlDataDevice' id='WlDataDevice'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlDataDevice" id="WlDataDevice">
+        <span class="codicon codicon-symbol-interface"></span>
         WlDataDevice
     </a>
-    <span class='pill'>version 3</span>
+    <span class="pill">version 3</span>
 </h2>
 
 Data transfer device
@@ -721,10 +711,9 @@ mechanisms such as copy-and-paste and drag-and-drop.
 
 <h3 class="decleration request">
     <a href="?id=WlDataDevice_StartDrag" id="WlDataDevice_StartDrag">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlDataDevice.<span class="method">StartDrag</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -772,10 +761,9 @@ may send a used_source error.
 
 <h3 class="decleration request">
     <a href="?id=WlDataDevice_SetSelection" id="WlDataDevice_SetSelection">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlDataDevice.<span class="method">SetSelection</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -800,10 +788,11 @@ may send a used_source error.
 
 <h3 class="decleration request">
     <a href="?id=WlDataDevice_Release" id="WlDataDevice_Release">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlDataDevice.<span class="method">Release</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span><span class='pill'>since 2</span>
+    <span class="pill">since 2</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -815,12 +804,12 @@ void Release()
 
 This request destroys the data device.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlDataDeviceManager' id='WlDataDeviceManager'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlDataDeviceManager" id="WlDataDeviceManager">
+        <span class="codicon codicon-symbol-interface"></span>
         WlDataDeviceManager
     </a>
-    <span class='pill'>version 3</span>
+    <span class="pill">version 3</span>
 </h2>
 
 Data transfer interface
@@ -840,10 +829,9 @@ wl_data_offer.accept and wl_data_offer.finish for details.
 
 <h3 class="decleration request">
     <a href="?id=WlDataDeviceManager_CreateDataSource" id="WlDataDeviceManager_CreateDataSource">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlDataDeviceManager.<span class="method">CreateDataSource</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -860,10 +848,9 @@ Create a new data source.
 
 <h3 class="decleration request">
     <a href="?id=WlDataDeviceManager_GetDataDevice" id="WlDataDeviceManager_GetDataDevice">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlDataDeviceManager.<span class="method">GetDataDevice</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -879,12 +866,12 @@ WlDataDevice GetDataDevice(WlSeat seat)
 
 Create a new data device for a given seat.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlShell' id='WlShell'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlShell" id="WlShell">
+        <span class="codicon codicon-symbol-interface"></span>
         WlShell
     </a>
-    <span class='pill'>version 1</span>
+    <span class="pill">version 1</span>
 </h2>
 
 Create desktop-style surfaces
@@ -903,10 +890,9 @@ should not implement this interface.
 
 <h3 class="decleration request">
     <a href="?id=WlShell_GetShellSurface" id="WlShell_GetShellSurface">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShell.<span class="method">GetShellSurface</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -926,12 +912,12 @@ already has another role, it raises a protocol error.
 
 Only one shell surface can be associated with a given surface.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlShellSurface' id='WlShellSurface'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlShellSurface" id="WlShellSurface">
+        <span class="codicon codicon-symbol-interface"></span>
         WlShellSurface
     </a>
-    <span class='pill'>version 1</span>
+    <span class="pill">version 1</span>
 </h2>
 
 Desktop-style metadata interface
@@ -952,10 +938,9 @@ the wl_surface object.
 
 <h3 class="decleration request">
     <a href="?id=WlShellSurface_Pong" id="WlShellSurface_Pong">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">Pong</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -973,10 +958,9 @@ the client may be deemed unresponsive.
 
 <h3 class="decleration request">
     <a href="?id=WlShellSurface_Move" id="WlShellSurface_Move">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">Move</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -998,10 +982,9 @@ the surface (e.g. fullscreen or maximized).
 
 <h3 class="decleration request">
     <a href="?id=WlShellSurface_Resize" id="WlShellSurface_Resize">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">Resize</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1024,10 +1007,9 @@ the surface (e.g. fullscreen or maximized).
 
 <h3 class="decleration request">
     <a href="?id=WlShellSurface_SetToplevel" id="WlShellSurface_SetToplevel">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">SetToplevel</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1043,10 +1025,9 @@ A toplevel surface is not fullscreen, maximized or transient.
 
 <h3 class="decleration request">
     <a href="?id=WlShellSurface_SetTransient" id="WlShellSurface_SetTransient">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">SetTransient</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1072,10 +1053,9 @@ The flags argument controls details of the transient behaviour.
 
 <h3 class="decleration request">
     <a href="?id=WlShellSurface_SetFullscreen" id="WlShellSurface_SetFullscreen">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">SetFullscreen</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1126,10 +1106,9 @@ be made fullscreen.
 
 <h3 class="decleration request">
     <a href="?id=WlShellSurface_SetPopup" id="WlShellSurface_SetPopup">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">SetPopup</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1169,10 +1148,9 @@ parent surface, in surface-local coordinates.
 
 <h3 class="decleration request">
     <a href="?id=WlShellSurface_SetMaximized" id="WlShellSurface_SetMaximized">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">SetMaximized</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1206,10 +1184,9 @@ The details depend on the compositor implementation.
 
 <h3 class="decleration request">
     <a href="?id=WlShellSurface_SetTitle" id="WlShellSurface_SetTitle">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">SetTitle</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1232,10 +1209,9 @@ The string must be encoded in UTF-8.
 
 <h3 class="decleration request">
     <a href="?id=WlShellSurface_SetClass" id="WlShellSurface_SetClass">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">SetClass</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1255,12 +1231,12 @@ to which the surface belongs. A common convention is to use the
 file name (or the full path if it is a non-standard location) of
 the application's .desktop file as the class.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlSurface' id='WlSurface'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlSurface" id="WlSurface">
+        <span class="codicon codicon-symbol-interface"></span>
         WlSurface
     </a>
-    <span class='pill'>version 6</span>
+    <span class="pill">version 6</span>
 </h2>
 
 An onscreen surface
@@ -1312,10 +1288,10 @@ switching is not allowed).
 
 <h3 class="decleration request">
     <a href="?id=WlSurface_Destroy" id="WlSurface_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -1329,10 +1305,9 @@ Deletes the surface and invalidates its object ID.
 
 <h3 class="decleration request">
     <a href="?id=WlSurface_Attach" id="WlSurface_Attach">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">Attach</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1415,10 +1390,9 @@ destroying buffers.
 
 <h3 class="decleration request">
     <a href="?id=WlSurface_Damage" id="WlSurface_Damage">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">Damage</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1458,10 +1432,9 @@ instead of surface coordinates.
 
 <h3 class="decleration request">
     <a href="?id=WlSurface_Frame" id="WlSurface_Frame">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">Frame</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1509,10 +1482,9 @@ milliseconds, with an undefined base.
 
 <h3 class="decleration request">
     <a href="?id=WlSurface_SetOpaqueRegion" id="WlSurface_SetOpaqueRegion">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">SetOpaqueRegion</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1552,10 +1524,9 @@ region to be set to empty.
 
 <h3 class="decleration request">
     <a href="?id=WlSurface_SetInputRegion" id="WlSurface_SetInputRegion">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">SetInputRegion</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1593,10 +1564,9 @@ to infinite.
 
 <h3 class="decleration request">
     <a href="?id=WlSurface_Commit" id="WlSurface_Commit">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">Commit</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1655,10 +1625,10 @@ the previous content update.
 
 <h3 class="decleration request">
     <a href="?id=WlSurface_SetBufferTransform" id="WlSurface_SetBufferTransform">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">SetBufferTransform</span>
     </a>
-    <span class='pill'>since 2</span>
+    <span class="pill">since 2</span>
 </h3>
 
 ```csharp
@@ -1705,10 +1675,10 @@ is raised.
 
 <h3 class="decleration request">
     <a href="?id=WlSurface_SetBufferScale" id="WlSurface_SetBufferScale">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">SetBufferScale</span>
     </a>
-    <span class='pill'>since 3</span>
+    <span class="pill">since 3</span>
 </h3>
 
 ```csharp
@@ -1747,10 +1717,10 @@ raised.
 
 <h3 class="decleration request">
     <a href="?id=WlSurface_DamageBuffer" id="WlSurface_DamageBuffer">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">DamageBuffer</span>
     </a>
-    <span class='pill'>since 4</span>
+    <span class="pill">since 4</span>
 </h3>
 
 ```csharp
@@ -1801,10 +1771,10 @@ after receiving the wl_surface.commit.
 
 <h3 class="decleration request">
     <a href="?id=WlSurface_Offset" id="WlSurface_Offset">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">Offset</span>
     </a>
-    <span class='pill'>since 5</span>
+    <span class="pill">since 5</span>
 </h3>
 
 ```csharp
@@ -1834,12 +1804,12 @@ This request is semantically equivalent to and the replaces the x and y
 arguments in the wl_surface.attach request in wl_surface versions prior
 to 5. See wl_surface.attach for details.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlSeat' id='WlSeat'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlSeat" id="WlSeat">
+        <span class="codicon codicon-symbol-interface"></span>
         WlSeat
     </a>
-    <span class='pill'>version 10</span>
+    <span class="pill">version 10</span>
 </h2>
 
 Group of input devices
@@ -1853,10 +1823,9 @@ maintains a keyboard focus and a pointer focus.
 
 <h3 class="decleration request">
     <a href="?id=WlSeat_GetPointer" id="WlSeat_GetPointer">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSeat.<span class="method">GetPointer</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1880,10 +1849,9 @@ be sent in this case.
 
 <h3 class="decleration request">
     <a href="?id=WlSeat_GetKeyboard" id="WlSeat_GetKeyboard">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSeat.<span class="method">GetKeyboard</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1907,10 +1875,9 @@ be sent in this case.
 
 <h3 class="decleration request">
     <a href="?id=WlSeat_GetTouch" id="WlSeat_GetTouch">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSeat.<span class="method">GetTouch</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -1934,10 +1901,11 @@ be sent in this case.
 
 <h3 class="decleration request">
     <a href="?id=WlSeat_Release" id="WlSeat_Release">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSeat.<span class="method">Release</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span><span class='pill'>since 5</span>
+    <span class="pill">since 5</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -1950,12 +1918,12 @@ void Release()
 Using this request a client can tell the server that it is not going to
 use the seat object anymore.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlPointer' id='WlPointer'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlPointer" id="WlPointer">
+        <span class="codicon codicon-symbol-interface"></span>
         WlPointer
     </a>
-    <span class='pill'>version 10</span>
+    <span class="pill">version 10</span>
 </h2>
 
 Pointer input device
@@ -1973,10 +1941,9 @@ and scrolling.
 
 <h3 class="decleration request">
     <a href="?id=WlPointer_SetCursor" id="WlPointer_SetCursor">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlPointer.<span class="method">SetCursor</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -2028,10 +1995,11 @@ ignored.
 
 <h3 class="decleration request">
     <a href="?id=WlPointer_Release" id="WlPointer_Release">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlPointer.<span class="method">Release</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span><span class='pill'>since 3</span>
+    <span class="pill">since 3</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -2047,12 +2015,12 @@ use the pointer object anymore.
 This request destroys the pointer proxy object, so clients must not call
 wl_pointer_destroy() after using this request.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlKeyboard' id='WlKeyboard'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlKeyboard" id="WlKeyboard">
+        <span class="codicon codicon-symbol-interface"></span>
         WlKeyboard
     </a>
-    <span class='pill'>version 10</span>
+    <span class="pill">version 10</span>
 </h2>
 
 Keyboard input device
@@ -2074,10 +2042,11 @@ are empty, the active modifiers and the active group are 0.
 
 <h3 class="decleration request">
     <a href="?id=WlKeyboard_Release" id="WlKeyboard_Release">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlKeyboard.<span class="method">Release</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span><span class='pill'>since 3</span>
+    <span class="pill">since 3</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -2087,12 +2056,12 @@ void Release()
 
 **Release the keyboard object**
 release
-<h2 class='decleration interface'>
-    <a href='?id=WlTouch' id='WlTouch'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlTouch" id="WlTouch">
+        <span class="codicon codicon-symbol-interface"></span>
         WlTouch
     </a>
-    <span class='pill'>version 10</span>
+    <span class="pill">version 10</span>
 </h2>
 
 Touchscreen input device
@@ -2110,10 +2079,11 @@ contact point can be identified by the ID of the sequence.
 
 <h3 class="decleration request">
     <a href="?id=WlTouch_Release" id="WlTouch_Release">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlTouch.<span class="method">Release</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span><span class='pill'>since 3</span>
+    <span class="pill">since 3</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -2123,12 +2093,12 @@ void Release()
 
 **Release the touch object**
 release
-<h2 class='decleration interface'>
-    <a href='?id=WlOutput' id='WlOutput'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlOutput" id="WlOutput">
+        <span class="codicon codicon-symbol-interface"></span>
         WlOutput
     </a>
-    <span class='pill'>version 4</span>
+    <span class="pill">version 4</span>
 </h2>
 
 Compositor output region
@@ -2144,10 +2114,11 @@ as global during start up, or when a monitor is hotplugged.
 
 <h3 class="decleration request">
     <a href="?id=WlOutput_Release" id="WlOutput_Release">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlOutput.<span class="method">Release</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span><span class='pill'>since 3</span>
+    <span class="pill">since 3</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -2160,12 +2131,12 @@ void Release()
 Using this request a client can tell the server that it is not going to
 use the output object anymore.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlRegion' id='WlRegion'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlRegion" id="WlRegion">
+        <span class="codicon codicon-symbol-interface"></span>
         WlRegion
     </a>
-    <span class='pill'>version 1</span>
+    <span class="pill">version 1</span>
 </h2>
 
 Region interface
@@ -2179,10 +2150,10 @@ regions of a surface.
 
 <h3 class="decleration request">
     <a href="?id=WlRegion_Destroy" id="WlRegion_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlRegion.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -2196,10 +2167,9 @@ Destroy the region.  This will invalidate the object ID.
 
 <h3 class="decleration request">
     <a href="?id=WlRegion_Add" id="WlRegion_Add">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlRegion.<span class="method">Add</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -2219,10 +2189,9 @@ Add the specified rectangle to the region.
 
 <h3 class="decleration request">
     <a href="?id=WlRegion_Subtract" id="WlRegion_Subtract">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlRegion.<span class="method">Subtract</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -2240,12 +2209,12 @@ void Subtract(int x, int y, int width, int height)
 
 Subtract the specified rectangle from the region.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlSubcompositor' id='WlSubcompositor'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlSubcompositor" id="WlSubcompositor">
+        <span class="codicon codicon-symbol-interface"></span>
         WlSubcompositor
     </a>
-    <span class='pill'>version 1</span>
+    <span class="pill">version 1</span>
 </h2>
 
 Sub-surface compositing
@@ -2274,10 +2243,10 @@ processing to dedicated overlay hardware when possible.
 
 <h3 class="decleration request">
     <a href="?id=WlSubcompositor_Destroy" id="WlSubcompositor_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSubcompositor.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -2293,10 +2262,9 @@ objects, wl_subsurface objects included.
 
 <h3 class="decleration request">
     <a href="?id=WlSubcompositor_GetSubsurface" id="WlSubcompositor_GetSubsurface">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSubcompositor.<span class="method">GetSubsurface</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -2331,12 +2299,12 @@ bad_parent protocol error is raised.
 This request modifies the behaviour of wl_surface.commit request on
 the sub-surface, see the documentation on wl_subsurface interface.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlSubsurface' id='WlSubsurface'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlSubsurface" id="WlSubsurface">
+        <span class="codicon codicon-symbol-interface"></span>
         WlSubsurface
     </a>
-    <span class='pill'>version 1</span>
+    <span class="pill">version 1</span>
 </h2>
 
 Sub-surface interface to a wl_surface
@@ -2393,10 +2361,10 @@ instead to move the sub-surface.
 
 <h3 class="decleration request">
     <a href="?id=WlSubsurface_Destroy" id="WlSubsurface_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSubsurface.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -2413,10 +2381,9 @@ to the parent is deleted. The wl_surface is unmapped immediately.
 
 <h3 class="decleration request">
     <a href="?id=WlSubsurface_SetPosition" id="WlSubsurface_SetPosition">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSubsurface.<span class="method">SetPosition</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -2445,10 +2412,9 @@ wl_subsurface and wl_surface.commit for more information.
 
 <h3 class="decleration request">
     <a href="?id=WlSubsurface_PlaceAbove" id="WlSubsurface_PlaceAbove">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSubsurface.<span class="method">PlaceAbove</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -2475,10 +2441,9 @@ wl_subsurface and wl_surface.commit for more information.
 
 <h3 class="decleration request">
     <a href="?id=WlSubsurface_PlaceBelow" id="WlSubsurface_PlaceBelow">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSubsurface.<span class="method">PlaceBelow</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -2497,10 +2462,9 @@ See wl_subsurface.place_above.
 
 <h3 class="decleration request">
     <a href="?id=WlSubsurface_SetSync" id="WlSubsurface_SetSync">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSubsurface.<span class="method">SetSync</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -2517,10 +2481,9 @@ See wl_subsurface and wl_surface.commit for more information.
 
 <h3 class="decleration request">
     <a href="?id=WlSubsurface_SetDesync" id="WlSubsurface_SetDesync">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlSubsurface.<span class="method">SetDesync</span>
     </a>
-    
 </h3>
 
 ```csharp
@@ -2535,12 +2498,12 @@ mode.
 
 See wl_subsurface and wl_surface.commit for more information.
 
-<h2 class='decleration interface'>
-    <a href='?id=WlFixes' id='WlFixes'>
-        <span class='codicon codicon-symbol-interface'></span>
+<h2 class="decleration interface">
+    <a href="?id=WlFixes" id="WlFixes">
+        <span class="codicon codicon-symbol-interface"></span>
         WlFixes
     </a>
-    <span class='pill'>version 1</span>
+    <span class="pill">version 1</span>
 </h2>
 
 Wayland protocol fixes
@@ -2552,10 +2515,10 @@ cannot be fixed in these interfaces themselves.
 
 <h3 class="decleration request">
     <a href="?id=WlFixes_Destroy" id="WlFixes_Destroy">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlFixes.<span class="method">Destroy</span>
     </a>
-    <span class='pill destructor'>Type: destructor</span>
+    <span class="pill destructor">Type: destructor</span>
 </h3>
 
 ```csharp
@@ -2567,10 +2530,9 @@ void Destroy()
 destroy
 <h3 class="decleration request">
     <a href="?id=WlFixes_DestroyRegistry" id="WlFixes_DestroyRegistry">
-        <span class='codicon codicon-symbol-method method'></span>
+        <span class="codicon codicon-symbol-method method"></span>
         WlFixes.<span class="method">DestroyRegistry</span>
     </a>
-    
 </h3>
 
 ```csharp

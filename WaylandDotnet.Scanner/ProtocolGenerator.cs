@@ -363,16 +363,14 @@ public partial class ProtocolGenerator
     {
         string className = iface.Name.ToPascal();
 
-        md.WriteLine($"""
-        <h2 class='decleration interface'>
-            <a href='?id={className}' id='{className}'>
-                <span class='codicon codicon-symbol-interface'></span>
-                {className}
-            </a>
-            <span class='pill'>version {iface.Version}</span>
-        </h2>
-        """
-        );
+        var node = Html.H2().Class("decleration interface")
+            .Child(Html.A().Href("?id=" + className).Id(className)
+                .Child(Html.Span().Class("codicon codicon-symbol-interface"))
+                .Child(Html.Text(className)))
+            .Child(Html.Span().Class("pill").Text($"version {iface.Version}"));
+
+        md.WriteLine(node.ToString());
+
         md.WriteLine();
         md.WriteLine(iface.Description.Summary.CapitalizeFirst());
         md.WriteLine();
@@ -913,29 +911,26 @@ public partial class ProtocolGenerator
     {
         string urlMethodName = iface.Name.ToPascal() + "_" + methodName;
 
-        string type = "";
-        string since = "";
+        var h3Node = Html.H3().Class("decleration request")
+            .Child(Html.A().Href("?id=" + urlMethodName).Id(urlMethodName)
+                .Child(Html.Span().Class("codicon codicon-symbol-method method"))
+                .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("method").Text(methodName)))
+            );
 
         if (request.Since > 0)
         {
-            since = $"<span class='pill'>since {request.Since}</span>";
+            h3Node.Child(Html.Span().Class("pill").Text($"since {request.Since}"));
         }
 
         if (!string.IsNullOrEmpty(request.Type))
         {
             Assert(request.Type == "destructor");
-            type = $"<span class='pill destructor'>Type: {request.Type}</span>";
+            h3Node.Child(Html.Span().Class("pill destructor").Text($"Type: {request.Type}"));
         }
 
-        md.WriteLine($"""
-        <h3 class="decleration request">
-            <a href="?id={urlMethodName}" id="{urlMethodName}">
-                <span class='codicon codicon-symbol-method method'></span>
-                {iface.Name.ToPascal()}.<span class="method">{methodName}</span>
-            </a>
-            {type}{since}
-        </h3>
-        """);
+        // Write it to your stream/markdown file
+        md.WriteLine(h3Node.ToString());
+
         md.WriteLine();
         md.WriteLine("```csharp");
         md.WriteLine(requestDeclaration);
