@@ -33,7 +33,7 @@ public sealed partial class WlFixes : WaylandObject, IWaylandObjectFactory<WlFix
     public static string _StaticInterfaceName => "wl_fixes";
     public const int InterfaceVersion = 1;
 
-    public WlFixes(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlFixes(IntPtr handle) : base(handle, null, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>
@@ -95,8 +95,8 @@ public sealed partial class WlFixes : WaylandObject, IWaylandObjectFactory<WlFix
         );
     }
 
-    public static WlFixes Create(nint handle, WlDisplay display)
+    public static WlFixes Create(nint handle, WlDisplay? display)
     {
-        return new WlFixes(handle, display);
+        return new WlFixes(handle);
     }
 }

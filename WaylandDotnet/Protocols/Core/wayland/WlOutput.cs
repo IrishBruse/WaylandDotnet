@@ -37,7 +37,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlOutput(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlOutput(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary> subpixel geometry information </summary>
@@ -520,7 +520,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
         );
     }
 
-    public static WlOutput Create(nint handle, WlDisplay display)
+    public static WlOutput Create(nint handle, WlDisplay? display)
     {
         return new WlOutput(handle, display);
     }

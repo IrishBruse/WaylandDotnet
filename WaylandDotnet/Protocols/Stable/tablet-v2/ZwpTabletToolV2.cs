@@ -37,7 +37,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public ZwpTabletToolV2(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public ZwpTabletToolV2(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary> a physical tool type </summary>
@@ -1045,7 +1045,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         );
     }
 
-    public static ZwpTabletToolV2 Create(nint handle, WlDisplay display)
+    public static ZwpTabletToolV2 Create(nint handle, WlDisplay? display)
     {
         return new ZwpTabletToolV2(handle, display);
     }

@@ -37,7 +37,7 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public XdgPopup(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public XdgPopup(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -372,7 +372,7 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
         );
     }
 
-    public static XdgPopup Create(nint handle, WlDisplay display)
+    public static XdgPopup Create(nint handle, WlDisplay? display)
     {
         return new XdgPopup(handle, display);
     }

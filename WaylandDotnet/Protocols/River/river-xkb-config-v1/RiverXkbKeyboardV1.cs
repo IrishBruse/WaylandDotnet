@@ -37,7 +37,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public RiverXkbKeyboardV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public RiverXkbKeyboardV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -573,7 +573,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
         );
     }
 
-    public static RiverXkbKeyboardV1 Create(nint handle, WlDisplay display)
+    public static RiverXkbKeyboardV1 Create(nint handle, WlDisplay? display)
     {
         return new RiverXkbKeyboardV1(handle, display);
     }

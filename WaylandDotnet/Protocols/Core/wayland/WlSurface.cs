@@ -37,7 +37,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlSurface(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlSurface(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary> wl_surface error values </summary>
@@ -891,7 +891,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
         );
     }
 
-    public static WlSurface Create(nint handle, WlDisplay display)
+    public static WlSurface Create(nint handle, WlDisplay? display)
     {
         return new WlSurface(handle, display);
     }

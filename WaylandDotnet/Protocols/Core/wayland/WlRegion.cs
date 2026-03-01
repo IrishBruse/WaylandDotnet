@@ -33,7 +33,7 @@ public sealed partial class WlRegion : WaylandObject, IWaylandObjectFactory<WlRe
     public static string _StaticInterfaceName => "wl_region";
     public const int InterfaceVersion = 1;
 
-    public WlRegion(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlRegion(IntPtr handle) : base(handle, null, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>
@@ -122,8 +122,8 @@ public sealed partial class WlRegion : WaylandObject, IWaylandObjectFactory<WlRe
         );
     }
 
-    public static WlRegion Create(nint handle, WlDisplay display)
+    public static WlRegion Create(nint handle, WlDisplay? display)
     {
-        return new WlRegion(handle, display);
+        return new WlRegion(handle);
     }
 }

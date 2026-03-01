@@ -33,7 +33,7 @@ public sealed partial class WpViewporter : WaylandObject, IWaylandObjectFactory<
     public static string _StaticInterfaceName => "wp_viewporter";
     public const int InterfaceVersion = 1;
 
-    public WpViewporter(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WpViewporter(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -103,10 +103,10 @@ public sealed partial class WpViewporter : WaylandObject, IWaylandObjectFactory<
             (nint)args
         );
 
-        return new WpViewport(newProxy, Display);
+        return new WpViewport(newProxy);
     }
 
-    public static WpViewporter Create(nint handle, WlDisplay display)
+    public static WpViewporter Create(nint handle, WlDisplay? display)
     {
         return new WpViewporter(handle, display);
     }

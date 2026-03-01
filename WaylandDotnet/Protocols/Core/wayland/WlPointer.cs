@@ -37,7 +37,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlPointer(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlPointer(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -833,7 +833,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         );
     }
 
-    public static WlPointer Create(nint handle, WlDisplay display)
+    public static WlPointer Create(nint handle, WlDisplay? display)
     {
         return new WlPointer(handle, display);
     }

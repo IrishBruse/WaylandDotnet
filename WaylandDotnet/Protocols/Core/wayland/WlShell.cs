@@ -33,7 +33,7 @@ public sealed partial class WlShell : WaylandObject, IWaylandObjectFactory<WlShe
     public static string _StaticInterfaceName => "wl_shell";
     public const int InterfaceVersion = 1;
 
-    public WlShell(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlShell(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -79,7 +79,7 @@ public sealed partial class WlShell : WaylandObject, IWaylandObjectFactory<WlShe
         return new WlShellSurface(newProxy, Display);
     }
 
-    public static WlShell Create(nint handle, WlDisplay display)
+    public static WlShell Create(nint handle, WlDisplay? display)
     {
         return new WlShell(handle, display);
     }

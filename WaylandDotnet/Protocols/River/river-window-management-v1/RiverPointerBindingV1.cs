@@ -37,7 +37,7 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public RiverPointerBindingV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public RiverPointerBindingV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     public delegate void PressedHandler();
@@ -269,7 +269,7 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
         );
     }
 
-    public static RiverPointerBindingV1 Create(nint handle, WlDisplay display)
+    public static RiverPointerBindingV1 Create(nint handle, WlDisplay? display)
     {
         return new RiverPointerBindingV1(handle, display);
     }

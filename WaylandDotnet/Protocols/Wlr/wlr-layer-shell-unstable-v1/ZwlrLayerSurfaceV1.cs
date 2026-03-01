@@ -37,7 +37,7 @@ public sealed partial class ZwlrLayerSurfaceV1 : WaylandObject, IWaylandObjectFa
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public ZwlrLayerSurfaceV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public ZwlrLayerSurfaceV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary> types of keyboard interaction possible for a layer shell surface </summary>
@@ -609,7 +609,7 @@ public sealed partial class ZwlrLayerSurfaceV1 : WaylandObject, IWaylandObjectFa
         );
     }
 
-    public static ZwlrLayerSurfaceV1 Create(nint handle, WlDisplay display)
+    public static ZwlrLayerSurfaceV1 Create(nint handle, WlDisplay? display)
     {
         return new ZwlrLayerSurfaceV1(handle, display);
     }

@@ -37,7 +37,7 @@ public sealed partial class WlCallback : WaylandObject, IWaylandObjectFactory<Wl
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlCallback(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlCallback(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     public delegate void DoneHandler(uint callbackData);
@@ -122,7 +122,7 @@ public sealed partial class WlCallback : WaylandObject, IWaylandObjectFactory<Wl
             return -1;
         }
     }
-    public static WlCallback Create(nint handle, WlDisplay display)
+    public static WlCallback Create(nint handle, WlDisplay? display)
     {
         return new WlCallback(handle, display);
     }

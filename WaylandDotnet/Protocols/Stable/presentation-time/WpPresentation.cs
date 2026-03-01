@@ -37,7 +37,7 @@ public sealed partial class WpPresentation : WaylandObject, IWaylandObjectFactor
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WpPresentation(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WpPresentation(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary> fatal presentation errors </summary>
@@ -227,7 +227,7 @@ public sealed partial class WpPresentation : WaylandObject, IWaylandObjectFactor
         return new WpPresentationFeedback(newProxy, Display);
     }
 
-    public static WpPresentation Create(nint handle, WlDisplay display)
+    public static WpPresentation Create(nint handle, WlDisplay? display)
     {
         return new WpPresentation(handle, display);
     }

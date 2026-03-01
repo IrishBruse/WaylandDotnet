@@ -33,7 +33,7 @@ public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<
     public static string _StaticInterfaceName => "wl_compositor";
     public const int InterfaceVersion = 6;
 
-    public WlCompositor(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlCompositor(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>
@@ -91,10 +91,10 @@ public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<
             (nint)args
         );
 
-        return new WlRegion(newProxy, Display);
+        return new WlRegion(newProxy);
     }
 
-    public static WlCompositor Create(nint handle, WlDisplay display)
+    public static WlCompositor Create(nint handle, WlDisplay? display)
     {
         return new WlCompositor(handle, display);
     }

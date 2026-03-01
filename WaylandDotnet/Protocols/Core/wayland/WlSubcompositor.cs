@@ -33,7 +33,7 @@ public sealed partial class WlSubcompositor : WaylandObject, IWaylandObjectFacto
     public static string _StaticInterfaceName => "wl_subcompositor";
     public const int InterfaceVersion = 1;
 
-    public WlSubcompositor(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlSubcompositor(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -123,10 +123,10 @@ public sealed partial class WlSubcompositor : WaylandObject, IWaylandObjectFacto
             (nint)args
         );
 
-        return new WlSubsurface(newProxy, Display);
+        return new WlSubsurface(newProxy);
     }
 
-    public static WlSubcompositor Create(nint handle, WlDisplay display)
+    public static WlSubcompositor Create(nint handle, WlDisplay? display)
     {
         return new WlSubcompositor(handle, display);
     }

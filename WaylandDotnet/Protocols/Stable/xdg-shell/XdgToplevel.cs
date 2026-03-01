@@ -37,7 +37,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public XdgToplevel(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public XdgToplevel(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -1052,7 +1052,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
         );
     }
 
-    public static XdgToplevel Create(nint handle, WlDisplay display)
+    public static XdgToplevel Create(nint handle, WlDisplay? display)
     {
         return new XdgToplevel(handle, display);
     }

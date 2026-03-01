@@ -37,7 +37,7 @@ public sealed partial class ZwpTabletPadRingV2 : WaylandObject, IWaylandObjectFa
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public ZwpTabletPadRingV2(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public ZwpTabletPadRingV2(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary> ring axis source </summary>
@@ -339,7 +339,7 @@ public sealed partial class ZwpTabletPadRingV2 : WaylandObject, IWaylandObjectFa
         );
     }
 
-    public static ZwpTabletPadRingV2 Create(nint handle, WlDisplay display)
+    public static ZwpTabletPadRingV2 Create(nint handle, WlDisplay? display)
     {
         return new ZwpTabletPadRingV2(handle, display);
     }

@@ -37,7 +37,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlDataDevice(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDataDevice(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -473,7 +473,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
         );
     }
 
-    public static WlDataDevice Create(nint handle, WlDisplay display)
+    public static WlDataDevice Create(nint handle, WlDisplay? display)
     {
         return new WlDataDevice(handle, display);
     }

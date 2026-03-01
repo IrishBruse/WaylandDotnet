@@ -33,7 +33,7 @@ public sealed partial class WlDataDeviceManager : WaylandObject, IWaylandObjectF
     public static string _StaticInterfaceName => "wl_data_device_manager";
     public const int InterfaceVersion = 3;
 
-    public WlDataDeviceManager(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDataDeviceManager(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary> drag and drop actions </summary>
@@ -117,7 +117,7 @@ public sealed partial class WlDataDeviceManager : WaylandObject, IWaylandObjectF
         return new WlDataDevice(newProxy, Display);
     }
 
-    public static WlDataDeviceManager Create(nint handle, WlDisplay display)
+    public static WlDataDeviceManager Create(nint handle, WlDisplay? display)
     {
         return new WlDataDeviceManager(handle, display);
     }

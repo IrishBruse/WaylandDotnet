@@ -33,7 +33,7 @@ public sealed partial class RiverXkbBindingsV1 : WaylandObject, IWaylandObjectFa
     public static string _StaticInterfaceName => "river_xkb_bindings_v1";
     public const int InterfaceVersion = 2;
 
-    public RiverXkbBindingsV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public RiverXkbBindingsV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -141,7 +141,7 @@ public sealed partial class RiverXkbBindingsV1 : WaylandObject, IWaylandObjectFa
         return new RiverXkbBindingsSeatV1(newProxy, Display);
     }
 
-    public static RiverXkbBindingsV1 Create(nint handle, WlDisplay display)
+    public static RiverXkbBindingsV1 Create(nint handle, WlDisplay? display)
     {
         return new RiverXkbBindingsV1(handle, display);
     }

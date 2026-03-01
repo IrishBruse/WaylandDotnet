@@ -37,7 +37,7 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlRegistry(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlRegistry(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     public delegate void GlobalHandler(uint name, string _interface, uint version);
@@ -206,7 +206,7 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
         return new WaylandObject(newProxy, Display, interfaceName, version);
     }
 
-    public static WlRegistry Create(nint handle, WlDisplay display)
+    public static WlRegistry Create(nint handle, WlDisplay? display)
     {
         return new WlRegistry(handle, display);
     }

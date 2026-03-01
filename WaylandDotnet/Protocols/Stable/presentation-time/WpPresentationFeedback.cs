@@ -37,7 +37,7 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WpPresentationFeedback(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WpPresentationFeedback(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary> bitmask of flags in presented event </summary>
@@ -269,7 +269,7 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
             return -1;
         }
     }
-    public static WpPresentationFeedback Create(nint handle, WlDisplay display)
+    public static WpPresentationFeedback Create(nint handle, WlDisplay? display)
     {
         return new WpPresentationFeedback(handle, display);
     }

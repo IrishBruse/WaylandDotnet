@@ -37,7 +37,7 @@ public sealed partial class RiverLayerShellOutputV1 : WaylandObject, IWaylandObj
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public RiverLayerShellOutputV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public RiverLayerShellOutputV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     public delegate void NonExclusiveAreaHandler(int x, int y, int width, int height);
@@ -197,7 +197,7 @@ public sealed partial class RiverLayerShellOutputV1 : WaylandObject, IWaylandObj
         );
     }
 
-    public static RiverLayerShellOutputV1 Create(nint handle, WlDisplay display)
+    public static RiverLayerShellOutputV1 Create(nint handle, WlDisplay? display)
     {
         return new RiverLayerShellOutputV1(handle, display);
     }

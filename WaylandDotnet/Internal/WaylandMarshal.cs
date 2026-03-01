@@ -4,11 +4,6 @@ using System.Runtime.InteropServices;
 
 public static class WaylandMarshal
 {
-    public static T CreateTypedObject<T>(nint newProxy, WlDisplay display) where T : WaylandObject, IWaylandObjectFactory<T>
-    {
-        return T.Create(newProxy, display);
-    }
-
     public unsafe static byte[] ToSpan(WlArray* array)
     {
         if (array == null || array->data == null || array->size == 0)
@@ -51,5 +46,5 @@ public interface IWaylandObjectFactory<T> where T : WaylandObject
 {
     /// <summary> Used interally for generics </summary>
     public static abstract string _StaticInterfaceName { get; }
-    public static abstract T Create(nint handle, WlDisplay display);
+    public static abstract T Create(nint handle, WlDisplay? display);
 }

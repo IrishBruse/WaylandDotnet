@@ -32,6 +32,6 @@ public sealed partial class WlRegistry : WaylandObject
 
         if (newProxy == IntPtr.Zero) throw new InvalidOperationException($"Failed to bind {interfaceName} v{version}");
 
-        return WaylandMarshal.CreateTypedObject<T>(newProxy, Display);
+        return T.Create(newProxy, Display);
     }
 }

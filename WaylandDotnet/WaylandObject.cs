@@ -12,11 +12,11 @@ public class WaylandObject : IDisposable
     private nint handle;
     public IntPtr Handle { get => handle; private set => handle = value; }
 
-    public WlDisplay Display { get; }// TODO: possibly remove
+    public WlDisplay? Display { get; }
     public string InterfaceName { get; }
     public uint Version { get; }
 
-    internal WaylandObject(IntPtr handle, WlDisplay display, string interfaceName, uint version)
+    internal WaylandObject(IntPtr handle, WlDisplay? display, string interfaceName, uint version)
     {
         Handle = handle;
         Display = display;

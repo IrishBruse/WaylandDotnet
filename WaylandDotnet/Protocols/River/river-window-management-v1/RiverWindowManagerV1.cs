@@ -37,7 +37,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public RiverWindowManagerV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public RiverWindowManagerV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -661,7 +661,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         return new RiverShellSurfaceV1(newProxy, Display);
     }
 
-    public static RiverWindowManagerV1 Create(nint handle, WlDisplay display)
+    public static RiverWindowManagerV1 Create(nint handle, WlDisplay? display)
     {
         return new RiverWindowManagerV1(handle, display);
     }

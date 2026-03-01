@@ -37,7 +37,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlDisplay(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary> global error values </summary>
@@ -265,7 +265,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
         return new WlRegistry(newProxy, Display);
     }
 
-    public static WlDisplay Create(nint handle, WlDisplay display)
+    public static WlDisplay Create(nint handle, WlDisplay? display)
     {
         return new WlDisplay(handle, display);
     }

@@ -37,7 +37,7 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlShm(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlShm(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary> wl_shm error values </summary>
@@ -782,7 +782,7 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
         );
     }
 
-    public static WlShm Create(nint handle, WlDisplay display)
+    public static WlShm Create(nint handle, WlDisplay? display)
     {
         return new WlShm(handle, display);
     }

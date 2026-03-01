@@ -37,7 +37,7 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public ZwpLinuxDmabufFeedbackV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public ZwpLinuxDmabufFeedbackV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -459,7 +459,7 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
         );
     }
 
-    public static ZwpLinuxDmabufFeedbackV1 Create(nint handle, WlDisplay display)
+    public static ZwpLinuxDmabufFeedbackV1 Create(nint handle, WlDisplay? display)
     {
         return new ZwpLinuxDmabufFeedbackV1(handle, display);
     }

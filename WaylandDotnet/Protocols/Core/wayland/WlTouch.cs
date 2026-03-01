@@ -37,7 +37,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlTouch(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlTouch(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     public delegate void DownHandler(uint serial, uint time, WlSurface surface, int id, WlFixed x, WlFixed y);
@@ -428,7 +428,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
         );
     }
 
-    public static WlTouch Create(nint handle, WlDisplay display)
+    public static WlTouch Create(nint handle, WlDisplay? display)
     {
         return new WlTouch(handle, display);
     }

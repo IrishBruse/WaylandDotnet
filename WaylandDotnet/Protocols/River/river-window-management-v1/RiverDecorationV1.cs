@@ -33,7 +33,7 @@ public sealed partial class RiverDecorationV1 : WaylandObject, IWaylandObjectFac
     public static string _StaticInterfaceName => "river_decoration_v1";
     public const int InterfaceVersion = 3;
 
-    public RiverDecorationV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public RiverDecorationV1(IntPtr handle) : base(handle, null, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -142,8 +142,8 @@ public sealed partial class RiverDecorationV1 : WaylandObject, IWaylandObjectFac
         );
     }
 
-    public static RiverDecorationV1 Create(nint handle, WlDisplay display)
+    public static RiverDecorationV1 Create(nint handle, WlDisplay? display)
     {
-        return new RiverDecorationV1(handle, display);
+        return new RiverDecorationV1(handle);
     }
 }

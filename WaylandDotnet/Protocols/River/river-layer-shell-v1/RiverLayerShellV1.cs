@@ -33,7 +33,7 @@ public sealed partial class RiverLayerShellV1 : WaylandObject, IWaylandObjectFac
     public static string _StaticInterfaceName => "river_layer_shell_v1";
     public const int InterfaceVersion = 1;
 
-    public RiverLayerShellV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public RiverLayerShellV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -134,7 +134,7 @@ public sealed partial class RiverLayerShellV1 : WaylandObject, IWaylandObjectFac
         return new RiverLayerShellSeatV1(newProxy, Display);
     }
 
-    public static RiverLayerShellV1 Create(nint handle, WlDisplay display)
+    public static RiverLayerShellV1 Create(nint handle, WlDisplay? display)
     {
         return new RiverLayerShellV1(handle, display);
     }

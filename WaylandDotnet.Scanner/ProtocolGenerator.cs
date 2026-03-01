@@ -19,6 +19,7 @@ public partial class ProtocolGenerator
 
     private ProtocolMetadata metadata = null!;
     private static readonly string[] separator = new[] { "\r\n", "\r", "\n" };
+    private Dictionary<string, bool> interfaceNeedsDisplay = new();
 
     public void GenerateFileHeader(ProtocolMetadata metadata)
     {
@@ -85,6 +86,12 @@ public partial class ProtocolGenerator
         string ArrowSVG = "![](../../assets/arrow.svg ':class=breadcrumb-arrow')";
 
         GenerateBreadcrumbDocumentation(metadata, protocol, ArrowSVG);
+
+        interfaceNeedsDisplay.Clear();
+        foreach (var iface in protocol.Interfaces)
+        {
+            interfaceNeedsDisplay[iface.Name] = NeedsWlDisplay(iface);
+        }
 
         foreach (var iface in protocol.Interfaces)
         {
@@ -399,9 +406,17 @@ public partial class ProtocolGenerator
             GenerateRequests(iface);
             GenerateEventDocumentation(iface);
 
-            WriteLine($"public static {className} Create(nint handle, WlDisplay display)");
+            bool needsDisplay = NeedsWlDisplay(iface);
+            WriteLine($"public static {className} Create(nint handle, WlDisplay? display)");
             WriteLine("{");
-            WriteLine($"    return new {className}(handle, display);");
+            if (needsDisplay)
+            {
+                WriteLine($"    return new {className}(handle, display);");
+            }
+            else
+            {
+                WriteLine($"    return new {className}(handle);");
+            }
             WriteLine("}");
 
             // Override Dispose to free GCHandle
@@ -476,14 +491,37 @@ public partial class ProtocolGenerator
 
     private void GenerateConstructor(WaylandInterface iface, string className)
     {
+        bool needsDisplay = NeedsWlDisplay(iface);
+
         BeginRegion();
-        WriteLine($"public {className}(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)");
+        if (needsDisplay)
+        {
+            WriteLine($"public {className}(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)");
+        }
+        else
+        {
+            WriteLine($"public {className}(IntPtr handle) : base(handle, null, InterfaceName, InterfaceVersion)");
+        }
         BeginBlock();
         {
             // Empty
         }
         EndBlock();
         EndRegion();
+    }
+
+    private bool NeedsWlDisplay(WaylandInterface iface)
+    {
+        if (iface.Events.Count > 0)
+            return true;
+
+        foreach (var request in iface.Requests)
+        {
+            if (request.Args.Any(a => a.Type == "new_id"))
+                return true;
+        }
+
+        return false;
     }
 
 
@@ -943,7 +981,15 @@ public partial class ProtocolGenerator
             else if (newIdInterface != null)
             {
                 WriteLine();
-                WriteLine($"return new {newIdInterface.ToPascal()}(newProxy, Display);");
+                bool targetNeedsDisplay = interfaceNeedsDisplay.GetValueOrDefault(newIdInterface, true);
+                if (targetNeedsDisplay)
+                {
+                    WriteLine($"return new {newIdInterface.ToPascal()}(newProxy, Display);");
+                }
+                else
+                {
+                    WriteLine($"return new {newIdInterface.ToPascal()}(newProxy);");
+                }
             }
         }
         EndBlock();

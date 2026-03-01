@@ -37,7 +37,7 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public XdgSurface(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public XdgSurface(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -392,7 +392,7 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
         );
     }
 
-    public static XdgSurface Create(nint handle, WlDisplay display)
+    public static XdgSurface Create(nint handle, WlDisplay? display)
     {
         return new XdgSurface(handle, display);
     }

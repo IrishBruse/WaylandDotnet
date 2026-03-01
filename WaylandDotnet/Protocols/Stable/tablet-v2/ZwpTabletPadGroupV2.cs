@@ -37,7 +37,7 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public ZwpTabletPadGroupV2(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public ZwpTabletPadGroupV2(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     public delegate void ButtonsHandler(byte[] buttons);
@@ -423,7 +423,7 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
         );
     }
 
-    public static ZwpTabletPadGroupV2 Create(nint handle, WlDisplay display)
+    public static ZwpTabletPadGroupV2 Create(nint handle, WlDisplay? display)
     {
         return new ZwpTabletPadGroupV2(handle, display);
     }

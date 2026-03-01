@@ -37,7 +37,7 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public XdgWmBase(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public XdgWmBase(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -225,7 +225,7 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
             (nint)args
         );
 
-        return new XdgPositioner(newProxy, Display);
+        return new XdgPositioner(newProxy);
     }
 
     /// <summary>
@@ -299,7 +299,7 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
         );
     }
 
-    public static XdgWmBase Create(nint handle, WlDisplay display)
+    public static XdgWmBase Create(nint handle, WlDisplay? display)
     {
         return new XdgWmBase(handle, display);
     }

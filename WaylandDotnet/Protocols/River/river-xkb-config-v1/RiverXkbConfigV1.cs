@@ -37,7 +37,7 @@ public sealed partial class RiverXkbConfigV1 : WaylandObject, IWaylandObjectFact
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public RiverXkbConfigV1(IntPtr handle, WlDisplay display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public RiverXkbConfigV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
     {
     }
     /// <summary>  </summary>
@@ -287,7 +287,7 @@ public sealed partial class RiverXkbConfigV1 : WaylandObject, IWaylandObjectFact
         return new RiverXkbKeymapV1(newProxy, Display);
     }
 
-    public static RiverXkbConfigV1 Create(nint handle, WlDisplay display)
+    public static RiverXkbConfigV1 Create(nint handle, WlDisplay? display)
     {
         return new RiverXkbConfigV1(handle, display);
     }
