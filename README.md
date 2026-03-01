@@ -16,7 +16,7 @@ A .NET 10 C# binding for the Wayland display server protocol. This library provi
 ## Projects
 
 - **WaylandDotnet** - Core library for Wayland client communication
-- **WaylandScanner** - XML protocol parser and C# code generator
+- **WaylandDotnet.Scanner** - XML protocol parser and C# code generator
 - **Examples/Minimal** - Minimal window creation example
 - **Examples/LayerShell** - GPU-accelerated overlay using SDL3 and wlr-layer-shell
 - **Examples/RiverWindowManager** - Custom window manager using river-window-management-v1

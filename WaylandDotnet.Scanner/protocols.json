@@ -42,8 +42,33 @@
     },
     // River protocols
     {
+      "Name": "River Input Management",
+      "XmlFile": "Protocols/River/river-input-management-v1.xml",
+      "Namespace": "River"
+    },
+    {
+      "Name": "River Layer Shell",
+      "XmlFile": "Protocols/River/river-layer-shell-v1.xml",
+      "Namespace": "River"
+    },
+    {
+      "Name": "River LibInput Config",
+      "XmlFile": "Protocols/River/river-libinput-config-v1.xml",
+      "Namespace": "River"
+    },
+    {
       "Name": "River Window Management",
       "XmlFile": "Protocols/River/river-window-management-v1.xml",
+      "Namespace": "River"
+    },
+    {
+      "Name": "River XKB Bindings",
+      "XmlFile": "Protocols/River/river-xkb-bindings-v1.xml",
+      "Namespace": "River"
+    },
+    {
+      "Name": "River XKB Config",
+      "XmlFile": "Protocols/River/river-xkb-config-v1.xml",
       "Namespace": "River"
     }
   ]
