@@ -873,7 +873,7 @@ public partial class ProtocolGenerator
                         break;
 
                     case "array":
-                        WriteLine($"args[{argIndex}].a = {argName};");
+                        WriteLine($"args[{argIndex}].a = WaylandMarshal.CreateWlArray({argName});");
                         argIndex++;
                         break;
 

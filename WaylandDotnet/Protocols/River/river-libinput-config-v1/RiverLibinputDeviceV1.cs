@@ -2517,7 +2517,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
-        args[1].a = matrix;
+        args[1].a = WaylandMarshal.CreateWlArray(matrix);
 
         const uint opcode = 7;
 
@@ -2579,7 +2579,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
-        args[1].a = speed;
+        args[1].a = WaylandMarshal.CreateWlArray(speed);
 
         const uint opcode = 9;
 

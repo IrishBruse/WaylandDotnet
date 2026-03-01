@@ -1,5 +1,7 @@
 namespace WaylandDotnet.Internal;
 
+using System.Runtime.InteropServices;
+
 public static class WaylandMarshal
 {
     public static T CreateTypedObject<T>(nint newProxy, WlDisplay display) where T : WaylandObject, IWaylandObjectFactory<T>
@@ -15,6 +17,33 @@ public static class WaylandMarshal
         }
 
         return new ReadOnlySpan<byte>(array->data, array->size).ToArray();
+    }
+
+    public unsafe static WlArray* CreateWlArray(byte[]? data)
+    {
+        if (data == null || data.Length == 0)
+        {
+            return null;
+        }
+
+        var arrayPtr = (WlArray*)Marshal.AllocHGlobal(sizeof(WlArray));
+        var dataPtr = Marshal.AllocHGlobal(data.Length);
+
+        CopyMemory(dataPtr, data, data.Length);
+
+        arrayPtr->size = data.Length;
+        arrayPtr->alloc = data.Length;
+        arrayPtr->data = (void*)dataPtr;
+
+        return arrayPtr;
+    }
+
+    private static unsafe void CopyMemory(nint dest, byte[] src, int length)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            ((byte*)dest)[i] = src[i];
+        }
     }
 }
 

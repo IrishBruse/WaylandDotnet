@@ -1,10 +1,10 @@
 namespace WaylandDotnet;
 
-public readonly unsafe struct WlArray
+public unsafe struct WlArray
 {
-    public readonly int size;
-    public readonly int alloc;
-    public readonly void* data;
+    public int size;
+    public int alloc;
+    public void* data;
 }
 
 // struct wl_array

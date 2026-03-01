@@ -105,8 +105,8 @@ public sealed partial class RiverLibinputAccelConfigV1 : WaylandObject, IWayland
         var args = stackalloc WlArgument[4];
         args[0].o = (WlObject*)IntPtr.Zero;
         args[1].u = type;
-        args[2].a = step;
-        args[3].a = points;
+        args[2].a = WaylandMarshal.CreateWlArray(step);
+        args[3].a = WaylandMarshal.CreateWlArray(points);
 
         const uint opcode = 1;
 
