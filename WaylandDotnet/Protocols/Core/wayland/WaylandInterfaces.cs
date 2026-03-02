@@ -169,14 +169,14 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wl_compositor
-    /// Version: 6
-    /// Requests: 2, Events: 0
+    /// Version: 7
+    /// Requests: 3, Events: 0
     /// </summary>
     [ModuleInitializer]
     public static void CreateWlCompositorInterface()
     {
         // Request signatures
-        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 2);
+        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 3);
         requests[0] = new WlMessage
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("create_surface"),
@@ -189,12 +189,18 @@ public static unsafe partial class WaylandInterfaces
             Signature = Utf8StringMarshaller.ConvertToUnmanaged("n"),
             Types = (WlInterface**)CreateTypesArray([WlRegion])
         };
+        requests[2] = new WlMessage
+        {
+            Name = Utf8StringMarshaller.ConvertToUnmanaged("release"),
+            Signature = Utf8StringMarshaller.ConvertToUnmanaged(""),
+            Types = (WlInterface**)IntPtr.Zero
+        };
 
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wl_compositor"),
-            Version = 6,
-            MethodCount = 2,
+            Version = 7,
+            MethodCount = 3,
             Methods = requests,
             EventCount = 0,
             Events = (WlMessage*)IntPtr.Zero
@@ -339,7 +345,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wl_data_offer
-    /// Version: 3
+    /// Version: 4
     /// Requests: 5, Events: 3
     /// </summary>
     [ModuleInitializer]
@@ -402,7 +408,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wl_data_offer"),
-            Version = 3,
+            Version = 4,
             MethodCount = 5,
             Methods = requests,
             EventCount = 3,
@@ -416,7 +422,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wl_data_source
-    /// Version: 3
+    /// Version: 4
     /// Requests: 3, Events: 6
     /// </summary>
     [ModuleInitializer]
@@ -485,7 +491,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wl_data_source"),
-            Version = 3,
+            Version = 4,
             MethodCount = 3,
             Methods = requests,
             EventCount = 6,
@@ -499,7 +505,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wl_data_device
-    /// Version: 3
+    /// Version: 4
     /// Requests: 3, Events: 6
     /// </summary>
     [ModuleInitializer]
@@ -568,7 +574,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wl_data_device"),
-            Version = 3,
+            Version = 4,
             MethodCount = 3,
             Methods = requests,
             EventCount = 6,
@@ -582,14 +588,14 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wl_data_device_manager
-    /// Version: 3
-    /// Requests: 2, Events: 0
+    /// Version: 4
+    /// Requests: 3, Events: 0
     /// </summary>
     [ModuleInitializer]
     public static void CreateWlDataDeviceManagerInterface()
     {
         // Request signatures
-        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 2);
+        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 3);
         requests[0] = new WlMessage
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("create_data_source"),
@@ -602,12 +608,18 @@ public static unsafe partial class WaylandInterfaces
             Signature = Utf8StringMarshaller.ConvertToUnmanaged("no"),
             Types = (WlInterface**)CreateTypesArray([WlDataDevice, WlSeat])
         };
+        requests[2] = new WlMessage
+        {
+            Name = Utf8StringMarshaller.ConvertToUnmanaged("release"),
+            Signature = Utf8StringMarshaller.ConvertToUnmanaged(""),
+            Types = (WlInterface**)IntPtr.Zero
+        };
 
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wl_data_device_manager"),
-            Version = 3,
-            MethodCount = 2,
+            Version = 4,
+            MethodCount = 3,
             Methods = requests,
             EventCount = 0,
             Events = (WlMessage*)IntPtr.Zero
@@ -759,14 +771,14 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wl_surface
-    /// Version: 6
-    /// Requests: 11, Events: 4
+    /// Version: 7
+    /// Requests: 12, Events: 4
     /// </summary>
     [ModuleInitializer]
     public static void CreateWlSurfaceInterface()
     {
         // Request signatures
-        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 11);
+        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 12);
         requests[0] = new WlMessage
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("destroy"),
@@ -833,6 +845,12 @@ public static unsafe partial class WaylandInterfaces
             Signature = Utf8StringMarshaller.ConvertToUnmanaged("ii"),
             Types = (WlInterface**)CreateTypesArray([(WlInterface*)IntPtr.Zero, (WlInterface*)IntPtr.Zero])
         };
+        requests[11] = new WlMessage
+        {
+            Name = Utf8StringMarshaller.ConvertToUnmanaged("get_release"),
+            Signature = Utf8StringMarshaller.ConvertToUnmanaged("n"),
+            Types = (WlInterface**)CreateTypesArray([WlCallback])
+        };
 
         // Event signatures
         var events = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 4);
@@ -864,8 +882,8 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wl_surface"),
-            Version = 6,
-            MethodCount = 11,
+            Version = 7,
+            MethodCount = 12,
             Methods = requests,
             EventCount = 4,
             Events = events
@@ -1269,7 +1287,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wl_region
-    /// Version: 1
+    /// Version: 7
     /// Requests: 3, Events: 0
     /// </summary>
     [ModuleInitializer]
@@ -1299,7 +1317,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wl_region"),
-            Version = 1,
+            Version = 7,
             MethodCount = 3,
             Methods = requests,
             EventCount = 0,

@@ -19,19 +19,21 @@ using System.Text;
 using WaylandDotnet;
 using WaylandDotnet.Internal;
 using WaylandDotnet.Stable;
+using WaylandDotnet.Staging;
+using WaylandDotnet.Unstable;
 using WaylandDotnet.Wlr;
 
 /// <summary>
 /// wl_data_device_manager
 /// <para> data transfer interface </para>
-/// <para> Version: 3 </para>
+/// <para> Version: 4 </para>
 /// <see>https://wayland.app/protocols/wayland/#wl_data_device_manager</see>
 /// </summary>
 public sealed partial class WlDataDeviceManager : WaylandObject, IWaylandObjectFactory<WlDataDeviceManager>
 {
     public const string InterfaceName = "wl_data_device_manager";
     public static string _StaticInterfaceName => "wl_data_device_manager";
-    public const int InterfaceVersion = 3;
+    public const int InterfaceVersion = 4;
 
     private bool disposed;
 
@@ -121,6 +123,33 @@ public sealed partial class WlDataDeviceManager : WaylandObject, IWaylandObjectF
         );
 
         return new WlDataDevice(newProxy, Display);
+    }
+
+    /// <summary>
+    /// Destroy wl_data_device_manager
+    /// <para>
+    /// <br/>
+    /// This request destroys the wl_data_device_manager. This has no effect on any other<br/>
+    /// objects.<br/>
+    /// <br/>
+    /// </para>
+    /// </summary>
+    public unsafe void Release()
+    {
+        ObjectDisposedException.ThrowIf(disposed, this);
+
+        var args = stackalloc WlArgument[0];
+
+        const uint opcode = 2;
+
+        var newProxy = WaylandNative.ProxyMarshalArrayFlags(
+            Handle,
+            opcode,
+            (WlInterface*)IntPtr.Zero,
+            0,
+            0,
+            (nint)args
+        );
     }
 
     public static WlDataDeviceManager Create(nint handle, WlDisplay? display = null)

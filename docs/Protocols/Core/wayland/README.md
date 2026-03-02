@@ -1,6 +1,6 @@
 ﻿# Wayland
 
-##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../assets/arrow.svg ':class=breadcrumb-arrow') [Core](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Core) ![](../../assets/arrow.svg ':class=breadcrumb-arrow') [Wayland](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Core/wayland/)
+##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [Core](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Core) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [Wayland](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Core/wayland/)
 
 ---
 
@@ -277,7 +277,7 @@ Notify the client when the related request is done.
         <span class="codicon codicon-symbol-interface"></span>
         WlCompositor
     </a>
-    <span class="pill">version 6</span>
+    <span class="pill">version 7</span>
 </h2>
 
 The compositor singleton
@@ -325,6 +325,24 @@ WlRegion CreateRegion()
 **Create new region**
 
 Ask the compositor to create a new region.
+
+<h3 class="decleration request" title="Release request">
+    <a href="?id=WlCompositor_Release" id="WlCompositor_Release">
+        <span class="codicon codicon-symbol-method method"></span>
+        WlCompositor.<span class="method">Release</span>
+    </a>
+    <span class="pill">since 7</span>
+    <span class="pill destructor">Type: destructor</span>
+</h3>
+
+```csharp
+void Release()
+```
+
+
+**Destroy wl_compositor**
+
+This request destroys the wl_compositor. This has no effect on any other objects.
 
 <h2 class="decleration interface">
     <a href="?id=WlShmPool" id="WlShmPool">
@@ -518,6 +536,10 @@ Informs the client about a valid pixel format that
 can be used for buffers. Known formats include
 argb8888 and xrgb8888.
 
+Extensions to drm_fourcc.h (or the format enum) do not require
+increasing the wl_shm version; as a result, clients may receive format
+codes which were not in the list at the time the client was made.
+
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
         <span class="codicon codicon-symbol-enum enum"></span>
@@ -562,7 +584,8 @@ renderer in use.
 
 The drm format codes match the macros defined in drm_fourcc.h, except
 argb8888 and xrgb8888. The formats actually supported by the compositor
-will be reported by the format event.
+will be reported by the format event. See drm_fourcc.h for more detailed
+format descriptions.
 
 For all wl_shm formats and unless specified in another protocol
 extension, pre-multiplied alpha is used for pixel values.
@@ -795,7 +818,7 @@ optimization for GL(ES) compositors with wl_shm clients.
         <span class="codicon codicon-symbol-interface"></span>
         WlDataOffer
     </a>
-    <span class="pill">version 3</span>
+    <span class="pill">version 4</span>
 </h2>
 
 Offer to transfer data
@@ -1093,7 +1116,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         WlDataSource
     </a>
-    <span class="pill">version 3</span>
+    <span class="pill">version 4</span>
 </h2>
 
 Offer to transfer data
@@ -1365,7 +1388,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         WlDataDevice
     </a>
-    <span class="pill">version 3</span>
+    <span class="pill">version 4</span>
 </h2>
 
 Data transfer device
@@ -1644,7 +1667,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         WlDataDeviceManager
     </a>
-    <span class="pill">version 3</span>
+    <span class="pill">version 4</span>
 </h2>
 
 Data transfer interface
@@ -1700,6 +1723,25 @@ WlDataDevice GetDataDevice(WlSeat seat)
 **Create a new data device**
 
 Create a new data device for a given seat.
+
+<h3 class="decleration request" title="Release request">
+    <a href="?id=WlDataDeviceManager_Release" id="WlDataDeviceManager_Release">
+        <span class="codicon codicon-symbol-method method"></span>
+        WlDataDeviceManager.<span class="method">Release</span>
+    </a>
+    <span class="pill">since 4</span>
+    <span class="pill destructor">Type: destructor</span>
+</h3>
+
+```csharp
+void Release()
+```
+
+
+**Destroy wl_data_device_manager**
+
+This request destroys the wl_data_device_manager. This has no effect on any other
+objects.
 
 <h3 class="decleration enum" title="DndAction enum">
     <a href="?id=DndAction" id="DndAction">
@@ -2282,7 +2324,7 @@ output. The compositor is free to ignore this parameter.
         <span class="codicon codicon-symbol-interface"></span>
         WlSurface
     </a>
-    <span class="pill">version 6</span>
+    <span class="pill">version 7</span>
 </h2>
 
 An onscreen surface
@@ -2412,9 +2454,11 @@ compositor.
 If a pending wl_buffer has been committed to more than one wl_surface,
 the delivery of wl_buffer.release events becomes undefined. A well
 behaved client should not rely on wl_buffer.release events in this
-case. Alternatively, a client could create multiple wl_buffer objects
-from the same backing storage or use a protocol extension providing
-per-commit release notifications.
+case. Instead, clients hitting this case should use
+wl_surface.get_release or use a protocol extension providing per-commit
+release notifications (if none of these options are available, a
+fallback can be implemented by creating multiple wl_buffer objects from
+the same backing storage).
 
 Destroying the wl_buffer after wl_buffer.release does not change
 the surface contents. Destroying the wl_buffer before wl_buffer.release
@@ -2850,6 +2894,43 @@ This request is semantically equivalent to and the replaces the x and y
 arguments in the wl_surface.attach request in wl_surface versions prior
 to 5. See wl_surface.attach for details.
 
+<h3 class="decleration request" title="GetRelease request">
+    <a href="?id=WlSurface_GetRelease" id="WlSurface_GetRelease">
+        <span class="codicon codicon-symbol-method method"></span>
+        WlSurface.<span class="method">GetRelease</span>
+    </a>
+    <span class="pill">since 7</span>
+</h3>
+
+```csharp
+WlCallback GetRelease()
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| callback | new_id | Callback object for the release |
+
+**Get a release callback**
+
+Create a callback for the release of the buffer attached by the client
+with wl_surface.attach.
+
+The compositor will release the buffer when it has finished its usage of
+the underlying storage for the relevant commit. Once the client receives
+this event, and assuming the associated buffer is not pending release
+from other wl_surface.commit requests, the client can safely re-use the
+buffer.
+
+Release callbacks are double-buffered state, and will be associated
+with the pending buffer at wl_surface.commit time.
+
+The callback_data passed in the wl_callback.done event is unused and
+is always zero.
+
+Sending this request without attaching a non-null buffer in the same
+content update is a protocol error. The compositor will send the
+no_buffer error in this case.
+
 <h3 class="decleration event" title="Enter event">
     <a href="?id=OnWlSurface_Enter" id="OnWlSurface_Enter">
         <span class="codicon codicon-symbol-event event"></span>
@@ -2983,6 +3064,7 @@ These errors can be emitted in response to wl_surface requests.
 | InvalidSize | 2 | Buffer size is invalid |
 | InvalidOffset | 3 | Buffer offset is invalid |
 | DefunctRoleObject | 4 | Surface was destroyed before its role object |
+| NoBuffer | 5 | No buffer was attached |
 <h2 class="decleration interface">
     <a href="?id=WlSeat" id="WlSeat">
         <span class="codicon codicon-symbol-interface"></span>
@@ -4751,7 +4833,7 @@ They are used in the flags bitfield of the mode event.
         <span class="codicon codicon-symbol-interface"></span>
         WlRegion
     </a>
-    <span class="pill">version 1</span>
+    <span class="pill">version 7</span>
 </h2>
 
 Region interface

@@ -19,6 +19,8 @@ using System.Text;
 using WaylandDotnet;
 using WaylandDotnet.Internal;
 using WaylandDotnet.Stable;
+using WaylandDotnet.Staging;
+using WaylandDotnet.Unstable;
 using WaylandDotnet.Wlr;
 
 /// <summary>
@@ -651,6 +653,10 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
     ///Informs the client about a valid pixel format that
     ///can be used for buffers. Known formats include
     ///argb8888 and xrgb8888.
+    ///
+    ///Extensions to drm_fourcc.h (or the format enum) do not require
+    ///increasing the wl_shm version; as a result, clients may receive format
+    ///codes which were not in the list at the time the client was made.
     ///
     /// </para>
     /// </summary>

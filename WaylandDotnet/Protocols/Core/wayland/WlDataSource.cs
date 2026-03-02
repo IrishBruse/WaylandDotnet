@@ -19,19 +19,21 @@ using System.Text;
 using WaylandDotnet;
 using WaylandDotnet.Internal;
 using WaylandDotnet.Stable;
+using WaylandDotnet.Staging;
+using WaylandDotnet.Unstable;
 using WaylandDotnet.Wlr;
 
 /// <summary>
 /// wl_data_source
 /// <para> offer to transfer data </para>
-/// <para> Version: 3 </para>
+/// <para> Version: 4 </para>
 /// <see>https://wayland.app/protocols/wayland/#wl_data_source</see>
 /// </summary>
 public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<WlDataSource>
 {
     public const string InterfaceName = "wl_data_source";
     public static string _StaticInterfaceName => "wl_data_source";
-    public const int InterfaceVersion = 3;
+    public const int InterfaceVersion = 4;
 
     private bool disposed;
 

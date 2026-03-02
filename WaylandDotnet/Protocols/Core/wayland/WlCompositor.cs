@@ -19,19 +19,21 @@ using System.Text;
 using WaylandDotnet;
 using WaylandDotnet.Internal;
 using WaylandDotnet.Stable;
+using WaylandDotnet.Staging;
+using WaylandDotnet.Unstable;
 using WaylandDotnet.Wlr;
 
 /// <summary>
 /// wl_compositor
 /// <para> the compositor singleton </para>
-/// <para> Version: 6 </para>
+/// <para> Version: 7 </para>
 /// <see>https://wayland.app/protocols/wayland/#wl_compositor</see>
 /// </summary>
 public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<WlCompositor>
 {
     public const string InterfaceName = "wl_compositor";
     public static string _StaticInterfaceName => "wl_compositor";
-    public const int InterfaceVersion = 6;
+    public const int InterfaceVersion = 7;
 
     private bool disposed;
 
@@ -98,6 +100,32 @@ public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<
         );
 
         return new WlRegion(newProxy);
+    }
+
+    /// <summary>
+    /// Destroy wl_compositor
+    /// <para>
+    /// <br/>
+    /// This request destroys the wl_compositor. This has no effect on any other objects.<br/>
+    /// <br/>
+    /// </para>
+    /// </summary>
+    public unsafe void Release()
+    {
+        ObjectDisposedException.ThrowIf(disposed, this);
+
+        var args = stackalloc WlArgument[0];
+
+        const uint opcode = 2;
+
+        var newProxy = WaylandNative.ProxyMarshalArrayFlags(
+            Handle,
+            opcode,
+            (WlInterface*)IntPtr.Zero,
+            0,
+            0,
+            (nint)args
+        );
     }
 
     public static WlCompositor Create(nint handle, WlDisplay? display = null)

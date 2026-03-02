@@ -278,7 +278,7 @@ public class Program
             foreach (var protocol in group)
             {
                 var fileName = Path.GetFileNameWithoutExtension(protocol.XmlFile);
-                sb.WriteLine($"- [{protocol.Name}](/Protocols/{protocol.Namespace}/{fileName}.md)");
+                sb.WriteLine($"- [{protocol.Name}](/Protocols/{protocol.Namespace}/{fileName}/)");
             }
             sb.WriteLine();
         }

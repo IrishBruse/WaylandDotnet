@@ -58,8 +58,8 @@ public partial class ProtocolGenerator
         WriteLine($"using {ProjectNamespace};");
         WriteLine($"using {ProjectNamespace}.Internal;");
         WriteLine($"using {ProjectNamespace}.Stable;");
-        // WriteLine($"using {ProjectNamespace}.Staging;");
-        // WriteLine($"using {ProjectNamespace}.Unstable;");
+        WriteLine($"using {ProjectNamespace}.Staging;");
+        WriteLine($"using {ProjectNamespace}.Unstable;");
         WriteLine($"using {ProjectNamespace}.Wlr;");
         WriteLine();
     }
@@ -71,8 +71,8 @@ public partial class ProtocolGenerator
         if (metadata.DocsDir != null)
         {
             var docsPath = Path.Combine(metadata.DocsDir, "Protocols", metadata.Namespace);
-            Directory.CreateDirectory(docsPath);
-            md = new(Path.Combine(docsPath, $"{mdFile}.md"));
+            Directory.CreateDirectory(Path.Combine(docsPath, mdFile));
+            md = new(Path.Combine(docsPath, mdFile, "README.md"));
         }
         else
         {
@@ -83,7 +83,7 @@ public partial class ProtocolGenerator
         using FileStream fileStream = new(metadata.XmlFile, FileMode.Open);
         WaylandProtocol protocol = (WaylandProtocol)serializer.Deserialize(fileStream)!;
 
-        string ArrowSVG = "![](../../assets/arrow.svg ':class=breadcrumb-arrow')";
+        string ArrowSVG = "![](../../../assets/arrow.svg ':class=breadcrumb-arrow')";
 
         GenerateBreadcrumbDocumentation(metadata, protocol, ArrowSVG);
 

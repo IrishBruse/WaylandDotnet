@@ -19,6 +19,8 @@ using System.Text;
 using WaylandDotnet;
 using WaylandDotnet.Internal;
 using WaylandDotnet.Stable;
+using WaylandDotnet.Staging;
+using WaylandDotnet.Unstable;
 using WaylandDotnet.Wlr;
 
 /// <summary>

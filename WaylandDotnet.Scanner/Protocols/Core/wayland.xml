@@ -190,7 +190,7 @@
     </event>
   </interface>
 
-  <interface name="wl_compositor" version="6">
+  <interface name="wl_compositor" version="7">
     <description summary="the compositor singleton">
       A compositor.  This object is a singleton global.  The
       compositor is in charge of combining the contents of multiple
@@ -209,6 +209,14 @@
         Ask the compositor to create a new region.
       </description>
       <arg name="id" type="new_id" interface="wl_region" summary="the new region"/>
+    </request>
+
+    <!-- Version 7 additions -->
+
+    <request name="release" type="destructor" since="7">
+      <description summary="destroy wl_compositor">
+        This request destroys the wl_compositor. This has no effect on any other objects.
+      </description>
     </request>
   </interface>
 
@@ -304,7 +312,8 @@
 
         The drm format codes match the macros defined in drm_fourcc.h, except
         argb8888 and xrgb8888. The formats actually supported by the compositor
-        will be reported by the format event.
+        will be reported by the format event. See drm_fourcc.h for more detailed
+        format descriptions.
 
         For all wl_shm formats and unless specified in another protocol
         extension, pre-multiplied alpha is used for pixel values.
@@ -474,6 +483,10 @@
         Informs the client about a valid pixel format that
         can be used for buffers. Known formats include
         argb8888 and xrgb8888.
+
+        Extensions to drm_fourcc.h (or the format enum) do not require
+        increasing the wl_shm version; as a result, clients may receive format
+        codes which were not in the list at the time the client was made.
       </description>
       <arg name="format" type="uint" enum="format" summary="buffer pixel format"/>
     </event>
@@ -538,7 +551,7 @@
     </event>
   </interface>
 
-  <interface name="wl_data_offer" version="3">
+  <interface name="wl_data_offer" version="4">
     <description summary="offer to transfer data">
       A wl_data_offer represents a piece of data offered for transfer
       by another client (the source client).  It is used by the
@@ -731,7 +744,7 @@
     </event>
   </interface>
 
-  <interface name="wl_data_source" version="3">
+  <interface name="wl_data_source" version="4">
     <description summary="offer to transfer data">
       The wl_data_source object is the source side of a wl_data_offer.
       It is created by the source client in a data transfer and
@@ -886,7 +899,7 @@
     </event>
   </interface>
 
-  <interface name="wl_data_device" version="3">
+  <interface name="wl_data_device" version="4">
     <description summary="data transfer device">
       There is one wl_data_device per seat which can be obtained
       from the global wl_data_device_manager singleton.
@@ -1047,7 +1060,7 @@
     </request>
   </interface>
 
-  <interface name="wl_data_device_manager" version="3">
+  <interface name="wl_data_device_manager" version="4">
     <description summary="data transfer interface">
       The wl_data_device_manager is a singleton global object that
       provides access to inter-client data transfer mechanisms such as
@@ -1109,6 +1122,15 @@
       <entry name="move" value="2" summary="move action"/>
       <entry name="ask" value="4" summary="ask action"/>
     </enum>
+
+    <!-- Version 4 additions -->
+
+    <request name="release" type="destructor" since="4">
+      <description summary="destroy wl_data_device_manager">
+        This request destroys the wl_data_device_manager. This has no effect on any other
+        objects.
+      </description>
+    </request>
   </interface>
 
   <interface name="wl_shell" version="1">
@@ -1415,7 +1437,7 @@
     </event>
   </interface>
 
-  <interface name="wl_surface" version="6">
+  <interface name="wl_surface" version="7">
     <description summary="an onscreen surface">
       A surface is a rectangular area that may be displayed on zero
       or more outputs, and shown any number of times at the compositor's
@@ -1471,6 +1493,7 @@
       <entry name="invalid_offset" value="3" summary="buffer offset is invalid"/>
       <entry name="defunct_role_object" value="4"
              summary="surface was destroyed before its role object"/>
+      <entry name="no_buffer" value="5" summary="no buffer was attached"/>
     </enum>
 
     <request name="destroy" type="destructor">
@@ -1525,9 +1548,11 @@
         If a pending wl_buffer has been committed to more than one wl_surface,
         the delivery of wl_buffer.release events becomes undefined. A well
         behaved client should not rely on wl_buffer.release events in this
-        case. Alternatively, a client could create multiple wl_buffer objects
-        from the same backing storage or use a protocol extension providing
-        per-commit release notifications.
+        case. Instead, clients hitting this case should use
+        wl_surface.get_release or use a protocol extension providing per-commit
+        release notifications (if none of these options are available, a
+        fallback can be implemented by creating multiple wl_buffer objects from
+        the same backing storage).
 
         Destroying the wl_buffer after wl_buffer.release does not change
         the surface contents. Destroying the wl_buffer before wl_buffer.release
@@ -1931,6 +1956,32 @@
       <arg name="transform" type="uint" enum="wl_output.transform"
            summary="preferred transform"/>
     </event>
+
+    <!-- Version 7 additions -->
+
+    <request name="get_release" since="7">
+      <description summary="get a release callback">
+        Create a callback for the release of the buffer attached by the client
+        with wl_surface.attach.
+
+        The compositor will release the buffer when it has finished its usage of
+        the underlying storage for the relevant commit. Once the client receives
+        this event, and assuming the associated buffer is not pending release
+        from other wl_surface.commit requests, the client can safely re-use the
+        buffer.
+
+        Release callbacks are double-buffered state, and will be associated
+        with the pending buffer at wl_surface.commit time.
+
+        The callback_data passed in the wl_callback.done event is unused and
+        is always zero.
+
+        Sending this request without attaching a non-null buffer in the same
+        content update is a protocol error. The compositor will send the
+        no_buffer error in this case.
+      </description>
+      <arg name="callback" type="new_id" interface="wl_callback" summary="callback object for the release"/>
+    </request>
    </interface>
 
   <interface name="wl_seat" version="10">
@@ -3049,7 +3100,7 @@
     </event>
   </interface>
 
-  <interface name="wl_region" version="1">
+  <interface name="wl_region" version="7">
     <description summary="region interface">
       A region object describes an area.
 

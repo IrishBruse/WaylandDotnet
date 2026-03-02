@@ -19,19 +19,21 @@ using System.Text;
 using WaylandDotnet;
 using WaylandDotnet.Internal;
 using WaylandDotnet.Stable;
+using WaylandDotnet.Staging;
+using WaylandDotnet.Unstable;
 using WaylandDotnet.Wlr;
 
 /// <summary>
 /// wl_region
 /// <para> region interface </para>
-/// <para> Version: 1 </para>
+/// <para> Version: 7 </para>
 /// <see>https://wayland.app/protocols/wayland/#wl_region</see>
 /// </summary>
 public sealed partial class WlRegion : WaylandObject, IWaylandObjectFactory<WlRegion>
 {
     public const string InterfaceName = "wl_region";
     public static string _StaticInterfaceName => "wl_region";
-    public const int InterfaceVersion = 1;
+    public const int InterfaceVersion = 7;
 
     private bool disposed;
 

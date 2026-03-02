@@ -34,6 +34,12 @@
       "XmlFile": "Protocols/Stable/tablet-v2.xml",
       "Namespace": "Stable"
     },
+    // Staging protocols
+    {
+      "Name": "Workspace Extension",
+      "XmlFile": "Protocols/Staging/ext-workspace-v1.xml",
+      "Namespace": "Staging"
+    },
     // Wlr protocols
     {
       "Name": "Layer Shell",

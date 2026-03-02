@@ -19,19 +19,21 @@ using System.Text;
 using WaylandDotnet;
 using WaylandDotnet.Internal;
 using WaylandDotnet.Stable;
+using WaylandDotnet.Staging;
+using WaylandDotnet.Unstable;
 using WaylandDotnet.Wlr;
 
 /// <summary>
 /// wl_data_offer
 /// <para> offer to transfer data </para>
-/// <para> Version: 3 </para>
+/// <para> Version: 4 </para>
 /// <see>https://wayland.app/protocols/wayland/#wl_data_offer</see>
 /// </summary>
 public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<WlDataOffer>
 {
     public const string InterfaceName = "wl_data_offer";
     public static string _StaticInterfaceName => "wl_data_offer";
-    public const int InterfaceVersion = 3;
+    public const int InterfaceVersion = 4;
 
     private bool disposed;
 

@@ -19,19 +19,21 @@ using System.Text;
 using WaylandDotnet;
 using WaylandDotnet.Internal;
 using WaylandDotnet.Stable;
+using WaylandDotnet.Staging;
+using WaylandDotnet.Unstable;
 using WaylandDotnet.Wlr;
 
 /// <summary>
 /// wl_surface
 /// <para> an onscreen surface </para>
-/// <para> Version: 6 </para>
+/// <para> Version: 7 </para>
 /// <see>https://wayland.app/protocols/wayland/#wl_surface</see>
 /// </summary>
 public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlSurface>
 {
     public const string InterfaceName = "wl_surface";
     public static string _StaticInterfaceName => "wl_surface";
-    public const int InterfaceVersion = 6;
+    public const int InterfaceVersion = 7;
 
     private bool disposed;
 
@@ -69,6 +71,10 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
         /// surface was destroyed before its role object
         /// </summary>
         DefunctRoleObject = 4,
+        /// <summary>
+        /// no buffer was attached
+        /// </summary>
+        NoBuffer = 5,
     }
 
     public delegate void EnterHandler(WlOutput output);
@@ -364,9 +370,11 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     /// If a pending wl_buffer has been committed to more than one wl_surface,<br/>
     /// the delivery of wl_buffer.release events becomes undefined. A well<br/>
     /// behaved client should not rely on wl_buffer.release events in this<br/>
-    /// case. Alternatively, a client could create multiple wl_buffer objects<br/>
-    /// from the same backing storage or use a protocol extension providing<br/>
-    /// per-commit release notifications.<br/>
+    /// case. Instead, clients hitting this case should use<br/>
+    /// wl_surface.get_release or use a protocol extension providing per-commit<br/>
+    /// release notifications (if none of these options are available, a<br/>
+    /// fallback can be implemented by creating multiple wl_buffer objects from<br/>
+    /// the same backing storage).<br/>
     /// <br/>
     /// Destroying the wl_buffer after wl_buffer.release does not change<br/>
     /// the surface contents. Destroying the wl_buffer before wl_buffer.release<br/>
@@ -895,6 +903,52 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
             0,
             (nint)args
         );
+    }
+
+    /// <summary>
+    /// Get a release callback
+    /// <para>
+    /// <br/>
+    /// Create a callback for the release of the buffer attached by the client<br/>
+    /// with wl_surface.attach.<br/>
+    /// <br/>
+    /// The compositor will release the buffer when it has finished its usage of<br/>
+    /// the underlying storage for the relevant commit. Once the client receives<br/>
+    /// this event, and assuming the associated buffer is not pending release<br/>
+    /// from other wl_surface.commit requests, the client can safely re-use the<br/>
+    /// buffer.<br/>
+    /// <br/>
+    /// Release callbacks are double-buffered state, and will be associated<br/>
+    /// with the pending buffer at wl_surface.commit time.<br/>
+    /// <br/>
+    /// The callback_data passed in the wl_callback.done event is unused and<br/>
+    /// is always zero.<br/>
+    /// <br/>
+    /// Sending this request without attaching a non-null buffer in the same<br/>
+    /// content update is a protocol error. The compositor will send the<br/>
+    /// no_buffer error in this case.<br/>
+    /// <br/>
+    /// </para>
+    /// </summary>
+    public unsafe WlCallback GetRelease()
+    {
+        ObjectDisposedException.ThrowIf(disposed, this);
+
+        var args = stackalloc WlArgument[1];
+        args[0].o = (WlObject*)IntPtr.Zero;
+
+        const uint opcode = 11;
+
+        var newProxy = WaylandNative.ProxyMarshalArrayFlags(
+            Handle,
+            opcode,
+            WaylandInterfaces.WlCallback,
+            (uint)WaylandInterfaces.WlCallback->Version,
+            0,
+            (nint)args
+        );
+
+        return new WlCallback(newProxy, Display);
     }
 
     public static WlSurface Create(nint handle, WlDisplay? display = null)

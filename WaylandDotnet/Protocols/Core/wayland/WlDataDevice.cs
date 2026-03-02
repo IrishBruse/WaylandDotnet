@@ -19,19 +19,21 @@ using System.Text;
 using WaylandDotnet;
 using WaylandDotnet.Internal;
 using WaylandDotnet.Stable;
+using WaylandDotnet.Staging;
+using WaylandDotnet.Unstable;
 using WaylandDotnet.Wlr;
 
 /// <summary>
 /// wl_data_device
 /// <para> data transfer device </para>
-/// <para> Version: 3 </para>
+/// <para> Version: 4 </para>
 /// <see>https://wayland.app/protocols/wayland/#wl_data_device</see>
 /// </summary>
 public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<WlDataDevice>
 {
     public const string InterfaceName = "wl_data_device";
     public static string _StaticInterfaceName => "wl_data_device";
-    public const int InterfaceVersion = 3;
+    public const int InterfaceVersion = 4;
 
     private bool disposed;
 
