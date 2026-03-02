@@ -253,12 +253,8 @@ public class Program
         var sidebarDir = Path.Combine(first.DocsDir!, "Protocols");
         Directory.CreateDirectory(sidebarDir);
 
-        var sb = new SourceFile(Path.Combine(sidebarDir, "_sidebar.md"));
+        var sb = new SourceFile(Path.Combine(sidebarDir, "sidebar.md"));
         sb.WriteLine("- [Home](/)");
-        sb.WriteLine();
-        sb.WriteLine("Global");
-        sb.WriteLine();
-        sb.WriteLine("- [Protocols](/Protocols/)");
         sb.WriteLine();
 
         var grouped = protocolsWithDocs.GroupBy(p => p.Namespace).OrderBy(g =>

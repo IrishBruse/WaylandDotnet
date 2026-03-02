@@ -1,9 +1,5 @@
 ﻿- [Home](/)
 
-Global
-
-- [Protocols](/Protocols/)
-
 Core
 - [Wayland](/Protocols/Core/wayland/)
 

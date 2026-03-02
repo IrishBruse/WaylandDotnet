@@ -2,5 +2,6 @@
     "dotnet.defaultSolution": "Solution.slnx",
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
-    }
+    },
+    "explorer.sortOrderLexicographicOptions": "default"
 }

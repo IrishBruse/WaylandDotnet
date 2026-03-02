@@ -3,5 +3,5 @@
 Wayland Dotnet
 
 - [Tutorials](/Tutorials/)
-- [Protocols](/Protocols/)
+- [Protocols](/Protocols/Core/wayland/)
 - [Changelog](/Changelog)

@@ -13,6 +13,7 @@ public partial class ProtocolGenerator
 {
     public readonly StringBuilder sb = new();
     public SourceFile md = new("");
+    public SourceFile navbar = new("");
     public int indentLevel = 0;
 
     public static readonly string ProjectNamespace = "WaylandDotnet";
@@ -73,11 +74,16 @@ public partial class ProtocolGenerator
             var docsPath = Path.Combine(metadata.DocsDir, "Protocols", metadata.Namespace);
             Directory.CreateDirectory(Path.Combine(docsPath, mdFile));
             md = new(Path.Combine(docsPath, mdFile, "README.md"));
+            navbar = new(Path.Combine(docsPath, mdFile, "navbar.md"));
         }
         else
         {
             md = new("");
+            navbar = new("");
         }
+
+        navbar.WriteLine("# Outline");
+        navbar.WriteLine();
 
         XmlSerializer serializer = new(typeof(WaylandProtocol));
         using FileStream fileStream = new(metadata.XmlFile, FileMode.Open);
@@ -112,6 +118,7 @@ public partial class ProtocolGenerator
         File.WriteAllLines(Path.Combine(metadata.OutputDir, "Copyright.txt"), protocol.Copyright.Trim().Split("\n").Select(s => s.Trim()));
 
         md.Save();
+        navbar.Save();
 
         Console.WriteLine();
     }
@@ -366,6 +373,7 @@ public partial class ProtocolGenerator
             .Child(Html.Span().Class("pill").Text($"version {iface.Version}"));
 
         md.WriteLine(node.ToString());
+        navbar.WriteLine($"- [{className}](#{className})");
 
         md.WriteLine();
         md.WriteLine(iface.Description.Summary.CapitalizeFirst());

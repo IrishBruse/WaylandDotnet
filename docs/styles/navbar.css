@@ -1,0 +1,99 @@
+.app-nav {
+  position: sticky;
+  z-index: 10;
+  right: 0;
+
+  max-width: 20%;
+}
+
+.app-nav.no-badge {
+  margin-right: 25px;
+}
+
+.app-nav p {
+  margin: 0;
+}
+
+.app-nav > a {
+  margin: 0 1rem;
+  padding: 5px 0;
+}
+
+.app-nav ul,
+.app-nav li {
+  display: inline-block;
+  margin: 0;
+  list-style: none;
+}
+
+.app-nav a {
+  transition: color 0.3s;
+  color: inherit;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.app-nav a:hover {
+  color: #000;
+  color: var(--theme-color, #000);
+}
+
+.app-nav a.active {
+  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--theme-color, #000);
+  color: #000;
+  color: var(--theme-color, #000);
+}
+
+.app-nav li {
+  position: relative;
+  display: inline-block;
+  margin: 0 1rem;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.app-nav li ul {
+  position: absolute;
+  top: 100%;
+  right: -15px;
+  display: none;
+  overflow-y: auto;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-bottom-color: #ccc;
+  border-radius: 4px;
+  max-height: calc(100vh - 61px);
+  padding: 10px 0;
+  background-color: #fff;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.app-nav li ul li {
+  display: block;
+  margin: 0;
+  margin: 8px 14px;
+  font-size: 14px;
+  line-height: 1rem;
+  white-space: nowrap;
+}
+
+.app-nav li ul a {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+.app-nav li ul a.active {
+  border-bottom: 0;
+}
+
+.app-nav li:hover ul {
+  display: block;
+}
+.sidebar > h1 .app-nav {
+  position: static;
+  display: block;
+}
