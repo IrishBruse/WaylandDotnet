@@ -150,13 +150,13 @@ always respond to any xdg_wm_base object it created.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        XdgWmBase.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -456,13 +456,13 @@ constrained using.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        XdgPositioner.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -470,13 +470,13 @@ public enum Error : uint
 | InvalidInput | 0 | Invalid input provided |
 <h3 class="decleration enum" title="Anchor enum">
     <a href="?id=Anchor" id="Anchor">
-        <span class="codicon codicon-symbol-enum"></span>
-        Anchor
+        <span class="codicon codicon-symbol-enum enum"></span>
+        XdgPositioner.<span class="enum">Anchor</span>
     </a>
 </h3>
 
 ```csharp
-public enum Anchor : uint
+public enum Anchor
 ```
 
 | Value | Integer | Description |
@@ -492,13 +492,13 @@ public enum Anchor : uint
 | BottomRight | 8 |  |
 <h3 class="decleration enum" title="Gravity enum">
     <a href="?id=Gravity" id="Gravity">
-        <span class="codicon codicon-symbol-enum"></span>
-        Gravity
+        <span class="codicon codicon-symbol-enum enum"></span>
+        XdgPositioner.<span class="enum">Gravity</span>
     </a>
 </h3>
 
 ```csharp
-public enum Gravity : uint
+public enum Gravity
 ```
 
 | Value | Integer | Description |
@@ -514,13 +514,13 @@ public enum Gravity : uint
 | BottomRight | 8 |  |
 <h3 class="decleration enum" title="ConstraintAdjustment enum">
     <a href="?id=ConstraintAdjustment" id="ConstraintAdjustment">
-        <span class="codicon codicon-symbol-enum"></span>
-        ConstraintAdjustmentFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        XdgPositioner.<span class="enum">ConstraintAdjustment</span>
     </a>
 </h3>
 
 ```csharp
-public enum ConstraintAdjustmentFlag : uint
+public enum ConstraintAdjustmentFlag
 ```
 
 Constraint adjustments
@@ -826,13 +826,13 @@ to one, it is free to discard all but the last event it received.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        XdgSurface.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -1526,13 +1526,13 @@ native endianness.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        XdgToplevel.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -1542,13 +1542,13 @@ public enum Error : uint
 | InvalidSize | 2 | Client provided an invalid min or max size |
 <h3 class="decleration enum" title="ResizeEdge enum">
     <a href="?id=ResizeEdge" id="ResizeEdge">
-        <span class="codicon codicon-symbol-enum"></span>
-        ResizeEdge
+        <span class="codicon codicon-symbol-enum enum"></span>
+        XdgToplevel.<span class="enum">ResizeEdge</span>
     </a>
 </h3>
 
 ```csharp
-public enum ResizeEdge : uint
+public enum ResizeEdge
 ```
 
 Edge values for resizing
@@ -1571,13 +1571,13 @@ is being dragged in a resize operation.
 | BottomRight | 10 |  |
 <h3 class="decleration enum" title="State enum">
     <a href="?id=State" id="State">
-        <span class="codicon codicon-symbol-enum"></span>
-        State
+        <span class="codicon codicon-symbol-enum enum"></span>
+        XdgToplevel.<span class="enum">State</span>
     </a>
 </h3>
 
 ```csharp
-public enum State : uint
+public enum State
 ```
 
 Types of state on the surface
@@ -1608,13 +1608,13 @@ States set in this way are double-buffered, see wl_surface.commit.
 | ConstrainedBottom | 13 |  |
 <h3 class="decleration enum" title="WmCapabilities enum">
     <a href="?id=WmCapabilities" id="WmCapabilities">
-        <span class="codicon codicon-symbol-enum"></span>
-        WmCapabilities
+        <span class="codicon codicon-symbol-enum enum"></span>
+        XdgToplevel.<span class="enum">WmCapabilities</span>
     </a>
 </h3>
 
 ```csharp
-public enum WmCapabilities : uint
+public enum WmCapabilities
 ```
 
 | Value | Integer | Description |
@@ -1867,13 +1867,13 @@ effect. See xdg_surface.ack_configure for details.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        XdgPopup.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |

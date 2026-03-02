@@ -133,13 +133,13 @@ river_input_device_v1 is necessarily an xkbcommon keyboard as well.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverXkbConfigV1.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -148,13 +148,13 @@ public enum Error : uint
 | InvalidFormat | 1 |  |
 <h3 class="decleration enum" title="KeymapFormat enum">
     <a href="?id=KeymapFormat" id="KeymapFormat">
-        <span class="codicon codicon-symbol-enum"></span>
-        KeymapFormat
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverXkbConfigV1.<span class="enum">KeymapFormat</span>
     </a>
 </h3>
 
 ```csharp
-public enum KeymapFormat : uint
+public enum KeymapFormat
 ```
 
 | Value | Integer | Description |
@@ -535,13 +535,13 @@ again whenever the numlock state changes.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverXkbKeyboardV1.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |

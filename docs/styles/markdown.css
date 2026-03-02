@@ -33,6 +33,10 @@
     .event {
       color: rgb(16, 185, 129);
     }
+
+    .enum {
+      color: rgb(249, 115, 22);
+    }
   }
 
   .pill {

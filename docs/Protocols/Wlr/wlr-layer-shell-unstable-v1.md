@@ -89,13 +89,13 @@ are not affected.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwlrLayerShellV1.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -105,13 +105,13 @@ public enum Error : uint
 | AlreadyConstructed | 2 | Wl_surface has a buffer attached or committed |
 <h3 class="decleration enum" title="Layer enum">
     <a href="?id=Layer" id="Layer">
-        <span class="codicon codicon-symbol-enum"></span>
-        Layer
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwlrLayerShellV1.<span class="enum">Layer</span>
     </a>
 </h3>
 
 ```csharp
-public enum Layer : uint
+public enum Layer
 ```
 
 Available layers for surfaces
@@ -507,13 +507,13 @@ event, and create a new surface if they so choose.
 
 <h3 class="decleration enum" title="KeyboardInteractivity enum">
     <a href="?id=KeyboardInteractivity" id="KeyboardInteractivity">
-        <span class="codicon codicon-symbol-enum"></span>
-        KeyboardInteractivity
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwlrLayerSurfaceV1.<span class="enum">KeyboardInteractivity</span>
     </a>
 </h3>
 
 ```csharp
-public enum KeyboardInteractivity : uint
+public enum KeyboardInteractivity
 ```
 
 Types of keyboard interaction possible for a layer shell surface
@@ -533,13 +533,13 @@ keyboard focus.
 | OnDemand | 2 |  |
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwlrLayerSurfaceV1.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -551,13 +551,13 @@ public enum Error : uint
 | InvalidExclusiveEdge | 4 | Exclusive edge is invalid given the surface anchors |
 <h3 class="decleration enum" title="Anchor enum">
     <a href="?id=Anchor" id="Anchor">
-        <span class="codicon codicon-symbol-enum"></span>
-        AnchorFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwlrLayerSurfaceV1.<span class="enum">Anchor</span>
     </a>
 </h3>
 
 ```csharp
-public enum AnchorFlag : uint
+public enum AnchorFlag
 ```
 
 | Value | Integer | Description |

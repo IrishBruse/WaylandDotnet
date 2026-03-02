@@ -755,13 +755,13 @@ one hardware event.
 
 <h3 class="decleration enum" title="Type enum">
     <a href="?id=Type" id="Type">
-        <span class="codicon codicon-symbol-enum"></span>
-        Type
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwpTabletToolV2.<span class="enum">Type</span>
     </a>
 </h3>
 
 ```csharp
-public enum Type : uint
+public enum Type
 ```
 
 A physical tool type
@@ -790,13 +790,13 @@ provide precision focus.
 | Lens | 0x147 | Lens |
 <h3 class="decleration enum" title="Capability enum">
     <a href="?id=Capability" id="Capability">
-        <span class="codicon codicon-symbol-enum"></span>
-        Capability
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwpTabletToolV2.<span class="enum">Capability</span>
     </a>
 </h3>
 
 ```csharp
-public enum Capability : uint
+public enum Capability
 ```
 
 Capability flags for a tool
@@ -818,13 +818,13 @@ device-specific.
 | Wheel | 6 | Wheel axis |
 <h3 class="decleration enum" title="ButtonState enum">
     <a href="?id=ButtonState" id="ButtonState">
-        <span class="codicon codicon-symbol-enum"></span>
-        ButtonState
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwpTabletToolV2.<span class="enum">ButtonState</span>
     </a>
 </h3>
 
 ```csharp
-public enum ButtonState : uint
+public enum ButtonState
 ```
 
 Physical button state
@@ -839,13 +839,13 @@ Describes the physical state of a button that produced the button event.
 | Pressed | 1 | Button is pressed |
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwpTabletToolV2.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -1044,13 +1044,13 @@ zwp_tablet_v2.done event.
 
 <h3 class="decleration enum" title="Bustype enum">
     <a href="?id=Bustype" id="Bustype">
-        <span class="codicon codicon-symbol-enum"></span>
-        Bustype
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwpTabletV2.<span class="enum">Bustype</span>
     </a>
 </h3>
 
 ```csharp
-public enum Bustype : uint
+public enum Bustype
 ```
 
 Bus type 
@@ -1249,13 +1249,13 @@ angle, frame, etc.
 
 <h3 class="decleration enum" title="Source enum">
     <a href="?id=Source" id="Source">
-        <span class="codicon codicon-symbol-enum"></span>
-        Source
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwpTabletPadRingV2.<span class="enum">Source</span>
     </a>
 </h3>
 
 ```csharp
-public enum Source : uint
+public enum Source
 ```
 
 Ring axis source
@@ -1455,13 +1455,13 @@ position, frame, etc.
 
 <h3 class="decleration enum" title="Source enum">
     <a href="?id=Source" id="Source">
-        <span class="codicon codicon-symbol-enum"></span>
-        Source
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwpTabletPadStripV2.<span class="enum">Source</span>
     </a>
 </h3>
 
 ```csharp
-public enum Source : uint
+public enum Source
 ```
 
 Strip axis source
@@ -2000,13 +2000,13 @@ the pad itself.
 
 <h3 class="decleration enum" title="ButtonState enum">
     <a href="?id=ButtonState" id="ButtonState">
-        <span class="codicon codicon-symbol-enum"></span>
-        ButtonState
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwpTabletPadV2.<span class="enum">ButtonState</span>
     </a>
 </h3>
 
 ```csharp
-public enum ButtonState : uint
+public enum ButtonState
 ```
 
 Physical button state

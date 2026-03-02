@@ -118,13 +118,13 @@ value directly, not by asking the compositor.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WpPresentation.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 Fatal presentation errors
@@ -274,13 +274,13 @@ The content update was never displayed to the user.
 
 <h3 class="decleration enum" title="Kind enum">
     <a href="?id=Kind" id="Kind">
-        <span class="codicon codicon-symbol-enum"></span>
-        KindFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WpPresentationFeedback.<span class="enum">Kind</span>
     </a>
 </h3>
 
 ```csharp
-public enum KindFlag : uint
+public enum KindFlag
 ```
 
 Bitmask of flags in presented event

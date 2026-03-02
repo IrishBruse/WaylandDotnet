@@ -502,13 +502,13 @@ zwp_linux_buffer_params_v1 object.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwpLinuxBufferParamsV1.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -523,13 +523,13 @@ public enum Error : uint
 | InvalidWlBuffer | 7 | Invalid wl_buffer resulted from importing dmabufs via                the create_immed request on given buffer_params |
 <h3 class="decleration enum" title="Flags enum">
     <a href="?id=Flags" id="Flags">
-        <span class="codicon codicon-symbol-enum"></span>
-        FlagsFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwpLinuxBufferParamsV1.<span class="enum">Flags</span>
     </a>
 </h3>
 
 ```csharp
-public enum FlagsFlag : uint
+public enum FlagsFlag
 ```
 
 | Value | Integer | Description |
@@ -820,13 +820,13 @@ This event is tied to a preference tranche, see the tranche_done event.
 
 <h3 class="decleration enum" title="TrancheFlags enum">
     <a href="?id=TrancheFlags" id="TrancheFlags">
-        <span class="codicon codicon-symbol-enum"></span>
-        TrancheFlagsFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        ZwpLinuxDmabufFeedbackV1.<span class="enum">TrancheFlags</span>
     </a>
 </h3>
 
 ```csharp
-public enum TrancheFlagsFlag : uint
+public enum TrancheFlagsFlag
 ```
 
 | Value | Integer | Description |

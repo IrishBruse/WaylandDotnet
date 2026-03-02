@@ -129,13 +129,13 @@ is necessarily a libinput device as well.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputConfigV1.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -1673,13 +1673,13 @@ Current rotation angle.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -1687,13 +1687,13 @@ public enum Error : uint
 | InvalidArg | 0 | Invalid enum value or similar |
 <h3 class="decleration enum" title="SendEventsModes enum">
     <a href="?id=SendEventsModes" id="SendEventsModes">
-        <span class="codicon codicon-symbol-enum"></span>
-        SendEventsModesFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">SendEventsModes</span>
     </a>
 </h3>
 
 ```csharp
-public enum SendEventsModesFlag : uint
+public enum SendEventsModesFlag
 ```
 
 | Value | Integer | Description |
@@ -1703,13 +1703,13 @@ public enum SendEventsModesFlag : uint
 | DisabledOnExternalMouse | 2 |  |
 <h3 class="decleration enum" title="TapState enum">
     <a href="?id=TapState" id="TapState">
-        <span class="codicon codicon-symbol-enum"></span>
-        TapState
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">TapState</span>
     </a>
 </h3>
 
 ```csharp
-public enum TapState : uint
+public enum TapState
 ```
 
 | Value | Integer | Description |
@@ -1718,13 +1718,13 @@ public enum TapState : uint
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="TapButtonMap enum">
     <a href="?id=TapButtonMap" id="TapButtonMap">
-        <span class="codicon codicon-symbol-enum"></span>
-        TapButtonMap
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">TapButtonMap</span>
     </a>
 </h3>
 
 ```csharp
-public enum TapButtonMap : uint
+public enum TapButtonMap
 ```
 
 | Value | Integer | Description |
@@ -1733,13 +1733,13 @@ public enum TapButtonMap : uint
 | Lmr | 1 | 1/2/3 finger tap maps to left/middle/right |
 <h3 class="decleration enum" title="DragState enum">
     <a href="?id=DragState" id="DragState">
-        <span class="codicon codicon-symbol-enum"></span>
-        DragState
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">DragState</span>
     </a>
 </h3>
 
 ```csharp
-public enum DragState : uint
+public enum DragState
 ```
 
 | Value | Integer | Description |
@@ -1748,13 +1748,13 @@ public enum DragState : uint
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="DragLockState enum">
     <a href="?id=DragLockState" id="DragLockState">
-        <span class="codicon codicon-symbol-enum"></span>
-        DragLockState
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">DragLockState</span>
     </a>
 </h3>
 
 ```csharp
-public enum DragLockState : uint
+public enum DragLockState
 ```
 
 | Value | Integer | Description |
@@ -1764,13 +1764,13 @@ public enum DragLockState : uint
 | EnabledSticky | 2 |  |
 <h3 class="decleration enum" title="ThreeFingerDragState enum">
     <a href="?id=ThreeFingerDragState" id="ThreeFingerDragState">
-        <span class="codicon codicon-symbol-enum"></span>
-        ThreeFingerDragState
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">ThreeFingerDragState</span>
     </a>
 </h3>
 
 ```csharp
-public enum ThreeFingerDragState : uint
+public enum ThreeFingerDragState
 ```
 
 | Value | Integer | Description |
@@ -1780,13 +1780,13 @@ public enum ThreeFingerDragState : uint
 | Enabled4fg | 2 |  |
 <h3 class="decleration enum" title="AccelProfile enum">
     <a href="?id=AccelProfile" id="AccelProfile">
-        <span class="codicon codicon-symbol-enum"></span>
-        AccelProfile
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">AccelProfile</span>
     </a>
 </h3>
 
 ```csharp
-public enum AccelProfile : uint
+public enum AccelProfile
 ```
 
 | Value | Integer | Description |
@@ -1797,13 +1797,13 @@ public enum AccelProfile : uint
 | Custom | 4 |  |
 <h3 class="decleration enum" title="AccelProfiles enum">
     <a href="?id=AccelProfiles" id="AccelProfiles">
-        <span class="codicon codicon-symbol-enum"></span>
-        AccelProfilesFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">AccelProfiles</span>
     </a>
 </h3>
 
 ```csharp
-public enum AccelProfilesFlag : uint
+public enum AccelProfilesFlag
 ```
 
 | Value | Integer | Description |
@@ -1814,13 +1814,13 @@ public enum AccelProfilesFlag : uint
 | Custom | 4 |  |
 <h3 class="decleration enum" title="NaturalScrollState enum">
     <a href="?id=NaturalScrollState" id="NaturalScrollState">
-        <span class="codicon codicon-symbol-enum"></span>
-        NaturalScrollState
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">NaturalScrollState</span>
     </a>
 </h3>
 
 ```csharp
-public enum NaturalScrollState : uint
+public enum NaturalScrollState
 ```
 
 | Value | Integer | Description |
@@ -1829,13 +1829,13 @@ public enum NaturalScrollState : uint
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="LeftHandedState enum">
     <a href="?id=LeftHandedState" id="LeftHandedState">
-        <span class="codicon codicon-symbol-enum"></span>
-        LeftHandedState
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">LeftHandedState</span>
     </a>
 </h3>
 
 ```csharp
-public enum LeftHandedState : uint
+public enum LeftHandedState
 ```
 
 | Value | Integer | Description |
@@ -1844,13 +1844,13 @@ public enum LeftHandedState : uint
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="ClickMethod enum">
     <a href="?id=ClickMethod" id="ClickMethod">
-        <span class="codicon codicon-symbol-enum"></span>
-        ClickMethod
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">ClickMethod</span>
     </a>
 </h3>
 
 ```csharp
-public enum ClickMethod : uint
+public enum ClickMethod
 ```
 
 | Value | Integer | Description |
@@ -1860,13 +1860,13 @@ public enum ClickMethod : uint
 | Clickfinger | 2 |  |
 <h3 class="decleration enum" title="ClickMethods enum">
     <a href="?id=ClickMethods" id="ClickMethods">
-        <span class="codicon codicon-symbol-enum"></span>
-        ClickMethodsFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">ClickMethods</span>
     </a>
 </h3>
 
 ```csharp
-public enum ClickMethodsFlag : uint
+public enum ClickMethodsFlag
 ```
 
 | Value | Integer | Description |
@@ -1876,13 +1876,13 @@ public enum ClickMethodsFlag : uint
 | Clickfinger | 2 |  |
 <h3 class="decleration enum" title="ClickfingerButtonMap enum">
     <a href="?id=ClickfingerButtonMap" id="ClickfingerButtonMap">
-        <span class="codicon codicon-symbol-enum"></span>
-        ClickfingerButtonMap
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">ClickfingerButtonMap</span>
     </a>
 </h3>
 
 ```csharp
-public enum ClickfingerButtonMap : uint
+public enum ClickfingerButtonMap
 ```
 
 | Value | Integer | Description |
@@ -1891,13 +1891,13 @@ public enum ClickfingerButtonMap : uint
 | Lmr | 1 |  |
 <h3 class="decleration enum" title="MiddleEmulationState enum">
     <a href="?id=MiddleEmulationState" id="MiddleEmulationState">
-        <span class="codicon codicon-symbol-enum"></span>
-        MiddleEmulationState
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">MiddleEmulationState</span>
     </a>
 </h3>
 
 ```csharp
-public enum MiddleEmulationState : uint
+public enum MiddleEmulationState
 ```
 
 | Value | Integer | Description |
@@ -1906,13 +1906,13 @@ public enum MiddleEmulationState : uint
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="ScrollMethod enum">
     <a href="?id=ScrollMethod" id="ScrollMethod">
-        <span class="codicon codicon-symbol-enum"></span>
-        ScrollMethod
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">ScrollMethod</span>
     </a>
 </h3>
 
 ```csharp
-public enum ScrollMethod : uint
+public enum ScrollMethod
 ```
 
 | Value | Integer | Description |
@@ -1923,13 +1923,13 @@ public enum ScrollMethod : uint
 | OnButtonDown | 4 |  |
 <h3 class="decleration enum" title="ScrollMethods enum">
     <a href="?id=ScrollMethods" id="ScrollMethods">
-        <span class="codicon codicon-symbol-enum"></span>
-        ScrollMethodsFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">ScrollMethods</span>
     </a>
 </h3>
 
 ```csharp
-public enum ScrollMethodsFlag : uint
+public enum ScrollMethodsFlag
 ```
 
 | Value | Integer | Description |
@@ -1940,13 +1940,13 @@ public enum ScrollMethodsFlag : uint
 | OnButtonDown | 4 |  |
 <h3 class="decleration enum" title="ScrollButtonLockState enum">
     <a href="?id=ScrollButtonLockState" id="ScrollButtonLockState">
-        <span class="codicon codicon-symbol-enum"></span>
-        ScrollButtonLockState
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">ScrollButtonLockState</span>
     </a>
 </h3>
 
 ```csharp
-public enum ScrollButtonLockState : uint
+public enum ScrollButtonLockState
 ```
 
 | Value | Integer | Description |
@@ -1955,13 +1955,13 @@ public enum ScrollButtonLockState : uint
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="DwtState enum">
     <a href="?id=DwtState" id="DwtState">
-        <span class="codicon codicon-symbol-enum"></span>
-        DwtState
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">DwtState</span>
     </a>
 </h3>
 
 ```csharp
-public enum DwtState : uint
+public enum DwtState
 ```
 
 | Value | Integer | Description |
@@ -1970,13 +1970,13 @@ public enum DwtState : uint
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="DwtpState enum">
     <a href="?id=DwtpState" id="DwtpState">
-        <span class="codicon codicon-symbol-enum"></span>
-        DwtpState
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputDeviceV1.<span class="enum">DwtpState</span>
     </a>
 </h3>
 
 ```csharp
-public enum DwtpState : uint
+public enum DwtpState
 ```
 
 | Value | Integer | Description |
@@ -2040,13 +2040,13 @@ in an acceleration configuration with custom accel profile.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputAccelConfigV1.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -2054,13 +2054,13 @@ public enum Error : uint
 | InvalidArg | 0 | Invalid enum value or similar |
 <h3 class="decleration enum" title="AccelType enum">
     <a href="?id=AccelType" id="AccelType">
-        <span class="codicon codicon-symbol-enum"></span>
-        AccelType
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverLibinputAccelConfigV1.<span class="enum">AccelType</span>
     </a>
 </h3>
 
 ```csharp
-public enum AccelType : uint
+public enum AccelType
 ```
 
 | Value | Integer | Description |

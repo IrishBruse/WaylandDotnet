@@ -609,11 +609,11 @@ public partial class ProtocolGenerator
 
         foreach (var enumDef in iface.Enums)
         {
-            GenerateEnumDocumentation(enumDef);
+            GenerateEnumDocumentation(iface, enumDef);
         }
     }
 
-    private void GenerateEnumDocumentation(WaylandEnum? enumDef)
+    private void GenerateEnumDocumentation(WaylandInterface iface, WaylandEnum? enumDef)
     {
         if (enumDef == null) return;
 
@@ -624,9 +624,11 @@ public partial class ProtocolGenerator
         var suffix = isBitfield ? "Flag" : "";
 
         var enumNode = Html.H3().Class("decleration enum").Title($"{enumName} enum")
-            .Child(Html.A().Href("?id=" + urlEnumName).Id(urlEnumName)
-                .Child(Html.Span().Class("codicon codicon-symbol-enum"))
-                .Child(Html.Text(enumName + suffix))
+            .Child(
+                Html.A().Href("?id=" + urlEnumName).Id(urlEnumName)
+                .Child(Html.Span().Class("codicon codicon-symbol-enum enum"))
+                .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("enum").Text(enumName)))
+
             );
 
         md.WriteLine(enumNode.ToString());
@@ -661,7 +663,8 @@ public partial class ProtocolGenerator
         string urlEventName = "On" + iface.Name.ToPascal() + "_" + eventName;
 
         var eventNode = Html.H3().Class("decleration event").Title($"{eventName} event")
-            .Child(Html.A().Href("?id=" + urlEventName).Id(urlEventName)
+            .Child(
+                Html.A().Href("?id=" + urlEventName).Id(urlEventName)
                 .Child(Html.Span().Class("codicon codicon-symbol-event event"))
                 .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("event").Text("On" + eventName)))
             );

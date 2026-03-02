@@ -155,13 +155,13 @@ A new input device has been created.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverInputManagerV1.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -391,13 +391,13 @@ change during the lifetime of the object.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverInputDeviceV1.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -407,13 +407,13 @@ public enum Error : uint
 | InvalidMapToRectangle | 2 |  |
 <h3 class="decleration enum" title="Type enum">
     <a href="?id=Type" id="Type">
-        <span class="codicon codicon-symbol-enum"></span>
-        Type
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverInputDeviceV1.<span class="enum">Type</span>
     </a>
 </h3>
 
 ```csharp
-public enum Type : uint
+public enum Type
 ```
 
 | Value | Integer | Description |

@@ -435,13 +435,13 @@ state has been sent by the server.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverWindowManagerV1.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -1586,13 +1586,13 @@ sent again.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverWindowV1.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -1603,13 +1603,13 @@ public enum Error : uint
 | InvalidClipBox | 3 | Invalid arg to set_clip_box |
 <h3 class="decleration enum" title="DecorationHint enum">
     <a href="?id=DecorationHint" id="DecorationHint">
-        <span class="codicon codicon-symbol-enum"></span>
-        DecorationHint
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverWindowV1.<span class="enum">DecorationHint</span>
     </a>
 </h3>
 
 ```csharp
-public enum DecorationHint : uint
+public enum DecorationHint
 ```
 
 | Value | Integer | Description |
@@ -1620,13 +1620,13 @@ public enum DecorationHint : uint
 | NoPreference | 3 | No preference, both CSD and SSD supported |
 <h3 class="decleration enum" title="Edges enum">
     <a href="?id=Edges" id="Edges">
-        <span class="codicon codicon-symbol-enum"></span>
-        EdgesFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverWindowV1.<span class="enum">Edges</span>
     </a>
 </h3>
 
 ```csharp
-public enum EdgesFlag : uint
+public enum EdgesFlag
 ```
 
 | Value | Integer | Description |
@@ -1638,13 +1638,13 @@ public enum EdgesFlag : uint
 | Right | 8 |  |
 <h3 class="decleration enum" title="Capabilities enum">
     <a href="?id=Capabilities" id="Capabilities">
-        <span class="codicon codicon-symbol-enum"></span>
-        CapabilitiesFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverWindowV1.<span class="enum">Capabilities</span>
     </a>
 </h3>
 
 ```csharp
-public enum CapabilitiesFlag : uint
+public enum CapabilitiesFlag
 ```
 
 | Value | Integer | Description |
@@ -1747,13 +1747,13 @@ render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverDecorationV1.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -1842,13 +1842,13 @@ render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverShellSurfaceV1.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -2682,13 +2682,13 @@ event was sent.
 
 <h3 class="decleration enum" title="Modifiers enum">
     <a href="?id=Modifiers" id="Modifiers">
-        <span class="codicon codicon-symbol-enum"></span>
-        ModifiersFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverSeatV1.<span class="enum">Modifiers</span>
     </a>
 </h3>
 
 ```csharp
-public enum ModifiersFlag : uint
+public enum ModifiersFlag
 ```
 
 A set of keyboard modifiers

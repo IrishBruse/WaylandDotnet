@@ -127,13 +127,13 @@ it will know that it can safely reuse the object ID.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlDisplay.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 Global error values
@@ -520,13 +520,13 @@ argb8888 and xrgb8888.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlShm.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 Wl_shm error values
@@ -542,13 +542,13 @@ These errors can be emitted in response to wl_shm requests.
 | InvalidFd | 2 | Mmapping the file descriptor failed |
 <h3 class="decleration enum" title="Format enum">
     <a href="?id=Format" id="Format">
-        <span class="codicon codicon-symbol-enum"></span>
-        Format
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlShm.<span class="enum">Format</span>
     </a>
 </h3>
 
 ```csharp
-public enum Format : uint
+public enum Format
 ```
 
 Pixel formats
@@ -1073,13 +1073,13 @@ must happen before the call to wl_data_offer.finish.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlDataOffer.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -1347,13 +1347,13 @@ they reflect the current action.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlDataSource.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -1626,13 +1626,13 @@ data_offer, if any, upon receiving this event.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlDataDevice.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -1703,13 +1703,13 @@ Create a new data device for a given seat.
 
 <h3 class="decleration enum" title="DndAction enum">
     <a href="?id=DndAction" id="DndAction">
-        <span class="codicon codicon-symbol-enum"></span>
-        DndActionFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlDataDeviceManager.<span class="enum">DndAction</span>
     </a>
 </h3>
 
 ```csharp
-public enum DndActionFlag : uint
+public enum DndActionFlag
 ```
 
 Drag and drop actions
@@ -1794,13 +1794,13 @@ Only one shell surface can be associated with a given surface.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlShell.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -2202,13 +2202,13 @@ to the client owning the popup surface.
 
 <h3 class="decleration enum" title="Resize enum">
     <a href="?id=Resize" id="Resize">
-        <span class="codicon codicon-symbol-enum"></span>
-        ResizeFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlShellSurface.<span class="enum">Resize</span>
     </a>
 </h3>
 
 ```csharp
-public enum ResizeFlag : uint
+public enum ResizeFlag
 ```
 
 Edge values for resizing
@@ -2233,13 +2233,13 @@ an appropriate cursor image.
 | BottomRight | 10 | Bottom and right edges |
 <h3 class="decleration enum" title="Transient enum">
     <a href="?id=Transient" id="Transient">
-        <span class="codicon codicon-symbol-enum"></span>
-        TransientFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlShellSurface.<span class="enum">Transient</span>
     </a>
 </h3>
 
 ```csharp
-public enum TransientFlag : uint
+public enum TransientFlag
 ```
 
 Details of transient behaviour
@@ -2254,13 +2254,13 @@ of transient surfaces. Used in the set_transient request.
 | Inactive | 0x1 | Do not set keyboard focus |
 <h3 class="decleration enum" title="FullscreenMethod enum">
     <a href="?id=FullscreenMethod" id="FullscreenMethod">
-        <span class="codicon codicon-symbol-enum"></span>
-        FullscreenMethod
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlShellSurface.<span class="enum">FullscreenMethod</span>
     </a>
 </h3>
 
 ```csharp
-public enum FullscreenMethod : uint
+public enum FullscreenMethod
 ```
 
 Different method to set the surface fullscreen
@@ -2961,13 +2961,13 @@ surface buffer more efficiently.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlSurface.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 Wl_surface error values
@@ -3177,13 +3177,13 @@ destroyed and re-created later.
 
 <h3 class="decleration enum" title="Capability enum">
     <a href="?id=Capability" id="Capability">
-        <span class="codicon codicon-symbol-enum"></span>
-        CapabilityFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlSeat.<span class="enum">Capability</span>
     </a>
 </h3>
 
 ```csharp
-public enum CapabilityFlag : uint
+public enum CapabilityFlag
 ```
 
 Seat capability bitmask
@@ -3200,13 +3200,13 @@ set, then it is present on the seat.
 | Touch | 4 | The seat has touch devices |
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlSeat.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 Wl_seat error values
@@ -3736,13 +3736,13 @@ guaranteed.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlPointer.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -3750,13 +3750,13 @@ public enum Error : uint
 | Role | 0 | Given wl_surface has another role |
 <h3 class="decleration enum" title="ButtonState enum">
     <a href="?id=ButtonState" id="ButtonState">
-        <span class="codicon codicon-symbol-enum"></span>
-        ButtonState
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlPointer.<span class="enum">ButtonState</span>
     </a>
 </h3>
 
 ```csharp
-public enum ButtonState : uint
+public enum ButtonState
 ```
 
 Physical button state
@@ -3772,13 +3772,13 @@ event.
 | Pressed | 1 | The button is pressed |
 <h3 class="decleration enum" title="Axis enum">
     <a href="?id=Axis" id="Axis">
-        <span class="codicon codicon-symbol-enum"></span>
-        Axis
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlPointer.<span class="enum">Axis</span>
     </a>
 </h3>
 
 ```csharp
-public enum Axis : uint
+public enum Axis
 ```
 
 Axis types
@@ -3793,13 +3793,13 @@ Describes the axis types of scroll events.
 | HorizontalScroll | 1 | Horizontal axis |
 <h3 class="decleration enum" title="AxisSource enum">
     <a href="?id=AxisSource" id="AxisSource">
-        <span class="codicon codicon-symbol-enum"></span>
-        AxisSource
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlPointer.<span class="enum">AxisSource</span>
     </a>
 </h3>
 
 ```csharp
-public enum AxisSource : uint
+public enum AxisSource
 ```
 
 Axis source types
@@ -3831,13 +3831,13 @@ wheel but the scroll event is not caused by a rotation but a
 | WheelTilt | 3 | A physical wheel tilt |
 <h3 class="decleration enum" title="AxisRelativeDirection enum">
     <a href="?id=AxisRelativeDirection" id="AxisRelativeDirection">
-        <span class="codicon codicon-symbol-enum"></span>
-        AxisRelativeDirection
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlPointer.<span class="enum">AxisRelativeDirection</span>
     </a>
 </h3>
 
 ```csharp
-public enum AxisRelativeDirection : uint
+public enum AxisRelativeDirection
 ```
 
 Axis relative direction
@@ -4093,13 +4093,13 @@ of wl_keyboard.
 
 <h3 class="decleration enum" title="KeymapFormat enum">
     <a href="?id=KeymapFormat" id="KeymapFormat">
-        <span class="codicon codicon-symbol-enum"></span>
-        KeymapFormat
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlKeyboard.<span class="enum">KeymapFormat</span>
     </a>
 </h3>
 
 ```csharp
-public enum KeymapFormat : uint
+public enum KeymapFormat
 ```
 
 Keyboard mapping format
@@ -4115,13 +4115,13 @@ client with the wl_keyboard.keymap event.
 | XkbV1 | 1 | Libxkbcommon compatible, null-terminated string; to determine the xkb keycode, clients must add 8 to the key event keycode |
 <h3 class="decleration enum" title="KeyState enum">
     <a href="?id=KeyState" id="KeyState">
-        <span class="codicon codicon-symbol-enum"></span>
-        KeyState
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlKeyboard.<span class="enum">KeyState</span>
     </a>
 </h3>
 
 ```csharp
-public enum KeyState : uint
+public enum KeyState
 ```
 
 Physical key state
@@ -4664,13 +4664,13 @@ The description event will be followed by a done event.
 
 <h3 class="decleration enum" title="Subpixel enum">
     <a href="?id=Subpixel" id="Subpixel">
-        <span class="codicon codicon-symbol-enum"></span>
-        Subpixel
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlOutput.<span class="enum">Subpixel</span>
     </a>
 </h3>
 
 ```csharp
-public enum Subpixel : uint
+public enum Subpixel
 ```
 
 Subpixel geometry information
@@ -4690,13 +4690,13 @@ pixels on an output are laid out.
 | VerticalBgr | 5 | Vertical BGR |
 <h3 class="decleration enum" title="Transform enum">
     <a href="?id=Transform" id="Transform">
-        <span class="codicon codicon-symbol-enum"></span>
-        Transform
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlOutput.<span class="enum">Transform</span>
     </a>
 </h3>
 
 ```csharp
-public enum Transform : uint
+public enum Transform
 ```
 
 Transformation applied to buffer contents
@@ -4726,13 +4726,13 @@ surfaces.
 | Flipped270 | 7 | Flip and rotate 270 degrees counter-clockwise |
 <h3 class="decleration enum" title="Mode enum">
     <a href="?id=Mode" id="Mode">
-        <span class="codicon codicon-symbol-enum"></span>
-        ModeFlag
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlOutput.<span class="enum">Mode</span>
     </a>
 </h3>
 
 ```csharp
-public enum ModeFlag : uint
+public enum ModeFlag
 ```
 
 Mode information
@@ -4916,13 +4916,13 @@ the sub-surface, see the documentation on wl_subsurface interface.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlSubcompositor.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
@@ -5130,13 +5130,13 @@ See wl_subsurface and wl_surface.commit for more information.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="?id=Error" id="Error">
-        <span class="codicon codicon-symbol-enum"></span>
-        Error
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlSubsurface.<span class="enum">Error</span>
     </a>
 </h3>
 
 ```csharp
-public enum Error : uint
+public enum Error
 ```
 
 | Value | Integer | Description |
