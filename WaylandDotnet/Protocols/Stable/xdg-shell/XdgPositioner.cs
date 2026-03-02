@@ -33,8 +33,9 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
     public static string _StaticInterfaceName => "xdg_positioner";
     public const int InterfaceVersion = 7;
 
-    public XdgPositioner(IntPtr handle) : base(handle, null, InterfaceName, InterfaceVersion)
+    public XdgPositioner(IntPtr handle)
     {
+        Handle = handle;
     }
     /// <summary>  </summary>
     public enum Error : uint
@@ -495,7 +496,7 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
         );
     }
 
-    public static XdgPositioner Create(nint handle, WlDisplay? display)
+    public static XdgPositioner Create(nint handle, WlDisplay? display = null)
     {
         return new XdgPositioner(handle);
     }

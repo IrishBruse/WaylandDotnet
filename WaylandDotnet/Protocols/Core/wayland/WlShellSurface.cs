@@ -37,8 +37,12 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlShellSurface(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public WlShellSurface(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     /// <summary> edge values for resizing </summary>
     [Flags]
@@ -660,7 +664,7 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
         );
     }
 
-    public static WlShellSurface Create(nint handle, WlDisplay? display)
+    public static WlShellSurface Create(nint handle, WlDisplay? display = null)
     {
         return new WlShellSurface(handle, display);
     }

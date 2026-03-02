@@ -37,8 +37,12 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlRegistry(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public WlRegistry(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     public delegate void GlobalHandler(uint name, string _interface, uint version);
 
@@ -171,42 +175,7 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
             return -1;
         }
     }
-    /// <summary>
-    /// Bind an object to the display
-    /// <para>
-    /// <br/>
-    /// Binds a new, client-created object to the server using the<br/>
-    /// specified name as the identifier.<br/>
-    /// <br/>
-    /// </para>
-    /// </summary>
-    public unsafe WaylandObject Bind(string interfaceName, uint version, uint name)
-    {
-        CheckDisposed();
-
-        var args = stackalloc WlArgument[4];
-        args[0].u = name;
-        // Untyped new_id expansion for id
-        args[1].s = Utf8StringMarshaller.ConvertToUnmanaged(interfaceName);
-        args[2].u = version;
-        args[3].o = (WlObject*)IntPtr.Zero; // Placeholder for new ID
-
-        WlInterface* targetInterface = (WlInterface*)WaylandInterfaces.GetInterfacePtr(interfaceName);
-        const uint opcode = 0;
-
-        var newProxy = WaylandNative.ProxyMarshalArrayFlags(
-            Handle,
-            opcode,
-            targetInterface,
-            version,
-            0,
-            (nint)args
-        );
-
-        return new WaylandObject(newProxy, Display, interfaceName, version);
-    }
-
-    public static WlRegistry Create(nint handle, WlDisplay? display)
+    public static WlRegistry Create(nint handle, WlDisplay? display = null)
     {
         return new WlRegistry(handle, display);
     }

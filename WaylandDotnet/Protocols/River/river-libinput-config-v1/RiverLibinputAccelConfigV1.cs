@@ -33,8 +33,12 @@ public sealed partial class RiverLibinputAccelConfigV1 : WaylandObject, IWayland
     public static string _StaticInterfaceName => "river_libinput_accel_config_v1";
     public const int InterfaceVersion = 1;
 
-    public RiverLibinputAccelConfigV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public RiverLibinputAccelConfigV1(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     /// <summary>  </summary>
     public enum Error : uint
@@ -122,7 +126,7 @@ public sealed partial class RiverLibinputAccelConfigV1 : WaylandObject, IWayland
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
-    public static RiverLibinputAccelConfigV1 Create(nint handle, WlDisplay? display)
+    public static RiverLibinputAccelConfigV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverLibinputAccelConfigV1(handle, display);
     }

@@ -5,24 +5,12 @@ using System;
 /// <summary>
 /// Base class for all Wayland objects
 /// </summary>
-public class WaylandObject : IDisposable
+public abstract class WaylandObject : IDisposable
 {
     internal bool disposed;
 
-    private nint handle;
-    public IntPtr Handle { get => handle; private set => handle = value; }
-
+    public IntPtr Handle { get; set; }
     public WlDisplay? Display { get; }
-    public string InterfaceName { get; }
-    public uint Version { get; }
-
-    internal WaylandObject(IntPtr handle, WlDisplay? display, string interfaceName, uint version)
-    {
-        Handle = handle;
-        Display = display;
-        InterfaceName = interfaceName;
-        Version = version;
-    }
 
     protected void CheckDisposed()
     {

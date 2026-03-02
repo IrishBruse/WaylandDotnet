@@ -37,8 +37,12 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public XdgWmBase(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public XdgWmBase(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     /// <summary>  </summary>
     public enum Error : uint
@@ -299,7 +303,7 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
         );
     }
 
-    public static XdgWmBase Create(nint handle, WlDisplay? display)
+    public static XdgWmBase Create(nint handle, WlDisplay? display = null)
     {
         return new XdgWmBase(handle, display);
     }

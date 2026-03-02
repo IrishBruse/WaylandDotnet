@@ -37,8 +37,12 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlSeat(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public WlSeat(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     /// <summary> seat capability bitmask </summary>
     [Flags]
@@ -357,7 +361,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
         );
     }
 
-    public static WlSeat Create(nint handle, WlDisplay? display)
+    public static WlSeat Create(nint handle, WlDisplay? display = null)
     {
         return new WlSeat(handle, display);
     }

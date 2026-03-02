@@ -37,8 +37,12 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public ZwpLinuxDmabufV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public ZwpLinuxDmabufV1(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     public delegate void FormatHandler(uint format);
 
@@ -316,7 +320,7 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
         return new ZwpLinuxDmabufFeedbackV1(newProxy, Display);
     }
 
-    public static ZwpLinuxDmabufV1 Create(nint handle, WlDisplay? display)
+    public static ZwpLinuxDmabufV1 Create(nint handle, WlDisplay? display = null)
     {
         return new ZwpLinuxDmabufV1(handle, display);
     }

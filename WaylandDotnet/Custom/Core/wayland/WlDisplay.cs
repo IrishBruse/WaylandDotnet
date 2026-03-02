@@ -25,7 +25,7 @@ public sealed partial class WlDisplay
             throw new InvalidOperationException("Failed to connect to Wayland display");
         }
 
-        return new WlDisplay(handle, null);
+        return new WlDisplay(handle);
     }
 
     /// <summary>

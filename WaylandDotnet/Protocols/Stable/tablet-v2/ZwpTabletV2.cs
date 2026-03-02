@@ -37,8 +37,12 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public ZwpTabletV2(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public ZwpTabletV2(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     /// <summary> bus type  </summary>
     public enum Bustype : uint
@@ -385,7 +389,7 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
         );
     }
 
-    public static ZwpTabletV2 Create(nint handle, WlDisplay? display)
+    public static ZwpTabletV2 Create(nint handle, WlDisplay? display = null)
     {
         return new ZwpTabletV2(handle, display);
     }

@@ -37,8 +37,9 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlDisplay(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay(IntPtr handle)
     {
+        Handle = handle;
     }
     /// <summary> global error values </summary>
     public enum Error : uint
@@ -164,7 +165,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
                 case 0: // error
                     if (obj._onError != null)
                     {
-                        var _objectId = new WlDisplay((IntPtr)args[0].o, obj.Display);
+                        var _objectId = new WlDisplay((IntPtr)args[0].o);
                         var _code = args[1].u;
                         var _message = Utf8StringMarshaller.ConvertToManaged(args[2].s);
                         obj._onError?.Invoke(_objectId, _code, _message);
@@ -265,9 +266,9 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
         return new WlRegistry(newProxy, Display);
     }
 
-    public static WlDisplay Create(nint handle, WlDisplay? display)
+    public static WlDisplay Create(nint handle, WlDisplay? display = null)
     {
-        return new WlDisplay(handle, display);
+        return new WlDisplay(handle);
     }
     protected override void Dispose(bool disposing)
     {

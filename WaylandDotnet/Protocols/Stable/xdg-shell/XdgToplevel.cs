@@ -37,8 +37,12 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public XdgToplevel(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public XdgToplevel(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     /// <summary>  </summary>
     public enum Error : uint
@@ -1052,7 +1056,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
         );
     }
 
-    public static XdgToplevel Create(nint handle, WlDisplay? display)
+    public static XdgToplevel Create(nint handle, WlDisplay? display = null)
     {
         return new XdgToplevel(handle, display);
     }

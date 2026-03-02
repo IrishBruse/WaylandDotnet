@@ -33,8 +33,9 @@ public sealed partial class RiverDecorationV1 : WaylandObject, IWaylandObjectFac
     public static string _StaticInterfaceName => "river_decoration_v1";
     public const int InterfaceVersion = 3;
 
-    public RiverDecorationV1(IntPtr handle) : base(handle, null, InterfaceName, InterfaceVersion)
+    public RiverDecorationV1(IntPtr handle)
     {
+        Handle = handle;
     }
     /// <summary>  </summary>
     public enum Error : uint
@@ -142,7 +143,7 @@ public sealed partial class RiverDecorationV1 : WaylandObject, IWaylandObjectFac
         );
     }
 
-    public static RiverDecorationV1 Create(nint handle, WlDisplay? display)
+    public static RiverDecorationV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverDecorationV1(handle);
     }

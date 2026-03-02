@@ -37,8 +37,12 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public RiverWindowV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public RiverWindowV1(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     /// <summary>  </summary>
     public enum Error : uint
@@ -1763,7 +1767,7 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         );
     }
 
-    public static RiverWindowV1 Create(nint handle, WlDisplay? display)
+    public static RiverWindowV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverWindowV1(handle, display);
     }

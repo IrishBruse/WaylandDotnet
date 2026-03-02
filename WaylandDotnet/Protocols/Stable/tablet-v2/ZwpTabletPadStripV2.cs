@@ -37,8 +37,12 @@ public sealed partial class ZwpTabletPadStripV2 : WaylandObject, IWaylandObjectF
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public ZwpTabletPadStripV2(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public ZwpTabletPadStripV2(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     /// <summary> strip axis source </summary>
     public enum Source : uint
@@ -341,7 +345,7 @@ public sealed partial class ZwpTabletPadStripV2 : WaylandObject, IWaylandObjectF
         );
     }
 
-    public static ZwpTabletPadStripV2 Create(nint handle, WlDisplay? display)
+    public static ZwpTabletPadStripV2 Create(nint handle, WlDisplay? display = null)
     {
         return new ZwpTabletPadStripV2(handle, display);
     }

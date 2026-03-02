@@ -407,7 +407,7 @@ public partial class ProtocolGenerator
             GenerateEventDocumentation(iface);
 
             bool needsDisplay = NeedsWlDisplay(iface);
-            WriteLine($"public static {className} Create(nint handle, WlDisplay? display)");
+            WriteLine($"public static {className} Create(nint handle, WlDisplay? display = null)");
             WriteLine("{");
             if (needsDisplay)
             {
@@ -496,15 +496,21 @@ public partial class ProtocolGenerator
         BeginRegion();
         if (needsDisplay)
         {
-            WriteLine($"public {className}(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)");
+            WriteLine("public WlDisplay Display { get; private set; }");
+            WriteLine();
+            WriteLine($"public {className}(IntPtr handle, WlDisplay display)");
         }
         else
         {
-            WriteLine($"public {className}(IntPtr handle) : base(handle, null, InterfaceName, InterfaceVersion)");
+            WriteLine($"public {className}(IntPtr handle)");
         }
         BeginBlock();
         {
-            // Empty
+            if (needsDisplay)
+            {
+                WriteLine($"Display = display;");
+            }
+            WriteLine($"Handle = handle;");
         }
         EndBlock();
         EndRegion();
@@ -512,18 +518,17 @@ public partial class ProtocolGenerator
 
     private bool NeedsWlDisplay(WaylandInterface iface)
     {
-        if (iface.Events.Count > 0)
-            return true;
+        if (iface.Name == "wl_display") return false;
+
+        if (iface.Events.Count > 0) return true;
 
         foreach (var request in iface.Requests)
         {
-            if (request.Args.Any(a => a.Type == "new_id"))
-                return true;
+            if (request.Args.Any(a => a.Type == "new_id")) return true;
         }
 
         return false;
     }
-
 
     public void GenerateEventDelegates(WaylandInterface iface)
     {
@@ -757,12 +762,28 @@ public partial class ProtocolGenerator
                             var interfaceType = arg.Interface.ToPascal();
                             WriteLine($"{interfaceType}? _{argName} = null;");
                             WriteLine($"if (args[{i}].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException(\"Received null object for non-nullable argument '{arg.Name}'\");");
-                            WriteLine($"_{argName} = new {interfaceType}((IntPtr)args[{i}].o, obj.Display);");
+                            bool targetNeedsDisplay = interfaceNeedsDisplay.GetValueOrDefault(arg.Interface, true);
+                            if (targetNeedsDisplay)
+                            {
+                                WriteLine($"_{argName} = new {interfaceType}((IntPtr)args[{i}].o, obj.Display);");
+                            }
+                            else
+                            {
+                                WriteLine($"_{argName} = new {interfaceType}((IntPtr)args[{i}].o);");
+                            }
                         }
                         else
                         {
-                            // Generic object pointer
-                            WriteLine($"var _{argName} = new {iface.Name.ToPascal()}((IntPtr)args[{i}].o, obj.Display);");
+                            // Generic object pointer - use current interface
+                            bool currentNeedsDisplay = interfaceNeedsDisplay.GetValueOrDefault(iface.Name, true);
+                            if (currentNeedsDisplay)
+                            {
+                                WriteLine($"var _{argName} = new {iface.Name.ToPascal()}((IntPtr)args[{i}].o, obj.Display);");
+                            }
+                            else
+                            {
+                                WriteLine($"var _{argName} = new {iface.Name.ToPascal()}((IntPtr)args[{i}].o);");
+                            }
                         }
                         break;
                     case "new_id":
@@ -772,7 +793,15 @@ public partial class ProtocolGenerator
                             var interfaceType = arg.Interface.ToPascal();
                             WriteLine($"{interfaceType}? _{argName} = null;");
                             WriteLine($"if (args[{i}].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException(\"Received null object for non-nullable argument '{arg.Name}'\");");
-                            WriteLine($"_{argName} = new {interfaceType}((IntPtr)args[{i}].o, obj.Display);");
+                            bool targetNeedsDisplay = interfaceNeedsDisplay.GetValueOrDefault(arg.Interface, true);
+                            if (targetNeedsDisplay)
+                            {
+                                WriteLine($"_{argName} = new {interfaceType}((IntPtr)args[{i}].o, obj.Display);");
+                            }
+                            else
+                            {
+                                WriteLine($"_{argName} = new {interfaceType}((IntPtr)args[{i}].o);");
+                            }
                         }
                         else
                         {
@@ -816,6 +845,15 @@ public partial class ProtocolGenerator
 
     public void GenerateRequestMethod(WaylandRequest request, WaylandInterface iface)
     {
+        var methodName = request.Name.ToPascal();
+        var interaceName = iface.Name.ToPascal();
+
+        if (methodName == "Bind" && interaceName == "WlRegistry")
+        {
+            Console.WriteLine("Skipped");
+            return;
+        }
+
         var summary = EscapeXmlDoc(request.Description?.Summary ?? request.Name).CapitalizeFirst();
         var docs = EscapeXmlDoc(request.Description?.Text ?? request.Name);
 
@@ -830,8 +868,6 @@ public partial class ProtocolGenerator
         }
         WriteLine("/// </para>");
         WriteLine("/// </summary>");
-
-        var methodName = request.Name.ToPascal();
 
         var parameters = new List<string>();
         var hasNewId = request.Args.Any(a => a.Type == "new_id");
@@ -1078,7 +1114,6 @@ public partial class ProtocolGenerator
         };
     }
 
-
     private string MapTypeToCSharp(string waylandType, string? interfaceName, string? allowNull)
     {
         var nullable = allowNull?.ToLower() == "true" ? "?" : "";
@@ -1096,7 +1131,6 @@ public partial class ProtocolGenerator
             _ => $"object{nullable}"
         };
     }
-
 
     private static string EscapeXmlDoc(string? text)
     {

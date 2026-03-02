@@ -37,8 +37,12 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public RiverSeatV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public RiverSeatV1(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     /// <summary> a set of keyboard modifiers </summary>
     [Flags]
@@ -824,7 +828,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         );
     }
 
-    public static RiverSeatV1 Create(nint handle, WlDisplay? display)
+    public static RiverSeatV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverSeatV1(handle, display);
     }

@@ -37,8 +37,12 @@ public sealed partial class RiverLayerShellSeatV1 : WaylandObject, IWaylandObjec
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public RiverLayerShellSeatV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public RiverLayerShellSeatV1(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     public delegate void FocusExclusiveHandler();
 
@@ -242,7 +246,7 @@ public sealed partial class RiverLayerShellSeatV1 : WaylandObject, IWaylandObjec
         );
     }
 
-    public static RiverLayerShellSeatV1 Create(nint handle, WlDisplay? display)
+    public static RiverLayerShellSeatV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverLayerShellSeatV1(handle, display);
     }

@@ -33,8 +33,12 @@ public sealed partial class ZwpTabletManagerV2 : WaylandObject, IWaylandObjectFa
     public static string _StaticInterfaceName => "zwp_tablet_manager_v2";
     public const int InterfaceVersion = 2;
 
-    public ZwpTabletManagerV2(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public ZwpTabletManagerV2(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     /// <summary>
     /// Get the tablet seat
@@ -94,7 +98,7 @@ public sealed partial class ZwpTabletManagerV2 : WaylandObject, IWaylandObjectFa
         );
     }
 
-    public static ZwpTabletManagerV2 Create(nint handle, WlDisplay? display)
+    public static ZwpTabletManagerV2 Create(nint handle, WlDisplay? display = null)
     {
         return new ZwpTabletManagerV2(handle, display);
     }

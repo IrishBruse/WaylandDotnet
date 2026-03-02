@@ -158,27 +158,6 @@ emit events to the client and lets the client invoke requests on
 the object.
 
 
-<h3 class="decleration request" title="Bind request">
-    <a href="?id=WlRegistry_Bind" id="WlRegistry_Bind">
-        <span class="codicon codicon-symbol-method method"></span>
-        WlRegistry.<span class="method">Bind</span>
-    </a>
-</h3>
-
-```csharp
-WaylandObject Bind(string interfaceName, uint version, uint name)
-```
-
-| Argument | Type | Description |
-| --- | --- | --- |
-| name | uint | Unique numeric name of the object |
-| id | new_id | Bounded object |
-
-**Bind an object to the display**
-
-Binds a new, client-created object to the server using the
-specified name as the identifier.
-
 <h3 class="decleration event" title="Global event">
     <a href="?id=OnWlRegistry_Global" id="OnWlRegistry_Global">
         <span class="codicon codicon-symbol-event event"></span>

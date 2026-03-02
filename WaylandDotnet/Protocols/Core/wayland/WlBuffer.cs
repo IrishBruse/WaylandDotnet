@@ -37,8 +37,12 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlBuffer(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public WlBuffer(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     public delegate void ReleaseHandler();
 
@@ -163,7 +167,7 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
         );
     }
 
-    public static WlBuffer Create(nint handle, WlDisplay? display)
+    public static WlBuffer Create(nint handle, WlDisplay? display = null)
     {
         return new WlBuffer(handle, display);
     }

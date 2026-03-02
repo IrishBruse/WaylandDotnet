@@ -37,8 +37,12 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public RiverXkbBindingV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public RiverXkbBindingV1(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     public delegate void PressedHandler();
 
@@ -349,7 +353,7 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
         );
     }
 
-    public static RiverXkbBindingV1 Create(nint handle, WlDisplay? display)
+    public static RiverXkbBindingV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverXkbBindingV1(handle, display);
     }

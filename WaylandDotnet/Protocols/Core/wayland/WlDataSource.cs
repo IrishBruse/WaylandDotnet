@@ -37,8 +37,12 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlDataSource(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public WlDataSource(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     /// <summary>  </summary>
     public enum Error : uint
@@ -458,7 +462,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
         );
     }
 
-    public static WlDataSource Create(nint handle, WlDisplay? display)
+    public static WlDataSource Create(nint handle, WlDisplay? display = null)
     {
         return new WlDataSource(handle, display);
     }

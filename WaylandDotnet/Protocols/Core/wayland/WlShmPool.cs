@@ -33,8 +33,12 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
     public static string _StaticInterfaceName => "wl_shm_pool";
     public const int InterfaceVersion = 2;
 
-    public WlShmPool(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public WlShmPool(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     /// <summary>
     /// Create a buffer from the pool
@@ -146,7 +150,7 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
         );
     }
 
-    public static WlShmPool Create(nint handle, WlDisplay? display)
+    public static WlShmPool Create(nint handle, WlDisplay? display = null)
     {
         return new WlShmPool(handle, display);
     }

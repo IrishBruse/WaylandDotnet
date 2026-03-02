@@ -37,8 +37,12 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlKeyboard(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public WlKeyboard(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     /// <summary> keyboard mapping format </summary>
     public enum KeymapFormat : uint
@@ -434,7 +438,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
         );
     }
 
-    public static WlKeyboard Create(nint handle, WlDisplay? display)
+    public static WlKeyboard Create(nint handle, WlDisplay? display = null)
     {
         return new WlKeyboard(handle, display);
     }

@@ -37,8 +37,12 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public ZwpTabletPadV2(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public ZwpTabletPadV2(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     /// <summary> physical button state </summary>
     public enum ButtonState : uint
@@ -489,7 +493,7 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
         );
     }
 
-    public static ZwpTabletPadV2 Create(nint handle, WlDisplay? display)
+    public static ZwpTabletPadV2 Create(nint handle, WlDisplay? display = null)
     {
         return new ZwpTabletPadV2(handle, display);
     }

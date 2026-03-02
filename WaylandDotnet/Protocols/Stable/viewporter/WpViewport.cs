@@ -33,8 +33,9 @@ public sealed partial class WpViewport : WaylandObject, IWaylandObjectFactory<Wp
     public static string _StaticInterfaceName => "wp_viewport";
     public const int InterfaceVersion = 1;
 
-    public WpViewport(IntPtr handle) : base(handle, null, InterfaceName, InterfaceVersion)
+    public WpViewport(IntPtr handle)
     {
+        Handle = handle;
     }
     /// <summary>  </summary>
     public enum Error : uint
@@ -160,7 +161,7 @@ public sealed partial class WpViewport : WaylandObject, IWaylandObjectFactory<Wp
         );
     }
 
-    public static WpViewport Create(nint handle, WlDisplay? display)
+    public static WpViewport Create(nint handle, WlDisplay? display = null)
     {
         return new WpViewport(handle);
     }

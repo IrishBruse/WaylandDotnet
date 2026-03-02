@@ -37,8 +37,12 @@ public sealed partial class ZwpTabletPadDialV2 : WaylandObject, IWaylandObjectFa
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public ZwpTabletPadDialV2(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public ZwpTabletPadDialV2(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     public delegate void DeltaHandler(int value120);
 
@@ -247,7 +251,7 @@ public sealed partial class ZwpTabletPadDialV2 : WaylandObject, IWaylandObjectFa
         );
     }
 
-    public static ZwpTabletPadDialV2 Create(nint handle, WlDisplay? display)
+    public static ZwpTabletPadDialV2 Create(nint handle, WlDisplay? display = null)
     {
         return new ZwpTabletPadDialV2(handle, display);
     }

@@ -37,8 +37,12 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public ZwpLinuxBufferParamsV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public ZwpLinuxBufferParamsV1(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     /// <summary>  </summary>
     public enum Error : uint
@@ -441,7 +445,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
         return new WlBuffer(newProxy, Display);
     }
 
-    public static ZwpLinuxBufferParamsV1 Create(nint handle, WlDisplay? display)
+    public static ZwpLinuxBufferParamsV1 Create(nint handle, WlDisplay? display = null)
     {
         return new ZwpLinuxBufferParamsV1(handle, display);
     }

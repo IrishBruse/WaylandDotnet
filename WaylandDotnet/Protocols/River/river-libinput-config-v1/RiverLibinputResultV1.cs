@@ -37,8 +37,12 @@ public sealed partial class RiverLibinputResultV1 : WaylandObject, IWaylandObjec
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public RiverLibinputResultV1(IntPtr handle, WlDisplay? display) : base(handle, display, InterfaceName, InterfaceVersion)
+    public WlDisplay Display { get; private set; }
+
+    public RiverLibinputResultV1(IntPtr handle, WlDisplay display)
     {
+        Display = display;
+        Handle = handle;
     }
     public delegate void SuccessHandler();
 
@@ -187,7 +191,7 @@ public sealed partial class RiverLibinputResultV1 : WaylandObject, IWaylandObjec
             return -1;
         }
     }
-    public static RiverLibinputResultV1 Create(nint handle, WlDisplay? display)
+    public static RiverLibinputResultV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverLibinputResultV1(handle, display);
     }
