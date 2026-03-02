@@ -14,6 +14,7 @@ public static unsafe partial class WaylandInterfaces
     public static WlInterface* ZwpLinuxBufferParamsV1 = AllocateInterface();
     public static WlInterface* ZwpLinuxDmabufFeedbackV1 = AllocateInterface();
 
+
     /// <summary>
     /// Interface: zwp_linux_dmabuf_v1
     /// Version: 5
@@ -78,6 +79,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("zwp_linux_dmabuf_v1", (IntPtr)ZwpLinuxDmabufV1);
     }
 
+
     /// <summary>
     /// Interface: zwp_linux_buffer_params_v1
     /// Version: 5
@@ -141,6 +143,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)ZwpLinuxBufferParamsV1, false);
         Interfaces.Add("zwp_linux_buffer_params_v1", (IntPtr)ZwpLinuxBufferParamsV1);
     }
+
 
     /// <summary>
     /// Interface: zwp_linux_dmabuf_feedback_v1

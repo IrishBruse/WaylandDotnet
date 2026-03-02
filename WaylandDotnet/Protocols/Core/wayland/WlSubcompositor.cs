@@ -33,6 +33,8 @@ public sealed partial class WlSubcompositor : WaylandObject, IWaylandObjectFacto
     public static string _StaticInterfaceName => "wl_subcompositor";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     public WlDisplay Display { get; private set; }
 
     public WlSubcompositor(IntPtr handle, WlDisplay display)
@@ -65,7 +67,7 @@ public sealed partial class WlSubcompositor : WaylandObject, IWaylandObjectFacto
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -109,7 +111,7 @@ public sealed partial class WlSubcompositor : WaylandObject, IWaylandObjectFacto
     /// </summary>
     public unsafe WlSubsurface GetSubsurface(WlSurface surface, WlSurface parent)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[3];
         args[0].o = (WlObject*)IntPtr.Zero;

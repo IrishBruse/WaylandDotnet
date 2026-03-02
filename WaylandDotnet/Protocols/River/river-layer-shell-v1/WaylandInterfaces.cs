@@ -14,6 +14,7 @@ public static unsafe partial class WaylandInterfaces
     public static WlInterface* RiverLayerShellOutputV1 = AllocateInterface();
     public static WlInterface* RiverLayerShellSeatV1 = AllocateInterface();
 
+
     /// <summary>
     /// Interface: river_layer_shell_v1
     /// Version: 1
@@ -56,6 +57,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)RiverLayerShellV1, false);
         Interfaces.Add("river_layer_shell_v1", (IntPtr)RiverLayerShellV1);
     }
+
 
     /// <summary>
     /// Interface: river_layer_shell_output_v1
@@ -102,6 +104,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)RiverLayerShellOutputV1, false);
         Interfaces.Add("river_layer_shell_output_v1", (IntPtr)RiverLayerShellOutputV1);
     }
+
 
     /// <summary>
     /// Interface: river_layer_shell_seat_v1

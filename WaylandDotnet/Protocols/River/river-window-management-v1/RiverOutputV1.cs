@@ -33,6 +33,8 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
     public static string _StaticInterfaceName => "river_output_v1";
     public const int InterfaceVersion = 3;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -72,7 +74,7 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onRemoved += value;
             EnsureDispatcherRegistered();
         }
@@ -116,7 +118,7 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onWlOutput += value;
             EnsureDispatcherRegistered();
         }
@@ -155,7 +157,7 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onPosition += value;
             EnsureDispatcherRegistered();
         }
@@ -194,7 +196,7 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDimensions += value;
             EnsureDispatcherRegistered();
         }
@@ -296,7 +298,7 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -315,13 +317,5 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
     public static RiverOutputV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverOutputV1(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

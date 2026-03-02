@@ -16,6 +16,7 @@ public static unsafe partial class WaylandInterfaces
     public static WlInterface* XdgToplevel = AllocateInterface();
     public static WlInterface* XdgPopup = AllocateInterface();
 
+
     /// <summary>
     /// Interface: xdg_wm_base
     /// Version: 7
@@ -73,6 +74,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)XdgWmBase, false);
         Interfaces.Add("xdg_wm_base", (IntPtr)XdgWmBase);
     }
+
 
     /// <summary>
     /// Interface: xdg_positioner
@@ -159,6 +161,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("xdg_positioner", (IntPtr)XdgPositioner);
     }
 
+
     /// <summary>
     /// Interface: xdg_surface
     /// Version: 7
@@ -222,6 +225,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)XdgSurface, false);
         Interfaces.Add("xdg_surface", (IntPtr)XdgSurface);
     }
+
 
     /// <summary>
     /// Interface: xdg_toplevel
@@ -358,6 +362,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)XdgToplevel, false);
         Interfaces.Add("xdg_toplevel", (IntPtr)XdgToplevel);
     }
+
 
     /// <summary>
     /// Interface: xdg_popup

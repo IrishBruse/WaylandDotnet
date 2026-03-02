@@ -33,6 +33,8 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
     public static string _StaticInterfaceName => "river_xkb_binding_v1";
     public const int InterfaceVersion = 2;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -71,7 +73,7 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onPressed += value;
             EnsureDispatcherRegistered();
         }
@@ -114,7 +116,7 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onReleased += value;
             EnsureDispatcherRegistered();
         }
@@ -150,7 +152,7 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onStopRepeat += value;
             EnsureDispatcherRegistered();
         }
@@ -238,7 +240,7 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -275,7 +277,7 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
     /// </summary>
     public unsafe void SetLayoutOverride(uint layout)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].u = layout;
@@ -307,7 +309,7 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
     /// </summary>
     public unsafe void Enable()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -337,7 +339,7 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
     /// </summary>
     public unsafe void Disable()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -356,13 +358,5 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
     public static RiverXkbBindingV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverXkbBindingV1(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

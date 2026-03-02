@@ -13,6 +13,7 @@ public static unsafe partial class WaylandInterfaces
     public static WlInterface* ZwlrLayerShellV1 = AllocateInterface();
     public static WlInterface* ZwlrLayerSurfaceV1 = AllocateInterface();
 
+
     /// <summary>
     /// Interface: zwlr_layer_shell_v1
     /// Version: 5
@@ -49,6 +50,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)ZwlrLayerShellV1, false);
         Interfaces.Add("zwlr_layer_shell_v1", (IntPtr)ZwlrLayerShellV1);
     }
+
 
     /// <summary>
     /// Interface: zwlr_layer_surface_v1

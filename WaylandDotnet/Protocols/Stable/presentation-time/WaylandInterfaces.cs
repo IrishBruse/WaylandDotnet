@@ -13,6 +13,7 @@ public static unsafe partial class WaylandInterfaces
     public static WlInterface* WpPresentation = AllocateInterface();
     public static WlInterface* WpPresentationFeedback = AllocateInterface();
 
+
     /// <summary>
     /// Interface: wp_presentation
     /// Version: 2
@@ -58,6 +59,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)WpPresentation, false);
         Interfaces.Add("wp_presentation", (IntPtr)WpPresentation);
     }
+
 
     /// <summary>
     /// Interface: wp_presentation_feedback

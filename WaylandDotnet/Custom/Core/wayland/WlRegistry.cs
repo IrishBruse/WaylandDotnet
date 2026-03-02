@@ -7,7 +7,7 @@ public sealed partial class WlRegistry : WaylandObject
 {
     public unsafe T Bind<T>(uint name, uint version) where T : WaylandObject, IWaylandObjectFactory<T>
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         const uint opcode = 0;
 

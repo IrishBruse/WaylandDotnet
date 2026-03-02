@@ -33,6 +33,8 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
     public static string _StaticInterfaceName => "wl_keyboard";
     public const int InterfaceVersion = 10;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -95,7 +97,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onKeymap += value;
             EnsureDispatcherRegistered();
         }
@@ -134,7 +136,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onEnter += value;
             EnsureDispatcherRegistered();
         }
@@ -170,7 +172,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onLeave += value;
             EnsureDispatcherRegistered();
         }
@@ -219,7 +221,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onKey += value;
             EnsureDispatcherRegistered();
         }
@@ -258,7 +260,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onModifiers += value;
             EnsureDispatcherRegistered();
         }
@@ -296,7 +298,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onRepeatInfo += value;
             EnsureDispatcherRegistered();
         }
@@ -422,7 +424,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
     /// </summary>
     public unsafe void Release()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -441,13 +443,5 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
     public static WlKeyboard Create(nint handle, WlDisplay? display = null)
     {
         return new WlKeyboard(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

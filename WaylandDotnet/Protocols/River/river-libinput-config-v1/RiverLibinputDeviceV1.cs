@@ -33,6 +33,8 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     public static string _StaticInterfaceName => "river_libinput_device_v1";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -377,7 +379,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onRemoved += value;
             EnsureDispatcherRegistered();
         }
@@ -406,7 +408,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onInputDevice += value;
             EnsureDispatcherRegistered();
         }
@@ -433,7 +435,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onSendEventsSupport += value;
             EnsureDispatcherRegistered();
         }
@@ -460,7 +462,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onSendEventsDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -487,7 +489,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onSendEventsCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -515,7 +517,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onTapSupport += value;
             EnsureDispatcherRegistered();
         }
@@ -542,7 +544,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onTapDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -569,7 +571,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onTapCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -596,7 +598,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onTapButtonMapDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -623,7 +625,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onTapButtonMapCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -650,7 +652,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDragDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -677,7 +679,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDragCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -704,7 +706,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDragLockDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -731,7 +733,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDragLockCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -759,7 +761,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onThreeFingerDragSupport += value;
             EnsureDispatcherRegistered();
         }
@@ -786,7 +788,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onThreeFingerDragDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -813,7 +815,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onThreeFingerDragCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -840,7 +842,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onCalibrationMatrixSupport += value;
             EnsureDispatcherRegistered();
         }
@@ -867,7 +869,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onCalibrationMatrixDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -894,7 +896,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onCalibrationMatrixCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -921,7 +923,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onAccelProfilesSupport += value;
             EnsureDispatcherRegistered();
         }
@@ -948,7 +950,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onAccelProfileDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -975,7 +977,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onAccelProfileCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -1002,7 +1004,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onAccelSpeedDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -1029,7 +1031,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onAccelSpeedCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -1056,7 +1058,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onNaturalScrollSupport += value;
             EnsureDispatcherRegistered();
         }
@@ -1083,7 +1085,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onNaturalScrollDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -1110,7 +1112,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onNaturalScrollCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -1137,7 +1139,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onLeftHandedSupport += value;
             EnsureDispatcherRegistered();
         }
@@ -1164,7 +1166,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onLeftHandedDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -1191,7 +1193,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onLeftHandedCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -1218,7 +1220,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onClickMethodSupport += value;
             EnsureDispatcherRegistered();
         }
@@ -1245,7 +1247,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onClickMethodDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -1272,7 +1274,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onClickMethodCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -1300,7 +1302,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onClickfingerButtonMapDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -1328,7 +1330,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onClickfingerButtonMapCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -1356,7 +1358,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onMiddleEmulationSupport += value;
             EnsureDispatcherRegistered();
         }
@@ -1383,7 +1385,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onMiddleEmulationDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -1410,7 +1412,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onMiddleEmulationCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -1437,7 +1439,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onScrollMethodSupport += value;
             EnsureDispatcherRegistered();
         }
@@ -1464,7 +1466,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onScrollMethodDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -1491,7 +1493,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onScrollMethodCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -1519,7 +1521,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onScrollButtonDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -1547,7 +1549,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onScrollButtonCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -1575,7 +1577,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onScrollButtonLockDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -1603,7 +1605,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onScrollButtonLockCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -1631,7 +1633,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDwtSupport += value;
             EnsureDispatcherRegistered();
         }
@@ -1658,7 +1660,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDwtDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -1685,7 +1687,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDwtCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -1713,7 +1715,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDwtpSupport += value;
             EnsureDispatcherRegistered();
         }
@@ -1740,7 +1742,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDwtpDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -1767,7 +1769,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDwtpCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -1794,7 +1796,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onRotationSupport += value;
             EnsureDispatcherRegistered();
         }
@@ -1821,7 +1823,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onRotationDefault += value;
             EnsureDispatcherRegistered();
         }
@@ -1848,7 +1850,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onRotationCurrent += value;
             EnsureDispatcherRegistered();
         }
@@ -2304,7 +2306,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -2330,7 +2332,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetSendEvents(uint mode)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2361,7 +2363,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetTap(uint state)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2393,7 +2395,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetTapButtonMap(uint buttonMap)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2423,7 +2425,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetDrag(uint state)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2457,7 +2459,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetDragLock(uint state)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2487,7 +2489,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetThreeFingerDrag(uint state)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2517,7 +2519,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetCalibrationMatrix(byte[] matrix)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2547,7 +2549,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetAccelProfile(uint profile)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2579,7 +2581,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetAccelSpeed(byte[] speed)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2609,7 +2611,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 ApplyAccelConfig(RiverLibinputAccelConfigV1 config)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2639,7 +2641,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetNaturalScroll(uint state)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2669,7 +2671,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetLeftHanded(uint state)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2699,7 +2701,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetClickMethod(uint method)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2730,7 +2732,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetClickfingerButtonMap(uint buttonMap)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2760,7 +2762,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetMiddleEmulation(uint state)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2790,7 +2792,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetScrollMethod(uint method)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2821,7 +2823,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetScrollButton(uint button)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2852,7 +2854,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetScrollButtonLock(uint state)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2882,7 +2884,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetDwt(uint state)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2912,7 +2914,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetDwtp(uint state)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2943,7 +2945,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputResultV1 SetRotation(uint angle)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -2966,13 +2968,5 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     public static RiverLibinputDeviceV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverLibinputDeviceV1(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

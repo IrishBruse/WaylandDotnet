@@ -33,6 +33,8 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     public static string _StaticInterfaceName => "wl_data_device";
     public const int InterfaceVersion = 3;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -79,7 +81,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDataOffer += value;
             EnsureDispatcherRegistered();
         }
@@ -109,7 +111,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onEnter += value;
             EnsureDispatcherRegistered();
         }
@@ -138,7 +140,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onLeave += value;
             EnsureDispatcherRegistered();
         }
@@ -168,7 +170,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onMotion += value;
             EnsureDispatcherRegistered();
         }
@@ -207,7 +209,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDrop += value;
             EnsureDispatcherRegistered();
         }
@@ -245,7 +247,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onSelection += value;
             EnsureDispatcherRegistered();
         }
@@ -396,7 +398,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     /// </summary>
     public unsafe void StartDrag(WlDataSource? source, WlSurface origin, WlSurface? icon, uint serial)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[4];
         args[0].o = (WlObject*)(source?.Handle ?? IntPtr.Zero);
@@ -433,7 +435,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     /// </summary>
     public unsafe void SetSelection(WlDataSource? source, uint serial)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)(source?.Handle ?? IntPtr.Zero);
@@ -461,7 +463,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     /// </summary>
     public unsafe void Release()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -480,13 +482,5 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     public static WlDataDevice Create(nint handle, WlDisplay? display = null)
     {
         return new WlDataDevice(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

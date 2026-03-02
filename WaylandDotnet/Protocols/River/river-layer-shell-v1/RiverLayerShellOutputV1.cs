@@ -33,6 +33,8 @@ public sealed partial class RiverLayerShellOutputV1 : WaylandObject, IWaylandObj
     public static string _StaticInterfaceName => "river_layer_shell_output_v1";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -68,7 +70,7 @@ public sealed partial class RiverLayerShellOutputV1 : WaylandObject, IWaylandObj
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onNonExclusiveArea += value;
             EnsureDispatcherRegistered();
         }
@@ -151,7 +153,7 @@ public sealed partial class RiverLayerShellOutputV1 : WaylandObject, IWaylandObj
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -185,7 +187,7 @@ public sealed partial class RiverLayerShellOutputV1 : WaylandObject, IWaylandObj
     /// </summary>
     public unsafe void SetDefault()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -204,13 +206,5 @@ public sealed partial class RiverLayerShellOutputV1 : WaylandObject, IWaylandObj
     public static RiverLayerShellOutputV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverLayerShellOutputV1(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

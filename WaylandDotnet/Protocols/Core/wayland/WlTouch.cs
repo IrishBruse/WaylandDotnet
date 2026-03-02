@@ -33,6 +33,8 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
     public static string _StaticInterfaceName => "wl_touch";
     public const int InterfaceVersion = 10;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -63,7 +65,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDown += value;
             EnsureDispatcherRegistered();
         }
@@ -92,7 +94,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onUp += value;
             EnsureDispatcherRegistered();
         }
@@ -119,7 +121,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onMotion += value;
             EnsureDispatcherRegistered();
         }
@@ -153,7 +155,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onFrame += value;
             EnsureDispatcherRegistered();
         }
@@ -187,7 +189,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onCancel += value;
             EnsureDispatcherRegistered();
         }
@@ -238,7 +240,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onShape += value;
             EnsureDispatcherRegistered();
         }
@@ -287,7 +289,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onOrientation += value;
             EnsureDispatcherRegistered();
         }
@@ -416,7 +418,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
     /// </summary>
     public unsafe void Release()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -435,13 +437,5 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
     public static WlTouch Create(nint handle, WlDisplay? display = null)
     {
         return new WlTouch(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

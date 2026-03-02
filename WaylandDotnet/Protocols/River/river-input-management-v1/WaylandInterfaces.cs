@@ -13,6 +13,7 @@ public static unsafe partial class WaylandInterfaces
     public static WlInterface* RiverInputManagerV1 = AllocateInterface();
     public static WlInterface* RiverInputDeviceV1 = AllocateInterface();
 
+
     /// <summary>
     /// Interface: river_input_manager_v1
     /// Version: 1
@@ -76,6 +77,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)RiverInputManagerV1, false);
         Interfaces.Add("river_input_manager_v1", (IntPtr)RiverInputManagerV1);
     }
+
 
     /// <summary>
     /// Interface: river_input_device_v1

@@ -33,6 +33,8 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     public static string _StaticInterfaceName => "river_seat_v1";
     public const int InterfaceVersion = 3;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -103,7 +105,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onRemoved += value;
             EnsureDispatcherRegistered();
         }
@@ -147,7 +149,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onWlSeat += value;
             EnsureDispatcherRegistered();
         }
@@ -187,7 +189,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onPointerEnter += value;
             EnsureDispatcherRegistered();
         }
@@ -218,7 +220,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onPointerLeave += value;
             EnsureDispatcherRegistered();
         }
@@ -259,7 +261,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onWindowInteraction += value;
             EnsureDispatcherRegistered();
         }
@@ -301,7 +303,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onShellSurfaceInteraction += value;
             EnsureDispatcherRegistered();
         }
@@ -332,7 +334,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onOpDelta += value;
             EnsureDispatcherRegistered();
         }
@@ -368,7 +370,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onOpRelease += value;
             EnsureDispatcherRegistered();
         }
@@ -403,7 +405,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onPointerPosition += value;
             EnsureDispatcherRegistered();
         }
@@ -544,7 +546,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -573,7 +575,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// </summary>
     public unsafe void FocusWindow(RiverWindowV1 window)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)(window?.Handle ?? IntPtr.Zero);
@@ -604,7 +606,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// </summary>
     public unsafe void FocusShellSurface(RiverShellSurfaceV1 shellSurface)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)(shellSurface?.Handle ?? IntPtr.Zero);
@@ -634,7 +636,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// </summary>
     public unsafe void ClearFocus()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -675,7 +677,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// </summary>
     public unsafe void OpStartPointer()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -706,7 +708,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// </summary>
     public unsafe void OpEnd()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -739,7 +741,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// </summary>
     public unsafe RiverPointerBindingV1 GetPointerBinding(uint button, uint modifiers)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[3];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -775,7 +777,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// </summary>
     public unsafe void SetXcursorTheme(string name, uint size)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].s = Utf8StringMarshaller.ConvertToUnmanaged(name);
@@ -810,7 +812,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// </summary>
     public unsafe void PointerWarp(int x, int y)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].i = x;
@@ -831,13 +833,5 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     public static RiverSeatV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverSeatV1(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

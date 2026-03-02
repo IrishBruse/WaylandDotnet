@@ -19,6 +19,7 @@ public static unsafe partial class WaylandInterfaces
     public static WlInterface* RiverSeatV1 = AllocateInterface();
     public static WlInterface* RiverPointerBindingV1 = AllocateInterface();
 
+
     /// <summary>
     /// Interface: river_window_manager_v1
     /// Version: 3
@@ -136,6 +137,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)RiverWindowManagerV1, false);
         Interfaces.Add("river_window_manager_v1", (IntPtr)RiverWindowManagerV1);
     }
+
 
     /// <summary>
     /// Interface: river_window_v1
@@ -399,6 +401,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("river_window_v1", (IntPtr)RiverWindowV1);
     }
 
+
     /// <summary>
     /// Interface: river_decoration_v1
     /// Version: 3
@@ -442,6 +445,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("river_decoration_v1", (IntPtr)RiverDecorationV1);
     }
 
+
     /// <summary>
     /// Interface: river_shell_surface_v1
     /// Version: 3
@@ -484,6 +488,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)RiverShellSurfaceV1, false);
         Interfaces.Add("river_shell_surface_v1", (IntPtr)RiverShellSurfaceV1);
     }
+
 
     /// <summary>
     /// Interface: river_node_v1
@@ -546,6 +551,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("river_node_v1", (IntPtr)RiverNodeV1);
     }
 
+
     /// <summary>
     /// Interface: river_output_v1
     /// Version: 3
@@ -603,6 +609,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)RiverOutputV1, false);
         Interfaces.Add("river_output_v1", (IntPtr)RiverOutputV1);
     }
+
 
     /// <summary>
     /// Interface: river_seat_v1
@@ -739,6 +746,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)RiverSeatV1, false);
         Interfaces.Add("river_seat_v1", (IntPtr)RiverSeatV1);
     }
+
 
     /// <summary>
     /// Interface: river_pointer_binding_v1

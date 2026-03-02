@@ -15,6 +15,7 @@ public static unsafe partial class WaylandInterfaces
     public static WlInterface* RiverLibinputAccelConfigV1 = AllocateInterface();
     public static WlInterface* RiverLibinputResultV1 = AllocateInterface();
 
+
     /// <summary>
     /// Interface: river_libinput_config_v1
     /// Version: 1
@@ -72,6 +73,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)RiverLibinputConfigV1, false);
         Interfaces.Add("river_libinput_config_v1", (IntPtr)RiverLibinputConfigV1);
     }
+
 
     /// <summary>
     /// Interface: river_libinput_device_v1
@@ -563,6 +565,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("river_libinput_device_v1", (IntPtr)RiverLibinputDeviceV1);
     }
 
+
     /// <summary>
     /// Interface: river_libinput_accel_config_v1
     /// Version: 1
@@ -599,6 +602,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)RiverLibinputAccelConfigV1, false);
         Interfaces.Add("river_libinput_accel_config_v1", (IntPtr)RiverLibinputAccelConfigV1);
     }
+
 
     /// <summary>
     /// Interface: river_libinput_result_v1

@@ -33,6 +33,8 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     public static string _StaticInterfaceName => "wl_data_source";
     public const int InterfaceVersion = 3;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -76,7 +78,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onTarget += value;
             EnsureDispatcherRegistered();
         }
@@ -105,7 +107,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onSend += value;
             EnsureDispatcherRegistered();
         }
@@ -151,7 +153,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onCancelled += value;
             EnsureDispatcherRegistered();
         }
@@ -186,7 +188,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDndDropPerformed += value;
             EnsureDispatcherRegistered();
         }
@@ -218,7 +220,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDndFinished += value;
             EnsureDispatcherRegistered();
         }
@@ -269,7 +271,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onAction += value;
             EnsureDispatcherRegistered();
         }
@@ -380,7 +382,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     /// </summary>
     public unsafe void Offer(string mimeType)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].s = Utf8StringMarshaller.ConvertToUnmanaged(mimeType);
@@ -407,7 +409,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -445,7 +447,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     /// </summary>
     public unsafe void SetActions(uint dndActions)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].u = dndActions;
@@ -465,13 +467,5 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     public static WlDataSource Create(nint handle, WlDisplay? display = null)
     {
         return new WlDataSource(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

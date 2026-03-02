@@ -33,6 +33,8 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
     public static string _StaticInterfaceName => "zwp_linux_dmabuf_v1";
     public const int InterfaceVersion = 5;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -70,7 +72,7 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onFormat += value;
             EnsureDispatcherRegistered();
         }
@@ -119,7 +121,7 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onModifier += value;
             EnsureDispatcherRegistered();
         }
@@ -205,7 +207,7 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -234,7 +236,7 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
     /// </summary>
     public unsafe ZwpLinuxBufferParamsV1 CreateParams()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -266,7 +268,7 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
     /// </summary>
     public unsafe ZwpLinuxDmabufFeedbackV1 GetDefaultFeedback()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -300,7 +302,7 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
     /// </summary>
     public unsafe ZwpLinuxDmabufFeedbackV1 GetSurfaceFeedback(WlSurface surface)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -323,13 +325,5 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
     public static ZwpLinuxDmabufV1 Create(nint handle, WlDisplay? display = null)
     {
         return new ZwpLinuxDmabufV1(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

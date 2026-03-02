@@ -13,6 +13,7 @@ public static unsafe partial class WaylandInterfaces
     public static WlInterface* WpViewporter = AllocateInterface();
     public static WlInterface* WpViewport = AllocateInterface();
 
+
     /// <summary>
     /// Interface: wp_viewporter
     /// Version: 1
@@ -49,6 +50,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)WpViewporter, false);
         Interfaces.Add("wp_viewporter", (IntPtr)WpViewporter);
     }
+
 
     /// <summary>
     /// Interface: wp_viewport

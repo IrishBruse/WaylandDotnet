@@ -33,6 +33,8 @@ public sealed partial class WlShell : WaylandObject, IWaylandObjectFactory<WlShe
     public static string _StaticInterfaceName => "wl_shell";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     public WlDisplay Display { get; private set; }
 
     public WlShell(IntPtr handle, WlDisplay display)
@@ -63,7 +65,7 @@ public sealed partial class WlShell : WaylandObject, IWaylandObjectFactory<WlShe
     /// </summary>
     public unsafe WlShellSurface GetShellSurface(WlSurface surface)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;

@@ -33,6 +33,8 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     public static string _StaticInterfaceName => "river_node_v1";
     public const int InterfaceVersion = 3;
 
+    private bool disposed;
+
     public RiverNodeV1(IntPtr handle)
     {
         Handle = handle;
@@ -48,7 +50,7 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -85,7 +87,7 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     /// </summary>
     public unsafe void SetPosition(int x, int y)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].i = x;
@@ -117,7 +119,7 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     /// </summary>
     public unsafe void PlaceTop()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -147,7 +149,7 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     /// </summary>
     public unsafe void PlaceBottom()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -179,7 +181,7 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     /// </summary>
     public unsafe void PlaceAbove(RiverNodeV1 other)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)(other?.Handle ?? IntPtr.Zero);
@@ -212,7 +214,7 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     /// </summary>
     public unsafe void PlaceBelow(RiverNodeV1 other)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)(other?.Handle ?? IntPtr.Zero);

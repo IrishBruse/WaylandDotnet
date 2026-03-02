@@ -20,6 +20,7 @@ public static unsafe partial class WaylandInterfaces
     public static WlInterface* ZwpTabletPadV2 = AllocateInterface();
     public static WlInterface* ZwpTabletPadDialV2 = AllocateInterface();
 
+
     /// <summary>
     /// Interface: zwp_tablet_manager_v2
     /// Version: 2
@@ -56,6 +57,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)ZwpTabletManagerV2, false);
         Interfaces.Add("zwp_tablet_manager_v2", (IntPtr)ZwpTabletManagerV2);
     }
+
 
     /// <summary>
     /// Interface: zwp_tablet_seat_v2
@@ -108,6 +110,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)ZwpTabletSeatV2, false);
         Interfaces.Add("zwp_tablet_seat_v2", (IntPtr)ZwpTabletSeatV2);
     }
+
 
     /// <summary>
     /// Interface: zwp_tablet_tool_v2
@@ -263,6 +266,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("zwp_tablet_tool_v2", (IntPtr)ZwpTabletToolV2);
     }
 
+
     /// <summary>
     /// Interface: zwp_tablet_v2
     /// Version: 2
@@ -333,6 +337,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("zwp_tablet_v2", (IntPtr)ZwpTabletV2);
     }
 
+
     /// <summary>
     /// Interface: zwp_tablet_pad_ring_v2
     /// Version: 2
@@ -397,6 +402,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("zwp_tablet_pad_ring_v2", (IntPtr)ZwpTabletPadRingV2);
     }
 
+
     /// <summary>
     /// Interface: zwp_tablet_pad_strip_v2
     /// Version: 2
@@ -460,6 +466,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)ZwpTabletPadStripV2, false);
         Interfaces.Add("zwp_tablet_pad_strip_v2", (IntPtr)ZwpTabletPadStripV2);
     }
+
 
     /// <summary>
     /// Interface: zwp_tablet_pad_group_v2
@@ -536,6 +543,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)ZwpTabletPadGroupV2, false);
         Interfaces.Add("zwp_tablet_pad_group_v2", (IntPtr)ZwpTabletPadGroupV2);
     }
+
 
     /// <summary>
     /// Interface: zwp_tablet_pad_v2
@@ -624,6 +632,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)ZwpTabletPadV2, false);
         Interfaces.Add("zwp_tablet_pad_v2", (IntPtr)ZwpTabletPadV2);
     }
+
 
     /// <summary>
     /// Interface: zwp_tablet_pad_dial_v2

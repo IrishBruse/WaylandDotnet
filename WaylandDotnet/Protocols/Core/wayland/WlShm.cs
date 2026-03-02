@@ -33,6 +33,8 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
     public static string _StaticInterfaceName => "wl_shm";
     public const int InterfaceVersion = 2;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -656,7 +658,7 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onFormat += value;
             EnsureDispatcherRegistered();
         }
@@ -736,7 +738,7 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
     /// </summary>
     public unsafe WlShmPool CreatePool(int fd, int size)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[3];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -770,7 +772,7 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
     /// </summary>
     public unsafe void Release()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -789,13 +791,5 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
     public static WlShm Create(nint handle, WlDisplay? display = null)
     {
         return new WlShm(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

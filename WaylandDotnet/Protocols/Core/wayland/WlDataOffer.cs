@@ -33,6 +33,8 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
     public static string _StaticInterfaceName => "wl_data_offer";
     public const int InterfaceVersion = 3;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -82,7 +84,7 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onOffer += value;
             EnsureDispatcherRegistered();
         }
@@ -112,7 +114,7 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onSourceActions += value;
             EnsureDispatcherRegistered();
         }
@@ -173,7 +175,7 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onAction += value;
             EnsureDispatcherRegistered();
         }
@@ -276,7 +278,7 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
     /// </summary>
     public unsafe void Accept(uint serial, string? mimeType)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].u = serial;
@@ -318,7 +320,7 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
     /// </summary>
     public unsafe void Receive(string mimeType, int fd)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].s = Utf8StringMarshaller.ConvertToUnmanaged(mimeType);
@@ -346,7 +348,7 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -385,7 +387,7 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
     /// </summary>
     public unsafe void Finish()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -441,7 +443,7 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
     /// </summary>
     public unsafe void SetActions(uint dndActions, uint preferredAction)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].u = dndActions;
@@ -462,13 +464,5 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
     public static WlDataOffer Create(nint handle, WlDisplay? display = null)
     {
         return new WlDataOffer(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

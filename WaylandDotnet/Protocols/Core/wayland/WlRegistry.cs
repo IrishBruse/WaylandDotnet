@@ -33,6 +33,8 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
     public static string _StaticInterfaceName => "wl_registry";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -64,7 +66,7 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onGlobal += value;
             EnsureDispatcherRegistered();
         }
@@ -100,7 +102,7 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onGlobalRemove += value;
             EnsureDispatcherRegistered();
         }
@@ -178,13 +180,5 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
     public static WlRegistry Create(nint handle, WlDisplay? display = null)
     {
         return new WlRegistry(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

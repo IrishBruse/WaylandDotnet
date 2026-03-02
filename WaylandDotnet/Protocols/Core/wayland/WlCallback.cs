@@ -33,6 +33,8 @@ public sealed partial class WlCallback : WaylandObject, IWaylandObjectFactory<Wl
     public static string _StaticInterfaceName => "wl_callback";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -60,7 +62,7 @@ public sealed partial class WlCallback : WaylandObject, IWaylandObjectFactory<Wl
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDone += value;
             EnsureDispatcherRegistered();
         }
@@ -129,13 +131,5 @@ public sealed partial class WlCallback : WaylandObject, IWaylandObjectFactory<Wl
     public static WlCallback Create(nint handle, WlDisplay? display = null)
     {
         return new WlCallback(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

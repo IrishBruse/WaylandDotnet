@@ -33,6 +33,8 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
     public static string _StaticInterfaceName => "river_input_device_v1";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -103,7 +105,7 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onRemoved += value;
             EnsureDispatcherRegistered();
         }
@@ -132,7 +134,7 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onType += value;
             EnsureDispatcherRegistered();
         }
@@ -161,7 +163,7 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onName += value;
             EnsureDispatcherRegistered();
         }
@@ -251,7 +253,7 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -280,7 +282,7 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
     /// </summary>
     public unsafe void AssignToSeat(string name)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].s = Utf8StringMarshaller.ConvertToUnmanaged(name);
@@ -311,7 +313,7 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
     /// </summary>
     public unsafe void SetRepeatInfo(int rate, int delay)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].i = rate;
@@ -345,7 +347,7 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
     /// </summary>
     public unsafe void SetScrollFactor(WlFixed factor)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].f = factor;
@@ -377,7 +379,7 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
     /// </summary>
     public unsafe void MapToOutput(WlOutput? output)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)(output?.Handle ?? IntPtr.Zero);
@@ -412,7 +414,7 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
     /// </summary>
     public unsafe void MapToRectangle(int x, int y, int width, int height)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[4];
         args[0].i = x;
@@ -435,13 +437,5 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
     public static RiverInputDeviceV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverInputDeviceV1(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

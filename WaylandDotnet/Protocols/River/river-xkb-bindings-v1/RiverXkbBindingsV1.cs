@@ -33,6 +33,8 @@ public sealed partial class RiverXkbBindingsV1 : WaylandObject, IWaylandObjectFa
     public static string _StaticInterfaceName => "river_xkb_bindings_v1";
     public const int InterfaceVersion = 2;
 
+    private bool disposed;
+
     public WlDisplay Display { get; private set; }
 
     public RiverXkbBindingsV1(IntPtr handle, WlDisplay display)
@@ -60,7 +62,7 @@ public sealed partial class RiverXkbBindingsV1 : WaylandObject, IWaylandObjectFa
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -90,7 +92,7 @@ public sealed partial class RiverXkbBindingsV1 : WaylandObject, IWaylandObjectFa
     /// </summary>
     public unsafe RiverXkbBindingV1 GetXkbBinding(RiverSeatV1 seat, uint keysym, uint modifiers)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[4];
         args[0].o = (WlObject*)(seat?.Handle ?? IntPtr.Zero);
@@ -125,7 +127,7 @@ public sealed partial class RiverXkbBindingsV1 : WaylandObject, IWaylandObjectFa
     /// </summary>
     public unsafe RiverXkbBindingsSeatV1 GetSeat(RiverSeatV1 seat)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;

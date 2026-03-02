@@ -33,6 +33,8 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     public static string _StaticInterfaceName => "wl_pointer";
     public const int InterfaceVersion = 10;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -134,7 +136,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onEnter += value;
             EnsureDispatcherRegistered();
         }
@@ -165,7 +167,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onLeave += value;
             EnsureDispatcherRegistered();
         }
@@ -194,7 +196,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onMotion += value;
             EnsureDispatcherRegistered();
         }
@@ -234,7 +236,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onButton += value;
             EnsureDispatcherRegistered();
         }
@@ -276,7 +278,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onAxis += value;
             EnsureDispatcherRegistered();
         }
@@ -336,7 +338,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onFrame += value;
             EnsureDispatcherRegistered();
         }
@@ -387,7 +389,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onAxisSource += value;
             EnsureDispatcherRegistered();
         }
@@ -427,7 +429,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onAxisStop += value;
             EnsureDispatcherRegistered();
         }
@@ -483,7 +485,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onAxisDiscrete += value;
             EnsureDispatcherRegistered();
         }
@@ -530,7 +532,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onAxisValue120 += value;
             EnsureDispatcherRegistered();
         }
@@ -591,7 +593,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onAxisRelativeDirection += value;
             EnsureDispatcherRegistered();
         }
@@ -787,7 +789,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     /// </summary>
     public unsafe void SetCursor(uint serial, WlSurface? surface, int hotspotX, int hotspotY)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[4];
         args[0].u = serial;
@@ -821,7 +823,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     /// </summary>
     public unsafe void Release()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -840,13 +842,5 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     public static WlPointer Create(nint handle, WlDisplay? display = null)
     {
         return new WlPointer(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

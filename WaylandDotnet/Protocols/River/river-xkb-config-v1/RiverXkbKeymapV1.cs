@@ -33,6 +33,8 @@ public sealed partial class RiverXkbKeymapV1 : WaylandObject, IWaylandObjectFact
     public static string _StaticInterfaceName => "river_xkb_keymap_v1";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -61,7 +63,7 @@ public sealed partial class RiverXkbKeymapV1 : WaylandObject, IWaylandObjectFact
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onSuccess += value;
             EnsureDispatcherRegistered();
         }
@@ -91,7 +93,7 @@ public sealed partial class RiverXkbKeymapV1 : WaylandObject, IWaylandObjectFact
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onFailure += value;
             EnsureDispatcherRegistered();
         }
@@ -174,7 +176,7 @@ public sealed partial class RiverXkbKeymapV1 : WaylandObject, IWaylandObjectFact
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -193,13 +195,5 @@ public sealed partial class RiverXkbKeymapV1 : WaylandObject, IWaylandObjectFact
     public static RiverXkbKeymapV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverXkbKeymapV1(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

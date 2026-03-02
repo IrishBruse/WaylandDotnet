@@ -33,6 +33,8 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     public static string _StaticInterfaceName => "xdg_toplevel";
     public const int InterfaceVersion = 7;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -214,7 +216,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onConfigure += value;
             EnsureDispatcherRegistered();
         }
@@ -248,7 +250,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onClose += value;
             EnsureDispatcherRegistered();
         }
@@ -289,7 +291,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onConfigureBounds += value;
             EnsureDispatcherRegistered();
         }
@@ -335,7 +337,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onWmCapabilities += value;
             EnsureDispatcherRegistered();
         }
@@ -435,7 +437,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -480,7 +482,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// </summary>
     public unsafe void SetParent(XdgToplevel? parent)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)(parent?.Handle ?? IntPtr.Zero);
@@ -513,7 +515,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// </summary>
     public unsafe void SetTitle(string title)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].s = Utf8StringMarshaller.ConvertToUnmanaged(title);
@@ -562,7 +564,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// </summary>
     public unsafe void SetAppId(string appId)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].s = Utf8StringMarshaller.ConvertToUnmanaged(appId);
@@ -600,7 +602,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// </summary>
     public unsafe void ShowWindowMenu(WlSeat seat, uint serial, int x, int y)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[4];
         args[0].o = (WlObject*)(seat?.Handle ?? IntPtr.Zero);
@@ -645,7 +647,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// </summary>
     public unsafe void Move(WlSeat seat, uint serial)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)(seat?.Handle ?? IntPtr.Zero);
@@ -703,7 +705,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// </summary>
     public unsafe void Resize(WlSeat seat, uint serial, uint edges)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[3];
         args[0].o = (WlObject*)(seat?.Handle ?? IntPtr.Zero);
@@ -764,7 +766,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// </summary>
     public unsafe void SetMaxSize(int width, int height)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].i = width;
@@ -824,7 +826,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// </summary>
     public unsafe void SetMinSize(int width, int height)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].i = width;
@@ -870,7 +872,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// </summary>
     public unsafe void SetMaximized()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -916,7 +918,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// </summary>
     public unsafe void UnsetMaximized()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -964,7 +966,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// </summary>
     public unsafe void SetFullscreen(WlOutput? output)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)(output?.Handle ?? IntPtr.Zero);
@@ -1007,7 +1009,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// </summary>
     public unsafe void UnsetFullscreen()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -1040,7 +1042,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// </summary>
     public unsafe void SetMinimized()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -1059,13 +1061,5 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     public static XdgToplevel Create(nint handle, WlDisplay? display = null)
     {
         return new XdgToplevel(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

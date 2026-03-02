@@ -33,6 +33,8 @@ public sealed partial class ZwpTabletManagerV2 : WaylandObject, IWaylandObjectFa
     public static string _StaticInterfaceName => "zwp_tablet_manager_v2";
     public const int InterfaceVersion = 2;
 
+    private bool disposed;
+
     public WlDisplay Display { get; private set; }
 
     public ZwpTabletManagerV2(IntPtr handle, WlDisplay display)
@@ -51,7 +53,7 @@ public sealed partial class ZwpTabletManagerV2 : WaylandObject, IWaylandObjectFa
     /// </summary>
     public unsafe ZwpTabletSeatV2 GetTabletSeat(WlSeat seat)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -82,7 +84,7 @@ public sealed partial class ZwpTabletManagerV2 : WaylandObject, IWaylandObjectFa
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 

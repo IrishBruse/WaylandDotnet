@@ -33,6 +33,8 @@ public sealed partial class RiverDecorationV1 : WaylandObject, IWaylandObjectFac
     public static string _StaticInterfaceName => "river_decoration_v1";
     public const int InterfaceVersion = 3;
 
+    private bool disposed;
+
     public RiverDecorationV1(IntPtr handle)
     {
         Handle = handle;
@@ -57,7 +59,7 @@ public sealed partial class RiverDecorationV1 : WaylandObject, IWaylandObjectFac
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -90,7 +92,7 @@ public sealed partial class RiverDecorationV1 : WaylandObject, IWaylandObjectFac
     /// </summary>
     public unsafe void SetOffset(int x, int y)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].i = x;
@@ -127,7 +129,7 @@ public sealed partial class RiverDecorationV1 : WaylandObject, IWaylandObjectFac
     /// </summary>
     public unsafe void SyncNextCommit()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 

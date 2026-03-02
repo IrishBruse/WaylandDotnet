@@ -33,6 +33,8 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
     public static string _StaticInterfaceName => "wp_presentation_feedback";
     public const int InterfaceVersion = 2;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -89,7 +91,7 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onSyncOutput += value;
             EnsureDispatcherRegistered();
         }
@@ -159,7 +161,7 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onPresented += value;
             EnsureDispatcherRegistered();
         }
@@ -186,7 +188,7 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDiscarded += value;
             EnsureDispatcherRegistered();
         }
@@ -276,13 +278,5 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
     public static WpPresentationFeedback Create(nint handle, WlDisplay? display = null)
     {
         return new WpPresentationFeedback(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

@@ -33,6 +33,8 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     public static string _StaticInterfaceName => "river_window_manager_v1";
     public const int InterfaceVersion = 3;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -85,7 +87,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onUnavailable += value;
             EnsureDispatcherRegistered();
         }
@@ -114,7 +116,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onFinished += value;
             EnsureDispatcherRegistered();
         }
@@ -149,7 +151,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onManageStart += value;
             EnsureDispatcherRegistered();
         }
@@ -184,7 +186,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onRenderStart += value;
             EnsureDispatcherRegistered();
         }
@@ -217,7 +219,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onSessionLocked += value;
             EnsureDispatcherRegistered();
         }
@@ -247,7 +249,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onSessionUnlocked += value;
             EnsureDispatcherRegistered();
         }
@@ -277,7 +279,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onWindow += value;
             EnsureDispatcherRegistered();
         }
@@ -309,7 +311,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onOutput += value;
             EnsureDispatcherRegistered();
         }
@@ -339,7 +341,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onSeat += value;
             EnsureDispatcherRegistered();
         }
@@ -477,7 +479,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     /// </summary>
     public unsafe void Stop()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -510,7 +512,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -546,7 +548,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     /// </summary>
     public unsafe void ManageFinish()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -579,7 +581,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     /// </summary>
     public unsafe void ManageDirty()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -615,7 +617,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     /// </summary>
     public unsafe void RenderFinish()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -645,7 +647,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     /// </summary>
     public unsafe RiverShellSurfaceV1 GetShellSurface(WlSurface surface)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -668,13 +670,5 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     public static RiverWindowManagerV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverWindowManagerV1(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

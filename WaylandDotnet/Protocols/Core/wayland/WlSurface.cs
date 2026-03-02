@@ -33,6 +33,8 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     public static string _StaticInterfaceName => "wl_surface";
     public const int InterfaceVersion = 6;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -89,7 +91,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onEnter += value;
             EnsureDispatcherRegistered();
         }
@@ -124,7 +126,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onLeave += value;
             EnsureDispatcherRegistered();
         }
@@ -162,7 +164,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onPreferredBufferScale += value;
             EnsureDispatcherRegistered();
         }
@@ -197,7 +199,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onPreferredBufferTransform += value;
             EnsureDispatcherRegistered();
         }
@@ -298,7 +300,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -388,7 +390,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     /// </summary>
     public unsafe void Attach(WlBuffer? buffer, int x, int y)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[3];
         args[0].o = (WlObject*)(buffer?.Handle ?? IntPtr.Zero);
@@ -437,7 +439,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     /// </summary>
     public unsafe void Damage(int x, int y, int width, int height)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[4];
         args[0].i = x;
@@ -498,7 +500,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     /// </summary>
     public unsafe WlCallback Frame()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -550,7 +552,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     /// </summary>
     public unsafe void SetOpaqueRegion(WlRegion? region)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)(region?.Handle ?? IntPtr.Zero);
@@ -598,7 +600,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     /// </summary>
     public unsafe void SetInputRegion(WlRegion? region)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)(region?.Handle ?? IntPtr.Zero);
@@ -670,7 +672,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     /// </summary>
     public unsafe void Commit()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -726,7 +728,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     /// </summary>
     public unsafe void SetBufferTransform(int transform)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].i = transform;
@@ -775,7 +777,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     /// </summary>
     public unsafe void SetBufferScale(int scale)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].i = scale;
@@ -833,7 +835,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     /// </summary>
     public unsafe void DamageBuffer(int x, int y, int width, int height)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[4];
         args[0].i = x;
@@ -877,7 +879,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     /// </summary>
     public unsafe void Offset(int x, int y)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].i = x;
@@ -898,13 +900,5 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     public static WlSurface Create(nint handle, WlDisplay? display = null)
     {
         return new WlSurface(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

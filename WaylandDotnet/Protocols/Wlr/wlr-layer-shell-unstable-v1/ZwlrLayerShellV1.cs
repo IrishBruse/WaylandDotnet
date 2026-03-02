@@ -33,6 +33,8 @@ public sealed partial class ZwlrLayerShellV1 : WaylandObject, IWaylandObjectFact
     public static string _StaticInterfaceName => "zwlr_layer_shell_v1";
     public const int InterfaceVersion = 5;
 
+    private bool disposed;
+
     public WlDisplay Display { get; private set; }
 
     public ZwlrLayerShellV1(IntPtr handle, WlDisplay display)
@@ -108,7 +110,7 @@ public sealed partial class ZwlrLayerShellV1 : WaylandObject, IWaylandObjectFact
     /// </summary>
     public unsafe ZwlrLayerSurfaceV1 GetLayerSurface(WlSurface surface, WlOutput? output, uint layer, string _namespace)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[5];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -143,7 +145,7 @@ public sealed partial class ZwlrLayerShellV1 : WaylandObject, IWaylandObjectFact
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 

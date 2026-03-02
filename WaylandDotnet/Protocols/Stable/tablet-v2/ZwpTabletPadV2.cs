@@ -33,6 +33,8 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
     public static string _StaticInterfaceName => "zwp_tablet_pad_v2";
     public const int InterfaceVersion = 2;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -77,7 +79,7 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onGroup += value;
             EnsureDispatcherRegistered();
         }
@@ -113,7 +115,7 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onPath += value;
             EnsureDispatcherRegistered();
         }
@@ -145,7 +147,7 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onButtons += value;
             EnsureDispatcherRegistered();
         }
@@ -174,7 +176,7 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDone += value;
             EnsureDispatcherRegistered();
         }
@@ -201,7 +203,7 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onButton += value;
             EnsureDispatcherRegistered();
         }
@@ -228,7 +230,7 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onEnter += value;
             EnsureDispatcherRegistered();
         }
@@ -256,7 +258,7 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onLeave += value;
             EnsureDispatcherRegistered();
         }
@@ -288,7 +290,7 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onRemoved += value;
             EnsureDispatcherRegistered();
         }
@@ -447,7 +449,7 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
     /// </summary>
     public unsafe void SetFeedback(uint button, string description, uint serial)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[3];
         args[0].u = button;
@@ -477,7 +479,7 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -496,13 +498,5 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
     public static ZwpTabletPadV2 Create(nint handle, WlDisplay? display = null)
     {
         return new ZwpTabletPadV2(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

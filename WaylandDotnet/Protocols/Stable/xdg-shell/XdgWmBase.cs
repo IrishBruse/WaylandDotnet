@@ -33,6 +33,8 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
     public static string _StaticInterfaceName => "xdg_wm_base";
     public const int InterfaceVersion = 7;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -105,7 +107,7 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onPing += value;
             EnsureDispatcherRegistered();
         }
@@ -185,7 +187,7 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -213,7 +215,7 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
     /// </summary>
     public unsafe XdgPositioner CreatePositioner()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -254,7 +256,7 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
     /// </summary>
     public unsafe XdgSurface GetXdgSurface(WlSurface surface)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -286,7 +288,7 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
     /// </summary>
     public unsafe void Pong(uint serial)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].u = serial;
@@ -306,13 +308,5 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
     public static XdgWmBase Create(nint handle, WlDisplay? display = null)
     {
         return new XdgWmBase(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

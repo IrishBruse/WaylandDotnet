@@ -33,6 +33,8 @@ public sealed partial class WlFixes : WaylandObject, IWaylandObjectFactory<WlFix
     public static string _StaticInterfaceName => "wl_fixes";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     public WlFixes(IntPtr handle)
     {
         Handle = handle;
@@ -45,7 +47,7 @@ public sealed partial class WlFixes : WaylandObject, IWaylandObjectFactory<WlFix
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -79,7 +81,7 @@ public sealed partial class WlFixes : WaylandObject, IWaylandObjectFactory<WlFix
     /// </summary>
     public unsafe void DestroyRegistry(WlRegistry registry)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)(registry?.Handle ?? IntPtr.Zero);

@@ -33,6 +33,8 @@ public sealed partial class WlRegion : WaylandObject, IWaylandObjectFactory<WlRe
     public static string _StaticInterfaceName => "wl_region";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     public WlRegion(IntPtr handle)
     {
         Handle = handle;
@@ -47,7 +49,7 @@ public sealed partial class WlRegion : WaylandObject, IWaylandObjectFactory<WlRe
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -73,7 +75,7 @@ public sealed partial class WlRegion : WaylandObject, IWaylandObjectFactory<WlRe
     /// </summary>
     public unsafe void Add(int x, int y, int width, int height)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[4];
         args[0].i = x;
@@ -103,7 +105,7 @@ public sealed partial class WlRegion : WaylandObject, IWaylandObjectFactory<WlRe
     /// </summary>
     public unsafe void Subtract(int x, int y, int width, int height)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[4];
         args[0].i = x;

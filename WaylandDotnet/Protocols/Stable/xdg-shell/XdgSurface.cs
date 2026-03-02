@@ -33,6 +33,8 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
     public static string _StaticInterfaceName => "xdg_surface";
     public const int InterfaceVersion = 7;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -104,7 +106,7 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onConfigure += value;
             EnsureDispatcherRegistered();
         }
@@ -182,7 +184,7 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -212,7 +214,7 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
     /// </summary>
     public unsafe XdgToplevel GetToplevel()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -248,7 +250,7 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
     /// </summary>
     public unsafe XdgPopup GetPopup(XdgSurface? parent, XdgPositioner positioner)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[3];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -318,7 +320,7 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
     /// </summary>
     public unsafe void SetWindowGeometry(int x, int y, int width, int height)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[4];
         args[0].i = x;
@@ -379,7 +381,7 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
     /// </summary>
     public unsafe void AckConfigure(uint serial)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].u = serial;
@@ -399,13 +401,5 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
     public static XdgSurface Create(nint handle, WlDisplay? display = null)
     {
         return new XdgSurface(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

@@ -33,6 +33,8 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
     public static string _StaticInterfaceName => "xdg_positioner";
     public const int InterfaceVersion = 7;
 
+    private bool disposed;
+
     public XdgPositioner(IntPtr handle)
     {
         Handle = handle;
@@ -172,7 +174,7 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -202,7 +204,7 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
     /// </summary>
     public unsafe void SetSize(int width, int height)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].i = width;
@@ -239,7 +241,7 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
     /// </summary>
     public unsafe void SetAnchorRect(int x, int y, int width, int height)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[4];
         args[0].i = x;
@@ -274,7 +276,7 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
     /// </summary>
     public unsafe void SetAnchor(uint anchor)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].u = anchor;
@@ -307,7 +309,7 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
     /// </summary>
     public unsafe void SetGravity(uint gravity)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].u = gravity;
@@ -346,7 +348,7 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
     /// </summary>
     public unsafe void SetConstraintAdjustment(uint constraintAdjustment)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].u = constraintAdjustment;
@@ -383,7 +385,7 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
     /// </summary>
     public unsafe void SetOffset(int x, int y)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].i = x;
@@ -416,7 +418,7 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
     /// </summary>
     public unsafe void SetReactive()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -448,7 +450,7 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
     /// </summary>
     public unsafe void SetParentSize(int parentWidth, int parentHeight)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].i = parentWidth;
@@ -479,7 +481,7 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
     /// </summary>
     public unsafe void SetParentConfigure(uint serial)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].u = serial;

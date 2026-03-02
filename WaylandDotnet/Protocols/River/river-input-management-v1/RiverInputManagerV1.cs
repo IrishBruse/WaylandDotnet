@@ -33,6 +33,8 @@ public sealed partial class RiverInputManagerV1 : WaylandObject, IWaylandObjectF
     public static string _StaticInterfaceName => "river_input_manager_v1";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -71,7 +73,7 @@ public sealed partial class RiverInputManagerV1 : WaylandObject, IWaylandObjectF
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onFinished += value;
             EnsureDispatcherRegistered();
         }
@@ -98,7 +100,7 @@ public sealed partial class RiverInputManagerV1 : WaylandObject, IWaylandObjectF
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onInputDevice += value;
             EnsureDispatcherRegistered();
         }
@@ -188,7 +190,7 @@ public sealed partial class RiverInputManagerV1 : WaylandObject, IWaylandObjectF
     /// </summary>
     public unsafe void Stop()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -224,7 +226,7 @@ public sealed partial class RiverInputManagerV1 : WaylandObject, IWaylandObjectF
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -254,7 +256,7 @@ public sealed partial class RiverInputManagerV1 : WaylandObject, IWaylandObjectF
     /// </summary>
     public unsafe void CreateSeat(string name)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].s = Utf8StringMarshaller.ConvertToUnmanaged(name);
@@ -288,7 +290,7 @@ public sealed partial class RiverInputManagerV1 : WaylandObject, IWaylandObjectF
     /// </summary>
     public unsafe void DestroySeat(string name)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].s = Utf8StringMarshaller.ConvertToUnmanaged(name);
@@ -308,13 +310,5 @@ public sealed partial class RiverInputManagerV1 : WaylandObject, IWaylandObjectF
     public static RiverInputManagerV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverInputManagerV1(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

@@ -33,6 +33,8 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     public static string _StaticInterfaceName => "wl_display";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -84,7 +86,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onError += value;
             EnsureDispatcherRegistered();
         }
@@ -115,7 +117,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDeleteId += value;
             EnsureDispatcherRegistered();
         }
@@ -210,7 +212,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     /// </summary>
     public unsafe WlCallback Sync()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -247,7 +249,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     /// </summary>
     public unsafe WlRegistry GetRegistry()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -269,13 +271,5 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     public static WlDisplay Create(nint handle, WlDisplay? display = null)
     {
         return new WlDisplay(handle);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

@@ -33,6 +33,8 @@ public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<
     public static string _StaticInterfaceName => "wl_compositor";
     public const int InterfaceVersion = 6;
 
+    private bool disposed;
+
     public WlDisplay Display { get; private set; }
 
     public WlCompositor(IntPtr handle, WlDisplay display)
@@ -50,7 +52,7 @@ public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<
     /// </summary>
     public unsafe WlSurface CreateSurface()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -79,7 +81,7 @@ public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<
     /// </summary>
     public unsafe WlRegion CreateRegion()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)IntPtr.Zero;

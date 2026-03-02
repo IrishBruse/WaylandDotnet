@@ -14,6 +14,7 @@ public static unsafe partial class WaylandInterfaces
     public static WlInterface* RiverXkbKeymapV1 = AllocateInterface();
     public static WlInterface* RiverXkbKeyboardV1 = AllocateInterface();
 
+
     /// <summary>
     /// Interface: river_xkb_config_v1
     /// Version: 1
@@ -72,6 +73,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("river_xkb_config_v1", (IntPtr)RiverXkbConfigV1);
     }
 
+
     /// <summary>
     /// Interface: river_xkb_keymap_v1
     /// Version: 1
@@ -117,6 +119,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)RiverXkbKeymapV1, false);
         Interfaces.Add("river_xkb_keymap_v1", (IntPtr)RiverXkbKeymapV1);
     }
+
 
     /// <summary>
     /// Interface: river_xkb_keyboard_v1

@@ -33,6 +33,8 @@ public sealed partial class RiverLibinputResultV1 : WaylandObject, IWaylandObjec
     public static string _StaticInterfaceName => "river_libinput_result_v1";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -60,7 +62,7 @@ public sealed partial class RiverLibinputResultV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onSuccess += value;
             EnsureDispatcherRegistered();
         }
@@ -87,7 +89,7 @@ public sealed partial class RiverLibinputResultV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onUnsupported += value;
             EnsureDispatcherRegistered();
         }
@@ -114,7 +116,7 @@ public sealed partial class RiverLibinputResultV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onInvalid += value;
             EnsureDispatcherRegistered();
         }
@@ -194,13 +196,5 @@ public sealed partial class RiverLibinputResultV1 : WaylandObject, IWaylandObjec
     public static RiverLibinputResultV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverLibinputResultV1(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

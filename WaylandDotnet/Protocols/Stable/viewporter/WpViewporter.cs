@@ -33,6 +33,8 @@ public sealed partial class WpViewporter : WaylandObject, IWaylandObjectFactory<
     public static string _StaticInterfaceName => "wp_viewporter";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     public WlDisplay Display { get; private set; }
 
     public WpViewporter(IntPtr handle, WlDisplay display)
@@ -61,7 +63,7 @@ public sealed partial class WpViewporter : WaylandObject, IWaylandObjectFactory<
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -90,7 +92,7 @@ public sealed partial class WpViewporter : WaylandObject, IWaylandObjectFactory<
     /// </summary>
     public unsafe WpViewport GetViewport(WlSurface surface)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;

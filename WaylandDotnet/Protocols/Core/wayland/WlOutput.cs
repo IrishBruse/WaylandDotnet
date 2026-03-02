@@ -33,6 +33,8 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
     public static string _StaticInterfaceName => "wl_output";
     public const int InterfaceVersion = 4;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -159,7 +161,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onGeometry += value;
             EnsureDispatcherRegistered();
         }
@@ -218,7 +220,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onMode += value;
             EnsureDispatcherRegistered();
         }
@@ -249,7 +251,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDone += value;
             EnsureDispatcherRegistered();
         }
@@ -293,7 +295,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onScale += value;
             EnsureDispatcherRegistered();
         }
@@ -347,7 +349,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onName += value;
             EnsureDispatcherRegistered();
         }
@@ -387,7 +389,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDescription += value;
             EnsureDispatcherRegistered();
         }
@@ -508,7 +510,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
     /// </summary>
     public unsafe void Release()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -527,13 +529,5 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
     public static WlOutput Create(nint handle, WlDisplay? display = null)
     {
         return new WlOutput(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

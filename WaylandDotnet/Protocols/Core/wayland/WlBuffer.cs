@@ -33,6 +33,8 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
     public static string _StaticInterfaceName => "wl_buffer";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -73,7 +75,7 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onRelease += value;
             EnsureDispatcherRegistered();
         }
@@ -151,7 +153,7 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -170,13 +172,5 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
     public static WlBuffer Create(nint handle, WlDisplay? display = null)
     {
         return new WlBuffer(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

@@ -33,6 +33,8 @@ public sealed partial class RiverLayerShellV1 : WaylandObject, IWaylandObjectFac
     public static string _StaticInterfaceName => "river_layer_shell_v1";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     public WlDisplay Display { get; private set; }
 
     public RiverLayerShellV1(IntPtr handle, WlDisplay display)
@@ -60,7 +62,7 @@ public sealed partial class RiverLayerShellV1 : WaylandObject, IWaylandObjectFac
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -87,7 +89,7 @@ public sealed partial class RiverLayerShellV1 : WaylandObject, IWaylandObjectFac
     /// </summary>
     public unsafe RiverLayerShellOutputV1 GetOutput(RiverOutputV1 output)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -118,7 +120,7 @@ public sealed partial class RiverLayerShellV1 : WaylandObject, IWaylandObjectFac
     /// </summary>
     public unsafe RiverLayerShellSeatV1 GetSeat(RiverSeatV1 seat)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;

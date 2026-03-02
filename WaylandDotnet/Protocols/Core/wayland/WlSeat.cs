@@ -33,6 +33,8 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
     public static string _StaticInterfaceName => "wl_seat";
     public const int InterfaceVersion = 10;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -111,7 +113,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onCapabilities += value;
             EnsureDispatcherRegistered();
         }
@@ -153,7 +155,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onName += value;
             EnsureDispatcherRegistered();
         }
@@ -243,7 +245,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
     /// </summary>
     public unsafe WlPointer GetPointer()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -279,7 +281,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
     /// </summary>
     public unsafe WlKeyboard GetKeyboard()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -315,7 +317,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
     /// </summary>
     public unsafe WlTouch GetTouch()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -345,7 +347,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
     /// </summary>
     public unsafe void Release()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -364,13 +366,5 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
     public static WlSeat Create(nint handle, WlDisplay? display = null)
     {
         return new WlSeat(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

@@ -33,6 +33,8 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
     public static string _StaticInterfaceName => "river_libinput_config_v1";
     public const int InterfaceVersion = 1;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -75,7 +77,7 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onFinished += value;
             EnsureDispatcherRegistered();
         }
@@ -103,7 +105,7 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onLibinputDevice += value;
             EnsureDispatcherRegistered();
         }
@@ -193,7 +195,7 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe void Stop()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -229,7 +231,7 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -256,7 +258,7 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe RiverLibinputAccelConfigV1 CreateAccelConfig(uint profile)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -279,13 +281,5 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
     public static RiverLibinputConfigV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverLibinputConfigV1(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

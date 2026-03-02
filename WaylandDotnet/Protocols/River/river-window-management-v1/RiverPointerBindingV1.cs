@@ -33,6 +33,8 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
     public static string _StaticInterfaceName => "river_pointer_binding_v1";
     public const int InterfaceVersion = 3;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -71,7 +73,7 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onPressed += value;
             EnsureDispatcherRegistered();
         }
@@ -114,7 +116,7 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onReleased += value;
             EnsureDispatcherRegistered();
         }
@@ -196,7 +198,7 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -227,7 +229,7 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe void Enable()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -257,7 +259,7 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
     /// </summary>
     public unsafe void Disable()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -276,13 +278,5 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
     public static RiverPointerBindingV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverPointerBindingV1(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

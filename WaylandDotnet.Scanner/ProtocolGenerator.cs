@@ -177,6 +177,7 @@ public partial class ProtocolGenerator
 
         var requestCount = iface.Requests.Count;
         var eventCount = iface.Events.Count;
+        WriteLine();
         WriteLine("/// <summary>");
         WriteLine($"/// Interface: {iface.Name}");
         WriteLine($"/// Version: {iface.Version}");
@@ -389,6 +390,8 @@ public partial class ProtocolGenerator
             WriteLine($"public static string _StaticInterfaceName => \"{iface.Name}\";");
             WriteLine($"public const int InterfaceVersion = {iface.Version};");
             WriteLine();
+            WriteLine("private bool disposed;");
+            WriteLine();
 
             // GCHandle field for event handling
             if (iface.Events.Count > 0)
@@ -420,30 +423,39 @@ public partial class ProtocolGenerator
             }
             WriteLine("}");
 
-            // Override Dispose to free GCHandle
+            // Generate Dispose to free GCHandle
             if (iface.Events.Count > 0)
             {
-                GenerateDisposeOverride();
+                // GenerateDisposeOverride(className);
             }
         }
         EndBlock();
     }
 
-    private void GenerateDisposeOverride()
+    private void GenerateDisposeOverride(string className)
     {
         BeginRegion();
-        WriteLine("protected override void Dispose(bool disposing)");
+
+        WriteLine();
+        WriteLine("public void Dispose()");
         BeginBlock();
         {
-            WriteLine("if (gcHandle.IsAllocated)");
+            WriteLine("if (!disposed)");
             BeginBlock();
             {
-                WriteLine("gcHandle.Free();");
+                WriteLine("if (gcHandle.IsAllocated)");
+                BeginBlock();
+                {
+                    WriteLine("gcHandle.Free();");
+                }
+                EndBlock();
+                WriteLine("disposed = true;");
             }
             EndBlock();
-            WriteLine("base.Dispose(disposing);");
+            WriteLine("GC.SuppressFinalize(this);");
         }
         EndBlock();
+
         EndRegion();
     }
 
@@ -569,7 +581,7 @@ public partial class ProtocolGenerator
                 WriteLine("add");
                 BeginBlock();
                 {
-                    WriteLine("CheckDisposed();");
+                    WriteLine("ObjectDisposedException.ThrowIf(disposed, this);");
                     WriteLine($"_on{eventName} += value;");
                     WriteLine("EnsureDispatcherRegistered();");
                 }
@@ -966,7 +978,7 @@ public partial class ProtocolGenerator
         WriteLine("public unsafe " + requestDeclaration);
         BeginBlock();
         {
-            WriteLine("CheckDisposed();");
+            WriteLine("ObjectDisposedException.ThrowIf(disposed, this);");
             WriteLine();
 
             WriteLine($"var args = stackalloc WlArgument[{CalculateWireArgCount(request.Args)}];");

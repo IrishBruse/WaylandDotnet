@@ -34,6 +34,7 @@ public static unsafe partial class WaylandInterfaces
     public static WlInterface* WlSubsurface = AllocateInterface();
     public static WlInterface* WlFixes = AllocateInterface();
 
+
     /// <summary>
     /// Interface: wl_display
     /// Version: 1
@@ -86,6 +87,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("wl_display", (IntPtr)WlDisplay);
     }
 
+
     /// <summary>
     /// Interface: wl_registry
     /// Version: 1
@@ -132,6 +134,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("wl_registry", (IntPtr)WlRegistry);
     }
 
+
     /// <summary>
     /// Interface: wl_callback
     /// Version: 1
@@ -162,6 +165,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)WlCallback, false);
         Interfaces.Add("wl_callback", (IntPtr)WlCallback);
     }
+
 
     /// <summary>
     /// Interface: wl_compositor
@@ -199,6 +203,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)WlCompositor, false);
         Interfaces.Add("wl_compositor", (IntPtr)WlCompositor);
     }
+
 
     /// <summary>
     /// Interface: wl_shm_pool
@@ -242,6 +247,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)WlShmPool, false);
         Interfaces.Add("wl_shm_pool", (IntPtr)WlShmPool);
     }
+
 
     /// <summary>
     /// Interface: wl_shm
@@ -289,6 +295,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("wl_shm", (IntPtr)WlShm);
     }
 
+
     /// <summary>
     /// Interface: wl_buffer
     /// Version: 1
@@ -328,6 +335,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)WlBuffer, false);
         Interfaces.Add("wl_buffer", (IntPtr)WlBuffer);
     }
+
 
     /// <summary>
     /// Interface: wl_data_offer
@@ -404,6 +412,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)WlDataOffer, false);
         Interfaces.Add("wl_data_offer", (IntPtr)WlDataOffer);
     }
+
 
     /// <summary>
     /// Interface: wl_data_source
@@ -487,6 +496,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("wl_data_source", (IntPtr)WlDataSource);
     }
 
+
     /// <summary>
     /// Interface: wl_data_device
     /// Version: 3
@@ -569,6 +579,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("wl_data_device", (IntPtr)WlDataDevice);
     }
 
+
     /// <summary>
     /// Interface: wl_data_device_manager
     /// Version: 3
@@ -606,6 +617,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("wl_data_device_manager", (IntPtr)WlDataDeviceManager);
     }
 
+
     /// <summary>
     /// Interface: wl_shell
     /// Version: 1
@@ -636,6 +648,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)WlShell, false);
         Interfaces.Add("wl_shell", (IntPtr)WlShell);
     }
+
 
     /// <summary>
     /// Interface: wl_shell_surface
@@ -742,6 +755,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)WlShellSurface, false);
         Interfaces.Add("wl_shell_surface", (IntPtr)WlShellSurface);
     }
+
 
     /// <summary>
     /// Interface: wl_surface
@@ -861,6 +875,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("wl_surface", (IntPtr)WlSurface);
     }
 
+
     /// <summary>
     /// Interface: wl_seat
     /// Version: 10
@@ -924,6 +939,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)WlSeat, false);
         Interfaces.Add("wl_seat", (IntPtr)WlSeat);
     }
+
 
     /// <summary>
     /// Interface: wl_pointer
@@ -1031,6 +1047,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("wl_pointer", (IntPtr)WlPointer);
     }
 
+
     /// <summary>
     /// Interface: wl_keyboard
     /// Version: 10
@@ -1100,6 +1117,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)WlKeyboard, false);
         Interfaces.Add("wl_keyboard", (IntPtr)WlKeyboard);
     }
+
 
     /// <summary>
     /// Interface: wl_touch
@@ -1177,6 +1195,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("wl_touch", (IntPtr)WlTouch);
     }
 
+
     /// <summary>
     /// Interface: wl_output
     /// Version: 4
@@ -1247,6 +1266,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("wl_output", (IntPtr)WlOutput);
     }
 
+
     /// <summary>
     /// Interface: wl_region
     /// Version: 1
@@ -1290,6 +1310,7 @@ public static unsafe partial class WaylandInterfaces
         Interfaces.Add("wl_region", (IntPtr)WlRegion);
     }
 
+
     /// <summary>
     /// Interface: wl_subcompositor
     /// Version: 1
@@ -1326,6 +1347,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)WlSubcompositor, false);
         Interfaces.Add("wl_subcompositor", (IntPtr)WlSubcompositor);
     }
+
 
     /// <summary>
     /// Interface: wl_subsurface
@@ -1387,6 +1409,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)WlSubsurface, false);
         Interfaces.Add("wl_subsurface", (IntPtr)WlSubsurface);
     }
+
 
     /// <summary>
     /// Interface: wl_fixes

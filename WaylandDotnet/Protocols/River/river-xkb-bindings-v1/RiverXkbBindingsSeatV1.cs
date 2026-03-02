@@ -33,6 +33,8 @@ public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObje
     public static string _StaticInterfaceName => "river_xkb_bindings_seat_v1";
     public const int InterfaceVersion = 2;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -64,7 +66,7 @@ public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObje
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onAteUnboundKey += value;
             EnsureDispatcherRegistered();
         }
@@ -140,7 +142,7 @@ public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObje
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -184,7 +186,7 @@ public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObje
     /// </summary>
     public unsafe void EnsureNextKeyEaten()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -223,7 +225,7 @@ public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObje
     /// </summary>
     public unsafe void CancelEnsureNextKeyEaten()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -242,13 +244,5 @@ public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObje
     public static RiverXkbBindingsSeatV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverXkbBindingsSeatV1(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

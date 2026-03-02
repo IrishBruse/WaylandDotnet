@@ -14,6 +14,7 @@ public static unsafe partial class WaylandInterfaces
     public static WlInterface* RiverXkbBindingV1 = AllocateInterface();
     public static WlInterface* RiverXkbBindingsSeatV1 = AllocateInterface();
 
+
     /// <summary>
     /// Interface: river_xkb_bindings_v1
     /// Version: 2
@@ -56,6 +57,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)RiverXkbBindingsV1, false);
         Interfaces.Add("river_xkb_bindings_v1", (IntPtr)RiverXkbBindingsV1);
     }
+
 
     /// <summary>
     /// Interface: river_xkb_binding_v1
@@ -126,6 +128,7 @@ public static unsafe partial class WaylandInterfaces
         Marshal.StructureToPtr(iface, (IntPtr)RiverXkbBindingV1, false);
         Interfaces.Add("river_xkb_binding_v1", (IntPtr)RiverXkbBindingV1);
     }
+
 
     /// <summary>
     /// Interface: river_xkb_bindings_seat_v1

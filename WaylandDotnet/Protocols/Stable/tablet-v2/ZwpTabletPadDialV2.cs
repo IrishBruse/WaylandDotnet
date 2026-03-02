@@ -33,6 +33,8 @@ public sealed partial class ZwpTabletPadDialV2 : WaylandObject, IWaylandObjectFa
     public static string _StaticInterfaceName => "zwp_tablet_pad_dial_v2";
     public const int InterfaceVersion = 2;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -69,7 +71,7 @@ public sealed partial class ZwpTabletPadDialV2 : WaylandObject, IWaylandObjectFa
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onDelta += value;
             EnsureDispatcherRegistered();
         }
@@ -106,7 +108,7 @@ public sealed partial class ZwpTabletPadDialV2 : WaylandObject, IWaylandObjectFa
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onFrame += value;
             EnsureDispatcherRegistered();
         }
@@ -207,7 +209,7 @@ public sealed partial class ZwpTabletPadDialV2 : WaylandObject, IWaylandObjectFa
     /// </summary>
     public unsafe void SetFeedback(string description, uint serial)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[2];
         args[0].s = Utf8StringMarshaller.ConvertToUnmanaged(description);
@@ -235,7 +237,7 @@ public sealed partial class ZwpTabletPadDialV2 : WaylandObject, IWaylandObjectFa
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -254,13 +256,5 @@ public sealed partial class ZwpTabletPadDialV2 : WaylandObject, IWaylandObjectFa
     public static ZwpTabletPadDialV2 Create(nint handle, WlDisplay? display = null)
     {
         return new ZwpTabletPadDialV2(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

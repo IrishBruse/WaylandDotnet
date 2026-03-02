@@ -33,6 +33,8 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
     public static string _StaticInterfaceName => "zwp_tablet_seat_v2";
     public const int InterfaceVersion = 2;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -63,7 +65,7 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onTabletAdded += value;
             EnsureDispatcherRegistered();
         }
@@ -93,7 +95,7 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onToolAdded += value;
             EnsureDispatcherRegistered();
         }
@@ -129,7 +131,7 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onPadAdded += value;
             EnsureDispatcherRegistered();
         }
@@ -226,7 +228,7 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -245,13 +247,5 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
     public static ZwpTabletSeatV2 Create(nint handle, WlDisplay? display = null)
     {
         return new ZwpTabletSeatV2(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

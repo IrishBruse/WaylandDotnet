@@ -33,6 +33,8 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
     public static string _StaticInterfaceName => "zwp_linux_buffer_params_v1";
     public const int InterfaceVersion = 5;
 
+    private bool disposed;
+
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
@@ -119,7 +121,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onCreated += value;
             EnsureDispatcherRegistered();
         }
@@ -151,7 +153,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
     {
         add
         {
-            CheckDisposed();
+            ObjectDisposedException.ThrowIf(disposed, this);
             _onFailed += value;
             EnsureDispatcherRegistered();
         }
@@ -236,7 +238,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -280,7 +282,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
     /// </summary>
     public unsafe void Add(int fd, uint planeIdx, uint offset, uint stride, uint modifierHi, uint modifierLo)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[6];
         args[0].h = fd;
@@ -370,7 +372,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
     /// </summary>
     public unsafe void Create(int width, int height, uint format, uint flags)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[4];
         args[0].i = width;
@@ -422,7 +424,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
     /// </summary>
     public unsafe WlBuffer CreateImmed(int width, int height, uint format, uint flags)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[5];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -448,13 +450,5 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
     public static ZwpLinuxBufferParamsV1 Create(nint handle, WlDisplay? display = null)
     {
         return new ZwpLinuxBufferParamsV1(handle, display);
-    }
-    protected override void Dispose(bool disposing)
-    {
-        if (gcHandle.IsAllocated)
-        {
-            gcHandle.Free();
-        }
-        base.Dispose(disposing);
     }
 }

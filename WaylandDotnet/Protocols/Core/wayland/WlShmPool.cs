@@ -33,6 +33,8 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
     public static string _StaticInterfaceName => "wl_shm_pool";
     public const int InterfaceVersion = 2;
 
+    private bool disposed;
+
     public WlDisplay Display { get; private set; }
 
     public WlShmPool(IntPtr handle, WlDisplay display)
@@ -60,7 +62,7 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
     /// </summary>
     public unsafe WlBuffer CreateBuffer(int offset, int width, int height, int stride, uint format)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[6];
         args[0].o = (WlObject*)IntPtr.Zero;
@@ -98,7 +100,7 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
     /// </summary>
     public unsafe void Destroy()
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[0];
 
@@ -133,7 +135,7 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
     /// </summary>
     public unsafe void Resize(int size)
     {
-        CheckDisposed();
+        ObjectDisposedException.ThrowIf(disposed, this);
 
         var args = stackalloc WlArgument[1];
         args[0].i = size;
