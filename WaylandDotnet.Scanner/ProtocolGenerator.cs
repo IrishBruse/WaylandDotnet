@@ -405,6 +405,7 @@ public partial class ProtocolGenerator
             GenerateEvents(iface);
             GenerateRequests(iface);
             GenerateEventDocumentation(iface);
+            GenerateEnumDocumentation(iface);
 
             bool needsDisplay = NeedsWlDisplay(iface);
             WriteLine($"public static {className} Create(nint handle, WlDisplay? display = null)");
@@ -599,6 +600,56 @@ public partial class ProtocolGenerator
             var delegateDeclaration = $"void {delegateName}({parameters})";
 
             EventDocumentation(iface, evt, delegateDeclaration);
+        }
+    }
+
+    private void GenerateEnumDocumentation(WaylandInterface iface)
+    {
+        if (iface.Enums.Count == 0) return;
+
+        foreach (var enumDef in iface.Enums)
+        {
+            GenerateEnumDocumentation(enumDef);
+        }
+    }
+
+    private void GenerateEnumDocumentation(WaylandEnum? enumDef)
+    {
+        if (enumDef == null) return;
+
+        var enumName = (enumDef.Name ?? "").ToPascal();
+        string urlEnumName = enumName;
+
+        var isBitfield = enumDef.Bitfield?.ToLower() == "true";
+        var suffix = isBitfield ? "Flag" : "";
+
+        var enumNode = Html.H3().Class("decleration enum").Title($"{enumName} enum")
+            .Child(Html.A().Href("?id=" + urlEnumName).Id(urlEnumName)
+                .Child(Html.Span().Class("codicon codicon-symbol-enum"))
+                .Child(Html.Text(enumName + suffix))
+            );
+
+        md.WriteLine(enumNode.ToString());
+
+        md.WriteLine();
+        md.WriteLine("```csharp");
+        md.WriteLine($"public enum {enumName}{suffix}");
+        md.WriteLine("```");
+        md.WriteLine();
+
+        if (enumDef.Description != null)
+        {
+            md.WriteLine(enumDef.Description.Summary.CapitalizeFirst());
+            md.WriteLine();
+            md.WriteLine(enumDef.Description.Text.TrimLinesStart());
+            md.WriteLine();
+        }
+
+        md.WriteLine("| Value | Integer | Description |");
+        md.WriteLine("| --- | --- | --- |");
+        foreach (var entry in enumDef.Entries ?? [])
+        {
+            md.WriteLine($"| {entry.Name.ToPascal()} | {entry.Value} | {entry.Summary.CapitalizeFirst()} |");
         }
     }
 

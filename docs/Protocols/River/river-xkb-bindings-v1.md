@@ -87,6 +87,20 @@ Create an object to manage seat-specific xkb bindings state.
 It is a protocol error to make this request more than once for a given
 river_seat_v1 object.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| ObjectAlreadyCreated | 0 |  |
 <h2 class="decleration interface">
     <a href="?id=RiverXkbBindingV1" id="RiverXkbBindingV1">
         <span class="codicon codicon-symbol-interface"></span>

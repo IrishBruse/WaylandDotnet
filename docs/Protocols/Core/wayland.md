@@ -125,6 +125,30 @@ the server will send this event to acknowledge that it has
 seen the delete request. When the client receives this event,
 it will know that it can safely reuse the object ID.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+Global error values
+
+
+These errors are global and can be emitted in response to any
+server request.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidObject | 0 | Server couldn't find object |
+| InvalidMethod | 1 | Method doesn't exist on the specified interface or malformed request |
+| NoMemory | 2 | Server is out of memory |
+| Implementation | 3 | Implementation error in compositor |
 <h2 class="decleration interface">
     <a href="?id=WlRegistry" id="WlRegistry">
         <span class="codicon codicon-symbol-interface"></span>
@@ -494,6 +518,201 @@ Informs the client about a valid pixel format that
 can be used for buffers. Known formats include
 argb8888 and xrgb8888.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+Wl_shm error values
+
+
+These errors can be emitted in response to wl_shm requests.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidFormat | 0 | Buffer format is not known |
+| InvalidStride | 1 | Invalid size or stride during pool or buffer creation |
+| InvalidFd | 2 | Mmapping the file descriptor failed |
+<h3 class="decleration enum" title="Format enum">
+    <a href="?id=Format" id="Format">
+        <span class="codicon codicon-symbol-enum"></span>
+        Format
+    </a>
+</h3>
+
+```csharp
+public enum Format : uint
+```
+
+Pixel formats
+
+
+This describes the memory layout of an individual pixel.
+
+All renderers should support argb8888 and xrgb8888 but any other
+formats are optional and may not be supported by the particular
+renderer in use.
+
+The drm format codes match the macros defined in drm_fourcc.h, except
+argb8888 and xrgb8888. The formats actually supported by the compositor
+will be reported by the format event.
+
+For all wl_shm formats and unless specified in another protocol
+extension, pre-multiplied alpha is used for pixel values.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Argb8888 | 0 | 32-bit ARGB format, [31:0] A:R:G:B 8:8:8:8 little endian |
+| Xrgb8888 | 1 | 32-bit RGB format, [31:0] x:R:G:B 8:8:8:8 little endian |
+| C8 | 0x20203843 | 8-bit color index format, [7:0] C |
+| Rgb332 | 0x38424752 | 8-bit RGB format, [7:0] R:G:B 3:3:2 |
+| Bgr233 | 0x38524742 | 8-bit BGR format, [7:0] B:G:R 2:3:3 |
+| Xrgb4444 | 0x32315258 | 16-bit xRGB format, [15:0] x:R:G:B 4:4:4:4 little endian |
+| Xbgr4444 | 0x32314258 | 16-bit xBGR format, [15:0] x:B:G:R 4:4:4:4 little endian |
+| Rgbx4444 | 0x32315852 | 16-bit RGBx format, [15:0] R:G:B:x 4:4:4:4 little endian |
+| Bgrx4444 | 0x32315842 | 16-bit BGRx format, [15:0] B:G:R:x 4:4:4:4 little endian |
+| Argb4444 | 0x32315241 | 16-bit ARGB format, [15:0] A:R:G:B 4:4:4:4 little endian |
+| Abgr4444 | 0x32314241 | 16-bit ABGR format, [15:0] A:B:G:R 4:4:4:4 little endian |
+| Rgba4444 | 0x32314152 | 16-bit RBGA format, [15:0] R:G:B:A 4:4:4:4 little endian |
+| Bgra4444 | 0x32314142 | 16-bit BGRA format, [15:0] B:G:R:A 4:4:4:4 little endian |
+| Xrgb1555 | 0x35315258 | 16-bit xRGB format, [15:0] x:R:G:B 1:5:5:5 little endian |
+| Xbgr1555 | 0x35314258 | 16-bit xBGR 1555 format, [15:0] x:B:G:R 1:5:5:5 little endian |
+| Rgbx5551 | 0x35315852 | 16-bit RGBx 5551 format, [15:0] R:G:B:x 5:5:5:1 little endian |
+| Bgrx5551 | 0x35315842 | 16-bit BGRx 5551 format, [15:0] B:G:R:x 5:5:5:1 little endian |
+| Argb1555 | 0x35315241 | 16-bit ARGB 1555 format, [15:0] A:R:G:B 1:5:5:5 little endian |
+| Abgr1555 | 0x35314241 | 16-bit ABGR 1555 format, [15:0] A:B:G:R 1:5:5:5 little endian |
+| Rgba5551 | 0x35314152 | 16-bit RGBA 5551 format, [15:0] R:G:B:A 5:5:5:1 little endian |
+| Bgra5551 | 0x35314142 | 16-bit BGRA 5551 format, [15:0] B:G:R:A 5:5:5:1 little endian |
+| Rgb565 | 0x36314752 | 16-bit RGB 565 format, [15:0] R:G:B 5:6:5 little endian |
+| Bgr565 | 0x36314742 | 16-bit BGR 565 format, [15:0] B:G:R 5:6:5 little endian |
+| Rgb888 | 0x34324752 | 24-bit RGB format, [23:0] R:G:B little endian |
+| Bgr888 | 0x34324742 | 24-bit BGR format, [23:0] B:G:R little endian |
+| Xbgr8888 | 0x34324258 | 32-bit xBGR format, [31:0] x:B:G:R 8:8:8:8 little endian |
+| Rgbx8888 | 0x34325852 | 32-bit RGBx format, [31:0] R:G:B:x 8:8:8:8 little endian |
+| Bgrx8888 | 0x34325842 | 32-bit BGRx format, [31:0] B:G:R:x 8:8:8:8 little endian |
+| Abgr8888 | 0x34324241 | 32-bit ABGR format, [31:0] A:B:G:R 8:8:8:8 little endian |
+| Rgba8888 | 0x34324152 | 32-bit RGBA format, [31:0] R:G:B:A 8:8:8:8 little endian |
+| Bgra8888 | 0x34324142 | 32-bit BGRA format, [31:0] B:G:R:A 8:8:8:8 little endian |
+| Xrgb2101010 | 0x30335258 | 32-bit xRGB format, [31:0] x:R:G:B 2:10:10:10 little endian |
+| Xbgr2101010 | 0x30334258 | 32-bit xBGR format, [31:0] x:B:G:R 2:10:10:10 little endian |
+| Rgbx1010102 | 0x30335852 | 32-bit RGBx format, [31:0] R:G:B:x 10:10:10:2 little endian |
+| Bgrx1010102 | 0x30335842 | 32-bit BGRx format, [31:0] B:G:R:x 10:10:10:2 little endian |
+| Argb2101010 | 0x30335241 | 32-bit ARGB format, [31:0] A:R:G:B 2:10:10:10 little endian |
+| Abgr2101010 | 0x30334241 | 32-bit ABGR format, [31:0] A:B:G:R 2:10:10:10 little endian |
+| Rgba1010102 | 0x30334152 | 32-bit RGBA format, [31:0] R:G:B:A 10:10:10:2 little endian |
+| Bgra1010102 | 0x30334142 | 32-bit BGRA format, [31:0] B:G:R:A 10:10:10:2 little endian |
+| Yuyv | 0x56595559 | Packed YCbCr format, [31:0] Cr0:Y1:Cb0:Y0 8:8:8:8 little endian |
+| Yvyu | 0x55595659 | Packed YCbCr format, [31:0] Cb0:Y1:Cr0:Y0 8:8:8:8 little endian |
+| Uyvy | 0x59565955 | Packed YCbCr format, [31:0] Y1:Cr0:Y0:Cb0 8:8:8:8 little endian |
+| Vyuy | 0x59555956 | Packed YCbCr format, [31:0] Y1:Cb0:Y0:Cr0 8:8:8:8 little endian |
+| Ayuv | 0x56555941 | Packed AYCbCr format, [31:0] A:Y:Cb:Cr 8:8:8:8 little endian |
+| Nv12 | 0x3231564e | 2 plane YCbCr Cr:Cb format, 2x2 subsampled Cr:Cb plane |
+| Nv21 | 0x3132564e | 2 plane YCbCr Cb:Cr format, 2x2 subsampled Cb:Cr plane |
+| Nv16 | 0x3631564e | 2 plane YCbCr Cr:Cb format, 2x1 subsampled Cr:Cb plane |
+| Nv61 | 0x3136564e | 2 plane YCbCr Cb:Cr format, 2x1 subsampled Cb:Cr plane |
+| Yuv410 | 0x39565559 | 3 plane YCbCr format, 4x4 subsampled Cb (1) and Cr (2) planes |
+| Yvu410 | 0x39555659 | 3 plane YCbCr format, 4x4 subsampled Cr (1) and Cb (2) planes |
+| Yuv411 | 0x31315559 | 3 plane YCbCr format, 4x1 subsampled Cb (1) and Cr (2) planes |
+| Yvu411 | 0x31315659 | 3 plane YCbCr format, 4x1 subsampled Cr (1) and Cb (2) planes |
+| Yuv420 | 0x32315559 | 3 plane YCbCr format, 2x2 subsampled Cb (1) and Cr (2) planes |
+| Yvu420 | 0x32315659 | 3 plane YCbCr format, 2x2 subsampled Cr (1) and Cb (2) planes |
+| Yuv422 | 0x36315559 | 3 plane YCbCr format, 2x1 subsampled Cb (1) and Cr (2) planes |
+| Yvu422 | 0x36315659 | 3 plane YCbCr format, 2x1 subsampled Cr (1) and Cb (2) planes |
+| Yuv444 | 0x34325559 | 3 plane YCbCr format, non-subsampled Cb (1) and Cr (2) planes |
+| Yvu444 | 0x34325659 | 3 plane YCbCr format, non-subsampled Cr (1) and Cb (2) planes |
+| R8 | 0x20203852 | [7:0] R |
+| R16 | 0x20363152 | [15:0] R little endian |
+| Rg88 | 0x38384752 | [15:0] R:G 8:8 little endian |
+| Gr88 | 0x38385247 | [15:0] G:R 8:8 little endian |
+| Rg1616 | 0x32334752 | [31:0] R:G 16:16 little endian |
+| Gr1616 | 0x32335247 | [31:0] G:R 16:16 little endian |
+| Xrgb16161616f | 0x48345258 | [63:0] x:R:G:B 16:16:16:16 little endian |
+| Xbgr16161616f | 0x48344258 | [63:0] x:B:G:R 16:16:16:16 little endian |
+| Argb16161616f | 0x48345241 | [63:0] A:R:G:B 16:16:16:16 little endian |
+| Abgr16161616f | 0x48344241 | [63:0] A:B:G:R 16:16:16:16 little endian |
+| Xyuv8888 | 0x56555958 | [31:0] X:Y:Cb:Cr 8:8:8:8 little endian |
+| Vuy888 | 0x34325556 | [23:0] Cr:Cb:Y 8:8:8 little endian |
+| Vuy101010 | 0x30335556 | Y followed by U then V, 10:10:10. Non-linear modifier only |
+| Y210 | 0x30313259 | [63:0] Cr0:0:Y1:0:Cb0:0:Y0:0 10:6:10:6:10:6:10:6 little endian per 2 Y pixels |
+| Y212 | 0x32313259 | [63:0] Cr0:0:Y1:0:Cb0:0:Y0:0 12:4:12:4:12:4:12:4 little endian per 2 Y pixels |
+| Y216 | 0x36313259 | [63:0] Cr0:Y1:Cb0:Y0 16:16:16:16 little endian per 2 Y pixels |
+| Y410 | 0x30313459 | [31:0] A:Cr:Y:Cb 2:10:10:10 little endian |
+| Y412 | 0x32313459 | [63:0] A:0:Cr:0:Y:0:Cb:0 12:4:12:4:12:4:12:4 little endian |
+| Y416 | 0x36313459 | [63:0] A:Cr:Y:Cb 16:16:16:16 little endian |
+| Xvyu2101010 | 0x30335658 | [31:0] X:Cr:Y:Cb 2:10:10:10 little endian |
+| Xvyu1216161616 | 0x36335658 | [63:0] X:0:Cr:0:Y:0:Cb:0 12:4:12:4:12:4:12:4 little endian |
+| Xvyu16161616 | 0x38345658 | [63:0] X:Cr:Y:Cb 16:16:16:16 little endian |
+| Y0l0 | 0x304c3059 | [63:0]   A3:A2:Y3:0:Cr0:0:Y2:0:A1:A0:Y1:0:Cb0:0:Y0:0  1:1:8:2:8:2:8:2:1:1:8:2:8:2:8:2 little endian |
+| X0l0 | 0x304c3058 | [63:0]   X3:X2:Y3:0:Cr0:0:Y2:0:X1:X0:Y1:0:Cb0:0:Y0:0  1:1:8:2:8:2:8:2:1:1:8:2:8:2:8:2 little endian |
+| Y0l2 | 0x324c3059 | [63:0]   A3:A2:Y3:Cr0:Y2:A1:A0:Y1:Cb0:Y0  1:1:10:10:10:1:1:10:10:10 little endian |
+| X0l2 | 0x324c3058 | [63:0]   X3:X2:Y3:Cr0:Y2:X1:X0:Y1:Cb0:Y0  1:1:10:10:10:1:1:10:10:10 little endian |
+| Yuv4208bit | 0x38305559 |  |
+| Yuv42010bit | 0x30315559 |  |
+| Xrgb8888A8 | 0x38415258 |  |
+| Xbgr8888A8 | 0x38414258 |  |
+| Rgbx8888A8 | 0x38415852 |  |
+| Bgrx8888A8 | 0x38415842 |  |
+| Rgb888A8 | 0x38413852 |  |
+| Bgr888A8 | 0x38413842 |  |
+| Rgb565A8 | 0x38413552 |  |
+| Bgr565A8 | 0x38413542 |  |
+| Nv24 | 0x3432564e | Non-subsampled Cr:Cb plane |
+| Nv42 | 0x3234564e | Non-subsampled Cb:Cr plane |
+| P210 | 0x30313250 | 2x1 subsampled Cr:Cb plane, 10 bit per channel |
+| P010 | 0x30313050 | 2x2 subsampled Cr:Cb plane 10 bits per channel |
+| P012 | 0x32313050 | 2x2 subsampled Cr:Cb plane 12 bits per channel |
+| P016 | 0x36313050 | 2x2 subsampled Cr:Cb plane 16 bits per channel |
+| Axbxgxrx106106106106 | 0x30314241 | [63:0] A:x:B:x:G:x:R:x 10:6:10:6:10:6:10:6 little endian |
+| Nv15 | 0x3531564e | 2x2 subsampled Cr:Cb plane |
+| Q410 | 0x30313451 |  |
+| Q401 | 0x31303451 |  |
+| Xrgb16161616 | 0x38345258 | [63:0] x:R:G:B 16:16:16:16 little endian |
+| Xbgr16161616 | 0x38344258 | [63:0] x:B:G:R 16:16:16:16 little endian |
+| Argb16161616 | 0x38345241 | [63:0] A:R:G:B 16:16:16:16 little endian |
+| Abgr16161616 | 0x38344241 | [63:0] A:B:G:R 16:16:16:16 little endian |
+| C1 | 0x20203143 | [7:0] C0:C1:C2:C3:C4:C5:C6:C7 1:1:1:1:1:1:1:1 eight pixels/byte |
+| C2 | 0x20203243 | [7:0] C0:C1:C2:C3 2:2:2:2 four pixels/byte |
+| C4 | 0x20203443 | [7:0] C0:C1 4:4 two pixels/byte |
+| D1 | 0x20203144 | [7:0] D0:D1:D2:D3:D4:D5:D6:D7 1:1:1:1:1:1:1:1 eight pixels/byte |
+| D2 | 0x20203244 | [7:0] D0:D1:D2:D3 2:2:2:2 four pixels/byte |
+| D4 | 0x20203444 | [7:0] D0:D1 4:4 two pixels/byte |
+| D8 | 0x20203844 | [7:0] D |
+| R1 | 0x20203152 | [7:0] R0:R1:R2:R3:R4:R5:R6:R7 1:1:1:1:1:1:1:1 eight pixels/byte |
+| R2 | 0x20203252 | [7:0] R0:R1:R2:R3 2:2:2:2 four pixels/byte |
+| R4 | 0x20203452 | [7:0] R0:R1 4:4 two pixels/byte |
+| R10 | 0x20303152 | [15:0] x:R 6:10 little endian |
+| R12 | 0x20323152 | [15:0] x:R 4:12 little endian |
+| Avuy8888 | 0x59555641 | [31:0] A:Cr:Cb:Y 8:8:8:8 little endian |
+| Xvuy8888 | 0x59555658 | [31:0] X:Cr:Cb:Y 8:8:8:8 little endian |
+| P030 | 0x30333050 | 2x2 subsampled Cr:Cb plane 10 bits per channel packed |
+| Rgb161616 | 0x38344752 | [47:0] R:G:B 16:16:16 little endian |
+| Bgr161616 | 0x38344742 | [47:0] B:G:R 16:16:16 little endian |
+| R16f | 0x48202052 | [15:0] R 16 little endian |
+| Gr1616f | 0x48205247 | [31:0] G:R 16:16 little endian |
+| Bgr161616f | 0x48524742 | [47:0] B:G:R 16:16:16 little endian |
+| R32f | 0x46202052 | [31:0] R 32 little endian |
+| Gr3232f | 0x46205247 | [63:0] R:G 32:32 little endian |
+| Bgr323232f | 0x46524742 | [95:0] R:G:B 32:32:32 little endian |
+| Abgr32323232f | 0x46384241 | [127:0] R:G:B:A 32:32:32:32 little endian |
+| Nv20 | 0x3032564e | 2x1 subsampled Cr:Cb plane |
+| Nv30 | 0x3033564e | Non-subsampled Cr:Cb plane |
+| S010 | 0x30313053 | 2x2 subsampled Cb (1) and Cr (2) planes 10 bits per channel |
+| S210 | 0x30313253 | 2x1 subsampled Cb (1) and Cr (2) planes 10 bits per channel |
+| S410 | 0x30313453 | Non-subsampled Cb (1) and Cr (2) planes 10 bits per channel |
+| S012 | 0x32313053 | 2x2 subsampled Cb (1) and Cr (2) planes 12 bits per channel |
+| S212 | 0x32313253 | 2x1 subsampled Cb (1) and Cr (2) planes 12 bits per channel |
+| S412 | 0x32313453 | Non-subsampled Cb (1) and Cr (2) planes 12 bits per channel |
+| S016 | 0x36313053 | 2x2 subsampled Cb (1) and Cr (2) planes 16 bits per channel |
+| S216 | 0x36313253 | 2x1 subsampled Cb (1) and Cr (2) planes 16 bits per channel |
+| S416 | 0x36313453 | Non-subsampled Cb (1) and Cr (2) planes 16 bits per channel |
 <h2 class="decleration interface">
     <a href="?id=WlBuffer" id="WlBuffer">
         <span class="codicon codicon-symbol-interface"></span>
@@ -852,6 +1071,23 @@ user (e.g. popping up a menu with the available options). The
 final wl_data_offer.set_actions and wl_data_offer.accept requests
 must happen before the call to wl_data_offer.finish.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidFinish | 0 | Finish request was called untimely |
+| InvalidActionMask | 1 | Action mask contains invalid values |
+| InvalidAction | 2 | Action argument has an invalid value |
+| InvalidOffer | 3 | Offer doesn't accept this request |
 <h2 class="decleration interface">
     <a href="?id=WlDataSource" id="WlDataSource">
         <span class="codicon codicon-symbol-interface"></span>
@@ -1109,6 +1345,21 @@ always be applied in wl_data_offer.dnd_finished.
 Clients can trigger cursor surface changes from this point, so
 they reflect the current action.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidActionMask | 0 | Action mask contains invalid values |
+| InvalidSource | 1 | Source doesn't accept this request |
 <h2 class="decleration interface">
     <a href="?id=WlDataDevice" id="WlDataDevice">
         <span class="codicon codicon-symbol-interface"></span>
@@ -1373,6 +1624,21 @@ keyboard focus within the same client doesn't mean a new selection
 will be sent.  The client must destroy the previous selection
 data_offer, if any, upon receiving this event.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Role | 0 | Given wl_surface has another role |
+| UsedSource | 1 | Source has already been used |
 <h2 class="decleration interface">
     <a href="?id=WlDataDeviceManager" id="WlDataDeviceManager">
         <span class="codicon codicon-symbol-interface"></span>
@@ -1435,6 +1701,51 @@ WlDataDevice GetDataDevice(WlSeat seat)
 
 Create a new data device for a given seat.
 
+<h3 class="decleration enum" title="DndAction enum">
+    <a href="?id=DndAction" id="DndAction">
+        <span class="codicon codicon-symbol-enum"></span>
+        DndActionFlag
+    </a>
+</h3>
+
+```csharp
+public enum DndActionFlag : uint
+```
+
+Drag and drop actions
+
+
+This is a bitmask of the available/preferred actions in a
+drag-and-drop operation.
+
+In the compositor, the selected action is a result of matching the
+actions offered by the source and destination sides.  "action" events
+with a "none" action will be sent to both source and destination if
+there is no match. All further checks will effectively happen on
+(source actions ∩ destination actions).
+
+In addition, compositors may also pick different actions in
+reaction to key modifiers being pressed. One common design that
+is used in major toolkits (and the behavior recommended for
+compositors) is:
+
+- If no modifiers are pressed, the first match (in bit order)
+will be used.
+- Pressing Shift selects "move", if enabled in the mask.
+- Pressing Control selects "copy", if enabled in the mask.
+
+Behavior beyond that is considered implementation-dependent.
+Compositors may for example bind other modifiers (like Alt/Meta)
+or drags initiated with other buttons than BTN_LEFT to specific
+actions (e.g. "ask").
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| None | 0 | No action |
+| Copy | 1 | Copy action |
+| Move | 2 | Move action |
+| Ask | 4 | Ask action |
 <h2 class="decleration interface">
     <a href="?id=WlShell" id="WlShell">
         <span class="codicon codicon-symbol-interface"></span>
@@ -1481,6 +1792,20 @@ already has another role, it raises a protocol error.
 
 Only one shell surface can be associated with a given surface.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Role | 0 | Given wl_surface has another role |
 <h2 class="decleration interface">
     <a href="?id=WlShellSurface" id="WlShellSurface">
         <span class="codicon codicon-symbol-interface"></span>
@@ -1875,6 +2200,83 @@ The popup_done event is sent out when a popup grab is broken,
 that is, when the user clicks a surface that doesn't belong
 to the client owning the popup surface.
 
+<h3 class="decleration enum" title="Resize enum">
+    <a href="?id=Resize" id="Resize">
+        <span class="codicon codicon-symbol-enum"></span>
+        ResizeFlag
+    </a>
+</h3>
+
+```csharp
+public enum ResizeFlag : uint
+```
+
+Edge values for resizing
+
+
+These values are used to indicate which edge of a surface
+is being dragged in a resize operation. The server may
+use this information to adapt its behavior, e.g. choose
+an appropriate cursor image.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| None | 0 | No edge |
+| Top | 1 | Top edge |
+| Bottom | 2 | Bottom edge |
+| Left | 4 | Left edge |
+| TopLeft | 5 | Top and left edges |
+| BottomLeft | 6 | Bottom and left edges |
+| Right | 8 | Right edge |
+| TopRight | 9 | Top and right edges |
+| BottomRight | 10 | Bottom and right edges |
+<h3 class="decleration enum" title="Transient enum">
+    <a href="?id=Transient" id="Transient">
+        <span class="codicon codicon-symbol-enum"></span>
+        TransientFlag
+    </a>
+</h3>
+
+```csharp
+public enum TransientFlag : uint
+```
+
+Details of transient behaviour
+
+
+These flags specify details of the expected behaviour
+of transient surfaces. Used in the set_transient request.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Inactive | 0x1 | Do not set keyboard focus |
+<h3 class="decleration enum" title="FullscreenMethod enum">
+    <a href="?id=FullscreenMethod" id="FullscreenMethod">
+        <span class="codicon codicon-symbol-enum"></span>
+        FullscreenMethod
+    </a>
+</h3>
+
+```csharp
+public enum FullscreenMethod : uint
+```
+
+Different method to set the surface fullscreen
+
+
+Hints to indicate to the compositor how to deal with a conflict
+between the dimensions of the surface and the dimensions of the
+output. The compositor is free to ignore this parameter.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Default | 0 | No preference, apply default policy |
+| Scale | 1 | Scale, preserve the surface's aspect ratio and center on output |
+| Driver | 2 | Switch output mode to the smallest mode that can fit the surface, add black borders to compensate size mismatch |
+| Fill | 3 | No upscaling, center on output and add black borders to compensate size mismatch |
 <h2 class="decleration interface">
     <a href="?id=WlSurface" id="WlSurface">
         <span class="codicon codicon-symbol-interface"></span>
@@ -2557,6 +2959,30 @@ Applying this transformation to the surface buffer contents and using
 wl_surface.set_buffer_transform might allow the compositor to use the
 surface buffer more efficiently.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+Wl_surface error values
+
+
+These errors can be emitted in response to wl_surface requests.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidScale | 0 | Buffer scale value is invalid |
+| InvalidTransform | 1 | Buffer transform value is invalid |
+| InvalidSize | 2 | Buffer size is invalid |
+| InvalidOffset | 3 | Buffer offset is invalid |
+| DefunctRoleObject | 4 | Surface was destroyed before its role object |
 <h2 class="decleration interface">
     <a href="?id=WlSeat" id="WlSeat">
         <span class="codicon codicon-symbol-interface"></span>
@@ -2749,6 +3175,49 @@ and the name does not change over the lifetime of the wl_seat global.
 Compositors may re-use the same seat name if the wl_seat global is
 destroyed and re-created later.
 
+<h3 class="decleration enum" title="Capability enum">
+    <a href="?id=Capability" id="Capability">
+        <span class="codicon codicon-symbol-enum"></span>
+        CapabilityFlag
+    </a>
+</h3>
+
+```csharp
+public enum CapabilityFlag : uint
+```
+
+Seat capability bitmask
+
+
+This is a bitmask of capabilities this seat has; if a member is
+set, then it is present on the seat.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Pointer | 1 | The seat has pointer devices |
+| Keyboard | 2 | The seat has one or more keyboards |
+| Touch | 4 | The seat has touch devices |
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+Wl_seat error values
+
+
+These errors can be emitted in response to wl_seat requests.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| MissingCapability | 0 | Get_pointer, get_keyboard or get_touch called on seat without the matching capability |
 <h2 class="decleration interface">
     <a href="?id=WlPointer" id="WlPointer">
         <span class="codicon codicon-symbol-interface"></span>
@@ -3265,6 +3734,123 @@ The order of wl_pointer.axis_relative_direction,
 wl_pointer.axis_discrete and wl_pointer.axis_source is not
 guaranteed.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Role | 0 | Given wl_surface has another role |
+<h3 class="decleration enum" title="ButtonState enum">
+    <a href="?id=ButtonState" id="ButtonState">
+        <span class="codicon codicon-symbol-enum"></span>
+        ButtonState
+    </a>
+</h3>
+
+```csharp
+public enum ButtonState : uint
+```
+
+Physical button state
+
+
+Describes the physical state of a button that produced the button
+event.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Released | 0 | The button is not pressed |
+| Pressed | 1 | The button is pressed |
+<h3 class="decleration enum" title="Axis enum">
+    <a href="?id=Axis" id="Axis">
+        <span class="codicon codicon-symbol-enum"></span>
+        Axis
+    </a>
+</h3>
+
+```csharp
+public enum Axis : uint
+```
+
+Axis types
+
+
+Describes the axis types of scroll events.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| VerticalScroll | 0 | Vertical axis |
+| HorizontalScroll | 1 | Horizontal axis |
+<h3 class="decleration enum" title="AxisSource enum">
+    <a href="?id=AxisSource" id="AxisSource">
+        <span class="codicon codicon-symbol-enum"></span>
+        AxisSource
+    </a>
+</h3>
+
+```csharp
+public enum AxisSource : uint
+```
+
+Axis source types
+
+
+Describes the source types for axis events. This indicates to the
+client how an axis event was physically generated; a client may
+adjust the user interface accordingly. For example, scroll events
+from a "finger" source may be in a smooth coordinate space with
+kinetic scrolling whereas a "wheel" source may be in discrete steps
+of a number of lines.
+
+The "continuous" axis source is a device generating events in a
+continuous coordinate space, but using something other than a
+finger. One example for this source is button-based scrolling where
+the vertical motion of a device is converted to scroll events while
+a button is held down.
+
+The "wheel tilt" axis source indicates that the actual device is a
+wheel but the scroll event is not caused by a rotation but a
+(usually sideways) tilt of the wheel.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Wheel | 0 | A physical wheel rotation |
+| Finger | 1 | Finger on a touch surface |
+| Continuous | 2 | Continuous coordinate space |
+| WheelTilt | 3 | A physical wheel tilt |
+<h3 class="decleration enum" title="AxisRelativeDirection enum">
+    <a href="?id=AxisRelativeDirection" id="AxisRelativeDirection">
+        <span class="codicon codicon-symbol-enum"></span>
+        AxisRelativeDirection
+    </a>
+</h3>
+
+```csharp
+public enum AxisRelativeDirection : uint
+```
+
+Axis relative direction
+
+
+This specifies the direction of the physical motion that caused a
+wl_pointer.axis event, relative to the wl_pointer.axis direction.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Identical | 0 | Physical motion matches axis direction |
+| Inverted | 1 | Physical motion is the inverse of the axis direction |
 <h2 class="decleration interface">
     <a href="?id=WlKeyboard" id="WlKeyboard">
         <span class="codicon codicon-symbol-interface"></span>
@@ -3505,6 +4091,58 @@ This event can be sent later on as well with a new value if necessary,
 so clients should continue listening for the event past the creation
 of wl_keyboard.
 
+<h3 class="decleration enum" title="KeymapFormat enum">
+    <a href="?id=KeymapFormat" id="KeymapFormat">
+        <span class="codicon codicon-symbol-enum"></span>
+        KeymapFormat
+    </a>
+</h3>
+
+```csharp
+public enum KeymapFormat : uint
+```
+
+Keyboard mapping format
+
+
+This specifies the format of the keymap provided to the
+client with the wl_keyboard.keymap event.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| NoKeymap | 0 | No keymap; client must understand how to interpret the raw keycode |
+| XkbV1 | 1 | Libxkbcommon compatible, null-terminated string; to determine the xkb keycode, clients must add 8 to the key event keycode |
+<h3 class="decleration enum" title="KeyState enum">
+    <a href="?id=KeyState" id="KeyState">
+        <span class="codicon codicon-symbol-enum"></span>
+        KeyState
+    </a>
+</h3>
+
+```csharp
+public enum KeyState : uint
+```
+
+Physical key state
+
+
+Describes the physical state of a key that produced the key event.
+
+Since version 10, the key can be in a "repeated" pseudo-state which
+means the same as "pressed", but is used to signal repetition in the
+key event.
+
+The key may only enter the repeated state after entering the pressed
+state and before entering the released state. This event may be
+generated multiple times while the key is down.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Released | 0 | Key is not pressed |
+| Pressed | 1 | Key is pressed |
+| Repeated | 2 | Key was repeated |
 <h2 class="decleration interface">
     <a href="?id=WlTouch" id="WlTouch">
         <span class="codicon codicon-symbol-interface"></span>
@@ -4024,6 +4662,90 @@ not be sent at all.
 
 The description event will be followed by a done event.
 
+<h3 class="decleration enum" title="Subpixel enum">
+    <a href="?id=Subpixel" id="Subpixel">
+        <span class="codicon codicon-symbol-enum"></span>
+        Subpixel
+    </a>
+</h3>
+
+```csharp
+public enum Subpixel : uint
+```
+
+Subpixel geometry information
+
+
+This enumeration describes how the physical
+pixels on an output are laid out.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Unknown | 0 | Unknown geometry |
+| None | 1 | No geometry |
+| HorizontalRgb | 2 | Horizontal RGB |
+| HorizontalBgr | 3 | Horizontal BGR |
+| VerticalRgb | 4 | Vertical RGB |
+| VerticalBgr | 5 | Vertical BGR |
+<h3 class="decleration enum" title="Transform enum">
+    <a href="?id=Transform" id="Transform">
+        <span class="codicon codicon-symbol-enum"></span>
+        Transform
+    </a>
+</h3>
+
+```csharp
+public enum Transform : uint
+```
+
+Transformation applied to buffer contents
+
+
+This describes transformations that clients and compositors apply to
+buffer contents.
+
+The flipped values correspond to an initial flip around a
+vertical axis followed by rotation.
+
+The purpose is mainly to allow clients to render accordingly and
+tell the compositor, so that for fullscreen surfaces, the
+compositor will still be able to scan out directly from client
+surfaces.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Normal | 0 | No transform |
+| _90 | 1 | 90 degrees counter-clockwise |
+| _180 | 2 | 180 degrees counter-clockwise |
+| _270 | 3 | 270 degrees counter-clockwise |
+| Flipped | 4 | 180 degree flip around a vertical axis |
+| Flipped90 | 5 | Flip and rotate 90 degrees counter-clockwise |
+| Flipped180 | 6 | Flip and rotate 180 degrees counter-clockwise |
+| Flipped270 | 7 | Flip and rotate 270 degrees counter-clockwise |
+<h3 class="decleration enum" title="Mode enum">
+    <a href="?id=Mode" id="Mode">
+        <span class="codicon codicon-symbol-enum"></span>
+        ModeFlag
+    </a>
+</h3>
+
+```csharp
+public enum ModeFlag : uint
+```
+
+Mode information
+
+
+These flags describe properties of an output mode.
+They are used in the flags bitfield of the mode event.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Current | 0x1 | Indicates this is the current mode |
+| Preferred | 0x2 | Indicates this is the preferred mode |
 <h2 class="decleration interface">
     <a href="?id=WlRegion" id="WlRegion">
         <span class="codicon codicon-symbol-interface"></span>
@@ -4192,6 +4914,21 @@ bad_parent protocol error is raised.
 This request modifies the behaviour of wl_surface.commit request on
 the sub-surface, see the documentation on wl_subsurface interface.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| BadSurface | 0 | The to-be sub-surface is invalid |
+| BadParent | 1 | The to-be sub-surface parent is invalid |
 <h2 class="decleration interface">
     <a href="?id=WlSubsurface" id="WlSubsurface">
         <span class="codicon codicon-symbol-interface"></span>
@@ -4391,6 +5128,20 @@ mode.
 
 See wl_subsurface and wl_surface.commit for more information.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| BadSurface | 0 | Wl_surface is not a sibling or the parent |
 <h2 class="decleration interface">
     <a href="?id=WlFixes" id="WlFixes">
         <span class="codicon codicon-symbol-interface"></span>

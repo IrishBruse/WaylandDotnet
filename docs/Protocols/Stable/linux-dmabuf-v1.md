@@ -500,6 +500,43 @@ has not been fulfilled.
 Upon receiving this event, the client should destroy the
 zwp_linux_buffer_params_v1 object.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| AlreadyUsed | 0 | The dmabuf_batch object has already been used to create a wl_buffer |
+| PlaneIdx | 1 | Plane index out of bounds |
+| PlaneSet | 2 | The plane index was already set |
+| Incomplete | 3 | Missing or too many planes to create a buffer |
+| InvalidFormat | 4 | Format not supported |
+| InvalidDimensions | 5 | Invalid width or height |
+| OutOfBounds | 6 | Offset + stride * height goes out of dmabuf bounds |
+| InvalidWlBuffer | 7 | Invalid wl_buffer resulted from importing dmabufs via                the create_immed request on given buffer_params |
+<h3 class="decleration enum" title="Flags enum">
+    <a href="?id=Flags" id="Flags">
+        <span class="codicon codicon-symbol-enum"></span>
+        FlagsFlag
+    </a>
+</h3>
+
+```csharp
+public enum FlagsFlag : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| YInvert | 1 | Contents are y-inverted |
+| Interlaced | 2 | Content is interlaced |
+| BottomFirst | 4 | Bottom field first |
 <h2 class="decleration interface">
     <a href="?id=ZwpLinuxDmabufFeedbackV1" id="ZwpLinuxDmabufFeedbackV1">
         <span class="codicon codicon-symbol-interface"></span>
@@ -781,3 +818,17 @@ device is implementation-defined.
 
 This event is tied to a preference tranche, see the tranche_done event.
 
+<h3 class="decleration enum" title="TrancheFlags enum">
+    <a href="?id=TrancheFlags" id="TrancheFlags">
+        <span class="codicon codicon-symbol-enum"></span>
+        TrancheFlagsFlag
+    </a>
+</h3>
+
+```csharp
+public enum TrancheFlagsFlag : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Scanout | 1 | Direct scan-out tranche |

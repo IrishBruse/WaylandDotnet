@@ -87,6 +87,50 @@ This request indicates that the client will not use the layer_shell
 object any more. Objects that have been created through this instance
 are not affected.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Role | 0 | Wl_surface has another role |
+| InvalidLayer | 1 | Layer value is invalid |
+| AlreadyConstructed | 2 | Wl_surface has a buffer attached or committed |
+<h3 class="decleration enum" title="Layer enum">
+    <a href="?id=Layer" id="Layer">
+        <span class="codicon codicon-symbol-enum"></span>
+        Layer
+    </a>
+</h3>
+
+```csharp
+public enum Layer : uint
+```
+
+Available layers for surfaces
+
+
+These values indicate which layers a surface can be rendered in. They
+are ordered by z depth, bottom-most first. Traditional shell surfaces
+will typically be rendered between the bottom and top layers.
+Fullscreen shell surfaces are typically rendered at the top layer.
+Multiple surfaces can share a single layer, and ordering within a
+single layer is undefined.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Background | 0 |  |
+| Bottom | 1 |  |
+| Top | 2 |  |
+| Overlay | 3 |  |
 <h2 class="decleration interface">
     <a href="?id=ZwlrLayerSurfaceV1" id="ZwlrLayerSurfaceV1">
         <span class="codicon codicon-symbol-interface"></span>
@@ -461,3 +505,64 @@ have asked for it to be removed. Further changes to the surface will be
 ignored. The client should destroy the resource after receiving this
 event, and create a new surface if they so choose.
 
+<h3 class="decleration enum" title="KeyboardInteractivity enum">
+    <a href="?id=KeyboardInteractivity" id="KeyboardInteractivity">
+        <span class="codicon codicon-symbol-enum"></span>
+        KeyboardInteractivity
+    </a>
+</h3>
+
+```csharp
+public enum KeyboardInteractivity : uint
+```
+
+Types of keyboard interaction possible for a layer shell surface
+
+
+Types of keyboard interaction possible for layer shell surfaces. The
+rationale for this is twofold: (1) some applications are not interested
+in keyboard events and not allowing them to be focused can improve the
+desktop experience; (2) some applications will want to take exclusive
+keyboard focus.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| None | 0 |  |
+| Exclusive | 1 |  |
+| OnDemand | 2 |  |
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidSurfaceState | 0 | Provided surface state is invalid |
+| InvalidSize | 1 | Size is invalid |
+| InvalidAnchor | 2 | Anchor bitfield is invalid |
+| InvalidKeyboardInteractivity | 3 | Keyboard interactivity is invalid |
+| InvalidExclusiveEdge | 4 | Exclusive edge is invalid given the surface anchors |
+<h3 class="decleration enum" title="Anchor enum">
+    <a href="?id=Anchor" id="Anchor">
+        <span class="codicon codicon-symbol-enum"></span>
+        AnchorFlag
+    </a>
+</h3>
+
+```csharp
+public enum AnchorFlag : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Top | 1 | The top edge of the anchor rectangle |
+| Bottom | 2 | The bottom edge of the anchor rectangle |
+| Left | 4 | The left edge of the anchor rectangle |
+| Right | 8 | The right edge of the anchor rectangle |

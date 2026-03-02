@@ -153,6 +153,20 @@ void InputDeviceHandler(RiverInputDeviceV1 id)
 
 A new input device has been created.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidDestroy | 0 |  |
 <h2 class="decleration interface">
     <a href="?id=RiverInputDeviceV1" id="RiverInputDeviceV1">
         <span class="codicon codicon-symbol-interface"></span>
@@ -375,3 +389,36 @@ The name of the input device. This event is sent once when the
 river_input_device_v1 object is created. The device name cannot
 change during the lifetime of the object.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidRepeatInfo | 0 |  |
+| InvalidScrollFactor | 1 |  |
+| InvalidMapToRectangle | 2 |  |
+<h3 class="decleration enum" title="Type enum">
+    <a href="?id=Type" id="Type">
+        <span class="codicon codicon-symbol-enum"></span>
+        Type
+    </a>
+</h3>
+
+```csharp
+public enum Type : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Keyboard | 0 |  |
+| Pointer | 1 |  |
+| Touch | 2 |  |
+| Tablet | 3 |  |

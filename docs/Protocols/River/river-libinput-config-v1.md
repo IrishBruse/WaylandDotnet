@@ -127,6 +127,21 @@ void LibinputDeviceHandler(RiverLibinputDeviceV1 id)
 A new libinput device has been created. Not every river_input_device_v1
 is necessarily a libinput device as well.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidArg | 0 | Invalid enum value or similar |
+| InvalidDestroy | 1 |  |
 <h2 class="decleration interface">
     <a href="?id=RiverLibinputDeviceV1" id="RiverLibinputDeviceV1">
         <span class="codicon codicon-symbol-interface"></span>
@@ -1656,6 +1671,318 @@ void RotationCurrentHandler(uint angle)
 
 Current rotation angle.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidArg | 0 | Invalid enum value or similar |
+<h3 class="decleration enum" title="SendEventsModes enum">
+    <a href="?id=SendEventsModes" id="SendEventsModes">
+        <span class="codicon codicon-symbol-enum"></span>
+        SendEventsModesFlag
+    </a>
+</h3>
+
+```csharp
+public enum SendEventsModesFlag : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Enabled | 0 |  |
+| Disabled | 1 |  |
+| DisabledOnExternalMouse | 2 |  |
+<h3 class="decleration enum" title="TapState enum">
+    <a href="?id=TapState" id="TapState">
+        <span class="codicon codicon-symbol-enum"></span>
+        TapState
+    </a>
+</h3>
+
+```csharp
+public enum TapState : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Disabled | 0 |  |
+| Enabled | 1 |  |
+<h3 class="decleration enum" title="TapButtonMap enum">
+    <a href="?id=TapButtonMap" id="TapButtonMap">
+        <span class="codicon codicon-symbol-enum"></span>
+        TapButtonMap
+    </a>
+</h3>
+
+```csharp
+public enum TapButtonMap : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Lrm | 0 | 1/2/3 finger tap maps to left/right/middle |
+| Lmr | 1 | 1/2/3 finger tap maps to left/middle/right |
+<h3 class="decleration enum" title="DragState enum">
+    <a href="?id=DragState" id="DragState">
+        <span class="codicon codicon-symbol-enum"></span>
+        DragState
+    </a>
+</h3>
+
+```csharp
+public enum DragState : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Disabled | 0 |  |
+| Enabled | 1 |  |
+<h3 class="decleration enum" title="DragLockState enum">
+    <a href="?id=DragLockState" id="DragLockState">
+        <span class="codicon codicon-symbol-enum"></span>
+        DragLockState
+    </a>
+</h3>
+
+```csharp
+public enum DragLockState : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Disabled | 0 |  |
+| EnabledTimeout | 1 |  |
+| EnabledSticky | 2 |  |
+<h3 class="decleration enum" title="ThreeFingerDragState enum">
+    <a href="?id=ThreeFingerDragState" id="ThreeFingerDragState">
+        <span class="codicon codicon-symbol-enum"></span>
+        ThreeFingerDragState
+    </a>
+</h3>
+
+```csharp
+public enum ThreeFingerDragState : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Disabled | 0 |  |
+| Enabled3fg | 1 |  |
+| Enabled4fg | 2 |  |
+<h3 class="decleration enum" title="AccelProfile enum">
+    <a href="?id=AccelProfile" id="AccelProfile">
+        <span class="codicon codicon-symbol-enum"></span>
+        AccelProfile
+    </a>
+</h3>
+
+```csharp
+public enum AccelProfile : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| None | 0 |  |
+| Flat | 1 |  |
+| Adaptive | 2 |  |
+| Custom | 4 |  |
+<h3 class="decleration enum" title="AccelProfiles enum">
+    <a href="?id=AccelProfiles" id="AccelProfiles">
+        <span class="codicon codicon-symbol-enum"></span>
+        AccelProfilesFlag
+    </a>
+</h3>
+
+```csharp
+public enum AccelProfilesFlag : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| None | 0 |  |
+| Flat | 1 |  |
+| Adaptive | 2 |  |
+| Custom | 4 |  |
+<h3 class="decleration enum" title="NaturalScrollState enum">
+    <a href="?id=NaturalScrollState" id="NaturalScrollState">
+        <span class="codicon codicon-symbol-enum"></span>
+        NaturalScrollState
+    </a>
+</h3>
+
+```csharp
+public enum NaturalScrollState : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Disabled | 0 |  |
+| Enabled | 1 |  |
+<h3 class="decleration enum" title="LeftHandedState enum">
+    <a href="?id=LeftHandedState" id="LeftHandedState">
+        <span class="codicon codicon-symbol-enum"></span>
+        LeftHandedState
+    </a>
+</h3>
+
+```csharp
+public enum LeftHandedState : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Disabled | 0 |  |
+| Enabled | 1 |  |
+<h3 class="decleration enum" title="ClickMethod enum">
+    <a href="?id=ClickMethod" id="ClickMethod">
+        <span class="codicon codicon-symbol-enum"></span>
+        ClickMethod
+    </a>
+</h3>
+
+```csharp
+public enum ClickMethod : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| None | 0 |  |
+| ButtonAreas | 1 |  |
+| Clickfinger | 2 |  |
+<h3 class="decleration enum" title="ClickMethods enum">
+    <a href="?id=ClickMethods" id="ClickMethods">
+        <span class="codicon codicon-symbol-enum"></span>
+        ClickMethodsFlag
+    </a>
+</h3>
+
+```csharp
+public enum ClickMethodsFlag : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| None | 0 |  |
+| ButtonAreas | 1 |  |
+| Clickfinger | 2 |  |
+<h3 class="decleration enum" title="ClickfingerButtonMap enum">
+    <a href="?id=ClickfingerButtonMap" id="ClickfingerButtonMap">
+        <span class="codicon codicon-symbol-enum"></span>
+        ClickfingerButtonMap
+    </a>
+</h3>
+
+```csharp
+public enum ClickfingerButtonMap : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Lrm | 0 |  |
+| Lmr | 1 |  |
+<h3 class="decleration enum" title="MiddleEmulationState enum">
+    <a href="?id=MiddleEmulationState" id="MiddleEmulationState">
+        <span class="codicon codicon-symbol-enum"></span>
+        MiddleEmulationState
+    </a>
+</h3>
+
+```csharp
+public enum MiddleEmulationState : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Disabled | 0 |  |
+| Enabled | 1 |  |
+<h3 class="decleration enum" title="ScrollMethod enum">
+    <a href="?id=ScrollMethod" id="ScrollMethod">
+        <span class="codicon codicon-symbol-enum"></span>
+        ScrollMethod
+    </a>
+</h3>
+
+```csharp
+public enum ScrollMethod : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| NoScroll | 0 |  |
+| TwoFinger | 1 |  |
+| Edge | 2 |  |
+| OnButtonDown | 4 |  |
+<h3 class="decleration enum" title="ScrollMethods enum">
+    <a href="?id=ScrollMethods" id="ScrollMethods">
+        <span class="codicon codicon-symbol-enum"></span>
+        ScrollMethodsFlag
+    </a>
+</h3>
+
+```csharp
+public enum ScrollMethodsFlag : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| NoScroll | 0 |  |
+| TwoFinger | 1 |  |
+| Edge | 2 |  |
+| OnButtonDown | 4 |  |
+<h3 class="decleration enum" title="ScrollButtonLockState enum">
+    <a href="?id=ScrollButtonLockState" id="ScrollButtonLockState">
+        <span class="codicon codicon-symbol-enum"></span>
+        ScrollButtonLockState
+    </a>
+</h3>
+
+```csharp
+public enum ScrollButtonLockState : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Disabled | 0 |  |
+| Enabled | 1 |  |
+<h3 class="decleration enum" title="DwtState enum">
+    <a href="?id=DwtState" id="DwtState">
+        <span class="codicon codicon-symbol-enum"></span>
+        DwtState
+    </a>
+</h3>
+
+```csharp
+public enum DwtState : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Disabled | 0 |  |
+| Enabled | 1 |  |
+<h3 class="decleration enum" title="DwtpState enum">
+    <a href="?id=DwtpState" id="DwtpState">
+        <span class="codicon codicon-symbol-enum"></span>
+        DwtpState
+    </a>
+</h3>
+
+```csharp
+public enum DwtpState : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Disabled | 0 |  |
+| Enabled | 1 |  |
 <h2 class="decleration interface">
     <a href="?id=RiverLibinputAccelConfigV1" id="RiverLibinputAccelConfigV1">
         <span class="codicon codicon-symbol-interface"></span>
@@ -1711,6 +2038,36 @@ RiverLibinputResultV1 SetPoints(uint type, byte[] step, byte[] points)
 Defines the acceleration function for a given movement type
 in an acceleration configuration with custom accel profile.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidArg | 0 | Invalid enum value or similar |
+<h3 class="decleration enum" title="AccelType enum">
+    <a href="?id=AccelType" id="AccelType">
+        <span class="codicon codicon-symbol-enum"></span>
+        AccelType
+    </a>
+</h3>
+
+```csharp
+public enum AccelType : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Fallback | 0 |  |
+| Motion | 1 |  |
+| Scroll | 2 |  |
 <h2 class="decleration interface">
     <a href="?id=RiverLibinputResultV1" id="RiverLibinputResultV1">
         <span class="codicon codicon-symbol-interface"></span>

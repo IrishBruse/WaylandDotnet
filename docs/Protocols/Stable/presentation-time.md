@@ -116,6 +116,28 @@ irrelevant. Precision of one millisecond or better is
 recommended. Clients must be able to query the current clock
 value directly, not by asking the compositor.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+Fatal presentation errors
+
+
+These fatal protocol errors may be emitted in response to
+illegal presentation requests.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidTimestamp | 0 | Invalid value in tv_nsec |
+| InvalidFlag | 1 | Invalid flag |
 <h2 class="decleration interface">
     <a href="?id=WpPresentationFeedback" id="WpPresentationFeedback">
         <span class="codicon codicon-symbol-interface"></span>
@@ -250,3 +272,29 @@ void DiscardedHandler()
 
 The content update was never displayed to the user.
 
+<h3 class="decleration enum" title="Kind enum">
+    <a href="?id=Kind" id="Kind">
+        <span class="codicon codicon-symbol-enum"></span>
+        KindFlag
+    </a>
+</h3>
+
+```csharp
+public enum KindFlag : uint
+```
+
+Bitmask of flags in presented event
+
+
+These flags provide information about how the presentation of
+the related content update was done. The intent is to help
+clients assess the reliability of the feedback and the visual
+quality with respect to possible tearing and timings.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Vsync | 0x1 |  |
+| HwClock | 0x2 |  |
+| HwCompletion | 0x4 |  |
+| ZeroCopy | 0x8 |  |

@@ -84,6 +84,20 @@ RiverLayerShellSeatV1 GetSeat(RiverSeatV1 seat)
 It is a protocol error to make this request more than once for a given
 river_seat_v1 object.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| ObjectAlreadyCreated | 0 | The layer_shell_output/seat object was already created. |
 <h2 class="decleration interface">
     <a href="?id=RiverLayerShellOutputV1" id="RiverLayerShellOutputV1">
         <span class="codicon codicon-symbol-interface"></span>

@@ -148,6 +148,26 @@ clients.
 A compositor is free to ping in any way it wants, but a client must
 always respond to any xdg_wm_base object it created.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Role | 0 | Given wl_surface has another role |
+| DefunctSurfaces | 1 | Xdg_wm_base was destroyed before children |
+| NotTheTopmostPopup | 2 | The client tried to map or destroy a non-topmost popup |
+| InvalidPopupParent | 3 | The client specified an invalid popup parent surface |
+| InvalidSurfaceState | 4 | The client provided an invalid surface state |
+| InvalidPositioner | 5 | The client provided an invalid positioner |
+| Unresponsive | 6 | The client didn’t respond to a ping event in time |
 <h2 class="decleration interface">
     <a href="?id=XdgPositioner" id="XdgPositioner">
         <span class="codicon codicon-symbol-interface"></span>
@@ -434,6 +454,100 @@ used in response to. The compositor may use this information together
 with set_parent_size to determine what future state the popup should be
 constrained using.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidInput | 0 | Invalid input provided |
+<h3 class="decleration enum" title="Anchor enum">
+    <a href="?id=Anchor" id="Anchor">
+        <span class="codicon codicon-symbol-enum"></span>
+        Anchor
+    </a>
+</h3>
+
+```csharp
+public enum Anchor : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| None | 0 |  |
+| Top | 1 |  |
+| Bottom | 2 |  |
+| Left | 3 |  |
+| Right | 4 |  |
+| TopLeft | 5 |  |
+| BottomLeft | 6 |  |
+| TopRight | 7 |  |
+| BottomRight | 8 |  |
+<h3 class="decleration enum" title="Gravity enum">
+    <a href="?id=Gravity" id="Gravity">
+        <span class="codicon codicon-symbol-enum"></span>
+        Gravity
+    </a>
+</h3>
+
+```csharp
+public enum Gravity : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| None | 0 |  |
+| Top | 1 |  |
+| Bottom | 2 |  |
+| Left | 3 |  |
+| Right | 4 |  |
+| TopLeft | 5 |  |
+| BottomLeft | 6 |  |
+| TopRight | 7 |  |
+| BottomRight | 8 |  |
+<h3 class="decleration enum" title="ConstraintAdjustment enum">
+    <a href="?id=ConstraintAdjustment" id="ConstraintAdjustment">
+        <span class="codicon codicon-symbol-enum"></span>
+        ConstraintAdjustmentFlag
+    </a>
+</h3>
+
+```csharp
+public enum ConstraintAdjustmentFlag : uint
+```
+
+Constraint adjustments
+
+
+The constraint adjustment value define ways the compositor will adjust
+the position of the surface, if the unadjusted position would result
+in the surface being partly constrained.
+
+Whether a surface is considered 'constrained' is left to the compositor
+to determine. For example, the surface may be partly outside the
+compositor's defined 'work area', thus necessitating the child surface's
+position be adjusted until it is entirely inside the work area.
+
+The adjustments can be combined, according to a defined precedence: 1)
+Flip, 2) Slide, 3) Resize.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| None | 0 |  |
+| SlideX | 1 |  |
+| SlideY | 2 |  |
+| FlipX | 4 |  |
+| FlipY | 8 |  |
+| ResizeX | 16 |  |
+| ResizeY | 32 |  |
 <h2 class="decleration interface">
     <a href="?id=XdgSurface" id="XdgSurface">
         <span class="codicon codicon-symbol-interface"></span>
@@ -710,6 +824,25 @@ some point before committing the new surface.
 If the client receives multiple configure events before it can respond
 to one, it is free to discard all but the last event it received.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| NotConstructed | 1 | Surface was not fully constructed |
+| AlreadyConstructed | 2 | Surface was already constructed |
+| UnconfiguredBuffer | 3 | Attaching a buffer to an unconfigured surface |
+| InvalidSerial | 4 | Invalid serial number when acking a configure event |
+| InvalidSize | 5 | Width or height was zero or negative |
+| DefunctRoleObject | 6 | Surface was destroyed before its role object |
 <h2 class="decleration interface">
     <a href="?id=XdgToplevel" id="XdgToplevel">
         <span class="codicon codicon-symbol-interface"></span>
@@ -1391,6 +1524,105 @@ xdg_surface.configure for details.
 The capabilities are sent as an array of 32-bit unsigned integers in
 native endianness.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidResizeEdge | 0 | Provided value is         not a valid variant of the resize_edge enum |
+| InvalidParent | 1 | Invalid parent toplevel |
+| InvalidSize | 2 | Client provided an invalid min or max size |
+<h3 class="decleration enum" title="ResizeEdge enum">
+    <a href="?id=ResizeEdge" id="ResizeEdge">
+        <span class="codicon codicon-symbol-enum"></span>
+        ResizeEdge
+    </a>
+</h3>
+
+```csharp
+public enum ResizeEdge : uint
+```
+
+Edge values for resizing
+
+
+These values are used to indicate which edge of a surface
+is being dragged in a resize operation.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| None | 0 |  |
+| Top | 1 |  |
+| Bottom | 2 |  |
+| Left | 4 |  |
+| TopLeft | 5 |  |
+| BottomLeft | 6 |  |
+| Right | 8 |  |
+| TopRight | 9 |  |
+| BottomRight | 10 |  |
+<h3 class="decleration enum" title="State enum">
+    <a href="?id=State" id="State">
+        <span class="codicon codicon-symbol-enum"></span>
+        State
+    </a>
+</h3>
+
+```csharp
+public enum State : uint
+```
+
+Types of state on the surface
+
+
+The different state values used on the surface. This is designed for
+state values like maximized, fullscreen. It is paired with the
+configure event to ensure that both the client and the compositor
+setting the state can be synchronized.
+
+States set in this way are double-buffered, see wl_surface.commit.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Maximized | 1 | The surface is maximized |
+| Fullscreen | 2 | The surface is fullscreen |
+| Resizing | 3 | The surface is being resized |
+| Activated | 4 | The surface is now activated |
+| TiledLeft | 5 |  |
+| TiledRight | 6 |  |
+| TiledTop | 7 |  |
+| TiledBottom | 8 |  |
+| Suspended | 9 |  |
+| ConstrainedLeft | 10 |  |
+| ConstrainedRight | 11 |  |
+| ConstrainedTop | 12 |  |
+| ConstrainedBottom | 13 |  |
+<h3 class="decleration enum" title="WmCapabilities enum">
+    <a href="?id=WmCapabilities" id="WmCapabilities">
+        <span class="codicon codicon-symbol-enum"></span>
+        WmCapabilities
+    </a>
+</h3>
+
+```csharp
+public enum WmCapabilities : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| WindowMenu | 1 | Show_window_menu is available |
+| Maximize | 2 | Set_maximized and unset_maximized are available |
+| Fullscreen | 3 | Set_fullscreen and unset_fullscreen are available |
+| Minimize | 4 | Set_minimized is available |
 <h2 class="decleration interface">
     <a href="?id=XdgPopup" id="XdgPopup">
         <span class="codicon codicon-symbol-interface"></span>
@@ -1633,3 +1865,17 @@ The client should optionally update the content of the popup, but must
 acknowledge the new popup configuration for the new position to take
 effect. See xdg_surface.ack_configure for details.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidGrab | 0 | Tried to grab after being mapped |

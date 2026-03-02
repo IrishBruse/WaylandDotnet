@@ -65,6 +65,20 @@ crop and scale its content. If the given wl_surface already has
 a wp_viewport object associated, the viewport_exists
 protocol error is raised.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| ViewportExists | 0 | The surface already has a viewport object associated |
 <h2 class="decleration interface">
     <a href="?id=WpViewport" id="WpViewport">
         <span class="codicon codicon-symbol-interface"></span>
@@ -210,3 +224,20 @@ error.
 
 The crop and scale state is double-buffered, see wl_surface.commit.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| BadValue | 0 | Negative or zero values in width or height |
+| BadSize | 1 | Destination size is not integer |
+| OutOfBuffer | 2 | Source rectangle extends outside of the content area |
+| NoSurface | 3 | The wl_surface was destroyed |

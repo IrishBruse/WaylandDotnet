@@ -433,6 +433,22 @@ A new seat has been created.
 This event will be followed by a manage_start event after all other new
 state has been sent by the server.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| SequenceOrder | 0 | Request violates manage/render sequence ordering |
+| Role | 1 | Given wl_surface already has a role |
+| Unresponsive | 2 | Window manager unresponsive |
 <h2 class="decleration interface">
     <a href="?id=RiverWindowV1" id="RiverWindowV1">
         <span class="codicon codicon-symbol-interface"></span>
@@ -1568,6 +1584,75 @@ may have the same PID.
 This event is sent once when the river_window_v1 is created and never
 sent again.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| NodeExists | 0 | Window already has a node object |
+| InvalidDimensions | 1 | Proposed dimensions out of bounds |
+| InvalidBorder | 2 | Invalid arg to set_borders |
+| InvalidClipBox | 3 | Invalid arg to set_clip_box |
+<h3 class="decleration enum" title="DecorationHint enum">
+    <a href="?id=DecorationHint" id="DecorationHint">
+        <span class="codicon codicon-symbol-enum"></span>
+        DecorationHint
+    </a>
+</h3>
+
+```csharp
+public enum DecorationHint : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| OnlySupportsCsd | 0 | Only supports client side decoration |
+| PrefersCsd | 1 | Client side decoration preferred, both CSD and SSD supported |
+| PrefersSsd | 2 | Server side decoration preferred, both CSD and SSD supported |
+| NoPreference | 3 | No preference, both CSD and SSD supported |
+<h3 class="decleration enum" title="Edges enum">
+    <a href="?id=Edges" id="Edges">
+        <span class="codicon codicon-symbol-enum"></span>
+        EdgesFlag
+    </a>
+</h3>
+
+```csharp
+public enum EdgesFlag : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| None | 0 |  |
+| Top | 1 |  |
+| Bottom | 2 |  |
+| Left | 4 |  |
+| Right | 8 |  |
+<h3 class="decleration enum" title="Capabilities enum">
+    <a href="?id=Capabilities" id="Capabilities">
+        <span class="codicon codicon-symbol-enum"></span>
+        CapabilitiesFlag
+    </a>
+</h3>
+
+```csharp
+public enum CapabilitiesFlag : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| WindowMenu | 1 |  |
+| Maximize | 2 |  |
+| Fullscreen | 4 |  |
+| Minimize | 8 |  |
 <h2 class="decleration interface">
     <a href="?id=RiverDecorationV1" id="RiverDecorationV1">
         <span class="codicon codicon-symbol-interface"></span>
@@ -1660,6 +1745,20 @@ to do so is a protocol error.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| NoCommit | 0 | Failed to commit the surface before the window manager commit |
 <h2 class="decleration interface">
     <a href="?id=RiverShellSurfaceV1" id="RiverShellSurfaceV1">
         <span class="codicon codicon-symbol-interface"></span>
@@ -1741,6 +1840,21 @@ so is a protocol error.
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| NodeExists | 0 | Shell surface already has a node object |
+| NoCommit | 1 | Failed to commit the surface before the window manager commit |
 <h2 class="decleration interface">
     <a href="?id=RiverNodeV1" id="RiverNodeV1">
         <span class="codicon codicon-symbol-interface"></span>
@@ -2566,6 +2680,37 @@ Assuming the seat has a pointer, this event must be sent in every manage
 sequence unless there is no change in x/y position since the last time this
 event was sent.
 
+<h3 class="decleration enum" title="Modifiers enum">
+    <a href="?id=Modifiers" id="Modifiers">
+        <span class="codicon codicon-symbol-enum"></span>
+        ModifiersFlag
+    </a>
+</h3>
+
+```csharp
+public enum ModifiersFlag : uint
+```
+
+A set of keyboard modifiers
+
+
+This enum is used to describe the keyboard modifiers that must be held
+down to trigger a key binding or pointer binding.
+
+Note that river and wlroots use the values 2 and 16 for capslock and
+numlock internally. It doesn't make sense to use locked modifiers for
+bindings however so these values are not included in this enum.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| None | 0 |  |
+| Shift | 1 |  |
+| Ctrl | 4 |  |
+| Mod1 | 8 | Commonly called alt |
+| Mod3 | 32 |  |
+| Mod4 | 64 | Commonly called super or logo |
+| Mod5 | 128 |  |
 <h2 class="decleration interface">
     <a href="?id=RiverPointerBindingV1" id="RiverPointerBindingV1">
         <span class="codicon codicon-symbol-interface"></span>

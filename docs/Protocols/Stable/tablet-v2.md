@@ -753,6 +753,104 @@ tablet. The Wayland protocol requires axis updates to be sent
 sequentially, however all events within a frame should be considered
 one hardware event.
 
+<h3 class="decleration enum" title="Type enum">
+    <a href="?id=Type" id="Type">
+        <span class="codicon codicon-symbol-enum"></span>
+        Type
+    </a>
+</h3>
+
+```csharp
+public enum Type : uint
+```
+
+A physical tool type
+
+
+Describes the physical type of a tool. The physical type of a tool
+generally defines its base usage.
+
+The mouse tool represents a mouse-shaped tool that is not a relative
+device but bound to the tablet's surface, providing absolute
+coordinates.
+
+The lens tool is a mouse-shaped tool with an attached lens to
+provide precision focus.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Pen | 0x140 | Pen |
+| Eraser | 0x141 | Eraser |
+| Brush | 0x142 | Brush |
+| Pencil | 0x143 | Pencil |
+| Airbrush | 0x144 | Airbrush |
+| Finger | 0x145 | Finger |
+| Mouse | 0x146 | Mouse |
+| Lens | 0x147 | Lens |
+<h3 class="decleration enum" title="Capability enum">
+    <a href="?id=Capability" id="Capability">
+        <span class="codicon codicon-symbol-enum"></span>
+        Capability
+    </a>
+</h3>
+
+```csharp
+public enum Capability : uint
+```
+
+Capability flags for a tool
+
+
+Describes extra capabilities on a tablet.
+
+Any tool must provide x and y values, extra axes are
+device-specific.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Tilt | 1 | Tilt axes |
+| Pressure | 2 | Pressure axis |
+| Distance | 3 | Distance axis |
+| Rotation | 4 | Z-rotation axis |
+| Slider | 5 | Slider axis |
+| Wheel | 6 | Wheel axis |
+<h3 class="decleration enum" title="ButtonState enum">
+    <a href="?id=ButtonState" id="ButtonState">
+        <span class="codicon codicon-symbol-enum"></span>
+        ButtonState
+    </a>
+</h3>
+
+```csharp
+public enum ButtonState : uint
+```
+
+Physical button state
+
+
+Describes the physical state of a button that produced the button event.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Released | 0 | Button is not pressed |
+| Pressed | 1 | Button is pressed |
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Role | 0 | Given wl_surface has another role |
 <h2 class="decleration interface">
     <a href="?id=ZwpTabletV2" id="ZwpTabletV2">
         <span class="codicon codicon-symbol-interface"></span>
@@ -944,6 +1042,30 @@ queried, this event is not sent.
 This event is sent in the initial burst of events before the
 zwp_tablet_v2.done event.
 
+<h3 class="decleration enum" title="Bustype enum">
+    <a href="?id=Bustype" id="Bustype">
+        <span class="codicon codicon-symbol-enum"></span>
+        Bustype
+    </a>
+</h3>
+
+```csharp
+public enum Bustype : uint
+```
+
+Bus type 
+
+
+Describes the bus types this tablet is connected to.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Usb | 3 | USB |
+| Bluetooth | 5 | Bluetooth |
+| Virtual | 6 | Virtual |
+| Serial | 17 | Serial |
+| I2c | 24 | I2C |
 <h2 class="decleration interface">
     <a href="?id=ZwpTabletPadRingV2" id="ZwpTabletPadRingV2">
         <span class="codicon codicon-symbol-interface"></span>
@@ -1125,6 +1247,29 @@ group, even if the group only contains a single zwp_tablet_pad_ring_v2
 event. Specifically, a client may get a sequence: angle, frame,
 angle, frame, etc.
 
+<h3 class="decleration enum" title="Source enum">
+    <a href="?id=Source" id="Source">
+        <span class="codicon codicon-symbol-enum"></span>
+        Source
+    </a>
+</h3>
+
+```csharp
+public enum Source : uint
+```
+
+Ring axis source
+
+
+Describes the source types for ring events. This indicates to the
+client how a ring event was physically generated; a client may
+adjust the user interface accordingly. For example, events
+from a "finger" source may trigger kinetic scrolling.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Finger | 1 | Finger |
 <h2 class="decleration interface">
     <a href="?id=ZwpTabletPadStripV2" id="ZwpTabletPadStripV2">
         <span class="codicon codicon-symbol-interface"></span>
@@ -1308,6 +1453,29 @@ group, even if the group only contains a single zwp_tablet_pad_strip_v2
 event. Specifically, a client may get a sequence: position, frame,
 position, frame, etc.
 
+<h3 class="decleration enum" title="Source enum">
+    <a href="?id=Source" id="Source">
+        <span class="codicon codicon-symbol-enum"></span>
+        Source
+    </a>
+</h3>
+
+```csharp
+public enum Source : uint
+```
+
+Strip axis source
+
+
+Describes the source types for strip events. This indicates to the
+client how a strip event was physically generated; a client may
+adjust the user interface accordingly. For example, events
+from a "finger" source may trigger kinetic scrolling.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Finger | 1 | Finger |
 <h2 class="decleration interface">
     <a href="?id=ZwpTabletPadGroupV2" id="ZwpTabletPadGroupV2">
         <span class="codicon codicon-symbol-interface"></span>
@@ -1830,6 +1998,28 @@ When this event is received, the client must destroy all rings, strips
 and groups that were offered by this pad, and issue zwp_tablet_pad_v2.destroy
 the pad itself.
 
+<h3 class="decleration enum" title="ButtonState enum">
+    <a href="?id=ButtonState" id="ButtonState">
+        <span class="codicon codicon-symbol-enum"></span>
+        ButtonState
+    </a>
+</h3>
+
+```csharp
+public enum ButtonState : uint
+```
+
+Physical button state
+
+
+Describes the physical state of a button that caused the button
+event.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Released | 0 | The button is not pressed |
+| Pressed | 1 | The button is pressed |
 <h2 class="decleration interface">
     <a href="?id=ZwpTabletPadDialV2" id="ZwpTabletPadDialV2">
         <span class="codicon codicon-symbol-interface"></span>

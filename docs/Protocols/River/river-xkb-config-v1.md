@@ -131,6 +131,36 @@ void XkbKeyboardHandler(RiverXkbKeyboardV1 id)
 A new xkbcommon keyboard has been created. Not every
 river_input_device_v1 is necessarily an xkbcommon keyboard as well.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidDestroy | 0 |  |
+| InvalidFormat | 1 |  |
+<h3 class="decleration enum" title="KeymapFormat enum">
+    <a href="?id=KeymapFormat" id="KeymapFormat">
+        <span class="codicon codicon-symbol-enum"></span>
+        KeymapFormat
+    </a>
+</h3>
+
+```csharp
+public enum KeymapFormat : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| TextV1 | 1 | XKB_KEYMAP_FORMAT_TEXT_V1 |
+| TextV2 | 2 | XKB_KEYMAP_FORMAT_TEXT_V2 |
 <h2 class="decleration interface">
     <a href="?id=RiverXkbKeymapV1" id="RiverXkbKeymapV1">
         <span class="codicon codicon-symbol-interface"></span>
@@ -503,3 +533,17 @@ Numlock is currently disabled for the keyboard.
 This event is sent once when the river_xkb_keyboard_v1 is created and
 again whenever the numlock state changes.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="?id=Error" id="Error">
+        <span class="codicon codicon-symbol-enum"></span>
+        Error
+    </a>
+</h3>
+
+```csharp
+public enum Error : uint
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidKeymap | 0 |  |
