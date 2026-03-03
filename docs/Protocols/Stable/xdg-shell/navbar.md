@@ -1,4 +1,4 @@
-﻿# Outline
+﻿Outline
 
 - [XdgWmBase](#XdgWmBase)
 - [XdgPositioner](#XdgPositioner)

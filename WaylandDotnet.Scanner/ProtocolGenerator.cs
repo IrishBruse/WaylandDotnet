@@ -71,10 +71,10 @@ public partial class ProtocolGenerator
 
         if (metadata.DocsDir != null)
         {
-            var docsPath = Path.Combine(metadata.DocsDir, "Protocols", metadata.Namespace);
-            Directory.CreateDirectory(Path.Combine(docsPath, mdFile));
-            md = new(Path.Combine(docsPath, mdFile, "README.md"));
-            navbar = new(Path.Combine(docsPath, mdFile, "navbar.md"));
+            string docsPath = Path.Combine(metadata.DocsDir, "Protocols", metadata.Namespace, mdFile);
+            Directory.CreateDirectory(docsPath);
+            md = new(Path.Combine(docsPath, "README.md"));
+            navbar = new(Path.Combine(docsPath, "navbar.md"));
         }
         else
         {
@@ -82,7 +82,7 @@ public partial class ProtocolGenerator
             navbar = new("");
         }
 
-        navbar.WriteLine("# Outline");
+        navbar.WriteLine("Outline");
         navbar.WriteLine();
 
         XmlSerializer serializer = new(typeof(WaylandProtocol));
@@ -367,7 +367,7 @@ public partial class ProtocolGenerator
         string className = iface.Name.ToPascal();
 
         var node = Html.H2().Class("decleration interface")
-            .Child(Html.A().Href("?id=" + className).Id(className)
+            .Child(Html.A().Href("/?id=" + className).Id(className)
                 .Child(Html.Span().Class("codicon codicon-symbol-interface"))
                 .Child(Html.Text(className)))
             .Child(Html.Span().Class("pill").Text($"version {iface.Version}"));
@@ -645,7 +645,7 @@ public partial class ProtocolGenerator
 
         var enumNode = Html.H3().Class("decleration enum").Title($"{enumName} enum")
             .Child(
-                Html.A().Href("?id=" + urlEnumName).Id(urlEnumName)
+                Html.A().Href("/?id=" + urlEnumName).Id(urlEnumName)
                 .Child(Html.Span().Class("codicon codicon-symbol-enum enum"))
                 .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("enum").Text(enumName)))
 
@@ -684,7 +684,7 @@ public partial class ProtocolGenerator
 
         var eventNode = Html.H3().Class("decleration event").Title($"{eventName} event")
             .Child(
-                Html.A().Href("?id=" + urlEventName).Id(urlEventName)
+                Html.A().Href("/?id=" + urlEventName).Id(urlEventName)
                 .Child(Html.Span().Class("codicon codicon-symbol-event event"))
                 .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("event").Text("On" + eventName)))
             );
@@ -1111,7 +1111,7 @@ public partial class ProtocolGenerator
         string urlMethodName = iface.Name.ToPascal() + "_" + methodName;
 
         var h3Node = Html.H3().Class("decleration request").Title($"{methodName} request")
-            .Child(Html.A().Href("?id=" + urlMethodName).Id(urlMethodName)
+            .Child(Html.A().Href("/?id=" + urlMethodName).Id(urlMethodName)
                 .Child(Html.Span().Class("codicon codicon-symbol-method method"))
                 .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("method").Text(methodName)))
             );

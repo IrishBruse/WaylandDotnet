@@ -46,6 +46,11 @@
       "XmlFile": "Protocols/Wlr/wlr-layer-shell-unstable-v1.xml",
       "Namespace": "Wlr"
     },
+    {
+      "Name": "Output Management",
+      "XmlFile": "Protocols/Wlr/wlr-output-management-unstable-v1.xml",
+      "Namespace": "Wlr"
+    },
     // River protocols
     {
       "Name": "River Input Management",

@@ -5,7 +5,7 @@
 ---
 
 <h2 class="decleration interface">
-    <a href="?id=ZwpTabletManagerV2" id="ZwpTabletManagerV2">
+    <a href="/?id=ZwpTabletManagerV2" id="ZwpTabletManagerV2">
         <span class="codicon codicon-symbol-interface"></span>
         ZwpTabletManagerV2
     </a>
@@ -21,7 +21,7 @@ actual tablets, use zwp_tablet_manager_v2.get_tablet_seat.
 
 
 <h3 class="decleration request" title="GetTabletSeat request">
-    <a href="?id=ZwpTabletManagerV2_GetTabletSeat" id="ZwpTabletManagerV2_GetTabletSeat">
+    <a href="/?id=ZwpTabletManagerV2_GetTabletSeat" id="ZwpTabletManagerV2_GetTabletSeat">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpTabletManagerV2.<span class="method">GetTabletSeat</span>
     </a>
@@ -42,7 +42,7 @@ Get the zwp_tablet_seat_v2 object for the given seat. This object
 provides access to all graphics tablets in this seat.
 
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwpTabletManagerV2_Destroy" id="ZwpTabletManagerV2_Destroy">
+    <a href="/?id=ZwpTabletManagerV2_Destroy" id="ZwpTabletManagerV2_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpTabletManagerV2.<span class="method">Destroy</span>
     </a>
@@ -60,7 +60,7 @@ Destroy the zwp_tablet_manager_v2 object. Objects created from this
 object are unaffected and should be destroyed separately.
 
 <h2 class="decleration interface">
-    <a href="?id=ZwpTabletSeatV2" id="ZwpTabletSeatV2">
+    <a href="/?id=ZwpTabletSeatV2" id="ZwpTabletSeatV2">
         <span class="codicon codicon-symbol-interface"></span>
         ZwpTabletSeatV2
     </a>
@@ -76,7 +76,7 @@ zwp_tablet_seat_v2.tablet_added and zwp_tablet_seat_v2.tool_added events.
 
 
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwpTabletSeatV2_Destroy" id="ZwpTabletSeatV2_Destroy">
+    <a href="/?id=ZwpTabletSeatV2_Destroy" id="ZwpTabletSeatV2_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpTabletSeatV2.<span class="method">Destroy</span>
     </a>
@@ -94,7 +94,7 @@ Destroy the zwp_tablet_seat_v2 object. Objects created from this
 object are unaffected and should be destroyed separately.
 
 <h3 class="decleration event" title="TabletAdded event">
-    <a href="?id=OnZwpTabletSeatV2_TabletAdded" id="OnZwpTabletSeatV2_TabletAdded">
+    <a href="/?id=OnZwpTabletSeatV2_TabletAdded" id="OnZwpTabletSeatV2_TabletAdded">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletSeatV2.<span class="event">OnTabletAdded</span>
     </a>
@@ -116,7 +116,7 @@ static information about the tablet (device name, vid/pid, etc.) is
 sent through the zwp_tablet_v2 interface.
 
 <h3 class="decleration event" title="ToolAdded event">
-    <a href="?id=OnZwpTabletSeatV2_ToolAdded" id="OnZwpTabletSeatV2_ToolAdded">
+    <a href="/?id=OnZwpTabletSeatV2_ToolAdded" id="OnZwpTabletSeatV2_ToolAdded">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletSeatV2.<span class="event">OnToolAdded</span>
     </a>
@@ -138,7 +138,7 @@ of the tool; any static information about the tool (capabilities,
 type, etc.) is sent through the zwp_tablet_tool_v2 interface.
 
 <h3 class="decleration event" title="PadAdded event">
-    <a href="?id=OnZwpTabletSeatV2_PadAdded" id="OnZwpTabletSeatV2_PadAdded">
+    <a href="/?id=OnZwpTabletSeatV2_PadAdded" id="OnZwpTabletSeatV2_PadAdded">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletSeatV2.<span class="event">OnPadAdded</span>
     </a>
@@ -166,7 +166,7 @@ features (buttons, strips, rings) are sent through the zwp_tablet_pad_v2
 interface.
 
 <h2 class="decleration interface">
-    <a href="?id=ZwpTabletToolV2" id="ZwpTabletToolV2">
+    <a href="/?id=ZwpTabletToolV2" id="ZwpTabletToolV2">
         <span class="codicon codicon-symbol-interface"></span>
         ZwpTabletToolV2
     </a>
@@ -199,7 +199,7 @@ considered part of the same hardware state change.
 
 
 <h3 class="decleration request" title="SetCursor request">
-    <a href="?id=ZwpTabletToolV2_SetCursor" id="ZwpTabletToolV2_SetCursor">
+    <a href="/?id=ZwpTabletToolV2_SetCursor" id="ZwpTabletToolV2_SetCursor">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpTabletToolV2.<span class="method">SetCursor</span>
     </a>
@@ -250,7 +250,7 @@ previously been used as cursor surface for a different tool, a
 protocol error is raised.
 
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwpTabletToolV2_Destroy" id="ZwpTabletToolV2_Destroy">
+    <a href="/?id=ZwpTabletToolV2_Destroy" id="ZwpTabletToolV2_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpTabletToolV2.<span class="method">Destroy</span>
     </a>
@@ -267,7 +267,7 @@ void Destroy()
 This destroys the client's resource for this tool object.
 
 <h3 class="decleration event" title="Type event">
-    <a href="?id=OnZwpTabletToolV2_Type" id="OnZwpTabletToolV2_Type">
+    <a href="/?id=OnZwpTabletToolV2_Type" id="OnZwpTabletToolV2_Type">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnType</span>
     </a>
@@ -290,7 +290,7 @@ This event is sent in the initial burst of events before the
 zwp_tablet_tool_v2.done event.
 
 <h3 class="decleration event" title="HardwareSerial event">
-    <a href="?id=OnZwpTabletToolV2_HardwareSerial" id="OnZwpTabletToolV2_HardwareSerial">
+    <a href="/?id=OnZwpTabletToolV2_HardwareSerial" id="OnZwpTabletToolV2_HardwareSerial">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnHardwareSerial</span>
     </a>
@@ -324,7 +324,7 @@ This event is sent in the initial burst of events before the
 zwp_tablet_tool_v2.done event.
 
 <h3 class="decleration event" title="HardwareIdWacom event">
-    <a href="?id=OnZwpTabletToolV2_HardwareIdWacom" id="OnZwpTabletToolV2_HardwareIdWacom">
+    <a href="/?id=OnZwpTabletToolV2_HardwareIdWacom" id="OnZwpTabletToolV2_HardwareIdWacom">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnHardwareIdWacom</span>
     </a>
@@ -353,7 +353,7 @@ This event is sent in the initial burst of events before the
 zwp_tablet_tool_v2.done event.
 
 <h3 class="decleration event" title="Capability event">
-    <a href="?id=OnZwpTabletToolV2_Capability" id="OnZwpTabletToolV2_Capability">
+    <a href="/?id=OnZwpTabletToolV2_Capability" id="OnZwpTabletToolV2_Capability">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnCapability</span>
     </a>
@@ -378,7 +378,7 @@ This event is sent in the initial burst of events before the
 zwp_tablet_tool_v2.done event.
 
 <h3 class="decleration event" title="Done event">
-    <a href="?id=OnZwpTabletToolV2_Done" id="OnZwpTabletToolV2_Done">
+    <a href="/?id=OnZwpTabletToolV2_Done" id="OnZwpTabletToolV2_Done">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnDone</span>
     </a>
@@ -396,7 +396,7 @@ events. A client may consider the static description of the tool to
 be complete and finalize initialization of the tool.
 
 <h3 class="decleration event" title="Removed event">
-    <a href="?id=OnZwpTabletToolV2_Removed" id="OnZwpTabletToolV2_Removed">
+    <a href="/?id=OnZwpTabletToolV2_Removed" id="OnZwpTabletToolV2_Removed">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnRemoved</span>
     </a>
@@ -425,7 +425,7 @@ When this event is received, the client must zwp_tablet_tool_v2.destroy
 the object.
 
 <h3 class="decleration event" title="ProximityIn event">
-    <a href="?id=OnZwpTabletToolV2_ProximityIn" id="OnZwpTabletToolV2_ProximityIn">
+    <a href="/?id=OnZwpTabletToolV2_ProximityIn" id="OnZwpTabletToolV2_ProximityIn">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnProximityIn</span>
     </a>
@@ -454,7 +454,7 @@ the respective button event is sent after the proximity_in event but
 within the same frame as the proximity_in event.
 
 <h3 class="decleration event" title="ProximityOut event">
-    <a href="?id=OnZwpTabletToolV2_ProximityOut" id="OnZwpTabletToolV2_ProximityOut">
+    <a href="/?id=OnZwpTabletToolV2_ProximityOut" id="OnZwpTabletToolV2_ProximityOut">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnProximityOut</span>
     </a>
@@ -481,7 +481,7 @@ be sent until the button is actually released or the tool leaves the
 proximity of the tablet.
 
 <h3 class="decleration event" title="Down event">
-    <a href="?id=OnZwpTabletToolV2_Down" id="OnZwpTabletToolV2_Down">
+    <a href="/?id=OnZwpTabletToolV2_Down" id="OnZwpTabletToolV2_Down">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnDown</span>
     </a>
@@ -511,7 +511,7 @@ logical contact until a minimum physical pressure threshold is
 exceeded.
 
 <h3 class="decleration event" title="Up event">
-    <a href="?id=OnZwpTabletToolV2_Up" id="OnZwpTabletToolV2_Up">
+    <a href="/?id=OnZwpTabletToolV2_Up" id="OnZwpTabletToolV2_Up">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnUp</span>
     </a>
@@ -542,7 +542,7 @@ of logical contact until physical pressure falls below a specific
 threshold.
 
 <h3 class="decleration event" title="Motion event">
-    <a href="?id=OnZwpTabletToolV2_Motion" id="OnZwpTabletToolV2_Motion">
+    <a href="/?id=OnZwpTabletToolV2_Motion" id="OnZwpTabletToolV2_Motion">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnMotion</span>
     </a>
@@ -562,7 +562,7 @@ void MotionHandler(WlFixed x, WlFixed y)
 Sent whenever a tablet tool moves.
 
 <h3 class="decleration event" title="Pressure event">
-    <a href="?id=OnZwpTabletToolV2_Pressure" id="OnZwpTabletToolV2_Pressure">
+    <a href="/?id=OnZwpTabletToolV2_Pressure" id="OnZwpTabletToolV2_Pressure">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnPressure</span>
     </a>
@@ -585,7 +585,7 @@ Note that pressure may be nonzero even when a tool is not in logical
 contact. See the down and up events for more details.
 
 <h3 class="decleration event" title="Distance event">
-    <a href="?id=OnZwpTabletToolV2_Distance" id="OnZwpTabletToolV2_Distance">
+    <a href="/?id=OnZwpTabletToolV2_Distance" id="OnZwpTabletToolV2_Distance">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnDistance</span>
     </a>
@@ -608,7 +608,7 @@ Note that distance may be nonzero even when a tool is not in logical
 contact. See the down and up events for more details.
 
 <h3 class="decleration event" title="Tilt event">
-    <a href="?id=OnZwpTabletToolV2_Tilt" id="OnZwpTabletToolV2_Tilt">
+    <a href="/?id=OnZwpTabletToolV2_Tilt" id="OnZwpTabletToolV2_Tilt">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnTilt</span>
     </a>
@@ -631,7 +631,7 @@ The angle is positive when the top of a tool tilts along the
 positive x or y axis.
 
 <h3 class="decleration event" title="Rotation event">
-    <a href="?id=OnZwpTabletToolV2_Rotation" id="OnZwpTabletToolV2_Rotation">
+    <a href="/?id=OnZwpTabletToolV2_Rotation" id="OnZwpTabletToolV2_Rotation">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnRotation</span>
     </a>
@@ -652,7 +652,7 @@ rotation value is in degrees clockwise from the tool's
 logical neutral position.
 
 <h3 class="decleration event" title="Slider event">
-    <a href="?id=OnZwpTabletToolV2_Slider" id="OnZwpTabletToolV2_Slider">
+    <a href="/?id=OnZwpTabletToolV2_Slider" id="OnZwpTabletToolV2_Slider">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnSlider</span>
     </a>
@@ -675,7 +675,7 @@ neutral position of the slider.
 The slider is available on e.g. the Wacom Airbrush tool.
 
 <h3 class="decleration event" title="Wheel event">
-    <a href="?id=OnZwpTabletToolV2_Wheel" id="OnZwpTabletToolV2_Wheel">
+    <a href="/?id=OnZwpTabletToolV2_Wheel" id="OnZwpTabletToolV2_Wheel">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnWheel</span>
     </a>
@@ -706,7 +706,7 @@ Thus, zwp_tablet_tool_v2.wheel events with non-zero clicks values may
 have different degrees values.
 
 <h3 class="decleration event" title="Button event">
-    <a href="?id=OnZwpTabletToolV2_Button" id="OnZwpTabletToolV2_Button">
+    <a href="/?id=OnZwpTabletToolV2_Button" id="OnZwpTabletToolV2_Button">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnButton</span>
     </a>
@@ -732,7 +732,7 @@ zwp_tablet_tool_v2.proximity_in and zwp_tablet_tool_v2.proximity_out for
 details.
 
 <h3 class="decleration event" title="Frame event">
-    <a href="?id=OnZwpTabletToolV2_Frame" id="OnZwpTabletToolV2_Frame">
+    <a href="/?id=OnZwpTabletToolV2_Frame" id="OnZwpTabletToolV2_Frame">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletToolV2.<span class="event">OnFrame</span>
     </a>
@@ -754,7 +754,7 @@ sequentially, however all events within a frame should be considered
 one hardware event.
 
 <h3 class="decleration enum" title="Type enum">
-    <a href="?id=Type" id="Type">
+    <a href="/?id=Type" id="Type">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletToolV2.<span class="enum">Type</span>
     </a>
@@ -789,7 +789,7 @@ provide precision focus.
 | Mouse | 0x146 | Mouse |
 | Lens | 0x147 | Lens |
 <h3 class="decleration enum" title="Capability enum">
-    <a href="?id=Capability" id="Capability">
+    <a href="/?id=Capability" id="Capability">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletToolV2.<span class="enum">Capability</span>
     </a>
@@ -817,7 +817,7 @@ device-specific.
 | Slider | 5 | Slider axis |
 | Wheel | 6 | Wheel axis |
 <h3 class="decleration enum" title="ButtonState enum">
-    <a href="?id=ButtonState" id="ButtonState">
+    <a href="/?id=ButtonState" id="ButtonState">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletToolV2.<span class="enum">ButtonState</span>
     </a>
@@ -838,7 +838,7 @@ Describes the physical state of a button that produced the button event.
 | Released | 0 | Button is not pressed |
 | Pressed | 1 | Button is pressed |
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="/?id=Error" id="Error">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletToolV2.<span class="enum">Error</span>
     </a>
@@ -852,7 +852,7 @@ public enum Error
 | --- | --- | --- |
 | Role | 0 | Given wl_surface has another role |
 <h2 class="decleration interface">
-    <a href="?id=ZwpTabletV2" id="ZwpTabletV2">
+    <a href="/?id=ZwpTabletV2" id="ZwpTabletV2">
         <span class="codicon codicon-symbol-interface"></span>
         ZwpTabletV2
     </a>
@@ -873,7 +873,7 @@ terminated by a zwp_tablet_v2.done event.
 
 
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwpTabletV2_Destroy" id="ZwpTabletV2_Destroy">
+    <a href="/?id=ZwpTabletV2_Destroy" id="ZwpTabletV2_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpTabletV2.<span class="method">Destroy</span>
     </a>
@@ -890,7 +890,7 @@ void Destroy()
 This destroys the client's resource for this tablet object.
 
 <h3 class="decleration event" title="Name event">
-    <a href="?id=OnZwpTabletV2_Name" id="OnZwpTabletV2_Name">
+    <a href="/?id=OnZwpTabletV2_Name" id="OnZwpTabletV2_Name">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletV2.<span class="event">OnName</span>
     </a>
@@ -914,7 +914,7 @@ This event is sent in the initial burst of events before the
 zwp_tablet_v2.done event.
 
 <h3 class="decleration event" title="Id event">
-    <a href="?id=OnZwpTabletV2_Id" id="OnZwpTabletV2_Id">
+    <a href="/?id=OnZwpTabletV2_Id" id="OnZwpTabletV2_Id">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletV2.<span class="event">OnId</span>
     </a>
@@ -945,7 +945,7 @@ This event is sent in the initial burst of events before the
 zwp_tablet_v2.done event.
 
 <h3 class="decleration event" title="Path event">
-    <a href="?id=OnZwpTabletV2_Path" id="OnZwpTabletV2_Path">
+    <a href="/?id=OnZwpTabletV2_Path" id="OnZwpTabletV2_Path">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletV2.<span class="event">OnPath</span>
     </a>
@@ -977,7 +977,7 @@ This event is sent in the initial burst of events before the
 zwp_tablet_v2.done event.
 
 <h3 class="decleration event" title="Done event">
-    <a href="?id=OnZwpTabletV2_Done" id="OnZwpTabletV2_Done">
+    <a href="/?id=OnZwpTabletV2_Done" id="OnZwpTabletV2_Done">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletV2.<span class="event">OnDone</span>
     </a>
@@ -996,7 +996,7 @@ description of the tablet to be complete and finalize initialization
 of the tablet.
 
 <h3 class="decleration event" title="Removed event">
-    <a href="?id=OnZwpTabletV2_Removed" id="OnZwpTabletV2_Removed">
+    <a href="/?id=OnZwpTabletV2_Removed" id="OnZwpTabletV2_Removed">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletV2.<span class="event">OnRemoved</span>
     </a>
@@ -1016,7 +1016,7 @@ When this event is received, the client must zwp_tablet_v2.destroy
 the object.
 
 <h3 class="decleration event" title="Bustype event">
-    <a href="?id=OnZwpTabletV2_Bustype" id="OnZwpTabletV2_Bustype">
+    <a href="/?id=OnZwpTabletV2_Bustype" id="OnZwpTabletV2_Bustype">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletV2.<span class="event">OnBustype</span>
     </a>
@@ -1043,7 +1043,7 @@ This event is sent in the initial burst of events before the
 zwp_tablet_v2.done event.
 
 <h3 class="decleration enum" title="Bustype enum">
-    <a href="?id=Bustype" id="Bustype">
+    <a href="/?id=Bustype" id="Bustype">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletV2.<span class="enum">Bustype</span>
     </a>
@@ -1067,7 +1067,7 @@ Describes the bus types this tablet is connected to.
 | Serial | 17 | Serial |
 | I2c | 24 | I2C |
 <h2 class="decleration interface">
-    <a href="?id=ZwpTabletPadRingV2" id="ZwpTabletPadRingV2">
+    <a href="/?id=ZwpTabletPadRingV2" id="ZwpTabletPadRingV2">
         <span class="codicon codicon-symbol-interface"></span>
         ZwpTabletPadRingV2
     </a>
@@ -1085,7 +1085,7 @@ event.
 
 
 <h3 class="decleration request" title="SetFeedback request">
-    <a href="?id=ZwpTabletPadRingV2_SetFeedback" id="ZwpTabletPadRingV2_SetFeedback">
+    <a href="/?id=ZwpTabletPadRingV2_SetFeedback" id="ZwpTabletPadRingV2_SetFeedback">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpTabletPadRingV2.<span class="method">SetFeedback</span>
     </a>
@@ -1123,7 +1123,7 @@ ring. Requests providing other serials than the most recent one will be
 ignored.
 
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwpTabletPadRingV2_Destroy" id="ZwpTabletPadRingV2_Destroy">
+    <a href="/?id=ZwpTabletPadRingV2_Destroy" id="ZwpTabletPadRingV2_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpTabletPadRingV2.<span class="method">Destroy</span>
     </a>
@@ -1140,7 +1140,7 @@ void Destroy()
 This destroys the client's resource for this ring object.
 
 <h3 class="decleration event" title="Source event">
-    <a href="?id=OnZwpTabletPadRingV2_Source" id="OnZwpTabletPadRingV2_Source">
+    <a href="/?id=OnZwpTabletPadRingV2_Source" id="OnZwpTabletPadRingV2_Source">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadRingV2.<span class="event">OnSource</span>
     </a>
@@ -1170,7 +1170,7 @@ This event is optional. If the source is unknown for an interaction,
 no event is sent.
 
 <h3 class="decleration event" title="Angle event">
-    <a href="?id=OnZwpTabletPadRingV2_Angle" id="OnZwpTabletPadRingV2_Angle">
+    <a href="/?id=OnZwpTabletPadRingV2_Angle" id="OnZwpTabletPadRingV2_Angle">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadRingV2.<span class="event">OnAngle</span>
     </a>
@@ -1192,7 +1192,7 @@ The angle is provided in degrees clockwise from the logical
 north of the ring in the pad's current rotation.
 
 <h3 class="decleration event" title="Stop event">
-    <a href="?id=OnZwpTabletPadRingV2_Stop" id="OnZwpTabletPadRingV2_Stop">
+    <a href="/?id=OnZwpTabletPadRingV2_Stop" id="OnZwpTabletPadRingV2_Stop">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadRingV2.<span class="event">OnStop</span>
     </a>
@@ -1217,7 +1217,7 @@ Any zwp_tablet_pad_ring_v2.angle events with the same source after this
 event should be considered as the start of a new interaction.
 
 <h3 class="decleration event" title="Frame event">
-    <a href="?id=OnZwpTabletPadRingV2_Frame" id="OnZwpTabletPadRingV2_Frame">
+    <a href="/?id=OnZwpTabletPadRingV2_Frame" id="OnZwpTabletPadRingV2_Frame">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadRingV2.<span class="event">OnFrame</span>
     </a>
@@ -1248,7 +1248,7 @@ event. Specifically, a client may get a sequence: angle, frame,
 angle, frame, etc.
 
 <h3 class="decleration enum" title="Source enum">
-    <a href="?id=Source" id="Source">
+    <a href="/?id=Source" id="Source">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletPadRingV2.<span class="enum">Source</span>
     </a>
@@ -1271,7 +1271,7 @@ from a "finger" source may trigger kinetic scrolling.
 | --- | --- | --- |
 | Finger | 1 | Finger |
 <h2 class="decleration interface">
-    <a href="?id=ZwpTabletPadStripV2" id="ZwpTabletPadStripV2">
+    <a href="/?id=ZwpTabletPadStripV2" id="ZwpTabletPadStripV2">
         <span class="codicon codicon-symbol-interface"></span>
         ZwpTabletPadStripV2
     </a>
@@ -1289,7 +1289,7 @@ event.
 
 
 <h3 class="decleration request" title="SetFeedback request">
-    <a href="?id=ZwpTabletPadStripV2_SetFeedback" id="ZwpTabletPadStripV2_SetFeedback">
+    <a href="/?id=ZwpTabletPadStripV2_SetFeedback" id="ZwpTabletPadStripV2_SetFeedback">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpTabletPadStripV2.<span class="method">SetFeedback</span>
     </a>
@@ -1327,7 +1327,7 @@ strip. Requests providing other serials than the most recent one will be
 ignored.
 
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwpTabletPadStripV2_Destroy" id="ZwpTabletPadStripV2_Destroy">
+    <a href="/?id=ZwpTabletPadStripV2_Destroy" id="ZwpTabletPadStripV2_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpTabletPadStripV2.<span class="method">Destroy</span>
     </a>
@@ -1344,7 +1344,7 @@ void Destroy()
 This destroys the client's resource for this strip object.
 
 <h3 class="decleration event" title="Source event">
-    <a href="?id=OnZwpTabletPadStripV2_Source" id="OnZwpTabletPadStripV2_Source">
+    <a href="/?id=OnZwpTabletPadStripV2_Source" id="OnZwpTabletPadStripV2_Source">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadStripV2.<span class="event">OnSource</span>
     </a>
@@ -1374,7 +1374,7 @@ This event is optional. If the source is unknown for an interaction,
 no event is sent.
 
 <h3 class="decleration event" title="Position event">
-    <a href="?id=OnZwpTabletPadStripV2_Position" id="OnZwpTabletPadStripV2_Position">
+    <a href="/?id=OnZwpTabletPadStripV2_Position" id="OnZwpTabletPadStripV2_Position">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadStripV2.<span class="event">OnPosition</span>
     </a>
@@ -1397,7 +1397,7 @@ represents the top-most and/or left-most position of the strip in
 the pad's current rotation.
 
 <h3 class="decleration event" title="Stop event">
-    <a href="?id=OnZwpTabletPadStripV2_Stop" id="OnZwpTabletPadStripV2_Stop">
+    <a href="/?id=OnZwpTabletPadStripV2_Stop" id="OnZwpTabletPadStripV2_Stop">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadStripV2.<span class="event">OnStop</span>
     </a>
@@ -1422,7 +1422,7 @@ Any zwp_tablet_pad_strip_v2.position events with the same source after this
 event should be considered as the start of a new interaction.
 
 <h3 class="decleration event" title="Frame event">
-    <a href="?id=OnZwpTabletPadStripV2_Frame" id="OnZwpTabletPadStripV2_Frame">
+    <a href="/?id=OnZwpTabletPadStripV2_Frame" id="OnZwpTabletPadStripV2_Frame">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadStripV2.<span class="event">OnFrame</span>
     </a>
@@ -1454,7 +1454,7 @@ event. Specifically, a client may get a sequence: position, frame,
 position, frame, etc.
 
 <h3 class="decleration enum" title="Source enum">
-    <a href="?id=Source" id="Source">
+    <a href="/?id=Source" id="Source">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletPadStripV2.<span class="enum">Source</span>
     </a>
@@ -1477,7 +1477,7 @@ from a "finger" source may trigger kinetic scrolling.
 | --- | --- | --- |
 | Finger | 1 | Finger |
 <h2 class="decleration interface">
-    <a href="?id=ZwpTabletPadGroupV2" id="ZwpTabletPadGroupV2">
+    <a href="/?id=ZwpTabletPadGroupV2" id="ZwpTabletPadGroupV2">
         <span class="codicon codicon-symbol-interface"></span>
         ZwpTabletPadGroupV2
     </a>
@@ -1511,7 +1511,7 @@ compositor. See the zwp_tablet_pad_group_v2.mode_switch event for more details.
 
 
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwpTabletPadGroupV2_Destroy" id="ZwpTabletPadGroupV2_Destroy">
+    <a href="/?id=ZwpTabletPadGroupV2_Destroy" id="ZwpTabletPadGroupV2_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpTabletPadGroupV2.<span class="method">Destroy</span>
     </a>
@@ -1529,7 +1529,7 @@ Destroy the zwp_tablet_pad_group_v2 object. Objects created from this object
 are unaffected and should be destroyed separately.
 
 <h3 class="decleration event" title="Buttons event">
-    <a href="?id=OnZwpTabletPadGroupV2_Buttons" id="OnZwpTabletPadGroupV2_Buttons">
+    <a href="/?id=OnZwpTabletPadGroupV2_Buttons" id="OnZwpTabletPadGroupV2_Buttons">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadGroupV2.<span class="event">OnButtons</span>
     </a>
@@ -1559,7 +1559,7 @@ If the compositor happens to reserve all buttons in a group, this event
 will be sent with an empty array.
 
 <h3 class="decleration event" title="Ring event">
-    <a href="?id=OnZwpTabletPadGroupV2_Ring" id="OnZwpTabletPadGroupV2_Ring">
+    <a href="/?id=OnZwpTabletPadGroupV2_Ring" id="OnZwpTabletPadGroupV2_Ring">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadGroupV2.<span class="event">OnRing</span>
     </a>
@@ -1582,7 +1582,7 @@ This event is sent in the initial burst of events before the
 zwp_tablet_pad_group_v2.done event.
 
 <h3 class="decleration event" title="Strip event">
-    <a href="?id=OnZwpTabletPadGroupV2_Strip" id="OnZwpTabletPadGroupV2_Strip">
+    <a href="/?id=OnZwpTabletPadGroupV2_Strip" id="OnZwpTabletPadGroupV2_Strip">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadGroupV2.<span class="event">OnStrip</span>
     </a>
@@ -1605,7 +1605,7 @@ This event is sent in the initial burst of events before the
 zwp_tablet_pad_group_v2.done event.
 
 <h3 class="decleration event" title="Modes event">
-    <a href="?id=OnZwpTabletPadGroupV2_Modes" id="OnZwpTabletPadGroupV2_Modes">
+    <a href="/?id=OnZwpTabletPadGroupV2_Modes" id="OnZwpTabletPadGroupV2_Modes">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadGroupV2.<span class="event">OnModes</span>
     </a>
@@ -1635,7 +1635,7 @@ zwp_tablet_pad_group_v2.done event. This event is only sent when more than
 more than one mode is available.
 
 <h3 class="decleration event" title="Done event">
-    <a href="?id=OnZwpTabletPadGroupV2_Done" id="OnZwpTabletPadGroupV2_Done">
+    <a href="/?id=OnZwpTabletPadGroupV2_Done" id="OnZwpTabletPadGroupV2_Done">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadGroupV2.<span class="event">OnDone</span>
     </a>
@@ -1654,7 +1654,7 @@ description of the tablet to be complete and finalize initialization
 of the tablet group.
 
 <h3 class="decleration event" title="ModeSwitch event">
-    <a href="?id=OnZwpTabletPadGroupV2_ModeSwitch" id="OnZwpTabletPadGroupV2_ModeSwitch">
+    <a href="/?id=OnZwpTabletPadGroupV2_ModeSwitch" id="OnZwpTabletPadGroupV2_ModeSwitch">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadGroupV2.<span class="event">OnModeSwitch</span>
     </a>
@@ -1701,7 +1701,7 @@ zwp_tablet_ring_v2.set_feedback, zwp_tablet_strip_v2.set_feedback or
 zwp_tablet_dial_v2.set_feedback request for each changed ring, strip or dial.
 
 <h3 class="decleration event" title="Dial event">
-    <a href="?id=OnZwpTabletPadGroupV2_Dial" id="OnZwpTabletPadGroupV2_Dial">
+    <a href="/?id=OnZwpTabletPadGroupV2_Dial" id="OnZwpTabletPadGroupV2_Dial">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadGroupV2.<span class="event">OnDial</span>
     </a>
@@ -1725,7 +1725,7 @@ This event is sent in the initial burst of events before the
 zwp_tablet_pad_group_v2.done event.
 
 <h2 class="decleration interface">
-    <a href="?id=ZwpTabletPadV2" id="ZwpTabletPadV2">
+    <a href="/?id=ZwpTabletPadV2" id="ZwpTabletPadV2">
         <span class="codicon codicon-symbol-interface"></span>
         ZwpTabletPadV2
     </a>
@@ -1760,7 +1760,7 @@ although different groups may have different active modes.
 
 
 <h3 class="decleration request" title="SetFeedback request">
-    <a href="?id=ZwpTabletPadV2_SetFeedback" id="ZwpTabletPadV2_SetFeedback">
+    <a href="/?id=ZwpTabletPadV2_SetFeedback" id="ZwpTabletPadV2_SetFeedback">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpTabletPadV2.<span class="method">SetFeedback</span>
     </a>
@@ -1804,7 +1804,7 @@ button. Requests providing other serials than the most recent one will
 be ignored.
 
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwpTabletPadV2_Destroy" id="ZwpTabletPadV2_Destroy">
+    <a href="/?id=ZwpTabletPadV2_Destroy" id="ZwpTabletPadV2_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpTabletPadV2.<span class="method">Destroy</span>
     </a>
@@ -1822,7 +1822,7 @@ Destroy the zwp_tablet_pad_v2 object. Objects created from this object
 are unaffected and should be destroyed separately.
 
 <h3 class="decleration event" title="Group event">
-    <a href="?id=OnZwpTabletPadV2_Group" id="OnZwpTabletPadV2_Group">
+    <a href="/?id=OnZwpTabletPadV2_Group" id="OnZwpTabletPadV2_Group">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadV2.<span class="event">OnGroup</span>
     </a>
@@ -1845,7 +1845,7 @@ This event is sent in the initial burst of events before the
 zwp_tablet_pad_v2.done event. At least one group will be announced.
 
 <h3 class="decleration event" title="Path event">
-    <a href="?id=OnZwpTabletPadV2_Path" id="OnZwpTabletPadV2_Path">
+    <a href="/?id=OnZwpTabletPadV2_Path" id="OnZwpTabletPadV2_Path">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadV2.<span class="event">OnPath</span>
     </a>
@@ -1873,7 +1873,7 @@ This event is sent in the initial burst of events before the
 zwp_tablet_pad_v2.done event.
 
 <h3 class="decleration event" title="Buttons event">
-    <a href="?id=OnZwpTabletPadV2_Buttons" id="OnZwpTabletPadV2_Buttons">
+    <a href="/?id=OnZwpTabletPadV2_Buttons" id="OnZwpTabletPadV2_Buttons">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadV2.<span class="event">OnButtons</span>
     </a>
@@ -1897,7 +1897,7 @@ zwp_tablet_pad_v2.done event. This event is only sent when at least one
 button is available.
 
 <h3 class="decleration event" title="Done event">
-    <a href="?id=OnZwpTabletPadV2_Done" id="OnZwpTabletPadV2_Done">
+    <a href="/?id=OnZwpTabletPadV2_Done" id="OnZwpTabletPadV2_Done">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadV2.<span class="event">OnDone</span>
     </a>
@@ -1915,7 +1915,7 @@ events. A client may consider the static description of the pad to
 be complete and finalize initialization of the pad.
 
 <h3 class="decleration event" title="Button event">
-    <a href="?id=OnZwpTabletPadV2_Button" id="OnZwpTabletPadV2_Button">
+    <a href="/?id=OnZwpTabletPadV2_Button" id="OnZwpTabletPadV2_Button">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadV2.<span class="event">OnButton</span>
     </a>
@@ -1936,7 +1936,7 @@ void ButtonHandler(uint time, uint button, uint state)
 Sent whenever the physical state of a button changes.
 
 <h3 class="decleration event" title="Enter event">
-    <a href="?id=OnZwpTabletPadV2_Enter" id="OnZwpTabletPadV2_Enter">
+    <a href="/?id=OnZwpTabletPadV2_Enter" id="OnZwpTabletPadV2_Enter">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadV2.<span class="event">OnEnter</span>
     </a>
@@ -1957,7 +1957,7 @@ void EnterHandler(uint serial, ZwpTabletV2 tablet, WlSurface surface)
 Notification that this pad is focused on the specified surface.
 
 <h3 class="decleration event" title="Leave event">
-    <a href="?id=OnZwpTabletPadV2_Leave" id="OnZwpTabletPadV2_Leave">
+    <a href="/?id=OnZwpTabletPadV2_Leave" id="OnZwpTabletPadV2_Leave">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadV2.<span class="event">OnLeave</span>
     </a>
@@ -1978,7 +1978,7 @@ Notification that this pad is no longer focused on the specified
 surface.
 
 <h3 class="decleration event" title="Removed event">
-    <a href="?id=OnZwpTabletPadV2_Removed" id="OnZwpTabletPadV2_Removed">
+    <a href="/?id=OnZwpTabletPadV2_Removed" id="OnZwpTabletPadV2_Removed">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadV2.<span class="event">OnRemoved</span>
     </a>
@@ -1999,7 +1999,7 @@ and groups that were offered by this pad, and issue zwp_tablet_pad_v2.destroy
 the pad itself.
 
 <h3 class="decleration enum" title="ButtonState enum">
-    <a href="?id=ButtonState" id="ButtonState">
+    <a href="/?id=ButtonState" id="ButtonState">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletPadV2.<span class="enum">ButtonState</span>
     </a>
@@ -2021,7 +2021,7 @@ event.
 | Released | 0 | The button is not pressed |
 | Pressed | 1 | The button is pressed |
 <h2 class="decleration interface">
-    <a href="?id=ZwpTabletPadDialV2" id="ZwpTabletPadDialV2">
+    <a href="/?id=ZwpTabletPadDialV2" id="ZwpTabletPadDialV2">
         <span class="codicon codicon-symbol-interface"></span>
         ZwpTabletPadDialV2
     </a>
@@ -2038,7 +2038,7 @@ event.
 
 
 <h3 class="decleration request" title="SetFeedback request">
-    <a href="?id=ZwpTabletPadDialV2_SetFeedback" id="ZwpTabletPadDialV2_SetFeedback">
+    <a href="/?id=ZwpTabletPadDialV2_SetFeedback" id="ZwpTabletPadDialV2_SetFeedback">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpTabletPadDialV2.<span class="method">SetFeedback</span>
     </a>
@@ -2076,7 +2076,7 @@ dial. Requests providing other serials than the most recent one will be
 ignored.
 
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwpTabletPadDialV2_Destroy" id="ZwpTabletPadDialV2_Destroy">
+    <a href="/?id=ZwpTabletPadDialV2_Destroy" id="ZwpTabletPadDialV2_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpTabletPadDialV2.<span class="method">Destroy</span>
     </a>
@@ -2093,7 +2093,7 @@ void Destroy()
 This destroys the client's resource for this dial object.
 
 <h3 class="decleration event" title="Delta event">
-    <a href="?id=OnZwpTabletPadDialV2_Delta" id="OnZwpTabletPadDialV2_Delta">
+    <a href="/?id=OnZwpTabletPadDialV2_Delta" id="OnZwpTabletPadDialV2_Delta">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadDialV2.<span class="event">OnDelta</span>
     </a>
@@ -2121,7 +2121,7 @@ same hardware event. See the wl_pointer.axis_value120 for more details.
 The value120 must not be zero.
 
 <h3 class="decleration event" title="Frame event">
-    <a href="?id=OnZwpTabletPadDialV2_Frame" id="OnZwpTabletPadDialV2_Frame">
+    <a href="/?id=OnZwpTabletPadDialV2_Frame" id="OnZwpTabletPadDialV2_Frame">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpTabletPadDialV2.<span class="event">OnFrame</span>
     </a>

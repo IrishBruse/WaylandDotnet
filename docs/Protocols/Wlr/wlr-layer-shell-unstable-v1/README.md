@@ -5,7 +5,7 @@
 ---
 
 <h2 class="decleration interface">
-    <a href="?id=ZwlrLayerShellV1" id="ZwlrLayerShellV1">
+    <a href="/?id=ZwlrLayerShellV1" id="ZwlrLayerShellV1">
         <span class="codicon codicon-symbol-interface"></span>
         ZwlrLayerShellV1
     </a>
@@ -25,7 +25,7 @@ that interact with the desktop.
 
 
 <h3 class="decleration request" title="GetLayerSurface request">
-    <a href="?id=ZwlrLayerShellV1_GetLayerSurface" id="ZwlrLayerShellV1_GetLayerSurface">
+    <a href="/?id=ZwlrLayerShellV1_GetLayerSurface" id="ZwlrLayerShellV1_GetLayerSurface">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerShellV1.<span class="method">GetLayerSurface</span>
     </a>
@@ -68,7 +68,7 @@ Clients can specify a namespace that defines the purpose of the layer
 surface.
 
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwlrLayerShellV1_Destroy" id="ZwlrLayerShellV1_Destroy">
+    <a href="/?id=ZwlrLayerShellV1_Destroy" id="ZwlrLayerShellV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerShellV1.<span class="method">Destroy</span>
     </a>
@@ -88,7 +88,7 @@ object any more. Objects that have been created through this instance
 are not affected.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="/?id=Error" id="Error">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrLayerShellV1.<span class="enum">Error</span>
     </a>
@@ -104,7 +104,7 @@ public enum Error
 | InvalidLayer | 1 | Layer value is invalid |
 | AlreadyConstructed | 2 | Wl_surface has a buffer attached or committed |
 <h3 class="decleration enum" title="Layer enum">
-    <a href="?id=Layer" id="Layer">
+    <a href="/?id=Layer" id="Layer">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrLayerShellV1.<span class="enum">Layer</span>
     </a>
@@ -132,7 +132,7 @@ single layer is undefined.
 | Top | 2 |  |
 | Overlay | 3 |  |
 <h2 class="decleration interface">
-    <a href="?id=ZwlrLayerSurfaceV1" id="ZwlrLayerSurfaceV1">
+    <a href="/?id=ZwlrLayerSurfaceV1" id="ZwlrLayerSurfaceV1">
         <span class="codicon codicon-symbol-interface"></span>
         ZwlrLayerSurfaceV1
     </a>
@@ -160,7 +160,7 @@ buffer attached, waiting for a configure event and handling it as usual.
 
 
 <h3 class="decleration request" title="SetSize request">
-    <a href="?id=ZwlrLayerSurfaceV1_SetSize" id="ZwlrLayerSurfaceV1_SetSize">
+    <a href="/?id=ZwlrLayerSurfaceV1_SetSize" id="ZwlrLayerSurfaceV1_SetSize">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetSize</span>
     </a>
@@ -189,7 +189,7 @@ protocol error. Both values are 0 by default.
 Size is double-buffered, see wl_surface.commit.
 
 <h3 class="decleration request" title="SetAnchor request">
-    <a href="?id=ZwlrLayerSurfaceV1_SetAnchor" id="ZwlrLayerSurfaceV1_SetAnchor">
+    <a href="/?id=ZwlrLayerSurfaceV1_SetAnchor" id="ZwlrLayerSurfaceV1_SetAnchor">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetAnchor</span>
     </a>
@@ -214,7 +214,7 @@ will be centered on that edge, or in the center if none is specified.
 Anchor is double-buffered, see wl_surface.commit.
 
 <h3 class="decleration request" title="SetExclusiveZone request">
-    <a href="?id=ZwlrLayerSurfaceV1_SetExclusiveZone" id="ZwlrLayerSurfaceV1_SetExclusiveZone">
+    <a href="/?id=ZwlrLayerSurfaceV1_SetExclusiveZone" id="ZwlrLayerSurfaceV1_SetExclusiveZone">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetExclusiveZone</span>
     </a>
@@ -264,7 +264,7 @@ The default value is 0.
 Exclusive zone is double-buffered, see wl_surface.commit.
 
 <h3 class="decleration request" title="SetMargin request">
-    <a href="?id=ZwlrLayerSurfaceV1_SetMargin" id="ZwlrLayerSurfaceV1_SetMargin">
+    <a href="/?id=ZwlrLayerSurfaceV1_SetMargin" id="ZwlrLayerSurfaceV1_SetMargin">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetMargin</span>
     </a>
@@ -292,7 +292,7 @@ The exclusive zone includes the margin.
 Margin is double-buffered, see wl_surface.commit.
 
 <h3 class="decleration request" title="SetKeyboardInteractivity request">
-    <a href="?id=ZwlrLayerSurfaceV1_SetKeyboardInteractivity" id="ZwlrLayerSurfaceV1_SetKeyboardInteractivity">
+    <a href="/?id=ZwlrLayerSurfaceV1_SetKeyboardInteractivity" id="ZwlrLayerSurfaceV1_SetKeyboardInteractivity">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetKeyboardInteractivity</span>
     </a>
@@ -322,7 +322,7 @@ to an empty region.
 Keyboard interactivity is double-buffered, see wl_surface.commit.
 
 <h3 class="decleration request" title="GetPopup request">
-    <a href="?id=ZwlrLayerSurfaceV1_GetPopup" id="ZwlrLayerSurfaceV1_GetPopup">
+    <a href="/?id=ZwlrLayerSurfaceV1_GetPopup" id="ZwlrLayerSurfaceV1_GetPopup">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">GetPopup</span>
     </a>
@@ -347,7 +347,7 @@ See the documentation of xdg_popup for more details about what an
 xdg_popup is and how it is used.
 
 <h3 class="decleration request" title="AckConfigure request">
-    <a href="?id=ZwlrLayerSurfaceV1_AckConfigure" id="ZwlrLayerSurfaceV1_AckConfigure">
+    <a href="/?id=ZwlrLayerSurfaceV1_AckConfigure" id="ZwlrLayerSurfaceV1_AckConfigure">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">AckConfigure</span>
     </a>
@@ -380,7 +380,7 @@ only the last request sent before a commit indicates which configure
 event the client really is responding to.
 
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwlrLayerSurfaceV1_Destroy" id="ZwlrLayerSurfaceV1_Destroy">
+    <a href="/?id=ZwlrLayerSurfaceV1_Destroy" id="ZwlrLayerSurfaceV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">Destroy</span>
     </a>
@@ -397,7 +397,7 @@ void Destroy()
 This request destroys the layer surface.
 
 <h3 class="decleration request" title="SetLayer request">
-    <a href="?id=ZwlrLayerSurfaceV1_SetLayer" id="ZwlrLayerSurfaceV1_SetLayer">
+    <a href="/?id=ZwlrLayerSurfaceV1_SetLayer" id="ZwlrLayerSurfaceV1_SetLayer">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetLayer</span>
     </a>
@@ -419,7 +419,7 @@ Change the layer that the surface is rendered on.
 Layer is double-buffered, see wl_surface.commit.
 
 <h3 class="decleration request" title="SetExclusiveEdge request">
-    <a href="?id=ZwlrLayerSurfaceV1_SetExclusiveEdge" id="ZwlrLayerSurfaceV1_SetExclusiveEdge">
+    <a href="/?id=ZwlrLayerSurfaceV1_SetExclusiveEdge" id="ZwlrLayerSurfaceV1_SetExclusiveEdge">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrLayerSurfaceV1.<span class="method">SetExclusiveEdge</span>
     </a>
@@ -446,7 +446,7 @@ The edge must be one the surface is anchored to, otherwise the
 invalid_exclusive_edge protocol error will be raised.
 
 <h3 class="decleration event" title="Configure event">
-    <a href="?id=OnZwlrLayerSurfaceV1_Configure" id="OnZwlrLayerSurfaceV1_Configure">
+    <a href="/?id=OnZwlrLayerSurfaceV1_Configure" id="OnZwlrLayerSurfaceV1_Configure">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrLayerSurfaceV1.<span class="event">OnConfigure</span>
     </a>
@@ -486,7 +486,7 @@ If the width or height arguments are zero, it means the client should
 decide its own window dimension.
 
 <h3 class="decleration event" title="Closed event">
-    <a href="?id=OnZwlrLayerSurfaceV1_Closed" id="OnZwlrLayerSurfaceV1_Closed">
+    <a href="/?id=OnZwlrLayerSurfaceV1_Closed" id="OnZwlrLayerSurfaceV1_Closed">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrLayerSurfaceV1.<span class="event">OnClosed</span>
     </a>
@@ -506,7 +506,7 @@ ignored. The client should destroy the resource after receiving this
 event, and create a new surface if they so choose.
 
 <h3 class="decleration enum" title="KeyboardInteractivity enum">
-    <a href="?id=KeyboardInteractivity" id="KeyboardInteractivity">
+    <a href="/?id=KeyboardInteractivity" id="KeyboardInteractivity">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrLayerSurfaceV1.<span class="enum">KeyboardInteractivity</span>
     </a>
@@ -532,7 +532,7 @@ keyboard focus.
 | Exclusive | 1 |  |
 | OnDemand | 2 |  |
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="/?id=Error" id="Error">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrLayerSurfaceV1.<span class="enum">Error</span>
     </a>
@@ -550,7 +550,7 @@ public enum Error
 | InvalidKeyboardInteractivity | 3 | Keyboard interactivity is invalid |
 | InvalidExclusiveEdge | 4 | Exclusive edge is invalid given the surface anchors |
 <h3 class="decleration enum" title="Anchor enum">
-    <a href="?id=Anchor" id="Anchor">
+    <a href="/?id=Anchor" id="Anchor">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrLayerSurfaceV1.<span class="enum">Anchor</span>
     </a>

@@ -1,4 +1,4 @@
-﻿# Outline
+﻿Outline
 
 - [RiverLibinputConfigV1](#RiverLibinputConfigV1)
 - [RiverLibinputDeviceV1](#RiverLibinputDeviceV1)

@@ -5,7 +5,7 @@
 ---
 
 <h2 class="decleration interface">
-    <a href="?id=ZwpLinuxDmabufV1" id="ZwpLinuxDmabufV1">
+    <a href="/?id=ZwpLinuxDmabufV1" id="ZwpLinuxDmabufV1">
         <span class="codicon codicon-symbol-interface"></span>
         ZwpLinuxDmabufV1
     </a>
@@ -80,7 +80,7 @@ mechanism.
 
 
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwpLinuxDmabufV1_Destroy" id="ZwpLinuxDmabufV1_Destroy">
+    <a href="/?id=ZwpLinuxDmabufV1_Destroy" id="ZwpLinuxDmabufV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpLinuxDmabufV1.<span class="method">Destroy</span>
     </a>
@@ -98,7 +98,7 @@ Objects created through this interface, especially wl_buffers, will
 remain valid.
 
 <h3 class="decleration request" title="CreateParams request">
-    <a href="?id=ZwpLinuxDmabufV1_CreateParams" id="ZwpLinuxDmabufV1_CreateParams">
+    <a href="/?id=ZwpLinuxDmabufV1_CreateParams" id="ZwpLinuxDmabufV1_CreateParams">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpLinuxDmabufV1.<span class="method">CreateParams</span>
     </a>
@@ -120,7 +120,7 @@ should be destroyed after a 'created' or 'failed' event has been
 received.
 
 <h3 class="decleration request" title="GetDefaultFeedback request">
-    <a href="?id=ZwpLinuxDmabufV1_GetDefaultFeedback" id="ZwpLinuxDmabufV1_GetDefaultFeedback">
+    <a href="/?id=ZwpLinuxDmabufV1_GetDefaultFeedback" id="ZwpLinuxDmabufV1_GetDefaultFeedback">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpLinuxDmabufV1.<span class="method">GetDefaultFeedback</span>
     </a>
@@ -143,7 +143,7 @@ parameters to use if the client doesn't support per-surface feedback
 (see get_surface_feedback).
 
 <h3 class="decleration request" title="GetSurfaceFeedback request">
-    <a href="?id=ZwpLinuxDmabufV1_GetSurfaceFeedback" id="ZwpLinuxDmabufV1_GetSurfaceFeedback">
+    <a href="/?id=ZwpLinuxDmabufV1_GetSurfaceFeedback" id="ZwpLinuxDmabufV1_GetSurfaceFeedback">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpLinuxDmabufV1.<span class="method">GetSurfaceFeedback</span>
     </a>
@@ -169,7 +169,7 @@ If the surface is destroyed before the wp_linux_dmabuf_feedback object,
 the feedback object becomes inert.
 
 <h3 class="decleration event" title="Format event">
-    <a href="?id=OnZwpLinuxDmabufV1_Format" id="OnZwpLinuxDmabufV1_Format">
+    <a href="/?id=OnZwpLinuxDmabufV1_Format" id="OnZwpLinuxDmabufV1_Format">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpLinuxDmabufV1.<span class="event">OnFormat</span>
     </a>
@@ -198,7 +198,7 @@ sent by compositors. Instead, use get_default_feedback or
 get_surface_feedback.
 
 <h3 class="decleration event" title="Modifier event">
-    <a href="?id=OnZwpLinuxDmabufV1_Modifier" id="OnZwpLinuxDmabufV1_Modifier">
+    <a href="/?id=OnZwpLinuxDmabufV1_Modifier" id="OnZwpLinuxDmabufV1_Modifier">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpLinuxDmabufV1.<span class="event">OnModifier</span>
     </a>
@@ -242,7 +242,7 @@ sent by compositors. Instead, use get_default_feedback or
 get_surface_feedback.
 
 <h2 class="decleration interface">
-    <a href="?id=ZwpLinuxBufferParamsV1" id="ZwpLinuxBufferParamsV1">
+    <a href="/?id=ZwpLinuxBufferParamsV1" id="ZwpLinuxBufferParamsV1">
         <span class="codicon codicon-symbol-interface"></span>
         ZwpLinuxBufferParamsV1
     </a>
@@ -271,7 +271,7 @@ plane_set error being generated.
 
 
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwpLinuxBufferParamsV1_Destroy" id="ZwpLinuxBufferParamsV1_Destroy">
+    <a href="/?id=ZwpLinuxBufferParamsV1_Destroy" id="ZwpLinuxBufferParamsV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpLinuxBufferParamsV1.<span class="method">Destroy</span>
     </a>
@@ -289,7 +289,7 @@ Cleans up the temporary data sent to the server for dmabuf-based
 wl_buffer creation.
 
 <h3 class="decleration request" title="Add request">
-    <a href="?id=ZwpLinuxBufferParamsV1_Add" id="ZwpLinuxBufferParamsV1_Add">
+    <a href="/?id=ZwpLinuxBufferParamsV1_Add" id="ZwpLinuxBufferParamsV1_Add">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpLinuxBufferParamsV1.<span class="method">Add</span>
     </a>
@@ -331,7 +331,7 @@ The error PLANE_SET is raised if attempting to set a plane that
 was already set.
 
 <h3 class="decleration request" title="Create request">
-    <a href="?id=ZwpLinuxBufferParamsV1_Create" id="ZwpLinuxBufferParamsV1_Create">
+    <a href="/?id=ZwpLinuxBufferParamsV1_Create" id="ZwpLinuxBufferParamsV1_Create">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpLinuxBufferParamsV1.<span class="method">Create</span>
     </a>
@@ -411,7 +411,7 @@ It is not mandatory to issue 'create'. If a client wants to
 cancel the buffer creation, it can just destroy this object.
 
 <h3 class="decleration request" title="CreateImmed request">
-    <a href="?id=ZwpLinuxBufferParamsV1_CreateImmed" id="ZwpLinuxBufferParamsV1_CreateImmed">
+    <a href="/?id=ZwpLinuxBufferParamsV1_CreateImmed" id="ZwpLinuxBufferParamsV1_CreateImmed">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpLinuxBufferParamsV1.<span class="method">CreateImmed</span>
     </a>
@@ -457,7 +457,7 @@ This takes the same arguments as a 'create' request, and obeys the
 same restrictions.
 
 <h3 class="decleration event" title="Created event">
-    <a href="?id=OnZwpLinuxBufferParamsV1_Created" id="OnZwpLinuxBufferParamsV1_Created">
+    <a href="/?id=OnZwpLinuxBufferParamsV1_Created" id="OnZwpLinuxBufferParamsV1_Created">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpLinuxBufferParamsV1.<span class="event">OnCreated</span>
     </a>
@@ -480,7 +480,7 @@ Upon receiving this event, the client should destroy the
 zwp_linux_buffer_params_v1 object.
 
 <h3 class="decleration event" title="Failed event">
-    <a href="?id=OnZwpLinuxBufferParamsV1_Failed" id="OnZwpLinuxBufferParamsV1_Failed">
+    <a href="/?id=OnZwpLinuxBufferParamsV1_Failed" id="OnZwpLinuxBufferParamsV1_Failed">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpLinuxBufferParamsV1.<span class="event">OnFailed</span>
     </a>
@@ -501,7 +501,7 @@ Upon receiving this event, the client should destroy the
 zwp_linux_buffer_params_v1 object.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="/?id=Error" id="Error">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpLinuxBufferParamsV1.<span class="enum">Error</span>
     </a>
@@ -522,7 +522,7 @@ public enum Error
 | OutOfBounds | 6 | Offset + stride * height goes out of dmabuf bounds |
 | InvalidWlBuffer | 7 | Invalid wl_buffer resulted from importing dmabufs via                the create_immed request on given buffer_params |
 <h3 class="decleration enum" title="Flags enum">
-    <a href="?id=Flags" id="Flags">
+    <a href="/?id=Flags" id="Flags">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpLinuxBufferParamsV1.<span class="enum">Flags</span>
     </a>
@@ -538,7 +538,7 @@ public enum FlagsFlag
 | Interlaced | 2 | Content is interlaced |
 | BottomFirst | 4 | Bottom field first |
 <h2 class="decleration interface">
-    <a href="?id=ZwpLinuxDmabufFeedbackV1" id="ZwpLinuxDmabufFeedbackV1">
+    <a href="/?id=ZwpLinuxDmabufFeedbackV1" id="ZwpLinuxDmabufFeedbackV1">
         <span class="codicon codicon-symbol-interface"></span>
         ZwpLinuxDmabufFeedbackV1
     </a>
@@ -576,7 +576,7 @@ done event.
 
 
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwpLinuxDmabufFeedbackV1_Destroy" id="ZwpLinuxDmabufFeedbackV1_Destroy">
+    <a href="/?id=ZwpLinuxDmabufFeedbackV1_Destroy" id="ZwpLinuxDmabufFeedbackV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwpLinuxDmabufFeedbackV1.<span class="method">Destroy</span>
     </a>
@@ -594,7 +594,7 @@ Using this request a client can tell the server that it is not going to
 use the wp_linux_dmabuf_feedback object anymore.
 
 <h3 class="decleration event" title="Done event">
-    <a href="?id=OnZwpLinuxDmabufFeedbackV1_Done" id="OnZwpLinuxDmabufFeedbackV1_Done">
+    <a href="/?id=OnZwpLinuxDmabufFeedbackV1_Done" id="OnZwpLinuxDmabufFeedbackV1_Done">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpLinuxDmabufFeedbackV1.<span class="event">OnDone</span>
     </a>
@@ -614,7 +614,7 @@ This allows changes to the wp_linux_dmabuf_feedback parameters to be
 seen as atomic, even if they happen via multiple events.
 
 <h3 class="decleration event" title="FormatTable event">
-    <a href="?id=OnZwpLinuxDmabufFeedbackV1_FormatTable" id="OnZwpLinuxDmabufFeedbackV1_FormatTable">
+    <a href="/?id=OnZwpLinuxDmabufFeedbackV1_FormatTable" id="OnZwpLinuxDmabufFeedbackV1_FormatTable">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpLinuxDmabufFeedbackV1.<span class="event">OnFormatTable</span>
     </a>
@@ -647,7 +647,7 @@ table file and re-send feedback parameters. Compositors are allowed to
 store duplicate format + modifier pairs in the table.
 
 <h3 class="decleration event" title="MainDevice event">
-    <a href="?id=OnZwpLinuxDmabufFeedbackV1_MainDevice" id="OnZwpLinuxDmabufFeedbackV1_MainDevice">
+    <a href="/?id=OnZwpLinuxDmabufFeedbackV1_MainDevice" id="OnZwpLinuxDmabufFeedbackV1_MainDevice">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpLinuxDmabufFeedbackV1.<span class="event">OnMainDevice</span>
     </a>
@@ -688,7 +688,7 @@ allocations on a different device than the main device, then the client
 must force the buffer to have a linear layout.
 
 <h3 class="decleration event" title="TrancheDone event">
-    <a href="?id=OnZwpLinuxDmabufFeedbackV1_TrancheDone" id="OnZwpLinuxDmabufFeedbackV1_TrancheDone">
+    <a href="/?id=OnZwpLinuxDmabufFeedbackV1_TrancheDone" id="OnZwpLinuxDmabufFeedbackV1_TrancheDone">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpLinuxDmabufFeedbackV1.<span class="event">OnTrancheDone</span>
     </a>
@@ -707,7 +707,7 @@ and tranche_formats events; it represents the end of a tranche. The
 next tranche will have a lower preference.
 
 <h3 class="decleration event" title="TrancheTargetDevice event">
-    <a href="?id=OnZwpLinuxDmabufFeedbackV1_TrancheTargetDevice" id="OnZwpLinuxDmabufFeedbackV1_TrancheTargetDevice">
+    <a href="/?id=OnZwpLinuxDmabufFeedbackV1_TrancheTargetDevice" id="OnZwpLinuxDmabufFeedbackV1_TrancheTargetDevice">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpLinuxDmabufFeedbackV1.<span class="event">OnTrancheTargetDevice</span>
     </a>
@@ -751,7 +751,7 @@ comparing the dev_t value.
 This event is tied to a preference tranche, see the tranche_done event.
 
 <h3 class="decleration event" title="TrancheFormats event">
-    <a href="?id=OnZwpLinuxDmabufFeedbackV1_TrancheFormats" id="OnZwpLinuxDmabufFeedbackV1_TrancheFormats">
+    <a href="/?id=OnZwpLinuxDmabufFeedbackV1_TrancheFormats" id="OnZwpLinuxDmabufFeedbackV1_TrancheFormats">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpLinuxDmabufFeedbackV1.<span class="event">OnTrancheFormats</span>
     </a>
@@ -793,7 +793,7 @@ For the definition of the format and modifier codes, see the
 wp_linux_buffer_params.create request.
 
 <h3 class="decleration event" title="TrancheFlags event">
-    <a href="?id=OnZwpLinuxDmabufFeedbackV1_TrancheFlags" id="OnZwpLinuxDmabufFeedbackV1_TrancheFlags">
+    <a href="/?id=OnZwpLinuxDmabufFeedbackV1_TrancheFlags" id="OnZwpLinuxDmabufFeedbackV1_TrancheFlags">
         <span class="codicon codicon-symbol-event event"></span>
         ZwpLinuxDmabufFeedbackV1.<span class="event">OnTrancheFlags</span>
     </a>
@@ -819,7 +819,7 @@ device is implementation-defined.
 This event is tied to a preference tranche, see the tranche_done event.
 
 <h3 class="decleration enum" title="TrancheFlags enum">
-    <a href="?id=TrancheFlags" id="TrancheFlags">
+    <a href="/?id=TrancheFlags" id="TrancheFlags">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpLinuxDmabufFeedbackV1.<span class="enum">TrancheFlags</span>
     </a>

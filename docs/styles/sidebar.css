@@ -1,8 +1,7 @@
 .app-name {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  padding: 16px;
+  padding: 0 16px;
 
   &::before {
     background-image: url("../logo.svg");
@@ -13,6 +12,8 @@
   }
 
   .app-name-link {
+    color: var(--base-color);
+
     margin: 0;
     padding: 0;
     border: none;
@@ -24,10 +25,15 @@
 }
 
 .sidebar {
+  float: left;
+
+  position: sticky;
+  height: 100vh;
+
   line-height: 20px;
   padding: 0;
-  border-right-color: var(--border-color);
   background-color: var(--background-color);
+  border-right: 1px solid var(--border-color);
 
   p {
     color: var(--sidebar-header-color);

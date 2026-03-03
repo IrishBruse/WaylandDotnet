@@ -1,4 +1,4 @@
-﻿# Outline
+﻿Outline
 
 - [WlDisplay](#WlDisplay)
 - [WlRegistry](#WlRegistry)

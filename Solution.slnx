@@ -8,6 +8,7 @@
   <Folder Name="/Examples/">
     <Project Path="Examples/Minimal/Minimal.csproj" />
     <Project Path="Examples/LayerShell/LayerShell.csproj" />
+    <Project Path="Examples/Taskbar/Taskbar.csproj" />
     <Project Path="Examples/RiverWindowManager/RiverWindowManager.csproj" />
   </Folder>
 </Solution>
