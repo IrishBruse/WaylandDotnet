@@ -19,18 +19,19 @@ docs:
 
 [working-directory: 'WaylandDotnet.Scanner/Protocols/']
 fetch-wayland-protocols:
-    wget -O "./Core/wayland.xml"                        https://gitlab.freedesktop.org/wayland/wayland/-/raw/main/protocol/wayland.xml
+    wget -O "./Core/wayland.xml"                                https://gitlab.freedesktop.org/wayland/wayland/-/raw/main/protocol/wayland.xml
 
-    wget -O "./Stable/linux-dmabuf-v1.xml"              https://gitlab.freedesktop.org/wayland/wayland-protocols/-/raw/main/stable/linux-dmabuf/linux-dmabuf-v1.xml
-    wget -O "./Stable/presentation-time.xml"            https://gitlab.freedesktop.org/wayland/wayland-protocols/-/raw/main/stable/presentation-time/presentation-time.xml
-    wget -O "./Stable/tablet-v2.xml"                    https://gitlab.freedesktop.org/wayland/wayland-protocols/-/raw/main/stable/tablet/tablet-v2.xml
-    wget -O "./Stable/viewporter.xml"                   https://gitlab.freedesktop.org/wayland/wayland-protocols/-/raw/main/stable/viewporter/viewporter.xml
-    wget -O "./Stable/xdg-shell.xml"                    https://gitlab.freedesktop.org/wayland/wayland-protocols/-/raw/main/stable/xdg-shell/xdg-shell.xml
-    wget -O "./Staging/ext-workspace-v1.xml"            https://gitlab.freedesktop.org/wayland/wayland-protocols/-/raw/main/staging/ext-workspace/ext-workspace-v1.xml
+    wget -O "./Stable/linux-dmabuf-v1.xml"                      https://gitlab.freedesktop.org/wayland/wayland-protocols/-/raw/main/stable/linux-dmabuf/linux-dmabuf-v1.xml
+    wget -O "./Stable/presentation-time.xml"                    https://gitlab.freedesktop.org/wayland/wayland-protocols/-/raw/main/stable/presentation-time/presentation-time.xml
+    wget -O "./Stable/tablet-v2.xml"                            https://gitlab.freedesktop.org/wayland/wayland-protocols/-/raw/main/stable/tablet/tablet-v2.xml
+    wget -O "./Stable/viewporter.xml"                           https://gitlab.freedesktop.org/wayland/wayland-protocols/-/raw/main/stable/viewporter/viewporter.xml
+    wget -O "./Stable/xdg-shell.xml"                            https://gitlab.freedesktop.org/wayland/wayland-protocols/-/raw/main/stable/xdg-shell/xdg-shell.xml
+    wget -O "./Staging/ext-workspace-v1.xml"                    https://gitlab.freedesktop.org/wayland/wayland-protocols/-/raw/main/staging/ext-workspace/ext-workspace-v1.xml
 
-    wget -O "./Wlr/wlr-layer-shell-unstable-v1.xml"     https://gitlab.freedesktop.org/wlroots/wlr-protocols/-/raw/master/unstable/wlr-layer-shell-unstable-v1.xml
+    wget -O "./Wlr/wlr-layer-shell-unstable-v1.xml"             https://gitlab.freedesktop.org/wlroots/wlr-protocols/-/raw/master/unstable/wlr-layer-shell-unstable-v1.xml
+    wget -O "./Wlr/wlr-output-management-unstable-v1.xml"       https://gitlab.freedesktop.org/wlroots/wlr-protocols/-/raw/master/unstable/wlr-output-management-unstable-v1.xml
 
-    wget -O "./River/river-window-management-v1.xml"    https://codeberg.org/river/river/raw/branch/main/protocol/river-window-management-v1.xml
+    wget -O "./River/river-window-management-v1.xml"            https://codeberg.org/river/river/raw/branch/main/protocol/river-window-management-v1.xml
 
 wayland-scanner:
     wayland-scanner client-header WaylandScanner/Protocols/Core/wayland.xml                         tmp/wayland.h
