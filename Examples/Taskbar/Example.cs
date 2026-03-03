@@ -13,11 +13,11 @@ public class Example
     private static WlCompositor? wlCompositor = null;
     private static WlOutput? wlOutput = null;
     private static ZwlrLayerShellV1? layerShell = null;
+    private static ZwlrOutputManagerV1? outputManager = null;
     private static WlSurface? wlSurface = null;
     private static ZwlrLayerSurfaceV1? layerSurface = null;
 
-    private static List<WlOutput> allOutputs = [];
-    private static (WlOutput output, int x, int y) mainOutput;
+    private static (ZwlrOutputHeadV1 head, string name, int x, int y) mainHead;
 
     private static IntPtr gpuDevice = IntPtr.Zero;
     private static IntPtr sdlWindow = IntPtr.Zero;
@@ -41,17 +41,11 @@ public class Example
                 layerShell = wlRegistry.Bind<ZwlrLayerShellV1>(name, version);
                 break;
 
+            case ZwlrOutputManagerV1.InterfaceName:
+                outputManager = wlRegistry.Bind<ZwlrOutputManagerV1>(name, version);
+                break;
+
             case WlOutput.InterfaceName:
-                var output = wlRegistry.Bind<WlOutput>(name, version);
-                allOutputs.Add(output);
-                output.OnGeometry += (x, y, _, _, _, _, _, _) =>
-                {
-                    Console.WriteLine($"Output {name}: position ({x}, {y})");
-                    if (x == 0 && y == 0)
-                    {
-                        mainOutput = (output, x, y);
-                    }
-                };
                 break;
         }
     }
@@ -69,26 +63,112 @@ public class Example
         wlRegistry.OnGlobal += RegistryGlobal;
         wlDisplay.Roundtrip();
 
-        wlDisplay?.DispatchPending();
-        wlDisplay?.Roundtrip();
-
         if (wlCompositor == null || layerShell == null)
         {
             Console.Error.WriteLine("Failed to bind required Wayland interfaces");
             return false;
         }
 
-        if (mainOutput.output != null)
+        if (outputManager != null)
         {
-            wlOutput = mainOutput.output;
-            Console.WriteLine("Using main output at position (0, 0)");
+            outputManager.OnHead += head =>
+            {
+                string? headName = null;
+                int x = 0, y = 0;
+
+                head.OnName += name => headName = name;
+                head.OnPosition += (posX, posY) => { x = posX; y = posY; };
+
+                outputManager.OnDone += serial =>
+                {
+                    if (headName != null)
+                    {
+                        Console.WriteLine($"Head: {headName} at ({x}, {y})");
+                        if (x == 0 && y == 0 && mainHead.head == default)
+                        {
+                            mainHead = (head, headName, x, y);
+                            Console.WriteLine($"Main head: {headName}");
+                        }
+                    }
+                };
+            };
+
+            wlDisplay?.DispatchPending();
+            wlDisplay?.Roundtrip();
         }
-        else if (allOutputs.Count > 0)
+
+        if (mainHead.head != default)
         {
-            wlOutput = allOutputs[0];
-            Console.WriteLine($"Using first output (no output at 0,0 found)");
+            Console.WriteLine($"Using main head: {mainHead.name}");
+            
+            var outputs = new List<(uint name, WlOutput output, string? outputName)>();
+            var testRegistry = wlDisplay!.GetRegistry();
+            testRegistry.OnGlobal += (uint name, string iface, uint version) =>
+            {
+                if (iface == WlOutput.InterfaceName)
+                {
+                    var output = testRegistry.Bind<WlOutput>(name, version);
+                    string? outputName = null;
+                    output.OnName += n => outputName = n;
+                    outputs.Add((name, output, outputName));
+                }
+            };
+            wlDisplay.Roundtrip();
+            wlDisplay.DispatchPending();
+            wlDisplay.Roundtrip();
+
+            foreach (var (n, o, outputName) in outputs)
+            {
+                if (outputName == mainHead.name)
+                {
+                    wlOutput = o;
+                    Console.WriteLine($"Matched wl_output for head: {mainHead.name}");
+                    break;
+                }
+            }
+
+            if (wlOutput == null)
+            {
+                Console.WriteLine("Could not match head to wl_output, using first output");
+                if (outputs.Count > 0)
+                {
+                    wlOutput = outputs[0].output;
+                }
+            }
         }
         else
+        {
+            Console.WriteLine("No main head found via wlr-output-management, using wl_output");
+            var outputs = new List<WlOutput>();
+            wlRegistry = wlDisplay!.GetRegistry();
+            wlRegistry.OnGlobal += (name, iface, version) =>
+            {
+                if (iface == WlOutput.InterfaceName)
+                {
+                    var output = wlRegistry.Bind<WlOutput>(name, version);
+                    outputs.Add(output);
+                    output.OnGeometry += (x, y, _, _, _, _, _, _) =>
+                    {
+                        if (x == 0 && y == 0 && wlOutput == null)
+                        {
+                            wlOutput = output;
+                            Console.WriteLine($"Found main output at ({x}, {y})");
+                        }
+                    };
+                }
+            };
+            wlDisplay.Roundtrip();
+            wlDisplay.DispatchPending();
+            wlDisplay.Roundtrip();
+
+            if (wlOutput == null && outputs.Count > 0)
+            {
+                wlOutput = outputs[0];
+                Console.WriteLine("Using first available output");
+            }
+        }
+
+        if (wlOutput == null)
         {
             Console.Error.WriteLine("No outputs available");
             return false;
