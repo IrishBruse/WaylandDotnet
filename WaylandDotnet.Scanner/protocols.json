@@ -51,6 +51,11 @@
       "XmlFile": "Protocols/Wlr/wlr-output-management-unstable-v1.xml",
       "Namespace": "Wlr"
     },
+    {
+      "Name": "Foreign Toplevel Management",
+      "XmlFile": "Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1.xml",
+      "Namespace": "Wlr"
+    },
     // River protocols
     {
       "Name": "River Input Management",

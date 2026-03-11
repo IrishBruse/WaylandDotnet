@@ -367,7 +367,7 @@ public partial class ProtocolGenerator
         string className = iface.Name.ToPascal();
 
         var node = Html.H2().Class("decleration interface")
-            .Child(Html.A().Href("/?id=" + className).Id(className)
+            .Child(Html.A().Href("?id=" + className).Id(className)
                 .Child(Html.Span().Class("codicon codicon-symbol-interface"))
                 .Child(Html.Text(className)))
             .Child(Html.Span().Class("pill").Text($"version {iface.Version}"));
@@ -645,7 +645,7 @@ public partial class ProtocolGenerator
 
         var enumNode = Html.H3().Class("decleration enum").Title($"{enumName} enum")
             .Child(
-                Html.A().Href("/?id=" + urlEnumName).Id(urlEnumName)
+                Html.A().Href("?id=" + urlEnumName).Id(urlEnumName)
                 .Child(Html.Span().Class("codicon codicon-symbol-enum enum"))
                 .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("enum").Text(enumName)))
 
@@ -684,7 +684,7 @@ public partial class ProtocolGenerator
 
         var eventNode = Html.H3().Class("decleration event").Title($"{eventName} event")
             .Child(
-                Html.A().Href("/?id=" + urlEventName).Id(urlEventName)
+                Html.A().Href("?id=" + urlEventName).Id(urlEventName)
                 .Child(Html.Span().Class("codicon codicon-symbol-event event"))
                 .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("event").Text("On" + eventName)))
             );
@@ -1111,7 +1111,7 @@ public partial class ProtocolGenerator
         string urlMethodName = iface.Name.ToPascal() + "_" + methodName;
 
         var h3Node = Html.H3().Class("decleration request").Title($"{methodName} request")
-            .Child(Html.A().Href("/?id=" + urlMethodName).Id(urlMethodName)
+            .Child(Html.A().Href("?id=" + urlMethodName).Id(urlMethodName)
                 .Child(Html.Span().Class("codicon codicon-symbol-method method"))
                 .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("method").Text(methodName)))
             );
@@ -1126,9 +1126,12 @@ public partial class ProtocolGenerator
             Assert(request.Type == "destructor");
             h3Node.Child(Html.Span().Class("pill destructor").Text($"Type: {request.Type}"));
         }
-
+        md.WriteLine();
+        md.WriteLine("[Test](#WlDisplay)");
+        md.WriteLine();
         // Write it to your stream/markdown file
         md.WriteLine(h3Node.ToString());
+
 
         md.WriteLine();
         md.WriteLine("```csharp");

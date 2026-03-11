@@ -30,6 +30,7 @@ fetch-wayland-protocols:
 
     wget -O "./Wlr/wlr-layer-shell-unstable-v1.xml"             https://gitlab.freedesktop.org/wlroots/wlr-protocols/-/raw/master/unstable/wlr-layer-shell-unstable-v1.xml
     wget -O "./Wlr/wlr-output-management-unstable-v1.xml"       https://gitlab.freedesktop.org/wlroots/wlr-protocols/-/raw/master/unstable/wlr-output-management-unstable-v1.xml
+    wget -O "./Wlr/wlr-foreign-toplevel-management-unstable-v1.xml" https://gitlab.freedesktop.org/wlroots/wlr-protocols/-/raw/master/unstable/wlr-foreign-toplevel-management-unstable-v1.xml
 
     wget -O "./River/river-window-management-v1.xml"            https://codeberg.org/river/river/raw/branch/main/protocol/river-window-management-v1.xml
 
