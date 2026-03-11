@@ -5,7 +5,7 @@
 ---
 
 <h2 class="decleration interface">
-    <a href="/?id=RiverXkbConfigV1" id="RiverXkbConfigV1">
+    <a href="?id=RiverXkbConfigV1" id="RiverXkbConfigV1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverXkbConfigV1
     </a>
@@ -21,8 +21,11 @@ This global should only be advertised if river_input_manager_v1 is
 advertised as well.
 
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Stop request">
-    <a href="/?id=RiverXkbConfigV1_Stop" id="RiverXkbConfigV1_Stop">
+    <a href="?id=RiverXkbConfigV1_Stop" id="RiverXkbConfigV1_Stop">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbConfigV1.<span class="method">Stop</span>
     </a>
@@ -42,8 +45,11 @@ The Wayland protocol is asynchronous, which means the server may send
 further events until the stop request is processed. The client must wait
 for a river_xkb_config_v1.finished event before destroying this object.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Destroy request">
-    <a href="/?id=RiverXkbConfigV1_Destroy" id="RiverXkbConfigV1_Destroy">
+    <a href="?id=RiverXkbConfigV1_Destroy" id="RiverXkbConfigV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbConfigV1.<span class="method">Destroy</span>
     </a>
@@ -69,8 +75,11 @@ river_xkb_config_v1.finished event. Once the finished event is received
 it is safe to destroy this object and any other objects created through
 this interface.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="CreateKeymap request">
-    <a href="/?id=RiverXkbConfigV1_CreateKeymap" id="RiverXkbConfigV1_CreateKeymap">
+    <a href="?id=RiverXkbConfigV1_CreateKeymap" id="RiverXkbConfigV1_CreateKeymap">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbConfigV1.<span class="method">CreateKeymap</span>
     </a>
@@ -94,7 +103,7 @@ The client must not modify the contents of the fd after making this request.
 The client should seal the fd with fcntl.
 
 <h3 class="decleration event" title="Finished event">
-    <a href="/?id=OnRiverXkbConfigV1_Finished" id="OnRiverXkbConfigV1_Finished">
+    <a href="?id=OnRiverXkbConfigV1_Finished" id="OnRiverXkbConfigV1_Finished">
         <span class="codicon codicon-symbol-event event"></span>
         RiverXkbConfigV1.<span class="event">OnFinished</span>
     </a>
@@ -112,7 +121,7 @@ object. The client should destroy the object. See
 river_xkb_config_v1.destroy for more information.
 
 <h3 class="decleration event" title="XkbKeyboard event">
-    <a href="/?id=OnRiverXkbConfigV1_XkbKeyboard" id="OnRiverXkbConfigV1_XkbKeyboard">
+    <a href="?id=OnRiverXkbConfigV1_XkbKeyboard" id="OnRiverXkbConfigV1_XkbKeyboard">
         <span class="codicon codicon-symbol-event event"></span>
         RiverXkbConfigV1.<span class="event">OnXkbKeyboard</span>
     </a>
@@ -132,7 +141,7 @@ A new xkbcommon keyboard has been created. Not every
 river_input_device_v1 is necessarily an xkbcommon keyboard as well.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="/?id=Error" id="Error">
+    <a href="?id=Error" id="Error">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverXkbConfigV1.<span class="enum">Error</span>
     </a>
@@ -147,7 +156,7 @@ public enum Error
 | InvalidDestroy | 0 |  |
 | InvalidFormat | 1 |  |
 <h3 class="decleration enum" title="KeymapFormat enum">
-    <a href="/?id=KeymapFormat" id="KeymapFormat">
+    <a href="?id=KeymapFormat" id="KeymapFormat">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverXkbConfigV1.<span class="enum">KeymapFormat</span>
     </a>
@@ -162,7 +171,7 @@ public enum KeymapFormat
 | TextV1 | 1 | XKB_KEYMAP_FORMAT_TEXT_V1 |
 | TextV2 | 2 | XKB_KEYMAP_FORMAT_TEXT_V2 |
 <h2 class="decleration interface">
-    <a href="/?id=RiverXkbKeymapV1" id="RiverXkbKeymapV1">
+    <a href="?id=RiverXkbKeymapV1" id="RiverXkbKeymapV1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverXkbKeymapV1
     </a>
@@ -175,8 +184,11 @@ Xkbcommon keymap
 This object is the result of attempting to create an xkbcommon keymap.
 
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Destroy request">
-    <a href="/?id=RiverXkbKeymapV1_Destroy" id="RiverXkbKeymapV1_Destroy">
+    <a href="?id=RiverXkbKeymapV1_Destroy" id="RiverXkbKeymapV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbKeymapV1.<span class="method">Destroy</span>
     </a>
@@ -194,7 +206,7 @@ This request indicates that the client will no longer use the keymap
 object and that it may be safely destroyed.
 
 <h3 class="decleration event" title="Success event">
-    <a href="/?id=OnRiverXkbKeymapV1_Success" id="OnRiverXkbKeymapV1_Success">
+    <a href="?id=OnRiverXkbKeymapV1_Success" id="OnRiverXkbKeymapV1_Success">
         <span class="codicon codicon-symbol-event event"></span>
         RiverXkbKeymapV1.<span class="event">OnSuccess</span>
     </a>
@@ -211,7 +223,7 @@ The keymap object was successfully created and may be used with the
 river_xkb_keyboard_v1.set_keymap request.
 
 <h3 class="decleration event" title="Failure event">
-    <a href="/?id=OnRiverXkbKeymapV1_Failure" id="OnRiverXkbKeymapV1_Failure">
+    <a href="?id=OnRiverXkbKeymapV1_Failure" id="OnRiverXkbKeymapV1_Failure">
         <span class="codicon codicon-symbol-event event"></span>
         RiverXkbKeymapV1.<span class="event">OnFailure</span>
     </a>
@@ -233,7 +245,7 @@ It is a protocol error to use this keymap object with
 river_xkb_keyboard_v1.set_keymap.
 
 <h2 class="decleration interface">
-    <a href="/?id=RiverXkbKeyboardV1" id="RiverXkbKeyboardV1">
+    <a href="?id=RiverXkbKeyboardV1" id="RiverXkbKeyboardV1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverXkbKeyboardV1
     </a>
@@ -247,8 +259,11 @@ This object represent a physical keyboard which has its configuration and
 state managed by xkbcommon.
 
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Destroy request">
-    <a href="/?id=RiverXkbKeyboardV1_Destroy" id="RiverXkbKeyboardV1_Destroy">
+    <a href="?id=RiverXkbKeyboardV1_Destroy" id="RiverXkbKeyboardV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbKeyboardV1.<span class="method">Destroy</span>
     </a>
@@ -265,8 +280,11 @@ void Destroy()
 This request indicates that the client will no longer use the keyboard
 object and that it may be safely destroyed.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="SetKeymap request">
-    <a href="/?id=RiverXkbKeyboardV1_SetKeymap" id="RiverXkbKeyboardV1_SetKeymap">
+    <a href="?id=RiverXkbKeyboardV1_SetKeymap" id="RiverXkbKeyboardV1_SetKeymap">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbKeyboardV1.<span class="method">SetKeymap</span>
     </a>
@@ -287,8 +305,11 @@ Set the keymap for the keyboard.
 It is a protocol error to pass a keymap object for which the
 river_xkb_keymap_v1.success event was not received.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="SetLayoutByIndex request">
-    <a href="/?id=RiverXkbKeyboardV1_SetLayoutByIndex" id="RiverXkbKeyboardV1_SetLayoutByIndex">
+    <a href="?id=RiverXkbKeyboardV1_SetLayoutByIndex" id="RiverXkbKeyboardV1_SetLayoutByIndex">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbKeyboardV1.<span class="method">SetLayoutByIndex</span>
     </a>
@@ -307,8 +328,11 @@ void SetLayoutByIndex(int index)
 Set the active layout for the keyboard's keymap. Has no effect if the
 layout index is out of bounds for the current keymap.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="SetLayoutByName request">
-    <a href="/?id=RiverXkbKeyboardV1_SetLayoutByName" id="RiverXkbKeyboardV1_SetLayoutByName">
+    <a href="?id=RiverXkbKeyboardV1_SetLayoutByName" id="RiverXkbKeyboardV1_SetLayoutByName">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbKeyboardV1.<span class="method">SetLayoutByName</span>
     </a>
@@ -327,8 +351,11 @@ void SetLayoutByName(string name)
 Set the active layout for the keyboard's keymap. Has no effect if there
 is no layout with the give name for the keyboard's keymap.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="CapslockEnable request">
-    <a href="/?id=RiverXkbKeyboardV1_CapslockEnable" id="RiverXkbKeyboardV1_CapslockEnable">
+    <a href="?id=RiverXkbKeyboardV1_CapslockEnable" id="RiverXkbKeyboardV1_CapslockEnable">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbKeyboardV1.<span class="method">CapslockEnable</span>
     </a>
@@ -343,8 +370,11 @@ void CapslockEnable()
 
 Enable capslock for the keyboard.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="CapslockDisable request">
-    <a href="/?id=RiverXkbKeyboardV1_CapslockDisable" id="RiverXkbKeyboardV1_CapslockDisable">
+    <a href="?id=RiverXkbKeyboardV1_CapslockDisable" id="RiverXkbKeyboardV1_CapslockDisable">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbKeyboardV1.<span class="method">CapslockDisable</span>
     </a>
@@ -359,8 +389,11 @@ void CapslockDisable()
 
 Disable capslock for the keyboard.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="NumlockEnable request">
-    <a href="/?id=RiverXkbKeyboardV1_NumlockEnable" id="RiverXkbKeyboardV1_NumlockEnable">
+    <a href="?id=RiverXkbKeyboardV1_NumlockEnable" id="RiverXkbKeyboardV1_NumlockEnable">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbKeyboardV1.<span class="method">NumlockEnable</span>
     </a>
@@ -375,8 +408,11 @@ void NumlockEnable()
 
 Enable numlock for the keyboard.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="NumlockDisable request">
-    <a href="/?id=RiverXkbKeyboardV1_NumlockDisable" id="RiverXkbKeyboardV1_NumlockDisable">
+    <a href="?id=RiverXkbKeyboardV1_NumlockDisable" id="RiverXkbKeyboardV1_NumlockDisable">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbKeyboardV1.<span class="method">NumlockDisable</span>
     </a>
@@ -392,7 +428,7 @@ void NumlockDisable()
 Disable numlock for the keyboard.
 
 <h3 class="decleration event" title="Removed event">
-    <a href="/?id=OnRiverXkbKeyboardV1_Removed" id="OnRiverXkbKeyboardV1_Removed">
+    <a href="?id=OnRiverXkbKeyboardV1_Removed" id="OnRiverXkbKeyboardV1_Removed">
         <span class="codicon codicon-symbol-event event"></span>
         RiverXkbKeyboardV1.<span class="event">OnRemoved</span>
     </a>
@@ -413,7 +449,7 @@ is sent. The client should destroy this object with the
 river_xkb_keyboard_v1.destroy request to free up resources.
 
 <h3 class="decleration event" title="InputDevice event">
-    <a href="/?id=OnRiverXkbKeyboardV1_InputDevice" id="OnRiverXkbKeyboardV1_InputDevice">
+    <a href="?id=OnRiverXkbKeyboardV1_InputDevice" id="OnRiverXkbKeyboardV1_InputDevice">
         <span class="codicon codicon-symbol-event event"></span>
         RiverXkbKeyboardV1.<span class="event">OnInputDevice</span>
     </a>
@@ -434,7 +470,7 @@ will always be the first event sent on the river_xkb_keyboard_v1 object,
 and it will be sent exactly once.
 
 <h3 class="decleration event" title="Layout event">
-    <a href="/?id=OnRiverXkbKeyboardV1_Layout" id="OnRiverXkbKeyboardV1_Layout">
+    <a href="?id=OnRiverXkbKeyboardV1_Layout" id="OnRiverXkbKeyboardV1_Layout">
         <span class="codicon codicon-symbol-event event"></span>
         RiverXkbKeyboardV1.<span class="event">OnLayout</span>
     </a>
@@ -458,7 +494,7 @@ This event is sent once when the river_xkb_keyboard_v1 is created and
 again whenever the layout changes.
 
 <h3 class="decleration event" title="CapslockEnabled event">
-    <a href="/?id=OnRiverXkbKeyboardV1_CapslockEnabled" id="OnRiverXkbKeyboardV1_CapslockEnabled">
+    <a href="?id=OnRiverXkbKeyboardV1_CapslockEnabled" id="OnRiverXkbKeyboardV1_CapslockEnabled">
         <span class="codicon codicon-symbol-event event"></span>
         RiverXkbKeyboardV1.<span class="event">OnCapslockEnabled</span>
     </a>
@@ -477,7 +513,7 @@ This event is sent once when the river_xkb_keyboard_v1 is created and
 again whenever the capslock state changes.
 
 <h3 class="decleration event" title="CapslockDisabled event">
-    <a href="/?id=OnRiverXkbKeyboardV1_CapslockDisabled" id="OnRiverXkbKeyboardV1_CapslockDisabled">
+    <a href="?id=OnRiverXkbKeyboardV1_CapslockDisabled" id="OnRiverXkbKeyboardV1_CapslockDisabled">
         <span class="codicon codicon-symbol-event event"></span>
         RiverXkbKeyboardV1.<span class="event">OnCapslockDisabled</span>
     </a>
@@ -496,7 +532,7 @@ This event is sent once when the river_xkb_keyboard_v1 is created and
 again whenever the capslock state changes.
 
 <h3 class="decleration event" title="NumlockEnabled event">
-    <a href="/?id=OnRiverXkbKeyboardV1_NumlockEnabled" id="OnRiverXkbKeyboardV1_NumlockEnabled">
+    <a href="?id=OnRiverXkbKeyboardV1_NumlockEnabled" id="OnRiverXkbKeyboardV1_NumlockEnabled">
         <span class="codicon codicon-symbol-event event"></span>
         RiverXkbKeyboardV1.<span class="event">OnNumlockEnabled</span>
     </a>
@@ -515,7 +551,7 @@ This event is sent once when the river_xkb_keyboard_v1 is created and
 again whenever the numlock state changes.
 
 <h3 class="decleration event" title="NumlockDisabled event">
-    <a href="/?id=OnRiverXkbKeyboardV1_NumlockDisabled" id="OnRiverXkbKeyboardV1_NumlockDisabled">
+    <a href="?id=OnRiverXkbKeyboardV1_NumlockDisabled" id="OnRiverXkbKeyboardV1_NumlockDisabled">
         <span class="codicon codicon-symbol-event event"></span>
         RiverXkbKeyboardV1.<span class="event">OnNumlockDisabled</span>
     </a>
@@ -534,7 +570,7 @@ This event is sent once when the river_xkb_keyboard_v1 is created and
 again whenever the numlock state changes.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="/?id=Error" id="Error">
+    <a href="?id=Error" id="Error">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverXkbKeyboardV1.<span class="enum">Error</span>
     </a>

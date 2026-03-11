@@ -5,7 +5,7 @@
 ---
 
 <h2 class="decleration interface">
-    <a href="/?id=WpViewporter" id="WpViewporter">
+    <a href="?id=WpViewporter" id="WpViewporter">
         <span class="codicon codicon-symbol-interface"></span>
         WpViewporter
     </a>
@@ -23,8 +23,11 @@ disconnecting the direct relationship between the buffer and the
 surface size.
 
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Destroy request">
-    <a href="/?id=WpViewporter_Destroy" id="WpViewporter_Destroy">
+    <a href="?id=WpViewporter_Destroy" id="WpViewporter_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         WpViewporter.<span class="method">Destroy</span>
     </a>
@@ -42,8 +45,11 @@ Informs the server that the client will not be using this
 protocol object anymore. This does not affect any other objects,
 wp_viewport objects included.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="GetViewport request">
-    <a href="/?id=WpViewporter_GetViewport" id="WpViewporter_GetViewport">
+    <a href="?id=WpViewporter_GetViewport" id="WpViewporter_GetViewport">
         <span class="codicon codicon-symbol-method method"></span>
         WpViewporter.<span class="method">GetViewport</span>
     </a>
@@ -66,7 +72,7 @@ a wp_viewport object associated, the viewport_exists
 protocol error is raised.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="/?id=Error" id="Error">
+    <a href="?id=Error" id="Error">
         <span class="codicon codicon-symbol-enum enum"></span>
         WpViewporter.<span class="enum">Error</span>
     </a>
@@ -80,7 +86,7 @@ public enum Error
 | --- | --- | --- |
 | ViewportExists | 0 | The surface already has a viewport object associated |
 <h2 class="decleration interface">
-    <a href="/?id=WpViewport" id="WpViewport">
+    <a href="?id=WpViewport" id="WpViewport">
         <span class="codicon codicon-symbol-interface"></span>
         WpViewport
     </a>
@@ -146,8 +152,11 @@ state is removed from the wl_surface. The change will be applied
 on the next wl_surface.commit.
 
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Destroy request">
-    <a href="/?id=WpViewport_Destroy" id="WpViewport_Destroy">
+    <a href="?id=WpViewport_Destroy" id="WpViewport_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         WpViewport.<span class="method">Destroy</span>
     </a>
@@ -164,8 +173,11 @@ void Destroy()
 The associated wl_surface's crop and scale state is removed.
 The change is applied on the next wl_surface.commit.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="SetSource request">
-    <a href="/?id=WpViewport_SetSource" id="WpViewport_SetSource">
+    <a href="?id=WpViewport_SetSource" id="WpViewport_SetSource">
         <span class="codicon codicon-symbol-method method"></span>
         WpViewport.<span class="method">SetSource</span>
     </a>
@@ -195,8 +207,11 @@ error.
 
 The crop and scale state is double-buffered, see wl_surface.commit.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="SetDestination request">
-    <a href="/?id=WpViewport_SetDestination" id="WpViewport_SetDestination">
+    <a href="?id=WpViewport_SetDestination" id="WpViewport_SetDestination">
         <span class="codicon codicon-symbol-method method"></span>
         WpViewport.<span class="method">SetDestination</span>
     </a>
@@ -225,7 +240,7 @@ error.
 The crop and scale state is double-buffered, see wl_surface.commit.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="/?id=Error" id="Error">
+    <a href="?id=Error" id="Error">
         <span class="codicon codicon-symbol-enum enum"></span>
         WpViewport.<span class="enum">Error</span>
     </a>

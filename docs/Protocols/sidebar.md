@@ -13,6 +13,7 @@ Stable
 Wlr
 - [Layer Shell](/Protocols/Wlr/wlr-layer-shell-unstable-v1/)
 - [Output Management](/Protocols/Wlr/wlr-output-management-unstable-v1/)
+- [Foreign Toplevel Management](/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/)
 
 Staging
 - [Workspace Extension](/Protocols/Staging/ext-workspace-v1/)

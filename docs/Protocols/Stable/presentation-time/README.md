@@ -5,7 +5,7 @@
 ---
 
 <h2 class="decleration interface">
-    <a href="/?id=WpPresentation" id="WpPresentation">
+    <a href="?id=WpPresentation" id="WpPresentation">
         <span class="codicon codicon-symbol-interface"></span>
         WpPresentation
     </a>
@@ -24,8 +24,11 @@ display update time and the update's target time, especially
 when the compositor misses its target vertical blanking period.
 
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Destroy request">
-    <a href="/?id=WpPresentation_Destroy" id="WpPresentation_Destroy">
+    <a href="?id=WpPresentation_Destroy" id="WpPresentation_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         WpPresentation.<span class="method">Destroy</span>
     </a>
@@ -43,8 +46,11 @@ Informs the server that the client will no longer be using
 this protocol object. Existing objects created by this object
 are not affected.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Feedback request">
-    <a href="/?id=WpPresentation_Feedback" id="WpPresentation_Feedback">
+    <a href="?id=WpPresentation_Feedback" id="WpPresentation_Feedback">
         <span class="codicon codicon-symbol-method method"></span>
         WpPresentation.<span class="method">Feedback</span>
     </a>
@@ -71,7 +77,7 @@ For details on what information is returned, see the
 presentation_feedback interface.
 
 <h3 class="decleration event" title="ClockId event">
-    <a href="/?id=OnWpPresentation_ClockId" id="OnWpPresentation_ClockId">
+    <a href="?id=OnWpPresentation_ClockId" id="OnWpPresentation_ClockId">
         <span class="codicon codicon-symbol-event event"></span>
         WpPresentation.<span class="event">OnClockId</span>
     </a>
@@ -117,7 +123,7 @@ recommended. Clients must be able to query the current clock
 value directly, not by asking the compositor.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="/?id=Error" id="Error">
+    <a href="?id=Error" id="Error">
         <span class="codicon codicon-symbol-enum enum"></span>
         WpPresentation.<span class="enum">Error</span>
     </a>
@@ -139,7 +145,7 @@ illegal presentation requests.
 | InvalidTimestamp | 0 | Invalid value in tv_nsec |
 | InvalidFlag | 1 | Invalid flag |
 <h2 class="decleration interface">
-    <a href="/?id=WpPresentationFeedback" id="WpPresentationFeedback">
+    <a href="?id=WpPresentationFeedback" id="WpPresentationFeedback">
         <span class="codicon codicon-symbol-interface"></span>
         WpPresentationFeedback
     </a>
@@ -163,7 +169,7 @@ or 'discarded' event it is automatically destroyed.
 
 
 <h3 class="decleration event" title="SyncOutput event">
-    <a href="/?id=OnWpPresentationFeedback_SyncOutput" id="OnWpPresentationFeedback_SyncOutput">
+    <a href="?id=OnWpPresentationFeedback_SyncOutput" id="OnWpPresentationFeedback_SyncOutput">
         <span class="codicon codicon-symbol-event event"></span>
         WpPresentationFeedback.<span class="event">OnSyncOutput</span>
     </a>
@@ -189,7 +195,7 @@ the synchronized output. If a client has not bound to the
 right wl_output global at all, this event is not sent.
 
 <h3 class="decleration event" title="Presented event">
-    <a href="/?id=OnWpPresentationFeedback_Presented" id="OnWpPresentationFeedback_Presented">
+    <a href="?id=OnWpPresentationFeedback_Presented" id="OnWpPresentationFeedback_Presented">
         <span class="codicon codicon-symbol-event event"></span>
         WpPresentationFeedback.<span class="event">OnPresented</span>
     </a>
@@ -257,7 +263,7 @@ a way to query the refresh count, then the arguments seq_hi
 and seq_lo must be zero.
 
 <h3 class="decleration event" title="Discarded event">
-    <a href="/?id=OnWpPresentationFeedback_Discarded" id="OnWpPresentationFeedback_Discarded">
+    <a href="?id=OnWpPresentationFeedback_Discarded" id="OnWpPresentationFeedback_Discarded">
         <span class="codicon codicon-symbol-event event"></span>
         WpPresentationFeedback.<span class="event">OnDiscarded</span>
     </a>
@@ -273,7 +279,7 @@ void DiscardedHandler()
 The content update was never displayed to the user.
 
 <h3 class="decleration enum" title="Kind enum">
-    <a href="/?id=Kind" id="Kind">
+    <a href="?id=Kind" id="Kind">
         <span class="codicon codicon-symbol-enum enum"></span>
         WpPresentationFeedback.<span class="enum">Kind</span>
     </a>

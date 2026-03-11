@@ -5,7 +5,7 @@
 ---
 
 <h2 class="decleration interface">
-    <a href="/?id=ExtWorkspaceManagerV1" id="ExtWorkspaceManagerV1">
+    <a href="?id=ExtWorkspaceManagerV1" id="ExtWorkspaceManagerV1">
         <span class="codicon codicon-symbol-interface"></span>
         ExtWorkspaceManagerV1
     </a>
@@ -36,8 +36,11 @@ After a client binds the ext_workspace_manager_v1, each workspace will be
 sent via the workspace event.
 
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Commit request">
-    <a href="/?id=ExtWorkspaceManagerV1_Commit" id="ExtWorkspaceManagerV1_Commit">
+    <a href="?id=ExtWorkspaceManagerV1_Commit" id="ExtWorkspaceManagerV1_Commit">
         <span class="codicon codicon-symbol-method method"></span>
         ExtWorkspaceManagerV1.<span class="method">Commit</span>
     </a>
@@ -59,8 +62,11 @@ even if they happen via multiple events, and even if they involve
 multiple ext_workspace_handle_v1 objects, for example, deactivating one
 workspace and activating another.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Stop request">
-    <a href="/?id=ExtWorkspaceManagerV1_Stop" id="ExtWorkspaceManagerV1_Stop">
+    <a href="?id=ExtWorkspaceManagerV1_Stop" id="ExtWorkspaceManagerV1_Stop">
         <span class="codicon codicon-symbol-method method"></span>
         ExtWorkspaceManagerV1.<span class="method">Stop</span>
     </a>
@@ -82,7 +88,7 @@ The client must not send any requests after this one, doing so will raise a wl_d
 invalid_object error.
 
 <h3 class="decleration event" title="WorkspaceGroup event">
-    <a href="/?id=OnExtWorkspaceManagerV1_WorkspaceGroup" id="OnExtWorkspaceManagerV1_WorkspaceGroup">
+    <a href="?id=OnExtWorkspaceManagerV1_WorkspaceGroup" id="OnExtWorkspaceManagerV1_WorkspaceGroup">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceManagerV1.<span class="event">OnWorkspaceGroup</span>
     </a>
@@ -105,7 +111,7 @@ sent immediately after this event via the corresponding events in
 ext_workspace_group_handle_v1 and ext_workspace_handle_v1.
 
 <h3 class="decleration event" title="Workspace event">
-    <a href="/?id=OnExtWorkspaceManagerV1_Workspace" id="OnExtWorkspaceManagerV1_Workspace">
+    <a href="?id=OnExtWorkspaceManagerV1_Workspace" id="OnExtWorkspaceManagerV1_Workspace">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceManagerV1.<span class="event">OnWorkspace</span>
     </a>
@@ -130,7 +136,7 @@ ext_workspace_handle_v1.
 Workspaces start off unassigned to any workspace group.
 
 <h3 class="decleration event" title="Done event">
-    <a href="/?id=OnExtWorkspaceManagerV1_Done" id="OnExtWorkspaceManagerV1_Done">
+    <a href="?id=OnExtWorkspaceManagerV1_Done" id="OnExtWorkspaceManagerV1_Done">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceManagerV1.<span class="event">OnDone</span>
     </a>
@@ -156,7 +162,7 @@ the done event only after updating the output information in both
 workspace groups.
 
 <h3 class="decleration event" title="Finished event">
-    <a href="/?id=OnExtWorkspaceManagerV1_Finished" id="OnExtWorkspaceManagerV1_Finished">
+    <a href="?id=OnExtWorkspaceManagerV1_Finished" id="OnExtWorkspaceManagerV1_Finished">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceManagerV1.<span class="event">OnFinished</span>
     </a>
@@ -174,7 +180,7 @@ ext_workspace_manager_v1. The server will destroy the object
 immediately after sending this request.
 
 <h2 class="decleration interface">
-    <a href="/?id=ExtWorkspaceGroupHandleV1" id="ExtWorkspaceGroupHandleV1">
+    <a href="?id=ExtWorkspaceGroupHandleV1" id="ExtWorkspaceGroupHandleV1">
         <span class="codicon codicon-symbol-interface"></span>
         ExtWorkspaceGroupHandleV1
     </a>
@@ -197,8 +203,11 @@ where a workspace spans all outputs may advertise a single workspace group for a
 outputs.
 
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="CreateWorkspace request">
-    <a href="/?id=ExtWorkspaceGroupHandleV1_CreateWorkspace" id="ExtWorkspaceGroupHandleV1_CreateWorkspace">
+    <a href="?id=ExtWorkspaceGroupHandleV1_CreateWorkspace" id="ExtWorkspaceGroupHandleV1_CreateWorkspace">
         <span class="codicon codicon-symbol-method method"></span>
         ExtWorkspaceGroupHandleV1.<span class="method">CreateWorkspace</span>
     </a>
@@ -220,8 +229,11 @@ and assign it to this group.
 There is no guarantee that the compositor will create a new workspace,
 or that the created workspace will have the provided name.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Destroy request">
-    <a href="/?id=ExtWorkspaceGroupHandleV1_Destroy" id="ExtWorkspaceGroupHandleV1_Destroy">
+    <a href="?id=ExtWorkspaceGroupHandleV1_Destroy" id="ExtWorkspaceGroupHandleV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ExtWorkspaceGroupHandleV1.<span class="method">Destroy</span>
     </a>
@@ -242,7 +254,7 @@ use the workspace group object any more or after the removed event to finalize
 the destruction of the object.
 
 <h3 class="decleration event" title="Capabilities event">
-    <a href="/?id=OnExtWorkspaceGroupHandleV1_Capabilities" id="OnExtWorkspaceGroupHandleV1_Capabilities">
+    <a href="?id=OnExtWorkspaceGroupHandleV1_Capabilities" id="OnExtWorkspaceGroupHandleV1_Capabilities">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceGroupHandleV1.<span class="event">OnCapabilities</span>
     </a>
@@ -273,7 +285,7 @@ ext_workspace_group_handle_v1. When the capabilities change, compositors
 must send this event again.
 
 <h3 class="decleration event" title="OutputEnter event">
-    <a href="/?id=OnExtWorkspaceGroupHandleV1_OutputEnter" id="OnExtWorkspaceGroupHandleV1_OutputEnter">
+    <a href="?id=OnExtWorkspaceGroupHandleV1_OutputEnter" id="OnExtWorkspaceGroupHandleV1_OutputEnter">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceGroupHandleV1.<span class="event">OnOutputEnter</span>
     </a>
@@ -294,7 +306,7 @@ group or a new `wl_output` object is bound by the client, which was already
 assigned to this workspace_group.
 
 <h3 class="decleration event" title="OutputLeave event">
-    <a href="/?id=OnExtWorkspaceGroupHandleV1_OutputLeave" id="OnExtWorkspaceGroupHandleV1_OutputLeave">
+    <a href="?id=OnExtWorkspaceGroupHandleV1_OutputLeave" id="OnExtWorkspaceGroupHandleV1_OutputLeave">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceGroupHandleV1.<span class="event">OnOutputLeave</span>
     </a>
@@ -314,7 +326,7 @@ This event is emitted whenever an output is removed from the workspace
 group.
 
 <h3 class="decleration event" title="WorkspaceEnter event">
-    <a href="/?id=OnExtWorkspaceGroupHandleV1_WorkspaceEnter" id="OnExtWorkspaceGroupHandleV1_WorkspaceEnter">
+    <a href="?id=OnExtWorkspaceGroupHandleV1_WorkspaceEnter" id="OnExtWorkspaceGroupHandleV1_WorkspaceEnter">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceGroupHandleV1.<span class="event">OnWorkspaceEnter</span>
     </a>
@@ -335,7 +347,7 @@ A workspace may only ever be assigned to a single group at a single point
 in time, but can be re-assigned during it's lifetime.
 
 <h3 class="decleration event" title="WorkspaceLeave event">
-    <a href="/?id=OnExtWorkspaceGroupHandleV1_WorkspaceLeave" id="OnExtWorkspaceGroupHandleV1_WorkspaceLeave">
+    <a href="?id=OnExtWorkspaceGroupHandleV1_WorkspaceLeave" id="OnExtWorkspaceGroupHandleV1_WorkspaceLeave">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceGroupHandleV1.<span class="event">OnWorkspaceLeave</span>
     </a>
@@ -354,7 +366,7 @@ void WorkspaceLeaveHandler(ExtWorkspaceHandleV1 workspace)
 This event is emitted whenever a workspace is removed from this group.
 
 <h3 class="decleration event" title="Removed event">
-    <a href="/?id=OnExtWorkspaceGroupHandleV1_Removed" id="OnExtWorkspaceGroupHandleV1_Removed">
+    <a href="?id=OnExtWorkspaceGroupHandleV1_Removed" id="OnExtWorkspaceGroupHandleV1_Removed">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceGroupHandleV1.<span class="event">OnRemoved</span>
     </a>
@@ -377,7 +389,7 @@ The compositor must remove all workspaces belonging to a workspace group
 via a workspace_leave event before removing the workspace group.
 
 <h3 class="decleration enum" title="GroupCapabilities enum">
-    <a href="/?id=GroupCapabilities" id="GroupCapabilities">
+    <a href="?id=GroupCapabilities" id="GroupCapabilities">
         <span class="codicon codicon-symbol-enum enum"></span>
         ExtWorkspaceGroupHandleV1.<span class="enum">GroupCapabilities</span>
     </a>
@@ -391,7 +403,7 @@ public enum GroupCapabilitiesFlag
 | --- | --- | --- |
 | CreateWorkspace | 1 | Create_workspace request is available |
 <h2 class="decleration interface">
-    <a href="/?id=ExtWorkspaceHandleV1" id="ExtWorkspaceHandleV1">
+    <a href="?id=ExtWorkspaceHandleV1" id="ExtWorkspaceHandleV1">
         <span class="codicon codicon-symbol-interface"></span>
         ExtWorkspaceHandleV1
     </a>
@@ -419,8 +431,11 @@ the same name in different workspace groups, but these workspaces are still
 separate (e.g. one of them might be active while the other is not).
 
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Destroy request">
-    <a href="/?id=ExtWorkspaceHandleV1_Destroy" id="ExtWorkspaceHandleV1_Destroy">
+    <a href="?id=ExtWorkspaceHandleV1_Destroy" id="ExtWorkspaceHandleV1_Destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ExtWorkspaceHandleV1.<span class="method">Destroy</span>
     </a>
@@ -440,8 +455,11 @@ This request should be made either when the client does not want to
 use the workspace object any more or after the remove event to finalize
 the destruction of the object.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Activate request">
-    <a href="/?id=ExtWorkspaceHandleV1_Activate" id="ExtWorkspaceHandleV1_Activate">
+    <a href="?id=ExtWorkspaceHandleV1_Activate" id="ExtWorkspaceHandleV1_Activate">
         <span class="codicon codicon-symbol-method method"></span>
         ExtWorkspaceHandleV1.<span class="method">Activate</span>
     </a>
@@ -461,8 +479,11 @@ behaviour may be compositor-dependent. For example, activating a
 workspace may or may not deactivate all other workspaces in the same
 group.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Deactivate request">
-    <a href="/?id=ExtWorkspaceHandleV1_Deactivate" id="ExtWorkspaceHandleV1_Deactivate">
+    <a href="?id=ExtWorkspaceHandleV1_Deactivate" id="ExtWorkspaceHandleV1_Deactivate">
         <span class="codicon codicon-symbol-method method"></span>
         ExtWorkspaceHandleV1.<span class="method">Deactivate</span>
     </a>
@@ -479,8 +500,11 @@ Request that this workspace be deactivated.
 
 There is no guarantee the workspace will be actually deactivated.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Assign request">
-    <a href="/?id=ExtWorkspaceHandleV1_Assign" id="ExtWorkspaceHandleV1_Assign">
+    <a href="?id=ExtWorkspaceHandleV1_Assign" id="ExtWorkspaceHandleV1_Assign">
         <span class="codicon codicon-symbol-method method"></span>
         ExtWorkspaceHandleV1.<span class="method">Assign</span>
     </a>
@@ -500,8 +524,11 @@ Requests that this workspace is assigned to the given workspace group.
 
 There is no guarantee the workspace will be assigned.
 
+
+[Test](#WlDisplay)
+
 <h3 class="decleration request" title="Remove request">
-    <a href="/?id=ExtWorkspaceHandleV1_Remove" id="ExtWorkspaceHandleV1_Remove">
+    <a href="?id=ExtWorkspaceHandleV1_Remove" id="ExtWorkspaceHandleV1_Remove">
         <span class="codicon codicon-symbol-method method"></span>
         ExtWorkspaceHandleV1.<span class="method">Remove</span>
     </a>
@@ -519,7 +546,7 @@ Request that this workspace be removed.
 There is no guarantee the workspace will be actually removed.
 
 <h3 class="decleration event" title="Id event">
-    <a href="/?id=OnExtWorkspaceHandleV1_Id" id="OnExtWorkspaceHandleV1_Id">
+    <a href="?id=OnExtWorkspaceHandleV1_Id" id="OnExtWorkspaceHandleV1_Id">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceHandleV1.<span class="event">OnId</span>
     </a>
@@ -550,7 +577,7 @@ ids should be considered temporary and any data associated with them should be d
 the respective object is lost.
 
 <h3 class="decleration event" title="Name event">
-    <a href="/?id=OnExtWorkspaceHandleV1_Name" id="OnExtWorkspaceHandleV1_Name">
+    <a href="?id=OnExtWorkspaceHandleV1_Name" id="OnExtWorkspaceHandleV1_Name">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceHandleV1.<span class="event">OnName</span>
     </a>
@@ -573,7 +600,7 @@ A name is meant to be human-readable and can be displayed to a user.
 Unlike the id it is neither stable nor unique.
 
 <h3 class="decleration event" title="Coordinates event">
-    <a href="/?id=OnExtWorkspaceHandleV1_Coordinates" id="OnExtWorkspaceHandleV1_Coordinates">
+    <a href="?id=OnExtWorkspaceHandleV1_Coordinates" id="OnExtWorkspaceHandleV1_Coordinates">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceHandleV1.<span class="event">OnCoordinates</span>
     </a>
@@ -609,7 +636,7 @@ coordinate 1000 and none in between. Within a workspace group, however,
 workspaces must have unique coordinates of equal dimensionality.
 
 <h3 class="decleration event" title="State event">
-    <a href="/?id=OnExtWorkspaceHandleV1_State" id="OnExtWorkspaceHandleV1_State">
+    <a href="?id=OnExtWorkspaceHandleV1_State" id="OnExtWorkspaceHandleV1_State">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceHandleV1.<span class="event">OnState</span>
     </a>
@@ -633,7 +660,7 @@ Missing states convey the opposite meaning, e.g. an unset active bit
 means the workspace is currently inactive.
 
 <h3 class="decleration event" title="Capabilities event">
-    <a href="/?id=OnExtWorkspaceHandleV1_Capabilities" id="OnExtWorkspaceHandleV1_Capabilities">
+    <a href="?id=OnExtWorkspaceHandleV1_Capabilities" id="OnExtWorkspaceHandleV1_Capabilities">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceHandleV1.<span class="event">OnCapabilities</span>
     </a>
@@ -664,7 +691,7 @@ ext_workspace_handle_v1 . When the capabilities change, compositors
 must send this event again.
 
 <h3 class="decleration event" title="Removed event">
-    <a href="/?id=OnExtWorkspaceHandleV1_Removed" id="OnExtWorkspaceHandleV1_Removed">
+    <a href="?id=OnExtWorkspaceHandleV1_Removed" id="OnExtWorkspaceHandleV1_Removed">
         <span class="codicon codicon-symbol-event event"></span>
         ExtWorkspaceHandleV1.<span class="event">OnRemoved</span>
     </a>
@@ -688,7 +715,7 @@ The compositor must only remove a workspaces not currently belonging to any
 workspace_group.
 
 <h3 class="decleration enum" title="State enum">
-    <a href="/?id=State" id="State">
+    <a href="?id=State" id="State">
         <span class="codicon codicon-symbol-enum enum"></span>
         ExtWorkspaceHandleV1.<span class="enum">State</span>
     </a>
@@ -710,7 +737,7 @@ The different states that a workspace can have.
 | Urgent | 2 | The workspace requests attention |
 | Hidden | 4 |  |
 <h3 class="decleration enum" title="WorkspaceCapabilities enum">
-    <a href="/?id=WorkspaceCapabilities" id="WorkspaceCapabilities">
+    <a href="?id=WorkspaceCapabilities" id="WorkspaceCapabilities">
         <span class="codicon codicon-symbol-enum enum"></span>
         ExtWorkspaceHandleV1.<span class="enum">WorkspaceCapabilities</span>
     </a>
