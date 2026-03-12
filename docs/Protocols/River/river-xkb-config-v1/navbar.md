@@ -1,5 +1,5 @@
 ﻿Outline
 
-- [RiverXkbConfigV1](#RiverXkbConfigV1)
-- [RiverXkbKeymapV1](#RiverXkbKeymapV1)
-- [RiverXkbKeyboardV1](#RiverXkbKeyboardV1)
+- [RiverXkbConfigV1](#riverxkbconfigv1 ':class=interface')
+- [RiverXkbKeymapV1](#riverxkbkeymapv1 ':class=interface')
+- [RiverXkbKeyboardV1](#riverxkbkeyboardv1 ':class=interface')

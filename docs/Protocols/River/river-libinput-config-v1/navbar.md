@@ -1,6 +1,6 @@
 ﻿Outline
 
-- [RiverLibinputConfigV1](#RiverLibinputConfigV1)
-- [RiverLibinputDeviceV1](#RiverLibinputDeviceV1)
-- [RiverLibinputAccelConfigV1](#RiverLibinputAccelConfigV1)
-- [RiverLibinputResultV1](#RiverLibinputResultV1)
+- [RiverLibinputConfigV1](#riverlibinputconfigv1 ':class=interface')
+- [RiverLibinputDeviceV1](#riverlibinputdevicev1 ':class=interface')
+- [RiverLibinputAccelConfigV1](#riverlibinputaccelconfigv1 ':class=interface')
+- [RiverLibinputResultV1](#riverlibinputresultv1 ':class=interface')

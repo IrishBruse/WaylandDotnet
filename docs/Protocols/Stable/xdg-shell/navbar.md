@@ -1,7 +1,7 @@
 ﻿Outline
 
-- [XdgWmBase](#XdgWmBase)
-- [XdgPositioner](#XdgPositioner)
-- [XdgSurface](#XdgSurface)
-- [XdgToplevel](#XdgToplevel)
-- [XdgPopup](#XdgPopup)
+- [XdgWmBase](#xdgwmbase ':class=interface')
+- [XdgPositioner](#xdgpositioner ':class=interface')
+- [XdgSurface](#xdgsurface ':class=interface')
+- [XdgToplevel](#xdgtoplevel ':class=interface')
+- [XdgPopup](#xdgpopup ':class=interface')

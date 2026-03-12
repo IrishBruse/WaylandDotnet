@@ -5,7 +5,7 @@
 ---
 
 <h2 class="decleration interface">
-    <a href="?id=ZwlrOutputManagerV1" id="ZwlrOutputManagerV1">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputmanagerv1" id="zwlroutputmanagerv1">
         <span class="codicon codicon-symbol-interface"></span>
         ZwlrOutputManagerV1
     </a>
@@ -44,11 +44,8 @@ output property advertisement protocol for regular clients. Instead,
 protocols such as xdg-output should be used.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="CreateConfiguration request">
-    <a href="?id=ZwlrOutputManagerV1_CreateConfiguration" id="ZwlrOutputManagerV1_CreateConfiguration">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputmanagerv1_createconfiguration" id="zwlroutputmanagerv1_createconfiguration">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrOutputManagerV1.<span class="method">CreateConfiguration</span>
     </a>
@@ -68,11 +65,8 @@ ZwlrOutputConfigurationV1 CreateConfiguration(uint serial)
 Create a new output configuration object. This allows to update head
 properties.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Stop request">
-    <a href="?id=ZwlrOutputManagerV1_Stop" id="ZwlrOutputManagerV1_Stop">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputmanagerv1_stop" id="zwlroutputmanagerv1_stop">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrOutputManagerV1.<span class="method">Stop</span>
     </a>
@@ -92,7 +86,7 @@ until the finished event is emitted.
 The client must not send any more requests after this one.
 
 <h3 class="decleration event" title="Head event">
-    <a href="?id=OnZwlrOutputManagerV1_Head" id="OnZwlrOutputManagerV1_Head">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputmanagerv1_head" id="onzwlroutputmanagerv1_head">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputManagerV1.<span class="event">OnHead</span>
     </a>
@@ -113,7 +107,7 @@ appears (e.g. a monitor is plugged in) or after the output manager is
 bound.
 
 <h3 class="decleration event" title="Done event">
-    <a href="?id=OnZwlrOutputManagerV1_Done" id="OnZwlrOutputManagerV1_Done">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputmanagerv1_done" id="onzwlroutputmanagerv1_done">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputManagerV1.<span class="event">OnDone</span>
     </a>
@@ -142,7 +136,7 @@ even if they happen via multiple events.
 A serial is sent to be used in a future create_configuration request.
 
 <h3 class="decleration event" title="Finished event">
-    <a href="?id=OnZwlrOutputManagerV1_Finished" id="OnZwlrOutputManagerV1_Finished">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputmanagerv1_finished" id="onzwlroutputmanagerv1_finished">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputManagerV1.<span class="event">OnFinished</span>
     </a>
@@ -161,7 +155,7 @@ event, so it will become invalid and the client should release any
 resources associated with it.
 
 <h2 class="decleration interface">
-    <a href="?id=ZwlrOutputHeadV1" id="ZwlrOutputHeadV1">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputheadv1" id="zwlroutputheadv1">
         <span class="codicon codicon-symbol-interface"></span>
         ZwlrOutputHeadV1
     </a>
@@ -186,11 +180,8 @@ wlr_output_manager.done event. No guarantees are made regarding the order
 in which properties are sent.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Release request">
-    <a href="?id=ZwlrOutputHeadV1_Release" id="ZwlrOutputHeadV1_Release">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputheadv1_release" id="zwlroutputheadv1_release">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrOutputHeadV1.<span class="method">Release</span>
     </a>
@@ -209,7 +200,7 @@ This request indicates that the client will no longer use this head
 object.
 
 <h3 class="decleration event" title="Name event">
-    <a href="?id=OnZwlrOutputHeadV1_Name" id="OnZwlrOutputHeadV1_Name">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputheadv1_name" id="onzwlroutputheadv1_name">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputHeadV1.<span class="event">OnName</span>
     </a>
@@ -245,7 +236,7 @@ event is only sent once per object, and the name does not change over
 the lifetime of the wlr_output_head object.
 
 <h3 class="decleration event" title="Description event">
-    <a href="?id=OnZwlrOutputHeadV1_Description" id="OnZwlrOutputHeadV1_Description">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputheadv1_description" id="onzwlroutputheadv1_description">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputHeadV1.<span class="event">OnDescription</span>
     </a>
@@ -277,7 +268,7 @@ This event is only sent once per object, and the description does not
 change over the lifetime of the wlr_output_head object.
 
 <h3 class="decleration event" title="PhysicalSize event">
-    <a href="?id=OnZwlrOutputHeadV1_PhysicalSize" id="OnZwlrOutputHeadV1_PhysicalSize">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputheadv1_physicalsize" id="onzwlroutputheadv1_physicalsize">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputHeadV1.<span class="event">OnPhysicalSize</span>
     </a>
@@ -303,7 +294,7 @@ event is only sent once per object, and the physical size does not change over
 the lifetime of the wlr_output_head object.
 
 <h3 class="decleration event" title="Mode event">
-    <a href="?id=OnZwlrOutputHeadV1_Mode" id="OnZwlrOutputHeadV1_Mode">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputheadv1_mode" id="onzwlroutputheadv1_mode">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputHeadV1.<span class="event">OnMode</span>
     </a>
@@ -323,7 +314,7 @@ This event introduces a mode for this head. It is sent once per
 supported mode.
 
 <h3 class="decleration event" title="Enabled event">
-    <a href="?id=OnZwlrOutputHeadV1_Enabled" id="OnZwlrOutputHeadV1_Enabled">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputheadv1_enabled" id="onzwlroutputheadv1_enabled">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputHeadV1.<span class="event">OnEnabled</span>
     </a>
@@ -346,7 +337,7 @@ When a head is disabled, some properties (current_mode, position,
 transform and scale) are irrelevant.
 
 <h3 class="decleration event" title="CurrentMode event">
-    <a href="?id=OnZwlrOutputHeadV1_CurrentMode" id="OnZwlrOutputHeadV1_CurrentMode">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputheadv1_currentmode" id="onzwlroutputheadv1_currentmode">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputHeadV1.<span class="event">OnCurrentMode</span>
     </a>
@@ -366,7 +357,7 @@ This event describes the mode currently in use for this head. It is only
 sent if the output is enabled.
 
 <h3 class="decleration event" title="Position event">
-    <a href="?id=OnZwlrOutputHeadV1_Position" id="OnZwlrOutputHeadV1_Position">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputheadv1_position" id="onzwlroutputheadv1_position">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputHeadV1.<span class="event">OnPosition</span>
     </a>
@@ -387,7 +378,7 @@ This events describes the position of the head in the global compositor
 space. It is only sent if the output is enabled.
 
 <h3 class="decleration event" title="Transform event">
-    <a href="?id=OnZwlrOutputHeadV1_Transform" id="OnZwlrOutputHeadV1_Transform">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputheadv1_transform" id="onzwlroutputheadv1_transform">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputHeadV1.<span class="event">OnTransform</span>
     </a>
@@ -407,7 +398,7 @@ This event describes the transformation currently applied to the head.
 It is only sent if the output is enabled.
 
 <h3 class="decleration event" title="Scale event">
-    <a href="?id=OnZwlrOutputHeadV1_Scale" id="OnZwlrOutputHeadV1_Scale">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputheadv1_scale" id="onzwlroutputheadv1_scale">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputHeadV1.<span class="event">OnScale</span>
     </a>
@@ -427,7 +418,7 @@ This events describes the scale of the head in the global compositor
 space. It is only sent if the output is enabled.
 
 <h3 class="decleration event" title="Finished event">
-    <a href="?id=OnZwlrOutputHeadV1_Finished" id="OnZwlrOutputHeadV1_Finished">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputheadv1_finished" id="onzwlroutputheadv1_finished">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputHeadV1.<span class="event">OnFinished</span>
     </a>
@@ -445,7 +436,7 @@ object becomes inert. Clients should send a destroy request and release
 any resources associated with it.
 
 <h3 class="decleration event" title="Make event">
-    <a href="?id=OnZwlrOutputHeadV1_Make" id="OnZwlrOutputHeadV1_Make">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputheadv1_make" id="onzwlroutputheadv1_make">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputHeadV1.<span class="event">OnMake</span>
     </a>
@@ -483,7 +474,7 @@ It is not recommended to display the make string in UI to users. For
 that the string provided by the description event should be preferred.
 
 <h3 class="decleration event" title="Model event">
-    <a href="?id=OnZwlrOutputHeadV1_Model" id="OnZwlrOutputHeadV1_Model">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputheadv1_model" id="onzwlroutputheadv1_model">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputHeadV1.<span class="event">OnModel</span>
     </a>
@@ -521,7 +512,7 @@ It is not recommended to display the model string in UI to users. For
 that the string provided by the description event should be preferred.
 
 <h3 class="decleration event" title="SerialNumber event">
-    <a href="?id=OnZwlrOutputHeadV1_SerialNumber" id="OnZwlrOutputHeadV1_SerialNumber">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputheadv1_serialnumber" id="onzwlroutputheadv1_serialnumber">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputHeadV1.<span class="event">OnSerialNumber</span>
     </a>
@@ -560,7 +551,7 @@ users. For that the string provided by the description event should be
 preferred.
 
 <h3 class="decleration event" title="AdaptiveSync event">
-    <a href="?id=OnZwlrOutputHeadV1_AdaptiveSync" id="OnZwlrOutputHeadV1_AdaptiveSync">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputheadv1_adaptivesync" id="onzwlroutputheadv1_adaptivesync">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputHeadV1.<span class="event">OnAdaptiveSync</span>
     </a>
@@ -582,7 +573,7 @@ the head or not. Adaptive sync is also known as Variable Refresh
 Rate or VRR.
 
 <h3 class="decleration enum" title="AdaptiveSyncState enum">
-    <a href="?id=AdaptiveSyncState" id="AdaptiveSyncState">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=adaptivesyncstate" id="adaptivesyncstate">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrOutputHeadV1.<span class="enum">AdaptiveSyncState</span>
     </a>
@@ -597,7 +588,7 @@ public enum AdaptiveSyncState
 | Disabled | 0 | Adaptive sync is disabled |
 | Enabled | 1 | Adaptive sync is enabled |
 <h2 class="decleration interface">
-    <a href="?id=ZwlrOutputModeV1" id="ZwlrOutputModeV1">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputmodev1" id="zwlroutputmodev1">
         <span class="codicon codicon-symbol-interface"></span>
         ZwlrOutputModeV1
     </a>
@@ -617,11 +608,8 @@ wlr_output_manager.done event. No guarantees are made regarding the order
 in which properties are sent.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Release request">
-    <a href="?id=ZwlrOutputModeV1_Release" id="ZwlrOutputModeV1_Release">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputmodev1_release" id="zwlroutputmodev1_release">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrOutputModeV1.<span class="method">Release</span>
     </a>
@@ -640,7 +628,7 @@ This request indicates that the client will no longer use this mode
 object.
 
 <h3 class="decleration event" title="Size event">
-    <a href="?id=OnZwlrOutputModeV1_Size" id="OnZwlrOutputModeV1_Size">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputmodev1_size" id="onzwlroutputmodev1_size">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputModeV1.<span class="event">OnSize</span>
     </a>
@@ -663,7 +651,7 @@ the output size in the global compositor space. For instance, the output
 may be scaled or transformed.
 
 <h3 class="decleration event" title="Refresh event">
-    <a href="?id=OnZwlrOutputModeV1_Refresh" id="OnZwlrOutputModeV1_Refresh">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputmodev1_refresh" id="onzwlroutputmodev1_refresh">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputModeV1.<span class="event">OnRefresh</span>
     </a>
@@ -683,7 +671,7 @@ This event describes the mode's fixed vertical refresh rate. It is only
 sent if the mode has a fixed refresh rate.
 
 <h3 class="decleration event" title="Preferred event">
-    <a href="?id=OnZwlrOutputModeV1_Preferred" id="OnZwlrOutputModeV1_Preferred">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputmodev1_preferred" id="onzwlroutputmodev1_preferred">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputModeV1.<span class="event">OnPreferred</span>
     </a>
@@ -699,7 +687,7 @@ void PreferredHandler()
 This event advertises this mode as preferred.
 
 <h3 class="decleration event" title="Finished event">
-    <a href="?id=OnZwlrOutputModeV1_Finished" id="OnZwlrOutputModeV1_Finished">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputmodev1_finished" id="onzwlroutputmodev1_finished">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputModeV1.<span class="event">OnFinished</span>
     </a>
@@ -717,7 +705,7 @@ object becomes inert. Clients should send a destroy request and release
 any resources associated with it.
 
 <h2 class="decleration interface">
-    <a href="?id=ZwlrOutputConfigurationV1" id="ZwlrOutputConfigurationV1">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputconfigurationv1" id="zwlroutputconfigurationv1">
         <span class="codicon codicon-symbol-interface"></span>
         ZwlrOutputConfigurationV1
     </a>
@@ -739,11 +727,8 @@ then reply with a succeeded, failed or cancelled event. Finally the client
 should destroy the configuration object.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="EnableHead request">
-    <a href="?id=ZwlrOutputConfigurationV1_EnableHead" id="ZwlrOutputConfigurationV1_EnableHead">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputconfigurationv1_enablehead" id="zwlroutputconfigurationv1_enablehead">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrOutputConfigurationV1.<span class="method">EnableHead</span>
     </a>
@@ -763,11 +748,8 @@ ZwlrOutputConfigurationHeadV1 EnableHead(ZwlrOutputHeadV1 head)
 Enable a head. This request creates a head configuration object that can
 be used to change the head's properties.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="DisableHead request">
-    <a href="?id=ZwlrOutputConfigurationV1_DisableHead" id="ZwlrOutputConfigurationV1_DisableHead">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputconfigurationv1_disablehead" id="zwlroutputconfigurationv1_disablehead">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrOutputConfigurationV1.<span class="method">DisableHead</span>
     </a>
@@ -785,11 +767,8 @@ void DisableHead(ZwlrOutputHeadV1 head)
 
 Disable a head.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Apply request">
-    <a href="?id=ZwlrOutputConfigurationV1_Apply" id="ZwlrOutputConfigurationV1_Apply">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputconfigurationv1_apply" id="zwlroutputconfigurationv1_apply">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrOutputConfigurationV1.<span class="method">Apply</span>
     </a>
@@ -813,11 +792,8 @@ After this request has been sent, the compositor must respond with an
 succeeded, failed or cancelled event. Sending a request that isn't the
 destructor is a protocol error.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Test request">
-    <a href="?id=ZwlrOutputConfigurationV1_Test" id="ZwlrOutputConfigurationV1_Test">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputconfigurationv1_test" id="zwlroutputconfigurationv1_test">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrOutputConfigurationV1.<span class="method">Test</span>
     </a>
@@ -840,11 +816,8 @@ After this request has been sent, the compositor must respond with an
 succeeded, failed or cancelled event. Sending a request that isn't the
 destructor is a protocol error.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwlrOutputConfigurationV1_Destroy" id="ZwlrOutputConfigurationV1_Destroy">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputconfigurationv1_destroy" id="zwlroutputconfigurationv1_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrOutputConfigurationV1.<span class="method">Destroy</span>
     </a>
@@ -866,7 +839,7 @@ This request also destroys wlr_output_configuration_head objects created
 via this object.
 
 <h3 class="decleration event" title="Succeeded event">
-    <a href="?id=OnZwlrOutputConfigurationV1_Succeeded" id="OnZwlrOutputConfigurationV1_Succeeded">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputconfigurationv1_succeeded" id="onzwlroutputconfigurationv1_succeeded">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputConfigurationV1.<span class="event">OnSucceeded</span>
     </a>
@@ -888,7 +861,7 @@ If the current configuration has changed, events to describe the changes
 will be sent followed by a wlr_output_manager.done event.
 
 <h3 class="decleration event" title="Failed event">
-    <a href="?id=OnZwlrOutputConfigurationV1_Failed" id="OnZwlrOutputConfigurationV1_Failed">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputconfigurationv1_failed" id="onzwlroutputconfigurationv1_failed">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputConfigurationV1.<span class="event">OnFailed</span>
     </a>
@@ -908,7 +881,7 @@ triggered this event.
 Upon receiving this event, the client should destroy this object.
 
 <h3 class="decleration event" title="Cancelled event">
-    <a href="?id=OnZwlrOutputConfigurationV1_Cancelled" id="OnZwlrOutputConfigurationV1_Cancelled">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=onzwlroutputconfigurationv1_cancelled" id="onzwlroutputconfigurationv1_cancelled">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrOutputConfigurationV1.<span class="event">OnCancelled</span>
     </a>
@@ -931,7 +904,7 @@ again.
 Upon receiving this event, the client should destroy this object.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrOutputConfigurationV1.<span class="enum">Error</span>
     </a>
@@ -947,7 +920,7 @@ public enum Error
 | UnconfiguredHead | 2 | Head has not been configured |
 | AlreadyUsed | 3 | Request sent after configuration has been applied or tested |
 <h2 class="decleration interface">
-    <a href="?id=ZwlrOutputConfigurationHeadV1" id="ZwlrOutputConfigurationHeadV1">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputconfigurationheadv1" id="zwlroutputconfigurationheadv1">
         <span class="codicon codicon-symbol-interface"></span>
         ZwlrOutputConfigurationHeadV1
     </a>
@@ -962,11 +935,8 @@ This object is used by the client to update a single head's configuration.
 It is a protocol error to set the same property twice.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetMode request">
-    <a href="?id=ZwlrOutputConfigurationHeadV1_SetMode" id="ZwlrOutputConfigurationHeadV1_SetMode">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputconfigurationheadv1_setmode" id="zwlroutputconfigurationheadv1_setmode">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrOutputConfigurationHeadV1.<span class="method">SetMode</span>
     </a>
@@ -984,11 +954,8 @@ void SetMode(ZwlrOutputModeV1 mode)
 
 This request sets the head's mode.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetCustomMode request">
-    <a href="?id=ZwlrOutputConfigurationHeadV1_SetCustomMode" id="ZwlrOutputConfigurationHeadV1_SetCustomMode">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputconfigurationheadv1_setcustommode" id="zwlroutputconfigurationheadv1_setcustommode">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrOutputConfigurationHeadV1.<span class="method">SetCustomMode</span>
     </a>
@@ -1012,11 +979,8 @@ refresh rate is unspecified.
 
 It is a protocol error to set both a mode and a custom mode.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetPosition request">
-    <a href="?id=ZwlrOutputConfigurationHeadV1_SetPosition" id="ZwlrOutputConfigurationHeadV1_SetPosition">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputconfigurationheadv1_setposition" id="zwlroutputconfigurationheadv1_setposition">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrOutputConfigurationHeadV1.<span class="method">SetPosition</span>
     </a>
@@ -1035,11 +999,8 @@ void SetPosition(int x, int y)
 
 This request sets the head's position in the global compositor space.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetTransform request">
-    <a href="?id=ZwlrOutputConfigurationHeadV1_SetTransform" id="ZwlrOutputConfigurationHeadV1_SetTransform">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputconfigurationheadv1_settransform" id="zwlroutputconfigurationheadv1_settransform">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrOutputConfigurationHeadV1.<span class="method">SetTransform</span>
     </a>
@@ -1057,11 +1018,8 @@ void SetTransform(int transform)
 
 This request sets the head's transform.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetScale request">
-    <a href="?id=ZwlrOutputConfigurationHeadV1_SetScale" id="ZwlrOutputConfigurationHeadV1_SetScale">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputconfigurationheadv1_setscale" id="zwlroutputconfigurationheadv1_setscale">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrOutputConfigurationHeadV1.<span class="method">SetScale</span>
     </a>
@@ -1079,11 +1037,8 @@ void SetScale(WlFixed scale)
 
 This request sets the head's scale.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetAdaptiveSync request">
-    <a href="?id=ZwlrOutputConfigurationHeadV1_SetAdaptiveSync" id="ZwlrOutputConfigurationHeadV1_SetAdaptiveSync">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputconfigurationheadv1_setadaptivesync" id="zwlroutputconfigurationheadv1_setadaptivesync">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrOutputConfigurationHeadV1.<span class="method">SetAdaptiveSync</span>
     </a>
@@ -1104,7 +1059,7 @@ This request enables/disables adaptive sync. Adaptive sync is also
 known as Variable Refresh Rate or VRR.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrOutputConfigurationHeadV1.<span class="enum">Error</span>
     </a>

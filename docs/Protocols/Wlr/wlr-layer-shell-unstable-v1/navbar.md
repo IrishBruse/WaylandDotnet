@@ -1,4 +1,4 @@
 ﻿Outline
 
-- [ZwlrLayerShellV1](#ZwlrLayerShellV1)
-- [ZwlrLayerSurfaceV1](#ZwlrLayerSurfaceV1)
+- [ZwlrLayerShellV1](#zwlrlayershellv1 ':class=interface')
+- [ZwlrLayerSurfaceV1](#zwlrlayersurfacev1 ':class=interface')

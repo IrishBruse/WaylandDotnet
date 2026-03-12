@@ -5,7 +5,7 @@
 ---
 
 <h2 class="decleration interface">
-    <a href="?id=ZwlrForeignToplevelManagerV1" id="ZwlrForeignToplevelManagerV1">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=zwlrforeigntoplevelmanagerv1" id="zwlrforeigntoplevelmanagerv1">
         <span class="codicon codicon-symbol-interface"></span>
         ZwlrForeignToplevelManagerV1
     </a>
@@ -23,11 +23,8 @@ After a client binds the zwlr_foreign_toplevel_manager_v1, each opened
 toplevel window will be sent via the toplevel event
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Stop request">
-    <a href="?id=ZwlrForeignToplevelManagerV1_Stop" id="ZwlrForeignToplevelManagerV1_Stop">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=zwlrforeigntoplevelmanagerv1_stop" id="zwlrforeigntoplevelmanagerv1_stop">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrForeignToplevelManagerV1.<span class="method">Stop</span>
     </a>
@@ -47,7 +44,7 @@ the finished event is emitted.
 The client must not send any more requests after this one.
 
 <h3 class="decleration event" title="Toplevel event">
-    <a href="?id=OnZwlrForeignToplevelManagerV1_Toplevel" id="OnZwlrForeignToplevelManagerV1_Toplevel">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=onzwlrforeigntoplevelmanagerv1_toplevel" id="onzwlrforeigntoplevelmanagerv1_toplevel">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrForeignToplevelManagerV1.<span class="event">OnToplevel</span>
     </a>
@@ -72,7 +69,7 @@ be sent immediately after this event via the corresponding events in
 zwlr_foreign_toplevel_handle_v1.
 
 <h3 class="decleration event" title="Finished event">
-    <a href="?id=OnZwlrForeignToplevelManagerV1_Finished" id="OnZwlrForeignToplevelManagerV1_Finished">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=onzwlrforeigntoplevelmanagerv1_finished" id="onzwlrforeigntoplevelmanagerv1_finished">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrForeignToplevelManagerV1.<span class="event">OnFinished</span>
     </a>
@@ -91,7 +88,7 @@ immediately after sending this request, so it will become invalid and
 the client should free any resources associated with it.
 
 <h2 class="decleration interface">
-    <a href="?id=ZwlrForeignToplevelHandleV1" id="ZwlrForeignToplevelHandleV1">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=zwlrforeigntoplevelhandlev1" id="zwlrforeigntoplevelhandlev1">
         <span class="codicon codicon-symbol-interface"></span>
         ZwlrForeignToplevelHandleV1
     </a>
@@ -108,11 +105,8 @@ Each toplevel has a list of outputs it is visible on, conveyed to the
 client with the output_enter and output_leave events.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetMaximized request">
-    <a href="?id=ZwlrForeignToplevelHandleV1_SetMaximized" id="ZwlrForeignToplevelHandleV1_SetMaximized">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=zwlrforeigntoplevelhandlev1_setmaximized" id="zwlrforeigntoplevelhandlev1_setmaximized">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrForeignToplevelHandleV1.<span class="method">SetMaximized</span>
     </a>
@@ -128,11 +122,8 @@ void SetMaximized()
 Requests that the toplevel be maximized. If the maximized state actually
 changes, this will be indicated by the state event.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="UnsetMaximized request">
-    <a href="?id=ZwlrForeignToplevelHandleV1_UnsetMaximized" id="ZwlrForeignToplevelHandleV1_UnsetMaximized">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=zwlrforeigntoplevelhandlev1_unsetmaximized" id="zwlrforeigntoplevelhandlev1_unsetmaximized">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrForeignToplevelHandleV1.<span class="method">UnsetMaximized</span>
     </a>
@@ -148,11 +139,8 @@ void UnsetMaximized()
 Requests that the toplevel be unmaximized. If the maximized state actually
 changes, this will be indicated by the state event.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetMinimized request">
-    <a href="?id=ZwlrForeignToplevelHandleV1_SetMinimized" id="ZwlrForeignToplevelHandleV1_SetMinimized">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=zwlrforeigntoplevelhandlev1_setminimized" id="zwlrforeigntoplevelhandlev1_setminimized">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrForeignToplevelHandleV1.<span class="method">SetMinimized</span>
     </a>
@@ -168,11 +156,8 @@ void SetMinimized()
 Requests that the toplevel be minimized. If the minimized state actually
 changes, this will be indicated by the state event.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="UnsetMinimized request">
-    <a href="?id=ZwlrForeignToplevelHandleV1_UnsetMinimized" id="ZwlrForeignToplevelHandleV1_UnsetMinimized">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=zwlrforeigntoplevelhandlev1_unsetminimized" id="zwlrforeigntoplevelhandlev1_unsetminimized">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrForeignToplevelHandleV1.<span class="method">UnsetMinimized</span>
     </a>
@@ -188,11 +173,8 @@ void UnsetMinimized()
 Requests that the toplevel be unminimized. If the minimized state actually
 changes, this will be indicated by the state event.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Activate request">
-    <a href="?id=ZwlrForeignToplevelHandleV1_Activate" id="ZwlrForeignToplevelHandleV1_Activate">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=zwlrforeigntoplevelhandlev1_activate" id="zwlrforeigntoplevelhandlev1_activate">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrForeignToplevelHandleV1.<span class="method">Activate</span>
     </a>
@@ -211,11 +193,8 @@ void Activate(WlSeat seat)
 Request that this toplevel be activated on the given seat.
 There is no guarantee the toplevel will be actually activated.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Close request">
-    <a href="?id=ZwlrForeignToplevelHandleV1_Close" id="ZwlrForeignToplevelHandleV1_Close">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=zwlrforeigntoplevelhandlev1_close" id="zwlrforeigntoplevelhandlev1_close">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrForeignToplevelHandleV1.<span class="method">Close</span>
     </a>
@@ -235,11 +214,8 @@ no guarantees the toplevel will actually be destroyed. If and when
 this happens, the zwlr_foreign_toplevel_handle_v1.closed event will
 be emitted.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetRectangle request">
-    <a href="?id=ZwlrForeignToplevelHandleV1_SetRectangle" id="ZwlrForeignToplevelHandleV1_SetRectangle">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=zwlrforeigntoplevelhandlev1_setrectangle" id="zwlrforeigntoplevelhandlev1_setrectangle">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrForeignToplevelHandleV1.<span class="method">SetRectangle</span>
     </a>
@@ -271,11 +247,8 @@ considered.
 The dimensions are given in surface-local coordinates.
 Setting width=height=0 removes the already-set rectangle.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=ZwlrForeignToplevelHandleV1_Destroy" id="ZwlrForeignToplevelHandleV1_Destroy">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=zwlrforeigntoplevelhandlev1_destroy" id="zwlrforeigntoplevelhandlev1_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrForeignToplevelHandleV1.<span class="method">Destroy</span>
     </a>
@@ -295,11 +268,8 @@ This request should be called either when the client does not want to
 use the toplevel anymore or after the closed event to finalize the
 destruction of the object.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetFullscreen request">
-    <a href="?id=ZwlrForeignToplevelHandleV1_SetFullscreen" id="ZwlrForeignToplevelHandleV1_SetFullscreen">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=zwlrforeigntoplevelhandlev1_setfullscreen" id="zwlrforeigntoplevelhandlev1_setfullscreen">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrForeignToplevelHandleV1.<span class="method">SetFullscreen</span>
     </a>
@@ -325,11 +295,8 @@ The output parameter is only a hint to the compositor. Also, if output
 is NULL, the compositor should decide which output the toplevel will be
 fullscreened on, if at all.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="UnsetFullscreen request">
-    <a href="?id=ZwlrForeignToplevelHandleV1_UnsetFullscreen" id="ZwlrForeignToplevelHandleV1_UnsetFullscreen">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=zwlrforeigntoplevelhandlev1_unsetfullscreen" id="zwlrforeigntoplevelhandlev1_unsetfullscreen">
         <span class="codicon codicon-symbol-method method"></span>
         ZwlrForeignToplevelHandleV1.<span class="method">UnsetFullscreen</span>
     </a>
@@ -347,7 +314,7 @@ Requests that the toplevel be unfullscreened. If the fullscreen state
 actually changes, this will be indicated by the state event.
 
 <h3 class="decleration event" title="Title event">
-    <a href="?id=OnZwlrForeignToplevelHandleV1_Title" id="OnZwlrForeignToplevelHandleV1_Title">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=onzwlrforeigntoplevelhandlev1_title" id="onzwlrforeigntoplevelhandlev1_title">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrForeignToplevelHandleV1.<span class="event">OnTitle</span>
     </a>
@@ -366,7 +333,7 @@ void TitleHandler(string title)
 This event is emitted whenever the title of the toplevel changes.
 
 <h3 class="decleration event" title="AppId event">
-    <a href="?id=OnZwlrForeignToplevelHandleV1_AppId" id="OnZwlrForeignToplevelHandleV1_AppId">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=onzwlrforeigntoplevelhandlev1_appid" id="onzwlrforeigntoplevelhandlev1_appid">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrForeignToplevelHandleV1.<span class="event">OnAppId</span>
     </a>
@@ -385,7 +352,7 @@ void AppIdHandler(string appId)
 This event is emitted whenever the app-id of the toplevel changes.
 
 <h3 class="decleration event" title="OutputEnter event">
-    <a href="?id=OnZwlrForeignToplevelHandleV1_OutputEnter" id="OnZwlrForeignToplevelHandleV1_OutputEnter">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=onzwlrforeigntoplevelhandlev1_outputenter" id="onzwlrforeigntoplevelhandlev1_outputenter">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrForeignToplevelHandleV1.<span class="event">OnOutputEnter</span>
     </a>
@@ -405,7 +372,7 @@ This event is emitted whenever the toplevel becomes visible on
 the given output. A toplevel may be visible on multiple outputs.
 
 <h3 class="decleration event" title="OutputLeave event">
-    <a href="?id=OnZwlrForeignToplevelHandleV1_OutputLeave" id="OnZwlrForeignToplevelHandleV1_OutputLeave">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=onzwlrforeigntoplevelhandlev1_outputleave" id="onzwlrforeigntoplevelhandlev1_outputleave">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrForeignToplevelHandleV1.<span class="event">OnOutputLeave</span>
     </a>
@@ -426,7 +393,7 @@ the given output. It is guaranteed that an entered-output event
 with the same output has been emitted before this event.
 
 <h3 class="decleration event" title="State event">
-    <a href="?id=OnZwlrForeignToplevelHandleV1_State" id="OnZwlrForeignToplevelHandleV1_State">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=onzwlrforeigntoplevelhandlev1_state" id="onzwlrforeigntoplevelhandlev1_state">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrForeignToplevelHandleV1.<span class="event">OnState</span>
     </a>
@@ -447,7 +414,7 @@ is created and each time the toplevel state changes, either because of a
 compositor action or because of a request in this protocol.
 
 <h3 class="decleration event" title="Done event">
-    <a href="?id=OnZwlrForeignToplevelHandleV1_Done" id="OnZwlrForeignToplevelHandleV1_Done">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=onzwlrforeigntoplevelhandlev1_done" id="onzwlrforeigntoplevelhandlev1_done">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrForeignToplevelHandleV1.<span class="event">OnDone</span>
     </a>
@@ -467,7 +434,7 @@ This allows changes to the zwlr_foreign_toplevel_handle_v1 properties
 to be seen as atomic, even if they happen via multiple events.
 
 <h3 class="decleration event" title="Closed event">
-    <a href="?id=OnZwlrForeignToplevelHandleV1_Closed" id="OnZwlrForeignToplevelHandleV1_Closed">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=onzwlrforeigntoplevelhandlev1_closed" id="onzwlrforeigntoplevelhandlev1_closed">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrForeignToplevelHandleV1.<span class="event">OnClosed</span>
     </a>
@@ -486,7 +453,7 @@ toplevel itself becomes inert so any requests will be ignored except the
 destroy request.
 
 <h3 class="decleration event" title="Parent event">
-    <a href="?id=OnZwlrForeignToplevelHandleV1_Parent" id="OnZwlrForeignToplevelHandleV1_Parent">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=onzwlrforeigntoplevelhandlev1_parent" id="onzwlrforeigntoplevelhandlev1_parent">
         <span class="codicon codicon-symbol-event event"></span>
         ZwlrForeignToplevelHandleV1.<span class="event">OnParent</span>
     </a>
@@ -508,7 +475,7 @@ This event is emitted whenever the parent of the toplevel changes.
 No event is emitted when the parent handle is destroyed by the client.
 
 <h3 class="decleration enum" title="State enum">
-    <a href="?id=State" id="State">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=state" id="state">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrForeignToplevelHandleV1.<span class="enum">State</span>
     </a>
@@ -532,7 +499,7 @@ as the states with the same names defined in xdg-toplevel
 | Activated | 2 | The toplevel is active |
 | Fullscreen | 3 | The toplevel is fullscreen |
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrForeignToplevelHandleV1.<span class="enum">Error</span>
     </a>

@@ -5,7 +5,7 @@
 ---
 
 <h2 class="decleration interface">
-    <a href="?id=RiverLibinputConfigV1" id="RiverLibinputConfigV1">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputconfigv1" id="riverlibinputconfigv1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverLibinputConfigV1
     </a>
@@ -19,11 +19,8 @@ Global interface for configuring libinput devices. This global should
 only be advertised if river_input_manager_v1 is advertised as well.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Stop request">
-    <a href="?id=RiverLibinputConfigV1_Stop" id="RiverLibinputConfigV1_Stop">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputconfigv1_stop" id="riverlibinputconfigv1_stop">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputConfigV1.<span class="method">Stop</span>
     </a>
@@ -44,11 +41,8 @@ further events until the stop request is processed. The client must wait
 for a river_libinput_config_v1.finished event before destroying this
 object.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=RiverLibinputConfigV1_Destroy" id="RiverLibinputConfigV1_Destroy">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputconfigv1_destroy" id="riverlibinputconfigv1_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputConfigV1.<span class="method">Destroy</span>
     </a>
@@ -74,11 +68,8 @@ river_libinput_config_v1.finished event. Once the finished event is
 received it is safe to destroy this object and any other objects created
 through this interface.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="CreateAccelConfig request">
-    <a href="?id=RiverLibinputConfigV1_CreateAccelConfig" id="RiverLibinputConfigV1_CreateAccelConfig">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputconfigv1_createaccelconfig" id="riverlibinputconfigv1_createaccelconfig">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputConfigV1.<span class="method">CreateAccelConfig</span>
     </a>
@@ -99,7 +90,7 @@ Create a acceleration config which can be applied
 with river_libinput_device_v1.apply_accel_config.
 
 <h3 class="decleration event" title="Finished event">
-    <a href="?id=OnRiverLibinputConfigV1_Finished" id="OnRiverLibinputConfigV1_Finished">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputconfigv1_finished" id="onriverlibinputconfigv1_finished">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputConfigV1.<span class="event">OnFinished</span>
     </a>
@@ -117,7 +108,7 @@ object. The client should destroy the object. See
 river_libinput_config_v1.destroy for more information.
 
 <h3 class="decleration event" title="LibinputDevice event">
-    <a href="?id=OnRiverLibinputConfigV1_LibinputDevice" id="OnRiverLibinputConfigV1_LibinputDevice">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputconfigv1_libinputdevice" id="onriverlibinputconfigv1_libinputdevice">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputConfigV1.<span class="event">OnLibinputDevice</span>
     </a>
@@ -137,7 +128,7 @@ A new libinput device has been created. Not every river_input_device_v1
 is necessarily a libinput device as well.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputConfigV1.<span class="enum">Error</span>
     </a>
@@ -152,7 +143,7 @@ public enum Error
 | InvalidArg | 0 | Invalid enum value or similar |
 | InvalidDestroy | 1 |  |
 <h2 class="decleration interface">
-    <a href="?id=RiverLibinputDeviceV1" id="RiverLibinputDeviceV1">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1" id="riverlibinputdevicev1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverLibinputDeviceV1
     </a>
@@ -169,11 +160,8 @@ willl be sent after the *_default events and again whenever the config
 option is changed.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=RiverLibinputDeviceV1_Destroy" id="RiverLibinputDeviceV1_Destroy">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_destroy" id="riverlibinputdevicev1_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">Destroy</span>
     </a>
@@ -190,11 +178,8 @@ void Destroy()
 This request indicates that the client will no longer use the input
 device object and that it may be safely destroyed.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetSendEvents request">
-    <a href="?id=RiverLibinputDeviceV1_SetSendEvents" id="RiverLibinputDeviceV1_SetSendEvents">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setsendevents" id="riverlibinputdevicev1_setsendevents">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetSendEvents</span>
     </a>
@@ -213,11 +198,8 @@ RiverLibinputResultV1 SetSendEvents(uint mode)
 
 Set the send events mode for the device.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetTap request">
-    <a href="?id=RiverLibinputDeviceV1_SetTap" id="RiverLibinputDeviceV1_SetTap">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_settap" id="riverlibinputdevicev1_settap">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetTap</span>
     </a>
@@ -237,11 +219,8 @@ RiverLibinputResultV1 SetTap(uint state)
 Configure tap-to-click on this device, with a default mapping of
 1, 2, 3 finger tap mapping to left, right, middle click, respectively.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetTapButtonMap request">
-    <a href="?id=RiverLibinputDeviceV1_SetTapButtonMap" id="RiverLibinputDeviceV1_SetTapButtonMap">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_settapbuttonmap" id="riverlibinputdevicev1_settapbuttonmap">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetTapButtonMap</span>
     </a>
@@ -262,11 +241,8 @@ Set the finger number to button number mapping for tap-to-click. The
 default mapping on most devices is to have a 1, 2 and 3 finger tap to
 map to the left, right and middle button, respectively.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetDrag request">
-    <a href="?id=RiverLibinputDeviceV1_SetDrag" id="RiverLibinputDeviceV1_SetDrag">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setdrag" id="riverlibinputdevicev1_setdrag">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetDrag</span>
     </a>
@@ -285,11 +261,8 @@ RiverLibinputResultV1 SetDrag(uint state)
 
 Configure tap-and-drag functionality on the device.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetDragLock request">
-    <a href="?id=RiverLibinputDeviceV1_SetDragLock" id="RiverLibinputDeviceV1_SetDragLock">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setdraglock" id="riverlibinputdevicev1_setdraglock">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetDragLock</span>
     </a>
@@ -312,11 +285,8 @@ continues. A timeout for lifting the finger is optional. When disabled,
 lifting the finger during a tap-and-drag will immediately stop the drag.
 See the libinput documentation for more details.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetThreeFingerDrag request">
-    <a href="?id=RiverLibinputDeviceV1_SetThreeFingerDrag" id="RiverLibinputDeviceV1_SetThreeFingerDrag">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setthreefingerdrag" id="riverlibinputdevicev1_setthreefingerdrag">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetThreeFingerDrag</span>
     </a>
@@ -335,11 +305,8 @@ RiverLibinputResultV1 SetThreeFingerDrag(uint state)
 
 Configure three finger drag functionality for the device.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetCalibrationMatrix request">
-    <a href="?id=RiverLibinputDeviceV1_SetCalibrationMatrix" id="RiverLibinputDeviceV1_SetCalibrationMatrix">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setcalibrationmatrix" id="riverlibinputdevicev1_setcalibrationmatrix">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetCalibrationMatrix</span>
     </a>
@@ -358,11 +325,8 @@ RiverLibinputResultV1 SetCalibrationMatrix(byte[] matrix)
 
 Set calibration matrix.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetAccelProfile request">
-    <a href="?id=RiverLibinputDeviceV1_SetAccelProfile" id="RiverLibinputDeviceV1_SetAccelProfile">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setaccelprofile" id="riverlibinputdevicev1_setaccelprofile">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetAccelProfile</span>
     </a>
@@ -381,11 +345,8 @@ RiverLibinputResultV1 SetAccelProfile(uint profile)
 
 Set the acceleration profile.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetAccelSpeed request">
-    <a href="?id=RiverLibinputDeviceV1_SetAccelSpeed" id="RiverLibinputDeviceV1_SetAccelSpeed">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setaccelspeed" id="riverlibinputdevicev1_setaccelspeed">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetAccelSpeed</span>
     </a>
@@ -406,11 +367,8 @@ Set the acceleration speed within a range of [-1, 1], where 0 is
 the default acceleration for this device, -1 is the slowest acceleration
 and 1 is the maximum acceleration available on this device.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="ApplyAccelConfig request">
-    <a href="?id=RiverLibinputDeviceV1_ApplyAccelConfig" id="RiverLibinputDeviceV1_ApplyAccelConfig">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_applyaccelconfig" id="riverlibinputdevicev1_applyaccelconfig">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">ApplyAccelConfig</span>
     </a>
@@ -429,11 +387,8 @@ RiverLibinputResultV1 ApplyAccelConfig(RiverLibinputAccelConfigV1 config)
 
 Apply a pointer accleration config.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetNaturalScroll request">
-    <a href="?id=RiverLibinputDeviceV1_SetNaturalScroll" id="RiverLibinputDeviceV1_SetNaturalScroll">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setnaturalscroll" id="riverlibinputdevicev1_setnaturalscroll">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetNaturalScroll</span>
     </a>
@@ -452,11 +407,8 @@ RiverLibinputResultV1 SetNaturalScroll(uint state)
 
 Set natural scroll state.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetLeftHanded request">
-    <a href="?id=RiverLibinputDeviceV1_SetLeftHanded" id="RiverLibinputDeviceV1_SetLeftHanded">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setlefthanded" id="riverlibinputdevicev1_setlefthanded">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetLeftHanded</span>
     </a>
@@ -475,11 +427,8 @@ RiverLibinputResultV1 SetLeftHanded(uint state)
 
 Set left-handed mode state.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetClickMethod request">
-    <a href="?id=RiverLibinputDeviceV1_SetClickMethod" id="RiverLibinputDeviceV1_SetClickMethod">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setclickmethod" id="riverlibinputdevicev1_setclickmethod">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetClickMethod</span>
     </a>
@@ -498,11 +447,8 @@ RiverLibinputResultV1 SetClickMethod(uint method)
 
 Set click method.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetClickfingerButtonMap request">
-    <a href="?id=RiverLibinputDeviceV1_SetClickfingerButtonMap" id="RiverLibinputDeviceV1_SetClickfingerButtonMap">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setclickfingerbuttonmap" id="riverlibinputdevicev1_setclickfingerbuttonmap">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetClickfingerButtonMap</span>
     </a>
@@ -522,11 +468,8 @@ RiverLibinputResultV1 SetClickfingerButtonMap(uint buttonMap)
 Set clickfinger button map.
 Supported if click_methods.clickfinger is supported.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetMiddleEmulation request">
-    <a href="?id=RiverLibinputDeviceV1_SetMiddleEmulation" id="RiverLibinputDeviceV1_SetMiddleEmulation">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setmiddleemulation" id="riverlibinputdevicev1_setmiddleemulation">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetMiddleEmulation</span>
     </a>
@@ -545,11 +488,8 @@ RiverLibinputResultV1 SetMiddleEmulation(uint state)
 
 Set middle mouse button emulation state.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetScrollMethod request">
-    <a href="?id=RiverLibinputDeviceV1_SetScrollMethod" id="RiverLibinputDeviceV1_SetScrollMethod">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setscrollmethod" id="riverlibinputdevicev1_setscrollmethod">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetScrollMethod</span>
     </a>
@@ -568,11 +508,8 @@ RiverLibinputResultV1 SetScrollMethod(uint method)
 
 Set scroll method.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetScrollButton request">
-    <a href="?id=RiverLibinputDeviceV1_SetScrollButton" id="RiverLibinputDeviceV1_SetScrollButton">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setscrollbutton" id="riverlibinputdevicev1_setscrollbutton">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetScrollButton</span>
     </a>
@@ -592,11 +529,8 @@ RiverLibinputResultV1 SetScrollButton(uint button)
 Set scroll button.
 Supported if scroll_methods.on_button_down is supported.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetScrollButtonLock request">
-    <a href="?id=RiverLibinputDeviceV1_SetScrollButtonLock" id="RiverLibinputDeviceV1_SetScrollButtonLock">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setscrollbuttonlock" id="riverlibinputdevicev1_setscrollbuttonlock">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetScrollButtonLock</span>
     </a>
@@ -616,11 +550,8 @@ RiverLibinputResultV1 SetScrollButtonLock(uint state)
 Set scroll button lock state.
 Supported if scroll_methods.on_button_down is supported.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetDwt request">
-    <a href="?id=RiverLibinputDeviceV1_SetDwt" id="RiverLibinputDeviceV1_SetDwt">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setdwt" id="riverlibinputdevicev1_setdwt">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetDwt</span>
     </a>
@@ -639,11 +570,8 @@ RiverLibinputResultV1 SetDwt(uint state)
 
 Set disable-while-typing state.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetDwtp request">
-    <a href="?id=RiverLibinputDeviceV1_SetDwtp" id="RiverLibinputDeviceV1_SetDwtp">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setdwtp" id="riverlibinputdevicev1_setdwtp">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetDwtp</span>
     </a>
@@ -662,11 +590,8 @@ RiverLibinputResultV1 SetDwtp(uint state)
 
 Set disable-while-trackpointing state.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetRotation request">
-    <a href="?id=RiverLibinputDeviceV1_SetRotation" id="RiverLibinputDeviceV1_SetRotation">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_setrotation" id="riverlibinputdevicev1_setrotation">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputDeviceV1.<span class="method">SetRotation</span>
     </a>
@@ -687,7 +612,7 @@ Set rotation angle in degrees clockwise off the logical neutral
 position. Angle must be in the range [0-360).
 
 <h3 class="decleration event" title="Removed event">
-    <a href="?id=OnRiverLibinputDeviceV1_Removed" id="OnRiverLibinputDeviceV1_Removed">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_removed" id="onriverlibinputdevicev1_removed">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnRemoved</span>
     </a>
@@ -708,7 +633,7 @@ event is sent. The client should destroy this object with the
 river_libinput_device_v1.destroy request to free up resources.
 
 <h3 class="decleration event" title="InputDevice event">
-    <a href="?id=OnRiverLibinputDeviceV1_InputDevice" id="OnRiverLibinputDeviceV1_InputDevice">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_inputdevice" id="onriverlibinputdevicev1_inputdevice">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnInputDevice</span>
     </a>
@@ -729,7 +654,7 @@ This event will always be the first event sent on the
 river_libinput_device_v1 object, and it will be sent exactly once.
 
 <h3 class="decleration event" title="SendEventsSupport event">
-    <a href="?id=OnRiverLibinputDeviceV1_SendEventsSupport" id="OnRiverLibinputDeviceV1_SendEventsSupport">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_sendeventssupport" id="onriverlibinputdevicev1_sendeventssupport">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnSendEventsSupport</span>
     </a>
@@ -748,7 +673,7 @@ void SendEventsSupportHandler(uint modes)
 Supported send events modes.
 
 <h3 class="decleration event" title="SendEventsDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_SendEventsDefault" id="OnRiverLibinputDeviceV1_SendEventsDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_sendeventsdefault" id="onriverlibinputdevicev1_sendeventsdefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnSendEventsDefault</span>
     </a>
@@ -767,7 +692,7 @@ void SendEventsDefaultHandler(uint mode)
 Default send events mode.
 
 <h3 class="decleration event" title="SendEventsCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_SendEventsCurrent" id="OnRiverLibinputDeviceV1_SendEventsCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_sendeventscurrent" id="onriverlibinputdevicev1_sendeventscurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnSendEventsCurrent</span>
     </a>
@@ -786,7 +711,7 @@ void SendEventsCurrentHandler(uint mode)
 Current send events mode.
 
 <h3 class="decleration event" title="TapSupport event">
-    <a href="?id=OnRiverLibinputDeviceV1_TapSupport" id="OnRiverLibinputDeviceV1_TapSupport">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_tapsupport" id="onriverlibinputdevicev1_tapsupport">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnTapSupport</span>
     </a>
@@ -806,7 +731,7 @@ The number of fingers supported for tap-to-click/drag.
 If finger_count is 0, tap-to-click and drag are unsupported.
 
 <h3 class="decleration event" title="TapDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_TapDefault" id="OnRiverLibinputDeviceV1_TapDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_tapdefault" id="onriverlibinputdevicev1_tapdefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnTapDefault</span>
     </a>
@@ -825,7 +750,7 @@ void TapDefaultHandler(uint state)
 Default tap-to-click state.
 
 <h3 class="decleration event" title="TapCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_TapCurrent" id="OnRiverLibinputDeviceV1_TapCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_tapcurrent" id="onriverlibinputdevicev1_tapcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnTapCurrent</span>
     </a>
@@ -844,7 +769,7 @@ void TapCurrentHandler(uint state)
 Current tap-to-click state.
 
 <h3 class="decleration event" title="TapButtonMapDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_TapButtonMapDefault" id="OnRiverLibinputDeviceV1_TapButtonMapDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_tapbuttonmapdefault" id="onriverlibinputdevicev1_tapbuttonmapdefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnTapButtonMapDefault</span>
     </a>
@@ -863,7 +788,7 @@ void TapButtonMapDefaultHandler(uint buttonMap)
 Default tap-to-click button map.
 
 <h3 class="decleration event" title="TapButtonMapCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_TapButtonMapCurrent" id="OnRiverLibinputDeviceV1_TapButtonMapCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_tapbuttonmapcurrent" id="onriverlibinputdevicev1_tapbuttonmapcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnTapButtonMapCurrent</span>
     </a>
@@ -882,7 +807,7 @@ void TapButtonMapCurrentHandler(uint buttonMap)
 Current tap-to-click button map.
 
 <h3 class="decleration event" title="DragDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_DragDefault" id="OnRiverLibinputDeviceV1_DragDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_dragdefault" id="onriverlibinputdevicev1_dragdefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnDragDefault</span>
     </a>
@@ -901,7 +826,7 @@ void DragDefaultHandler(uint state)
 Default tap-and-drag state.
 
 <h3 class="decleration event" title="DragCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_DragCurrent" id="OnRiverLibinputDeviceV1_DragCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_dragcurrent" id="onriverlibinputdevicev1_dragcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnDragCurrent</span>
     </a>
@@ -920,7 +845,7 @@ void DragCurrentHandler(uint state)
 Current tap-and-drag state.
 
 <h3 class="decleration event" title="DragLockDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_DragLockDefault" id="OnRiverLibinputDeviceV1_DragLockDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_draglockdefault" id="onriverlibinputdevicev1_draglockdefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnDragLockDefault</span>
     </a>
@@ -939,7 +864,7 @@ void DragLockDefaultHandler(uint state)
 Default drag lock state.
 
 <h3 class="decleration event" title="DragLockCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_DragLockCurrent" id="OnRiverLibinputDeviceV1_DragLockCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_draglockcurrent" id="onriverlibinputdevicev1_draglockcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnDragLockCurrent</span>
     </a>
@@ -958,7 +883,7 @@ void DragLockCurrentHandler(uint state)
 Current drag lock state.
 
 <h3 class="decleration event" title="ThreeFingerDragSupport event">
-    <a href="?id=OnRiverLibinputDeviceV1_ThreeFingerDragSupport" id="OnRiverLibinputDeviceV1_ThreeFingerDragSupport">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_threefingerdragsupport" id="onriverlibinputdevicev1_threefingerdragsupport">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnThreeFingerDragSupport</span>
     </a>
@@ -978,7 +903,7 @@ The number of fingers supported for three/four finger drag.
 If finger_count is less than 3, three finger drag is unsupported.
 
 <h3 class="decleration event" title="ThreeFingerDragDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_ThreeFingerDragDefault" id="OnRiverLibinputDeviceV1_ThreeFingerDragDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_threefingerdragdefault" id="onriverlibinputdevicev1_threefingerdragdefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnThreeFingerDragDefault</span>
     </a>
@@ -997,7 +922,7 @@ void ThreeFingerDragDefaultHandler(uint state)
 Default three finger drag state.
 
 <h3 class="decleration event" title="ThreeFingerDragCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_ThreeFingerDragCurrent" id="OnRiverLibinputDeviceV1_ThreeFingerDragCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_threefingerdragcurrent" id="onriverlibinputdevicev1_threefingerdragcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnThreeFingerDragCurrent</span>
     </a>
@@ -1016,7 +941,7 @@ void ThreeFingerDragCurrentHandler(uint state)
 Current three finger drag state.
 
 <h3 class="decleration event" title="CalibrationMatrixSupport event">
-    <a href="?id=OnRiverLibinputDeviceV1_CalibrationMatrixSupport" id="OnRiverLibinputDeviceV1_CalibrationMatrixSupport">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_calibrationmatrixsupport" id="onriverlibinputdevicev1_calibrationmatrixsupport">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnCalibrationMatrixSupport</span>
     </a>
@@ -1035,7 +960,7 @@ void CalibrationMatrixSupportHandler(int supported)
 A calibration matrix is supported if the supported argument is non-zero.
 
 <h3 class="decleration event" title="CalibrationMatrixDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_CalibrationMatrixDefault" id="OnRiverLibinputDeviceV1_CalibrationMatrixDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_calibrationmatrixdefault" id="onriverlibinputdevicev1_calibrationmatrixdefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnCalibrationMatrixDefault</span>
     </a>
@@ -1054,7 +979,7 @@ void CalibrationMatrixDefaultHandler(byte[] matrix)
 Default calibration matrix.
 
 <h3 class="decleration event" title="CalibrationMatrixCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_CalibrationMatrixCurrent" id="OnRiverLibinputDeviceV1_CalibrationMatrixCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_calibrationmatrixcurrent" id="onriverlibinputdevicev1_calibrationmatrixcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnCalibrationMatrixCurrent</span>
     </a>
@@ -1073,7 +998,7 @@ void CalibrationMatrixCurrentHandler(byte[] matrix)
 Current calibration matrix.
 
 <h3 class="decleration event" title="AccelProfilesSupport event">
-    <a href="?id=OnRiverLibinputDeviceV1_AccelProfilesSupport" id="OnRiverLibinputDeviceV1_AccelProfilesSupport">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_accelprofilessupport" id="onriverlibinputdevicev1_accelprofilessupport">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnAccelProfilesSupport</span>
     </a>
@@ -1092,7 +1017,7 @@ void AccelProfilesSupportHandler(uint profiles)
 Supported acceleration profiles.
 
 <h3 class="decleration event" title="AccelProfileDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_AccelProfileDefault" id="OnRiverLibinputDeviceV1_AccelProfileDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_accelprofiledefault" id="onriverlibinputdevicev1_accelprofiledefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnAccelProfileDefault</span>
     </a>
@@ -1111,7 +1036,7 @@ void AccelProfileDefaultHandler(uint profile)
 Default acceleration profile.
 
 <h3 class="decleration event" title="AccelProfileCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_AccelProfileCurrent" id="OnRiverLibinputDeviceV1_AccelProfileCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_accelprofilecurrent" id="onriverlibinputdevicev1_accelprofilecurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnAccelProfileCurrent</span>
     </a>
@@ -1130,7 +1055,7 @@ void AccelProfileCurrentHandler(uint profile)
 Current acceleration profile.
 
 <h3 class="decleration event" title="AccelSpeedDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_AccelSpeedDefault" id="OnRiverLibinputDeviceV1_AccelSpeedDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_accelspeeddefault" id="onriverlibinputdevicev1_accelspeeddefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnAccelSpeedDefault</span>
     </a>
@@ -1149,7 +1074,7 @@ void AccelSpeedDefaultHandler(byte[] speed)
 Default acceleration speed.
 
 <h3 class="decleration event" title="AccelSpeedCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_AccelSpeedCurrent" id="OnRiverLibinputDeviceV1_AccelSpeedCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_accelspeedcurrent" id="onriverlibinputdevicev1_accelspeedcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnAccelSpeedCurrent</span>
     </a>
@@ -1168,7 +1093,7 @@ void AccelSpeedCurrentHandler(byte[] speed)
 Current acceleration speed.
 
 <h3 class="decleration event" title="NaturalScrollSupport event">
-    <a href="?id=OnRiverLibinputDeviceV1_NaturalScrollSupport" id="OnRiverLibinputDeviceV1_NaturalScrollSupport">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_naturalscrollsupport" id="onriverlibinputdevicev1_naturalscrollsupport">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnNaturalScrollSupport</span>
     </a>
@@ -1187,7 +1112,7 @@ void NaturalScrollSupportHandler(int supported)
 Natural scroll is supported if the supported argument is non-zero.
 
 <h3 class="decleration event" title="NaturalScrollDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_NaturalScrollDefault" id="OnRiverLibinputDeviceV1_NaturalScrollDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_naturalscrolldefault" id="onriverlibinputdevicev1_naturalscrolldefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnNaturalScrollDefault</span>
     </a>
@@ -1206,7 +1131,7 @@ void NaturalScrollDefaultHandler(uint state)
 Default natural scroll.
 
 <h3 class="decleration event" title="NaturalScrollCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_NaturalScrollCurrent" id="OnRiverLibinputDeviceV1_NaturalScrollCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_naturalscrollcurrent" id="onriverlibinputdevicev1_naturalscrollcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnNaturalScrollCurrent</span>
     </a>
@@ -1225,7 +1150,7 @@ void NaturalScrollCurrentHandler(uint state)
 Current natural scroll.
 
 <h3 class="decleration event" title="LeftHandedSupport event">
-    <a href="?id=OnRiverLibinputDeviceV1_LeftHandedSupport" id="OnRiverLibinputDeviceV1_LeftHandedSupport">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_lefthandedsupport" id="onriverlibinputdevicev1_lefthandedsupport">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnLeftHandedSupport</span>
     </a>
@@ -1244,7 +1169,7 @@ void LeftHandedSupportHandler(int supported)
 Left-handed mode is supported if the supported argument is non-zero.
 
 <h3 class="decleration event" title="LeftHandedDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_LeftHandedDefault" id="OnRiverLibinputDeviceV1_LeftHandedDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_lefthandeddefault" id="onriverlibinputdevicev1_lefthandeddefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnLeftHandedDefault</span>
     </a>
@@ -1263,7 +1188,7 @@ void LeftHandedDefaultHandler(uint state)
 Default left-handed mode.
 
 <h3 class="decleration event" title="LeftHandedCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_LeftHandedCurrent" id="OnRiverLibinputDeviceV1_LeftHandedCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_lefthandedcurrent" id="onriverlibinputdevicev1_lefthandedcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnLeftHandedCurrent</span>
     </a>
@@ -1282,7 +1207,7 @@ void LeftHandedCurrentHandler(uint state)
 Current left-handed mode.
 
 <h3 class="decleration event" title="ClickMethodSupport event">
-    <a href="?id=OnRiverLibinputDeviceV1_ClickMethodSupport" id="OnRiverLibinputDeviceV1_ClickMethodSupport">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_clickmethodsupport" id="onriverlibinputdevicev1_clickmethodsupport">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnClickMethodSupport</span>
     </a>
@@ -1301,7 +1226,7 @@ void ClickMethodSupportHandler(uint methods)
 The click methods supported by the device.
 
 <h3 class="decleration event" title="ClickMethodDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_ClickMethodDefault" id="OnRiverLibinputDeviceV1_ClickMethodDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_clickmethoddefault" id="onriverlibinputdevicev1_clickmethoddefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnClickMethodDefault</span>
     </a>
@@ -1320,7 +1245,7 @@ void ClickMethodDefaultHandler(uint method)
 Default click method.
 
 <h3 class="decleration event" title="ClickMethodCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_ClickMethodCurrent" id="OnRiverLibinputDeviceV1_ClickMethodCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_clickmethodcurrent" id="onriverlibinputdevicev1_clickmethodcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnClickMethodCurrent</span>
     </a>
@@ -1339,7 +1264,7 @@ void ClickMethodCurrentHandler(uint method)
 Current click method.
 
 <h3 class="decleration event" title="ClickfingerButtonMapDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_ClickfingerButtonMapDefault" id="OnRiverLibinputDeviceV1_ClickfingerButtonMapDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_clickfingerbuttonmapdefault" id="onriverlibinputdevicev1_clickfingerbuttonmapdefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnClickfingerButtonMapDefault</span>
     </a>
@@ -1359,7 +1284,7 @@ Default clickfinger button map.
 Supported if click_methods.clickfinger is supported.
 
 <h3 class="decleration event" title="ClickfingerButtonMapCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_ClickfingerButtonMapCurrent" id="OnRiverLibinputDeviceV1_ClickfingerButtonMapCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_clickfingerbuttonmapcurrent" id="onriverlibinputdevicev1_clickfingerbuttonmapcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnClickfingerButtonMapCurrent</span>
     </a>
@@ -1379,7 +1304,7 @@ Current clickfinger button map.
 Supported if click_methods.clickfinger is supported.
 
 <h3 class="decleration event" title="MiddleEmulationSupport event">
-    <a href="?id=OnRiverLibinputDeviceV1_MiddleEmulationSupport" id="OnRiverLibinputDeviceV1_MiddleEmulationSupport">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_middleemulationsupport" id="onriverlibinputdevicev1_middleemulationsupport">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnMiddleEmulationSupport</span>
     </a>
@@ -1399,7 +1324,7 @@ Middle mouse button emulation is supported if the supported argument is
 non-zero.
 
 <h3 class="decleration event" title="MiddleEmulationDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_MiddleEmulationDefault" id="OnRiverLibinputDeviceV1_MiddleEmulationDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_middleemulationdefault" id="onriverlibinputdevicev1_middleemulationdefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnMiddleEmulationDefault</span>
     </a>
@@ -1418,7 +1343,7 @@ void MiddleEmulationDefaultHandler(uint state)
 Default middle mouse button emulation.
 
 <h3 class="decleration event" title="MiddleEmulationCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_MiddleEmulationCurrent" id="OnRiverLibinputDeviceV1_MiddleEmulationCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_middleemulationcurrent" id="onriverlibinputdevicev1_middleemulationcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnMiddleEmulationCurrent</span>
     </a>
@@ -1437,7 +1362,7 @@ void MiddleEmulationCurrentHandler(uint state)
 Current middle mouse button emulation.
 
 <h3 class="decleration event" title="ScrollMethodSupport event">
-    <a href="?id=OnRiverLibinputDeviceV1_ScrollMethodSupport" id="OnRiverLibinputDeviceV1_ScrollMethodSupport">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_scrollmethodsupport" id="onriverlibinputdevicev1_scrollmethodsupport">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnScrollMethodSupport</span>
     </a>
@@ -1456,7 +1381,7 @@ void ScrollMethodSupportHandler(uint methods)
 The scroll methods supported by the device.
 
 <h3 class="decleration event" title="ScrollMethodDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_ScrollMethodDefault" id="OnRiverLibinputDeviceV1_ScrollMethodDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_scrollmethoddefault" id="onriverlibinputdevicev1_scrollmethoddefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnScrollMethodDefault</span>
     </a>
@@ -1475,7 +1400,7 @@ void ScrollMethodDefaultHandler(uint method)
 Default scroll method.
 
 <h3 class="decleration event" title="ScrollMethodCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_ScrollMethodCurrent" id="OnRiverLibinputDeviceV1_ScrollMethodCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_scrollmethodcurrent" id="onriverlibinputdevicev1_scrollmethodcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnScrollMethodCurrent</span>
     </a>
@@ -1494,7 +1419,7 @@ void ScrollMethodCurrentHandler(uint method)
 Current scroll method.
 
 <h3 class="decleration event" title="ScrollButtonDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_ScrollButtonDefault" id="OnRiverLibinputDeviceV1_ScrollButtonDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_scrollbuttondefault" id="onriverlibinputdevicev1_scrollbuttondefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnScrollButtonDefault</span>
     </a>
@@ -1514,7 +1439,7 @@ Default scroll button.
 Supported if scroll_methods.on_button_down is supported.
 
 <h3 class="decleration event" title="ScrollButtonCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_ScrollButtonCurrent" id="OnRiverLibinputDeviceV1_ScrollButtonCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_scrollbuttoncurrent" id="onriverlibinputdevicev1_scrollbuttoncurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnScrollButtonCurrent</span>
     </a>
@@ -1534,7 +1459,7 @@ Current scroll button.
 Supported if scroll_methods.on_button_down is supported.
 
 <h3 class="decleration event" title="ScrollButtonLockDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_ScrollButtonLockDefault" id="OnRiverLibinputDeviceV1_ScrollButtonLockDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_scrollbuttonlockdefault" id="onriverlibinputdevicev1_scrollbuttonlockdefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnScrollButtonLockDefault</span>
     </a>
@@ -1554,7 +1479,7 @@ Default scroll button lock state.
 Supported if scroll_methods.on_button_down is supported.
 
 <h3 class="decleration event" title="ScrollButtonLockCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_ScrollButtonLockCurrent" id="OnRiverLibinputDeviceV1_ScrollButtonLockCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_scrollbuttonlockcurrent" id="onriverlibinputdevicev1_scrollbuttonlockcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnScrollButtonLockCurrent</span>
     </a>
@@ -1574,7 +1499,7 @@ Current scroll button lock state.
 Supported if scroll_methods.on_button_down is supported.
 
 <h3 class="decleration event" title="DwtSupport event">
-    <a href="?id=OnRiverLibinputDeviceV1_DwtSupport" id="OnRiverLibinputDeviceV1_DwtSupport">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_dwtsupport" id="onriverlibinputdevicev1_dwtsupport">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnDwtSupport</span>
     </a>
@@ -1594,7 +1519,7 @@ Disable-while-typing is supported if the supported argument is
 non-zero.
 
 <h3 class="decleration event" title="DwtDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_DwtDefault" id="OnRiverLibinputDeviceV1_DwtDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_dwtdefault" id="onriverlibinputdevicev1_dwtdefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnDwtDefault</span>
     </a>
@@ -1613,7 +1538,7 @@ void DwtDefaultHandler(uint state)
 Default disable-while-typing state.
 
 <h3 class="decleration event" title="DwtCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_DwtCurrent" id="OnRiverLibinputDeviceV1_DwtCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_dwtcurrent" id="onriverlibinputdevicev1_dwtcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnDwtCurrent</span>
     </a>
@@ -1632,7 +1557,7 @@ void DwtCurrentHandler(uint state)
 Current disable-while-typing state.
 
 <h3 class="decleration event" title="DwtpSupport event">
-    <a href="?id=OnRiverLibinputDeviceV1_DwtpSupport" id="OnRiverLibinputDeviceV1_DwtpSupport">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_dwtpsupport" id="onriverlibinputdevicev1_dwtpsupport">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnDwtpSupport</span>
     </a>
@@ -1652,7 +1577,7 @@ Disable-while-trackpointing is supported if the supported argument is
 non-zero.
 
 <h3 class="decleration event" title="DwtpDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_DwtpDefault" id="OnRiverLibinputDeviceV1_DwtpDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_dwtpdefault" id="onriverlibinputdevicev1_dwtpdefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnDwtpDefault</span>
     </a>
@@ -1671,7 +1596,7 @@ void DwtpDefaultHandler(uint state)
 Default disable-while-trackpointing state.
 
 <h3 class="decleration event" title="DwtpCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_DwtpCurrent" id="OnRiverLibinputDeviceV1_DwtpCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_dwtpcurrent" id="onriverlibinputdevicev1_dwtpcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnDwtpCurrent</span>
     </a>
@@ -1690,7 +1615,7 @@ void DwtpCurrentHandler(uint state)
 Current disable-while-trackpointing state.
 
 <h3 class="decleration event" title="RotationSupport event">
-    <a href="?id=OnRiverLibinputDeviceV1_RotationSupport" id="OnRiverLibinputDeviceV1_RotationSupport">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_rotationsupport" id="onriverlibinputdevicev1_rotationsupport">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnRotationSupport</span>
     </a>
@@ -1709,7 +1634,7 @@ void RotationSupportHandler(int supported)
 Rotation is supported if the supported argument is non-zero.
 
 <h3 class="decleration event" title="RotationDefault event">
-    <a href="?id=OnRiverLibinputDeviceV1_RotationDefault" id="OnRiverLibinputDeviceV1_RotationDefault">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_rotationdefault" id="onriverlibinputdevicev1_rotationdefault">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnRotationDefault</span>
     </a>
@@ -1728,7 +1653,7 @@ void RotationDefaultHandler(uint angle)
 Default rotation angle.
 
 <h3 class="decleration event" title="RotationCurrent event">
-    <a href="?id=OnRiverLibinputDeviceV1_RotationCurrent" id="OnRiverLibinputDeviceV1_RotationCurrent">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_rotationcurrent" id="onriverlibinputdevicev1_rotationcurrent">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputDeviceV1.<span class="event">OnRotationCurrent</span>
     </a>
@@ -1747,7 +1672,7 @@ void RotationCurrentHandler(uint angle)
 Current rotation angle.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">Error</span>
     </a>
@@ -1761,7 +1686,7 @@ public enum Error
 | --- | --- | --- |
 | InvalidArg | 0 | Invalid enum value or similar |
 <h3 class="decleration enum" title="SendEventsModes enum">
-    <a href="?id=SendEventsModes" id="SendEventsModes">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=sendeventsmodes" id="sendeventsmodes">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">SendEventsModes</span>
     </a>
@@ -1777,7 +1702,7 @@ public enum SendEventsModesFlag
 | Disabled | 1 |  |
 | DisabledOnExternalMouse | 2 |  |
 <h3 class="decleration enum" title="TapState enum">
-    <a href="?id=TapState" id="TapState">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=tapstate" id="tapstate">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">TapState</span>
     </a>
@@ -1792,7 +1717,7 @@ public enum TapState
 | Disabled | 0 |  |
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="TapButtonMap enum">
-    <a href="?id=TapButtonMap" id="TapButtonMap">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=tapbuttonmap" id="tapbuttonmap">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">TapButtonMap</span>
     </a>
@@ -1807,7 +1732,7 @@ public enum TapButtonMap
 | Lrm | 0 | 1/2/3 finger tap maps to left/right/middle |
 | Lmr | 1 | 1/2/3 finger tap maps to left/middle/right |
 <h3 class="decleration enum" title="DragState enum">
-    <a href="?id=DragState" id="DragState">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=dragstate" id="dragstate">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">DragState</span>
     </a>
@@ -1822,7 +1747,7 @@ public enum DragState
 | Disabled | 0 |  |
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="DragLockState enum">
-    <a href="?id=DragLockState" id="DragLockState">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=draglockstate" id="draglockstate">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">DragLockState</span>
     </a>
@@ -1838,7 +1763,7 @@ public enum DragLockState
 | EnabledTimeout | 1 |  |
 | EnabledSticky | 2 |  |
 <h3 class="decleration enum" title="ThreeFingerDragState enum">
-    <a href="?id=ThreeFingerDragState" id="ThreeFingerDragState">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=threefingerdragstate" id="threefingerdragstate">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">ThreeFingerDragState</span>
     </a>
@@ -1854,7 +1779,7 @@ public enum ThreeFingerDragState
 | Enabled3fg | 1 |  |
 | Enabled4fg | 2 |  |
 <h3 class="decleration enum" title="AccelProfile enum">
-    <a href="?id=AccelProfile" id="AccelProfile">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=accelprofile" id="accelprofile">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">AccelProfile</span>
     </a>
@@ -1871,7 +1796,7 @@ public enum AccelProfile
 | Adaptive | 2 |  |
 | Custom | 4 |  |
 <h3 class="decleration enum" title="AccelProfiles enum">
-    <a href="?id=AccelProfiles" id="AccelProfiles">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=accelprofiles" id="accelprofiles">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">AccelProfiles</span>
     </a>
@@ -1888,7 +1813,7 @@ public enum AccelProfilesFlag
 | Adaptive | 2 |  |
 | Custom | 4 |  |
 <h3 class="decleration enum" title="NaturalScrollState enum">
-    <a href="?id=NaturalScrollState" id="NaturalScrollState">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=naturalscrollstate" id="naturalscrollstate">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">NaturalScrollState</span>
     </a>
@@ -1903,7 +1828,7 @@ public enum NaturalScrollState
 | Disabled | 0 |  |
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="LeftHandedState enum">
-    <a href="?id=LeftHandedState" id="LeftHandedState">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=lefthandedstate" id="lefthandedstate">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">LeftHandedState</span>
     </a>
@@ -1918,7 +1843,7 @@ public enum LeftHandedState
 | Disabled | 0 |  |
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="ClickMethod enum">
-    <a href="?id=ClickMethod" id="ClickMethod">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=clickmethod" id="clickmethod">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">ClickMethod</span>
     </a>
@@ -1934,7 +1859,7 @@ public enum ClickMethod
 | ButtonAreas | 1 |  |
 | Clickfinger | 2 |  |
 <h3 class="decleration enum" title="ClickMethods enum">
-    <a href="?id=ClickMethods" id="ClickMethods">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=clickmethods" id="clickmethods">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">ClickMethods</span>
     </a>
@@ -1950,7 +1875,7 @@ public enum ClickMethodsFlag
 | ButtonAreas | 1 |  |
 | Clickfinger | 2 |  |
 <h3 class="decleration enum" title="ClickfingerButtonMap enum">
-    <a href="?id=ClickfingerButtonMap" id="ClickfingerButtonMap">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=clickfingerbuttonmap" id="clickfingerbuttonmap">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">ClickfingerButtonMap</span>
     </a>
@@ -1965,7 +1890,7 @@ public enum ClickfingerButtonMap
 | Lrm | 0 |  |
 | Lmr | 1 |  |
 <h3 class="decleration enum" title="MiddleEmulationState enum">
-    <a href="?id=MiddleEmulationState" id="MiddleEmulationState">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=middleemulationstate" id="middleemulationstate">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">MiddleEmulationState</span>
     </a>
@@ -1980,7 +1905,7 @@ public enum MiddleEmulationState
 | Disabled | 0 |  |
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="ScrollMethod enum">
-    <a href="?id=ScrollMethod" id="ScrollMethod">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=scrollmethod" id="scrollmethod">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">ScrollMethod</span>
     </a>
@@ -1997,7 +1922,7 @@ public enum ScrollMethod
 | Edge | 2 |  |
 | OnButtonDown | 4 |  |
 <h3 class="decleration enum" title="ScrollMethods enum">
-    <a href="?id=ScrollMethods" id="ScrollMethods">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=scrollmethods" id="scrollmethods">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">ScrollMethods</span>
     </a>
@@ -2014,7 +1939,7 @@ public enum ScrollMethodsFlag
 | Edge | 2 |  |
 | OnButtonDown | 4 |  |
 <h3 class="decleration enum" title="ScrollButtonLockState enum">
-    <a href="?id=ScrollButtonLockState" id="ScrollButtonLockState">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=scrollbuttonlockstate" id="scrollbuttonlockstate">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">ScrollButtonLockState</span>
     </a>
@@ -2029,7 +1954,7 @@ public enum ScrollButtonLockState
 | Disabled | 0 |  |
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="DwtState enum">
-    <a href="?id=DwtState" id="DwtState">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=dwtstate" id="dwtstate">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">DwtState</span>
     </a>
@@ -2044,7 +1969,7 @@ public enum DwtState
 | Disabled | 0 |  |
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="DwtpState enum">
-    <a href="?id=DwtpState" id="DwtpState">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=dwtpstate" id="dwtpstate">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">DwtpState</span>
     </a>
@@ -2059,7 +1984,7 @@ public enum DwtpState
 | Disabled | 0 |  |
 | Enabled | 1 |  |
 <h2 class="decleration interface">
-    <a href="?id=RiverLibinputAccelConfigV1" id="RiverLibinputAccelConfigV1">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputaccelconfigv1" id="riverlibinputaccelconfigv1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverLibinputAccelConfigV1
     </a>
@@ -2072,11 +1997,8 @@ Acceleration config
 The result returned by libinput on setting configuration for a device.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=RiverLibinputAccelConfigV1_Destroy" id="RiverLibinputAccelConfigV1_Destroy">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputaccelconfigv1_destroy" id="riverlibinputaccelconfigv1_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputAccelConfigV1.<span class="method">Destroy</span>
     </a>
@@ -2093,11 +2015,8 @@ void Destroy()
 This request indicates that the client will no longer use the accel
 config object and that it may be safely destroyed.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetPoints request">
-    <a href="?id=RiverLibinputAccelConfigV1_SetPoints" id="RiverLibinputAccelConfigV1_SetPoints">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputaccelconfigv1_setpoints" id="riverlibinputaccelconfigv1_setpoints">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLibinputAccelConfigV1.<span class="method">SetPoints</span>
     </a>
@@ -2120,7 +2039,7 @@ Defines the acceleration function for a given movement type
 in an acceleration configuration with custom accel profile.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputAccelConfigV1.<span class="enum">Error</span>
     </a>
@@ -2134,7 +2053,7 @@ public enum Error
 | --- | --- | --- |
 | InvalidArg | 0 | Invalid enum value or similar |
 <h3 class="decleration enum" title="AccelType enum">
-    <a href="?id=AccelType" id="AccelType">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=acceltype" id="acceltype">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputAccelConfigV1.<span class="enum">AccelType</span>
     </a>
@@ -2150,7 +2069,7 @@ public enum AccelType
 | Motion | 1 |  |
 | Scroll | 2 |  |
 <h2 class="decleration interface">
-    <a href="?id=RiverLibinputResultV1" id="RiverLibinputResultV1">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputresultv1" id="riverlibinputresultv1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverLibinputResultV1
     </a>
@@ -2164,7 +2083,7 @@ The result returned by libinput on setting configuration for a device.
 
 
 <h3 class="decleration event" title="Success event">
-    <a href="?id=OnRiverLibinputResultV1_Success" id="OnRiverLibinputResultV1_Success">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputresultv1_success" id="onriverlibinputresultv1_success">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputResultV1.<span class="event">OnSuccess</span>
     </a>
@@ -2180,7 +2099,7 @@ void SuccessHandler()
 The configuration was successfully applied to the device.
 
 <h3 class="decleration event" title="Unsupported event">
-    <a href="?id=OnRiverLibinputResultV1_Unsupported" id="OnRiverLibinputResultV1_Unsupported">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputresultv1_unsupported" id="onriverlibinputresultv1_unsupported">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputResultV1.<span class="event">OnUnsupported</span>
     </a>
@@ -2196,7 +2115,7 @@ void UnsupportedHandler()
 The configuration is unsupported by the device and was ignored.
 
 <h3 class="decleration event" title="Invalid event">
-    <a href="?id=OnRiverLibinputResultV1_Invalid" id="OnRiverLibinputResultV1_Invalid">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputresultv1_invalid" id="onriverlibinputresultv1_invalid">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLibinputResultV1.<span class="event">OnInvalid</span>
     </a>

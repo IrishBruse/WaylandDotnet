@@ -1,5 +1,5 @@
 ﻿Outline
 
-- [RiverXkbBindingsV1](#RiverXkbBindingsV1)
-- [RiverXkbBindingV1](#RiverXkbBindingV1)
-- [RiverXkbBindingsSeatV1](#RiverXkbBindingsSeatV1)
+- [RiverXkbBindingsV1](#riverxkbbindingsv1 ':class=interface')
+- [RiverXkbBindingV1](#riverxkbbindingv1 ':class=interface')
+- [RiverXkbBindingsSeatV1](#riverxkbbindingsseatv1 ':class=interface')

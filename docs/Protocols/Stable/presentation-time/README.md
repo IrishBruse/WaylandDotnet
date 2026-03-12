@@ -5,7 +5,7 @@
 ---
 
 <h2 class="decleration interface">
-    <a href="?id=WpPresentation" id="WpPresentation">
+    <a href="#/Protocols/Stable/presentation-time/?id=wppresentation" id="wppresentation">
         <span class="codicon codicon-symbol-interface"></span>
         WpPresentation
     </a>
@@ -24,11 +24,8 @@ display update time and the update's target time, especially
 when the compositor misses its target vertical blanking period.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=WpPresentation_Destroy" id="WpPresentation_Destroy">
+    <a href="#/Protocols/Stable/presentation-time/?id=wppresentation_destroy" id="wppresentation_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         WpPresentation.<span class="method">Destroy</span>
     </a>
@@ -46,11 +43,8 @@ Informs the server that the client will no longer be using
 this protocol object. Existing objects created by this object
 are not affected.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Feedback request">
-    <a href="?id=WpPresentation_Feedback" id="WpPresentation_Feedback">
+    <a href="#/Protocols/Stable/presentation-time/?id=wppresentation_feedback" id="wppresentation_feedback">
         <span class="codicon codicon-symbol-method method"></span>
         WpPresentation.<span class="method">Feedback</span>
     </a>
@@ -77,7 +71,7 @@ For details on what information is returned, see the
 presentation_feedback interface.
 
 <h3 class="decleration event" title="ClockId event">
-    <a href="?id=OnWpPresentation_ClockId" id="OnWpPresentation_ClockId">
+    <a href="#/Protocols/Stable/presentation-time/?id=onwppresentation_clockid" id="onwppresentation_clockid">
         <span class="codicon codicon-symbol-event event"></span>
         WpPresentation.<span class="event">OnClockId</span>
     </a>
@@ -123,7 +117,7 @@ recommended. Clients must be able to query the current clock
 value directly, not by asking the compositor.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/Stable/presentation-time/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         WpPresentation.<span class="enum">Error</span>
     </a>
@@ -145,7 +139,7 @@ illegal presentation requests.
 | InvalidTimestamp | 0 | Invalid value in tv_nsec |
 | InvalidFlag | 1 | Invalid flag |
 <h2 class="decleration interface">
-    <a href="?id=WpPresentationFeedback" id="WpPresentationFeedback">
+    <a href="#/Protocols/Stable/presentation-time/?id=wppresentationfeedback" id="wppresentationfeedback">
         <span class="codicon codicon-symbol-interface"></span>
         WpPresentationFeedback
     </a>
@@ -169,7 +163,7 @@ or 'discarded' event it is automatically destroyed.
 
 
 <h3 class="decleration event" title="SyncOutput event">
-    <a href="?id=OnWpPresentationFeedback_SyncOutput" id="OnWpPresentationFeedback_SyncOutput">
+    <a href="#/Protocols/Stable/presentation-time/?id=onwppresentationfeedback_syncoutput" id="onwppresentationfeedback_syncoutput">
         <span class="codicon codicon-symbol-event event"></span>
         WpPresentationFeedback.<span class="event">OnSyncOutput</span>
     </a>
@@ -195,7 +189,7 @@ the synchronized output. If a client has not bound to the
 right wl_output global at all, this event is not sent.
 
 <h3 class="decleration event" title="Presented event">
-    <a href="?id=OnWpPresentationFeedback_Presented" id="OnWpPresentationFeedback_Presented">
+    <a href="#/Protocols/Stable/presentation-time/?id=onwppresentationfeedback_presented" id="onwppresentationfeedback_presented">
         <span class="codicon codicon-symbol-event event"></span>
         WpPresentationFeedback.<span class="event">OnPresented</span>
     </a>
@@ -263,7 +257,7 @@ a way to query the refresh count, then the arguments seq_hi
 and seq_lo must be zero.
 
 <h3 class="decleration event" title="Discarded event">
-    <a href="?id=OnWpPresentationFeedback_Discarded" id="OnWpPresentationFeedback_Discarded">
+    <a href="#/Protocols/Stable/presentation-time/?id=onwppresentationfeedback_discarded" id="onwppresentationfeedback_discarded">
         <span class="codicon codicon-symbol-event event"></span>
         WpPresentationFeedback.<span class="event">OnDiscarded</span>
     </a>
@@ -279,7 +273,7 @@ void DiscardedHandler()
 The content update was never displayed to the user.
 
 <h3 class="decleration enum" title="Kind enum">
-    <a href="?id=Kind" id="Kind">
+    <a href="#/Protocols/Stable/presentation-time/?id=kind" id="kind">
         <span class="codicon codicon-symbol-enum enum"></span>
         WpPresentationFeedback.<span class="enum">Kind</span>
     </a>

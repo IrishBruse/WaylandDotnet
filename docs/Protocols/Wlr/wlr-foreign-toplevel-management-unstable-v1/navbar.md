@@ -1,4 +1,4 @@
 ﻿Outline
 
-- [ZwlrForeignToplevelManagerV1](#ZwlrForeignToplevelManagerV1)
-- [ZwlrForeignToplevelHandleV1](#ZwlrForeignToplevelHandleV1)
+- [ZwlrForeignToplevelManagerV1](#zwlrforeigntoplevelmanagerv1 ':class=interface')
+- [ZwlrForeignToplevelHandleV1](#zwlrforeigntoplevelhandlev1 ':class=interface')

@@ -5,7 +5,7 @@
 ---
 
 <h2 class="decleration interface">
-    <a href="?id=RiverLayerShellV1" id="RiverLayerShellV1">
+    <a href="#/Protocols/River/river-layer-shell-v1/?id=riverlayershellv1" id="riverlayershellv1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverLayerShellV1
     </a>
@@ -24,11 +24,8 @@ not allow clients to map layer surfaces. This can be achieved by
 closing layer surfaces immediately.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=RiverLayerShellV1_Destroy" id="RiverLayerShellV1_Destroy">
+    <a href="#/Protocols/River/river-layer-shell-v1/?id=riverlayershellv1_destroy" id="riverlayershellv1_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLayerShellV1.<span class="method">Destroy</span>
     </a>
@@ -45,11 +42,8 @@ void Destroy()
 This request indicates that the client will no longer use the
 river_layer_shell_v1 object.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="GetOutput request">
-    <a href="?id=RiverLayerShellV1_GetOutput" id="RiverLayerShellV1_GetOutput">
+    <a href="#/Protocols/River/river-layer-shell-v1/?id=riverlayershellv1_getoutput" id="riverlayershellv1_getoutput">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLayerShellV1.<span class="method">GetOutput</span>
     </a>
@@ -69,11 +63,8 @@ RiverLayerShellOutputV1 GetOutput(RiverOutputV1 output)
 It is a protocol error to make this request more than once for a given
 river_output_v1 object.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="GetSeat request">
-    <a href="?id=RiverLayerShellV1_GetSeat" id="RiverLayerShellV1_GetSeat">
+    <a href="#/Protocols/River/river-layer-shell-v1/?id=riverlayershellv1_getseat" id="riverlayershellv1_getseat">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLayerShellV1.<span class="method">GetSeat</span>
     </a>
@@ -94,7 +85,7 @@ It is a protocol error to make this request more than once for a given
 river_seat_v1 object.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/River/river-layer-shell-v1/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLayerShellV1.<span class="enum">Error</span>
     </a>
@@ -108,7 +99,7 @@ public enum Error
 | --- | --- | --- |
 | ObjectAlreadyCreated | 0 | The layer_shell_output/seat object was already created. |
 <h2 class="decleration interface">
-    <a href="?id=RiverLayerShellOutputV1" id="RiverLayerShellOutputV1">
+    <a href="#/Protocols/River/river-layer-shell-v1/?id=riverlayershelloutputv1" id="riverlayershelloutputv1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverLayerShellOutputV1
     </a>
@@ -123,11 +114,8 @@ This object is made inert when the river_output_v1.removed event is sent
 and should be destroyed.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=RiverLayerShellOutputV1_Destroy" id="RiverLayerShellOutputV1_Destroy">
+    <a href="#/Protocols/River/river-layer-shell-v1/?id=riverlayershelloutputv1_destroy" id="riverlayershelloutputv1_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLayerShellOutputV1.<span class="method">Destroy</span>
     </a>
@@ -147,11 +135,8 @@ river_layer_shell_output_v1 object and that it may be safely destroyed.
 This request should be made after the river_output_v1.removed event is
 received to complete destruction of the output.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetDefault request">
-    <a href="?id=RiverLayerShellOutputV1_SetDefault" id="RiverLayerShellOutputV1_SetDefault">
+    <a href="#/Protocols/River/river-layer-shell-v1/?id=riverlayershelloutputv1_setdefault" id="riverlayershelloutputv1_setdefault">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLayerShellOutputV1.<span class="method">SetDefault</span>
     </a>
@@ -175,7 +160,7 @@ This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration event" title="NonExclusiveArea event">
-    <a href="?id=OnRiverLayerShellOutputV1_NonExclusiveArea" id="OnRiverLayerShellOutputV1_NonExclusiveArea">
+    <a href="#/Protocols/River/river-layer-shell-v1/?id=onriverlayershelloutputv1_nonexclusivearea" id="onriverlayershelloutputv1_nonexclusivearea">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLayerShellOutputV1.<span class="event">OnNonExclusiveArea</span>
     </a>
@@ -205,7 +190,7 @@ This event will be followed by a manage_start event after all other new
 state has been sent by the server.
 
 <h2 class="decleration interface">
-    <a href="?id=RiverLayerShellSeatV1" id="RiverLayerShellSeatV1">
+    <a href="#/Protocols/River/river-layer-shell-v1/?id=riverlayershellseatv1" id="riverlayershellseatv1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverLayerShellSeatV1
     </a>
@@ -220,11 +205,8 @@ This object is made inert when the river_seat_v1.removed event is sent and
 should be destroyed.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=RiverLayerShellSeatV1_Destroy" id="RiverLayerShellSeatV1_Destroy">
+    <a href="#/Protocols/River/river-layer-shell-v1/?id=riverlayershellseatv1_destroy" id="riverlayershellseatv1_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverLayerShellSeatV1.<span class="method">Destroy</span>
     </a>
@@ -245,7 +227,7 @@ This request should be made after the river_seat_v1.removed event is
 received to complete destruction of the seat.
 
 <h3 class="decleration event" title="FocusExclusive event">
-    <a href="?id=OnRiverLayerShellSeatV1_FocusExclusive" id="OnRiverLayerShellSeatV1_FocusExclusive">
+    <a href="#/Protocols/River/river-layer-shell-v1/?id=onriverlayershellseatv1_focusexclusive" id="onriverlayershellseatv1_focusexclusive">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLayerShellSeatV1.<span class="event">OnFocusExclusive</span>
     </a>
@@ -270,7 +252,7 @@ This event will be followed by a manage_start event after all other new
 state has been sent by the server.
 
 <h3 class="decleration event" title="FocusNonExclusive event">
-    <a href="?id=OnRiverLayerShellSeatV1_FocusNonExclusive" id="OnRiverLayerShellSeatV1_FocusNonExclusive">
+    <a href="#/Protocols/River/river-layer-shell-v1/?id=onriverlayershellseatv1_focusnonexclusive" id="onriverlayershellseatv1_focusnonexclusive">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLayerShellSeatV1.<span class="event">OnFocusNonExclusive</span>
     </a>
@@ -297,7 +279,7 @@ This event will be followed by a manage_start event after all other new
 state has been sent by the server.
 
 <h3 class="decleration event" title="FocusNone event">
-    <a href="?id=OnRiverLayerShellSeatV1_FocusNone" id="OnRiverLayerShellSeatV1_FocusNone">
+    <a href="#/Protocols/River/river-layer-shell-v1/?id=onriverlayershellseatv1_focusnone" id="onriverlayershellseatv1_focusnone">
         <span class="codicon codicon-symbol-event event"></span>
         RiverLayerShellSeatV1.<span class="event">OnFocusNone</span>
     </a>

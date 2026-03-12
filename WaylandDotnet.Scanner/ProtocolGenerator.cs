@@ -19,6 +19,7 @@ public partial class ProtocolGenerator
     public static readonly string ProjectNamespace = "WaylandDotnet";
 
     private ProtocolMetadata metadata = null!;
+    private string mdHref = "";
     private static readonly string[] separator = new[] { "\r\n", "\r", "\n" };
     private Dictionary<string, bool> interfaceNeedsDisplay = new();
 
@@ -68,6 +69,7 @@ public partial class ProtocolGenerator
     public void Generate(ProtocolMetadata metadata)
     {
         string mdFile = Path.GetFileNameWithoutExtension(metadata.XmlFile);
+        mdHref = $"#/Protocols/{metadata.Namespace}/{mdFile}";
 
         if (metadata.DocsDir != null)
         {
@@ -366,15 +368,15 @@ public partial class ProtocolGenerator
     {
         string className = iface.Name.ToPascal();
 
+        navbar.WriteLine($"- [{className}](#{className.ToLower()} ':class=interface')");
+
         var node = Html.H2().Class("decleration interface")
-            .Child(Html.A().Href("?id=" + className).Id(className)
+            .Child(Html.A().Href(mdHref + "/?id=" + className.ToLower()).Id(className.ToLower())
                 .Child(Html.Span().Class("codicon codicon-symbol-interface"))
                 .Child(Html.Text(className)))
             .Child(Html.Span().Class("pill").Text($"version {iface.Version}"));
 
         md.WriteLine(node.ToString());
-        navbar.WriteLine($"- [{className}](#{className})");
-
         md.WriteLine();
         md.WriteLine(iface.Description.Summary.CapitalizeFirst());
         md.WriteLine();
@@ -645,7 +647,7 @@ public partial class ProtocolGenerator
 
         var enumNode = Html.H3().Class("decleration enum").Title($"{enumName} enum")
             .Child(
-                Html.A().Href("?id=" + urlEnumName).Id(urlEnumName)
+                Html.A().Href(mdHref + "/?id=" + urlEnumName.ToLower()).Id(urlEnumName.ToLower())
                 .Child(Html.Span().Class("codicon codicon-symbol-enum enum"))
                 .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("enum").Text(enumName)))
 
@@ -684,7 +686,7 @@ public partial class ProtocolGenerator
 
         var eventNode = Html.H3().Class("decleration event").Title($"{eventName} event")
             .Child(
-                Html.A().Href("?id=" + urlEventName).Id(urlEventName)
+                Html.A().Href(mdHref + "/?id=" + urlEventName.ToLower()).Id(urlEventName.ToLower())
                 .Child(Html.Span().Class("codicon codicon-symbol-event event"))
                 .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("event").Text("On" + eventName)))
             );
@@ -1111,7 +1113,7 @@ public partial class ProtocolGenerator
         string urlMethodName = iface.Name.ToPascal() + "_" + methodName;
 
         var h3Node = Html.H3().Class("decleration request").Title($"{methodName} request")
-            .Child(Html.A().Href("?id=" + urlMethodName).Id(urlMethodName)
+            .Child(Html.A().Href(mdHref + "/?id=" + urlMethodName.ToLower()).Id(urlMethodName.ToLower())
                 .Child(Html.Span().Class("codicon codicon-symbol-method method"))
                 .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("method").Text(methodName)))
             );
@@ -1126,9 +1128,6 @@ public partial class ProtocolGenerator
             Assert(request.Type == "destructor");
             h3Node.Child(Html.Span().Class("pill destructor").Text($"Type: {request.Type}"));
         }
-        md.WriteLine();
-        md.WriteLine("[Test](#WlDisplay)");
-        md.WriteLine();
         // Write it to your stream/markdown file
         md.WriteLine(h3Node.ToString());
 

@@ -1,5 +1,5 @@
 ﻿Outline
 
-- [RiverLayerShellV1](#RiverLayerShellV1)
-- [RiverLayerShellOutputV1](#RiverLayerShellOutputV1)
-- [RiverLayerShellSeatV1](#RiverLayerShellSeatV1)
+- [RiverLayerShellV1](#riverlayershellv1 ':class=interface')
+- [RiverLayerShellOutputV1](#riverlayershelloutputv1 ':class=interface')
+- [RiverLayerShellSeatV1](#riverlayershellseatv1 ':class=interface')

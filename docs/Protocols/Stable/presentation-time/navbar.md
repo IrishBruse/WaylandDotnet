@@ -1,4 +1,4 @@
 ﻿Outline
 
-- [WpPresentation](#WpPresentation)
-- [WpPresentationFeedback](#WpPresentationFeedback)
+- [WpPresentation](#wppresentation ':class=interface')
+- [WpPresentationFeedback](#wppresentationfeedback ':class=interface')

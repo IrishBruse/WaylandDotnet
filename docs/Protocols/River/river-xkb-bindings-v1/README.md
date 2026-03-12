@@ -5,7 +5,7 @@
 ---
 
 <h2 class="decleration interface">
-    <a href="?id=RiverXkbBindingsV1" id="RiverXkbBindingsV1">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=riverxkbbindingsv1" id="riverxkbbindingsv1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverXkbBindingsV1
     </a>
@@ -19,11 +19,8 @@ This global interface should only be advertised to the client if the
 river_window_manager_v1 global is also advertised.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=RiverXkbBindingsV1_Destroy" id="RiverXkbBindingsV1_Destroy">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=riverxkbbindingsv1_destroy" id="riverxkbbindingsv1_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbBindingsV1.<span class="method">Destroy</span>
     </a>
@@ -40,11 +37,8 @@ void Destroy()
 This request indicates that the client will no longer use the
 river_xkb_bindings_v1 object.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="GetXkbBinding request">
-    <a href="?id=RiverXkbBindingsV1_GetXkbBinding" id="RiverXkbBindingsV1_GetXkbBinding">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=riverxkbbindingsv1_getxkbbinding" id="riverxkbbindingsv1_getxkbbinding">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbBindingsV1.<span class="method">GetXkbBinding</span>
     </a>
@@ -69,11 +63,8 @@ and other configurable properties.
 The new key binding is not enabled until initial configuration is
 completed and the enable request is made during a manage sequence.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="GetSeat request">
-    <a href="?id=RiverXkbBindingsV1_GetSeat" id="RiverXkbBindingsV1_GetSeat">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=riverxkbbindingsv1_getseat" id="riverxkbbindingsv1_getseat">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbBindingsV1.<span class="method">GetSeat</span>
     </a>
@@ -97,7 +88,7 @@ It is a protocol error to make this request more than once for a given
 river_seat_v1 object.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverXkbBindingsV1.<span class="enum">Error</span>
     </a>
@@ -111,7 +102,7 @@ public enum Error
 | --- | --- | --- |
 | ObjectAlreadyCreated | 0 |  |
 <h2 class="decleration interface">
-    <a href="?id=RiverXkbBindingV1" id="RiverXkbBindingV1">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=riverxkbbindingv1" id="riverxkbbindingv1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverXkbBindingV1
     </a>
@@ -142,11 +133,8 @@ physical key event to trigger two key bindings with different keysyms and
 different layout overrides configured.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=RiverXkbBindingV1_Destroy" id="RiverXkbBindingV1_Destroy">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=riverxkbbindingv1_destroy" id="riverxkbbindingv1_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbBindingV1.<span class="method">Destroy</span>
     </a>
@@ -163,11 +151,8 @@ void Destroy()
 This request indicates that the client will no longer use the xkb key
 binding object and that it may be safely destroyed.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetLayoutOverride request">
-    <a href="?id=RiverXkbBindingV1_SetLayoutOverride" id="RiverXkbBindingV1_SetLayoutOverride">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=riverxkbbindingv1_setlayoutoverride" id="riverxkbbindingv1_setlayoutoverride">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbBindingV1.<span class="method">SetLayoutOverride</span>
     </a>
@@ -196,11 +181,8 @@ keyboard that generated the key event will be used.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Enable request">
-    <a href="?id=RiverXkbBindingV1_Enable" id="RiverXkbBindingV1_Enable">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=riverxkbbindingv1_enable" id="riverxkbbindingv1_enable">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbBindingV1.<span class="method">Enable</span>
     </a>
@@ -220,11 +202,8 @@ triggered.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Disable request">
-    <a href="?id=RiverXkbBindingV1_Disable" id="RiverXkbBindingV1_Disable">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=riverxkbbindingv1_disable" id="riverxkbbindingv1_disable">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbBindingV1.<span class="method">Disable</span>
     </a>
@@ -244,7 +223,7 @@ This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration event" title="Pressed event">
-    <a href="?id=OnRiverXkbBindingV1_Pressed" id="OnRiverXkbBindingV1_Pressed">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=onriverxkbbindingv1_pressed" id="onriverxkbbindingv1_pressed">
         <span class="codicon codicon-symbol-event event"></span>
         RiverXkbBindingV1.<span class="event">OnPressed</span>
     </a>
@@ -271,7 +250,7 @@ as soon as possible as the capacity of the compositor to buffer incoming
 input events is finite.
 
 <h3 class="decleration event" title="Released event">
-    <a href="?id=OnRiverXkbBindingV1_Released" id="OnRiverXkbBindingV1_Released">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=onriverxkbbindingv1_released" id="onriverxkbbindingv1_released">
         <span class="codicon codicon-symbol-event event"></span>
         RiverXkbBindingV1.<span class="event">OnReleased</span>
     </a>
@@ -303,7 +282,7 @@ as soon as possible as the capacity of the compositor to buffer incoming
 input events is finite.
 
 <h3 class="decleration event" title="StopRepeat event">
-    <a href="?id=OnRiverXkbBindingV1_StopRepeat" id="OnRiverXkbBindingV1_StopRepeat">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=onriverxkbbindingv1_stoprepeat" id="onriverxkbbindingv1_stoprepeat">
         <span class="codicon codicon-symbol-event event"></span>
         RiverXkbBindingV1.<span class="event">OnStopRepeat</span>
     </a>
@@ -329,7 +308,7 @@ This event will be followed by a manage_start event after all other new
 state has been sent by the server.
 
 <h2 class="decleration interface">
-    <a href="?id=RiverXkbBindingsSeatV1" id="RiverXkbBindingsSeatV1">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=riverxkbbindingsseatv1" id="riverxkbbindingsseatv1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverXkbBindingsSeatV1
     </a>
@@ -342,11 +321,8 @@ Xkb bindings seat
 This object manages xkb bindings state associated with a specific seat.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=RiverXkbBindingsSeatV1_Destroy" id="RiverXkbBindingsSeatV1_Destroy">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=riverxkbbindingsseatv1_destroy" id="riverxkbbindingsseatv1_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbBindingsSeatV1.<span class="method">Destroy</span>
     </a>
@@ -364,11 +340,8 @@ void Destroy()
 This request indicates that the client will no longer use the object and
 that it may be safely destroyed.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="EnsureNextKeyEaten request">
-    <a href="?id=RiverXkbBindingsSeatV1_EnsureNextKeyEaten" id="RiverXkbBindingsSeatV1_EnsureNextKeyEaten">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=riverxkbbindingsseatv1_ensurenextkeyeaten" id="riverxkbbindingsseatv1_ensurenextkeyeaten">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbBindingsSeatV1.<span class="method">EnsureNextKeyEaten</span>
     </a>
@@ -402,11 +375,8 @@ is pressed.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="CancelEnsureNextKeyEaten request">
-    <a href="?id=RiverXkbBindingsSeatV1_CancelEnsureNextKeyEaten" id="RiverXkbBindingsSeatV1_CancelEnsureNextKeyEaten">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=riverxkbbindingsseatv1_cancelensurenextkeyeaten" id="riverxkbbindingsseatv1_cancelensurenextkeyeaten">
         <span class="codicon codicon-symbol-method method"></span>
         RiverXkbBindingsSeatV1.<span class="method">CancelEnsureNextKeyEaten</span>
     </a>
@@ -436,7 +406,7 @@ This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration event" title="AteUnboundKey event">
-    <a href="?id=OnRiverXkbBindingsSeatV1_AteUnboundKey" id="OnRiverXkbBindingsSeatV1_AteUnboundKey">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=onriverxkbbindingsseatv1_ateunboundkey" id="onriverxkbbindingsseatv1_ateunboundkey">
         <span class="codicon codicon-symbol-event event"></span>
         RiverXkbBindingsSeatV1.<span class="event">OnAteUnboundKey</span>
     </a>

@@ -5,7 +5,7 @@
 ---
 
 <h2 class="decleration interface">
-    <a href="?id=WlDisplay" id="WlDisplay">
+    <a href="#/Protocols/Core/wayland/?id=wldisplay" id="wldisplay">
         <span class="codicon codicon-symbol-interface"></span>
         WlDisplay
     </a>
@@ -19,11 +19,8 @@ The core global object.  This is a special singleton object.  It
 is used for internal Wayland protocol features.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Sync request">
-    <a href="?id=WlDisplay_Sync" id="WlDisplay_Sync">
+    <a href="#/Protocols/Core/wayland/?id=wldisplay_sync" id="wldisplay_sync">
         <span class="codicon codicon-symbol-method method"></span>
         WlDisplay.<span class="method">Sync</span>
     </a>
@@ -51,11 +48,8 @@ attempt to use it after that point.
 
 The callback_data passed in the callback is undefined and should be ignored.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="GetRegistry request">
-    <a href="?id=WlDisplay_GetRegistry" id="WlDisplay_GetRegistry">
+    <a href="#/Protocols/Core/wayland/?id=wldisplay_getregistry" id="wldisplay_getregistry">
         <span class="codicon codicon-symbol-method method"></span>
         WlDisplay.<span class="method">GetRegistry</span>
     </a>
@@ -82,7 +76,7 @@ Therefore, clients should invoke get_registry as infrequently as
 possible to avoid wasting memory.
 
 <h3 class="decleration event" title="Error event">
-    <a href="?id=OnWlDisplay_Error" id="OnWlDisplay_Error">
+    <a href="#/Protocols/Core/wayland/?id=onwldisplay_error" id="onwldisplay_error">
         <span class="codicon codicon-symbol-event event"></span>
         WlDisplay.<span class="event">OnError</span>
     </a>
@@ -109,7 +103,7 @@ own set of error codes.  The message is a brief description
 of the error, for (debugging) convenience.
 
 <h3 class="decleration event" title="DeleteId event">
-    <a href="?id=OnWlDisplay_DeleteId" id="OnWlDisplay_DeleteId">
+    <a href="#/Protocols/Core/wayland/?id=onwldisplay_deleteid" id="onwldisplay_deleteid">
         <span class="codicon codicon-symbol-event event"></span>
         WlDisplay.<span class="event">OnDeleteId</span>
     </a>
@@ -132,7 +126,7 @@ seen the delete request. When the client receives this event,
 it will know that it can safely reuse the object ID.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/Core/wayland/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlDisplay.<span class="enum">Error</span>
     </a>
@@ -156,7 +150,7 @@ server request.
 | NoMemory | 2 | Server is out of memory |
 | Implementation | 3 | Implementation error in compositor |
 <h2 class="decleration interface">
-    <a href="?id=WlRegistry" id="WlRegistry">
+    <a href="#/Protocols/Core/wayland/?id=wlregistry" id="wlregistry">
         <span class="codicon codicon-symbol-interface"></span>
         WlRegistry
     </a>
@@ -189,7 +183,7 @@ the object.
 
 
 <h3 class="decleration event" title="Global event">
-    <a href="?id=OnWlRegistry_Global" id="OnWlRegistry_Global">
+    <a href="#/Protocols/Core/wayland/?id=onwlregistry_global" id="onwlregistry_global">
         <span class="codicon codicon-symbol-event event"></span>
         WlRegistry.<span class="event">OnGlobal</span>
     </a>
@@ -214,7 +208,7 @@ the given name is now available, and it implements the
 given version of the given interface.
 
 <h3 class="decleration event" title="GlobalRemove event">
-    <a href="?id=OnWlRegistry_GlobalRemove" id="OnWlRegistry_GlobalRemove">
+    <a href="#/Protocols/Core/wayland/?id=onwlregistry_globalremove" id="onwlregistry_globalremove">
         <span class="codicon codicon-symbol-event event"></span>
         WlRegistry.<span class="event">OnGlobalRemove</span>
     </a>
@@ -242,7 +236,7 @@ ignored until the client destroys it, to avoid races between
 the global going away and a client sending a request to it.
 
 <h2 class="decleration interface">
-    <a href="?id=WlCallback" id="WlCallback">
+    <a href="#/Protocols/Core/wayland/?id=wlcallback" id="wlcallback">
         <span class="codicon codicon-symbol-interface"></span>
         WlCallback
     </a>
@@ -260,7 +254,7 @@ factory interfaces, the wl_callback interface is frozen at version 1.
 
 
 <h3 class="decleration event" title="Done event">
-    <a href="?id=OnWlCallback_Done" id="OnWlCallback_Done">
+    <a href="#/Protocols/Core/wayland/?id=onwlcallback_done" id="onwlcallback_done">
         <span class="codicon codicon-symbol-event event"></span>
         WlCallback.<span class="event">OnDone</span>
     </a>
@@ -279,7 +273,7 @@ void DoneHandler(uint callbackData)
 Notify the client when the related request is done.
 
 <h2 class="decleration interface">
-    <a href="?id=WlCompositor" id="WlCompositor">
+    <a href="#/Protocols/Core/wayland/?id=wlcompositor" id="wlcompositor">
         <span class="codicon codicon-symbol-interface"></span>
         WlCompositor
     </a>
@@ -294,11 +288,8 @@ compositor is in charge of combining the contents of multiple
 surfaces into one displayable output.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="CreateSurface request">
-    <a href="?id=WlCompositor_CreateSurface" id="WlCompositor_CreateSurface">
+    <a href="#/Protocols/Core/wayland/?id=wlcompositor_createsurface" id="wlcompositor_createsurface">
         <span class="codicon codicon-symbol-method method"></span>
         WlCompositor.<span class="method">CreateSurface</span>
     </a>
@@ -316,11 +307,8 @@ WlSurface CreateSurface()
 
 Ask the compositor to create a new surface.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="CreateRegion request">
-    <a href="?id=WlCompositor_CreateRegion" id="WlCompositor_CreateRegion">
+    <a href="#/Protocols/Core/wayland/?id=wlcompositor_createregion" id="wlcompositor_createregion">
         <span class="codicon codicon-symbol-method method"></span>
         WlCompositor.<span class="method">CreateRegion</span>
     </a>
@@ -338,11 +326,8 @@ WlRegion CreateRegion()
 
 Ask the compositor to create a new region.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Release request">
-    <a href="?id=WlCompositor_Release" id="WlCompositor_Release">
+    <a href="#/Protocols/Core/wayland/?id=wlcompositor_release" id="wlcompositor_release">
         <span class="codicon codicon-symbol-method method"></span>
         WlCompositor.<span class="method">Release</span>
     </a>
@@ -360,7 +345,7 @@ void Release()
 This request destroys the wl_compositor. This has no effect on any other objects.
 
 <h2 class="decleration interface">
-    <a href="?id=WlShmPool" id="WlShmPool">
+    <a href="#/Protocols/Core/wayland/?id=wlshmpool" id="wlshmpool">
         <span class="codicon codicon-symbol-interface"></span>
         WlShmPool
     </a>
@@ -379,11 +364,8 @@ setup/teardown overhead and is useful when interactively resizing
 a surface or for many small buffers.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="CreateBuffer request">
-    <a href="?id=WlShmPool_CreateBuffer" id="WlShmPool_CreateBuffer">
+    <a href="#/Protocols/Core/wayland/?id=wlshmpool_createbuffer" id="wlshmpool_createbuffer">
         <span class="codicon codicon-symbol-method method"></span>
         WlShmPool.<span class="method">CreateBuffer</span>
     </a>
@@ -416,11 +398,8 @@ A buffer will keep a reference to the pool it was created from
 so it is valid to destroy the pool immediately after creating
 a buffer from it.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=WlShmPool_Destroy" id="WlShmPool_Destroy">
+    <a href="#/Protocols/Core/wayland/?id=wlshmpool_destroy" id="wlshmpool_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         WlShmPool.<span class="method">Destroy</span>
     </a>
@@ -440,11 +419,8 @@ The mmapped memory will be released when all
 buffers that have been created from this pool
 are gone.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Resize request">
-    <a href="?id=WlShmPool_Resize" id="WlShmPool_Resize">
+    <a href="#/Protocols/Core/wayland/?id=wlshmpool_resize" id="wlshmpool_resize">
         <span class="codicon codicon-symbol-method method"></span>
         WlShmPool.<span class="method">Resize</span>
     </a>
@@ -472,7 +448,7 @@ responsibility to ensure that the file is at least as big as
 the new pool size.
 
 <h2 class="decleration interface">
-    <a href="?id=WlShm" id="WlShm">
+    <a href="#/Protocols/Core/wayland/?id=wlshm" id="wlshm">
         <span class="codicon codicon-symbol-interface"></span>
         WlShm
     </a>
@@ -493,11 +469,8 @@ are emitted to inform clients about the valid pixel formats
 that can be used for buffers.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="CreatePool request">
-    <a href="?id=WlShm_CreatePool" id="WlShm_CreatePool">
+    <a href="#/Protocols/Core/wayland/?id=wlshm_createpool" id="wlshm_createpool">
         <span class="codicon codicon-symbol-method method"></span>
         WlShm.<span class="method">CreatePool</span>
     </a>
@@ -521,11 +494,8 @@ The pool can be used to create shared memory based buffer
 objects.  The server will mmap size bytes of the passed file
 descriptor, to use as backing memory for the pool.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Release request">
-    <a href="?id=WlShm_Release" id="WlShm_Release">
+    <a href="#/Protocols/Core/wayland/?id=wlshm_release" id="wlshm_release">
         <span class="codicon codicon-symbol-method method"></span>
         WlShm.<span class="method">Release</span>
     </a>
@@ -546,7 +516,7 @@ use the shm object anymore.
 Objects created via this interface remain unaffected.
 
 <h3 class="decleration event" title="Format event">
-    <a href="?id=OnWlShm_Format" id="OnWlShm_Format">
+    <a href="#/Protocols/Core/wayland/?id=onwlshm_format" id="onwlshm_format">
         <span class="codicon codicon-symbol-event event"></span>
         WlShm.<span class="event">OnFormat</span>
     </a>
@@ -571,7 +541,7 @@ increasing the wl_shm version; as a result, clients may receive format
 codes which were not in the list at the time the client was made.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/Core/wayland/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlShm.<span class="enum">Error</span>
     </a>
@@ -593,7 +563,7 @@ These errors can be emitted in response to wl_shm requests.
 | InvalidStride | 1 | Invalid size or stride during pool or buffer creation |
 | InvalidFd | 2 | Mmapping the file descriptor failed |
 <h3 class="decleration enum" title="Format enum">
-    <a href="?id=Format" id="Format">
+    <a href="#/Protocols/Core/wayland/?id=format" id="format">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlShm.<span class="enum">Format</span>
     </a>
@@ -767,7 +737,7 @@ extension, pre-multiplied alpha is used for pixel values.
 | S216 | 0x36313253 | 2x1 subsampled Cb (1) and Cr (2) planes 16 bits per channel |
 | S416 | 0x36313453 | Non-subsampled Cb (1) and Cr (2) planes 16 bits per channel |
 <h2 class="decleration interface">
-    <a href="?id=WlBuffer" id="WlBuffer">
+    <a href="#/Protocols/Core/wayland/?id=wlbuffer" id="wlbuffer">
         <span class="codicon codicon-symbol-interface"></span>
         WlBuffer
     </a>
@@ -794,11 +764,8 @@ Note, because wl_buffer objects are created from multiple independent
 factory interfaces, the wl_buffer interface is frozen at version 1.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=WlBuffer_Destroy" id="WlBuffer_Destroy">
+    <a href="#/Protocols/Core/wayland/?id=wlbuffer_destroy" id="wlbuffer_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         WlBuffer.<span class="method">Destroy</span>
     </a>
@@ -818,7 +785,7 @@ storage is defined by the buffer factory interface.
 For possible side-effects to a surface, see wl_surface.attach.
 
 <h3 class="decleration event" title="Release event">
-    <a href="?id=OnWlBuffer_Release" id="OnWlBuffer_Release">
+    <a href="#/Protocols/Core/wayland/?id=onwlbuffer_release" id="onwlbuffer_release">
         <span class="codicon codicon-symbol-event event"></span>
         WlBuffer.<span class="event">OnRelease</span>
     </a>
@@ -847,7 +814,7 @@ wl_surface contents, e.g. as a GL texture. This is an important
 optimization for GL(ES) compositors with wl_shm clients.
 
 <h2 class="decleration interface">
-    <a href="?id=WlDataOffer" id="WlDataOffer">
+    <a href="#/Protocols/Core/wayland/?id=wldataoffer" id="wldataoffer">
         <span class="codicon codicon-symbol-interface"></span>
         WlDataOffer
     </a>
@@ -865,11 +832,8 @@ converted to and provides the mechanism for transferring the
 data directly from the source client.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Accept request">
-    <a href="?id=WlDataOffer_Accept" id="WlDataOffer_Accept">
+    <a href="#/Protocols/Core/wayland/?id=wldataoffer_accept" id="wldataoffer_accept">
         <span class="codicon codicon-symbol-method method"></span>
         WlDataOffer.<span class="method">Accept</span>
     </a>
@@ -901,11 +865,8 @@ will be cancelled and the corresponding drag source will receive
 wl_data_source.cancelled. Clients may still use this event in
 conjunction with wl_data_source.action for feedback.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Receive request">
-    <a href="?id=WlDataOffer_Receive" id="WlDataOffer_Receive">
+    <a href="#/Protocols/Core/wayland/?id=wldataoffer_receive" id="wldataoffer_receive">
         <span class="codicon codicon-symbol-method method"></span>
         WlDataOffer.<span class="method">Receive</span>
     </a>
@@ -938,11 +899,8 @@ both before and after wl_data_device.drop. Drag-and-drop destination
 clients may preemptively fetch data or examine it more closely to
 determine acceptance.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=WlDataOffer_Destroy" id="WlDataOffer_Destroy">
+    <a href="#/Protocols/Core/wayland/?id=wldataoffer_destroy" id="wldataoffer_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         WlDataOffer.<span class="method">Destroy</span>
     </a>
@@ -958,11 +916,8 @@ void Destroy()
 
 Destroy the data offer.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Finish request">
-    <a href="?id=WlDataOffer_Finish" id="WlDataOffer_Finish">
+    <a href="#/Protocols/Core/wayland/?id=wldataoffer_finish" id="wldataoffer_finish">
         <span class="codicon codicon-symbol-method method"></span>
         WlDataOffer.<span class="method">Finish</span>
     </a>
@@ -991,11 +946,8 @@ wl_data_offer.action.
 If wl_data_offer.finish request is received for a non drag and drop
 operation, the invalid_finish protocol error is raised.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetActions request">
-    <a href="?id=WlDataOffer_SetActions" id="WlDataOffer_SetActions">
+    <a href="#/Protocols/Core/wayland/?id=wldataoffer_setactions" id="wldataoffer_setactions">
         <span class="codicon codicon-symbol-method method"></span>
         WlDataOffer.<span class="method">SetActions</span>
     </a>
@@ -1046,7 +998,7 @@ This request can only be made on drag-and-drop offers, a protocol error
 will be raised otherwise.
 
 <h3 class="decleration event" title="Offer event">
-    <a href="?id=OnWlDataOffer_Offer" id="OnWlDataOffer_Offer">
+    <a href="#/Protocols/Core/wayland/?id=onwldataoffer_offer" id="onwldataoffer_offer">
         <span class="codicon codicon-symbol-event event"></span>
         WlDataOffer.<span class="event">OnOffer</span>
     </a>
@@ -1066,7 +1018,7 @@ Sent immediately after creating the wl_data_offer object.  One
 event per offered mime type.
 
 <h3 class="decleration event" title="SourceActions event">
-    <a href="?id=OnWlDataOffer_SourceActions" id="OnWlDataOffer_SourceActions">
+    <a href="#/Protocols/Core/wayland/?id=onwldataoffer_sourceactions" id="onwldataoffer_sourceactions">
         <span class="codicon codicon-symbol-event event"></span>
         WlDataOffer.<span class="event">OnSourceActions</span>
     </a>
@@ -1089,7 +1041,7 @@ or anytime the source side changes its offered actions through
 wl_data_source.set_actions.
 
 <h3 class="decleration event" title="Action event">
-    <a href="?id=OnWlDataOffer_Action" id="OnWlDataOffer_Action">
+    <a href="#/Protocols/Core/wayland/?id=onwldataoffer_action" id="onwldataoffer_action">
         <span class="codicon codicon-symbol-event event"></span>
         WlDataOffer.<span class="event">OnAction</span>
     </a>
@@ -1143,7 +1095,7 @@ final wl_data_offer.set_actions and wl_data_offer.accept requests
 must happen before the call to wl_data_offer.finish.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/Core/wayland/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlDataOffer.<span class="enum">Error</span>
     </a>
@@ -1160,7 +1112,7 @@ public enum Error
 | InvalidAction | 2 | Action argument has an invalid value |
 | InvalidOffer | 3 | Offer doesn't accept this request |
 <h2 class="decleration interface">
-    <a href="?id=WlDataSource" id="WlDataSource">
+    <a href="#/Protocols/Core/wayland/?id=wldatasource" id="wldatasource">
         <span class="codicon codicon-symbol-interface"></span>
         WlDataSource
     </a>
@@ -1176,11 +1128,8 @@ provides a way to describe the offered data and a way to respond
 to requests to transfer the data.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Offer request">
-    <a href="?id=WlDataSource_Offer" id="WlDataSource_Offer">
+    <a href="#/Protocols/Core/wayland/?id=wldatasource_offer" id="wldatasource_offer">
         <span class="codicon codicon-symbol-method method"></span>
         WlDataSource.<span class="method">Offer</span>
     </a>
@@ -1200,11 +1149,8 @@ This request adds a mime type to the set of mime types
 advertised to targets.  Can be called several times to offer
 multiple types.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=WlDataSource_Destroy" id="WlDataSource_Destroy">
+    <a href="#/Protocols/Core/wayland/?id=wldatasource_destroy" id="wldatasource_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         WlDataSource.<span class="method">Destroy</span>
     </a>
@@ -1220,11 +1166,8 @@ void Destroy()
 
 Destroy the data source.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetActions request">
-    <a href="?id=WlDataSource_SetActions" id="WlDataSource_SetActions">
+    <a href="#/Protocols/Core/wayland/?id=wldatasource_setactions" id="wldatasource_setactions">
         <span class="codicon codicon-symbol-method method"></span>
         WlDataSource.<span class="method">SetActions</span>
     </a>
@@ -1256,7 +1199,7 @@ wl_data_device.start_drag. Attempting to use the source other than
 for drag-and-drop will raise a protocol error.
 
 <h3 class="decleration event" title="Target event">
-    <a href="?id=OnWlDataSource_Target" id="OnWlDataSource_Target">
+    <a href="#/Protocols/Core/wayland/?id=onwldatasource_target" id="onwldatasource_target">
         <span class="codicon codicon-symbol-event event"></span>
         WlDataSource.<span class="event">OnTarget</span>
     </a>
@@ -1278,7 +1221,7 @@ a target does not accept any of the offered types, type is NULL.
 Used for feedback during drag-and-drop.
 
 <h3 class="decleration event" title="Send event">
-    <a href="?id=OnWlDataSource_Send" id="OnWlDataSource_Send">
+    <a href="#/Protocols/Core/wayland/?id=onwldatasource_send" id="onwldatasource_send">
         <span class="codicon codicon-symbol-event event"></span>
         WlDataSource.<span class="event">OnSend</span>
     </a>
@@ -1300,7 +1243,7 @@ specified mime type over the passed file descriptor, then
 close it.
 
 <h3 class="decleration event" title="Cancelled event">
-    <a href="?id=OnWlDataSource_Cancelled" id="OnWlDataSource_Cancelled">
+    <a href="#/Protocols/Core/wayland/?id=onwldatasource_cancelled" id="onwldatasource_cancelled">
         <span class="codicon codicon-symbol-event event"></span>
         WlDataSource.<span class="event">OnCancelled</span>
     </a>
@@ -1335,7 +1278,7 @@ only be emitted if the data source was replaced by another data
 source.
 
 <h3 class="decleration event" title="DndDropPerformed event">
-    <a href="?id=OnWlDataSource_DndDropPerformed" id="OnWlDataSource_DndDropPerformed">
+    <a href="#/Protocols/Core/wayland/?id=onwldatasource_dnddropperformed" id="onwldatasource_dnddropperformed">
         <span class="codicon codicon-symbol-event event"></span>
         WlDataSource.<span class="event">OnDndDropPerformed</span>
     </a>
@@ -1360,7 +1303,7 @@ Note that the data_source may still be used in the future and should
 not be destroyed here.
 
 <h3 class="decleration event" title="DndFinished event">
-    <a href="?id=OnWlDataSource_DndFinished" id="OnWlDataSource_DndFinished">
+    <a href="#/Protocols/Core/wayland/?id=onwldatasource_dndfinished" id="onwldatasource_dndfinished">
         <span class="codicon codicon-symbol-event event"></span>
         WlDataSource.<span class="event">OnDndFinished</span>
     </a>
@@ -1382,7 +1325,7 @@ If the action used to perform the operation was "move", the
 source can now delete the transferred data.
 
 <h3 class="decleration event" title="Action event">
-    <a href="?id=OnWlDataSource_Action" id="OnWlDataSource_Action">
+    <a href="#/Protocols/Core/wayland/?id=onwldatasource_action" id="onwldatasource_action">
         <span class="codicon codicon-symbol-event event"></span>
         WlDataSource.<span class="event">OnAction</span>
     </a>
@@ -1426,7 +1369,7 @@ Clients can trigger cursor surface changes from this point, so
 they reflect the current action.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/Core/wayland/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlDataSource.<span class="enum">Error</span>
     </a>
@@ -1441,7 +1384,7 @@ public enum Error
 | InvalidActionMask | 0 | Action mask contains invalid values |
 | InvalidSource | 1 | Source doesn't accept this request |
 <h2 class="decleration interface">
-    <a href="?id=WlDataDevice" id="WlDataDevice">
+    <a href="#/Protocols/Core/wayland/?id=wldatadevice" id="wldatadevice">
         <span class="codicon codicon-symbol-interface"></span>
         WlDataDevice
     </a>
@@ -1458,11 +1401,8 @@ A wl_data_device provides access to inter-client data transfer
 mechanisms such as copy-and-paste and drag-and-drop.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="StartDrag request">
-    <a href="?id=WlDataDevice_StartDrag" id="WlDataDevice_StartDrag">
+    <a href="#/Protocols/Core/wayland/?id=wldatadevice_startdrag" id="wldatadevice_startdrag">
         <span class="codicon codicon-symbol-method method"></span>
         WlDataDevice.<span class="method">StartDrag</span>
     </a>
@@ -1511,11 +1451,8 @@ The given source may not be used in any further set_selection or
 start_drag requests. Attempting to reuse a previously-used source
 may send a used_source error.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetSelection request">
-    <a href="?id=WlDataDevice_SetSelection" id="WlDataDevice_SetSelection">
+    <a href="#/Protocols/Core/wayland/?id=wldatadevice_setselection" id="wldatadevice_setselection">
         <span class="codicon codicon-symbol-method method"></span>
         WlDataDevice.<span class="method">SetSelection</span>
     </a>
@@ -1541,11 +1478,8 @@ The given source may not be used in any further set_selection or
 start_drag requests. Attempting to reuse a previously-used source
 may send a used_source error.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Release request">
-    <a href="?id=WlDataDevice_Release" id="WlDataDevice_Release">
+    <a href="#/Protocols/Core/wayland/?id=wldatadevice_release" id="wldatadevice_release">
         <span class="codicon codicon-symbol-method method"></span>
         WlDataDevice.<span class="method">Release</span>
     </a>
@@ -1563,7 +1497,7 @@ void Release()
 This request destroys the data device.
 
 <h3 class="decleration event" title="DataOffer event">
-    <a href="?id=OnWlDataDevice_DataOffer" id="OnWlDataDevice_DataOffer">
+    <a href="#/Protocols/Core/wayland/?id=onwldatadevice_dataoffer" id="onwldatadevice_dataoffer">
         <span class="codicon codicon-symbol-event event"></span>
         WlDataDevice.<span class="event">OnDataOffer</span>
     </a>
@@ -1588,7 +1522,7 @@ object will send out data_offer.offer events to describe the
 mime types it offers.
 
 <h3 class="decleration event" title="Enter event">
-    <a href="?id=OnWlDataDevice_Enter" id="OnWlDataDevice_Enter">
+    <a href="#/Protocols/Core/wayland/?id=onwldatadevice_enter" id="onwldatadevice_enter">
         <span class="codicon codicon-symbol-event event"></span>
         WlDataDevice.<span class="event">OnEnter</span>
     </a>
@@ -1614,7 +1548,7 @@ enter time is provided by the x and y arguments, in surface-local
 coordinates.
 
 <h3 class="decleration event" title="Leave event">
-    <a href="?id=OnWlDataDevice_Leave" id="OnWlDataDevice_Leave">
+    <a href="#/Protocols/Core/wayland/?id=onwldatadevice_leave" id="onwldatadevice_leave">
         <span class="codicon codicon-symbol-event event"></span>
         WlDataDevice.<span class="event">OnLeave</span>
     </a>
@@ -1632,7 +1566,7 @@ surface and the session ends.  The client must destroy the
 wl_data_offer introduced at enter time at this point.
 
 <h3 class="decleration event" title="Motion event">
-    <a href="?id=OnWlDataDevice_Motion" id="OnWlDataDevice_Motion">
+    <a href="#/Protocols/Core/wayland/?id=onwldatadevice_motion" id="onwldatadevice_motion">
         <span class="codicon codicon-symbol-event event"></span>
         WlDataDevice.<span class="event">OnMotion</span>
     </a>
@@ -1656,7 +1590,7 @@ is provided by the x and y arguments, in surface-local
 coordinates.
 
 <h3 class="decleration event" title="Drop event">
-    <a href="?id=OnWlDataDevice_Drop" id="OnWlDataDevice_Drop">
+    <a href="#/Protocols/Core/wayland/?id=onwldatadevice_drop" id="onwldatadevice_drop">
         <span class="codicon codicon-symbol-event event"></span>
         WlDataDevice.<span class="event">OnDrop</span>
     </a>
@@ -1684,7 +1618,7 @@ wl_data_offer.set_actions request, or wl_data_offer.destroy in order
 to cancel the operation.
 
 <h3 class="decleration event" title="Selection event">
-    <a href="?id=OnWlDataDevice_Selection" id="OnWlDataDevice_Selection">
+    <a href="#/Protocols/Core/wayland/?id=onwldatadevice_selection" id="onwldatadevice_selection">
         <span class="codicon codicon-symbol-event event"></span>
         WlDataDevice.<span class="event">OnSelection</span>
     </a>
@@ -1714,7 +1648,7 @@ will be sent.  The client must destroy the previous selection
 data_offer, if any, upon receiving this event.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/Core/wayland/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlDataDevice.<span class="enum">Error</span>
     </a>
@@ -1729,7 +1663,7 @@ public enum Error
 | Role | 0 | Given wl_surface has another role |
 | UsedSource | 1 | Source has already been used |
 <h2 class="decleration interface">
-    <a href="?id=WlDataDeviceManager" id="WlDataDeviceManager">
+    <a href="#/Protocols/Core/wayland/?id=wldatadevicemanager" id="wldatadevicemanager">
         <span class="codicon codicon-symbol-interface"></span>
         WlDataDeviceManager
     </a>
@@ -1751,11 +1685,8 @@ functioning properly. See wl_data_source.set_actions,
 wl_data_offer.accept and wl_data_offer.finish for details.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="CreateDataSource request">
-    <a href="?id=WlDataDeviceManager_CreateDataSource" id="WlDataDeviceManager_CreateDataSource">
+    <a href="#/Protocols/Core/wayland/?id=wldatadevicemanager_createdatasource" id="wldatadevicemanager_createdatasource">
         <span class="codicon codicon-symbol-method method"></span>
         WlDataDeviceManager.<span class="method">CreateDataSource</span>
     </a>
@@ -1773,11 +1704,8 @@ WlDataSource CreateDataSource()
 
 Create a new data source.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="GetDataDevice request">
-    <a href="?id=WlDataDeviceManager_GetDataDevice" id="WlDataDeviceManager_GetDataDevice">
+    <a href="#/Protocols/Core/wayland/?id=wldatadevicemanager_getdatadevice" id="wldatadevicemanager_getdatadevice">
         <span class="codicon codicon-symbol-method method"></span>
         WlDataDeviceManager.<span class="method">GetDataDevice</span>
     </a>
@@ -1796,11 +1724,8 @@ WlDataDevice GetDataDevice(WlSeat seat)
 
 Create a new data device for a given seat.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Release request">
-    <a href="?id=WlDataDeviceManager_Release" id="WlDataDeviceManager_Release">
+    <a href="#/Protocols/Core/wayland/?id=wldatadevicemanager_release" id="wldatadevicemanager_release">
         <span class="codicon codicon-symbol-method method"></span>
         WlDataDeviceManager.<span class="method">Release</span>
     </a>
@@ -1819,7 +1744,7 @@ This request destroys the wl_data_device_manager. This has no effect on any othe
 objects.
 
 <h3 class="decleration enum" title="DndAction enum">
-    <a href="?id=DndAction" id="DndAction">
+    <a href="#/Protocols/Core/wayland/?id=dndaction" id="dndaction">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlDataDeviceManager.<span class="enum">DndAction</span>
     </a>
@@ -1864,7 +1789,7 @@ actions (e.g. "ask").
 | Move | 2 | Move action |
 | Ask | 4 | Ask action |
 <h2 class="decleration interface">
-    <a href="?id=WlShell" id="WlShell">
+    <a href="#/Protocols/Core/wayland/?id=wlshell" id="wlshell">
         <span class="codicon codicon-symbol-interface"></span>
         WlShell
     </a>
@@ -1885,11 +1810,8 @@ For desktop-style user interfaces, use xdg_shell. Compositors and clients
 should not implement this interface.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="GetShellSurface request">
-    <a href="?id=WlShell_GetShellSurface" id="WlShell_GetShellSurface">
+    <a href="#/Protocols/Core/wayland/?id=wlshell_getshellsurface" id="wlshell_getshellsurface">
         <span class="codicon codicon-symbol-method method"></span>
         WlShell.<span class="method">GetShellSurface</span>
     </a>
@@ -1913,7 +1835,7 @@ already has another role, it raises a protocol error.
 Only one shell surface can be associated with a given surface.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/Core/wayland/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlShell.<span class="enum">Error</span>
     </a>
@@ -1927,7 +1849,7 @@ public enum Error
 | --- | --- | --- |
 | Role | 0 | Given wl_surface has another role |
 <h2 class="decleration interface">
-    <a href="?id=WlShellSurface" id="WlShellSurface">
+    <a href="#/Protocols/Core/wayland/?id=wlshellsurface" id="wlshellsurface">
         <span class="codicon codicon-symbol-interface"></span>
         WlShellSurface
     </a>
@@ -1950,11 +1872,8 @@ wl_shell_surface_destroy() must be called before destroying
 the wl_surface object.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Pong request">
-    <a href="?id=WlShellSurface_Pong" id="WlShellSurface_Pong">
+    <a href="#/Protocols/Core/wayland/?id=wlshellsurface_pong" id="wlshellsurface_pong">
         <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">Pong</span>
     </a>
@@ -1973,11 +1892,8 @@ void Pong(uint serial)
 A client must respond to a ping event with a pong request or
 the client may be deemed unresponsive.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Move request">
-    <a href="?id=WlShellSurface_Move" id="WlShellSurface_Move">
+    <a href="#/Protocols/Core/wayland/?id=wlshellsurface_move" id="wlshellsurface_move">
         <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">Move</span>
     </a>
@@ -2000,11 +1916,8 @@ This request must be used in response to a button press event.
 The server may ignore move requests depending on the state of
 the surface (e.g. fullscreen or maximized).
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Resize request">
-    <a href="?id=WlShellSurface_Resize" id="WlShellSurface_Resize">
+    <a href="#/Protocols/Core/wayland/?id=wlshellsurface_resize" id="wlshellsurface_resize">
         <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">Resize</span>
     </a>
@@ -2028,11 +1941,8 @@ This request must be used in response to a button press event.
 The server may ignore resize requests depending on the state of
 the surface (e.g. fullscreen or maximized).
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetToplevel request">
-    <a href="?id=WlShellSurface_SetToplevel" id="WlShellSurface_SetToplevel">
+    <a href="#/Protocols/Core/wayland/?id=wlshellsurface_settoplevel" id="wlshellsurface_settoplevel">
         <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">SetToplevel</span>
     </a>
@@ -2049,11 +1959,8 @@ Map the surface as a toplevel surface.
 
 A toplevel surface is not fullscreen, maximized or transient.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetTransient request">
-    <a href="?id=WlShellSurface_SetTransient" id="WlShellSurface_SetTransient">
+    <a href="#/Protocols/Core/wayland/?id=wlshellsurface_settransient" id="wlshellsurface_settransient">
         <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">SetTransient</span>
     </a>
@@ -2080,11 +1987,8 @@ parent surface, in surface-local coordinates.
 
 The flags argument controls details of the transient behaviour.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetFullscreen request">
-    <a href="?id=WlShellSurface_SetFullscreen" id="WlShellSurface_SetFullscreen">
+    <a href="#/Protocols/Core/wayland/?id=wlshellsurface_setfullscreen" id="wlshellsurface_setfullscreen">
         <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">SetFullscreen</span>
     </a>
@@ -2136,11 +2040,8 @@ The compositor must reply to this request with a configure event
 with the dimensions for the output on which the surface will
 be made fullscreen.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetPopup request">
-    <a href="?id=WlShellSurface_SetPopup" id="WlShellSurface_SetPopup">
+    <a href="#/Protocols/Core/wayland/?id=wlshellsurface_setpopup" id="wlshellsurface_setpopup">
         <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">SetPopup</span>
     </a>
@@ -2181,11 +2082,8 @@ The x and y arguments specify the location of the upper left
 corner of the surface relative to the upper left corner of the
 parent surface, in surface-local coordinates.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetMaximized request">
-    <a href="?id=WlShellSurface_SetMaximized" id="WlShellSurface_SetMaximized">
+    <a href="#/Protocols/Core/wayland/?id=wlshellsurface_setmaximized" id="wlshellsurface_setmaximized">
         <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">SetMaximized</span>
     </a>
@@ -2220,11 +2118,8 @@ fullscreen shell surface.
 
 The details depend on the compositor implementation.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetTitle request">
-    <a href="?id=WlShellSurface_SetTitle" id="WlShellSurface_SetTitle">
+    <a href="#/Protocols/Core/wayland/?id=wlshellsurface_settitle" id="wlshellsurface_settitle">
         <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">SetTitle</span>
     </a>
@@ -2248,11 +2143,8 @@ compositor.
 
 The string must be encoded in UTF-8.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetClass request">
-    <a href="?id=WlShellSurface_SetClass" id="WlShellSurface_SetClass">
+    <a href="#/Protocols/Core/wayland/?id=wlshellsurface_setclass" id="wlshellsurface_setclass">
         <span class="codicon codicon-symbol-method method"></span>
         WlShellSurface.<span class="method">SetClass</span>
     </a>
@@ -2276,7 +2168,7 @@ file name (or the full path if it is a non-standard location) of
 the application's .desktop file as the class.
 
 <h3 class="decleration event" title="Ping event">
-    <a href="?id=OnWlShellSurface_Ping" id="OnWlShellSurface_Ping">
+    <a href="#/Protocols/Core/wayland/?id=onwlshellsurface_ping" id="onwlshellsurface_ping">
         <span class="codicon codicon-symbol-event event"></span>
         WlShellSurface.<span class="event">OnPing</span>
     </a>
@@ -2296,7 +2188,7 @@ Ping a client to check if it is receiving events and sending
 requests. A client is expected to reply with a pong request.
 
 <h3 class="decleration event" title="Configure event">
-    <a href="?id=OnWlShellSurface_Configure" id="OnWlShellSurface_Configure">
+    <a href="#/Protocols/Core/wayland/?id=onwlshellsurface_configure" id="onwlshellsurface_configure">
         <span class="codicon codicon-symbol-event event"></span>
         WlShellSurface.<span class="event">OnConfigure</span>
     </a>
@@ -2333,7 +2225,7 @@ The width and height arguments specify the size of the window
 in surface-local coordinates.
 
 <h3 class="decleration event" title="PopupDone event">
-    <a href="?id=OnWlShellSurface_PopupDone" id="OnWlShellSurface_PopupDone">
+    <a href="#/Protocols/Core/wayland/?id=onwlshellsurface_popupdone" id="onwlshellsurface_popupdone">
         <span class="codicon codicon-symbol-event event"></span>
         WlShellSurface.<span class="event">OnPopupDone</span>
     </a>
@@ -2351,7 +2243,7 @@ that is, when the user clicks a surface that doesn't belong
 to the client owning the popup surface.
 
 <h3 class="decleration enum" title="Resize enum">
-    <a href="?id=Resize" id="Resize">
+    <a href="#/Protocols/Core/wayland/?id=resize" id="resize">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlShellSurface.<span class="enum">Resize</span>
     </a>
@@ -2382,7 +2274,7 @@ an appropriate cursor image.
 | TopRight | 9 | Top and right edges |
 | BottomRight | 10 | Bottom and right edges |
 <h3 class="decleration enum" title="Transient enum">
-    <a href="?id=Transient" id="Transient">
+    <a href="#/Protocols/Core/wayland/?id=transient" id="transient">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlShellSurface.<span class="enum">Transient</span>
     </a>
@@ -2403,7 +2295,7 @@ of transient surfaces. Used in the set_transient request.
 | --- | --- | --- |
 | Inactive | 0x1 | Do not set keyboard focus |
 <h3 class="decleration enum" title="FullscreenMethod enum">
-    <a href="?id=FullscreenMethod" id="FullscreenMethod">
+    <a href="#/Protocols/Core/wayland/?id=fullscreenmethod" id="fullscreenmethod">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlShellSurface.<span class="enum">FullscreenMethod</span>
     </a>
@@ -2428,7 +2320,7 @@ output. The compositor is free to ignore this parameter.
 | Driver | 2 | Switch output mode to the smallest mode that can fit the surface, add black borders to compensate size mismatch |
 | Fill | 3 | No upscaling, center on output and add black borders to compensate size mismatch |
 <h2 class="decleration interface">
-    <a href="?id=WlSurface" id="WlSurface">
+    <a href="#/Protocols/Core/wayland/?id=wlsurface" id="wlsurface">
         <span class="codicon codicon-symbol-interface"></span>
         WlSurface
     </a>
@@ -2482,11 +2374,8 @@ a cursor (cursor is a different role than sub-surface, and role
 switching is not allowed).
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=WlSurface_Destroy" id="WlSurface_Destroy">
+    <a href="#/Protocols/Core/wayland/?id=wlsurface_destroy" id="wlsurface_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">Destroy</span>
     </a>
@@ -2502,11 +2391,8 @@ void Destroy()
 
 Deletes the surface and invalidates its object ID.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Attach request">
-    <a href="?id=WlSurface_Attach" id="WlSurface_Attach">
+    <a href="#/Protocols/Core/wayland/?id=wlsurface_attach" id="wlsurface_attach">
         <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">Attach</span>
     </a>
@@ -2592,11 +2478,8 @@ maximise compatibility should not destroy pending buffers and should
 ensure that they explicitly remove content from surfaces, even after
 destroying buffers.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Damage request">
-    <a href="?id=WlSurface_Damage" id="WlSurface_Damage">
+    <a href="#/Protocols/Core/wayland/?id=wlsurface_damage" id="wlsurface_damage">
         <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">Damage</span>
     </a>
@@ -2637,11 +2520,8 @@ Note! New clients should not use this request. Instead damage can be
 posted with wl_surface.damage_buffer which uses buffer coordinates
 instead of surface coordinates.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Frame request">
-    <a href="?id=WlSurface_Frame" id="WlSurface_Frame">
+    <a href="#/Protocols/Core/wayland/?id=wlsurface_frame" id="wlsurface_frame">
         <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">Frame</span>
     </a>
@@ -2690,11 +2570,8 @@ attempt to use it after that point.
 The callback_data passed in the callback is the current time, in
 milliseconds, with an undefined base.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetOpaqueRegion request">
-    <a href="?id=WlSurface_SetOpaqueRegion" id="WlSurface_SetOpaqueRegion">
+    <a href="#/Protocols/Core/wayland/?id=wlsurface_setopaqueregion" id="wlsurface_setopaqueregion">
         <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">SetOpaqueRegion</span>
     </a>
@@ -2735,11 +2612,8 @@ opaque region has copy semantics, and the wl_region object can be
 destroyed immediately. A NULL wl_region causes the pending opaque
 region to be set to empty.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetInputRegion request">
-    <a href="?id=WlSurface_SetInputRegion" id="WlSurface_SetInputRegion">
+    <a href="#/Protocols/Core/wayland/?id=wlsurface_setinputregion" id="wlsurface_setinputregion">
         <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">SetInputRegion</span>
     </a>
@@ -2778,11 +2652,8 @@ has copy semantics, and the wl_region object can be destroyed
 immediately. A NULL wl_region causes the input region to be set
 to infinite.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Commit request">
-    <a href="?id=WlSurface_Commit" id="WlSurface_Commit">
+    <a href="#/Protocols/Core/wayland/?id=wlsurface_commit" id="wlsurface_commit">
         <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">Commit</span>
     </a>
@@ -2842,11 +2713,8 @@ the newly attached wl_buffers, except for wl_surface.attach itself. If
 there is no newly attached wl_buffer, the coordinates are relative to
 the previous content update.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetBufferTransform request">
-    <a href="?id=WlSurface_SetBufferTransform" id="WlSurface_SetBufferTransform">
+    <a href="#/Protocols/Core/wayland/?id=wlsurface_setbuffertransform" id="wlsurface_setbuffertransform">
         <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">SetBufferTransform</span>
     </a>
@@ -2895,11 +2763,8 @@ If transform is not one of the values from the
 wl_output.transform enum the invalid_transform protocol error
 is raised.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetBufferScale request">
-    <a href="?id=WlSurface_SetBufferScale" id="WlSurface_SetBufferScale">
+    <a href="#/Protocols/Core/wayland/?id=wlsurface_setbufferscale" id="wlsurface_setbufferscale">
         <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">SetBufferScale</span>
     </a>
@@ -2940,11 +2805,8 @@ than the desired surface size.
 If scale is not greater than 0 the invalid_scale protocol error is
 raised.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="DamageBuffer request">
-    <a href="?id=WlSurface_DamageBuffer" id="WlSurface_DamageBuffer">
+    <a href="#/Protocols/Core/wayland/?id=wlsurface_damagebuffer" id="wlsurface_damagebuffer">
         <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">DamageBuffer</span>
     </a>
@@ -2997,11 +2859,8 @@ kinds of damage into account will have to accumulate damage from the
 two requests separately and only transform from one to the other
 after receiving the wl_surface.commit.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Offset request">
-    <a href="?id=WlSurface_Offset" id="WlSurface_Offset">
+    <a href="#/Protocols/Core/wayland/?id=wlsurface_offset" id="wlsurface_offset">
         <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">Offset</span>
     </a>
@@ -3035,11 +2894,8 @@ This request is semantically equivalent to and the replaces the x and y
 arguments in the wl_surface.attach request in wl_surface versions prior
 to 5. See wl_surface.attach for details.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="GetRelease request">
-    <a href="?id=WlSurface_GetRelease" id="WlSurface_GetRelease">
+    <a href="#/Protocols/Core/wayland/?id=wlsurface_getrelease" id="wlsurface_getrelease">
         <span class="codicon codicon-symbol-method method"></span>
         WlSurface.<span class="method">GetRelease</span>
     </a>
@@ -3076,7 +2932,7 @@ content update is a protocol error. The compositor will send the
 no_buffer error in this case.
 
 <h3 class="decleration event" title="Enter event">
-    <a href="?id=OnWlSurface_Enter" id="OnWlSurface_Enter">
+    <a href="#/Protocols/Core/wayland/?id=onwlsurface_enter" id="onwlsurface_enter">
         <span class="codicon codicon-symbol-event event"></span>
         WlSurface.<span class="event">OnEnter</span>
     </a>
@@ -3099,7 +2955,7 @@ output.
 Note that a surface may be overlapping with zero or more outputs.
 
 <h3 class="decleration event" title="Leave event">
-    <a href="?id=OnWlSurface_Leave" id="OnWlSurface_Leave">
+    <a href="#/Protocols/Core/wayland/?id=onwlsurface_leave" id="onwlsurface_leave">
         <span class="codicon codicon-symbol-event event"></span>
         WlSurface.<span class="event">OnLeave</span>
     </a>
@@ -3126,7 +2982,7 @@ updates even if no enter event has been sent. The frame event should be
 used instead.
 
 <h3 class="decleration event" title="PreferredBufferScale event">
-    <a href="?id=OnWlSurface_PreferredBufferScale" id="OnWlSurface_PreferredBufferScale">
+    <a href="#/Protocols/Core/wayland/?id=onwlsurface_preferredbufferscale" id="onwlsurface_preferredbufferscale">
         <span class="codicon codicon-symbol-event event"></span>
         WlSurface.<span class="event">OnPreferredBufferScale</span>
     </a>
@@ -3157,7 +3013,7 @@ buffer.
 The compositor shall emit a scale value greater than 0.
 
 <h3 class="decleration event" title="PreferredBufferTransform event">
-    <a href="?id=OnWlSurface_PreferredBufferTransform" id="OnWlSurface_PreferredBufferTransform">
+    <a href="#/Protocols/Core/wayland/?id=onwlsurface_preferredbuffertransform" id="onwlsurface_preferredbuffertransform">
         <span class="codicon codicon-symbol-event event"></span>
         WlSurface.<span class="event">OnPreferredBufferTransform</span>
     </a>
@@ -3185,7 +3041,7 @@ wl_surface.set_buffer_transform might allow the compositor to use the
 surface buffer more efficiently.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/Core/wayland/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlSurface.<span class="enum">Error</span>
     </a>
@@ -3210,7 +3066,7 @@ These errors can be emitted in response to wl_surface requests.
 | DefunctRoleObject | 4 | Surface was destroyed before its role object |
 | NoBuffer | 5 | No buffer was attached |
 <h2 class="decleration interface">
-    <a href="?id=WlSeat" id="WlSeat">
+    <a href="#/Protocols/Core/wayland/?id=wlseat" id="wlseat">
         <span class="codicon codicon-symbol-interface"></span>
         WlSeat
     </a>
@@ -3226,11 +3082,8 @@ device is hot plugged.  A seat typically has a pointer and
 maintains a keyboard focus and a pointer focus.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="GetPointer request">
-    <a href="?id=WlSeat_GetPointer" id="WlSeat_GetPointer">
+    <a href="#/Protocols/Core/wayland/?id=wlseat_getpointer" id="wlseat_getpointer">
         <span class="codicon codicon-symbol-method method"></span>
         WlSeat.<span class="method">GetPointer</span>
     </a>
@@ -3255,11 +3108,8 @@ It is a protocol violation to issue this request on a seat that has
 never had the pointer capability. The missing_capability error will
 be sent in this case.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="GetKeyboard request">
-    <a href="?id=WlSeat_GetKeyboard" id="WlSeat_GetKeyboard">
+    <a href="#/Protocols/Core/wayland/?id=wlseat_getkeyboard" id="wlseat_getkeyboard">
         <span class="codicon codicon-symbol-method method"></span>
         WlSeat.<span class="method">GetKeyboard</span>
     </a>
@@ -3284,11 +3134,8 @@ It is a protocol violation to issue this request on a seat that has
 never had the keyboard capability. The missing_capability error will
 be sent in this case.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="GetTouch request">
-    <a href="?id=WlSeat_GetTouch" id="WlSeat_GetTouch">
+    <a href="#/Protocols/Core/wayland/?id=wlseat_gettouch" id="wlseat_gettouch">
         <span class="codicon codicon-symbol-method method"></span>
         WlSeat.<span class="method">GetTouch</span>
     </a>
@@ -3313,11 +3160,8 @@ It is a protocol violation to issue this request on a seat that has
 never had the touch capability. The missing_capability error will
 be sent in this case.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Release request">
-    <a href="?id=WlSeat_Release" id="WlSeat_Release">
+    <a href="#/Protocols/Core/wayland/?id=wlseat_release" id="wlseat_release">
         <span class="codicon codicon-symbol-method method"></span>
         WlSeat.<span class="method">Release</span>
     </a>
@@ -3336,7 +3180,7 @@ Using this request a client can tell the server that it is not going to
 use the seat object anymore.
 
 <h3 class="decleration event" title="Capabilities event">
-    <a href="?id=OnWlSeat_Capabilities" id="OnWlSeat_Capabilities">
+    <a href="#/Protocols/Core/wayland/?id=onwlseat_capabilities" id="onwlseat_capabilities">
         <span class="codicon codicon-symbol-event event"></span>
         WlSeat.<span class="event">OnCapabilities</span>
     </a>
@@ -3379,7 +3223,7 @@ The above behavior also applies to wl_keyboard and wl_touch with the
 keyboard and touch capabilities, respectively.
 
 <h3 class="decleration event" title="Name event">
-    <a href="?id=OnWlSeat_Name" id="OnWlSeat_Name">
+    <a href="#/Protocols/Core/wayland/?id=onwlseat_name" id="onwlseat_name">
         <span class="codicon codicon-symbol-event event"></span>
         WlSeat.<span class="event">OnName</span>
     </a>
@@ -3414,7 +3258,7 @@ Compositors may re-use the same seat name if the wl_seat global is
 destroyed and re-created later.
 
 <h3 class="decleration enum" title="Capability enum">
-    <a href="?id=Capability" id="Capability">
+    <a href="#/Protocols/Core/wayland/?id=capability" id="capability">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlSeat.<span class="enum">Capability</span>
     </a>
@@ -3437,7 +3281,7 @@ set, then it is present on the seat.
 | Keyboard | 2 | The seat has one or more keyboards |
 | Touch | 4 | The seat has touch devices |
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/Core/wayland/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlSeat.<span class="enum">Error</span>
     </a>
@@ -3457,7 +3301,7 @@ These errors can be emitted in response to wl_seat requests.
 | --- | --- | --- |
 | MissingCapability | 0 | Get_pointer, get_keyboard or get_touch called on seat without the matching capability |
 <h2 class="decleration interface">
-    <a href="?id=WlPointer" id="WlPointer">
+    <a href="#/Protocols/Core/wayland/?id=wlpointer" id="wlpointer">
         <span class="codicon codicon-symbol-interface"></span>
         WlPointer
     </a>
@@ -3477,11 +3321,8 @@ and button and axis events for button presses, button releases
 and scrolling.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetCursor request">
-    <a href="?id=WlPointer_SetCursor" id="WlPointer_SetCursor">
+    <a href="#/Protocols/Core/wayland/?id=wlpointer_setcursor" id="wlpointer_setcursor">
         <span class="codicon codicon-symbol-method method"></span>
         WlPointer.<span class="method">SetCursor</span>
     </a>
@@ -3534,11 +3375,8 @@ The serial parameter must match the latest wl_pointer.enter
 serial number sent to the client. Otherwise the request will be
 ignored.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Release request">
-    <a href="?id=WlPointer_Release" id="WlPointer_Release">
+    <a href="#/Protocols/Core/wayland/?id=wlpointer_release" id="wlpointer_release">
         <span class="codicon codicon-symbol-method method"></span>
         WlPointer.<span class="method">Release</span>
     </a>
@@ -3560,7 +3398,7 @@ This request destroys the pointer proxy object, so clients must not call
 wl_pointer_destroy() after using this request.
 
 <h3 class="decleration event" title="Enter event">
-    <a href="?id=OnWlPointer_Enter" id="OnWlPointer_Enter">
+    <a href="#/Protocols/Core/wayland/?id=onwlpointer_enter" id="onwlpointer_enter">
         <span class="codicon codicon-symbol-event event"></span>
         WlPointer.<span class="event">OnEnter</span>
     </a>
@@ -3587,7 +3425,7 @@ is undefined and a client should respond to this event by setting
 an appropriate pointer image with the set_cursor request.
 
 <h3 class="decleration event" title="Leave event">
-    <a href="?id=OnWlPointer_Leave" id="OnWlPointer_Leave">
+    <a href="#/Protocols/Core/wayland/?id=onwlpointer_leave" id="onwlpointer_leave">
         <span class="codicon codicon-symbol-event event"></span>
         WlPointer.<span class="event">OnLeave</span>
     </a>
@@ -3611,7 +3449,7 @@ The leave notification is sent before the enter notification
 for the new focus.
 
 <h3 class="decleration event" title="Motion event">
-    <a href="?id=OnWlPointer_Motion" id="OnWlPointer_Motion">
+    <a href="#/Protocols/Core/wayland/?id=onwlpointer_motion" id="onwlpointer_motion">
         <span class="codicon codicon-symbol-event event"></span>
         WlPointer.<span class="event">OnMotion</span>
     </a>
@@ -3634,7 +3472,7 @@ surface_x and surface_y are the location relative to the
 focused surface.
 
 <h3 class="decleration event" title="Button event">
-    <a href="?id=OnWlPointer_Button" id="OnWlPointer_Button">
+    <a href="#/Protocols/Core/wayland/?id=onwlpointer_button" id="onwlpointer_button">
         <span class="codicon codicon-symbol-event event"></span>
         WlPointer.<span class="event">OnButton</span>
     </a>
@@ -3669,7 +3507,7 @@ currently undefined but may be used in future versions of this
 protocol.
 
 <h3 class="decleration event" title="Axis event">
-    <a href="?id=OnWlPointer_Axis" id="OnWlPointer_Axis">
+    <a href="#/Protocols/Core/wayland/?id=onwlpointer_axis" id="onwlpointer_axis">
         <span class="codicon codicon-symbol-event event"></span>
         WlPointer.<span class="event">OnAxis</span>
     </a>
@@ -3705,7 +3543,7 @@ When applicable, a client can transform its content relative to the
 scroll distance.
 
 <h3 class="decleration event" title="Frame event">
-    <a href="?id=OnWlPointer_Frame" id="OnWlPointer_Frame">
+    <a href="#/Protocols/Core/wayland/?id=onwlpointer_frame" id="onwlpointer_frame">
         <span class="codicon codicon-symbol-event event"></span>
         WlPointer.<span class="event">OnFrame</span>
     </a>
@@ -3755,7 +3593,7 @@ wl_pointer.enter event being split across multiple wl_pointer.frame
 groups.
 
 <h3 class="decleration event" title="AxisSource event">
-    <a href="?id=OnWlPointer_AxisSource" id="OnWlPointer_AxisSource">
+    <a href="#/Protocols/Core/wayland/?id=onwlpointer_axissource" id="onwlpointer_axissource">
         <span class="codicon codicon-symbol-event event"></span>
         WlPointer.<span class="event">OnAxisSource</span>
     </a>
@@ -3799,7 +3637,7 @@ The order of wl_pointer.axis_discrete and wl_pointer.axis_source is
 not guaranteed.
 
 <h3 class="decleration event" title="AxisStop event">
-    <a href="?id=OnWlPointer_AxisStop" id="OnWlPointer_AxisStop">
+    <a href="#/Protocols/Core/wayland/?id=onwlpointer_axisstop" id="onwlpointer_axisstop">
         <span class="codicon codicon-symbol-event event"></span>
         WlPointer.<span class="event">OnAxisStop</span>
     </a>
@@ -3833,7 +3671,7 @@ wl_pointer.axis event. The timestamp value may be the same as a
 preceding wl_pointer.axis event.
 
 <h3 class="decleration event" title="AxisDiscrete event">
-    <a href="?id=OnWlPointer_AxisDiscrete" id="OnWlPointer_AxisDiscrete">
+    <a href="#/Protocols/Core/wayland/?id=onwlpointer_axisdiscrete" id="onwlpointer_axisdiscrete">
         <span class="codicon codicon-symbol-event event"></span>
         WlPointer.<span class="event">OnAxisDiscrete</span>
     </a>
@@ -3883,7 +3721,7 @@ The order of wl_pointer.axis_discrete and wl_pointer.axis_source is
 not guaranteed.
 
 <h3 class="decleration event" title="AxisValue120 event">
-    <a href="?id=OnWlPointer_AxisValue120" id="OnWlPointer_AxisValue120">
+    <a href="#/Protocols/Core/wayland/?id=onwlpointer_axisvalue120" id="onwlpointer_axisvalue120">
         <span class="codicon codicon-symbol-event event"></span>
         WlPointer.<span class="event">OnAxisValue120</span>
     </a>
@@ -3924,7 +3762,7 @@ The order of wl_pointer.axis_value120 and wl_pointer.axis_source is
 not guaranteed.
 
 <h3 class="decleration event" title="AxisRelativeDirection event">
-    <a href="?id=OnWlPointer_AxisRelativeDirection" id="OnWlPointer_AxisRelativeDirection">
+    <a href="#/Protocols/Core/wayland/?id=onwlpointer_axisrelativedirection" id="onwlpointer_axisrelativedirection">
         <span class="codicon codicon-symbol-event event"></span>
         WlPointer.<span class="event">OnAxisRelativeDirection</span>
     </a>
@@ -3979,7 +3817,7 @@ wl_pointer.axis_discrete and wl_pointer.axis_source is not
 guaranteed.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/Core/wayland/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlPointer.<span class="enum">Error</span>
     </a>
@@ -3993,7 +3831,7 @@ public enum Error
 | --- | --- | --- |
 | Role | 0 | Given wl_surface has another role |
 <h3 class="decleration enum" title="ButtonState enum">
-    <a href="?id=ButtonState" id="ButtonState">
+    <a href="#/Protocols/Core/wayland/?id=buttonstate" id="buttonstate">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlPointer.<span class="enum">ButtonState</span>
     </a>
@@ -4015,7 +3853,7 @@ event.
 | Released | 0 | The button is not pressed |
 | Pressed | 1 | The button is pressed |
 <h3 class="decleration enum" title="Axis enum">
-    <a href="?id=Axis" id="Axis">
+    <a href="#/Protocols/Core/wayland/?id=axis" id="axis">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlPointer.<span class="enum">Axis</span>
     </a>
@@ -4036,7 +3874,7 @@ Describes the axis types of scroll events.
 | VerticalScroll | 0 | Vertical axis |
 | HorizontalScroll | 1 | Horizontal axis |
 <h3 class="decleration enum" title="AxisSource enum">
-    <a href="?id=AxisSource" id="AxisSource">
+    <a href="#/Protocols/Core/wayland/?id=axissource" id="axissource">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlPointer.<span class="enum">AxisSource</span>
     </a>
@@ -4074,7 +3912,7 @@ wheel but the scroll event is not caused by a rotation but a
 | Continuous | 2 | Continuous coordinate space |
 | WheelTilt | 3 | A physical wheel tilt |
 <h3 class="decleration enum" title="AxisRelativeDirection enum">
-    <a href="?id=AxisRelativeDirection" id="AxisRelativeDirection">
+    <a href="#/Protocols/Core/wayland/?id=axisrelativedirection" id="axisrelativedirection">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlPointer.<span class="enum">AxisRelativeDirection</span>
     </a>
@@ -4096,7 +3934,7 @@ wl_pointer.axis event, relative to the wl_pointer.axis direction.
 | Identical | 0 | Physical motion matches axis direction |
 | Inverted | 1 | Physical motion is the inverse of the axis direction |
 <h2 class="decleration interface">
-    <a href="?id=WlKeyboard" id="WlKeyboard">
+    <a href="#/Protocols/Core/wayland/?id=wlkeyboard" id="wlkeyboard">
         <span class="codicon codicon-symbol-interface"></span>
         WlKeyboard
     </a>
@@ -4120,11 +3958,8 @@ By default, the active surface is null, the keys currently logically down
 are empty, the active modifiers and the active group are 0.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Release request">
-    <a href="?id=WlKeyboard_Release" id="WlKeyboard_Release">
+    <a href="#/Protocols/Core/wayland/?id=wlkeyboard_release" id="wlkeyboard_release">
         <span class="codicon codicon-symbol-method method"></span>
         WlKeyboard.<span class="method">Release</span>
     </a>
@@ -4140,7 +3975,7 @@ void Release()
 **Release the keyboard object**
 release
 <h3 class="decleration event" title="Keymap event">
-    <a href="?id=OnWlKeyboard_Keymap" id="OnWlKeyboard_Keymap">
+    <a href="#/Protocols/Core/wayland/?id=onwlkeyboard_keymap" id="onwlkeyboard_keymap">
         <span class="codicon codicon-symbol-event event"></span>
         WlKeyboard.<span class="event">OnKeymap</span>
     </a>
@@ -4166,7 +4001,7 @@ From version 7 onwards, the fd must be mapped with MAP_PRIVATE by
 the recipient, as MAP_SHARED may fail.
 
 <h3 class="decleration event" title="Enter event">
-    <a href="?id=OnWlKeyboard_Enter" id="OnWlKeyboard_Enter">
+    <a href="#/Protocols/Core/wayland/?id=onwlkeyboard_enter" id="onwlkeyboard_enter">
         <span class="codicon codicon-symbol-event event"></span>
         WlKeyboard.<span class="event">OnEnter</span>
     </a>
@@ -4199,7 +4034,7 @@ Clients should not use the list of pressed keys to emulate key-press
 events. The order of keys in the list is unspecified.
 
 <h3 class="decleration event" title="Leave event">
-    <a href="?id=OnWlKeyboard_Leave" id="OnWlKeyboard_Leave">
+    <a href="#/Protocols/Core/wayland/?id=onwlkeyboard_leave" id="onwlkeyboard_leave">
         <span class="codicon codicon-symbol-event event"></span>
         WlKeyboard.<span class="event">OnLeave</span>
     </a>
@@ -4228,7 +4063,7 @@ of the wl_keyboard was not equal to the surface argument immediately
 before this event.
 
 <h3 class="decleration event" title="Key event">
-    <a href="?id=OnWlKeyboard_Key" id="OnWlKeyboard_Key">
+    <a href="#/Protocols/Core/wayland/?id=onwlkeyboard_key" id="onwlkeyboard_key">
         <span class="codicon codicon-symbol-event event"></span>
         WlKeyboard.<span class="event">OnKey</span>
     </a>
@@ -4272,7 +4107,7 @@ key state when a wl_keyboard.repeat_info event with a rate argument of
 responsibility of key repetition.
 
 <h3 class="decleration event" title="Modifiers event">
-    <a href="?id=OnWlKeyboard_Modifiers" id="OnWlKeyboard_Modifiers">
+    <a href="#/Protocols/Core/wayland/?id=onwlkeyboard_modifiers" id="onwlkeyboard_modifiers">
         <span class="codicon codicon-symbol-event event"></span>
         WlKeyboard.<span class="event">OnModifiers</span>
     </a>
@@ -4307,7 +4142,7 @@ In the wl_keyboard logical state, this event updates the modifiers and
 group.
 
 <h3 class="decleration event" title="RepeatInfo event">
-    <a href="?id=OnWlKeyboard_RepeatInfo" id="OnWlKeyboard_RepeatInfo">
+    <a href="#/Protocols/Core/wayland/?id=onwlkeyboard_repeatinfo" id="onwlkeyboard_repeatinfo">
         <span class="codicon codicon-symbol-event event"></span>
         WlKeyboard.<span class="event">OnRepeatInfo</span>
     </a>
@@ -4339,7 +4174,7 @@ so clients should continue listening for the event past the creation
 of wl_keyboard.
 
 <h3 class="decleration enum" title="KeymapFormat enum">
-    <a href="?id=KeymapFormat" id="KeymapFormat">
+    <a href="#/Protocols/Core/wayland/?id=keymapformat" id="keymapformat">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlKeyboard.<span class="enum">KeymapFormat</span>
     </a>
@@ -4361,7 +4196,7 @@ client with the wl_keyboard.keymap event.
 | NoKeymap | 0 | No keymap; client must understand how to interpret the raw keycode |
 | XkbV1 | 1 | Libxkbcommon compatible, null-terminated string; to determine the xkb keycode, clients must add 8 to the key event keycode |
 <h3 class="decleration enum" title="KeyState enum">
-    <a href="?id=KeyState" id="KeyState">
+    <a href="#/Protocols/Core/wayland/?id=keystate" id="keystate">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlKeyboard.<span class="enum">KeyState</span>
     </a>
@@ -4391,7 +4226,7 @@ generated multiple times while the key is down.
 | Pressed | 1 | Key is pressed |
 | Repeated | 2 | Key was repeated |
 <h2 class="decleration interface">
-    <a href="?id=WlTouch" id="WlTouch">
+    <a href="#/Protocols/Core/wayland/?id=wltouch" id="wltouch">
         <span class="codicon codicon-symbol-interface"></span>
         WlTouch
     </a>
@@ -4411,11 +4246,8 @@ and ending with an up event. Events relating to the same
 contact point can be identified by the ID of the sequence.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Release request">
-    <a href="?id=WlTouch_Release" id="WlTouch_Release">
+    <a href="#/Protocols/Core/wayland/?id=wltouch_release" id="wltouch_release">
         <span class="codicon codicon-symbol-method method"></span>
         WlTouch.<span class="method">Release</span>
     </a>
@@ -4431,7 +4263,7 @@ void Release()
 **Release the touch object**
 release
 <h3 class="decleration event" title="Down event">
-    <a href="?id=OnWlTouch_Down" id="OnWlTouch_Down">
+    <a href="#/Protocols/Core/wayland/?id=onwltouch_down" id="onwltouch_down">
         <span class="codicon codicon-symbol-event event"></span>
         WlTouch.<span class="event">OnDown</span>
     </a>
@@ -4458,7 +4290,7 @@ this ID. The ID ceases to be valid after a touch up event and may be
 reused in the future.
 
 <h3 class="decleration event" title="Up event">
-    <a href="?id=OnWlTouch_Up" id="OnWlTouch_Up">
+    <a href="#/Protocols/Core/wayland/?id=onwltouch_up" id="onwltouch_up">
         <span class="codicon codicon-symbol-event event"></span>
         WlTouch.<span class="event">OnUp</span>
     </a>
@@ -4481,7 +4313,7 @@ this touch point and the touch point's ID is released and may be
 reused in a future touch down event.
 
 <h3 class="decleration event" title="Motion event">
-    <a href="?id=OnWlTouch_Motion" id="OnWlTouch_Motion">
+    <a href="#/Protocols/Core/wayland/?id=onwltouch_motion" id="onwltouch_motion">
         <span class="codicon codicon-symbol-event event"></span>
         WlTouch.<span class="event">OnMotion</span>
     </a>
@@ -4503,7 +4335,7 @@ void MotionHandler(uint time, int id, WlFixed x, WlFixed y)
 A touch point has changed coordinates.
 
 <h3 class="decleration event" title="Frame event">
-    <a href="?id=OnWlTouch_Frame" id="OnWlTouch_Frame">
+    <a href="#/Protocols/Core/wayland/?id=onwltouch_frame" id="onwltouch_frame">
         <span class="codicon codicon-symbol-event event"></span>
         WlTouch.<span class="event">OnFrame</span>
     </a>
@@ -4526,7 +4358,7 @@ must assume that any state not updated in a frame is unchanged from the
 previously known state.
 
 <h3 class="decleration event" title="Cancel event">
-    <a href="?id=OnWlTouch_Cancel" id="OnWlTouch_Cancel">
+    <a href="#/Protocols/Core/wayland/?id=onwltouch_cancel" id="onwltouch_cancel">
         <span class="codicon codicon-symbol-event event"></span>
         WlTouch.<span class="event">OnCancel</span>
     </a>
@@ -4549,7 +4381,7 @@ this surface may reuse the touch point ID.
 No frame event is required after the cancel event.
 
 <h3 class="decleration event" title="Shape event">
-    <a href="?id=OnWlTouch_Shape" id="OnWlTouch_Shape">
+    <a href="#/Protocols/Core/wayland/?id=onwltouch_shape" id="onwltouch_shape">
         <span class="codicon codicon-symbol-event event"></span>
         WlTouch.<span class="event">OnShape</span>
     </a>
@@ -4595,7 +4427,7 @@ shape reports. The client has to make reasonable assumptions about the
 shape if it did not receive this event.
 
 <h3 class="decleration event" title="Orientation event">
-    <a href="?id=OnWlTouch_Orientation" id="OnWlTouch_Orientation">
+    <a href="#/Protocols/Core/wayland/?id=onwltouch_orientation" id="onwltouch_orientation">
         <span class="codicon codicon-symbol-event event"></span>
         WlTouch.<span class="event">OnOrientation</span>
     </a>
@@ -4638,7 +4470,7 @@ This event is only sent by the compositor if the touch device supports
 orientation reports.
 
 <h2 class="decleration interface">
-    <a href="?id=WlOutput" id="WlOutput">
+    <a href="#/Protocols/Core/wayland/?id=wloutput" id="wloutput">
         <span class="codicon codicon-symbol-interface"></span>
         WlOutput
     </a>
@@ -4656,11 +4488,8 @@ displays part of the compositor space.  This object is published
 as global during start up, or when a monitor is hotplugged.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Release request">
-    <a href="?id=WlOutput_Release" id="WlOutput_Release">
+    <a href="#/Protocols/Core/wayland/?id=wloutput_release" id="wloutput_release">
         <span class="codicon codicon-symbol-method method"></span>
         WlOutput.<span class="method">Release</span>
     </a>
@@ -4679,7 +4508,7 @@ Using this request a client can tell the server that it is not going to
 use the output object anymore.
 
 <h3 class="decleration event" title="Geometry event">
-    <a href="?id=OnWlOutput_Geometry" id="OnWlOutput_Geometry">
+    <a href="#/Protocols/Core/wayland/?id=onwloutput_geometry" id="onwloutput_geometry">
         <span class="codicon codicon-symbol-event event"></span>
         WlOutput.<span class="event">OnGeometry</span>
     </a>
@@ -4724,7 +4553,7 @@ should use xdg_output.logical_position. Instead of using make and model,
 clients should use name and description.
 
 <h3 class="decleration event" title="Mode event">
-    <a href="?id=OnWlOutput_Mode" id="OnWlOutput_Mode">
+    <a href="#/Protocols/Core/wayland/?id=onwloutput_mode" id="onwloutput_mode">
         <span class="codicon codicon-symbol-event event"></span>
         WlOutput.<span class="event">OnMode</span>
     </a>
@@ -4778,7 +4607,7 @@ compositors, such as those exposing virtual outputs, might fake the
 refresh rate or the size.
 
 <h3 class="decleration event" title="Done event">
-    <a href="?id=OnWlOutput_Done" id="OnWlOutput_Done">
+    <a href="#/Protocols/Core/wayland/?id=onwloutput_done" id="onwloutput_done">
         <span class="codicon codicon-symbol-event event"></span>
         WlOutput.<span class="event">OnDone</span>
     </a>
@@ -4799,7 +4628,7 @@ changes to the output properties to be seen as
 atomic, even if they happen via multiple events.
 
 <h3 class="decleration event" title="Scale event">
-    <a href="?id=OnWlOutput_Scale" id="OnWlOutput_Scale">
+    <a href="#/Protocols/Core/wayland/?id=onwloutput_scale" id="onwloutput_scale">
         <span class="codicon codicon-symbol-event event"></span>
         WlOutput.<span class="event">OnScale</span>
     </a>
@@ -4836,7 +4665,7 @@ scale to use for a surface.
 The scale event will be followed by a done event.
 
 <h3 class="decleration event" title="Name event">
-    <a href="?id=OnWlOutput_Name" id="OnWlOutput_Name">
+    <a href="#/Protocols/Core/wayland/?id=onwloutput_name" id="onwloutput_name">
         <span class="codicon codicon-symbol-event event"></span>
         WlOutput.<span class="event">OnName</span>
     </a>
@@ -4883,7 +4712,7 @@ same name if possible.
 The name event will be followed by a done event.
 
 <h3 class="decleration event" title="Description event">
-    <a href="?id=OnWlOutput_Description" id="OnWlOutput_Description">
+    <a href="#/Protocols/Core/wayland/?id=onwloutput_description" id="onwloutput_description">
         <span class="codicon codicon-symbol-event event"></span>
         WlOutput.<span class="event">OnDescription</span>
     </a>
@@ -4916,7 +4745,7 @@ not be sent at all.
 The description event will be followed by a done event.
 
 <h3 class="decleration enum" title="Subpixel enum">
-    <a href="?id=Subpixel" id="Subpixel">
+    <a href="#/Protocols/Core/wayland/?id=subpixel" id="subpixel">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlOutput.<span class="enum">Subpixel</span>
     </a>
@@ -4942,7 +4771,7 @@ pixels on an output are laid out.
 | VerticalRgb | 4 | Vertical RGB |
 | VerticalBgr | 5 | Vertical BGR |
 <h3 class="decleration enum" title="Transform enum">
-    <a href="?id=Transform" id="Transform">
+    <a href="#/Protocols/Core/wayland/?id=transform" id="transform">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlOutput.<span class="enum">Transform</span>
     </a>
@@ -4978,7 +4807,7 @@ surfaces.
 | Flipped180 | 6 | Flip and rotate 180 degrees counter-clockwise |
 | Flipped270 | 7 | Flip and rotate 270 degrees counter-clockwise |
 <h3 class="decleration enum" title="Mode enum">
-    <a href="?id=Mode" id="Mode">
+    <a href="#/Protocols/Core/wayland/?id=mode" id="mode">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlOutput.<span class="enum">Mode</span>
     </a>
@@ -5000,7 +4829,7 @@ They are used in the flags bitfield of the mode event.
 | Current | 0x1 | Indicates this is the current mode |
 | Preferred | 0x2 | Indicates this is the preferred mode |
 <h2 class="decleration interface">
-    <a href="?id=WlRegion" id="WlRegion">
+    <a href="#/Protocols/Core/wayland/?id=wlregion" id="wlregion">
         <span class="codicon codicon-symbol-interface"></span>
         WlRegion
     </a>
@@ -5016,11 +4845,8 @@ Region objects are used to describe the opaque and input
 regions of a surface.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=WlRegion_Destroy" id="WlRegion_Destroy">
+    <a href="#/Protocols/Core/wayland/?id=wlregion_destroy" id="wlregion_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         WlRegion.<span class="method">Destroy</span>
     </a>
@@ -5036,11 +4862,8 @@ void Destroy()
 
 Destroy the region.  This will invalidate the object ID.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Add request">
-    <a href="?id=WlRegion_Add" id="WlRegion_Add">
+    <a href="#/Protocols/Core/wayland/?id=wlregion_add" id="wlregion_add">
         <span class="codicon codicon-symbol-method method"></span>
         WlRegion.<span class="method">Add</span>
     </a>
@@ -5061,11 +4884,8 @@ void Add(int x, int y, int width, int height)
 
 Add the specified rectangle to the region.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Subtract request">
-    <a href="?id=WlRegion_Subtract" id="WlRegion_Subtract">
+    <a href="#/Protocols/Core/wayland/?id=wlregion_subtract" id="wlregion_subtract">
         <span class="codicon codicon-symbol-method method"></span>
         WlRegion.<span class="method">Subtract</span>
     </a>
@@ -5087,7 +4907,7 @@ void Subtract(int x, int y, int width, int height)
 Subtract the specified rectangle from the region.
 
 <h2 class="decleration interface">
-    <a href="?id=WlSubcompositor" id="WlSubcompositor">
+    <a href="#/Protocols/Core/wayland/?id=wlsubcompositor" id="wlsubcompositor">
         <span class="codicon codicon-symbol-interface"></span>
         WlSubcompositor
     </a>
@@ -5118,11 +4938,8 @@ objects. This should allow the compositor to pass YUV video buffer
 processing to dedicated overlay hardware when possible.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=WlSubcompositor_Destroy" id="WlSubcompositor_Destroy">
+    <a href="#/Protocols/Core/wayland/?id=wlsubcompositor_destroy" id="wlsubcompositor_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         WlSubcompositor.<span class="method">Destroy</span>
     </a>
@@ -5140,11 +4957,8 @@ Informs the server that the client will not be using this
 protocol object anymore. This does not affect any other
 objects, wl_subsurface objects included.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="GetSubsurface request">
-    <a href="?id=WlSubcompositor_GetSubsurface" id="WlSubcompositor_GetSubsurface">
+    <a href="#/Protocols/Core/wayland/?id=wlsubcompositor_getsubsurface" id="wlsubcompositor_getsubsurface">
         <span class="codicon codicon-symbol-method method"></span>
         WlSubcompositor.<span class="method">GetSubsurface</span>
     </a>
@@ -5183,7 +4997,7 @@ This request modifies the behaviour of wl_surface.commit request on
 the sub-surface, see the documentation on wl_subsurface interface.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/Core/wayland/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlSubcompositor.<span class="enum">Error</span>
     </a>
@@ -5198,7 +5012,7 @@ public enum Error
 | BadSurface | 0 | The to-be sub-surface is invalid |
 | BadParent | 1 | The to-be sub-surface parent is invalid |
 <h2 class="decleration interface">
-    <a href="?id=WlSubsurface" id="WlSubsurface">
+    <a href="#/Protocols/Core/wayland/?id=wlsubsurface" id="wlsubsurface">
         <span class="codicon codicon-symbol-interface"></span>
         WlSubsurface
     </a>
@@ -5257,11 +5071,8 @@ The wl_surface.offset request is ignored: clients must use set_position
 instead to move the sub-surface.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=WlSubsurface_Destroy" id="WlSubsurface_Destroy">
+    <a href="#/Protocols/Core/wayland/?id=wlsubsurface_destroy" id="wlsubsurface_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         WlSubsurface.<span class="method">Destroy</span>
     </a>
@@ -5280,11 +5091,8 @@ that was turned into a sub-surface with a
 wl_subcompositor.get_subsurface request. The wl_surface's association
 to the parent is deleted. The wl_surface is unmapped immediately.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetPosition request">
-    <a href="?id=WlSubsurface_SetPosition" id="WlSubsurface_SetPosition">
+    <a href="#/Protocols/Core/wayland/?id=wlsubsurface_setposition" id="wlsubsurface_setposition">
         <span class="codicon codicon-symbol-method method"></span>
         WlSubsurface.<span class="method">SetPosition</span>
     </a>
@@ -5314,11 +5122,8 @@ The initial position is 0, 0.
 Position is double-buffered state on the parent surface, see
 wl_subsurface and wl_surface.commit for more information.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="PlaceAbove request">
-    <a href="?id=WlSubsurface_PlaceAbove" id="WlSubsurface_PlaceAbove">
+    <a href="#/Protocols/Core/wayland/?id=wlsubsurface_placeabove" id="wlsubsurface_placeabove">
         <span class="codicon codicon-symbol-method method"></span>
         WlSubsurface.<span class="method">PlaceAbove</span>
     </a>
@@ -5346,11 +5151,8 @@ of its siblings and parent.
 Z-order is double-buffered state on the parent surface, see
 wl_subsurface and wl_surface.commit for more information.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="PlaceBelow request">
-    <a href="?id=WlSubsurface_PlaceBelow" id="WlSubsurface_PlaceBelow">
+    <a href="#/Protocols/Core/wayland/?id=wlsubsurface_placebelow" id="wlsubsurface_placebelow">
         <span class="codicon codicon-symbol-method method"></span>
         WlSubsurface.<span class="method">PlaceBelow</span>
     </a>
@@ -5370,11 +5172,8 @@ The sub-surface is placed just below the reference surface.
 
 See wl_subsurface.place_above.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetSync request">
-    <a href="?id=WlSubsurface_SetSync" id="WlSubsurface_SetSync">
+    <a href="#/Protocols/Core/wayland/?id=wlsubsurface_setsync" id="wlsubsurface_setsync">
         <span class="codicon codicon-symbol-method method"></span>
         WlSubsurface.<span class="method">SetSync</span>
     </a>
@@ -5392,11 +5191,8 @@ mode.
 
 See wl_subsurface and wl_surface.commit for more information.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetDesync request">
-    <a href="?id=WlSubsurface_SetDesync" id="WlSubsurface_SetDesync">
+    <a href="#/Protocols/Core/wayland/?id=wlsubsurface_setdesync" id="wlsubsurface_setdesync">
         <span class="codicon codicon-symbol-method method"></span>
         WlSubsurface.<span class="method">SetDesync</span>
     </a>
@@ -5415,7 +5211,7 @@ mode.
 See wl_subsurface and wl_surface.commit for more information.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/Core/wayland/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlSubsurface.<span class="enum">Error</span>
     </a>
@@ -5429,7 +5225,7 @@ public enum Error
 | --- | --- | --- |
 | BadSurface | 0 | Wl_surface is not a sibling or the parent |
 <h2 class="decleration interface">
-    <a href="?id=WlFixes" id="WlFixes">
+    <a href="#/Protocols/Core/wayland/?id=wlfixes" id="wlfixes">
         <span class="codicon codicon-symbol-interface"></span>
         WlFixes
     </a>
@@ -5443,11 +5239,8 @@ This global fixes problems with other core-protocol interfaces that
 cannot be fixed in these interfaces themselves.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=WlFixes_Destroy" id="WlFixes_Destroy">
+    <a href="#/Protocols/Core/wayland/?id=wlfixes_destroy" id="wlfixes_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         WlFixes.<span class="method">Destroy</span>
     </a>
@@ -5461,11 +5254,8 @@ void Destroy()
 
 **Destroys this object**
 destroy
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="DestroyRegistry request">
-    <a href="?id=WlFixes_DestroyRegistry" id="WlFixes_DestroyRegistry">
+    <a href="#/Protocols/Core/wayland/?id=wlfixes_destroyregistry" id="wlfixes_destroyregistry">
         <span class="codicon codicon-symbol-method method"></span>
         WlFixes.<span class="method">DestroyRegistry</span>
     </a>

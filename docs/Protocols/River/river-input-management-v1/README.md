@@ -5,7 +5,7 @@
 ---
 
 <h2 class="decleration interface">
-    <a href="?id=RiverInputManagerV1" id="RiverInputManagerV1">
+    <a href="#/Protocols/River/river-input-management-v1/?id=riverinputmanagerv1" id="riverinputmanagerv1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverInputManagerV1
     </a>
@@ -18,11 +18,8 @@ Input manager global interface
 Input manager global interface.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Stop request">
-    <a href="?id=RiverInputManagerV1_Stop" id="RiverInputManagerV1_Stop">
+    <a href="#/Protocols/River/river-input-management-v1/?id=riverinputmanagerv1_stop" id="riverinputmanagerv1_stop">
         <span class="codicon codicon-symbol-method method"></span>
         RiverInputManagerV1.<span class="method">Stop</span>
     </a>
@@ -43,11 +40,8 @@ further events until the stop request is processed. The client must wait
 for a river_input_manager_v1.finished event before destroying this
 object.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=RiverInputManagerV1_Destroy" id="RiverInputManagerV1_Destroy">
+    <a href="#/Protocols/River/river-input-management-v1/?id=riverinputmanagerv1_destroy" id="riverinputmanagerv1_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverInputManagerV1.<span class="method">Destroy</span>
     </a>
@@ -73,11 +67,8 @@ river_input_manager_v1.finished event. Once the finished event is
 received it is safe to destroy this object and any other objects created
 through this interface.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="CreateSeat request">
-    <a href="?id=RiverInputManagerV1_CreateSeat" id="RiverInputManagerV1_CreateSeat">
+    <a href="#/Protocols/River/river-input-management-v1/?id=riverinputmanagerv1_createseat" id="riverinputmanagerv1_createseat">
         <span class="codicon codicon-symbol-method method"></span>
         RiverInputManagerV1.<span class="method">CreateSeat</span>
     </a>
@@ -99,11 +90,8 @@ given name already exists.
 The default seat with name "default" always exists and does not need to
 be explicitly created.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="DestroySeat request">
-    <a href="?id=RiverInputManagerV1_DestroySeat" id="RiverInputManagerV1_DestroySeat">
+    <a href="#/Protocols/River/river-input-management-v1/?id=riverinputmanagerv1_destroyseat" id="riverinputmanagerv1_destroyseat">
         <span class="codicon codicon-symbol-method method"></span>
         RiverInputManagerV1.<span class="method">DestroySeat</span>
     </a>
@@ -129,7 +117,7 @@ Any input devices assigned to the destroyed seat at the time of
 destruction are assigned to the default seat.
 
 <h3 class="decleration event" title="Finished event">
-    <a href="?id=OnRiverInputManagerV1_Finished" id="OnRiverInputManagerV1_Finished">
+    <a href="#/Protocols/River/river-input-management-v1/?id=onriverinputmanagerv1_finished" id="onriverinputmanagerv1_finished">
         <span class="codicon codicon-symbol-event event"></span>
         RiverInputManagerV1.<span class="event">OnFinished</span>
     </a>
@@ -147,7 +135,7 @@ object. The client should destroy the object. See
 river_input_manager_v1.destroy for more information.
 
 <h3 class="decleration event" title="InputDevice event">
-    <a href="?id=OnRiverInputManagerV1_InputDevice" id="OnRiverInputManagerV1_InputDevice">
+    <a href="#/Protocols/River/river-input-management-v1/?id=onriverinputmanagerv1_inputdevice" id="onriverinputmanagerv1_inputdevice">
         <span class="codicon codicon-symbol-event event"></span>
         RiverInputManagerV1.<span class="event">OnInputDevice</span>
     </a>
@@ -166,7 +154,7 @@ void InputDeviceHandler(RiverInputDeviceV1 id)
 A new input device has been created.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/River/river-input-management-v1/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverInputManagerV1.<span class="enum">Error</span>
     </a>
@@ -180,7 +168,7 @@ public enum Error
 | --- | --- | --- |
 | InvalidDestroy | 0 |  |
 <h2 class="decleration interface">
-    <a href="?id=RiverInputDeviceV1" id="RiverInputDeviceV1">
+    <a href="#/Protocols/River/river-input-management-v1/?id=riverinputdevicev1" id="riverinputdevicev1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverInputDeviceV1
     </a>
@@ -195,11 +183,8 @@ drawing tablet tool. It is assigned to exactly one seat at a time.
 By default, all input devices are assigned to the default seat.
 
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="Destroy request">
-    <a href="?id=RiverInputDeviceV1_Destroy" id="RiverInputDeviceV1_Destroy">
+    <a href="#/Protocols/River/river-input-management-v1/?id=riverinputdevicev1_destroy" id="riverinputdevicev1_destroy">
         <span class="codicon codicon-symbol-method method"></span>
         RiverInputDeviceV1.<span class="method">Destroy</span>
     </a>
@@ -216,11 +201,8 @@ void Destroy()
 This request indicates that the client will no longer use the input
 device object and that it may be safely destroyed.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="AssignToSeat request">
-    <a href="?id=RiverInputDeviceV1_AssignToSeat" id="RiverInputDeviceV1_AssignToSeat">
+    <a href="#/Protocols/River/river-input-management-v1/?id=riverinputdevicev1_assigntoseat" id="riverinputdevicev1_assigntoseat">
         <span class="codicon codicon-symbol-method method"></span>
         RiverInputDeviceV1.<span class="method">AssignToSeat</span>
     </a>
@@ -241,11 +223,8 @@ assigned to a seat are considered assigned to the default seat.
 
 Has no effect if a seat with the given name does not exist.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetRepeatInfo request">
-    <a href="?id=RiverInputDeviceV1_SetRepeatInfo" id="RiverInputDeviceV1_SetRepeatInfo">
+    <a href="#/Protocols/River/river-input-management-v1/?id=riverinputdevicev1_setrepeatinfo" id="riverinputdevicev1_setrepeatinfo">
         <span class="codicon codicon-symbol-method method"></span>
         RiverInputDeviceV1.<span class="method">SetRepeatInfo</span>
     </a>
@@ -268,11 +247,8 @@ the device is not a keyboard.
 Negative values for either rate or delay are illegal. A rate of zero
 will disable any repeating (regardless of the value of delay).
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="SetScrollFactor request">
-    <a href="?id=RiverInputDeviceV1_SetScrollFactor" id="RiverInputDeviceV1_SetScrollFactor">
+    <a href="#/Protocols/River/river-input-management-v1/?id=riverinputdevicev1_setscrollfactor" id="riverinputdevicev1_setscrollfactor">
         <span class="codicon codicon-symbol-method method"></span>
         RiverInputDeviceV1.<span class="method">SetScrollFactor</span>
     </a>
@@ -296,11 +272,8 @@ factor of 3.0 will make scrolling 3 times as fast.
 
 Setting a scroll factor less than 0 is a protocol error.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="MapToOutput request">
-    <a href="?id=RiverInputDeviceV1_MapToOutput" id="RiverInputDeviceV1_MapToOutput">
+    <a href="#/Protocols/River/river-input-management-v1/?id=riverinputdevicev1_maptooutput" id="riverinputdevicev1_maptooutput">
         <span class="codicon codicon-symbol-method method"></span>
         RiverInputDeviceV1.<span class="method">MapToOutput</span>
     </a>
@@ -323,11 +296,8 @@ If mapped to both an output and a rectangle, the rectangle has priority.
 
 Passing null clears an existing mapping.
 
-
-[Test](#WlDisplay)
-
 <h3 class="decleration request" title="MapToRectangle request">
-    <a href="?id=RiverInputDeviceV1_MapToRectangle" id="RiverInputDeviceV1_MapToRectangle">
+    <a href="#/Protocols/River/river-input-management-v1/?id=riverinputdevicev1_maptorectangle" id="riverinputdevicev1_maptorectangle">
         <span class="codicon codicon-symbol-method method"></span>
         RiverInputDeviceV1.<span class="method">MapToRectangle</span>
     </a>
@@ -357,7 +327,7 @@ Width and height must be greater than or equal to 0.
 Passing 0 for width or height clears an existing mapping.
 
 <h3 class="decleration event" title="Removed event">
-    <a href="?id=OnRiverInputDeviceV1_Removed" id="OnRiverInputDeviceV1_Removed">
+    <a href="#/Protocols/River/river-input-management-v1/?id=onriverinputdevicev1_removed" id="onriverinputdevicev1_removed">
         <span class="codicon codicon-symbol-event event"></span>
         RiverInputDeviceV1.<span class="event">OnRemoved</span>
     </a>
@@ -378,7 +348,7 @@ sent. The client should destroy this object with the
 river_input_device_v1.destroy request to free up resources.
 
 <h3 class="decleration event" title="Type event">
-    <a href="?id=OnRiverInputDeviceV1_Type" id="OnRiverInputDeviceV1_Type">
+    <a href="#/Protocols/River/river-input-management-v1/?id=onriverinputdevicev1_type" id="onriverinputdevicev1_type">
         <span class="codicon codicon-symbol-event event"></span>
         RiverInputDeviceV1.<span class="event">OnType</span>
     </a>
@@ -399,7 +369,7 @@ river_input_device_v1 object is created. The device type cannot
 change during the lifetime of the object.
 
 <h3 class="decleration event" title="Name event">
-    <a href="?id=OnRiverInputDeviceV1_Name" id="OnRiverInputDeviceV1_Name">
+    <a href="#/Protocols/River/river-input-management-v1/?id=onriverinputdevicev1_name" id="onriverinputdevicev1_name">
         <span class="codicon codicon-symbol-event event"></span>
         RiverInputDeviceV1.<span class="event">OnName</span>
     </a>
@@ -420,7 +390,7 @@ river_input_device_v1 object is created. The device name cannot
 change during the lifetime of the object.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="?id=Error" id="Error">
+    <a href="#/Protocols/River/river-input-management-v1/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverInputDeviceV1.<span class="enum">Error</span>
     </a>
@@ -436,7 +406,7 @@ public enum Error
 | InvalidScrollFactor | 1 |  |
 | InvalidMapToRectangle | 2 |  |
 <h3 class="decleration enum" title="Type enum">
-    <a href="?id=Type" id="Type">
+    <a href="#/Protocols/River/river-input-management-v1/?id=type" id="type">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverInputDeviceV1.<span class="enum">Type</span>
     </a>
