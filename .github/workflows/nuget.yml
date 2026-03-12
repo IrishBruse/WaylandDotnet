@@ -43,6 +43,9 @@ jobs:
         run: dotnet nuget push --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} ${{github.workspace}}/Nuget/*.nupkg --skip-duplicate
 
   release:
+    permissions:
+      contents: write
+      packages: write
     runs-on: ubuntu-latest
     needs: build
     if: ${{ ! endsWith(inputs.version, '-beta') }}
