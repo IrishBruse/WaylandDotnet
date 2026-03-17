@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_seat_v1
 /// <para> a window management seat </para>
-/// <para> Version: 3 </para>
+/// <para> Version: 4 </para>
 /// <see>https://wayland.app/protocols/river-window-management-v1/#river_seat_v1</see>
 /// </summary>
 public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<RiverSeatV1>
 {
     public const string InterfaceName = "river_seat_v1";
     public static string _StaticInterfaceName => "river_seat_v1";
-    public const int InterfaceVersion = 3;
+    public const int InterfaceVersion = 4;
 
     private bool disposed;
 
@@ -671,6 +671,11 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// dimensions based off of the op_delta events.<br/>
     /// <br/>
     /// This request is ignored if an operation is already in progress.<br/>
+    /// <br/>
+    /// The compositor must ensure that no client has pointer focus from this<br/>
+    /// seat during the pointer operation. This means that the window manager<br/>
+    /// has control over the pointer's cursor surface/shape during the pointer<br/>
+    /// operation. See the river_seat_v1 description.<br/>
     /// <br/>
     /// This request modifies window management state and may only be made as<br/>
     /// part of a manage sequence, see the river_window_manager_v1 description.<br/>

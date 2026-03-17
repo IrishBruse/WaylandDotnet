@@ -173,7 +173,7 @@
     </event>
   </interface>
 
-  <interface name="wl_callback" version="1">
+  <interface name="wl_callback" version="1" frozen="true">
     <description summary="callback object">
       Clients can handle the 'done' event to get notified when
       the related request is done.
@@ -503,7 +503,7 @@
     </request>
   </interface>
 
-  <interface name="wl_buffer" version="1">
+  <interface name="wl_buffer" version="1" frozen="true">
     <description summary="content for a wl_surface">
       A buffer provides the content for a wl_surface. Buffers are
       created through factory interfaces such as wl_shm, wp_linux_buffer_params

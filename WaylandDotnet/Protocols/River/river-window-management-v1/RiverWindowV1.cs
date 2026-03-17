@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_window_v1
 /// <para> a logical window </para>
-/// <para> Version: 3 </para>
+/// <para> Version: 4 </para>
 /// <see>https://wayland.app/protocols/river-window-management-v1/#river_window_v1</see>
 /// </summary>
 public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory<RiverWindowV1>
 {
     public const string InterfaceName = "river_window_v1";
     public static string _StaticInterfaceName => "river_window_v1";
-    public const int InterfaceVersion = 3;
+    public const int InterfaceVersion = 4;
 
     private bool disposed;
 
@@ -596,7 +596,10 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
     /// <para>
     ///
     ///The xdg-shell protocol for example allows windows to request that they
-    ///be made fullscreen and allows them to provide an output preference.
+    ///be made fullscreen and allows them to provide an optional output hint.
+    ///
+    ///If the output argument is null, the window has no preference and the
+    ///window manager should choose an output.
     ///
     ///The window manager is free to honor this request using
     ///river_window_v1.fullscreen or ignore it.
@@ -722,6 +725,80 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         remove
         {
             _onUnreliablePid -= value;
+        }
+    }
+
+    public delegate void PresentationHintHandler(uint hint);
+
+    private PresentationHintHandler? _onPresentationHint;
+
+    /// <summary>
+    ///Presentation hint set by the window
+    /// <para>
+    ///
+    ///This event communicates the window's preferred presentation mode.
+    ///
+    ///This event will be followed by a render_start event after all other new
+    ///state has been sent by the server.
+    ///
+    /// </para>
+    /// </summary>
+    public event PresentationHintHandler? OnPresentationHint
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onPresentationHint += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onPresentationHint -= value;
+        }
+    }
+
+    public delegate void IdentifierHandler(string identifier);
+
+    private IdentifierHandler? _onIdentifier;
+
+    /// <summary>
+    ///Unique window identifier
+    /// <para>
+    ///
+    ///The identifier is a string that contains up to 32 printable ASCII bytes.
+    ///The identifier must not be an empty string.
+    ///
+    ///It is compositor policy how the identifier is generated, but the following
+    ///properties must be upheld:
+    ///
+    ///1. The identifier must uniquely identify the window. Two windows must not
+    ///share the same identifier.
+    ///
+    ///2. The identifier must not be reused. This avoids races around window
+    ///creation/destruction when identifiers are used in out-of-band IPC.
+    ///
+    ///If the compositor implements the ext-foreign-toplevel-list-v1 protocol,
+    ///the river_window_v1.identifier event must match the corresponding
+    ///ext_foreign_toplevel_handle_v1.identifier event.
+    ///
+    ///This event is sent once when the river_window_v1 is created and never
+    ///sent again.
+    ///
+    /// </para>
+    /// </summary>
+    public event IdentifierHandler? OnIdentifier
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onIdentifier += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onIdentifier -= value;
         }
     }
 
@@ -880,6 +957,20 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
                     {
                         var _unreliablePid = args[0].i;
                         obj._onUnreliablePid?.Invoke(_unreliablePid);
+                    }
+                    break;
+                case 16: // presentation_hint
+                    if (obj._onPresentationHint != null)
+                    {
+                        var _hint = args[0].u;
+                        obj._onPresentationHint?.Invoke(_hint);
+                    }
+                    break;
+                case 17: // identifier
+                    if (obj._onIdentifier != null)
+                    {
+                        var _identifier = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        obj._onIdentifier?.Invoke(_identifier);
                     }
                     break;
                 default:
@@ -1273,7 +1364,7 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
     }
 
     /// <summary>
-    /// Create a decoration surface above the window
+    /// Create a decoration above the window in z-order
     /// <para>
     /// <br/>
     /// Create a decoration surface and assign the river_decoration_v1 role to<br/>
@@ -1308,7 +1399,7 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
     }
 
     /// <summary>
-    /// Create a decoration surface below the window
+    /// Create a decoration below the window in z-order
     /// <para>
     /// <br/>
     /// Create a decoration surface and assign the river_decoration_v1 role to<br/>
@@ -1760,6 +1851,47 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         args[3].i = height;
 
         const uint opcode = 22;
+
+        var newProxy = WaylandNative.ProxyMarshalArrayFlags(
+            Handle,
+            opcode,
+            (WlInterface*)IntPtr.Zero,
+            0,
+            0,
+            (nint)args
+        );
+    }
+
+    /// <summary>
+    /// Recommend maximum dimensions to the window
+    /// <para>
+    /// <br/>
+    /// Recommend that the window keep its dimensions within a given<br/>
+    /// maximum width/height. This recommendation is only a hint and the window<br/>
+    /// may ignore it.<br/>
+    /// <br/>
+    /// Setting the width and height to 0 indicates that there are no bounds<br/>
+    /// and is equivalent to having never made this request.<br/>
+    /// <br/>
+    /// Setting width or height to a negative value is a protocol error.<br/>
+    /// <br/>
+    /// The server should communicate this hint to an xdg_toplevel window with<br/>
+    /// the xdg_toplevel.configure_bounds event for example.<br/>
+    /// <br/>
+    /// This request modifies window management state and may only be made as<br/>
+    /// part of a manage sequence, see the river_window_manager_v1 description.<br/>
+    /// <br/>
+    /// </para>
+    /// </summary>
+    public unsafe void SetDimensionBounds(int maxWidth, int maxHeight)
+    {
+        ObjectDisposedException.ThrowIf(disposed, this);
+
+        var args = stackalloc WlArgument[2];
+        args[0].i = maxWidth;
+        args[1].i = maxHeight;
+
+        const uint opcode = 23;
 
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,

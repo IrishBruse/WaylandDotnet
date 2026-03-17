@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_window_manager_v1
 /// <para> window manager global interface </para>
-/// <para> Version: 3 </para>
+/// <para> Version: 4 </para>
 /// <see>https://wayland.app/protocols/river-window-management-v1/#river_window_manager_v1</see>
 /// </summary>
 public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObjectFactory<RiverWindowManagerV1>
 {
     public const string InterfaceName = "river_window_manager_v1";
     public static string _StaticInterfaceName => "river_window_manager_v1";
-    public const int InterfaceVersion = 3;
+    public const int InterfaceVersion = 4;
 
     private bool disposed;
 
@@ -667,6 +667,38 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         );
 
         return new RiverShellSurfaceV1(newProxy, Display);
+    }
+
+    /// <summary>
+    /// Exit the Wayland session
+    /// <para>
+    /// <br/>
+    /// End the current Wayland session and exit the compositor.<br/>
+    /// All Wayland clients running in the current session, including<br/>
+    /// the window manager, will be disconnected.<br/>
+    /// <br/>
+    /// Window managers should only make this request if the user explicitly<br/>
+    /// asks to exit the Wayland session, not for example on normal window<br/>
+    /// manager termination.<br/>
+    /// <br/>
+    /// </para>
+    /// </summary>
+    public unsafe void ExitSession()
+    {
+        ObjectDisposedException.ThrowIf(disposed, this);
+
+        var args = stackalloc WlArgument[0];
+
+        const uint opcode = 6;
+
+        var newProxy = WaylandNative.ProxyMarshalArrayFlags(
+            Handle,
+            opcode,
+            (WlInterface*)IntPtr.Zero,
+            0,
+            0,
+            (nint)args
+        );
     }
 
     public static RiverWindowManagerV1 Create(nint handle, WlDisplay? display = null)

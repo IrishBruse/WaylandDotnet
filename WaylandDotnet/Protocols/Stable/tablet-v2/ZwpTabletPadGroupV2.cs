@@ -166,7 +166,7 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
     ///zwp_tablet_pad_group_v2.mode_switch event for more details.
     ///
     ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_pad_group_v2.done event. This event is only sent when more than
+    ///zwp_tablet_pad_group_v2.done event. This event is only sent when
     ///more than one mode is available.
     ///
     /// </para>

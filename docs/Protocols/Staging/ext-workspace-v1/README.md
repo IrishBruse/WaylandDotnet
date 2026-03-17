@@ -332,7 +332,7 @@ void WorkspaceEnterHandler(ExtWorkspaceHandleV1 workspace)
 
 This event is emitted whenever a workspace is assigned to this group.
 A workspace may only ever be assigned to a single group at a single point
-in time, but can be re-assigned during it's lifetime.
+in time, but can be re-assigned during its lifetime.
 
 <h3 class="decleration event" title="WorkspaceLeave event">
     <a href="#/Protocols/Staging/ext-workspace-v1/?id=onextworkspacegrouphandlev1_workspaceleave" id="onextworkspacegrouphandlev1_workspaceleave">
@@ -537,10 +537,10 @@ void IdHandler(string id)
 
 If this event is emitted, it will be send immediately after the
 ext_workspace_handle_v1 is created or when an id is assigned to
-a workspace (at most once during it's lifetime).
+a workspace (at most once during its lifetime).
 
 An id will never change during the lifetime of the `ext_workspace_handle_v1`
-and is guaranteed to be unique during it's lifetime.
+and is guaranteed to be unique during its lifetime.
 
 Ids are not human-readable and shouldn't be displayed, use `name` for that purpose.
 

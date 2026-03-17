@@ -9,7 +9,7 @@
         <span class="codicon codicon-symbol-interface"></span>
         RiverWindowManagerV1
     </a>
-    <span class="pill">version 3</span>
+    <span class="pill">version 4</span>
 </h2>
 
 Window manager global interface
@@ -21,14 +21,14 @@ compositor should use the unavailable event if necessary to enforce this.
 
 There are two disjoint categories of state managed by this protocol:
 
-Window management state influences the communication between the server
-and individual window clients (e.g. xdg_toplevels). Window management
+Window management state influences the communication between the
+compositor and individual windows (e.g. xdg_toplevels). Window management
 state includes window dimensions, fullscreen state, keyboard focus,
 keyboard bindings, and more.
 
 Rendering state only affects the rendered output of the compositor and
-does not influence communication between the server and individual window
-clients. Rendering state includes the position and rendering order of
+does not influence communication between the compositor and individual
+windows. Rendering state includes the position and rendering order of
 windows, shell surfaces, decoration surfaces, borders, and more.
 
 Window management state may only be modified by the window manager as part
@@ -233,6 +233,29 @@ river_shell_surface_v1 role to the surface.
 
 Providing a wl_surface which already has a role or already has a buffer
 attached or committed is a protocol error.
+
+<h3 class="decleration request" title="ExitSession request">
+    <a href="#/Protocols/River/river-window-management-v1/?id=riverwindowmanagerv1_exitsession" id="riverwindowmanagerv1_exitsession">
+        <span class="codicon codicon-symbol-method method"></span>
+        RiverWindowManagerV1.<span class="method">ExitSession</span>
+    </a>
+    <span class="pill">since 4</span>
+</h3>
+
+```csharp
+void ExitSession()
+```
+
+
+**Exit the Wayland session**
+
+End the current Wayland session and exit the compositor.
+All Wayland clients running in the current session, including
+the window manager, will be disconnected.
+
+Window managers should only make this request if the user explicitly
+asks to exit the Wayland session, not for example on normal window
+manager termination.
 
 <h3 class="decleration event" title="Unavailable event">
     <a href="#/Protocols/River/river-window-management-v1/?id=onriverwindowmanagerv1_unavailable" id="onriverwindowmanagerv1_unavailable">
@@ -454,7 +477,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         RiverWindowV1
     </a>
-    <span class="pill">version 3</span>
+    <span class="pill">version 4</span>
 </h2>
 
 A logical window
@@ -770,7 +793,7 @@ RiverDecorationV1 GetDecorationAbove(WlSurface surface)
 | id | new_id | New decoration surface |
 | surface | object | Base surface |
 
-**Create a decoration surface above the window**
+**Create a decoration above the window in z-order**
 
 Create a decoration surface and assign the river_decoration_v1 role to
 the surface. The created decoration is placed above the window in
@@ -795,7 +818,7 @@ RiverDecorationV1 GetDecorationBelow(WlSurface surface)
 | id | new_id | New decoration surface |
 | surface | object | Base surface |
 
-**Create a decoration surface below the window**
+**Create a decoration below the window in z-order**
 
 Create a decoration surface and assign the river_decoration_v1 role to
 the surface. The created decoration is placed below the window in
@@ -1132,6 +1155,40 @@ Both set_clip_box and set_content_clip_box may be enabled simultaneously.
 
 This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
+
+<h3 class="decleration request" title="SetDimensionBounds request">
+    <a href="#/Protocols/River/river-window-management-v1/?id=riverwindowv1_setdimensionbounds" id="riverwindowv1_setdimensionbounds">
+        <span class="codicon codicon-symbol-method method"></span>
+        RiverWindowV1.<span class="method">SetDimensionBounds</span>
+    </a>
+    <span class="pill">since 4</span>
+</h3>
+
+```csharp
+void SetDimensionBounds(int maxWidth, int maxHeight)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| max_width | int | Maximum width |
+| max_height | int | Maximum height |
+
+**Recommend maximum dimensions to the window**
+
+Recommend that the window keep its dimensions within a given
+maximum width/height. This recommendation is only a hint and the window
+may ignore it.
+
+Setting the width and height to 0 indicates that there are no bounds
+and is equivalent to having never made this request.
+
+Setting width or height to a negative value is a protocol error.
+
+The server should communicate this hint to an xdg_toplevel window with
+the xdg_toplevel.configure_bounds event for example.
+
+This request modifies window management state and may only be made as
+part of a manage sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration event" title="Closed event">
     <a href="#/Protocols/River/river-window-management-v1/?id=onriverwindowv1_closed" id="onriverwindowv1_closed">
@@ -1501,7 +1558,10 @@ void FullscreenRequestedHandler(RiverOutputV1? output)
 **The window requested to be fullscreen**
 
 The xdg-shell protocol for example allows windows to request that they
-be made fullscreen and allows them to provide an output preference.
+be made fullscreen and allows them to provide an optional output hint.
+
+If the output argument is null, the window has no preference and the
+window manager should choose an output.
 
 The window manager is free to honor this request using
 river_window_v1.fullscreen or ignore it.
@@ -1584,6 +1644,66 @@ may have the same PID.
 This event is sent once when the river_window_v1 is created and never
 sent again.
 
+<h3 class="decleration event" title="PresentationHint event">
+    <a href="#/Protocols/River/river-window-management-v1/?id=onriverwindowv1_presentationhint" id="onriverwindowv1_presentationhint">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnPresentationHint</span>
+    </a>
+    <span class="pill">since 4</span>
+</h3>
+
+```csharp
+void PresentationHintHandler(uint hint)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| hint | uint | Presentation hint |
+
+**Presentation hint set by the window**
+
+This event communicates the window's preferred presentation mode.
+
+This event will be followed by a render_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="Identifier event">
+    <a href="#/Protocols/River/river-window-management-v1/?id=onriverwindowv1_identifier" id="onriverwindowv1_identifier">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnIdentifier</span>
+    </a>
+    <span class="pill">since 4</span>
+</h3>
+
+```csharp
+void IdentifierHandler(string identifier)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| identifier | string | Unique identifier |
+
+**Unique window identifier**
+
+The identifier is a string that contains up to 32 printable ASCII bytes.
+The identifier must not be an empty string.
+
+It is compositor policy how the identifier is generated, but the following
+properties must be upheld:
+
+1. The identifier must uniquely identify the window. Two windows must not
+share the same identifier.
+
+2. The identifier must not be reused. This avoids races around window
+creation/destruction when identifiers are used in out-of-band IPC.
+
+If the compositor implements the ext-foreign-toplevel-list-v1 protocol,
+the river_window_v1.identifier event must match the corresponding
+ext_foreign_toplevel_handle_v1.identifier event.
+
+This event is sent once when the river_window_v1 is created and never
+sent again.
+
 <h3 class="decleration enum" title="Error enum">
     <a href="#/Protocols/River/river-window-management-v1/?id=error" id="error">
         <span class="codicon codicon-symbol-enum enum"></span>
@@ -1658,7 +1778,7 @@ public enum CapabilitiesFlag
         <span class="codicon codicon-symbol-interface"></span>
         RiverDecorationV1
     </a>
-    <span class="pill">version 3</span>
+    <span class="pill">version 4</span>
 </h2>
 
 A window decoration
@@ -1764,7 +1884,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         RiverShellSurfaceV1
     </a>
-    <span class="pill">version 3</span>
+    <span class="pill">version 4</span>
 </h2>
 
 A surface for window manager UI
@@ -1860,7 +1980,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         RiverNodeV1
     </a>
-    <span class="pill">version 3</span>
+    <span class="pill">version 4</span>
 </h2>
 
 A node in the render list
@@ -2020,7 +2140,7 @@ render sequence, see the river_window_manager_v1 description.
         <span class="codicon codicon-symbol-interface"></span>
         RiverOutputV1
     </a>
-    <span class="pill">version 3</span>
+    <span class="pill">version 4</span>
 </h2>
 
 A logical output
@@ -2053,6 +2173,31 @@ object and that it may be safely destroyed.
 
 This request should be made after the river_output_v1.removed event is
 received to complete destruction of the output.
+
+<h3 class="decleration request" title="SetPresentationMode request">
+    <a href="#/Protocols/River/river-window-management-v1/?id=riveroutputv1_setpresentationmode" id="riveroutputv1_setpresentationmode">
+        <span class="codicon codicon-symbol-method method"></span>
+        RiverOutputV1.<span class="method">SetPresentationMode</span>
+    </a>
+    <span class="pill">since 4</span>
+</h3>
+
+```csharp
+void SetPresentationMode(uint mode)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| mode | uint | Preferred presentation mode |
+
+**Set the preferred presentation mode**
+
+Set the preferred presentation mode of the output. The compositor should
+always respect the preference of the window manager if possible. If this
+request is never made, the preferred presentation mode is vsync.
+
+This request modifies rendering state and may only be made as part of a
+render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration event" title="Removed event">
     <a href="#/Protocols/River/river-window-management-v1/?id=onriveroutputv1_removed" id="onriveroutputv1_removed">
@@ -2182,12 +2327,41 @@ The server must guarantee that the position and dimensions events do not
 cause the areas of multiple logical outputs to overlap when the
 corresponding manage_start event is received.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="#/Protocols/River/river-window-management-v1/?id=error" id="error">
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverOutputV1.<span class="enum">Error</span>
+    </a>
+</h3>
+
+```csharp
+public enum Error
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidPresentationMode | 0 | Invalid presentation mode enum value |
+<h3 class="decleration enum" title="PresentationMode enum">
+    <a href="#/Protocols/River/river-window-management-v1/?id=presentationmode" id="presentationmode">
+        <span class="codicon codicon-symbol-enum enum"></span>
+        RiverOutputV1.<span class="enum">PresentationMode</span>
+    </a>
+</h3>
+
+```csharp
+public enum PresentationMode
+```
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| Vsync | 0 |  |
+| Async | 1 |  |
 <h2 class="decleration interface">
     <a href="#/Protocols/River/river-window-management-v1/?id=riverseatv1" id="riverseatv1">
         <span class="codicon codicon-symbol-interface"></span>
         RiverSeatV1
     </a>
-    <span class="pill">version 3</span>
+    <span class="pill">version 4</span>
 </h2>
 
 A window management seat
@@ -2195,12 +2369,21 @@ A window management seat
 
 This object represents a single user's collection of input devices. It
 allows the window manager to route keyboard input to windows, get
-high-level information about pointer input, define keyboard and pointer
-bindings, etc.
+high-level information about pointer input, define pointer bindings, etc.
 
-TODO:
-- touch input
-- tablet input
+For keyboard bindings, see the river-xkb-bindings-v1 protocol.
+
+Since version 4: The cursor surface/shape set by the window manager on the
+wl_pointer of this seat is used when no client has pointer focus, for
+example during a pointer operation. Since the window manager is allowed to
+set cursor surface/shape even when it does not have pointer focus, the
+compositor must ignore the serial argument of wl_pointer.set_cursor and
+wp_cursor_shape_device_v1.set_shape requests made by the window manager.
+
+The most recent cursor surface/shape set by the window manager is
+remembered by the compositor and restored whenever no client has pointer
+focus. If the window manager never sets a cursor surface/shape, the
+"default" shape is used.
 
 
 <h3 class="decleration request" title="Destroy request">
@@ -2315,6 +2498,11 @@ move/resize of windows by setting the position of windows and proposing
 dimensions based off of the op_delta events.
 
 This request is ignored if an operation is already in progress.
+
+The compositor must ensure that no client has pointer focus from this
+seat during the pointer operation. This means that the window manager
+has control over the pointer's cursor surface/shape during the pointer
+operation. See the river_seat_v1 description.
 
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
@@ -2716,7 +2904,7 @@ bindings however so these values are not included in this enum.
         <span class="codicon codicon-symbol-interface"></span>
         RiverPointerBindingV1
     </a>
-    <span class="pill">version 3</span>
+    <span class="pill">version 4</span>
 </h2>
 
 Configure a pointer binding, receive trigger events

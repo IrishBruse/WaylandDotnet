@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_output_v1
 /// <para> a logical output </para>
-/// <para> Version: 3 </para>
+/// <para> Version: 4 </para>
 /// <see>https://wayland.app/protocols/river-window-management-v1/#river_output_v1</see>
 /// </summary>
 public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory<RiverOutputV1>
 {
     public const string InterfaceName = "river_output_v1";
     public static string _StaticInterfaceName => "river_output_v1";
-    public const int InterfaceVersion = 3;
+    public const int InterfaceVersion = 4;
 
     private bool disposed;
 
@@ -48,6 +48,28 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
         Display = display;
         Handle = handle;
     }
+    /// <summary>  </summary>
+    public enum Error : uint
+    {
+        /// <summary>
+        /// invalid presentation mode enum value
+        /// </summary>
+        InvalidPresentationMode = 0,
+    }
+
+    /// <summary>  </summary>
+    public enum PresentationMode : uint
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        Vsync = 0,
+        /// <summary>
+        ///
+        /// </summary>
+        Async = 1,
+    }
+
     public delegate void RemovedHandler();
 
     private RemovedHandler? _onRemoved;
@@ -305,6 +327,38 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
         var args = stackalloc WlArgument[0];
 
         const uint opcode = 0;
+
+        var newProxy = WaylandNative.ProxyMarshalArrayFlags(
+            Handle,
+            opcode,
+            (WlInterface*)IntPtr.Zero,
+            0,
+            0,
+            (nint)args
+        );
+    }
+
+    /// <summary>
+    /// Set the preferred presentation mode
+    /// <para>
+    /// <br/>
+    /// Set the preferred presentation mode of the output. The compositor should<br/>
+    /// always respect the preference of the window manager if possible. If this<br/>
+    /// request is never made, the preferred presentation mode is vsync.<br/>
+    /// <br/>
+    /// This request modifies rendering state and may only be made as part of a<br/>
+    /// render sequence, see the river_window_manager_v1 description.<br/>
+    /// <br/>
+    /// </para>
+    /// </summary>
+    public unsafe void SetPresentationMode(uint mode)
+    {
+        ObjectDisposedException.ThrowIf(disposed, this);
+
+        var args = stackalloc WlArgument[1];
+        args[0].u = mode;
+
+        const uint opcode = 1;
 
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,

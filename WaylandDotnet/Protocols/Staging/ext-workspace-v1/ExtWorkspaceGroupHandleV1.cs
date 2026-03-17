@@ -164,7 +164,7 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
     ///
     ///This event is emitted whenever a workspace is assigned to this group.
     ///A workspace may only ever be assigned to a single group at a single point
-    ///in time, but can be re-assigned during it's lifetime.
+    ///in time, but can be re-assigned during its lifetime.
     ///
     /// </para>
     /// </summary>
