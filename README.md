@@ -84,15 +84,15 @@ wayland-dotnet-scanner wayland.xml ./Protocols/wayland/ --namespace Core
   "OutputRoot": "./Generated",
   "Protocols": [
     {
-      "Name": "WlrLayerShell",
-      "XmlFile": "protocols/wlr-layer-shell-v1.xml",
-      "Namespace": "WaylandDotnet.Wlr"
+      "Name": "Layer Shell",
+      "XmlFile": "Protocols/Wlr/wlr-layer-shell-unstable-v1.xml",
+      "Namespace": "Wlr"
     }
   ]
 }
 ```
 
-3. Run: `wayland-dotnet-scanner`
+3. Run: `wayland-dotnet-scanner` in the same dir as the `protocols.json`
 
 # Contributing & Development
 
