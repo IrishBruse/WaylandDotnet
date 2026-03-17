@@ -8,133 +8,118 @@
   <a href="https://www.nuget.org/packages/WaylandDotnet.Scanner/"><img src="https://img.shields.io/nuget/v/WaylandDotnet.Scanner?label=WaylandDotnet.Scanner" /></a>
 </p>
 
-A .NET 10 C# binding for the Wayland display server protocol. This library provides C# access to Wayland client functionality with AOT compilation support.
+# Description
 
-## Projects
+WaylandDotnet provides C# bindings for the Wayland protocol.
+This library provides C# access to Wayland client functionality with AOT compilation support.
 
-- **Core** 
-  - **WaylandDotnet** - Core library for Wayland client communication
-  - **WaylandDotnet.Scanner** - XML protocol parser and C# code generator
-- **Examples**
-  - **Examples/Minimal** - Minimal window creation example
-  - **Examples/LayerShell** - GPU-accelerated overlay using SDL3 and wlr-layer-shell
-  - **Examples/RiverWindowManager** - Custom window manager using river-window-management-v1
+## Features
 
+- Native AOT: Uses LibraryImport for zero-overhead interop, optimized for high-performance applications.
+- Code Generation: Includes a CLI tool to transform any Wayland XML protocol into type-safe C# code.
+- Idiomatic C#: Leverages C# events for Wayland event handling.
+- Extensible: Support for binding to custom compositor protocols such as wlroots or River.
+- Documentation: The protocol, api and tutorials are located [here](https://ethanconneely.com/WaylandDotnet)
 
-## Example Usage
+# Getting Started
+
+**Requirements:**
+
+- .NET 10.0 SDK
+- libwayland-client (System library)
+- A running Wayland Compositor/Desktop
+
+## Quick Example
 
 ```csharp
 using WaylandDotnet;
 
-// Connect to Wayland display
-var display = WlDisplay.Connect();
+// 1. Connect to the Wayland display
+using var display = WlDisplay.Connect();
 
-// Get registry and bind globals
+// 2. Get the registry and bind to global objects
 var registry = display.GetRegistry();
+XdgWmBase? xdg = null;
+
 registry.OnGlobal += (name, interfaceName, version) => {
-    Console.WriteLine($"Global: {interfaceName}");
+  Console.WriteLine($"Found Global: {interfaceName} (v{version})");
+
+  // 3. Bind to a global
+  if (interfaceName == XdgWmBase.InterfaceName)
+  {
+    xdg = registry.Bind<XdgWmBase>(name, version);
+  }
 };
+
+// 4. Dispatch events
 display.Roundtrip();
 ```
 
+# Code Generation (Scanner)
 
-## Supported Protocols
+The WaylandDotnet.Scanner tool allows you to generate bindings for any protocol XML file.
 
-See [Protocols](https://ethanconneely.com/WaylandDotnet/#/Protocols/Core/wayland/)
-
-## Features
-
-- Native AOT compatible (LibraryImport instead of DllImport)
-- Code generation dotnet tool for Wayland XML protocols
-- Type-safe event handling with C# events
-
-## Requirements
-
-- .NET 10.0 SDK
-- libwayland-client
-- Wayland compositor
-
-## Code Generation
-
-WaylandDotnet.Scanner generates C# bindings from Wayland XML protocol files.
-
-### Quick Start
+## Installation
 
 ```bash
-# Create a protocols.json configuration file
-wayland-dotnet-scanner init
-
-# Edit protocols.json to add your protocols, then generate code
-wayland-dotnet-scanner ./protocols.json
+dotnet tool install --global WaylandDotnet.Scanner
 ```
 
-### Configuration (protocols.json)
+## Usage
+
+You can generate code directly from an XML file or use a configuration file for larger projects.
+
+### Direct Command
 
 ```bash
-# Create a protocols.json configuration file
-wayland-dotnet-scanner init
-
-# Edit protocols.json to add your protocols, then generate code
-wayland-dotnet-scanner ./protocols.json
+wayland-dotnet-scanner wayland.xml ./Protocols/wayland/ --namespace Core
 ```
 
-`protocols.json` format
+### Using protocols.json
+
+1. Initialize: `wayland-dotnet-scanner init`
+2. Configure: Edit the generated protocols.json:
 ```json
 {
   "OutputRoot": "./Generated",
-  "DocsDir": "./docs",
   "Protocols": [
     {
-      "Name": "My Protocol",
-      "XmlFile": "protocols/my-protocol.xml",
-      "Namespace": "MyNamespace"
+      "Name": "WlrLayerShell",
+      "XmlFile": "protocols/wlr-layer-shell-v1.xml",
+      "Namespace": "WaylandDotnet.Wlr"
     }
   ]
 }
 ```
 
-### CLI Commands
+3. Run: `wayland-dotnet-scanner`
+
+# Contributing & Development
+
+## Project Structure
+
+- WaylandDotnet: The core library for client-side Wayland communication.
+- WaylandDotnet.Scanner: A C# version of `wayland-scanner` for parsing XML protocols and generating C# bindings.
+- Examples: Implementation samples including Minimal (XdgToplevel), LayerShell (SDL3), and River WM.
+
+## Setup
+
+To get started with the source code:
 
 ```bash
-# Generate from protocols.json (auto-detected in current directory)
-wayland-dotnet-scanner
-
-# Generate a single XML file
-wayland-dotnet-scanner protocol.xml ./Output --namespace MyNamespace
-
-# List protocols in config
-wayland-dotnet-scanner list
-
-# Show help
-wayland-dotnet-scanner --help
-```
-
-### Finding Protocol XML Files
-
-- [wayland.app/protocols](https://wayland.app/protocols/) - Official Wayland protocols
-- `/usr/share/wayland-protocols/` - System-installed stable protocols
-- Compositor-specific protocols (wlroots, River, etc.)
-
-## Contributing
-
-```bash
-# Build the solution
+# Clone and build
+git clone https://github.com/IrishBruse/WaylandDotnet.git
 dotnet build
 
-# Run tests
+# Run the minimal window example
+dotnet run --project Examples/Minimal
+
+# Execute tests
 dotnet test
-
-# Generate protocol code (rebuilds C# from XML)
-cd WaylandDotnet.Scanner && dotnet run
-
-# Run the minimal window creation example
-cd Examples/Minimal && dotnet run
-
-# Run the wlr-layer-shell overlay example
-cd Examples/LayerShell && dotnet run
-
-# Run the river window manager example
-cd Examples/RiverWindowManager && dotnet run
 ```
 
-See the [Examples/](Examples/) directory for complete working applications.
+Note: For protocol changes, navigate to WaylandDotnet.Scanner and run the project to regenerate the core library bindings.
+
+## Resources
+- Wayland Protocols: [https://wayland.app/protocols/](https://wayland.app/protocols/)
+- WaylandDotnet Protocol Browser: [https://ethanconneely.com/WaylandDotnet/#/Protocols/Core/wayland/](https://ethanconneely.com/WaylandDotnet/#/Protocols/Core/wayland/)

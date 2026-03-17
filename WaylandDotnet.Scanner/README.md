@@ -39,18 +39,6 @@ wayland-dotnet-scanner
 }
 ```
 
-### Configuration Options
-
-| Field                   | Description                                  |
-| ----------------------- | -------------------------------------------- |
-| `OutputRoot`            | Root directory for generated C# files        |
-| `DocsDir`               | Optional directory for documentation sidebar |
-| `Protocols[]`           | Array of protocol configurations             |
-| `Protocols[].Name`      | Display name for the protocol                |
-| `Protocols[].XmlFile`   | Path to the Wayland XML protocol file        |
-| `Protocols[].Namespace` | Category/namespace (e.g., Core, Stable, Wlr) |
-| `Protocols[].Link`      | Optional URL to protocol documentation       |
-
 ## CLI Commands
 
 ```bash
