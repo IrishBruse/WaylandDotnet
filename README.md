@@ -39,15 +39,15 @@ using var display = WlDisplay.Connect();
 
 // 2. Get the registry and bind to global objects
 var registry = display.GetRegistry();
-XdgWmBase? xdg = null;
+WlCompositor? compositor = null;
 
 registry.OnGlobal += (name, interfaceName, version) => {
   Console.WriteLine($"Found Global: {interfaceName} (v{version})");
 
   // 3. Bind to a global
-  if (interfaceName == XdgWmBase.InterfaceName)
+  if (interfaceName == WlCompositor.InterfaceName)
   {
-    xdg = registry.Bind<XdgWmBase>(name, version);
+    compositor = registry.Bind<WlCompositor>(name, version);
   }
 };
 
