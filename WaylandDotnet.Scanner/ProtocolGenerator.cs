@@ -386,7 +386,6 @@ public partial class ProtocolGenerator
         WriteLine($"/// <summary>");
         WriteLine($"/// {EscapeXmlDoc(iface.Name)}");
         WriteLine($"/// <para> {EscapeXmlDoc(iface.Description.Summary)} </para>");
-        // WriteLine($"/// <para> {EscapeXmlDoc(iface.Description.Summary)} </para>"); TODO: Text
         WriteLine($"/// <para> Version: {iface.Version} </para>");
         if (metadata.Link != null)
         {
@@ -432,41 +431,8 @@ public partial class ProtocolGenerator
                 WriteLine($"    return new {className}(handle);");
             }
             WriteLine("}");
-
-            // Generate Dispose to free GCHandle
-            if (iface.Events.Count > 0)
-            {
-                // GenerateDisposeOverride(className);
-            }
         }
         EndBlock();
-    }
-
-    private void GenerateDisposeOverride(string className)
-    {
-        BeginRegion();
-
-        WriteLine();
-        WriteLine("public void Dispose()");
-        BeginBlock();
-        {
-            WriteLine("if (!disposed)");
-            BeginBlock();
-            {
-                WriteLine("if (gcHandle.IsAllocated)");
-                BeginBlock();
-                {
-                    WriteLine("gcHandle.Free();");
-                }
-                EndBlock();
-                WriteLine("disposed = true;");
-            }
-            EndBlock();
-            WriteLine("GC.SuppressFinalize(this);");
-        }
-        EndBlock();
-
-        EndRegion();
     }
 
     private void GenerateEnums(WaylandInterface iface)

@@ -4,20 +4,21 @@
 </p>
 
 <p align="center">
-  <a href="https://www.nuget.org/packages/WaylandDotnet/"><img src="https://img.shields.io/nuget/v/WaylandDotnet?" /></a>
-  <a href="https://www.nuget.org/packages/WaylandDotnet.Scanner/"><img src="https://img.shields.io/nuget/v/WaylandDotnet.Scanner?" /></a>
+  <a href="https://www.nuget.org/packages/WaylandDotnet/"><img src="https://img.shields.io/nuget/v/WaylandDotnet?label=WaylandDotnet" /></a>
+  <a href="https://www.nuget.org/packages/WaylandDotnet.Scanner/"><img src="https://img.shields.io/nuget/v/WaylandDotnet.Scanner?label=WaylandDotnet.Scanner" /></a>
 </p>
 
 A .NET 10 C# binding for the Wayland display server protocol. This library provides C# access to Wayland client functionality with AOT compilation support.
 
 ## Projects
 
-- **WaylandDotnet** - Core library for Wayland client communication
-- **WaylandDotnet.Scanner** - XML protocol parser and C# code generator
-- **Examples/Minimal** - Minimal window creation example
-- **Examples/LayerShell** - GPU-accelerated overlay using SDL3 and wlr-layer-shell
-- **Examples/RiverWindowManager** - Custom window manager using river-window-management-v1
-- **WaylandDotnet.Tests** - xUnit test suite
+- **Core** 
+  - **WaylandDotnet** - Core library for Wayland client communication
+  - **WaylandDotnet.Scanner** - XML protocol parser and C# code generator
+- **Examples**
+  - **Examples/Minimal** - Minimal window creation example
+  - **Examples/LayerShell** - GPU-accelerated overlay using SDL3 and wlr-layer-shell
+  - **Examples/RiverWindowManager** - Custom window manager using river-window-management-v1
 
 
 ## Example Usage
@@ -39,12 +40,12 @@ display.Roundtrip();
 
 ## Supported Protocols
 
-See [Protocols](https://ethanconneely.com/WaylandDotnet/#/Protocols/)
+See [Protocols](https://ethanconneely.com/WaylandDotnet/#/Protocols/Core/wayland/)
 
 ## Features
 
 - Native AOT compatible (LibraryImport instead of DllImport)
-- Automatic code generation from Wayland XML protocols
+- Code generation dotnet tool for Wayland XML protocols
 - Type-safe event handling with C# events
 
 ## Requirements
@@ -69,6 +70,15 @@ wayland-dotnet-scanner ./protocols.json
 
 ### Configuration (protocols.json)
 
+```bash
+# Create a protocols.json configuration file
+wayland-dotnet-scanner init
+
+# Edit protocols.json to add your protocols, then generate code
+wayland-dotnet-scanner ./protocols.json
+```
+
+`protocols.json` format
 ```json
 {
   "OutputRoot": "./Generated",
@@ -105,7 +115,7 @@ wayland-dotnet-scanner --help
 - `/usr/share/wayland-protocols/` - System-installed stable protocols
 - Compositor-specific protocols (wlroots, River, etc.)
 
-## Development
+## Contributing
 
 ```bash
 # Build the solution
