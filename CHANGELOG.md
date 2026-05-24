@@ -1,5 +1,9 @@
 # Changelog
 
+## Upcoming
+
+[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/0.5.0...HEAD)
+
 ## 0.5.0
 
 - Add `ext-idle-notify-v1` staging protocol bindings
@@ -10,7 +14,7 @@
 - Add `CONTRIBUTING.md` with protocol maintenance workflow
 - Streamline README and consolidate docs sidebar
 
-[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/v0.4.0...main)
+[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/0.4.0...v0.5.0)
 
 ## 0.4.0
 
@@ -19,7 +23,7 @@
 - Fix quick-start example in README
 - Clean up scanner generator and README
 
-[Diff](https://github.com/IrishBruse/WaylandDotnet/commits/v0.4.0)
+[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/0.3.0...v0.4.0)
 
 ## 0.3.0
 
@@ -28,7 +32,7 @@
 - Fix Wayland display discovery in Taskbar example
 - Update NuGet release workflow
 
-[Diff](https://github.com/IrishBruse/WaylandDotnet/commits/0.3.0)
+[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/0.2.0...0.3.0)
 
 ## 0.2.0
 
@@ -43,7 +47,7 @@
 - Simplify HTML generation
 - Add debug flag to generator
 
-[Diff](https://github.com/IrishBruse/WaylandDotnet/commits/0.2.0)
+[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/0.1.0...0.2.0)
 
 ## 0.1.0
 
