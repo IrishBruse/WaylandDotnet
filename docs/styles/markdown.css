@@ -64,6 +64,12 @@
     margin-top: 44px;
   }
 
+  code:not(pre code) {
+    background-color: var(--input-color);
+    border-radius: 4px;
+    padding: 0.1em 0.35em;
+  }
+
   pre {
     background-color: rgb(39, 39, 42);
     padding: 8px;
