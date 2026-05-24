@@ -137,7 +137,7 @@ public partial class ProtocolGenerator
 
     private void GenerateBreadcrumbDocumentation(ProtocolMetadata metadata, WaylandProtocol protocol)
     {
-        const string arrowImg = "<img src=\"../../../assets/arrow.svg\" class=\"breadcrumb-arrow\" alt=\"\" />";
+        const string arrowImg = "<img src=\"assets/arrow.svg\" class=\"breadcrumb-arrow\" alt=\"\" />";
         string protocolDir = Path.GetFileNameWithoutExtension(metadata.XmlFile);
 
         string breadcrumb =
@@ -380,10 +380,11 @@ public partial class ProtocolGenerator
     {
         string className = iface.Name.ToPascal();
 
-        navbar.WriteLine($"- [{className}](#{className.ToLower()} ':class=interface')");
+        string interfaceDocId = className.ToDocId();
+        navbar.WriteLine($"- [{className}](#{interfaceDocId} ':class=interface')");
 
         var node = Html.H2().Class("decleration interface")
-            .Child(Html.A().Href(mdHref + "/?id=" + className.ToLower()).Id(className.ToLower())
+            .Child(Html.A().Href(mdHref + "/?id=" + interfaceDocId).Id(interfaceDocId)
                 .Child(Html.Span().Class("codicon codicon-symbol-interface"))
                 .Child(Html.Text(className)))
             .Child(Html.Span().Class("pill").Text($"version {iface.Version}"));
@@ -618,14 +619,14 @@ public partial class ProtocolGenerator
         if (enumDef == null) return;
 
         var enumName = (enumDef.Name ?? "").ToPascal();
-        string urlEnumName = enumName;
+        string enumDocId = $"{iface.Name.ToPascal()}_{enumName}_enum".ToDocId();
 
         var isBitfield = enumDef.Bitfield?.ToLower() == "true";
         var suffix = isBitfield ? "Flag" : "";
 
         var enumNode = Html.H3().Class("decleration enum").Title($"{enumName} enum")
             .Child(
-                Html.A().Href(mdHref + "/?id=" + urlEnumName.ToLower()).Id(urlEnumName.ToLower())
+                Html.A().Href(mdHref + "/?id=" + enumDocId).Id(enumDocId)
                 .Child(Html.Span().Class("codicon codicon-symbol-enum enum"))
                 .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("enum").Text(enumName)))
 
@@ -660,11 +661,11 @@ public partial class ProtocolGenerator
         var summary = EscapeXmlDoc(evt.Description?.Summary ?? evt.Name).CapitalizeFirst();
         var docs = EscapeXmlDoc(evt.Description?.Text ?? evt.Name);
         var eventName = evt.Name.ToPascal();
-        string urlEventName = "On" + iface.Name.ToPascal() + "_" + eventName;
+        string eventDocId = ("On" + iface.Name.ToPascal() + "_" + eventName).ToDocId();
 
         var eventNode = Html.H3().Class("decleration event").Title($"{eventName} event")
             .Child(
-                Html.A().Href(mdHref + "/?id=" + urlEventName.ToLower()).Id(urlEventName.ToLower())
+                Html.A().Href(mdHref + "/?id=" + eventDocId).Id(eventDocId)
                 .Child(Html.Span().Class("codicon codicon-symbol-event event"))
                 .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("event").Text("On" + eventName)))
             );
@@ -1088,10 +1089,10 @@ public partial class ProtocolGenerator
 
     private void RequestDocumentation(WaylandInterface iface, WaylandRequest request, string summary, string docs, string methodName, string requestDeclaration)
     {
-        string urlMethodName = iface.Name.ToPascal() + "_" + methodName;
+        string requestDocId = (iface.Name.ToPascal() + "_" + methodName).ToDocId();
 
         var h3Node = Html.H3().Class("decleration request").Title($"{methodName} request")
-            .Child(Html.A().Href(mdHref + "/?id=" + urlMethodName.ToLower()).Id(urlMethodName.ToLower())
+            .Child(Html.A().Href(mdHref + "/?id=" + requestDocId).Id(requestDocId)
                 .Child(Html.Span().Class("codicon codicon-symbol-method method"))
                 .Child(Html.Text(iface.Name.ToPascal() + ".").Child(Html.Span().Class("method").Text(methodName)))
             );

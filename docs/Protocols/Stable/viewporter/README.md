@@ -1,6 +1,6 @@
 ﻿# Viewporter
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable">Stable</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable/viewporter/">Viewporter</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable">Stable</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable/viewporter/">Viewporter</a></p>
 
 ---
 
@@ -66,7 +66,7 @@ a wp_viewport object associated, the viewport_exists
 protocol error is raised.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Stable/viewporter/?id=error" id="error">
+    <a href="#/Protocols/Stable/viewporter/?id=wpviewporter_error_enum" id="wpviewporter_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WpViewporter.<span class="enum">Error</span>
     </a>
@@ -225,7 +225,7 @@ error.
 The crop and scale state is double-buffered, see wl_surface.commit.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Stable/viewporter/?id=error" id="error">
+    <a href="#/Protocols/Stable/viewporter/?id=wpviewport_error_enum" id="wpviewport_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WpViewport.<span class="enum">Error</span>
     </a>

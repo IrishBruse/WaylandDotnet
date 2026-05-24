@@ -1,6 +1,6 @@
 ﻿# River XKB Config
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-xkb-config-v1/">RiverXkbConfigV1</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-xkb-config-v1/">RiverXkbConfigV1</a></p>
 
 ---
 
@@ -132,7 +132,7 @@ A new xkbcommon keyboard has been created. Not every
 river_input_device_v1 is necessarily an xkbcommon keyboard as well.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/River/river-xkb-config-v1/?id=error" id="error">
+    <a href="#/Protocols/River/river-xkb-config-v1/?id=riverxkbconfigv1_error_enum" id="riverxkbconfigv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverXkbConfigV1.<span class="enum">Error</span>
     </a>
@@ -147,7 +147,7 @@ public enum Error
 | InvalidDestroy | 0 |  |
 | InvalidFormat | 1 |  |
 <h3 class="decleration enum" title="KeymapFormat enum">
-    <a href="#/Protocols/River/river-xkb-config-v1/?id=keymapformat" id="keymapformat">
+    <a href="#/Protocols/River/river-xkb-config-v1/?id=riverxkbconfigv1_keymapformat_enum" id="riverxkbconfigv1_keymapformat_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverXkbConfigV1.<span class="enum">KeymapFormat</span>
     </a>
@@ -557,7 +557,7 @@ This allows changes to one or more river_xkb_keyboard_v1 properties to
 be seen as atomic, even if they happen via multiple events.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/River/river-xkb-config-v1/?id=error" id="error">
+    <a href="#/Protocols/River/river-xkb-config-v1/?id=riverxkbkeyboardv1_error_enum" id="riverxkbkeyboardv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverXkbKeyboardV1.<span class="enum">Error</span>
     </a>

@@ -1,6 +1,6 @@
 ﻿# Presentation time
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable">Stable</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable/presentation-time/">PresentationTime</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable">Stable</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable/presentation-time/">PresentationTime</a></p>
 
 ---
 
@@ -117,7 +117,7 @@ recommended. Clients must be able to query the current clock
 value directly, not by asking the compositor.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Stable/presentation-time/?id=error" id="error">
+    <a href="#/Protocols/Stable/presentation-time/?id=wppresentation_error_enum" id="wppresentation_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WpPresentation.<span class="enum">Error</span>
     </a>
@@ -273,7 +273,7 @@ void DiscardedHandler()
 The content update was never displayed to the user.
 
 <h3 class="decleration enum" title="Kind enum">
-    <a href="#/Protocols/Stable/presentation-time/?id=kind" id="kind">
+    <a href="#/Protocols/Stable/presentation-time/?id=wppresentationfeedback_kind_enum" id="wppresentationfeedback_kind_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WpPresentationFeedback.<span class="enum">Kind</span>
     </a>

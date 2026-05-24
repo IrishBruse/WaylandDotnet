@@ -1,6 +1,6 @@
 ﻿# River XKB Bindings
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-xkb-bindings-v1/">RiverXkbBindingsV1</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-xkb-bindings-v1/">RiverXkbBindingsV1</a></p>
 
 ---
 
@@ -88,7 +88,7 @@ It is a protocol error to make this request more than once for a given
 river_seat_v1 object.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=error" id="error">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=riverxkbbindingsv1_error_enum" id="riverxkbbindingsv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverXkbBindingsV1.<span class="enum">Error</span>
     </a>

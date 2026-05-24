@@ -1,6 +1,6 @@
 ﻿# Tablet
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable">Stable</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable/tablet-v2/">TabletV2</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable">Stable</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable/tablet-v2/">TabletV2</a></p>
 
 ---
 
@@ -754,7 +754,7 @@ sequentially, however all events within a frame should be considered
 one hardware event.
 
 <h3 class="decleration enum" title="Type enum">
-    <a href="#/Protocols/Stable/tablet-v2/?id=type" id="type">
+    <a href="#/Protocols/Stable/tablet-v2/?id=zwptablettoolv2_type_enum" id="zwptablettoolv2_type_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletToolV2.<span class="enum">Type</span>
     </a>
@@ -789,7 +789,7 @@ provide precision focus.
 | Mouse | 0x146 | Mouse |
 | Lens | 0x147 | Lens |
 <h3 class="decleration enum" title="Capability enum">
-    <a href="#/Protocols/Stable/tablet-v2/?id=capability" id="capability">
+    <a href="#/Protocols/Stable/tablet-v2/?id=zwptablettoolv2_capability_enum" id="zwptablettoolv2_capability_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletToolV2.<span class="enum">Capability</span>
     </a>
@@ -817,7 +817,7 @@ device-specific.
 | Slider | 5 | Slider axis |
 | Wheel | 6 | Wheel axis |
 <h3 class="decleration enum" title="ButtonState enum">
-    <a href="#/Protocols/Stable/tablet-v2/?id=buttonstate" id="buttonstate">
+    <a href="#/Protocols/Stable/tablet-v2/?id=zwptablettoolv2_buttonstate_enum" id="zwptablettoolv2_buttonstate_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletToolV2.<span class="enum">ButtonState</span>
     </a>
@@ -838,7 +838,7 @@ Describes the physical state of a button that produced the button event.
 | Released | 0 | Button is not pressed |
 | Pressed | 1 | Button is pressed |
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Stable/tablet-v2/?id=error" id="error">
+    <a href="#/Protocols/Stable/tablet-v2/?id=zwptablettoolv2_error_enum" id="zwptablettoolv2_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletToolV2.<span class="enum">Error</span>
     </a>
@@ -1043,7 +1043,7 @@ This event is sent in the initial burst of events before the
 zwp_tablet_v2.done event.
 
 <h3 class="decleration enum" title="Bustype enum">
-    <a href="#/Protocols/Stable/tablet-v2/?id=bustype" id="bustype">
+    <a href="#/Protocols/Stable/tablet-v2/?id=zwptabletv2_bustype_enum" id="zwptabletv2_bustype_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletV2.<span class="enum">Bustype</span>
     </a>
@@ -1248,7 +1248,7 @@ event. Specifically, a client may get a sequence: angle, frame,
 angle, frame, etc.
 
 <h3 class="decleration enum" title="Source enum">
-    <a href="#/Protocols/Stable/tablet-v2/?id=source" id="source">
+    <a href="#/Protocols/Stable/tablet-v2/?id=zwptabletpadringv2_source_enum" id="zwptabletpadringv2_source_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletPadRingV2.<span class="enum">Source</span>
     </a>
@@ -1454,7 +1454,7 @@ event. Specifically, a client may get a sequence: position, frame,
 position, frame, etc.
 
 <h3 class="decleration enum" title="Source enum">
-    <a href="#/Protocols/Stable/tablet-v2/?id=source" id="source">
+    <a href="#/Protocols/Stable/tablet-v2/?id=zwptabletpadstripv2_source_enum" id="zwptabletpadstripv2_source_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletPadStripV2.<span class="enum">Source</span>
     </a>
@@ -1999,7 +1999,7 @@ and groups that were offered by this pad, and issue zwp_tablet_pad_v2.destroy
 the pad itself.
 
 <h3 class="decleration enum" title="ButtonState enum">
-    <a href="#/Protocols/Stable/tablet-v2/?id=buttonstate" id="buttonstate">
+    <a href="#/Protocols/Stable/tablet-v2/?id=zwptabletpadv2_buttonstate_enum" id="zwptabletpadv2_buttonstate_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpTabletPadV2.<span class="enum">ButtonState</span>
     </a>

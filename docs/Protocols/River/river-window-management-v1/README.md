@@ -1,6 +1,6 @@
 ﻿# River Window Management
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-window-management-v1/">RiverWindowManagementV1</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-window-management-v1/">RiverWindowManagementV1</a></p>
 
 ---
 
@@ -457,7 +457,7 @@ This event will be followed by a manage_start event after all other new
 state has been sent by the server.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/River/river-window-management-v1/?id=error" id="error">
+    <a href="#/Protocols/River/river-window-management-v1/?id=riverwindowmanagerv1_error_enum" id="riverwindowmanagerv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverWindowManagerV1.<span class="enum">Error</span>
     </a>
@@ -1710,7 +1710,7 @@ This event is sent once when the river_window_v1 is created and never
 sent again.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/River/river-window-management-v1/?id=error" id="error">
+    <a href="#/Protocols/River/river-window-management-v1/?id=riverwindowv1_error_enum" id="riverwindowv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverWindowV1.<span class="enum">Error</span>
     </a>
@@ -1727,7 +1727,7 @@ public enum Error
 | InvalidBorder | 2 | Invalid arg to set_borders |
 | InvalidClipBox | 3 | Invalid arg to set_clip_box |
 <h3 class="decleration enum" title="DecorationHint enum">
-    <a href="#/Protocols/River/river-window-management-v1/?id=decorationhint" id="decorationhint">
+    <a href="#/Protocols/River/river-window-management-v1/?id=riverwindowv1_decorationhint_enum" id="riverwindowv1_decorationhint_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverWindowV1.<span class="enum">DecorationHint</span>
     </a>
@@ -1744,7 +1744,7 @@ public enum DecorationHint
 | PrefersSsd | 2 | Server side decoration preferred, both CSD and SSD supported |
 | NoPreference | 3 | No preference, both CSD and SSD supported |
 <h3 class="decleration enum" title="Edges enum">
-    <a href="#/Protocols/River/river-window-management-v1/?id=edges" id="edges">
+    <a href="#/Protocols/River/river-window-management-v1/?id=riverwindowv1_edges_enum" id="riverwindowv1_edges_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverWindowV1.<span class="enum">Edges</span>
     </a>
@@ -1762,7 +1762,7 @@ public enum EdgesFlag
 | Left | 4 |  |
 | Right | 8 |  |
 <h3 class="decleration enum" title="Capabilities enum">
-    <a href="#/Protocols/River/river-window-management-v1/?id=capabilities" id="capabilities">
+    <a href="#/Protocols/River/river-window-management-v1/?id=riverwindowv1_capabilities_enum" id="riverwindowv1_capabilities_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverWindowV1.<span class="enum">Capabilities</span>
     </a>
@@ -1871,7 +1871,7 @@ This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/River/river-window-management-v1/?id=error" id="error">
+    <a href="#/Protocols/River/river-window-management-v1/?id=riverdecorationv1_error_enum" id="riverdecorationv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverDecorationV1.<span class="enum">Error</span>
     </a>
@@ -1966,7 +1966,7 @@ This request modifies rendering state and may only be made as part of a
 render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/River/river-window-management-v1/?id=error" id="error">
+    <a href="#/Protocols/River/river-window-management-v1/?id=rivershellsurfacev1_error_enum" id="rivershellsurfacev1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverShellSurfaceV1.<span class="enum">Error</span>
     </a>
@@ -2333,7 +2333,7 @@ cause the areas of multiple logical outputs to overlap when the
 corresponding manage_start event is received.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/River/river-window-management-v1/?id=error" id="error">
+    <a href="#/Protocols/River/river-window-management-v1/?id=riveroutputv1_error_enum" id="riveroutputv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverOutputV1.<span class="enum">Error</span>
     </a>
@@ -2347,7 +2347,7 @@ public enum Error
 | --- | --- | --- |
 | InvalidPresentationMode | 0 | Invalid presentation mode enum value |
 <h3 class="decleration enum" title="PresentationMode enum">
-    <a href="#/Protocols/River/river-window-management-v1/?id=presentationmode" id="presentationmode">
+    <a href="#/Protocols/River/river-window-management-v1/?id=riveroutputv1_presentationmode_enum" id="riveroutputv1_presentationmode_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverOutputV1.<span class="enum">PresentationMode</span>
     </a>
@@ -2874,7 +2874,7 @@ sequence unless there is no change in x/y position since the last time this
 event was sent.
 
 <h3 class="decleration enum" title="Modifiers enum">
-    <a href="#/Protocols/River/river-window-management-v1/?id=modifiers" id="modifiers">
+    <a href="#/Protocols/River/river-window-management-v1/?id=riverseatv1_modifiers_enum" id="riverseatv1_modifiers_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverSeatV1.<span class="enum">Modifiers</span>
     </a>

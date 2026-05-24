@@ -46,6 +46,12 @@ public static class Extensions
     }
 
 
+    /// <summary>
+    /// Docsify-compatible anchor id (matches slugify for PascalCase identifiers).
+    /// </summary>
+    public static string ToDocId(this string value) =>
+        string.IsNullOrEmpty(value) ? value : value.ToLowerInvariant();
+
     public static string ToCamel(this string name)
     {
         if (string.IsNullOrEmpty(name)) return name;

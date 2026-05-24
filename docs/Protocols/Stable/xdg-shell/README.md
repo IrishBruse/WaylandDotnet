@@ -1,6 +1,6 @@
 ﻿# XDG Shell
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable">Stable</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable/xdg-shell/">XdgShell</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable">Stable</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable/xdg-shell/">XdgShell</a></p>
 
 ---
 
@@ -148,7 +148,7 @@ A compositor is free to ping in any way it wants, but a client must
 always respond to any xdg_wm_base object it created.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Stable/xdg-shell/?id=error" id="error">
+    <a href="#/Protocols/Stable/xdg-shell/?id=xdgwmbase_error_enum" id="xdgwmbase_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         XdgWmBase.<span class="enum">Error</span>
     </a>
@@ -454,7 +454,7 @@ with set_parent_size to determine what future state the popup should be
 constrained using.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Stable/xdg-shell/?id=error" id="error">
+    <a href="#/Protocols/Stable/xdg-shell/?id=xdgpositioner_error_enum" id="xdgpositioner_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         XdgPositioner.<span class="enum">Error</span>
     </a>
@@ -468,7 +468,7 @@ public enum Error
 | --- | --- | --- |
 | InvalidInput | 0 | Invalid input provided |
 <h3 class="decleration enum" title="Anchor enum">
-    <a href="#/Protocols/Stable/xdg-shell/?id=anchor" id="anchor">
+    <a href="#/Protocols/Stable/xdg-shell/?id=xdgpositioner_anchor_enum" id="xdgpositioner_anchor_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         XdgPositioner.<span class="enum">Anchor</span>
     </a>
@@ -490,7 +490,7 @@ public enum Anchor
 | TopRight | 7 |  |
 | BottomRight | 8 |  |
 <h3 class="decleration enum" title="Gravity enum">
-    <a href="#/Protocols/Stable/xdg-shell/?id=gravity" id="gravity">
+    <a href="#/Protocols/Stable/xdg-shell/?id=xdgpositioner_gravity_enum" id="xdgpositioner_gravity_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         XdgPositioner.<span class="enum">Gravity</span>
     </a>
@@ -512,7 +512,7 @@ public enum Gravity
 | TopRight | 7 |  |
 | BottomRight | 8 |  |
 <h3 class="decleration enum" title="ConstraintAdjustment enum">
-    <a href="#/Protocols/Stable/xdg-shell/?id=constraintadjustment" id="constraintadjustment">
+    <a href="#/Protocols/Stable/xdg-shell/?id=xdgpositioner_constraintadjustment_enum" id="xdgpositioner_constraintadjustment_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         XdgPositioner.<span class="enum">ConstraintAdjustment</span>
     </a>
@@ -824,7 +824,7 @@ If the client receives multiple configure events before it can respond
 to one, it is free to discard all but the last event it received.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Stable/xdg-shell/?id=error" id="error">
+    <a href="#/Protocols/Stable/xdg-shell/?id=xdgsurface_error_enum" id="xdgsurface_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         XdgSurface.<span class="enum">Error</span>
     </a>
@@ -1524,7 +1524,7 @@ The capabilities are sent as an array of 32-bit unsigned integers in
 native endianness.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Stable/xdg-shell/?id=error" id="error">
+    <a href="#/Protocols/Stable/xdg-shell/?id=xdgtoplevel_error_enum" id="xdgtoplevel_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         XdgToplevel.<span class="enum">Error</span>
     </a>
@@ -1540,7 +1540,7 @@ public enum Error
 | InvalidParent | 1 | Invalid parent toplevel |
 | InvalidSize | 2 | Client provided an invalid min or max size |
 <h3 class="decleration enum" title="ResizeEdge enum">
-    <a href="#/Protocols/Stable/xdg-shell/?id=resizeedge" id="resizeedge">
+    <a href="#/Protocols/Stable/xdg-shell/?id=xdgtoplevel_resizeedge_enum" id="xdgtoplevel_resizeedge_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         XdgToplevel.<span class="enum">ResizeEdge</span>
     </a>
@@ -1569,7 +1569,7 @@ is being dragged in a resize operation.
 | TopRight | 9 |  |
 | BottomRight | 10 |  |
 <h3 class="decleration enum" title="State enum">
-    <a href="#/Protocols/Stable/xdg-shell/?id=state" id="state">
+    <a href="#/Protocols/Stable/xdg-shell/?id=xdgtoplevel_state_enum" id="xdgtoplevel_state_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         XdgToplevel.<span class="enum">State</span>
     </a>
@@ -1606,7 +1606,7 @@ States set in this way are double-buffered, see wl_surface.commit.
 | ConstrainedTop | 12 |  |
 | ConstrainedBottom | 13 |  |
 <h3 class="decleration enum" title="WmCapabilities enum">
-    <a href="#/Protocols/Stable/xdg-shell/?id=wmcapabilities" id="wmcapabilities">
+    <a href="#/Protocols/Stable/xdg-shell/?id=xdgtoplevel_wmcapabilities_enum" id="xdgtoplevel_wmcapabilities_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         XdgToplevel.<span class="enum">WmCapabilities</span>
     </a>
@@ -1865,7 +1865,7 @@ acknowledge the new popup configuration for the new position to take
 effect. See xdg_surface.ack_configure for details.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Stable/xdg-shell/?id=error" id="error">
+    <a href="#/Protocols/Stable/xdg-shell/?id=xdgpopup_error_enum" id="xdgpopup_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         XdgPopup.<span class="enum">Error</span>
     </a>

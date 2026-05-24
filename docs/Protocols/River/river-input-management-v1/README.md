@@ -1,6 +1,6 @@
 ﻿# River Input Management
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-input-management-v1/">RiverInputManagementV1</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-input-management-v1/">RiverInputManagementV1</a></p>
 
 ---
 
@@ -154,7 +154,7 @@ void InputDeviceHandler(RiverInputDeviceV1 id)
 A new input device has been created.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/River/river-input-management-v1/?id=error" id="error">
+    <a href="#/Protocols/River/river-input-management-v1/?id=riverinputmanagerv1_error_enum" id="riverinputmanagerv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverInputManagerV1.<span class="enum">Error</span>
     </a>
@@ -411,7 +411,7 @@ This allows changes to one or more river_input_device_v1 properties to
 be seen as atomic, even if they happen via multiple events.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/River/river-input-management-v1/?id=error" id="error">
+    <a href="#/Protocols/River/river-input-management-v1/?id=riverinputdevicev1_error_enum" id="riverinputdevicev1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverInputDeviceV1.<span class="enum">Error</span>
     </a>
@@ -427,7 +427,7 @@ public enum Error
 | InvalidScrollFactor | 1 |  |
 | InvalidMapToRectangle | 2 |  |
 <h3 class="decleration enum" title="Type enum">
-    <a href="#/Protocols/River/river-input-management-v1/?id=type" id="type">
+    <a href="#/Protocols/River/river-input-management-v1/?id=riverinputdevicev1_type_enum" id="riverinputdevicev1_type_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverInputDeviceV1.<span class="enum">Type</span>
     </a>

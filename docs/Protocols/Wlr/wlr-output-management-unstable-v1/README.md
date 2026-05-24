@@ -1,6 +1,6 @@
 ﻿# Output Management
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr">Wlr</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr/wlr-output-management-unstable-v1/">WlrOutputManagementUnstableV1</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr">Wlr</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr/wlr-output-management-unstable-v1/">WlrOutputManagementUnstableV1</a></p>
 
 ---
 
@@ -573,7 +573,7 @@ the head or not. Adaptive sync is also known as Variable Refresh
 Rate or VRR.
 
 <h3 class="decleration enum" title="AdaptiveSyncState enum">
-    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=adaptivesyncstate" id="adaptivesyncstate">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputheadv1_adaptivesyncstate_enum" id="zwlroutputheadv1_adaptivesyncstate_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrOutputHeadV1.<span class="enum">AdaptiveSyncState</span>
     </a>
@@ -904,7 +904,7 @@ again.
 Upon receiving this event, the client should destroy this object.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=error" id="error">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputconfigurationv1_error_enum" id="zwlroutputconfigurationv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrOutputConfigurationV1.<span class="enum">Error</span>
     </a>
@@ -1059,7 +1059,7 @@ This request enables/disables adaptive sync. Adaptive sync is also
 known as Variable Refresh Rate or VRR.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=error" id="error">
+    <a href="#/Protocols/Wlr/wlr-output-management-unstable-v1/?id=zwlroutputconfigurationheadv1_error_enum" id="zwlroutputconfigurationheadv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrOutputConfigurationHeadV1.<span class="enum">Error</span>
     </a>

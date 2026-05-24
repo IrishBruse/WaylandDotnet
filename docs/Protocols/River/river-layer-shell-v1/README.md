@@ -1,6 +1,6 @@
 ﻿# River Layer Shell
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-layer-shell-v1/">RiverLayerShellV1</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-layer-shell-v1/">RiverLayerShellV1</a></p>
 
 ---
 
@@ -85,7 +85,7 @@ It is a protocol error to make this request more than once for a given
 river_seat_v1 object.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/River/river-layer-shell-v1/?id=error" id="error">
+    <a href="#/Protocols/River/river-layer-shell-v1/?id=riverlayershellv1_error_enum" id="riverlayershellv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLayerShellV1.<span class="enum">Error</span>
     </a>

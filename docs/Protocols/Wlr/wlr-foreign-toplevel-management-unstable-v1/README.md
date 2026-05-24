@@ -1,6 +1,6 @@
 ﻿# Foreign Toplevel Management
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr">Wlr</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/">WlrForeignToplevelManagementUnstableV1</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr">Wlr</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/">WlrForeignToplevelManagementUnstableV1</a></p>
 
 ---
 
@@ -475,7 +475,7 @@ This event is emitted whenever the parent of the toplevel changes.
 No event is emitted when the parent handle is destroyed by the client.
 
 <h3 class="decleration enum" title="State enum">
-    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=state" id="state">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=zwlrforeigntoplevelhandlev1_state_enum" id="zwlrforeigntoplevelhandlev1_state_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrForeignToplevelHandleV1.<span class="enum">State</span>
     </a>
@@ -499,7 +499,7 @@ as the states with the same names defined in xdg-toplevel
 | Activated | 2 | The toplevel is active |
 | Fullscreen | 3 | The toplevel is fullscreen |
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=error" id="error">
+    <a href="#/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/?id=zwlrforeigntoplevelhandlev1_error_enum" id="zwlrforeigntoplevelhandlev1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrForeignToplevelHandleV1.<span class="enum">Error</span>
     </a>

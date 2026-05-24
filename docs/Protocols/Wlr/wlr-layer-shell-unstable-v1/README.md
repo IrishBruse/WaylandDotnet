@@ -1,6 +1,6 @@
 ﻿# Layer Shell
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr">Wlr</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr/wlr-layer-shell-unstable-v1/">WlrLayerShellUnstableV1</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr">Wlr</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr/wlr-layer-shell-unstable-v1/">WlrLayerShellUnstableV1</a></p>
 
 ---
 
@@ -88,7 +88,7 @@ object any more. Objects that have been created through this instance
 are not affected.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Wlr/wlr-layer-shell-unstable-v1/?id=error" id="error">
+    <a href="#/Protocols/Wlr/wlr-layer-shell-unstable-v1/?id=zwlrlayershellv1_error_enum" id="zwlrlayershellv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrLayerShellV1.<span class="enum">Error</span>
     </a>
@@ -104,7 +104,7 @@ public enum Error
 | InvalidLayer | 1 | Layer value is invalid |
 | AlreadyConstructed | 2 | Wl_surface has a buffer attached or committed |
 <h3 class="decleration enum" title="Layer enum">
-    <a href="#/Protocols/Wlr/wlr-layer-shell-unstable-v1/?id=layer" id="layer">
+    <a href="#/Protocols/Wlr/wlr-layer-shell-unstable-v1/?id=zwlrlayershellv1_layer_enum" id="zwlrlayershellv1_layer_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrLayerShellV1.<span class="enum">Layer</span>
     </a>
@@ -506,7 +506,7 @@ ignored. The client should destroy the resource after receiving this
 event, and create a new surface if they so choose.
 
 <h3 class="decleration enum" title="KeyboardInteractivity enum">
-    <a href="#/Protocols/Wlr/wlr-layer-shell-unstable-v1/?id=keyboardinteractivity" id="keyboardinteractivity">
+    <a href="#/Protocols/Wlr/wlr-layer-shell-unstable-v1/?id=zwlrlayersurfacev1_keyboardinteractivity_enum" id="zwlrlayersurfacev1_keyboardinteractivity_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrLayerSurfaceV1.<span class="enum">KeyboardInteractivity</span>
     </a>
@@ -532,7 +532,7 @@ keyboard focus.
 | Exclusive | 1 |  |
 | OnDemand | 2 |  |
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Wlr/wlr-layer-shell-unstable-v1/?id=error" id="error">
+    <a href="#/Protocols/Wlr/wlr-layer-shell-unstable-v1/?id=zwlrlayersurfacev1_error_enum" id="zwlrlayersurfacev1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrLayerSurfaceV1.<span class="enum">Error</span>
     </a>
@@ -550,7 +550,7 @@ public enum Error
 | InvalidKeyboardInteractivity | 3 | Keyboard interactivity is invalid |
 | InvalidExclusiveEdge | 4 | Exclusive edge is invalid given the surface anchors |
 <h3 class="decleration enum" title="Anchor enum">
-    <a href="#/Protocols/Wlr/wlr-layer-shell-unstable-v1/?id=anchor" id="anchor">
+    <a href="#/Protocols/Wlr/wlr-layer-shell-unstable-v1/?id=zwlrlayersurfacev1_anchor_enum" id="zwlrlayersurfacev1_anchor_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwlrLayerSurfaceV1.<span class="enum">Anchor</span>
     </a>

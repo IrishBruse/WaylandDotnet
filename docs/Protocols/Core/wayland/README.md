@@ -1,6 +1,6 @@
 ﻿# Wayland
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Core">Core</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Core/wayland/">Wayland</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Core">Core</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Core/wayland/">Wayland</a></p>
 
 ---
 
@@ -126,7 +126,7 @@ seen the delete request. When the client receives this event,
 it will know that it can safely reuse the object ID.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Core/wayland/?id=error" id="error">
+    <a href="#/Protocols/Core/wayland/?id=wldisplay_error_enum" id="wldisplay_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlDisplay.<span class="enum">Error</span>
     </a>
@@ -541,7 +541,7 @@ increasing the wl_shm version; as a result, clients may receive format
 codes which were not in the list at the time the client was made.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Core/wayland/?id=error" id="error">
+    <a href="#/Protocols/Core/wayland/?id=wlshm_error_enum" id="wlshm_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlShm.<span class="enum">Error</span>
     </a>
@@ -563,7 +563,7 @@ These errors can be emitted in response to wl_shm requests.
 | InvalidStride | 1 | Invalid size or stride during pool or buffer creation |
 | InvalidFd | 2 | Mmapping the file descriptor failed |
 <h3 class="decleration enum" title="Format enum">
-    <a href="#/Protocols/Core/wayland/?id=format" id="format">
+    <a href="#/Protocols/Core/wayland/?id=wlshm_format_enum" id="wlshm_format_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlShm.<span class="enum">Format</span>
     </a>
@@ -1095,7 +1095,7 @@ final wl_data_offer.set_actions and wl_data_offer.accept requests
 must happen before the call to wl_data_offer.finish.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Core/wayland/?id=error" id="error">
+    <a href="#/Protocols/Core/wayland/?id=wldataoffer_error_enum" id="wldataoffer_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlDataOffer.<span class="enum">Error</span>
     </a>
@@ -1369,7 +1369,7 @@ Clients can trigger cursor surface changes from this point, so
 they reflect the current action.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Core/wayland/?id=error" id="error">
+    <a href="#/Protocols/Core/wayland/?id=wldatasource_error_enum" id="wldatasource_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlDataSource.<span class="enum">Error</span>
     </a>
@@ -1648,7 +1648,7 @@ will be sent.  The client must destroy the previous selection
 data_offer, if any, upon receiving this event.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Core/wayland/?id=error" id="error">
+    <a href="#/Protocols/Core/wayland/?id=wldatadevice_error_enum" id="wldatadevice_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlDataDevice.<span class="enum">Error</span>
     </a>
@@ -1744,7 +1744,7 @@ This request destroys the wl_data_device_manager. This has no effect on any othe
 objects.
 
 <h3 class="decleration enum" title="DndAction enum">
-    <a href="#/Protocols/Core/wayland/?id=dndaction" id="dndaction">
+    <a href="#/Protocols/Core/wayland/?id=wldatadevicemanager_dndaction_enum" id="wldatadevicemanager_dndaction_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlDataDeviceManager.<span class="enum">DndAction</span>
     </a>
@@ -1835,7 +1835,7 @@ already has another role, it raises a protocol error.
 Only one shell surface can be associated with a given surface.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Core/wayland/?id=error" id="error">
+    <a href="#/Protocols/Core/wayland/?id=wlshell_error_enum" id="wlshell_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlShell.<span class="enum">Error</span>
     </a>
@@ -2243,7 +2243,7 @@ that is, when the user clicks a surface that doesn't belong
 to the client owning the popup surface.
 
 <h3 class="decleration enum" title="Resize enum">
-    <a href="#/Protocols/Core/wayland/?id=resize" id="resize">
+    <a href="#/Protocols/Core/wayland/?id=wlshellsurface_resize_enum" id="wlshellsurface_resize_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlShellSurface.<span class="enum">Resize</span>
     </a>
@@ -2274,7 +2274,7 @@ an appropriate cursor image.
 | TopRight | 9 | Top and right edges |
 | BottomRight | 10 | Bottom and right edges |
 <h3 class="decleration enum" title="Transient enum">
-    <a href="#/Protocols/Core/wayland/?id=transient" id="transient">
+    <a href="#/Protocols/Core/wayland/?id=wlshellsurface_transient_enum" id="wlshellsurface_transient_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlShellSurface.<span class="enum">Transient</span>
     </a>
@@ -2295,7 +2295,7 @@ of transient surfaces. Used in the set_transient request.
 | --- | --- | --- |
 | Inactive | 0x1 | Do not set keyboard focus |
 <h3 class="decleration enum" title="FullscreenMethod enum">
-    <a href="#/Protocols/Core/wayland/?id=fullscreenmethod" id="fullscreenmethod">
+    <a href="#/Protocols/Core/wayland/?id=wlshellsurface_fullscreenmethod_enum" id="wlshellsurface_fullscreenmethod_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlShellSurface.<span class="enum">FullscreenMethod</span>
     </a>
@@ -3041,7 +3041,7 @@ wl_surface.set_buffer_transform might allow the compositor to use the
 surface buffer more efficiently.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Core/wayland/?id=error" id="error">
+    <a href="#/Protocols/Core/wayland/?id=wlsurface_error_enum" id="wlsurface_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlSurface.<span class="enum">Error</span>
     </a>
@@ -3258,7 +3258,7 @@ Compositors may re-use the same seat name if the wl_seat global is
 destroyed and re-created later.
 
 <h3 class="decleration enum" title="Capability enum">
-    <a href="#/Protocols/Core/wayland/?id=capability" id="capability">
+    <a href="#/Protocols/Core/wayland/?id=wlseat_capability_enum" id="wlseat_capability_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlSeat.<span class="enum">Capability</span>
     </a>
@@ -3281,7 +3281,7 @@ set, then it is present on the seat.
 | Keyboard | 2 | The seat has one or more keyboards |
 | Touch | 4 | The seat has touch devices |
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Core/wayland/?id=error" id="error">
+    <a href="#/Protocols/Core/wayland/?id=wlseat_error_enum" id="wlseat_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlSeat.<span class="enum">Error</span>
     </a>
@@ -3817,7 +3817,7 @@ wl_pointer.axis_discrete and wl_pointer.axis_source is not
 guaranteed.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Core/wayland/?id=error" id="error">
+    <a href="#/Protocols/Core/wayland/?id=wlpointer_error_enum" id="wlpointer_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlPointer.<span class="enum">Error</span>
     </a>
@@ -3831,7 +3831,7 @@ public enum Error
 | --- | --- | --- |
 | Role | 0 | Given wl_surface has another role |
 <h3 class="decleration enum" title="ButtonState enum">
-    <a href="#/Protocols/Core/wayland/?id=buttonstate" id="buttonstate">
+    <a href="#/Protocols/Core/wayland/?id=wlpointer_buttonstate_enum" id="wlpointer_buttonstate_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlPointer.<span class="enum">ButtonState</span>
     </a>
@@ -3853,7 +3853,7 @@ event.
 | Released | 0 | The button is not pressed |
 | Pressed | 1 | The button is pressed |
 <h3 class="decleration enum" title="Axis enum">
-    <a href="#/Protocols/Core/wayland/?id=axis" id="axis">
+    <a href="#/Protocols/Core/wayland/?id=wlpointer_axis_enum" id="wlpointer_axis_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlPointer.<span class="enum">Axis</span>
     </a>
@@ -3874,7 +3874,7 @@ Describes the axis types of scroll events.
 | VerticalScroll | 0 | Vertical axis |
 | HorizontalScroll | 1 | Horizontal axis |
 <h3 class="decleration enum" title="AxisSource enum">
-    <a href="#/Protocols/Core/wayland/?id=axissource" id="axissource">
+    <a href="#/Protocols/Core/wayland/?id=wlpointer_axissource_enum" id="wlpointer_axissource_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlPointer.<span class="enum">AxisSource</span>
     </a>
@@ -3912,7 +3912,7 @@ wheel but the scroll event is not caused by a rotation but a
 | Continuous | 2 | Continuous coordinate space |
 | WheelTilt | 3 | A physical wheel tilt |
 <h3 class="decleration enum" title="AxisRelativeDirection enum">
-    <a href="#/Protocols/Core/wayland/?id=axisrelativedirection" id="axisrelativedirection">
+    <a href="#/Protocols/Core/wayland/?id=wlpointer_axisrelativedirection_enum" id="wlpointer_axisrelativedirection_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlPointer.<span class="enum">AxisRelativeDirection</span>
     </a>
@@ -4174,7 +4174,7 @@ so clients should continue listening for the event past the creation
 of wl_keyboard.
 
 <h3 class="decleration enum" title="KeymapFormat enum">
-    <a href="#/Protocols/Core/wayland/?id=keymapformat" id="keymapformat">
+    <a href="#/Protocols/Core/wayland/?id=wlkeyboard_keymapformat_enum" id="wlkeyboard_keymapformat_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlKeyboard.<span class="enum">KeymapFormat</span>
     </a>
@@ -4196,7 +4196,7 @@ client with the wl_keyboard.keymap event.
 | NoKeymap | 0 | No keymap; client must understand how to interpret the raw keycode |
 | XkbV1 | 1 | Libxkbcommon compatible, null-terminated string; to determine the xkb keycode, clients must add 8 to the key event keycode |
 <h3 class="decleration enum" title="KeyState enum">
-    <a href="#/Protocols/Core/wayland/?id=keystate" id="keystate">
+    <a href="#/Protocols/Core/wayland/?id=wlkeyboard_keystate_enum" id="wlkeyboard_keystate_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlKeyboard.<span class="enum">KeyState</span>
     </a>
@@ -4745,7 +4745,7 @@ not be sent at all.
 The description event will be followed by a done event.
 
 <h3 class="decleration enum" title="Subpixel enum">
-    <a href="#/Protocols/Core/wayland/?id=subpixel" id="subpixel">
+    <a href="#/Protocols/Core/wayland/?id=wloutput_subpixel_enum" id="wloutput_subpixel_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlOutput.<span class="enum">Subpixel</span>
     </a>
@@ -4771,7 +4771,7 @@ pixels on an output are laid out.
 | VerticalRgb | 4 | Vertical RGB |
 | VerticalBgr | 5 | Vertical BGR |
 <h3 class="decleration enum" title="Transform enum">
-    <a href="#/Protocols/Core/wayland/?id=transform" id="transform">
+    <a href="#/Protocols/Core/wayland/?id=wloutput_transform_enum" id="wloutput_transform_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlOutput.<span class="enum">Transform</span>
     </a>
@@ -4807,7 +4807,7 @@ surfaces.
 | Flipped180 | 6 | Flip and rotate 180 degrees counter-clockwise |
 | Flipped270 | 7 | Flip and rotate 270 degrees counter-clockwise |
 <h3 class="decleration enum" title="Mode enum">
-    <a href="#/Protocols/Core/wayland/?id=mode" id="mode">
+    <a href="#/Protocols/Core/wayland/?id=wloutput_mode_enum" id="wloutput_mode_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlOutput.<span class="enum">Mode</span>
     </a>
@@ -4997,7 +4997,7 @@ This request modifies the behaviour of wl_surface.commit request on
 the sub-surface, see the documentation on wl_subsurface interface.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Core/wayland/?id=error" id="error">
+    <a href="#/Protocols/Core/wayland/?id=wlsubcompositor_error_enum" id="wlsubcompositor_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlSubcompositor.<span class="enum">Error</span>
     </a>
@@ -5211,7 +5211,7 @@ mode.
 See wl_subsurface and wl_surface.commit for more information.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Core/wayland/?id=error" id="error">
+    <a href="#/Protocols/Core/wayland/?id=wlsubsurface_error_enum" id="wlsubsurface_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlSubsurface.<span class="enum">Error</span>
     </a>
@@ -5324,7 +5324,7 @@ response to a wl_registry.global_remove() event even if it did not bind
 the corresponding global.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Core/wayland/?id=error" id="error">
+    <a href="#/Protocols/Core/wayland/?id=wlfixes_error_enum" id="wlfixes_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         WlFixes.<span class="enum">Error</span>
     </a>

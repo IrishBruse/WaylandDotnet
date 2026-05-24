@@ -1,6 +1,6 @@
 ﻿# River LibInput Config
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-libinput-config-v1/">RiverLibinputConfigV1</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-libinput-config-v1/">RiverLibinputConfigV1</a></p>
 
 ---
 
@@ -128,7 +128,7 @@ A new libinput device has been created. Not every river_input_device_v1
 is necessarily a libinput device as well.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=error" id="error">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputconfigv1_error_enum" id="riverlibinputconfigv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputConfigV1.<span class="enum">Error</span>
     </a>
@@ -1693,7 +1693,7 @@ This allows changes to one or more river_libinput_device_v1 properties
 to be seen as atomic, even if they happen via multiple events.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=error" id="error">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_error_enum" id="riverlibinputdevicev1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">Error</span>
     </a>
@@ -1707,7 +1707,7 @@ public enum Error
 | --- | --- | --- |
 | InvalidArg | 0 | Invalid enum value or similar |
 <h3 class="decleration enum" title="SendEventsModes enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=sendeventsmodes" id="sendeventsmodes">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_sendeventsmodes_enum" id="riverlibinputdevicev1_sendeventsmodes_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">SendEventsModes</span>
     </a>
@@ -1723,7 +1723,7 @@ public enum SendEventsModesFlag
 | Disabled | 1 |  |
 | DisabledOnExternalMouse | 2 |  |
 <h3 class="decleration enum" title="TapState enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=tapstate" id="tapstate">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_tapstate_enum" id="riverlibinputdevicev1_tapstate_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">TapState</span>
     </a>
@@ -1738,7 +1738,7 @@ public enum TapState
 | Disabled | 0 |  |
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="TapButtonMap enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=tapbuttonmap" id="tapbuttonmap">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_tapbuttonmap_enum" id="riverlibinputdevicev1_tapbuttonmap_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">TapButtonMap</span>
     </a>
@@ -1753,7 +1753,7 @@ public enum TapButtonMap
 | Lrm | 0 | 1/2/3 finger tap maps to left/right/middle |
 | Lmr | 1 | 1/2/3 finger tap maps to left/middle/right |
 <h3 class="decleration enum" title="DragState enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=dragstate" id="dragstate">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_dragstate_enum" id="riverlibinputdevicev1_dragstate_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">DragState</span>
     </a>
@@ -1768,7 +1768,7 @@ public enum DragState
 | Disabled | 0 |  |
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="DragLockState enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=draglockstate" id="draglockstate">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_draglockstate_enum" id="riverlibinputdevicev1_draglockstate_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">DragLockState</span>
     </a>
@@ -1784,7 +1784,7 @@ public enum DragLockState
 | EnabledTimeout | 1 |  |
 | EnabledSticky | 2 |  |
 <h3 class="decleration enum" title="ThreeFingerDragState enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=threefingerdragstate" id="threefingerdragstate">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_threefingerdragstate_enum" id="riverlibinputdevicev1_threefingerdragstate_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">ThreeFingerDragState</span>
     </a>
@@ -1800,7 +1800,7 @@ public enum ThreeFingerDragState
 | Enabled3fg | 1 |  |
 | Enabled4fg | 2 |  |
 <h3 class="decleration enum" title="AccelProfile enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=accelprofile" id="accelprofile">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_accelprofile_enum" id="riverlibinputdevicev1_accelprofile_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">AccelProfile</span>
     </a>
@@ -1817,7 +1817,7 @@ public enum AccelProfile
 | Adaptive | 2 |  |
 | Custom | 4 |  |
 <h3 class="decleration enum" title="AccelProfiles enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=accelprofiles" id="accelprofiles">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_accelprofiles_enum" id="riverlibinputdevicev1_accelprofiles_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">AccelProfiles</span>
     </a>
@@ -1834,7 +1834,7 @@ public enum AccelProfilesFlag
 | Adaptive | 2 |  |
 | Custom | 4 |  |
 <h3 class="decleration enum" title="NaturalScrollState enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=naturalscrollstate" id="naturalscrollstate">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_naturalscrollstate_enum" id="riverlibinputdevicev1_naturalscrollstate_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">NaturalScrollState</span>
     </a>
@@ -1849,7 +1849,7 @@ public enum NaturalScrollState
 | Disabled | 0 |  |
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="LeftHandedState enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=lefthandedstate" id="lefthandedstate">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_lefthandedstate_enum" id="riverlibinputdevicev1_lefthandedstate_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">LeftHandedState</span>
     </a>
@@ -1864,7 +1864,7 @@ public enum LeftHandedState
 | Disabled | 0 |  |
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="ClickMethod enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=clickmethod" id="clickmethod">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_clickmethod_enum" id="riverlibinputdevicev1_clickmethod_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">ClickMethod</span>
     </a>
@@ -1880,7 +1880,7 @@ public enum ClickMethod
 | ButtonAreas | 1 |  |
 | Clickfinger | 2 |  |
 <h3 class="decleration enum" title="ClickMethods enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=clickmethods" id="clickmethods">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_clickmethods_enum" id="riverlibinputdevicev1_clickmethods_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">ClickMethods</span>
     </a>
@@ -1896,7 +1896,7 @@ public enum ClickMethodsFlag
 | ButtonAreas | 1 |  |
 | Clickfinger | 2 |  |
 <h3 class="decleration enum" title="ClickfingerButtonMap enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=clickfingerbuttonmap" id="clickfingerbuttonmap">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_clickfingerbuttonmap_enum" id="riverlibinputdevicev1_clickfingerbuttonmap_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">ClickfingerButtonMap</span>
     </a>
@@ -1911,7 +1911,7 @@ public enum ClickfingerButtonMap
 | Lrm | 0 |  |
 | Lmr | 1 |  |
 <h3 class="decleration enum" title="MiddleEmulationState enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=middleemulationstate" id="middleemulationstate">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_middleemulationstate_enum" id="riverlibinputdevicev1_middleemulationstate_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">MiddleEmulationState</span>
     </a>
@@ -1926,7 +1926,7 @@ public enum MiddleEmulationState
 | Disabled | 0 |  |
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="ScrollMethod enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=scrollmethod" id="scrollmethod">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_scrollmethod_enum" id="riverlibinputdevicev1_scrollmethod_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">ScrollMethod</span>
     </a>
@@ -1943,7 +1943,7 @@ public enum ScrollMethod
 | Edge | 2 |  |
 | OnButtonDown | 4 |  |
 <h3 class="decleration enum" title="ScrollMethods enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=scrollmethods" id="scrollmethods">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_scrollmethods_enum" id="riverlibinputdevicev1_scrollmethods_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">ScrollMethods</span>
     </a>
@@ -1960,7 +1960,7 @@ public enum ScrollMethodsFlag
 | Edge | 2 |  |
 | OnButtonDown | 4 |  |
 <h3 class="decleration enum" title="ScrollButtonLockState enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=scrollbuttonlockstate" id="scrollbuttonlockstate">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_scrollbuttonlockstate_enum" id="riverlibinputdevicev1_scrollbuttonlockstate_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">ScrollButtonLockState</span>
     </a>
@@ -1975,7 +1975,7 @@ public enum ScrollButtonLockState
 | Disabled | 0 |  |
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="DwtState enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=dwtstate" id="dwtstate">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_dwtstate_enum" id="riverlibinputdevicev1_dwtstate_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">DwtState</span>
     </a>
@@ -1990,7 +1990,7 @@ public enum DwtState
 | Disabled | 0 |  |
 | Enabled | 1 |  |
 <h3 class="decleration enum" title="DwtpState enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=dwtpstate" id="dwtpstate">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputdevicev1_dwtpstate_enum" id="riverlibinputdevicev1_dwtpstate_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputDeviceV1.<span class="enum">DwtpState</span>
     </a>
@@ -2060,7 +2060,7 @@ Defines the acceleration function for a given movement type
 in an acceleration configuration with custom accel profile.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=error" id="error">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputaccelconfigv1_error_enum" id="riverlibinputaccelconfigv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputAccelConfigV1.<span class="enum">Error</span>
     </a>
@@ -2074,7 +2074,7 @@ public enum Error
 | --- | --- | --- |
 | InvalidArg | 0 | Invalid enum value or similar |
 <h3 class="decleration enum" title="AccelType enum">
-    <a href="#/Protocols/River/river-libinput-config-v1/?id=acceltype" id="acceltype">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=riverlibinputaccelconfigv1_acceltype_enum" id="riverlibinputaccelconfigv1_acceltype_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         RiverLibinputAccelConfigV1.<span class="enum">AccelType</span>
     </a>

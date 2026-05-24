@@ -1,6 +1,6 @@
 ﻿# Workspace Extension
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Staging">Staging</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Staging/ext-workspace-v1/">ExtWorkspaceV1</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Staging">Staging</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Staging/ext-workspace-v1/">ExtWorkspaceV1</a></p>
 
 ---
 
@@ -377,7 +377,7 @@ The compositor must remove all workspaces belonging to a workspace group
 via a workspace_leave event before removing the workspace group.
 
 <h3 class="decleration enum" title="GroupCapabilities enum">
-    <a href="#/Protocols/Staging/ext-workspace-v1/?id=groupcapabilities" id="groupcapabilities">
+    <a href="#/Protocols/Staging/ext-workspace-v1/?id=extworkspacegrouphandlev1_groupcapabilities_enum" id="extworkspacegrouphandlev1_groupcapabilities_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ExtWorkspaceGroupHandleV1.<span class="enum">GroupCapabilities</span>
     </a>
@@ -688,7 +688,7 @@ The compositor must only remove a workspaces not currently belonging to any
 workspace_group.
 
 <h3 class="decleration enum" title="State enum">
-    <a href="#/Protocols/Staging/ext-workspace-v1/?id=state" id="state">
+    <a href="#/Protocols/Staging/ext-workspace-v1/?id=extworkspacehandlev1_state_enum" id="extworkspacehandlev1_state_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ExtWorkspaceHandleV1.<span class="enum">State</span>
     </a>
@@ -710,7 +710,7 @@ The different states that a workspace can have.
 | Urgent | 2 | The workspace requests attention |
 | Hidden | 4 |  |
 <h3 class="decleration enum" title="WorkspaceCapabilities enum">
-    <a href="#/Protocols/Staging/ext-workspace-v1/?id=workspacecapabilities" id="workspacecapabilities">
+    <a href="#/Protocols/Staging/ext-workspace-v1/?id=extworkspacehandlev1_workspacecapabilities_enum" id="extworkspacehandlev1_workspacecapabilities_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ExtWorkspaceHandleV1.<span class="enum">WorkspaceCapabilities</span>
     </a>

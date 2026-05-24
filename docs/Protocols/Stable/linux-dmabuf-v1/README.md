@@ -1,6 +1,6 @@
 ﻿# Linux DMA-BUF
 
-<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable">Stable</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable/linux-dmabuf-v1/">LinuxDmabufV1</a></p>
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable">Stable</a> <img src="assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Stable/linux-dmabuf-v1/">LinuxDmabufV1</a></p>
 
 ---
 
@@ -501,7 +501,7 @@ Upon receiving this event, the client should destroy the
 zwp_linux_buffer_params_v1 object.
 
 <h3 class="decleration enum" title="Error enum">
-    <a href="#/Protocols/Stable/linux-dmabuf-v1/?id=error" id="error">
+    <a href="#/Protocols/Stable/linux-dmabuf-v1/?id=zwplinuxbufferparamsv1_error_enum" id="zwplinuxbufferparamsv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpLinuxBufferParamsV1.<span class="enum">Error</span>
     </a>
@@ -522,7 +522,7 @@ public enum Error
 | OutOfBounds | 6 | Offset + stride * height goes out of dmabuf bounds |
 | InvalidWlBuffer | 7 | Invalid wl_buffer resulted from importing dmabufs via                the create_immed request on given buffer_params |
 <h3 class="decleration enum" title="Flags enum">
-    <a href="#/Protocols/Stable/linux-dmabuf-v1/?id=flags" id="flags">
+    <a href="#/Protocols/Stable/linux-dmabuf-v1/?id=zwplinuxbufferparamsv1_flags_enum" id="zwplinuxbufferparamsv1_flags_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpLinuxBufferParamsV1.<span class="enum">Flags</span>
     </a>
@@ -819,7 +819,7 @@ device is implementation-defined.
 This event is tied to a preference tranche, see the tranche_done event.
 
 <h3 class="decleration enum" title="TrancheFlags enum">
-    <a href="#/Protocols/Stable/linux-dmabuf-v1/?id=trancheflags" id="trancheflags">
+    <a href="#/Protocols/Stable/linux-dmabuf-v1/?id=zwplinuxdmabuffeedbackv1_trancheflags_enum" id="zwplinuxdmabuffeedbackv1_trancheflags_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
         ZwpLinuxDmabufFeedbackV1.<span class="enum">TrancheFlags</span>
     </a>
