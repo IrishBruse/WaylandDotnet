@@ -17,6 +17,7 @@ Wlr
 
 Staging
 - [Workspace Extension](/Protocols/Staging/ext-workspace-v1/)
+- [Idle Notify](/Protocols/Staging/ext-idle-notify-v1/)
 
 River
 - [River Input Management](/Protocols/River/river-input-management-v1/)

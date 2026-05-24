@@ -40,6 +40,11 @@
       "XmlFile": "Protocols/Staging/ext-workspace-v1.xml",
       "Namespace": "Staging"
     },
+    {
+      "Name": "Idle Notify",
+      "XmlFile": "Protocols/Staging/ext-idle-notify-v1.xml",
+      "Namespace": "Staging"
+    },
     // Wlr protocols
     {
       "Name": "Layer Shell",
