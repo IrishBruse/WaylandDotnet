@@ -1,5 +1,5 @@
 [parallel]
-download: wayland linux-dmabuf presentation-time tablet viewporter xdg-shell ext-workspace wlr-layer wlr-output wlr-foreign river
+download: wayland linux-dmabuf presentation-time tablet viewporter xdg-shell ext-workspace ext-idle-notify wlr-layer wlr-output wlr-foreign river
 
 wayland:
     wget -qO "./Core/wayland.xml" https://gitlab.freedesktop.org/wayland/wayland/-/raw/main/protocol/wayland.xml
@@ -21,6 +21,9 @@ xdg-shell:
 
 ext-workspace:
     wget -qO "./Staging/ext-workspace-v1.xml" https://gitlab.freedesktop.org/wayland/wayland-protocols/-/raw/main/staging/ext-workspace/ext-workspace-v1.xml
+
+ext-idle-notify:
+    wget -qO "./Staging/ext-idle-notify-v1.xml" https://gitlab.freedesktop.org/wayland/wayland-protocols/-/raw/main/staging/ext-idle-notify/ext-idle-notify-v1.xml
 
 wlr-layer:
     wget -qO "./Wlr/wlr-layer-shell-unstable-v1.xml" https://gitlab.freedesktop.org/wlroots/wlr-protocols/-/raw/master/unstable/wlr-layer-shell-unstable-v1.xml
