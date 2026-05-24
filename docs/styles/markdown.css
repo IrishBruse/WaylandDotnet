@@ -1,7 +1,11 @@
 .markdown-section {
   a {
-    color: white;
+    color: var(--accent-color);
     text-decoration: none;
+  }
+
+  a:hover {
+    color: white;
   }
 
   .interface,
