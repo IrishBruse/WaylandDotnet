@@ -1431,14 +1431,14 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wl_fixes
-    /// Version: 1
-    /// Requests: 2, Events: 0
+    /// Version: 2
+    /// Requests: 3, Events: 0
     /// </summary>
     [ModuleInitializer]
     public static void CreateWlFixesInterface()
     {
         // Request signatures
-        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 2);
+        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 3);
         requests[0] = new WlMessage
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("destroy"),
@@ -1451,12 +1451,18 @@ public static unsafe partial class WaylandInterfaces
             Signature = Utf8StringMarshaller.ConvertToUnmanaged("o"),
             Types = (WlInterface**)CreateTypesArray([WlRegistry])
         };
+        requests[2] = new WlMessage
+        {
+            Name = Utf8StringMarshaller.ConvertToUnmanaged("ack_global_remove"),
+            Signature = Utf8StringMarshaller.ConvertToUnmanaged("ou"),
+            Types = (WlInterface**)CreateTypesArray([WlRegistry, (WlInterface*)IntPtr.Zero])
+        };
 
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wl_fixes"),
-            Version = 1,
-            MethodCount = 2,
+            Version = 2,
+            MethodCount = 3,
             Methods = requests,
             EventCount = 0,
             Events = (WlMessage*)IntPtr.Zero

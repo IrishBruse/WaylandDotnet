@@ -178,8 +178,8 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     ///acceptance, wl_data_source.cancelled may still be emitted afterwards
     ///if the drop destination does not accept any mime type.
     ///
-    ///However, this event might however not be received if the compositor
-    ///cancelled the drag-and-drop operation before this event could happen.
+    ///However, this event might not be received if the compositor cancelled
+    ///the drag-and-drop operation before this event could happen.
     ///
     ///Note that the data_source may still be used in the future and should
     ///not be destroyed here.
@@ -262,7 +262,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     ///The most recent action received is always the valid one. The chosen
     ///action may change alongside negotiation (e.g. an "ask" action can turn
     ///into a "move" operation), so the effects of the final action must
-    ///always be applied in wl_data_offer.dnd_finished.
+    ///always be applied in wl_data_source.dnd_finished.
     ///
     ///Clients can trigger cursor surface changes from this point, so
     ///they reflect the current action.

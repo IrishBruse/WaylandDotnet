@@ -172,8 +172,8 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     ///Start a render sequence
     /// <para>
     ///
-    ///This event indicates that the server has sent all river_node_v1.position
-    ///and river_window_v1.dimensions events necessary.
+    ///This event indicates that the server has sent all
+    ///river_window_v1.dimensions events necessary.
     ///
     ///In response to this event, the client should make requests modifying
     ///rendering state as it chooses. Then, the client must make the

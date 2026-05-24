@@ -52,7 +52,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
     public enum Error : uint
     {
         /// <summary>
-        /// the dmabuf_batch object has already been used to create a wl_buffer
+        /// the zwp_linux_buffer_params_v1 object has already been used to create a wl_buffer
         /// </summary>
         AlreadyUsed = 0,
         /// <summary>
@@ -321,7 +321,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
     /// authoritative source on how the format codes should work.<br/>
     /// <br/>
     /// The 'flags' is a bitfield of the flags defined in enum "flags".<br/>
-    /// 'y_invert' means the that the image needs to be y-flipped.<br/>
+    /// 'y_invert' means that the image needs to be y-flipped.<br/>
     /// <br/>
     /// Flag 'interlaced' means that the frame in the buffer is not<br/>
     /// progressive as usual, but interlaced. An interlaced buffer as<br/>
@@ -365,7 +365,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
     /// This request can be sent only once in the object's lifetime, after<br/>
     /// which the only legal request is destroy. This object should be<br/>
     /// destroyed after issuing a 'create' request. Attempting to use this<br/>
-    /// object after issuing 'create' raises ALREADY_USED protocol error.<br/>
+    /// object after issuing 'create' raises the ALREADY_USED protocol error.<br/>
     /// <br/>
     /// It is not mandatory to issue 'create'. If a client wants to<br/>
     /// cancel the buffer creation, it can just destroy this object.<br/>

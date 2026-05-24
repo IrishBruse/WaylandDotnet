@@ -337,8 +337,8 @@ void RenderStartHandler()
 
 **Start a render sequence**
 
-This event indicates that the server has sent all river_node_v1.position
-and river_window_v1.dimensions events necessary.
+This event indicates that the server has sent all
+river_window_v1.dimensions events necessary.
 
 In response to this event, the client should make requests modifying
 rendering state as it chooses. Then, the client must make the
@@ -732,6 +732,11 @@ Borders are not drawn while the window is fullscreen.
 
 The color is defined by four 32-bit RGBA values. Unless specified in
 another protocol extension, the RGBA values use pre-multiplied alpha.
+
+The valid range for the RGBA values is from 0x00000000 to 0xffffffff.
+These values are interpreted as a percentage:
+- 0x00000000 means 0% of the given color component
+- 0xffffffff means 100% of the given color component
 
 Setting the edges to none or the width to 0 disables the borders.
 Setting a negative width is a protocol error.
@@ -1512,7 +1517,7 @@ The xdg-shell protocol for example allows windows to request to be
 maximized.
 
 The window manager is free to honor this request using
-river_window_v1.inform_maximize or ignore it.
+river_window_v1.inform_maximized or ignore it.
 
 This event will be followed by a manage_start event after all other new
 state has been sent by the server.
@@ -2255,7 +2260,7 @@ river_output_v1 cannot change. It is guaranteed that there is a 1-to-1
 mapping between wl_output and river_output_v1 objects.
 
 The global_remove event for the corresponding wl_output may be sent
-before the river_output_v1.remove event. This is due to the fact that
+before the river_output_v1.removed event. This is due to the fact that
 river_output_v1 state changes are synced to the river window management
 manage sequence while changes to globals are not.
 
@@ -2663,7 +2668,7 @@ river_seat_v1 cannot change. It is guaranteed that there is a 1-to-1
 mapping between wl_seat and river_seat_v1 objects.
 
 The global_remove event for the corresponding wl_seat may be sent before
-the river_seat_v1.remove event. This is due to the fact that
+the river_seat_v1.removed event. This is due to the fact that
 river_seat_v1 state changes are synced to the river window management
 manage sequence while changes to globals are not.
 

@@ -261,7 +261,7 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
     /// Get default feedback
     /// <para>
     /// <br/>
-    /// This request creates a new wp_linux_dmabuf_feedback object not bound<br/>
+    /// This request creates a new zwp_linux_dmabuf_feedback_v1 object not bound<br/>
     /// to a particular surface. This object will deliver feedback about dmabuf<br/>
     /// parameters to use if the client doesn't support per-surface feedback<br/>
     /// (see get_surface_feedback).<br/>
@@ -293,11 +293,11 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
     /// Get feedback for a surface
     /// <para>
     /// <br/>
-    /// This request creates a new wp_linux_dmabuf_feedback object for the<br/>
+    /// This request creates a new zwp_linux_dmabuf_feedback_v1 object for the<br/>
     /// specified wl_surface. This object will deliver feedback about dmabuf<br/>
     /// parameters to use for buffers attached to this surface.<br/>
     /// <br/>
-    /// If the surface is destroyed before the wp_linux_dmabuf_feedback object,<br/>
+    /// If the surface is destroyed before the zwp_linux_dmabuf_feedback_v1 object,<br/>
     /// the feedback object becomes inert.<br/>
     /// <br/>
     /// </para>

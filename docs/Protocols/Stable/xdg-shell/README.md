@@ -82,16 +82,15 @@ XdgSurface GetXdgSurface(WlSurface surface)
 
 **Create a shell surface from a surface**
 
-This creates an xdg_surface for the given surface. While xdg_surface
-itself is not a role, the corresponding surface may only be assigned
-a role extending xdg_surface, such as xdg_toplevel or xdg_popup. It is
-illegal to create an xdg_surface for a wl_surface which already has an
-assigned role and this will result in a role error.
-
 This creates an xdg_surface for the given surface. An xdg_surface is
 used as basis to define a role to a given surface, such as xdg_toplevel
 or xdg_popup. It also manages functionality shared between xdg_surface
 based surface roles.
+
+While xdg_surface itself is not a role, the corresponding surface may
+only be assigned a role extending xdg_surface, such as xdg_toplevel or
+xdg_popup. It is illegal to create an xdg_surface for a wl_surface which
+already has anassigned role and this will result in a role error.
 
 See the documentation of xdg_surface for more details about what an
 xdg_surface is and how it is used.
@@ -285,12 +284,12 @@ void SetAnchor(uint anchor)
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| anchor | uint | Anchor |
+| anchor | uint | Anchor point |
 
 **Set anchor rectangle anchor**
 
 Defines the anchor point for the anchor rectangle. The specified anchor
-is used derive an anchor point that the child surface will be
+is used to derive an anchor point that the child surface will be
 positioned relative to. If a corner anchor is set (e.g. 'top_left' or
 'bottom_right'), the anchor point will be at the specified corner;
 otherwise, the derived anchor point will be centered on the specified
@@ -421,7 +420,7 @@ void SetParentSize(int parentWidth, int parentHeight)
 | parent_width | int | Future window geometry width of parent |
 | parent_height | int | Future window geometry height of parent |
 
-****
+**Set parent size**
 
 Set the parent window geometry the compositor should use when
 positioning the popup. The compositor may use this information to
@@ -665,8 +664,8 @@ XdgPopup GetPopup(XdgSurface? parent, XdgPositioner positioner)
 | Argument | Type | Description |
 | --- | --- | --- |
 | id | new_id |  |
-| parent | object |  |
-| positioner | object |  |
+| parent | object | Parent surface for this popup |
+| positioner | object | Positioner for this popup |
 
 **Assign the xdg_popup surface role**
 
@@ -692,10 +691,10 @@ void SetWindowGeometry(int x, int y, int width, int height)
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| x | int |  |
-| y | int |  |
-| width | int |  |
-| height | int |  |
+| x | int | X coordinate of the top-left corner of the window inside this surface |
+| y | int | Y coordinate of the top-left corner of the window inside this surface |
+| width | int | Width of the window |
+| height | int | Height of the window |
 
 **Set the new window geometry**
 
@@ -860,7 +859,7 @@ fullscreen, and minimize, set application-specific metadata like title and
 id, and well as trigger user interactive operations such as interactive
 resize and move.
 
-A xdg_toplevel by default is responsible for providing the full intended
+An xdg_toplevel by default is responsible for providing the full intended
 visual representation of the toplevel, which depending on the window
 state, may mean things like a title bar, window controls and drop shadow.
 
@@ -908,7 +907,7 @@ void SetParent(XdgToplevel? parent)
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| parent | object |  |
+| parent | object | Parent surface for this surface |
 
 **Set the parent of this surface**
 
@@ -946,7 +945,7 @@ void SetTitle(string title)
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| title | string |  |
+| title | string | Title of the surface |
 
 **Set surface title**
 
@@ -971,7 +970,7 @@ void SetAppId(string appId)
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| app_id | string |  |
+| app_id | string | Application identifier surface belongs to |
 
 **Set application ID**
 
@@ -1131,8 +1130,8 @@ void SetMaxSize(int width, int height)
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| width | int |  |
-| height | int |  |
+| width | int | Maximum width of the window |
+| height | int | Maximum height of the window |
 
 **Set the maximum size**
 
@@ -1167,7 +1166,7 @@ Requesting a maximum size to be smaller than the minimum size of
 a surface is illegal and will result in an invalid_size error.
 
 The width and height must be greater than or equal to zero. Using
-strictly negative values for width or height will result in a
+strictly negative values for width or height will result in an
 invalid_size error.
 
 <h3 class="decleration request" title="SetMinSize request">
@@ -1183,8 +1182,8 @@ void SetMinSize(int width, int height)
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| width | int |  |
-| height | int |  |
+| width | int | Minimum width of the window |
+| height | int | Minimum height of the window |
 
 **Set the minimum size**
 
@@ -1219,7 +1218,7 @@ Requesting a minimum size to be larger than the maximum size of
 a surface is illegal and will result in an invalid_size error.
 
 The width and height must be greater than or equal to zero. Using
-strictly negative values for width and height will result in a
+strictly negative values for width and height will result in an
 invalid_size error.
 
 <h3 class="decleration request" title="SetMaximized request">
@@ -1305,7 +1304,7 @@ void SetFullscreen(WlOutput? output)
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| output | object |  |
+| output | object | Preferred output to place surface on |
 
 **Set the window as fullscreen on an output**
 
@@ -1324,7 +1323,7 @@ this surface.
 
 If the surface doesn't cover the whole output, the compositor will
 position the surface in the center of the output and compensate with
-with border fill covering the rest of the output. The content of the
+border fill covering the rest of the output. The content of the
 border fill is undefined, but should be assumed to be in some way that
 attempts to blend into the surrounding area (e.g. solid black).
 
@@ -1401,9 +1400,9 @@ void ConfigureHandler(int width, int height, byte[] states)
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| width | int |  |
-| height | int |  |
-| states | array |  |
+| width | int | Suggested width of window |
+| height | int | Suggested height of window |
+| states | array | Suggested states of the window |
 
 **Suggest a surface change**
 
@@ -1464,8 +1463,8 @@ void ConfigureBoundsHandler(int width, int height)
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| width | int |  |
-| height | int |  |
+| width | int | Suggested maximum width of surface |
+| height | int | Suggested maximum height of surface |
 
 **Recommended window geometry bounds**
 

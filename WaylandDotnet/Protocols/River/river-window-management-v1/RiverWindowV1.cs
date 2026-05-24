@@ -531,7 +531,7 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
     ///maximized.
     ///
     ///The window manager is free to honor this request using
-    ///river_window_v1.inform_maximize or ignore it.
+    ///river_window_v1.inform_maximized or ignore it.
     ///
     ///This event will be followed by a manage_start event after all other new
     ///state has been sent by the server.
@@ -1284,6 +1284,11 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
     /// <br/>
     /// The color is defined by four 32-bit RGBA values. Unless specified in<br/>
     /// another protocol extension, the RGBA values use pre-multiplied alpha.<br/>
+    /// <br/>
+    /// The valid range for the RGBA values is from 0x00000000 to 0xffffffff.<br/>
+    /// These values are interpreted as a percentage:<br/>
+    /// - 0x00000000 means 0% of the given color component<br/>
+    /// - 0xffffffff means 100% of the given color component<br/>
     /// <br/>
     /// Setting the edges to none or the width to 0 disables the borders.<br/>
     /// Setting a negative width is a protocol error.<br/>

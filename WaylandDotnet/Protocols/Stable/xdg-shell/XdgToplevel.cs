@@ -761,7 +761,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// a surface is illegal and will result in an invalid_size error.<br/>
     /// <br/>
     /// The width and height must be greater than or equal to zero. Using<br/>
-    /// strictly negative values for width or height will result in a<br/>
+    /// strictly negative values for width or height will result in an<br/>
     /// invalid_size error.<br/>
     /// <br/>
     /// </para>
@@ -821,7 +821,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// a surface is illegal and will result in an invalid_size error.<br/>
     /// <br/>
     /// The width and height must be greater than or equal to zero. Using<br/>
-    /// strictly negative values for width and height will result in a<br/>
+    /// strictly negative values for width and height will result in an<br/>
     /// invalid_size error.<br/>
     /// <br/>
     /// </para>
@@ -955,7 +955,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// <br/>
     /// If the surface doesn't cover the whole output, the compositor will<br/>
     /// position the surface in the center of the output and compensate with<br/>
-    /// with border fill covering the rest of the output. The content of the<br/>
+    /// border fill covering the rest of the output. The content of the<br/>
     /// border fill is undefined, but should be assumed to be in some way that<br/>
     /// attempts to blend into the surrounding area (e.g. solid black).<br/>
     /// <br/>

@@ -268,7 +268,7 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
     /// <para>
     /// <br/>
     /// Defines the anchor point for the anchor rectangle. The specified anchor<br/>
-    /// is used derive an anchor point that the child surface will be<br/>
+    /// is used to derive an anchor point that the child surface will be<br/>
     /// positioned relative to. If a corner anchor is set (e.g. 'top_left' or<br/>
     /// 'bottom_right'), the anchor point will be at the specified corner;<br/>
     /// otherwise, the derived anchor point will be centered on the specified<br/>
@@ -437,7 +437,7 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
     }
 
     /// <summary>
-    /// 
+    /// Set parent size
     /// <para>
     /// <br/>
     /// Set the parent window geometry the compositor should use when<br/>

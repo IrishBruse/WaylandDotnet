@@ -1296,8 +1296,8 @@ The user performed the drop action. This event does not indicate
 acceptance, wl_data_source.cancelled may still be emitted afterwards
 if the drop destination does not accept any mime type.
 
-However, this event might however not be received if the compositor
-cancelled the drag-and-drop operation before this event could happen.
+However, this event might not be received if the compositor cancelled
+the drag-and-drop operation before this event could happen.
 
 Note that the data_source may still be used in the future and should
 not be destroyed here.
@@ -1363,7 +1363,7 @@ operation.
 The most recent action received is always the valid one. The chosen
 action may change alongside negotiation (e.g. an "ask" action can turn
 into a "move" operation), so the effects of the final action must
-always be applied in wl_data_offer.dnd_finished.
+always be applied in wl_data_source.dnd_finished.
 
 Clients can trigger cursor surface changes from this point, so
 they reflect the current action.
@@ -3251,7 +3251,7 @@ The same seat names are used for all clients. Thus, the name can be
 shared across processes to refer to a specific wl_seat global.
 
 The name event is sent after binding to the seat global, and should be sent
-before announcing capabilities. This event only sent once per seat object,
+before announcing capabilities. This event is only sent once per seat object,
 and the name does not change over the lifetime of the wl_seat global.
 
 Compositors may re-use the same seat name if the wl_seat global is
@@ -4420,7 +4420,7 @@ minor axis length. The major axis length describes the longer diameter
 of the ellipse, while the minor axis length describes the shorter
 diameter. Major and minor are orthogonal and both are specified in
 surface-local coordinates. The center of the ellipse is always at the
-touchpoint location as reported by wl_touch.down or wl_touch.move.
+touchpoint location as reported by wl_touch.down or wl_touch.motion.
 
 This event is only sent by the compositor if the touch device supports
 shape reports. The client has to make reasonable assumptions about the
@@ -5229,7 +5229,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         WlFixes
     </a>
-    <span class="pill">version 1</span>
+    <span class="pill">version 2</span>
 </h2>
 
 Wayland protocol fixes
@@ -5281,3 +5281,65 @@ of the registry and will no longer emit any events on the registry. The
 client should re-use the object ID once it receives the
 wl_display.delete_id event.
 
+<h3 class="decleration request" title="AckGlobalRemove request">
+    <a href="#/Protocols/Core/wayland/?id=wlfixes_ackglobalremove" id="wlfixes_ackglobalremove">
+        <span class="codicon codicon-symbol-method method"></span>
+        WlFixes.<span class="method">AckGlobalRemove</span>
+    </a>
+    <span class="pill">since 2</span>
+</h3>
+
+```csharp
+void AckGlobalRemove(WlRegistry registry, uint name)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| registry | object | The registry object |
+| name | uint | Unique name of the global |
+
+**Acknowledge global removal**
+
+Acknowledge the removal of the specified global.
+
+If no global with the specified name exists or the global is not removed,
+the wl_fixes.invalid_ack_remove protocol error will be posted.
+
+Due to the Wayland protocol being asynchronous, the wl_global objects
+cannot be destroyed immediately. For example, if a wl_global is removed
+and a client attempts to bind that global around same time, it can
+result in a protocol error due to an unknown global name in the bind
+request.
+
+In order to avoid crashing clients, the compositor should remove the
+wl_global once it is guaranteed that no more bind requests will come.
+
+The wl_fixes.ack_global_remove() request is used to signal to the
+compositor that the client will not bind the given global anymore. After
+all clients acknowledge the removal of the global, the compositor can
+safely destroy it.
+
+The client must call the wl_fixes.ack_global_remove() request in
+response to a wl_registry.global_remove() event even if it did not bind
+the corresponding global.
+
+<h3 class="decleration enum" title="Error enum">
+    <a href="#/Protocols/Core/wayland/?id=error" id="error">
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlFixes.<span class="enum">Error</span>
+    </a>
+</h3>
+
+```csharp
+public enum Error
+```
+
+Wl_fixes error values
+
+
+These errors can be emitted in response to wl_fixes requests.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidAckRemove | 0 | Unknown global or the global is not removed |

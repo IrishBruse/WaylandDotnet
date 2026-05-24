@@ -66,10 +66,10 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
     ///All feedback has been sent
     /// <para>
     ///
-    ///This event is sent after all parameters of a wp_linux_dmabuf_feedback
+    ///This event is sent after all parameters of a zwp_linux_dmabuf_feedback_v1
     ///object have been sent.
     ///
-    ///This allows changes to the wp_linux_dmabuf_feedback parameters to be
+    ///This allows changes to the zwp_linux_dmabuf_feedback_v1 parameters to be
     ///seen as atomic, even if they happen via multiple events.
     ///
     /// </para>
@@ -140,14 +140,14 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
     ///This event advertises the main device that the server prefers to use
     ///when direct scan-out to the target device isn't possible. The
     ///advertised main device may be different for each
-    ///wp_linux_dmabuf_feedback object, and may change over time.
+    ///zwp_linux_dmabuf_feedback_v1 object, and may change over time.
     ///
     ///There is exactly one main device. The compositor must send at least
     ///one preference tranche with tranche_target_device equal to main_device.
     ///
     ///Clients need to create buffers that the main device can import and
     ///read from, otherwise creating the dmabuf wl_buffer will fail (see the
-    ///wp_linux_buffer_params.create and create_immed requests for details).
+    ///zwp_linux_buffer_params_v1.create and create_immed requests for details).
     ///The main device will also likely be kept active by the compositor,
     ///so clients can use it instead of waking up another device for power
     ///savings.
@@ -186,7 +186,7 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
     ///A preference tranche has been sent
     /// <para>
     ///
-    ///This event splits tranche_target_device and tranche_formats events in
+    ///This event splits tranche_target_device and tranche_formats events into
     ///preference tranches. It is sent after a set of tranche_target_device
     ///and tranche_formats events; it represents the end of a tranche. The
     ///next tranche will have a lower preference.
@@ -233,7 +233,7 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
     ///or through a potentially more expensive fallback path. If the buffer
     ///can't be directly imported from the main device then clients must be
     ///prepared for the compositor changing the tranche priority or making
-    ///wl_buffer creation fail (see the wp_linux_buffer_params.create and
+    ///wl_buffer creation fail (see the zwp_linux_buffer_params_v1.create and
     ///create_immed requests for details).
     ///
     ///If the device is a DRM node, the DRM node type (primary vs. render) is
@@ -265,7 +265,7 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
     private TrancheFormatsHandler? _onTrancheFormats;
 
     /// <summary>
-    ///Supported buffer format modifier
+    ///Supported buffer format modifiers
     /// <para>
     ///
     ///This event advertises the format + modifier combinations that the
@@ -291,7 +291,7 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
     ///This event is tied to a preference tranche, see the tranche_done event.
     ///
     ///For the definition of the format and modifier codes, see the
-    ///wp_linux_buffer_params.create request.
+    ///zwp_linux_buffer_params_v1.create request.
     ///
     /// </para>
     /// </summary>
@@ -445,7 +445,7 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
     /// <para>
     /// <br/>
     /// Using this request a client can tell the server that it is not going to<br/>
-    /// use the wp_linux_dmabuf_feedback object anymore.<br/>
+    /// use the zwp_linux_dmabuf_feedback_v1 object anymore.<br/>
     /// <br/>
     /// </para>
     /// </summary>

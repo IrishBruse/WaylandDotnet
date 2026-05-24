@@ -145,7 +145,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
     ///shared across processes to refer to a specific wl_seat global.
     ///
     ///The name event is sent after binding to the seat global, and should be sent
-    ///before announcing capabilities. This event only sent once per seat object,
+    ///before announcing capabilities. This event is only sent once per seat object,
     ///and the name does not change over the lifetime of the wl_seat global.
     ///
     ///Compositors may re-use the same seat name if the wl_seat global is

@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// wl_fixes
 /// <para> wayland protocol fixes </para>
-/// <para> Version: 1 </para>
+/// <para> Version: 2 </para>
 /// <see>https://wayland.app/protocols/wayland/#wl_fixes</see>
 /// </summary>
 public sealed partial class WlFixes : WaylandObject, IWaylandObjectFactory<WlFixes>
 {
     public const string InterfaceName = "wl_fixes";
     public static string _StaticInterfaceName => "wl_fixes";
-    public const int InterfaceVersion = 1;
+    public const int InterfaceVersion = 2;
 
     private bool disposed;
 
@@ -41,6 +41,15 @@ public sealed partial class WlFixes : WaylandObject, IWaylandObjectFactory<WlFix
     {
         Handle = handle;
     }
+    /// <summary> wl_fixes error values </summary>
+    public enum Error : uint
+    {
+        /// <summary>
+        /// unknown global or the global is not removed
+        /// </summary>
+        InvalidAckRemove = 0,
+    }
+
     /// <summary>
     /// Destroys this object
     /// <para>
@@ -89,6 +98,55 @@ public sealed partial class WlFixes : WaylandObject, IWaylandObjectFactory<WlFix
         args[0].o = (WlObject*)(registry?.Handle ?? IntPtr.Zero);
 
         const uint opcode = 1;
+
+        var newProxy = WaylandNative.ProxyMarshalArrayFlags(
+            Handle,
+            opcode,
+            (WlInterface*)IntPtr.Zero,
+            0,
+            0,
+            (nint)args
+        );
+    }
+
+    /// <summary>
+    /// Acknowledge global removal
+    /// <para>
+    /// <br/>
+    /// Acknowledge the removal of the specified global.<br/>
+    /// <br/>
+    /// If no global with the specified name exists or the global is not removed,<br/>
+    /// the wl_fixes.invalid_ack_remove protocol error will be posted.<br/>
+    /// <br/>
+    /// Due to the Wayland protocol being asynchronous, the wl_global objects<br/>
+    /// cannot be destroyed immediately. For example, if a wl_global is removed<br/>
+    /// and a client attempts to bind that global around same time, it can<br/>
+    /// result in a protocol error due to an unknown global name in the bind<br/>
+    /// request.<br/>
+    /// <br/>
+    /// In order to avoid crashing clients, the compositor should remove the<br/>
+    /// wl_global once it is guaranteed that no more bind requests will come.<br/>
+    /// <br/>
+    /// The wl_fixes.ack_global_remove() request is used to signal to the<br/>
+    /// compositor that the client will not bind the given global anymore. After<br/>
+    /// all clients acknowledge the removal of the global, the compositor can<br/>
+    /// safely destroy it.<br/>
+    /// <br/>
+    /// The client must call the wl_fixes.ack_global_remove() request in<br/>
+    /// response to a wl_registry.global_remove() event even if it did not bind<br/>
+    /// the corresponding global.<br/>
+    /// <br/>
+    /// </para>
+    /// </summary>
+    public unsafe void AckGlobalRemove(WlRegistry registry, uint name)
+    {
+        ObjectDisposedException.ThrowIf(disposed, this);
+
+        var args = stackalloc WlArgument[2];
+        args[0].o = (WlObject*)(registry?.Handle ?? IntPtr.Zero);
+        args[1].u = name;
+
+        const uint opcode = 2;
 
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
