@@ -33,11 +33,14 @@ wayland-dotnet-scanner
     {
       "Name": "XDG Shell",
       "XmlFile": "protocols/xdg-shell.xml",
-      "Namespace": "Stable"
+      "Namespace": "Stable",
+      "SourceUrl": "https://gitlab.freedesktop.org/wayland/wayland-protocols/-/raw/main/stable/xdg-shell/xdg-shell.xml"
     }
   ]
 }
 ```
+
+`SourceUrl` is optional. When set, `wayland-dotnet-scanner download` (or `just download` from the repo root) fetches the XML into `XmlFile`.
 
 ## CLI Commands
 
@@ -56,6 +59,9 @@ wayland-dotnet-scanner protocol.xml ./Output --namespace MyNamespace --name "My 
 
 # List protocols in config
 wayland-dotnet-scanner list
+
+# Download protocol XML files (entries with SourceUrl)
+wayland-dotnet-scanner download
 
 # Show help
 wayland-dotnet-scanner --help

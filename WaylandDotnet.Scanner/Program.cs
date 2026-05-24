@@ -3,6 +3,7 @@ namespace WaylandDotnet.Scanner;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text.Json;
 using WaylandDotnet.Scanner.Data;
 
@@ -136,7 +137,8 @@ public class Program
                 {
                   "Name": "Wayland",
                   "XmlFile": "Protocols/Core/wayland.xml",
-                  "Namespace": "Core"
+                  "Namespace": "Core",
+                  "SourceUrl": "https://gitlab.freedesktop.org/wayland/wayland/-/raw/main/protocol/wayland.xml"
                 }
               ]
             }
@@ -154,6 +156,29 @@ public class Program
         });
 
         rootCommand.Subcommands.Add(initCommand);
+
+        var downloadCommand = new Command("download", "Download protocol XML files listed with SourceUrl in protocols.json");
+        downloadCommand.Add(inputArg);
+        downloadCommand.SetAction((parseResult) =>
+        {
+            var input = parseResult.GetValue(inputArg);
+
+            if (File.Exists("protocols.json"))
+            {
+                input = new FileInfo("protocols.json");
+            }
+
+            if (input == null || !input.Exists)
+            {
+                Console.Error.WriteLine("Error: Config file not found");
+                return;
+            }
+
+            Environment.CurrentDirectory = input.DirectoryName ?? Environment.CurrentDirectory;
+            DownloadProtocols(input);
+        });
+
+        rootCommand.Subcommands.Add(downloadCommand);
 
         return rootCommand.Parse(args).Invoke();
     }
@@ -212,7 +237,40 @@ public class Program
         Console.WriteLine("Code generation complete");
     }
 
-    static ProtocolMetadata[] LoadConfig(FileInfo input)
+    static void DownloadProtocols(FileInfo input)
+    {
+        var rootConfig = ParseRootConfig(input);
+        var baseDir = input.Directory?.FullName ?? Directory.GetCurrentDirectory();
+        var downloads = rootConfig.Protocols
+            .Where(p => !string.IsNullOrWhiteSpace(p.SourceUrl))
+            .Select(p => (
+                Dest: Path.GetFullPath(p.XmlFile, baseDir),
+                Url: p.SourceUrl!,
+                Name: p.Name))
+            .ToArray();
+
+        if (downloads.Length == 0)
+        {
+            Console.WriteLine("No protocols with SourceUrl in config.");
+            return;
+        }
+
+        Parallel.ForEach(downloads, item =>
+        {
+            var dir = Path.GetDirectoryName(item.Dest);
+            if (dir != null)
+            {
+                Directory.CreateDirectory(dir);
+            }
+
+            using var http = new HttpClient();
+            var bytes = http.GetByteArrayAsync(item.Url).GetAwaiter().GetResult();
+            File.WriteAllBytes(item.Dest, bytes);
+            Console.WriteLine($"Downloaded {item.Name}");
+        });
+    }
+
+    static RootConfig ParseRootConfig(FileInfo input)
     {
         var json = File.ReadAllText(input.FullName);
         var options = new JsonSerializerOptions
@@ -222,9 +280,13 @@ public class Program
             AllowTrailingCommas = true
         };
 
-        var rootConfig = JsonSerializer.Deserialize<RootConfig>(json, options)
+        return JsonSerializer.Deserialize<RootConfig>(json, options)
             ?? throw new InvalidOperationException("Failed to parse config file");
+    }
 
+    static ProtocolMetadata[] LoadConfig(FileInfo input)
+    {
+        var rootConfig = ParseRootConfig(input);
         var baseDir = input.Directory?.FullName ?? Directory.GetCurrentDirectory();
         var outputRoot = Path.GetFullPath(rootConfig.OutputRoot, baseDir);
         var docsDir = rootConfig.DocsDir != null ? Path.GetFullPath(rootConfig.DocsDir, baseDir) : null;
@@ -295,5 +357,6 @@ internal class ProtocolConfig
     public string Name { get; set; } = "";
     public string XmlFile { get; set; } = "";
     public string Namespace { get; set; } = "";
+    public string? SourceUrl { get; set; }
     public string? Link { get; set; }
 }
