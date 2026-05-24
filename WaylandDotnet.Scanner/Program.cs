@@ -4,6 +4,7 @@ using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using WaylandDotnet.Scanner.Data;
 
@@ -187,17 +188,22 @@ public class Program
     {
         if (!input.Exists)
         {
-            Console.Error.WriteLine($"Error: Config file '{input.FullName}' not found.");
+            ScannerConsole.WriteError($"Error: Config file '{input.FullName}' not found.");
             return;
         }
 
         var protocols = LoadConfig(input);
+        ScannerConsole.WritePhase("generate");
+
+        var generator = new ProtocolGenerator();
+        var protocolCount = 0;
+        var fileCount = 0;
 
         foreach (var protocol in protocols)
         {
             if (!File.Exists(protocol.XmlFile))
             {
-                Console.Error.WriteLine($"Error: File '{protocol.XmlFile}' not found.");
+                ScannerConsole.WriteError($"Error: File '{protocol.XmlFile}' not found.");
                 continue;
             }
 
@@ -206,8 +212,9 @@ public class Program
                 Directory.CreateDirectory(protocol.OutputDir);
             }
 
-            var generator = new ProtocolGenerator();
             generator.Generate(protocol);
+            protocolCount++;
+            fileCount += generator.LastGeneratedCount;
         }
 
         if (protocols.Any(p => p.DocsDir != null))
@@ -215,7 +222,7 @@ public class Program
             GenerateSidebar(protocols);
         }
 
-        Console.WriteLine("Code generation complete");
+        ScannerConsole.WriteDone($"Done - {protocolCount} protocols, {fileCount} files");
     }
 
     static void GenerateProtocol(ProtocolMetadata metadata)
@@ -234,7 +241,7 @@ public class Program
         var generator = new ProtocolGenerator();
         generator.Generate(metadata);
 
-        Console.WriteLine("Code generation complete");
+        ScannerConsole.WriteDone("Done");
     }
 
     static void DownloadProtocols(FileInfo input)
@@ -244,6 +251,7 @@ public class Program
         var downloads = rootConfig.Protocols
             .Where(p => !string.IsNullOrWhiteSpace(p.SourceUrl))
             .Select(p => (
+                Namespace: p.Namespace,
                 Dest: Path.GetFullPath(p.XmlFile, baseDir),
                 Url: p.SourceUrl!,
                 Name: p.Name))
@@ -251,9 +259,11 @@ public class Program
 
         if (downloads.Length == 0)
         {
-            Console.WriteLine("No protocols with SourceUrl in config.");
+            ScannerConsole.WriteInfo("No protocols with SourceUrl in config.");
             return;
         }
+
+        ScannerConsole.WritePhase("download");
 
         Parallel.ForEach(downloads, item =>
         {
@@ -266,8 +276,18 @@ public class Program
             using var http = new HttpClient();
             var bytes = http.GetByteArrayAsync(item.Url).GetAwaiter().GetResult();
             File.WriteAllBytes(item.Dest, bytes);
-            Console.WriteLine($"Downloaded {item.Name}");
         });
+
+        foreach (var group in downloads.GroupBy(d => d.Namespace).OrderBy(g => g.Key))
+        {
+            ScannerConsole.WriteSection(group.Key);
+            foreach (var item in group.OrderBy(d => d.Name))
+            {
+                ScannerConsole.WriteDownloaded(item.Name);
+            }
+        }
+
+        ScannerConsole.WriteDone($"Done - {downloads.Length} protocols");
     }
 
     static RootConfig ParseRootConfig(FileInfo input)
@@ -306,42 +326,70 @@ public class Program
         }).ToArray();
     }
 
+    const string SidebarBeginMarker = "<!-- wayland-dotnet-scanner:protocols -->";
+    const string SidebarEndMarker = "<!-- /wayland-dotnet-scanner:protocols -->";
+
+    static readonly string[] SidebarNamespaceOrder =
+    [
+        "Core",
+        "Stable",
+        "Wlr",
+        "Staging",
+        "River",
+    ];
+
     static void GenerateSidebar(ProtocolMetadata[] protocols)
     {
         var protocolsWithDocs = protocols.Where(p => p.DocsDir != null).ToArray();
         if (protocolsWithDocs.Length == 0) return;
 
-        var first = protocolsWithDocs.First();
-        var sidebarDir = Path.Combine(first.DocsDir!, "Protocols");
-        Directory.CreateDirectory(sidebarDir);
-
-        var sb = new SourceFile(Path.Combine(sidebarDir, "sidebar.md"));
-        sb.WriteLine("- [Home](/)");
-        sb.WriteLine();
-
-        var grouped = protocolsWithDocs.GroupBy(p => p.Namespace).OrderBy(g =>
+        var sidebarPath = Path.Combine(protocolsWithDocs[0].DocsDir!, "sidebar.md");
+        if (!File.Exists(sidebarPath))
         {
-            return g.Key switch
-            {
-                "Core" => 0,
-                "Stable" => 1,
-                "Wlr" => 2,
-                _ => 3
-            };
-        });
+            ScannerConsole.WriteError($"Error: Sidebar file not found: {sidebarPath}");
+            return;
+        }
+
+        var content = File.ReadAllText(sidebarPath);
+        var beginIndex = content.IndexOf(SidebarBeginMarker, StringComparison.Ordinal);
+        var endIndex = content.IndexOf(SidebarEndMarker, StringComparison.Ordinal);
+
+        if (beginIndex < 0 || endIndex < 0 || endIndex <= beginIndex)
+        {
+            ScannerConsole.WriteError(
+                $"Error: {sidebarPath} must contain '{SidebarBeginMarker}' and '{SidebarEndMarker}' markers.");
+            return;
+        }
+
+        var generated = BuildProtocolsSidebar(protocolsWithDocs);
+        var before = content[..(beginIndex + SidebarBeginMarker.Length)];
+        var after = content[endIndex..];
+        File.WriteAllText(sidebarPath, $"{before}\n\n{generated}\n\n{after}");
+    }
+
+    static string BuildProtocolsSidebar(ProtocolMetadata[] protocols)
+    {
+        var sb = new StringBuilder();
+        var grouped = protocols
+            .GroupBy(p => p.Namespace)
+            .OrderBy(g => Array.IndexOf(SidebarNamespaceOrder, g.Key) is var index and >= 0 ? index : 100)
+            .ThenBy(g => g.Key);
 
         foreach (var group in grouped)
         {
-            sb.WriteLine($"{group.Key}");
-            foreach (var protocol in group)
+            sb.AppendLine(group.Key);
+            sb.AppendLine();
+
+            foreach (var protocol in group.OrderBy(p => p.Name))
             {
                 var fileName = Path.GetFileNameWithoutExtension(protocol.XmlFile);
-                sb.WriteLine($"- [{protocol.Name}](/Protocols/{protocol.Namespace}/{fileName}/)");
+                sb.AppendLine($"- [{protocol.Name}](/Protocols/{protocol.Namespace}/{fileName}/)");
             }
-            sb.WriteLine();
+
+            sb.AppendLine();
         }
 
-        sb.Save();
+        return sb.ToString().TrimEnd();
     }
 }
 

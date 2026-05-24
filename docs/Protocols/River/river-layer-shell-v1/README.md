@@ -1,6 +1,6 @@
 ﻿# River Layer Shell
 
-##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [River](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [RiverLayerShellV1](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-layer-shell-v1/)
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-layer-shell-v1/">RiverLayerShellV1</a></p>
 
 ---
 
@@ -172,10 +172,10 @@ void NonExclusiveAreaHandler(int x, int y, int width, int height)
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| x | int |  |
-| y | int |  |
-| width | int |  |
-| height | int |  |
+| x | int | Global x coordinate |
+| y | int | Global y coordinate |
+| width | int | Area width |
+| height | int | Area height |
 
 **Area left after subtracting exclusive zones**
 
@@ -238,7 +238,7 @@ void FocusExclusiveHandler()
 ```
 
 
-****
+**Layer shell surface has exclusive focus**
 
 A layer shell surface will be given exclusive keyboard focus at the end
 of the manage sequence in which this event is sent. The window manager
@@ -263,7 +263,7 @@ void FocusNonExclusiveHandler()
 ```
 
 
-****
+**Layer shell surface wants non-exclusive focus**
 
 A layer shell surface will be given non-exclusive keyboard focus at the
 end of the manage sequence in which this event is sent. The window
@@ -274,6 +274,10 @@ The window manager continues to control focus and may choose to focus a
 different window/shell surface at any time. If the window manager sets
 focus during the same manage sequence in which this event is sent, the
 layer surface will not be focused.
+
+If the layer surface with non-exclusive focus is closed or the window
+manager chooses to move focus away from the layer surface, a focus_none
+event will be sent in the next manage sequence.
 
 This event will be followed by a manage_start event after all other new
 state has been sent by the server.
@@ -290,7 +294,7 @@ void FocusNoneHandler()
 ```
 
 
-****
+**No layer shell surface has focus**
 
 No layer shell surface will have keyboard focus at the end of the manage
 sequence in which this event is sent. The window manager may want to

@@ -1,6 +1,6 @@
 ﻿# Wayland
 
-##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [Core](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Core) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [Wayland](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Core/wayland/)
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Core">Core</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Core/wayland/">Wayland</a></p>
 
 ---
 

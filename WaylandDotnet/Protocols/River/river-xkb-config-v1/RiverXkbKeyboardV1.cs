@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_xkb_keyboard_v1
 /// <para> xkbcommon keyboard device </para>
-/// <para> Version: 1 </para>
+/// <para> Version: 2 </para>
 /// <see>https://wayland.app/protocols/river-xkb-config-v1/#river_xkb_keyboard_v1</see>
 /// </summary>
 public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFactory<RiverXkbKeyboardV1>
 {
     public const string InterfaceName = "river_xkb_keyboard_v1";
     public static string _StaticInterfaceName => "river_xkb_keyboard_v1";
-    public const int InterfaceVersion = 1;
+    public const int InterfaceVersion = 2;
 
     private bool disposed;
 
@@ -269,6 +269,37 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    public delegate void DoneHandler();
+
+    private DoneHandler? _onDone;
+
+    /// <summary>
+    ///All information has been sent
+    /// <para>
+    ///
+    ///This event is sent after all information about the keyboard has been
+    ///sent.
+    ///
+    ///This allows changes to one or more river_xkb_keyboard_v1 properties to
+    ///be seen as atomic, even if they happen via multiple events.
+    ///
+    /// </para>
+    /// </summary>
+    public event DoneHandler? OnDone
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onDone += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onDone -= value;
+        }
+    }
+
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -352,6 +383,12 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
                         obj._onNumlockDisabled?.Invoke();
                     }
                     break;
+                case 7: // done
+                    if (obj._onDone != null)
+                    {
+                        obj._onDone?.Invoke();
+                    }
+                    break;
                 default:
                     return -1;
             }
@@ -396,6 +433,8 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
     /// <para>
     /// <br/>
     /// Set the keymap for the keyboard.<br/>
+    /// <br/>
+    /// Setting a keymap will reset all layout/modifier state.<br/>
     /// <br/>
     /// It is a protocol error to pass a keymap object for which the<br/>
     /// river_xkb_keymap_v1.success event was not received.<br/>

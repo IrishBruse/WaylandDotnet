@@ -1,6 +1,6 @@
 ﻿# River XKB Bindings
 
-##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [River](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [RiverXkbBindingsV1](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-xkb-bindings-v1/)
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-xkb-bindings-v1/">RiverXkbBindingsV1</a></p>
 
 ---
 
@@ -9,7 +9,7 @@
         <span class="codicon codicon-symbol-interface"></span>
         RiverXkbBindingsV1
     </a>
-    <span class="pill">version 2</span>
+    <span class="pill">version 3</span>
 </h2>
 
 Xkbcommon bindings global interface
@@ -106,7 +106,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         RiverXkbBindingV1
     </a>
-    <span class="pill">version 2</span>
+    <span class="pill">version 3</span>
 </h2>
 
 Configure a xkb key binding, receive trigger events
@@ -300,7 +300,7 @@ This event indicates that repeating should be stopped for the binding if
 the window manager has been repeating some action since the pressed
 event.
 
-This event is generally sent when some other (possible unbound) key is
+This event is generally sent when some other (possibly unbound) key is
 pressed after the pressed event is sent and before the released event
 is sent for this binding.
 
@@ -312,7 +312,7 @@ state has been sent by the server.
         <span class="codicon codicon-symbol-interface"></span>
         RiverXkbBindingsSeatV1
     </a>
-    <span class="pill">version 2</span>
+    <span class="pill">version 3</span>
 </h2>
 
 Xkb bindings seat
@@ -405,6 +405,35 @@ a chance to make the cancel_ensure_next_key_eaten request.
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
 
+<h3 class="decleration request" title="ModifiersWatch request">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=riverxkbbindingsseatv1_modifierswatch" id="riverxkbbindingsseatv1_modifierswatch">
+        <span class="codicon codicon-symbol-method method"></span>
+        RiverXkbBindingsSeatV1.<span class="method">ModifiersWatch</span>
+    </a>
+    <span class="pill">since 3</span>
+</h3>
+
+```csharp
+void ModifiersWatch(uint modifiers)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| modifiers | uint |  |
+
+**Watch for change in active modifiers**
+
+Request that the server send the modifiers_update event whenever a state
+change occurs for at least one of the modifiers specified by the
+modifiers argument.
+
+The window manager should make this request with the modifiers argument
+set to 0 when it no longer wishes to take action based on a change in
+modifiers.
+
+This request modifies window management state and may only be made as
+part of a manage sequence, see the river_window_manager_v1 description.
+
 <h3 class="decleration event" title="AteUnboundKey event">
     <a href="#/Protocols/River/river-xkb-bindings-v1/?id=onriverxkbbindingsseatv1_ateunboundkey" id="onriverxkbbindingsseatv1_ateunboundkey">
         <span class="codicon codicon-symbol-event event"></span>
@@ -425,4 +454,45 @@ request.
 
 This event will be followed by a manage_start event after all other new
 state has been sent by the server.
+
+<h3 class="decleration event" title="ModifiersUpdate event">
+    <a href="#/Protocols/River/river-xkb-bindings-v1/?id=onriverxkbbindingsseatv1_modifiersupdate" id="onriverxkbbindingsseatv1_modifiersupdate">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverXkbBindingsSeatV1.<span class="event">OnModifiersUpdate</span>
+    </a>
+    <span class="pill">since 3</span>
+</h3>
+
+```csharp
+void ModifiersUpdateHandler(uint old, uint _new)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| old | uint | Previously active modifiers |
+| new | uint | Currently active modifiers |
+
+**Active modifiers for the seat changed**
+
+The set of currently active modifiers for the seat changed. This event
+is only sent when there is a change in state for modifiers marked as
+watched using the modifiers_watch request.
+
+The old and new arguments convey the set of modifiers active before and
+after the change. All modifiers are included in the old and new
+arguments, including modifiers that are not watched.
+
+Since this event is only sent when there is a change in state for
+watched modifiers, it follows that at least one watched modifier is
+active in old but inactive in new or vice-versa.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+The compositor should wait for the manage sequence to complete before
+processing further input events. This allows the window manager client
+to, for example, modify key bindings and keyboard focus without racing
+against future input events. The window manager should of course respond
+as soon as possible as the capacity of the compositor to buffer incoming
+input events is finite.
 

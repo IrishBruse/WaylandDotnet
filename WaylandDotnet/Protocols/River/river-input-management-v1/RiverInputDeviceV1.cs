@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_input_device_v1
 /// <para> an input device </para>
-/// <para> Version: 1 </para>
+/// <para> Version: 2 </para>
 /// <see>https://wayland.app/protocols/river-input-management-v1/#river_input_device_v1</see>
 /// </summary>
 public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFactory<RiverInputDeviceV1>
 {
     public const string InterfaceName = "river_input_device_v1";
     public static string _StaticInterfaceName => "river_input_device_v1";
-    public const int InterfaceVersion = 1;
+    public const int InterfaceVersion = 2;
 
     private bool disposed;
 
@@ -176,6 +176,37 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    public delegate void DoneHandler();
+
+    private DoneHandler? _onDone;
+
+    /// <summary>
+    ///All information has been sent
+    /// <para>
+    ///
+    ///This event is sent after all information about the input device has
+    ///been sent.
+    ///
+    ///This allows changes to one or more river_input_device_v1 properties to
+    ///be seen as atomic, even if they happen via multiple events.
+    ///
+    /// </para>
+    /// </summary>
+    public event DoneHandler? OnDone
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onDone += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onDone -= value;
+        }
+    }
+
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -230,6 +261,12 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
                     {
                         var _name = Utf8StringMarshaller.ConvertToManaged(args[0].s);
                         obj._onName?.Invoke(_name);
+                    }
+                    break;
+                case 3: // done
+                    if (obj._onDone != null)
+                    {
+                        obj._onDone?.Invoke();
                     }
                     break;
                 default:

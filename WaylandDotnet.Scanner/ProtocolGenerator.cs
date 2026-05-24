@@ -22,6 +22,9 @@ public partial class ProtocolGenerator
     private string mdHref = "";
     private static readonly string[] separator = new[] { "\r\n", "\r", "\n" };
     private Dictionary<string, bool> interfaceNeedsDisplay = new();
+    private readonly GenerationReport report = new();
+
+    public int LastGeneratedCount => report.GeneratedCount;
 
     public void GenerateFileHeader(ProtocolMetadata metadata)
     {
@@ -68,6 +71,8 @@ public partial class ProtocolGenerator
 
     public void Generate(ProtocolMetadata metadata)
     {
+        report.Clear();
+
         string mdFile = Path.GetFileNameWithoutExtension(metadata.XmlFile);
         mdHref = $"#/Protocols/{metadata.Namespace}/{mdFile}";
 
@@ -91,9 +96,7 @@ public partial class ProtocolGenerator
         using FileStream fileStream = new(metadata.XmlFile, FileMode.Open);
         WaylandProtocol protocol = (WaylandProtocol)serializer.Deserialize(fileStream)!;
 
-        string ArrowSVG = "![](../../../assets/arrow.svg ':class=breadcrumb-arrow')";
-
-        GenerateBreadcrumbDocumentation(metadata, protocol, ArrowSVG);
+        GenerateBreadcrumbDocumentation(metadata, protocol);
 
         interfaceNeedsDisplay.Clear();
         foreach (var iface in protocol.Interfaces)
@@ -109,7 +112,7 @@ public partial class ProtocolGenerator
             GenerateInterface(iface);
             var outputFile = Path.Combine(metadata.OutputDir, iface.Name.ToPascal() + ".cs");
 
-            Console.WriteLine($"Generated {metadata.Namespace}/{iface.Name.ToPascal()}.cs");
+            report.AddGenerated($"{iface.Name.ToPascal()}.cs");
             File.WriteAllText(outputFile, sb.ToString());
         }
 
@@ -119,25 +122,34 @@ public partial class ProtocolGenerator
 
         File.WriteAllLines(Path.Combine(metadata.OutputDir, "Copyright.txt"), protocol.Copyright.Trim().Split("\n").Select(s => s.Trim()));
 
-        md.Save();
-        navbar.Save();
+        if (md.Path != "")
+        {
+            md.Save();
+        }
 
-        Console.WriteLine();
+        if (navbar.Path != "")
+        {
+            navbar.Save();
+        }
+
+        report.Print(metadata);
     }
 
-    private void GenerateBreadcrumbDocumentation(ProtocolMetadata metadata, WaylandProtocol protocol, string ArrowSVG)
+    private void GenerateBreadcrumbDocumentation(ProtocolMetadata metadata, WaylandProtocol protocol)
     {
-        string breadcrumb = "";
+        const string arrowImg = "<img src=\"../../../assets/arrow.svg\" class=\"breadcrumb-arrow\" alt=\"\" />";
+        string protocolDir = Path.GetFileNameWithoutExtension(metadata.XmlFile);
 
-        breadcrumb += $"[WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet)";
-        breadcrumb += $" {ArrowSVG} ";
-        breadcrumb += $"[{metadata.Namespace}](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/{metadata.Namespace})";
-        breadcrumb += $" {ArrowSVG} ";
-        breadcrumb += $"[{protocol.Name.ToPascal()}](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/{metadata.Namespace}/{Path.GetFileNameWithoutExtension(metadata.XmlFile)}/)";
+        string breadcrumb =
+            $"<a href=\"https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet\">WaylandDotnet</a>" +
+            $" {arrowImg} " +
+            $"<a href=\"https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/{metadata.Namespace}\">{metadata.Namespace}</a>" +
+            $" {arrowImg} " +
+            $"<a href=\"https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/{metadata.Namespace}/{protocolDir}/\">{protocol.Name.ToPascal()}</a>";
 
         md.WriteLine($"# {metadata.Name}");
         md.WriteLine();
-        md.WriteLine($"##### {breadcrumb}");
+        md.WriteLine($"<p class=\"breadcrumb\">{breadcrumb}</p>");
         md.WriteLine();
         md.WriteLine("---");
         md.WriteLine();
@@ -892,7 +904,7 @@ public partial class ProtocolGenerator
 
         if (methodName == "Bind" && interaceName == "WlRegistry")
         {
-            Console.WriteLine("Skipped");
+            report.AddSkipped("WlRegistry.Bind");
             return;
         }
 

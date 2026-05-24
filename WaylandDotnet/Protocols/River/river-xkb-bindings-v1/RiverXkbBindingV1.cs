@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_xkb_binding_v1
 /// <para> configure a xkb key binding, receive trigger events </para>
-/// <para> Version: 2 </para>
+/// <para> Version: 3 </para>
 /// <see>https://wayland.app/protocols/river-xkb-bindings-v1/#river_xkb_binding_v1</see>
 /// </summary>
 public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFactory<RiverXkbBindingV1>
 {
     public const string InterfaceName = "river_xkb_binding_v1";
     public static string _StaticInterfaceName => "river_xkb_binding_v1";
-    public const int InterfaceVersion = 2;
+    public const int InterfaceVersion = 3;
 
     private bool disposed;
 
@@ -141,7 +141,7 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
     ///the window manager has been repeating some action since the pressed
     ///event.
     ///
-    ///This event is generally sent when some other (possible unbound) key is
+    ///This event is generally sent when some other (possibly unbound) key is
     ///pressed after the pressed event is sent and before the released event
     ///is sent for this binding.
     ///

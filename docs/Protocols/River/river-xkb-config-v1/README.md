@@ -1,6 +1,6 @@
 ﻿# River XKB Config
 
-##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [River](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [RiverXkbConfigV1](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-xkb-config-v1/)
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-xkb-config-v1/">RiverXkbConfigV1</a></p>
 
 ---
 
@@ -9,7 +9,7 @@
         <span class="codicon codicon-symbol-interface"></span>
         RiverXkbConfigV1
     </a>
-    <span class="pill">version 1</span>
+    <span class="pill">version 2</span>
 </h2>
 
 Xkb config global interface
@@ -166,7 +166,7 @@ public enum KeymapFormat
         <span class="codicon codicon-symbol-interface"></span>
         RiverXkbKeymapV1
     </a>
-    <span class="pill">version 1</span>
+    <span class="pill">version 2</span>
 </h2>
 
 Xkbcommon keymap
@@ -237,7 +237,7 @@ river_xkb_keyboard_v1.set_keymap.
         <span class="codicon codicon-symbol-interface"></span>
         RiverXkbKeyboardV1
     </a>
-    <span class="pill">version 1</span>
+    <span class="pill">version 2</span>
 </h2>
 
 Xkbcommon keyboard device
@@ -283,6 +283,8 @@ void SetKeymap(RiverXkbKeymapV1 keymap)
 **Set the keymap**
 
 Set the keymap for the keyboard.
+
+Setting a keymap will reset all layout/modifier state.
 
 It is a protocol error to pass a keymap object for which the
 river_xkb_keymap_v1.success event was not received.
@@ -532,6 +534,27 @@ Numlock is currently disabled for the keyboard.
 
 This event is sent once when the river_xkb_keyboard_v1 is created and
 again whenever the numlock state changes.
+
+<h3 class="decleration event" title="Done event">
+    <a href="#/Protocols/River/river-xkb-config-v1/?id=onriverxkbkeyboardv1_done" id="onriverxkbkeyboardv1_done">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverXkbKeyboardV1.<span class="event">OnDone</span>
+    </a>
+    <span class="pill">since 2</span>
+</h3>
+
+```csharp
+void DoneHandler()
+```
+
+
+**All information has been sent**
+
+This event is sent after all information about the keyboard has been
+sent.
+
+This allows changes to one or more river_xkb_keyboard_v1 properties to
+be seen as atomic, even if they happen via multiple events.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="#/Protocols/River/river-xkb-config-v1/?id=error" id="error">

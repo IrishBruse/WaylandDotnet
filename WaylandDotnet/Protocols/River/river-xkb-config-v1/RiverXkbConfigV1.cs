@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_xkb_config_v1
 /// <para> xkb config global interface </para>
-/// <para> Version: 1 </para>
+/// <para> Version: 2 </para>
 /// <see>https://wayland.app/protocols/river-xkb-config-v1/#river_xkb_config_v1</see>
 /// </summary>
 public sealed partial class RiverXkbConfigV1 : WaylandObject, IWaylandObjectFactory<RiverXkbConfigV1>
 {
     public const string InterfaceName = "river_xkb_config_v1";
     public static string _StaticInterfaceName => "river_xkb_config_v1";
-    public const int InterfaceVersion = 1;
+    public const int InterfaceVersion = 2;
 
     private bool disposed;
 

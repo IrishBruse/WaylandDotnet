@@ -1,6 +1,6 @@
 ﻿# River LibInput Config
 
-##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [River](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [RiverLibinputConfigV1](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-libinput-config-v1/)
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-libinput-config-v1/">RiverLibinputConfigV1</a></p>
 
 ---
 
@@ -9,7 +9,7 @@
         <span class="codicon codicon-symbol-interface"></span>
         RiverLibinputConfigV1
     </a>
-    <span class="pill">version 1</span>
+    <span class="pill">version 2</span>
 </h2>
 
 Libinput config global interface
@@ -147,7 +147,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         RiverLibinputDeviceV1
     </a>
-    <span class="pill">version 1</span>
+    <span class="pill">version 2</span>
 </h2>
 
 A libinput device
@@ -341,7 +341,7 @@ RiverLibinputResultV1 SetAccelProfile(uint profile)
 | result | new_id |  |
 | profile | uint |  |
 
-**Set send events mode**
+**Set acceleration profile**
 
 Set the acceleration profile.
 
@@ -1050,7 +1050,7 @@ void AccelProfileCurrentHandler(uint profile)
 | --- | --- | --- |
 | profile | uint |  |
 
-**Current send events mode**
+**Current acceleration profile**
 
 Current acceleration profile.
 
@@ -1670,6 +1670,27 @@ void RotationCurrentHandler(uint angle)
 **Current rotation angle**
 
 Current rotation angle.
+
+<h3 class="decleration event" title="Done event">
+    <a href="#/Protocols/River/river-libinput-config-v1/?id=onriverlibinputdevicev1_done" id="onriverlibinputdevicev1_done">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverLibinputDeviceV1.<span class="event">OnDone</span>
+    </a>
+    <span class="pill">since 2</span>
+</h3>
+
+```csharp
+void DoneHandler()
+```
+
+
+**All information has been sent**
+
+This event is sent after all information about the libinput device has
+been sent.
+
+This allows changes to one or more river_libinput_device_v1 properties
+to be seen as atomic, even if they happen via multiple events.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="#/Protocols/River/river-libinput-config-v1/?id=error" id="error">

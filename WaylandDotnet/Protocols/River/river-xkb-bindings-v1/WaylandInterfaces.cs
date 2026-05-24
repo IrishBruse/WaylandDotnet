@@ -17,7 +17,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_xkb_bindings_v1
-    /// Version: 2
+    /// Version: 3
     /// Requests: 3, Events: 0
     /// </summary>
     [ModuleInitializer]
@@ -47,7 +47,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_xkb_bindings_v1"),
-            Version = 2,
+            Version = 3,
             MethodCount = 3,
             Methods = requests,
             EventCount = 0,
@@ -61,7 +61,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_xkb_binding_v1
-    /// Version: 2
+    /// Version: 3
     /// Requests: 4, Events: 3
     /// </summary>
     [ModuleInitializer]
@@ -118,7 +118,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_xkb_binding_v1"),
-            Version = 2,
+            Version = 3,
             MethodCount = 4,
             Methods = requests,
             EventCount = 3,
@@ -132,14 +132,14 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_xkb_bindings_seat_v1
-    /// Version: 2
-    /// Requests: 3, Events: 1
+    /// Version: 3
+    /// Requests: 4, Events: 2
     /// </summary>
     [ModuleInitializer]
     public static void CreateRiverXkbBindingsSeatV1Interface()
     {
         // Request signatures
-        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 3);
+        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 4);
         requests[0] = new WlMessage
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("destroy"),
@@ -158,23 +158,35 @@ public static unsafe partial class WaylandInterfaces
             Signature = Utf8StringMarshaller.ConvertToUnmanaged(""),
             Types = (WlInterface**)IntPtr.Zero
         };
+        requests[3] = new WlMessage
+        {
+            Name = Utf8StringMarshaller.ConvertToUnmanaged("modifiers_watch"),
+            Signature = Utf8StringMarshaller.ConvertToUnmanaged("u"),
+            Types = (WlInterface**)CreateTypesArray([(WlInterface*)IntPtr.Zero])
+        };
 
         // Event signatures
-        var events = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 1);
+        var events = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 2);
         events[0] = new WlMessage
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("ate_unbound_key"),
             Signature = Utf8StringMarshaller.ConvertToUnmanaged(""),
             Types = (WlInterface**)IntPtr.Zero
         };
+        events[1] = new WlMessage
+        {
+            Name = Utf8StringMarshaller.ConvertToUnmanaged("modifiers_update"),
+            Signature = Utf8StringMarshaller.ConvertToUnmanaged("uu"),
+            Types = (WlInterface**)CreateTypesArray([(WlInterface*)IntPtr.Zero, (WlInterface*)IntPtr.Zero])
+        };
 
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_xkb_bindings_seat_v1"),
-            Version = 2,
-            MethodCount = 3,
+            Version = 3,
+            MethodCount = 4,
             Methods = requests,
-            EventCount = 1,
+            EventCount = 2,
             Events = events
         };
 

@@ -1,6 +1,6 @@
 ﻿# River Input Management
 
-##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [River](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [RiverInputManagementV1](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-input-management-v1/)
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River">River</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/River/river-input-management-v1/">RiverInputManagementV1</a></p>
 
 ---
 
@@ -9,7 +9,7 @@
         <span class="codicon codicon-symbol-interface"></span>
         RiverInputManagerV1
     </a>
-    <span class="pill">version 1</span>
+    <span class="pill">version 2</span>
 </h2>
 
 Input manager global interface
@@ -172,7 +172,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         RiverInputDeviceV1
     </a>
-    <span class="pill">version 1</span>
+    <span class="pill">version 2</span>
 </h2>
 
 An input device
@@ -388,6 +388,27 @@ void NameHandler(string name)
 The name of the input device. This event is sent once when the
 river_input_device_v1 object is created. The device name cannot
 change during the lifetime of the object.
+
+<h3 class="decleration event" title="Done event">
+    <a href="#/Protocols/River/river-input-management-v1/?id=onriverinputdevicev1_done" id="onriverinputdevicev1_done">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverInputDeviceV1.<span class="event">OnDone</span>
+    </a>
+    <span class="pill">since 2</span>
+</h3>
+
+```csharp
+void DoneHandler()
+```
+
+
+**All information has been sent**
+
+This event is sent after all information about the input device has
+been sent.
+
+This allows changes to one or more river_input_device_v1 properties to
+be seen as atomic, even if they happen via multiple events.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="#/Protocols/River/river-input-management-v1/?id=error" id="error">

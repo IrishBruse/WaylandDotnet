@@ -1,6 +1,5 @@
 <p align="center">
   <img src="./logo.png"><br>
-  <b>WaylandDotnet</b>
 </p>
 
 <p align="center">
@@ -8,28 +7,25 @@
   <a href="https://www.nuget.org/packages/WaylandDotnet.Scanner/"><img src="https://img.shields.io/nuget/v/WaylandDotnet.Scanner?label=WaylandDotnet.Scanner" /></a>
 </p>
 
-# Description
+# WaylandDotnet
 
-WaylandDotnet provides C# bindings for the Wayland protocol.
-This library provides C# access to Wayland client functionality with AOT compilation support.
+C# bindings for the Wayland protocol with native AOT support via `LibraryImport`.
 
 ## Features
 
-- Native AOT: Uses LibraryImport for zero-overhead interop, optimized for high-performance applications.
-- Code Generation: Includes a CLI tool to transform any Wayland XML protocol into type-safe C# code.
-- Idiomatic C#: Leverages C# events for Wayland event handling.
-- Extensible: Support for binding to custom compositor protocols such as wlroots or River.
-- Documentation: The protocol, api and tutorials are located [here](https://ethanconneely.com/WaylandDotnet)
+- **Native AOT** - Zero-overhead interop for high-performance apps
+- **Code generation** - CLI tool turns Wayland XML into type-safe C#
+- **Idiomatic C#** - Events instead of C-style callbacks
+- **Extensible** - Core, stable, wlroots, River, and custom compositor protocols
+- **Documentation** - [Protocol reference and tutorials](https://ethanconneely.com/WaylandDotnet)
 
-# Getting Started
-
-**Requirements:**
+## Requirements
 
 - .NET 10.0 SDK
-- libwayland-client (System library)
-- A running Wayland Compositor/Desktop
+- `libwayland-client` (system library)
+- A running Wayland compositor (for running examples)
 
-## Quick Example
+## Quick example
 
 ```csharp
 using WaylandDotnet;
@@ -42,7 +38,7 @@ var registry = display.GetRegistry();
 WlCompositor? compositor = null;
 
 registry.OnGlobal += (name, interfaceName, version) => {
-  Console.WriteLine($"Found Global: {interfaceName} (v{version})");
+  Console.WriteLine($"Found global: {interfaceName} (v{version})");
 
   // 3. Bind to a global
   if (interfaceName == WlCompositor.InterfaceName)
@@ -55,71 +51,24 @@ registry.OnGlobal += (name, interfaceName, version) => {
 display.Roundtrip();
 ```
 
-# Code Generation (Scanner)
+## Scanner
 
-The WaylandDotnet.Scanner tool allows you to generate bindings for any protocol XML file.
-
-## Installation
+Install the global tool:
 
 ```bash
 dotnet tool install --global WaylandDotnet.Scanner
 ```
 
-## Usage
-
-You can generate code directly from an XML file or use a configuration file for larger projects.
-
-### Direct Command
+Generate from a single XML file:
 
 ```bash
 wayland-dotnet-scanner wayland.xml ./Protocols/wayland/ --namespace Core
 ```
 
-### Using protocols.json
+Or use a `protocols.json` config (`wayland-dotnet-scanner init`, edit, then run `wayland-dotnet-scanner`). See [WaylandDotnet.Scanner/README.md](WaylandDotnet.Scanner/README.md) for CLI options and configuration fields.
 
-1. Initialize: `wayland-dotnet-scanner init`
-2. Configure: Edit the generated protocols.json:
-```json
-{
-  "OutputRoot": "./Generated",
-  "Protocols": [
-    {
-      "Name": "Layer Shell",
-      "XmlFile": "Protocols/Wlr/wlr-layer-shell-unstable-v1.xml",
-      "Namespace": "Wlr"
-    }
-  ]
-}
-```
+## Contributing
 
-3. Run: `wayland-dotnet-scanner` in the same dir as the `protocols.json`
+This repo has generated files before editing files.
 
-# Contributing & Development
-
-## Project Structure
-
-- WaylandDotnet: The core library for client-side Wayland communication.
-- WaylandDotnet.Scanner: A C# version of `wayland-scanner` for parsing XML protocols and generating C# bindings.
-- Examples: Implementation samples including Minimal (XdgToplevel), LayerShell (SDL3), and River WM.
-
-## Setup
-
-To get started with the source code:
-
-```bash
-# Clone and build
-git clone https://github.com/IrishBruse/WaylandDotnet.git
-dotnet build
-
-# Run the minimal window example
-dotnet run --project Examples/Minimal
-
-# Execute tests
-dotnet test
-```
-
-Note: For protocol changes, navigate to WaylandDotnet.Scanner and run the project to regenerate the core library bindings.
-
-## Resources
-- Wayland Protocols: [https://wayland.app/protocols/](https://wayland.app/protocols/)
-- WaylandDotnet Protocol Browser: [https://ethanconneely.com/WaylandDotnet/#/Protocols/Core/wayland/](https://ethanconneely.com/WaylandDotnet/#/Protocols/Core/wayland/)
+See: [CONTRIBUTING](CONTRIBUTING.md)

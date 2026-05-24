@@ -2,6 +2,9 @@
 
 A .NET 10 tool that generates C# bindings from Wayland XML protocol files.
 
+Contributing to the WaylandDotnet repo: see [../CONTRIBUTING.md](../CONTRIBUTING.md).
+The repo entry point is [protocols.json](protocols.json).
+
 ## Installation
 
 ```bash
@@ -81,7 +84,8 @@ For each protocol, the scanner generates:
 - `{Namespace}/{ProtocolName}/Copyright.txt` - Protocol copyright info
 
 When `DocsDir` is set, also generates:
-- `Protocols/_sidebar.md` - Documentation sidebar for Docsify
+
+- Updates the protocols section in `docs/sidebar.md` (between `<!-- wayland-dotnet-scanner:protocols -->` markers)
 
 ## Features
 

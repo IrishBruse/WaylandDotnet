@@ -1,6 +1,6 @@
 ﻿# Workspace Extension
 
-##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [Staging](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Staging) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [ExtWorkspaceV1](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Staging/ext-workspace-v1/)
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Staging">Staging</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Staging/ext-workspace-v1/">ExtWorkspaceV1</a></p>
 
 ---
 

@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_libinput_config_v1
 /// <para> libinput config global interface </para>
-/// <para> Version: 1 </para>
+/// <para> Version: 2 </para>
 /// <see>https://wayland.app/protocols/river-libinput-config-v1/#river_libinput_config_v1</see>
 /// </summary>
 public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjectFactory<RiverLibinputConfigV1>
 {
     public const string InterfaceName = "river_libinput_config_v1";
     public static string _StaticInterfaceName => "river_libinput_config_v1";
-    public const int InterfaceVersion = 1;
+    public const int InterfaceVersion = 2;
 
     private bool disposed;
 

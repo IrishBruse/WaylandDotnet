@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_xkb_bindings_seat_v1
 /// <para> xkb bindings seat </para>
-/// <para> Version: 2 </para>
+/// <para> Version: 3 </para>
 /// <see>https://wayland.app/protocols/river-xkb-bindings-v1/#river_xkb_bindings_seat_v1</see>
 /// </summary>
 public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObjectFactory<RiverXkbBindingsSeatV1>
 {
     public const string InterfaceName = "river_xkb_bindings_seat_v1";
     public static string _StaticInterfaceName => "river_xkb_bindings_seat_v1";
-    public const int InterfaceVersion = 2;
+    public const int InterfaceVersion = 3;
 
     private bool disposed;
 
@@ -79,6 +79,53 @@ public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObje
         }
     }
 
+    public delegate void ModifiersUpdateHandler(uint old, uint _new);
+
+    private ModifiersUpdateHandler? _onModifiersUpdate;
+
+    /// <summary>
+    ///Active modifiers for the seat changed
+    /// <para>
+    ///
+    ///The set of currently active modifiers for the seat changed. This event
+    ///is only sent when there is a change in state for modifiers marked as
+    ///watched using the modifiers_watch request.
+    ///
+    ///The old and new arguments convey the set of modifiers active before and
+    ///after the change. All modifiers are included in the old and new
+    ///arguments, including modifiers that are not watched.
+    ///
+    ///Since this event is only sent when there is a change in state for
+    ///watched modifiers, it follows that at least one watched modifier is
+    ///active in old but inactive in new or vice-versa.
+    ///
+    ///This event will be followed by a manage_start event after all other new
+    ///state has been sent by the server.
+    ///
+    ///The compositor should wait for the manage sequence to complete before
+    ///processing further input events. This allows the window manager client
+    ///to, for example, modify key bindings and keyboard focus without racing
+    ///against future input events. The window manager should of course respond
+    ///as soon as possible as the capacity of the compositor to buffer incoming
+    ///input events is finite.
+    ///
+    /// </para>
+    /// </summary>
+    public event ModifiersUpdateHandler? OnModifiersUpdate
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onModifiersUpdate += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onModifiersUpdate -= value;
+        }
+    }
+
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -119,6 +166,14 @@ public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObje
                     if (obj._onAteUnboundKey != null)
                     {
                         obj._onAteUnboundKey?.Invoke();
+                    }
+                    break;
+                case 1: // modifiers_update
+                    if (obj._onModifiersUpdate != null)
+                    {
+                        var _old = args[0].u;
+                        var __new = args[1].u;
+                        obj._onModifiersUpdate?.Invoke(_old, __new);
                     }
                     break;
                 default:
@@ -232,6 +287,42 @@ public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObje
         var args = stackalloc WlArgument[0];
 
         const uint opcode = 2;
+
+        var newProxy = WaylandNative.ProxyMarshalArrayFlags(
+            Handle,
+            opcode,
+            (WlInterface*)IntPtr.Zero,
+            0,
+            0,
+            (nint)args
+        );
+    }
+
+    /// <summary>
+    /// Watch for change in active modifiers
+    /// <para>
+    /// <br/>
+    /// Request that the server send the modifiers_update event whenever a state<br/>
+    /// change occurs for at least one of the modifiers specified by the<br/>
+    /// modifiers argument.<br/>
+    /// <br/>
+    /// The window manager should make this request with the modifiers argument<br/>
+    /// set to 0 when it no longer wishes to take action based on a change in<br/>
+    /// modifiers.<br/>
+    /// <br/>
+    /// This request modifies window management state and may only be made as<br/>
+    /// part of a manage sequence, see the river_window_manager_v1 description.<br/>
+    /// <br/>
+    /// </para>
+    /// </summary>
+    public unsafe void ModifiersWatch(uint modifiers)
+    {
+        ObjectDisposedException.ThrowIf(disposed, this);
+
+        var args = stackalloc WlArgument[1];
+        args[0].u = modifiers;
+
+        const uint opcode = 3;
 
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,

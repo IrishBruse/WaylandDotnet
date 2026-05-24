@@ -71,6 +71,5 @@ public class SourceFile
     {
         writer?.Flush();
         writer?.Dispose();
-        Console.WriteLine("Saved " + Path);
     }
 }

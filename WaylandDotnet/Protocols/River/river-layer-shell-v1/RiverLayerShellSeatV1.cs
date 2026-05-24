@@ -53,7 +53,7 @@ public sealed partial class RiverLayerShellSeatV1 : WaylandObject, IWaylandObjec
     private FocusExclusiveHandler? _onFocusExclusive;
 
     /// <summary>
-    ///
+    ///Layer shell surface has exclusive focus
     /// <para>
     ///
     ///A layer shell surface will be given exclusive keyboard focus at the end
@@ -89,7 +89,7 @@ public sealed partial class RiverLayerShellSeatV1 : WaylandObject, IWaylandObjec
     private FocusNonExclusiveHandler? _onFocusNonExclusive;
 
     /// <summary>
-    ///
+    ///Layer shell surface wants non-exclusive focus
     /// <para>
     ///
     ///A layer shell surface will be given non-exclusive keyboard focus at the
@@ -101,6 +101,10 @@ public sealed partial class RiverLayerShellSeatV1 : WaylandObject, IWaylandObjec
     ///different window/shell surface at any time. If the window manager sets
     ///focus during the same manage sequence in which this event is sent, the
     ///layer surface will not be focused.
+    ///
+    ///If the layer surface with non-exclusive focus is closed or the window
+    ///manager chooses to move focus away from the layer surface, a focus_none
+    ///event will be sent in the next manage sequence.
     ///
     ///This event will be followed by a manage_start event after all other new
     ///state has been sent by the server.
@@ -127,7 +131,7 @@ public sealed partial class RiverLayerShellSeatV1 : WaylandObject, IWaylandObjec
     private FocusNoneHandler? _onFocusNone;
 
     /// <summary>
-    ///
+    ///No layer shell surface has focus
     /// <para>
     ///
     ///No layer shell surface will have keyboard focus at the end of the manage

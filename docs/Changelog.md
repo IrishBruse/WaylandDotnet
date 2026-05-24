@@ -4,7 +4,6 @@
 
 [Github](https://github.com/IrishBruse/WaylandDotnet/commits/0.3.0)
 
-
 ## 0.3.0
 
 [Github](https://github.com/IrishBruse/WaylandDotnet/commits/0.3.0)

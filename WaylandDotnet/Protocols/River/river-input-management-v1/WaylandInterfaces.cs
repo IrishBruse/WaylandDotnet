@@ -16,7 +16,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_input_manager_v1
-    /// Version: 1
+    /// Version: 2
     /// Requests: 4, Events: 2
     /// </summary>
     [ModuleInitializer]
@@ -67,7 +67,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_input_manager_v1"),
-            Version = 1,
+            Version = 2,
             MethodCount = 4,
             Methods = requests,
             EventCount = 2,
@@ -81,8 +81,8 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_input_device_v1
-    /// Version: 1
-    /// Requests: 6, Events: 3
+    /// Version: 2
+    /// Requests: 6, Events: 4
     /// </summary>
     [ModuleInitializer]
     public static void CreateRiverInputDeviceV1Interface()
@@ -127,7 +127,7 @@ public static unsafe partial class WaylandInterfaces
         };
 
         // Event signatures
-        var events = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 3);
+        var events = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 4);
         events[0] = new WlMessage
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("removed"),
@@ -146,14 +146,20 @@ public static unsafe partial class WaylandInterfaces
             Signature = Utf8StringMarshaller.ConvertToUnmanaged("s"),
             Types = (WlInterface**)CreateTypesArray([(WlInterface*)IntPtr.Zero])
         };
+        events[3] = new WlMessage
+        {
+            Name = Utf8StringMarshaller.ConvertToUnmanaged("done"),
+            Signature = Utf8StringMarshaller.ConvertToUnmanaged(""),
+            Types = (WlInterface**)IntPtr.Zero
+        };
 
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_input_device_v1"),
-            Version = 1,
+            Version = 2,
             MethodCount = 6,
             Methods = requests,
-            EventCount = 3,
+            EventCount = 4,
             Events = events
         };
 

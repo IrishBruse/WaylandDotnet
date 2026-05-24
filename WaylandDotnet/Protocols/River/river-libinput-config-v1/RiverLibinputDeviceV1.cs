@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_libinput_device_v1
 /// <para> a libinput device </para>
-/// <para> Version: 1 </para>
+/// <para> Version: 2 </para>
 /// <see>https://wayland.app/protocols/river-libinput-config-v1/#river_libinput_device_v1</see>
 /// </summary>
 public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjectFactory<RiverLibinputDeviceV1>
 {
     public const string InterfaceName = "river_libinput_device_v1";
     public static string _StaticInterfaceName => "river_libinput_device_v1";
-    public const int InterfaceVersion = 1;
+    public const int InterfaceVersion = 2;
 
     private bool disposed;
 
@@ -968,7 +968,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     private AccelProfileCurrentHandler? _onAccelProfileCurrent;
 
     /// <summary>
-    ///Current send events mode
+    ///Current acceleration profile
     /// <para>
     ///
     ///Current acceleration profile.
@@ -1863,6 +1863,37 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    public delegate void DoneHandler();
+
+    private DoneHandler? _onDone;
+
+    /// <summary>
+    ///All information has been sent
+    /// <para>
+    ///
+    ///This event is sent after all information about the libinput device has
+    ///been sent.
+    ///
+    ///This allows changes to one or more river_libinput_device_v1 properties
+    ///to be seen as atomic, even if they happen via multiple events.
+    ///
+    /// </para>
+    /// </summary>
+    public event DoneHandler? OnDone
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onDone += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onDone -= value;
+        }
+    }
+
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -2285,6 +2316,12 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                         obj._onRotationCurrent?.Invoke(_angle);
                     }
                     break;
+                case 55: // done
+                    if (obj._onDone != null)
+                    {
+                        obj._onDone?.Invoke();
+                    }
+                    break;
                 default:
                     return -1;
             }
@@ -2542,7 +2579,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     }
 
     /// <summary>
-    /// Set send events mode
+    /// Set acceleration profile
     /// <para>
     /// <br/>
     /// Set the acceleration profile.<br/>

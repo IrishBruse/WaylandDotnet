@@ -1,6 +1,6 @@
 ﻿# Foreign Toplevel Management
 
-##### [WaylandDotnet](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [Wlr](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr) ![](../../../assets/arrow.svg ':class=breadcrumb-arrow') [WlrForeignToplevelManagementUnstableV1](https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/)
+<p class="breadcrumb"><a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet">WaylandDotnet</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr">Wlr</a> <img src="../../../assets/arrow.svg" class="breadcrumb-arrow" alt="" /> <a href="https://github.com/IrishBruse/WaylandDotnet/blob/main/WaylandDotnet/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/">WlrForeignToplevelManagementUnstableV1</a></p>
 
 ---
 

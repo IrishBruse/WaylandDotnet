@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_input_manager_v1
 /// <para> input manager global interface </para>
-/// <para> Version: 1 </para>
+/// <para> Version: 2 </para>
 /// <see>https://wayland.app/protocols/river-input-management-v1/#river_input_manager_v1</see>
 /// </summary>
 public sealed partial class RiverInputManagerV1 : WaylandObject, IWaylandObjectFactory<RiverInputManagerV1>
 {
     public const string InterfaceName = "river_input_manager_v1";
     public static string _StaticInterfaceName => "river_input_manager_v1";
-    public const int InterfaceVersion = 1;
+    public const int InterfaceVersion = 2;
 
     private bool disposed;
 
