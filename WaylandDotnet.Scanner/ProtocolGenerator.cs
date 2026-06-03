@@ -89,9 +89,6 @@ public partial class ProtocolGenerator
             navbar = new("");
         }
 
-        navbar.WriteLine("Outline");
-        navbar.WriteLine();
-
         XmlSerializer serializer = new(typeof(WaylandProtocol));
         using FileStream fileStream = new(metadata.XmlFile, FileMode.Open);
         WaylandProtocol protocol = (WaylandProtocol)serializer.Deserialize(fileStream)!;

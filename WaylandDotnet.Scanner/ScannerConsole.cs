@@ -1,6 +1,6 @@
-using WaylandDotnet.Scanner.Data;
-
 namespace WaylandDotnet.Scanner;
+
+using WaylandDotnet.Scanner.Data;
 
 internal static class ScannerConsole
 {

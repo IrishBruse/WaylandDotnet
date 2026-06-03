@@ -1,5 +1,3 @@
-﻿Outline
-
 - [XdgWmBase](#xdgwmbase ':class=interface')
 - [XdgPositioner](#xdgpositioner ':class=interface')
 - [XdgSurface](#xdgsurface ':class=interface')

@@ -39,13 +39,17 @@
             loadNavbar: "navbar.md",
             loadSidebar: "sidebar.md",
             noEmoji: true,
+            alias: {
+                "/Protocols/wayland.md": "/Protocols/Core/wayland/README.md",
+            },
         };
 
         if (location.hostname !== "localhost") {
             window.$docsify.basePath = "/WaylandDotnet/"
         }
     </script>
-    <script src="sidebar-active.js"></script>
+    <script src="plugins/site-footer.js"></script>
+    <script src="plugins/page-nav.js"></script>
     <!-- Docsify v4 -->
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
 </body>

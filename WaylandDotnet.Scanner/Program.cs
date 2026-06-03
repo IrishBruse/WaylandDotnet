@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using WaylandDotnet.Scanner.Data;
 
 public class Program
@@ -220,6 +221,7 @@ public class Program
         if (protocols.Any(p => p.DocsDir != null))
         {
             GenerateSidebar(protocols);
+            GenerateSidebarActiveCss(protocols);
         }
 
         ScannerConsole.WriteDone($"Done - {protocolCount} protocols, {fileCount} files");
@@ -328,6 +330,8 @@ public class Program
 
     const string SidebarBeginMarker = "<!-- wayland-dotnet-scanner:protocols -->";
     const string SidebarEndMarker = "<!-- /wayland-dotnet-scanner:protocols -->";
+    const string SidebarActiveBeginMarker = "/* wayland-dotnet-scanner:sidebar-active */";
+    const string SidebarActiveEndMarker = "/* /wayland-dotnet-scanner:sidebar-active */";
 
     static readonly string[] SidebarNamespaceOrder =
     [
@@ -390,6 +394,78 @@ public class Program
         }
 
         return sb.ToString().TrimEnd();
+    }
+
+    static void GenerateSidebarActiveCss(ProtocolMetadata[] protocols)
+    {
+        var protocolsWithDocs = protocols.Where(p => p.DocsDir != null).ToArray();
+        if (protocolsWithDocs.Length == 0)
+        {
+            return;
+        }
+
+        var sidebarCssPath = Path.Combine(protocolsWithDocs[0].DocsDir!, "styles", "sidebar.css");
+        if (!File.Exists(sidebarCssPath))
+        {
+            ScannerConsole.WriteError($"Error: Sidebar CSS file not found: {sidebarCssPath}");
+            return;
+        }
+
+        var content = File.ReadAllText(sidebarCssPath);
+        var beginIndex = content.IndexOf(SidebarActiveBeginMarker, StringComparison.Ordinal);
+        var endIndex = content.IndexOf(SidebarActiveEndMarker, StringComparison.Ordinal);
+
+        if (beginIndex < 0 || endIndex < 0 || endIndex <= beginIndex)
+        {
+            ScannerConsole.WriteError(
+                $"Error: {sidebarCssPath} must contain '{SidebarActiveBeginMarker}' and '{SidebarActiveEndMarker}' markers.");
+            return;
+        }
+
+        var generated = BuildSidebarActiveSelectors(protocolsWithDocs);
+        var before = content[..(beginIndex + SidebarActiveBeginMarker.Length)];
+        var after = content[endIndex..];
+        File.WriteAllText(sidebarCssPath, $"{before}\n{generated}\n{after}");
+    }
+
+    static string BuildSidebarActiveSelectors(ProtocolMetadata[] protocols)
+    {
+        var sb = new StringBuilder();
+
+        foreach (var protocol in protocols.OrderBy(p => p.Namespace).ThenBy(p => p.Name))
+        {
+            var docId = GetFirstDocIdFromReadme(protocol);
+            if (docId == null)
+            {
+                continue;
+            }
+
+            var fileName = Path.GetFileNameWithoutExtension(protocol.XmlFile);
+            var path = $"/Protocols/{protocol.Namespace}/{fileName}/";
+            sb.AppendLine(
+                $"body:has(#{docId}) .sidebar li:has(> a[href*=\"{path}\"]) > a,");
+        }
+
+        return sb.ToString().TrimEnd().TrimEnd(',');
+    }
+
+    static string? GetFirstDocIdFromReadme(ProtocolMetadata protocol)
+    {
+        var fileName = Path.GetFileNameWithoutExtension(protocol.XmlFile);
+        var readmePath = Path.Combine(
+            protocol.DocsDir!,
+            "Protocols",
+            protocol.Namespace,
+            fileName,
+            "README.md");
+
+        if (!File.Exists(readmePath))
+        {
+            return null;
+        }
+
+        var match = Regex.Match(File.ReadAllText(readmePath), @"id=""([^""]+)""");
+        return match.Success ? match.Groups[1].Value : null;
     }
 }
 

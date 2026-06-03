@@ -75,11 +75,6 @@
     background-color: rgb(39 39 42);
   }
 
-  li.active a {
-    border-left-color: var(--accent-color);
-    color: var(--accent-color);
-    background-color: rgb(39 39 42);
-  }
 
   li.collapse .app-sub-sidebar {
     display: none;
@@ -148,4 +143,44 @@
   .sidebar-toggle {
     display: block;
   }
+}
+
+/* Page link highlight: Docsify sets li.active on route change but clears it when
+   ?id= is added for navbar section scroll. Match the current page via :has() on
+   content anchors that exist only on that page. */
+.sidebar li.active > a,
+body:has(#waylanddotnet):not(:has(.decleration.interface))
+  .sidebar
+  li:has(> a[href="/"])
+  > a,
+body:has(#waylanddotnet):not(:has(.decleration.interface))
+  .sidebar
+  li:has(> a[href="/WaylandDotnet/"])
+  > a,
+body:has(#tutorials):not(:has(.decleration.interface))
+  .sidebar
+  li:has(> a[href*="/Tutorials/"])
+  > a,
+/* wayland-dotnet-scanner:sidebar-active */
+body:has(#wldisplay) .sidebar li:has(> a[href*="/Protocols/Core/wayland/"]) > a,
+body:has(#riverinputmanagerv1) .sidebar li:has(> a[href*="/Protocols/River/river-input-management-v1/"]) > a,
+body:has(#riverlayershellv1) .sidebar li:has(> a[href*="/Protocols/River/river-layer-shell-v1/"]) > a,
+body:has(#riverlibinputconfigv1) .sidebar li:has(> a[href*="/Protocols/River/river-libinput-config-v1/"]) > a,
+body:has(#riverwindowmanagerv1) .sidebar li:has(> a[href*="/Protocols/River/river-window-management-v1/"]) > a,
+body:has(#riverxkbbindingsv1) .sidebar li:has(> a[href*="/Protocols/River/river-xkb-bindings-v1/"]) > a,
+body:has(#riverxkbconfigv1) .sidebar li:has(> a[href*="/Protocols/River/river-xkb-config-v1/"]) > a,
+body:has(#zwplinuxdmabufv1) .sidebar li:has(> a[href*="/Protocols/Stable/linux-dmabuf-v1/"]) > a,
+body:has(#wppresentation) .sidebar li:has(> a[href*="/Protocols/Stable/presentation-time/"]) > a,
+body:has(#zwptabletmanagerv2) .sidebar li:has(> a[href*="/Protocols/Stable/tablet-v2/"]) > a,
+body:has(#wpviewporter) .sidebar li:has(> a[href*="/Protocols/Stable/viewporter/"]) > a,
+body:has(#xdgwmbase) .sidebar li:has(> a[href*="/Protocols/Stable/xdg-shell/"]) > a,
+body:has(#extidlenotifierv1) .sidebar li:has(> a[href*="/Protocols/Staging/ext-idle-notify-v1/"]) > a,
+body:has(#extworkspacemanagerv1) .sidebar li:has(> a[href*="/Protocols/Staging/ext-workspace-v1/"]) > a,
+body:has(#zwlrforeigntoplevelmanagerv1) .sidebar li:has(> a[href*="/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/"]) > a,
+body:has(#zwlrlayershellv1) .sidebar li:has(> a[href*="/Protocols/Wlr/wlr-layer-shell-unstable-v1/"]) > a,
+body:has(#zwlroutputmanagerv1) .sidebar li:has(> a[href*="/Protocols/Wlr/wlr-output-management-unstable-v1/"]) > a
+/* /wayland-dotnet-scanner:sidebar-active */ {
+  border-left-color: var(--accent-color);
+  color: var(--accent-color);
+  background-color: rgb(39 39 42);
 }

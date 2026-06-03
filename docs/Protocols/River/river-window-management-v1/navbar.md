@@ -1,5 +1,3 @@
-﻿Outline
-
 - [RiverWindowManagerV1](#riverwindowmanagerv1 ':class=interface')
 - [RiverWindowV1](#riverwindowv1 ':class=interface')
 - [RiverDecorationV1](#riverdecorationv1 ':class=interface')

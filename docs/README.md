@@ -58,11 +58,3 @@ surface.Commit();
 ## License
 
 MIT License - See [LICENSE](https://github.com/IrishBruse/WaylandDotnet/blob/main/LICENSE) for details.
-
----
-
-<p align="center">
-  <a href="https://github.com/IrishBruse/WaylandDotnet">GitHub</a> •
-  <a href="Protocols/wayland.md">Documentation</a> •
-  <a href="https://www.nuget.org/packages/WaylandDotnet">NuGet</a>
-</p>

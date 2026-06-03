@@ -1,5 +1,3 @@
-﻿Outline
-
 - [WlDisplay](#wldisplay ':class=interface')
 - [WlRegistry](#wlregistry ':class=interface')
 - [WlCallback](#wlcallback ':class=interface')

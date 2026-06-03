@@ -1,5 +1,3 @@
-﻿Outline
-
 - [ZwpTabletManagerV2](#zwptabletmanagerv2 ':class=interface')
 - [ZwpTabletSeatV2](#zwptabletseatv2 ':class=interface')
 - [ZwpTabletToolV2](#zwptablettoolv2 ':class=interface')

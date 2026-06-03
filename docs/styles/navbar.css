@@ -1,49 +1,203 @@
 .app-nav {
   position: sticky;
-  top: 0;
+  top: 64px;
   float: right;
+  align-self: flex-start;
 
-  width: 300px;
+  width: 260px;
+  max-height: calc(100vh - 80px);
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  margin: 64px 24px 0 0;
+  padding: 0;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
 }
 
-.app-nav p {
-  margin: 0;
+.app-nav::-webkit-scrollbar {
+  width: 6px;
 }
 
-.app-nav > a {
-  margin: 0 1rem;
-  padding: 5px 0;
+.app-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.app-nav::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 3px;
+}
+
+.page-nav-label {
+  margin: 0 0 12px;
+  padding: 0;
+
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  color: var(--sidebar-header-color);
+}
+
+.page-nav-title {
+  display: block;
+  margin: 0 0 16px;
+  padding: 0;
+
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+
+  color: #60a5fa;
+  text-decoration: none;
+}
+
+.page-nav-title:hover {
+  color: #93bbfd;
 }
 
 .app-nav ul,
 .app-nav li {
   display: block;
   margin: 0;
+  padding: 0;
   list-style: none;
 }
 
-.app-nav a {
-  transition: color 0.3s;
-  color: inherit;
-  font-size: 16px;
-  text-decoration: none;
+.app-nav > ul {
+  margin-left: 0;
 }
 
-.app-nav a:hover {
-  color: #000;
-  color: var(--accent-color, #000);
+.app-nav > ul > li + li {
+  margin-top: 10px;
 }
 
-.app-nav a.active {
-  border-bottom: 2px solid #000;
-  border-bottom: 2px solid var(--accent-color, #000);
-  color: #000;
-  color: var(--accent-color, #000);
+.app-nav ul ul {
+  margin-left: 12px;
+  padding-left: 0;
 }
 
 .app-nav li {
-  position: relative;
-  margin: 0 1rem;
-  padding: 5px 0;
-  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.app-nav a {
+  display: block;
+  margin: 0;
+  padding: 4px 0;
+
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+
+  color: #d4d4d8;
+  text-decoration: none;
+
+  overflow-wrap: anywhere;
+
+  transition: color 0.15s ease;
+}
+
+.app-nav a[class*="nav-"] {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.app-nav a[class*="nav-"]::before {
+  font-family: codicon;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  flex-shrink: 0;
+  color: currentColor;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-nav a.nav-interface::before {
+  content: "\eb61";
+}
+
+.app-nav a.nav-request::before {
+  content: "\ea8c";
+}
+
+.app-nav a.nav-event::before {
+  content: "\ea86";
+}
+
+.app-nav a.nav-enum::before {
+  content: "\ea95";
+}
+
+.app-nav a:hover {
+  color: #fafafa;
+}
+
+.app-nav a.nav-interface {
+  color: rgb(59, 130, 246);
+}
+
+.app-nav a.nav-request {
+  color: rgb(236, 72, 153);
+}
+
+.app-nav a.nav-event {
+  color: rgb(16, 185, 129);
+}
+
+.app-nav a.nav-enum {
+  color: rgb(249, 115, 22);
+}
+
+.app-nav a.nav-interface:hover {
+  color: rgb(147, 197, 253);
+}
+
+.app-nav a.nav-request:hover {
+  color: rgb(244, 114, 182);
+}
+
+.app-nav a.nav-event:hover {
+  color: rgb(52, 211, 153);
+}
+
+.app-nav a.nav-enum:hover {
+  color: rgb(251, 146, 60);
+}
+
+.app-nav a.active {
+  border-bottom: none;
+}
+
+.app-nav a.nav-interface.active {
+  color: rgb(147, 197, 253);
+}
+
+.app-nav a.nav-request.active {
+  color: rgb(244, 114, 182);
+}
+
+.app-nav a.nav-event.active {
+  color: rgb(52, 211, 153);
+}
+
+.app-nav a.nav-enum.active {
+  color: rgb(251, 146, 60);
+}
+
+.app-nav a.active:not([class*="nav-"]) {
+  color: var(--accent-color);
+}
+
+.app-nav p:not(.page-nav-label) {
+  display: none;
 }
