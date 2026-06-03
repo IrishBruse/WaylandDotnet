@@ -209,6 +209,9 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     ///arguments should be interpreted, and possibly how it should be
     ///drawn.
     ///
+    ///The states are sent as an array of 32-bit unsigned integers in
+    ///native endianness. State values are defined in the state enum.
+    ///
     ///Clients must send an ack_configure in response to this event. See
     ///xdg_surface.configure and xdg_surface.ack_configure for details.
     ///
@@ -331,7 +334,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     ///xdg_surface.configure for details.
     ///
     ///The capabilities are sent as an array of 32-bit unsigned integers in
-    ///native endianness.
+    ///native endianness. Capability values are defined in the wm_capabilities enum.
     ///
     /// </para>
     /// </summary>

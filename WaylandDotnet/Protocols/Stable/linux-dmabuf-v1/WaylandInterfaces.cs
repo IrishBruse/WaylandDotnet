@@ -17,7 +17,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: zwp_linux_dmabuf_v1
-    /// Version: 5
+    /// Version: 6
     /// Requests: 4, Events: 2
     /// </summary>
     [ModuleInitializer]
@@ -68,7 +68,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("zwp_linux_dmabuf_v1"),
-            Version = 5,
+            Version = 6,
             MethodCount = 4,
             Methods = requests,
             EventCount = 2,
@@ -82,14 +82,14 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: zwp_linux_buffer_params_v1
-    /// Version: 5
-    /// Requests: 4, Events: 2
+    /// Version: 6
+    /// Requests: 5, Events: 2
     /// </summary>
     [ModuleInitializer]
     public static void CreateZwpLinuxBufferParamsV1Interface()
     {
         // Request signatures
-        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 4);
+        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 5);
         requests[0] = new WlMessage
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("destroy"),
@@ -114,6 +114,12 @@ public static unsafe partial class WaylandInterfaces
             Signature = Utf8StringMarshaller.ConvertToUnmanaged("niiuu"),
             Types = (WlInterface**)CreateTypesArray([WlBuffer, (WlInterface*)IntPtr.Zero, (WlInterface*)IntPtr.Zero, (WlInterface*)IntPtr.Zero, (WlInterface*)IntPtr.Zero])
         };
+        requests[4] = new WlMessage
+        {
+            Name = Utf8StringMarshaller.ConvertToUnmanaged("set_sampling_device"),
+            Signature = Utf8StringMarshaller.ConvertToUnmanaged("a"),
+            Types = (WlInterface**)CreateTypesArray([(WlInterface*)IntPtr.Zero])
+        };
 
         // Event signatures
         var events = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 2);
@@ -133,8 +139,8 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("zwp_linux_buffer_params_v1"),
-            Version = 5,
-            MethodCount = 4,
+            Version = 6,
+            MethodCount = 5,
             Methods = requests,
             EventCount = 2,
             Events = events
@@ -147,7 +153,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: zwp_linux_dmabuf_feedback_v1
-    /// Version: 5
+    /// Version: 6
     /// Requests: 1, Events: 7
     /// </summary>
     [ModuleInitializer]
@@ -210,7 +216,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("zwp_linux_dmabuf_feedback_v1"),
-            Version = 5,
+            Version = 6,
             MethodCount = 1,
             Methods = requests,
             EventCount = 7,

@@ -1,4 +1,4 @@
-- [WlDisplay](#wldisplay ':class=interface')
+﻿- [WlDisplay](#wldisplay ':class=interface')
 - [WlRegistry](#wlregistry ':class=interface')
 - [WlCallback](#wlcallback ':class=interface')
 - [WlCompositor](#wlcompositor ':class=interface')

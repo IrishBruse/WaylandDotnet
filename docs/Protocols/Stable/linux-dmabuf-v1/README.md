@@ -9,7 +9,7 @@
         <span class="codicon codicon-symbol-interface"></span>
         ZwpLinuxDmabufV1
     </a>
-    <span class="pill">version 5</span>
+    <span class="pill">version 6</span>
 </h2>
 
 Factory for creating dmabuf-based wl_buffers
@@ -246,7 +246,7 @@ get_surface_feedback.
         <span class="codicon codicon-symbol-interface"></span>
         ZwpLinuxBufferParamsV1
     </a>
-    <span class="pill">version 5</span>
+    <span class="pill">version 6</span>
 </h2>
 
 Parameters for creating a dmabuf-based wl_buffer
@@ -456,6 +456,38 @@ defined by the compositor implementation.
 This takes the same arguments as a 'create' request, and obeys the
 same restrictions.
 
+<h3 class="decleration request" title="SetSamplingDevice request">
+    <a href="#/Protocols/Stable/linux-dmabuf-v1/?id=zwplinuxbufferparamsv1_setsamplingdevice" id="zwplinuxbufferparamsv1_setsamplingdevice">
+        <span class="codicon codicon-symbol-method method"></span>
+        ZwpLinuxBufferParamsV1.<span class="method">SetSamplingDevice</span>
+    </a>
+    <span class="pill">since 6</span>
+</h3>
+
+```csharp
+void SetSamplingDevice(byte[] device)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| device | array | Device dev_t value |
+
+**Set the target device of the wl_buffer**
+
+Set the device the compositor should import the dmabufs to for sampling
+in the next create or create_immed request.
+
+To avoid race conditions when the compositor removes a device from the
+tranches, it is not a protocol error if the device hasn't been advertised
+by the compositor in a tranche with the sampling flag, but the import is
+likely to fail in that case.
+
+If the client doesn't know a suitable target device, it shouldn't set one,
+and the compositor should attempt import on all devices it supports.
+
+If the array is too small to contain a dev_t or larger than required, the
+invalid_dev_t_size error will be emitted.
+
 <h3 class="decleration event" title="Created event">
     <a href="#/Protocols/Stable/linux-dmabuf-v1/?id=onzwplinuxbufferparamsv1_created" id="onzwplinuxbufferparamsv1_created">
         <span class="codicon codicon-symbol-event event"></span>
@@ -521,6 +553,7 @@ public enum Error
 | InvalidDimensions | 5 | Invalid width or height |
 | OutOfBounds | 6 | Offset + stride * height goes out of dmabuf bounds |
 | InvalidWlBuffer | 7 | Invalid wl_buffer resulted from importing dmabufs via                the create_immed request on given buffer_params |
+| InvalidDevTSize | 8 | An array with mismatching size for a dev_t was used |
 <h3 class="decleration enum" title="Flags enum">
     <a href="#/Protocols/Stable/linux-dmabuf-v1/?id=zwplinuxbufferparamsv1_flags_enum" id="zwplinuxbufferparamsv1_flags_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
@@ -542,7 +575,7 @@ public enum FlagsFlag
         <span class="codicon codicon-symbol-interface"></span>
         ZwpLinuxDmabufFeedbackV1
     </a>
-    <span class="pill">version 5</span>
+    <span class="pill">version 6</span>
 </h2>
 
 Dmabuf feedback
@@ -569,10 +602,13 @@ by a tranche_done event finishing the list. The tranches are sent in
 descending order of preference. All formats and modifiers in the same
 tranche have the same preference.
 
-To send parameters, the compositor sends one main_device event, tranches
-(each consisting of one tranche_target_device event, one tranche_flags
-event, tranche_formats events and then a tranche_done event), then one
-done event.
+To send parameters, the compositor sends one main_device event (unless
+the client bound version 6 or above), tranches (each consisting of one
+tranche_target_device event, one tranche_flags event, tranche_formats
+events and then a tranche_done event), then one done event.
+
+With version 6 and above, the compositor must always advertise at least
+one tranche with the sampling flag set.
 
 
 <h3 class="decleration request" title="Destroy request">
@@ -687,6 +723,9 @@ If explicit modifiers are not supported and the client performs buffer
 allocations on a different device than the main device, then the client
 must force the buffer to have a linear layout.
 
+With version 6 and above, this event is no longer sent. Clients should
+use a device with the sampling flag in the tranches instead.
+
 <h3 class="decleration event" title="TrancheDone event">
     <a href="#/Protocols/Stable/linux-dmabuf-v1/?id=onzwplinuxdmabuffeedbackv1_tranchedone" id="onzwplinuxdmabuffeedbackv1_tranchedone">
         <span class="codicon codicon-symbol-event event"></span>
@@ -736,9 +775,9 @@ the compositor prefers to texture from said buffer.
 
 The client can use this hint to allocate the buffer in a way that makes
 it accessible from the target device, ideally directly. The buffer must
-still be accessible from the main device, either through direct import
-or through a potentially more expensive fallback path. If the buffer
-can't be directly imported from the main device then clients must be
+still be accessible from a device with the sampling flag, either through
+direct import or a potentially more expensive fallback path. If the
+buffer can't be directly imported for sampling, then clients must be
 prepared for the compositor changing the tranche priority or making
 wl_buffer creation fail (see the zwp_linux_buffer_params_v1.create and
 create_immed requests for details).
@@ -809,14 +848,10 @@ void TrancheFlagsHandler(uint flags)
 
 **Tranche flags**
 
-This event sets tranche-specific flags.
-
-The scanout flag is a hint that direct scan-out may be attempted by the
-compositor on the target device if the client appropriately allocates a
-buffer. How to allocate a buffer that can be scanned out on the target
-device is implementation-defined.
-
-This event is tied to a preference tranche, see the tranche_done event.
+This event sets tranche-specific flags. This event is tied to a
+preference tranche, see the tranche_done event.
+With version 6 and above, the compositor must set at least one flag
+in each tranche.
 
 <h3 class="decleration enum" title="TrancheFlags enum">
     <a href="#/Protocols/Stable/linux-dmabuf-v1/?id=zwplinuxdmabuffeedbackv1_trancheflags_enum" id="zwplinuxdmabuffeedbackv1_trancheflags_enum">
@@ -831,4 +866,5 @@ public enum TrancheFlagsFlag
 
 | Value | Integer | Description |
 | --- | --- | --- |
-| Scanout | 1 | Direct scan-out tranche |
+| Scanout | 1 |  |
+| Sampling | 2 |  |

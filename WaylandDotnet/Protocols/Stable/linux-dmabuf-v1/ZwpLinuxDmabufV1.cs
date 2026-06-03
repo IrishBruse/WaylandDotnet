@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// zwp_linux_dmabuf_v1
 /// <para> factory for creating dmabuf-based wl_buffers </para>
-/// <para> Version: 5 </para>
+/// <para> Version: 6 </para>
 /// <see>https://wayland.app/protocols/linux-dmabuf-v1/#zwp_linux_dmabuf_v1</see>
 /// </summary>
 public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFactory<ZwpLinuxDmabufV1>
 {
     public const string InterfaceName = "zwp_linux_dmabuf_v1";
     public static string _StaticInterfaceName => "zwp_linux_dmabuf_v1";
-    public const int InterfaceVersion = 5;
+    public const int InterfaceVersion = 6;
 
     private bool disposed;
 

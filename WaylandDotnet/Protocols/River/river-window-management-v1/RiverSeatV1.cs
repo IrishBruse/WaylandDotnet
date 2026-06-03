@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_seat_v1
 /// <para> a window management seat </para>
-/// <para> Version: 4 </para>
+/// <para> Version: 5 </para>
 /// <see>https://wayland.app/protocols/river-window-management-v1/#river_seat_v1</see>
 /// </summary>
 public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<RiverSeatV1>
 {
     public const string InterfaceName = "river_seat_v1";
     public static string _StaticInterfaceName => "river_seat_v1";
-    public const int InterfaceVersion = 4;
+    public const int InterfaceVersion = 5;
 
     private bool disposed;
 

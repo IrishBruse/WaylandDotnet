@@ -9,7 +9,7 @@
         <span class="codicon codicon-symbol-interface"></span>
         RiverWindowManagerV1
     </a>
-    <span class="pill">version 4</span>
+    <span class="pill">version 5</span>
 </h2>
 
 Window manager global interface
@@ -477,7 +477,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         RiverWindowV1
     </a>
-    <span class="pill">version 4</span>
+    <span class="pill">version 5</span>
 </h2>
 
 A logical window
@@ -1709,6 +1709,33 @@ ext_foreign_toplevel_handle_v1.identifier event.
 This event is sent once when the river_window_v1 is created and never
 sent again.
 
+<h3 class="decleration event" title="CaptureSessions event">
+    <a href="#/Protocols/River/river-window-management-v1/?id=onriverwindowv1_capturesessions" id="onriverwindowv1_capturesessions">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnCaptureSessions</span>
+    </a>
+    <span class="pill">since 5</span>
+</h3>
+
+```csharp
+void CaptureSessionsHandler(uint count)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| count | uint | Count of screen capture sessions |
+
+**Window screen capture sessions**
+
+This event informs the window manager of the number of active screen
+capture sessions for the window.
+
+This event is sent once when the river_window_v1 is created and again
+whenever the number of capture sessions changes.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
 <h3 class="decleration enum" title="Error enum">
     <a href="#/Protocols/River/river-window-management-v1/?id=riverwindowv1_error_enum" id="riverwindowv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
@@ -1783,7 +1810,7 @@ public enum CapabilitiesFlag
         <span class="codicon codicon-symbol-interface"></span>
         RiverDecorationV1
     </a>
-    <span class="pill">version 4</span>
+    <span class="pill">version 5</span>
 </h2>
 
 A window decoration
@@ -1889,7 +1916,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         RiverShellSurfaceV1
     </a>
-    <span class="pill">version 4</span>
+    <span class="pill">version 5</span>
 </h2>
 
 A surface for window manager UI
@@ -1985,7 +2012,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         RiverNodeV1
     </a>
-    <span class="pill">version 4</span>
+    <span class="pill">version 5</span>
 </h2>
 
 A node in the render list
@@ -2145,7 +2172,7 @@ render sequence, see the river_window_manager_v1 description.
         <span class="codicon codicon-symbol-interface"></span>
         RiverOutputV1
     </a>
-    <span class="pill">version 4</span>
+    <span class="pill">version 5</span>
 </h2>
 
 A logical output
@@ -2332,6 +2359,33 @@ The server must guarantee that the position and dimensions events do not
 cause the areas of multiple logical outputs to overlap when the
 corresponding manage_start event is received.
 
+<h3 class="decleration event" title="CaptureSessions event">
+    <a href="#/Protocols/River/river-window-management-v1/?id=onriveroutputv1_capturesessions" id="onriveroutputv1_capturesessions">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverOutputV1.<span class="event">OnCaptureSessions</span>
+    </a>
+    <span class="pill">since 5</span>
+</h3>
+
+```csharp
+void CaptureSessionsHandler(uint count)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| count | uint | Count of screen capture sessions |
+
+**Output screen capture sessions**
+
+This event informs the window manager of the number of active screen
+capture sessions for the output.
+
+This event is sent once when the river_output_v1 is created and again
+whenever the number of capture sessions changes.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
 <h3 class="decleration enum" title="Error enum">
     <a href="#/Protocols/River/river-window-management-v1/?id=riveroutputv1_error_enum" id="riveroutputv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
@@ -2366,7 +2420,7 @@ public enum PresentationMode
         <span class="codicon codicon-symbol-interface"></span>
         RiverSeatV1
     </a>
-    <span class="pill">version 4</span>
+    <span class="pill">version 5</span>
 </h2>
 
 A window management seat
@@ -2909,7 +2963,7 @@ bindings however so these values are not included in this enum.
         <span class="codicon codicon-symbol-interface"></span>
         RiverPointerBindingV1
     </a>
-    <span class="pill">version 4</span>
+    <span class="pill">version 5</span>
 </h2>
 
 Configure a pointer binding, receive trigger events

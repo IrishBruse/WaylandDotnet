@@ -1,4 +1,4 @@
-- [ZwpTabletManagerV2](#zwptabletmanagerv2 ':class=interface')
+﻿- [ZwpTabletManagerV2](#zwptabletmanagerv2 ':class=interface')
 - [ZwpTabletSeatV2](#zwptabletseatv2 ':class=interface')
 - [ZwpTabletToolV2](#zwptablettoolv2 ':class=interface')
 - [ZwpTabletV2](#zwptabletv2 ':class=interface')

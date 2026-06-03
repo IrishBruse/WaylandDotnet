@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// zwp_linux_buffer_params_v1
 /// <para> parameters for creating a dmabuf-based wl_buffer </para>
-/// <para> Version: 5 </para>
+/// <para> Version: 6 </para>
 /// <see>https://wayland.app/protocols/linux-dmabuf-v1/#zwp_linux_buffer_params_v1</see>
 /// </summary>
 public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObjectFactory<ZwpLinuxBufferParamsV1>
 {
     public const string InterfaceName = "zwp_linux_buffer_params_v1";
     public static string _StaticInterfaceName => "zwp_linux_buffer_params_v1";
-    public const int InterfaceVersion = 5;
+    public const int InterfaceVersion = 6;
 
     private bool disposed;
 
@@ -83,6 +83,10 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
         /// invalid wl_buffer resulted from importing dmabufs via                the create_immed request on given buffer_params
         /// </summary>
         InvalidWlBuffer = 7,
+        /// <summary>
+        /// an array with mismatching size for a dev_t was used
+        /// </summary>
+        InvalidDevTSize = 8,
     }
 
     /// <summary>  </summary>
@@ -447,6 +451,45 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
         );
 
         return new WlBuffer(newProxy, Display);
+    }
+
+    /// <summary>
+    /// Set the target device of the wl_buffer
+    /// <para>
+    /// <br/>
+    /// Set the device the compositor should import the dmabufs to for sampling<br/>
+    /// in the next create or create_immed request.<br/>
+    /// <br/>
+    /// To avoid race conditions when the compositor removes a device from the<br/>
+    /// tranches, it is not a protocol error if the device hasn't been advertised<br/>
+    /// by the compositor in a tranche with the sampling flag, but the import is<br/>
+    /// likely to fail in that case.<br/>
+    /// <br/>
+    /// If the client doesn't know a suitable target device, it shouldn't set one,<br/>
+    /// and the compositor should attempt import on all devices it supports.<br/>
+    /// <br/>
+    /// If the array is too small to contain a dev_t or larger than required, the<br/>
+    /// invalid_dev_t_size error will be emitted.<br/>
+    /// <br/>
+    /// </para>
+    /// </summary>
+    public unsafe void SetSamplingDevice(byte[] device)
+    {
+        ObjectDisposedException.ThrowIf(disposed, this);
+
+        var args = stackalloc WlArgument[1];
+        args[0].a = WaylandMarshal.CreateWlArray(device);
+
+        const uint opcode = 4;
+
+        var newProxy = WaylandNative.ProxyMarshalArrayFlags(
+            Handle,
+            opcode,
+            (WlInterface*)IntPtr.Zero,
+            0,
+            0,
+            (nint)args
+        );
     }
 
     public static ZwpLinuxBufferParamsV1 Create(nint handle, WlDisplay? display = null)

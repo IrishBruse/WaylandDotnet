@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_output_v1
 /// <para> a logical output </para>
-/// <para> Version: 4 </para>
+/// <para> Version: 5 </para>
 /// <see>https://wayland.app/protocols/river-window-management-v1/#river_output_v1</see>
 /// </summary>
 public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory<RiverOutputV1>
 {
     public const string InterfaceName = "river_output_v1";
     public static string _StaticInterfaceName => "river_output_v1";
-    public const int InterfaceVersion = 4;
+    public const int InterfaceVersion = 5;
 
     private bool disposed;
 
@@ -231,6 +231,40 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    public delegate void CaptureSessionsHandler(uint count);
+
+    private CaptureSessionsHandler? _onCaptureSessions;
+
+    /// <summary>
+    ///Output screen capture sessions
+    /// <para>
+    ///
+    ///This event informs the window manager of the number of active screen
+    ///capture sessions for the output.
+    ///
+    ///This event is sent once when the river_output_v1 is created and again
+    ///whenever the number of capture sessions changes.
+    ///
+    ///This event will be followed by a manage_start event after all other new
+    ///state has been sent by the server.
+    ///
+    /// </para>
+    /// </summary>
+    public event CaptureSessionsHandler? OnCaptureSessions
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onCaptureSessions += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onCaptureSessions -= value;
+        }
+    }
+
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -294,6 +328,13 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
                         var _width = args[0].i;
                         var _height = args[1].i;
                         obj._onDimensions?.Invoke(_width, _height);
+                    }
+                    break;
+                case 4: // capture_sessions
+                    if (obj._onCaptureSessions != null)
+                    {
+                        var _count = args[0].u;
+                        obj._onCaptureSessions?.Invoke(_count);
                     }
                     break;
                 default:

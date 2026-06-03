@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_window_manager_v1
 /// <para> window manager global interface </para>
-/// <para> Version: 4 </para>
+/// <para> Version: 5 </para>
 /// <see>https://wayland.app/protocols/river-window-management-v1/#river_window_manager_v1</see>
 /// </summary>
 public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObjectFactory<RiverWindowManagerV1>
 {
     public const string InterfaceName = "river_window_manager_v1";
     public static string _StaticInterfaceName => "river_window_manager_v1";
-    public const int InterfaceVersion = 4;
+    public const int InterfaceVersion = 5;
 
     private bool disposed;
 

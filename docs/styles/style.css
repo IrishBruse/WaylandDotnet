@@ -79,18 +79,57 @@ code {
 .markdown-section table {
   border-collapse: collapse;
   width: 100%;
+  margin: 16px 0 24px;
 }
 
 .markdown-section th {
-  font-weight: bold;
-  color: rgb(82, 82, 91);
+  font-weight: 500;
+  color: rgb(113, 113, 122);
   text-align: left;
 }
 
 .markdown-section th,
 .markdown-section td {
-  border-bottom: 1px solid var(--border-color);
-  padding: 6px 13px;
+  border: none;
+  border-bottom: 1px solid rgb(39, 39, 42);
+  padding: 12px 16px 12px 0;
+  vertical-align: top;
+}
+
+.markdown-section th:last-child,
+.markdown-section td:last-child {
+  padding-right: 0;
+}
+
+.markdown-section table:has(th:nth-child(3)) th:first-child,
+.markdown-section table:has(th:nth-child(3)) td:first-child {
+  width: 1%;
+  white-space: nowrap;
+  padding-right: 32px;
+}
+
+.markdown-section table:has(th:nth-child(3)) th:nth-child(2),
+.markdown-section table:has(th:nth-child(3)) td:nth-child(2) {
+  width: 1%;
+  white-space: nowrap;
+  padding-right: 32px;
+}
+
+.markdown-section table:has(th:nth-child(3)) td:first-child {
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+  font-size: 14px;
+  color: rgb(196, 181, 253);
+}
+
+.markdown-section table:has(th:nth-child(3)) td:nth-child(2) {
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+  font-size: 14px;
+  color: rgb(228, 228, 231);
+}
+
+.markdown-section table:has(th:nth-child(3)) td:nth-child(3) {
+  font-size: 14px;
+  color: rgb(161, 161, 170);
 }
 
 .app-name .sidebar-nav h3 > a {

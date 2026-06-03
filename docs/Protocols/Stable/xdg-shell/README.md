@@ -1423,6 +1423,9 @@ The states listed in the event specify how the width/height
 arguments should be interpreted, and possibly how it should be
 drawn.
 
+The states are sent as an array of 32-bit unsigned integers in
+native endianness. State values are defined in the state enum.
+
 Clients must send an ack_configure in response to this event. See
 xdg_surface.configure and xdg_surface.ack_configure for details.
 
@@ -1521,7 +1524,7 @@ The configured state should not be applied immediately. See
 xdg_surface.configure for details.
 
 The capabilities are sent as an array of 32-bit unsigned integers in
-native endianness.
+native endianness. Capability values are defined in the wm_capabilities enum.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="#/Protocols/Stable/xdg-shell/?id=xdgtoplevel_error_enum" id="xdgtoplevel_error_enum">

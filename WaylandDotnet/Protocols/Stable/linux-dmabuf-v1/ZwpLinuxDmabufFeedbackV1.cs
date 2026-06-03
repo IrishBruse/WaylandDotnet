@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// zwp_linux_dmabuf_feedback_v1
 /// <para> dmabuf feedback </para>
-/// <para> Version: 5 </para>
+/// <para> Version: 6 </para>
 /// <see>https://wayland.app/protocols/linux-dmabuf-v1/#zwp_linux_dmabuf_feedback_v1</see>
 /// </summary>
 public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandObjectFactory<ZwpLinuxDmabufFeedbackV1>
 {
     public const string InterfaceName = "zwp_linux_dmabuf_feedback_v1";
     public static string _StaticInterfaceName => "zwp_linux_dmabuf_feedback_v1";
-    public const int InterfaceVersion = 5;
+    public const int InterfaceVersion = 6;
 
     private bool disposed;
 
@@ -53,9 +53,13 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
     public enum TrancheFlagsFlag : uint
     {
         /// <summary>
-        /// direct scan-out tranche
+        ///
         /// </summary>
         Scanout = 1,
+        /// <summary>
+        ///
+        /// </summary>
+        Sampling = 2,
     }
 
     public delegate void DoneHandler();
@@ -161,6 +165,9 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
     ///allocations on a different device than the main device, then the client
     ///must force the buffer to have a linear layout.
     ///
+    ///With version 6 and above, this event is no longer sent. Clients should
+    ///use a device with the sampling flag in the tranches instead.
+    ///
     /// </para>
     /// </summary>
     public event MainDeviceHandler? OnMainDevice
@@ -229,9 +236,9 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
     ///
     ///The client can use this hint to allocate the buffer in a way that makes
     ///it accessible from the target device, ideally directly. The buffer must
-    ///still be accessible from the main device, either through direct import
-    ///or through a potentially more expensive fallback path. If the buffer
-    ///can't be directly imported from the main device then clients must be
+    ///still be accessible from a device with the sampling flag, either through
+    ///direct import or a potentially more expensive fallback path. If the
+    ///buffer can't be directly imported for sampling, then clients must be
     ///prepared for the compositor changing the tranche priority or making
     ///wl_buffer creation fail (see the zwp_linux_buffer_params_v1.create and
     ///create_immed requests for details).
@@ -318,14 +325,10 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
     ///Tranche flags
     /// <para>
     ///
-    ///This event sets tranche-specific flags.
-    ///
-    ///The scanout flag is a hint that direct scan-out may be attempted by the
-    ///compositor on the target device if the client appropriately allocates a
-    ///buffer. How to allocate a buffer that can be scanned out on the target
-    ///device is implementation-defined.
-    ///
-    ///This event is tied to a preference tranche, see the tranche_done event.
+    ///This event sets tranche-specific flags. This event is tied to a
+    ///preference tranche, see the tranche_done event.
+    ///With version 6 and above, the compositor must set at least one flag
+    ///in each tranche.
     ///
     /// </para>
     /// </summary>
