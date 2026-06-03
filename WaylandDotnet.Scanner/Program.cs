@@ -437,7 +437,7 @@ public class Program
             var path = $"/Protocols/{protocol.Namespace}/{fileName}/";
             var dataPage = $"Protocols/{protocol.Namespace}/{fileName}/README.md";
             sb.AppendLine(
-                $"body:has(.markdown-section[data-page=\"{dataPage}\"]) .sidebar li:has(> a[href*=\"{path}\"]) > a,");
+                $"body[data-page=\"{dataPage}\"] .sidebar li:has(> a[href*=\"{path}\"]) > a,");
         }
 
         return sb.ToString().TrimEnd().TrimEnd(',');

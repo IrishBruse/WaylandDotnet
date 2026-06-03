@@ -147,43 +147,31 @@
 }
 
 /* Page link highlight: Docsify sets li.active on route change but clears it when
-   ?id= is added for navbar section scroll. Match the current route via data-page
-   (set with the route) so highlight does not blink while content is swapped. */
+   ?id= is added for navbar section scroll. Match the current route via body
+   data-page (Docsify v4) so highlight persists while scrolling to a section. */
 .sidebar li.active > a,
-body:has(.markdown-section[data-page="README.md"])
-  .sidebar
-  li:has(> a[href="/"])
-  > a,
-body:has(.markdown-section[data-page="README.md"])
-  .sidebar
-  li:has(> a[href="/WaylandDotnet/"])
-  > a,
-body:has(.markdown-section[data-page="Tutorials/README.md"])
-  .sidebar
-  li:has(> a[href*="/Tutorials/"])
-  > a,
-body:has(.markdown-section[data-page="Changelog.md"])
-  .sidebar
-  li:has(> a[href*="/Changelog"])
-  > a,
+body[data-page="README.md"] .sidebar li:has(> a[href="/"]) > a,
+body[data-page="README.md"] .sidebar li:has(> a[href="/WaylandDotnet/"]) > a,
+body[data-page="Tutorials/README.md"] .sidebar li:has(> a[href*="/Tutorials/"]) > a,
+body[data-page="Changelog.md"] .sidebar li:has(> a[href*="/Changelog"]) > a,
 /* wayland-dotnet-scanner:sidebar-active */
-body:has(.markdown-section[data-page="Protocols/Core/wayland/README.md"]) .sidebar li:has(> a[href*="/Protocols/Core/wayland/"]) > a,
-body:has(.markdown-section[data-page="Protocols/River/river-input-management-v1/README.md"]) .sidebar li:has(> a[href*="/Protocols/River/river-input-management-v1/"]) > a,
-body:has(.markdown-section[data-page="Protocols/River/river-layer-shell-v1/README.md"]) .sidebar li:has(> a[href*="/Protocols/River/river-layer-shell-v1/"]) > a,
-body:has(.markdown-section[data-page="Protocols/River/river-libinput-config-v1/README.md"]) .sidebar li:has(> a[href*="/Protocols/River/river-libinput-config-v1/"]) > a,
-body:has(.markdown-section[data-page="Protocols/River/river-window-management-v1/README.md"]) .sidebar li:has(> a[href*="/Protocols/River/river-window-management-v1/"]) > a,
-body:has(.markdown-section[data-page="Protocols/River/river-xkb-bindings-v1/README.md"]) .sidebar li:has(> a[href*="/Protocols/River/river-xkb-bindings-v1/"]) > a,
-body:has(.markdown-section[data-page="Protocols/River/river-xkb-config-v1/README.md"]) .sidebar li:has(> a[href*="/Protocols/River/river-xkb-config-v1/"]) > a,
-body:has(.markdown-section[data-page="Protocols/Stable/linux-dmabuf-v1/README.md"]) .sidebar li:has(> a[href*="/Protocols/Stable/linux-dmabuf-v1/"]) > a,
-body:has(.markdown-section[data-page="Protocols/Stable/presentation-time/README.md"]) .sidebar li:has(> a[href*="/Protocols/Stable/presentation-time/"]) > a,
-body:has(.markdown-section[data-page="Protocols/Stable/tablet-v2/README.md"]) .sidebar li:has(> a[href*="/Protocols/Stable/tablet-v2/"]) > a,
-body:has(.markdown-section[data-page="Protocols/Stable/viewporter/README.md"]) .sidebar li:has(> a[href*="/Protocols/Stable/viewporter/"]) > a,
-body:has(.markdown-section[data-page="Protocols/Stable/xdg-shell/README.md"]) .sidebar li:has(> a[href*="/Protocols/Stable/xdg-shell/"]) > a,
-body:has(.markdown-section[data-page="Protocols/Staging/ext-idle-notify-v1/README.md"]) .sidebar li:has(> a[href*="/Protocols/Staging/ext-idle-notify-v1/"]) > a,
-body:has(.markdown-section[data-page="Protocols/Staging/ext-workspace-v1/README.md"]) .sidebar li:has(> a[href*="/Protocols/Staging/ext-workspace-v1/"]) > a,
-body:has(.markdown-section[data-page="Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/README.md"]) .sidebar li:has(> a[href*="/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/"]) > a,
-body:has(.markdown-section[data-page="Protocols/Wlr/wlr-layer-shell-unstable-v1/README.md"]) .sidebar li:has(> a[href*="/Protocols/Wlr/wlr-layer-shell-unstable-v1/"]) > a,
-body:has(.markdown-section[data-page="Protocols/Wlr/wlr-output-management-unstable-v1/README.md"]) .sidebar li:has(> a[href*="/Protocols/Wlr/wlr-output-management-unstable-v1/"]) > a
+body[data-page="Protocols/Core/wayland/README.md"] .sidebar li:has(> a[href*="/Protocols/Core/wayland/"]) > a,
+body[data-page="Protocols/River/river-input-management-v1/README.md"] .sidebar li:has(> a[href*="/Protocols/River/river-input-management-v1/"]) > a,
+body[data-page="Protocols/River/river-layer-shell-v1/README.md"] .sidebar li:has(> a[href*="/Protocols/River/river-layer-shell-v1/"]) > a,
+body[data-page="Protocols/River/river-libinput-config-v1/README.md"] .sidebar li:has(> a[href*="/Protocols/River/river-libinput-config-v1/"]) > a,
+body[data-page="Protocols/River/river-window-management-v1/README.md"] .sidebar li:has(> a[href*="/Protocols/River/river-window-management-v1/"]) > a,
+body[data-page="Protocols/River/river-xkb-bindings-v1/README.md"] .sidebar li:has(> a[href*="/Protocols/River/river-xkb-bindings-v1/"]) > a,
+body[data-page="Protocols/River/river-xkb-config-v1/README.md"] .sidebar li:has(> a[href*="/Protocols/River/river-xkb-config-v1/"]) > a,
+body[data-page="Protocols/Stable/linux-dmabuf-v1/README.md"] .sidebar li:has(> a[href*="/Protocols/Stable/linux-dmabuf-v1/"]) > a,
+body[data-page="Protocols/Stable/presentation-time/README.md"] .sidebar li:has(> a[href*="/Protocols/Stable/presentation-time/"]) > a,
+body[data-page="Protocols/Stable/tablet-v2/README.md"] .sidebar li:has(> a[href*="/Protocols/Stable/tablet-v2/"]) > a,
+body[data-page="Protocols/Stable/viewporter/README.md"] .sidebar li:has(> a[href*="/Protocols/Stable/viewporter/"]) > a,
+body[data-page="Protocols/Stable/xdg-shell/README.md"] .sidebar li:has(> a[href*="/Protocols/Stable/xdg-shell/"]) > a,
+body[data-page="Protocols/Staging/ext-idle-notify-v1/README.md"] .sidebar li:has(> a[href*="/Protocols/Staging/ext-idle-notify-v1/"]) > a,
+body[data-page="Protocols/Staging/ext-workspace-v1/README.md"] .sidebar li:has(> a[href*="/Protocols/Staging/ext-workspace-v1/"]) > a,
+body[data-page="Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/README.md"] .sidebar li:has(> a[href*="/Protocols/Wlr/wlr-foreign-toplevel-management-unstable-v1/"]) > a,
+body[data-page="Protocols/Wlr/wlr-layer-shell-unstable-v1/README.md"] .sidebar li:has(> a[href*="/Protocols/Wlr/wlr-layer-shell-unstable-v1/"]) > a,
+body[data-page="Protocols/Wlr/wlr-output-management-unstable-v1/README.md"] .sidebar li:has(> a[href*="/Protocols/Wlr/wlr-output-management-unstable-v1/"]) > a
 /* /wayland-dotnet-scanner:sidebar-active */ {
   border-left-color: var(--accent-color);
   color: var(--accent-color);

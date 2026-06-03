@@ -149,6 +149,10 @@ window.$docsify.plugins = [].concat(
         return false;
       }
 
+      if (!nav.hasAttribute("data-page-nav-ready")) {
+        return true;
+      }
+
       var links = nav.querySelectorAll("a");
       for (var i = 0; i < links.length; i++) {
         if (!isEnhancedLink(links[i])) {
@@ -156,7 +160,11 @@ window.$docsify.plugins = [].concat(
         }
       }
 
-      return links.length > 0 && !nav.hasAttribute("data-page-nav-ready");
+      return false;
+    }
+
+    function routePath() {
+      return (location.hash || "#/").replace(/^#/, "").split("?")[0] || "/";
     }
 
     function setNavReady(nav, ready) {
@@ -168,6 +176,7 @@ window.$docsify.plugins = [].concat(
     }
 
     var enhancing = false;
+    var lastEnhancePath = null;
 
     function enhancePageNav() {
       if (enhancing) {
@@ -188,8 +197,14 @@ window.$docsify.plugins = [].concat(
         return;
       }
 
+      var path = routePath();
+      var isNewPage = path !== lastEnhancePath;
+      lastEnhancePath = path;
+
       enhancing = true;
-      setNavReady(nav, false);
+      if (isNewPage) {
+        setNavReady(nav, false);
+      }
 
       nav.querySelectorAll("p, .page-nav-label").forEach(function (el) {
         el.remove();
@@ -259,7 +274,15 @@ window.$docsify.plugins = [].concat(
       });
     }
 
+    var lastContentPath = null;
+
     hook.beforeEach(function () {
+      var path = routePath();
+      if (path === lastContentPath) {
+        return;
+      }
+      lastContentPath = path;
+
       var nav = document.querySelector(".app-nav");
       if (nav) {
         setNavReady(nav, false);
@@ -268,7 +291,9 @@ window.$docsify.plugins = [].concat(
 
     hook.doneEach(scheduleEnhance);
     hook.ready(function () {
+      lastContentPath = routePath();
       scheduleEnhance();
+      window.addEventListener("hashchange", scheduleEnhance);
     });
   },
 );
