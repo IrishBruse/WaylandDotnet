@@ -1,0 +1,63 @@
+name: Update scanner output
+
+on:
+  schedule:
+    # Weekly on Friday at 18:00 UTC
+    - cron: "0 18 * * 5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-scanner
+  cancel-in-progress: true
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Download protocol XML
+        working-directory: WaylandDotnet.Scanner
+        run: dotnet run --configuration Release -- download
+
+      - name: Generate bindings and docs
+        working-directory: WaylandDotnet.Scanner
+        run: dotnet run --configuration Release
+
+      - name: Build and test
+        run: |
+          dotnet build --configuration Release
+          dotnet test --configuration Release --no-build
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automated/scanner-update
+          delete-branch: true
+          commit-message: "Update protocol bindings from upstream"
+          title: "Update protocol bindings (scanner)"
+          body: |
+            Automated update from [update-scanner](https://github.com/${{ github.repository }}/actions/workflows/update-scanner.yml).
+
+            - Regenerated with `WaylandDotnet.Scanner` from this repository (`${{ github.sha }}`)
+            - Ran `dotnet run -- download` and `dotnet run` in `WaylandDotnet.Scanner/` per [CONTRIBUTING.md](https://github.com/${{ github.repository }}/blob/main/CONTRIBUTING.md)
+
+            Workflow run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          labels: |
+            automated
+            protocols
