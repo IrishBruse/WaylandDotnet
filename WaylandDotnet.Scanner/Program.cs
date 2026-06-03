@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 using WaylandDotnet.Scanner.Data;
 
 public class Program
@@ -434,38 +433,14 @@ public class Program
 
         foreach (var protocol in protocols.OrderBy(p => p.Namespace).ThenBy(p => p.Name))
         {
-            var docId = GetFirstDocIdFromReadme(protocol);
-            if (docId == null)
-            {
-                continue;
-            }
-
             var fileName = Path.GetFileNameWithoutExtension(protocol.XmlFile);
             var path = $"/Protocols/{protocol.Namespace}/{fileName}/";
+            var dataPage = $"Protocols/{protocol.Namespace}/{fileName}/README.md";
             sb.AppendLine(
-                $"body:has(#{docId}) .sidebar li:has(> a[href*=\"{path}\"]) > a,");
+                $"body:has(.markdown-section[data-page=\"{dataPage}\"]) .sidebar li:has(> a[href*=\"{path}\"]) > a,");
         }
 
         return sb.ToString().TrimEnd().TrimEnd(',');
-    }
-
-    static string? GetFirstDocIdFromReadme(ProtocolMetadata protocol)
-    {
-        var fileName = Path.GetFileNameWithoutExtension(protocol.XmlFile);
-        var readmePath = Path.Combine(
-            protocol.DocsDir!,
-            "Protocols",
-            protocol.Namespace,
-            fileName,
-            "README.md");
-
-        if (!File.Exists(readmePath))
-        {
-            return null;
-        }
-
-        var match = Regex.Match(File.ReadAllText(readmePath), @"id=""([^""]+)""");
-        return match.Success ? match.Groups[1].Value : null;
     }
 }
 

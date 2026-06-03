@@ -1,3 +1,8 @@
+/* Docsify injects a default TOC before page-nav.js replaces it; hide until ready. */
+.app-nav:not([data-page-nav-ready]) {
+  visibility: hidden;
+}
+
 .app-nav {
   position: sticky;
   top: 64px;
@@ -27,20 +32,6 @@
 .app-nav::-webkit-scrollbar-thumb {
   background-color: var(--border-color);
   border-radius: 3px;
-}
-
-.page-nav-label {
-  margin: 0 0 12px;
-  padding: 0;
-
-  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 16px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-
-  color: var(--sidebar-header-color);
 }
 
 .page-nav-title {
@@ -77,6 +68,25 @@
   margin-top: 10px;
 }
 
+.app-nav .page-nav-sections > li + li {
+  margin-top: 6px;
+}
+
+.app-nav a.nav-section {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #a1a1aa;
+}
+
+.app-nav a.nav-section:hover {
+  color: #fafafa;
+}
+
+.app-nav a.nav-section.active {
+  color: var(--accent-color);
+}
+
 .app-nav ul ul {
   margin-left: 12px;
   padding-left: 0;
@@ -92,7 +102,8 @@
   margin: 0;
   padding: 4px 0;
 
-  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+  font-family:
+    ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
   font-size: 13px;
   font-weight: 400;
   line-height: 20px;
@@ -102,7 +113,7 @@
 
   overflow-wrap: anywhere;
 
-  transition: color 0.15s ease;
+  transition: none;
 }
 
 .app-nav a[class*="nav-"] {
@@ -198,6 +209,6 @@
   color: var(--accent-color);
 }
 
-.app-nav p:not(.page-nav-label) {
+.app-nav p {
   display: none;
 }

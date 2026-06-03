@@ -27,13 +27,21 @@ window.$docsify.plugins = [].concat(
         }
       }
 
-      var full = source.textContent.replace(/\s+/g, " ").trim();
-      var dot = full.lastIndexOf(".");
-      if (dot !== -1) {
-        return full.slice(dot + 1);
+      if (heading.classList.contains("decleration")) {
+        var full = source.textContent.replace(/\s+/g, " ").trim();
+        var dot = full.lastIndexOf(".");
+        if (dot !== -1) {
+          return full.slice(dot + 1);
+        }
+        return full;
       }
 
-      return full;
+      var titleSpan = source.querySelector("span");
+      if (titleSpan) {
+        return titleSpan.textContent.replace(/\s+/g, " ").trim();
+      }
+
+      return heading.textContent.replace(/\s+/g, " ").trim();
     }
 
     function linkFromHeading(heading) {
@@ -49,6 +57,8 @@ window.$docsify.plugins = [].concat(
       var type = navTypeFromHeading(heading);
       if (type) {
         anchor.classList.add("nav-" + type);
+      } else if (!heading.classList.contains("decleration")) {
+        anchor.classList.add("nav-section");
       }
 
       return anchor;
@@ -72,6 +82,7 @@ window.$docsify.plugins = [].concat(
       }
 
       var list = document.createElement("ul");
+      list.className = "page-nav-custom";
 
       interfaces.forEach(function (iface) {
         var ifaceItem = document.createElement("li");
@@ -110,7 +121,7 @@ window.$docsify.plugins = [].concat(
       }
 
       var list = document.createElement("ul");
-      list.className = "page-nav-sections";
+      list.className = "page-nav-sections page-nav-custom";
 
       headings.forEach(function (heading) {
         if (heading.classList.contains("decleration")) {
@@ -122,7 +133,47 @@ window.$docsify.plugins = [].concat(
       return list.children.length > 0 ? list : null;
     }
 
+    function isEnhancedLink(link) {
+      return (
+        link.classList.contains("page-nav-title") ||
+        link.classList.contains("nav-section") ||
+        link.classList.contains("nav-interface") ||
+        link.classList.contains("nav-request") ||
+        link.classList.contains("nav-event") ||
+        link.classList.contains("nav-enum")
+      );
+    }
+
+    function needsEnhance(nav) {
+      if (!nav) {
+        return false;
+      }
+
+      var links = nav.querySelectorAll("a");
+      for (var i = 0; i < links.length; i++) {
+        if (!isEnhancedLink(links[i])) {
+          return true;
+        }
+      }
+
+      return links.length > 0 && !nav.hasAttribute("data-page-nav-ready");
+    }
+
+    function setNavReady(nav, ready) {
+      if (ready) {
+        nav.setAttribute("data-page-nav-ready", "");
+      } else {
+        nav.removeAttribute("data-page-nav-ready");
+      }
+    }
+
+    var enhancing = false;
+
     function enhancePageNav() {
+      if (enhancing) {
+        return;
+      }
+
       var nav = document.querySelector(".app-nav");
       if (!nav) {
         return;
@@ -133,13 +184,15 @@ window.$docsify.plugins = [].concat(
         return;
       }
 
-      nav.querySelectorAll("p").forEach(function (p) {
-        if (
-          !p.classList.contains("page-nav-label") &&
-          p.textContent.trim().toLowerCase() === "outline"
-        ) {
-          p.remove();
-        }
+      if (!needsEnhance(nav)) {
+        return;
+      }
+
+      enhancing = true;
+      setNavReady(nav, false);
+
+      nav.querySelectorAll("p, .page-nav-label").forEach(function (el) {
+        el.remove();
       });
 
       nav.querySelectorAll("ul").forEach(function (ul) {
@@ -149,36 +202,73 @@ window.$docsify.plugins = [].concat(
         el.remove();
       });
 
+      var hasContent = false;
+
       var protocolNav = buildProtocolNav(section);
       if (protocolNav) {
         nav.appendChild(protocolNav);
+        hasContent = true;
+        setNavReady(nav, true);
+        enhancing = false;
         return;
       }
 
       var h1 = section.querySelector("h1");
       if (h1) {
+        var titleSource = h1.querySelector("a[href]");
         var titleLink = document.createElement("a");
         titleLink.className = "page-nav-title";
-        titleLink.href = h1.id
-          ? "#" + h1.id
+        titleLink.href = titleSource
+          ? titleSource.getAttribute("href")
           : location.hash.split("?")[0] || "#/";
         titleLink.textContent = h1.textContent.trim();
         nav.appendChild(titleLink);
+        hasContent = true;
       }
 
       var sectionNav = buildSectionNav(section);
       if (sectionNav) {
         nav.appendChild(sectionNav);
+        hasContent = true;
       }
+
+      setNavReady(nav, hasContent);
+      enhancing = false;
+    }
+
+    function ensureNavObserver() {
+      var nav = document.querySelector(".app-nav");
+      if (!nav || nav._pageNavObserving) {
+        return;
+      }
+
+      nav._pageNavObserving = true;
+      new MutationObserver(function () {
+        if (needsEnhance(nav)) {
+          enhancePageNav();
+        }
+      }).observe(nav, { childList: true, subtree: true });
     }
 
     function scheduleEnhance() {
       enhancePageNav();
-      setTimeout(enhancePageNav, 0);
-      setTimeout(enhancePageNav, 50);
-      setTimeout(enhancePageNav, 200);
+      ensureNavObserver();
+      requestAnimationFrame(function () {
+        enhancePageNav();
+        requestAnimationFrame(enhancePageNav);
+      });
     }
 
+    hook.beforeEach(function () {
+      var nav = document.querySelector(".app-nav");
+      if (nav) {
+        setNavReady(nav, false);
+      }
+    });
+
     hook.doneEach(scheduleEnhance);
+    hook.ready(function () {
+      scheduleEnhance();
+    });
   },
 );
