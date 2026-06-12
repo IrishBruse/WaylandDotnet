@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet;
 
@@ -166,7 +165,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
                     {
                         var _objectId = new WlDisplay((IntPtr)args[0].o);
                         var _code = args[1].u;
-                        var _message = Utf8StringMarshaller.ConvertToManaged(args[2].s);
+                        var _message = Utf8StringMarshaller.ConvertToManaged(args[2].s) ?? string.Empty;
                         obj._onError?.Invoke(_objectId, _code, _message);
                     }
                     break;
@@ -223,7 +222,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
             (nint)args
         );
 
-        return new WlCallback(newProxy, Display);
+        return new WlCallback(newProxy, this);
     }
 
     /// <summary>
@@ -258,7 +257,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
             (nint)args
         );
 
-        return new WlRegistry(newProxy, Display);
+        return new WlRegistry(newProxy, this);
     }
 
     public static WlDisplay Create(nint handle, WlDisplay? display = null)

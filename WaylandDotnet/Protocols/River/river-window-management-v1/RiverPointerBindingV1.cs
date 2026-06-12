@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.River;
 
@@ -279,6 +278,7 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
 
     public static RiverPointerBindingV1 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new RiverPointerBindingV1(handle, display);
     }
 }

@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.River;
 
@@ -354,7 +353,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
                     if (obj._onLayout != null)
                     {
                         var _index = args[0].u;
-                        var _name = Utf8StringMarshaller.ConvertToManaged(args[1].s);
+                        var _name = Utf8StringMarshaller.ConvertToManaged(args[1].s) ?? string.Empty;
                         obj._onLayout?.Invoke(_index, _name);
                     }
                     break;
@@ -622,6 +621,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
 
     public static RiverXkbKeyboardV1 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new RiverXkbKeyboardV1(handle, display);
     }
 }

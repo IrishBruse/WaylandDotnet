@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.Wlr;
 
@@ -266,6 +265,7 @@ public sealed partial class ZwlrOutputModeV1 : WaylandObject, IWaylandObjectFact
 
     public static ZwlrOutputModeV1 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new ZwlrOutputModeV1(handle, display);
     }
 }

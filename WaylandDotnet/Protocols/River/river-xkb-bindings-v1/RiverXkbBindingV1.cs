@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.River;
 
@@ -359,6 +358,7 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
 
     public static RiverXkbBindingV1 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new RiverXkbBindingV1(handle, display);
     }
 }

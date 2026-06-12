@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.Stable;
 
@@ -308,6 +307,7 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
 
     public static XdgWmBase Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new XdgWmBase(handle, display);
     }
 }

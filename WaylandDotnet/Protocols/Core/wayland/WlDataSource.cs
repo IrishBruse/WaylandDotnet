@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet;
 
@@ -322,14 +321,14 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
                 case 0: // target
                     if (obj._onTarget != null)
                     {
-                        var _mimeType = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _mimeType = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onTarget?.Invoke(_mimeType);
                     }
                     break;
                 case 1: // send
                     if (obj._onSend != null)
                     {
-                        var _mimeType = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _mimeType = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         var _fd = args[1].h;
                         obj._onSend?.Invoke(_mimeType, _fd);
                     }
@@ -468,6 +467,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
 
     public static WlDataSource Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new WlDataSource(handle, display);
     }
 }

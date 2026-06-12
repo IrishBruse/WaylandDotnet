@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet;
 
@@ -445,8 +444,8 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
                         var _physicalWidth = args[2].i;
                         var _physicalHeight = args[3].i;
                         var _subpixel = args[4].i;
-                        var _make = Utf8StringMarshaller.ConvertToManaged(args[5].s);
-                        var _model = Utf8StringMarshaller.ConvertToManaged(args[6].s);
+                        var _make = Utf8StringMarshaller.ConvertToManaged(args[5].s) ?? string.Empty;
+                        var _model = Utf8StringMarshaller.ConvertToManaged(args[6].s) ?? string.Empty;
                         var _transform = args[7].i;
                         obj._onGeometry?.Invoke(_x, _y, _physicalWidth, _physicalHeight, _subpixel, _make, _model, _transform);
                     }
@@ -477,14 +476,14 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
                 case 4: // name
                     if (obj._onName != null)
                     {
-                        var _name = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _name = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onName?.Invoke(_name);
                     }
                     break;
                 case 5: // description
                     if (obj._onDescription != null)
                     {
-                        var _description = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _description = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onDescription?.Invoke(_description);
                     }
                     break;
@@ -530,6 +529,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
 
     public static WlOutput Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new WlOutput(handle, display);
     }
 }

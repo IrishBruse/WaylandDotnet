@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.Staging;
 
@@ -323,6 +322,7 @@ public sealed partial class ExtWorkspaceManagerV1 : WaylandObject, IWaylandObjec
 
     public static ExtWorkspaceManagerV1 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new ExtWorkspaceManagerV1(handle, display);
     }
 }

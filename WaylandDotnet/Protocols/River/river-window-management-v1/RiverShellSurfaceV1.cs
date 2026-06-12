@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.River;
 
@@ -153,6 +152,7 @@ public sealed partial class RiverShellSurfaceV1 : WaylandObject, IWaylandObjectF
 
     public static RiverShellSurfaceV1 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new RiverShellSurfaceV1(handle, display);
     }
 }

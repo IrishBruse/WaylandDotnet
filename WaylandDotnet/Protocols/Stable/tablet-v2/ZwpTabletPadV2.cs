@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.Stable;
 
@@ -350,7 +349,7 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
                 case 1: // path
                     if (obj._onPath != null)
                     {
-                        var _path = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _path = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onPath?.Invoke(_path);
                     }
                     break;
@@ -499,6 +498,7 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
 
     public static ZwpTabletPadV2 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new ZwpTabletPadV2(handle, display);
     }
 }

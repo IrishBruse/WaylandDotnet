@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.Stable;
 
@@ -1065,6 +1064,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
 
     public static XdgToplevel Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new XdgToplevel(handle, display);
     }
 }

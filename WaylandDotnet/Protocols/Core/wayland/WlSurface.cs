@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet;
 
@@ -953,6 +952,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
 
     public static WlSurface Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new WlSurface(handle, display);
     }
 }

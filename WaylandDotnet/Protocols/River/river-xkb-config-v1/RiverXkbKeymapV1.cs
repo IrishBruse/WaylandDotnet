@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.River;
 
@@ -150,7 +149,7 @@ public sealed partial class RiverXkbKeymapV1 : WaylandObject, IWaylandObjectFact
                 case 1: // failure
                     if (obj._onFailure != null)
                     {
-                        var _errorMsg = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _errorMsg = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onFailure?.Invoke(_errorMsg);
                     }
                     break;
@@ -196,6 +195,7 @@ public sealed partial class RiverXkbKeymapV1 : WaylandObject, IWaylandObjectFact
 
     public static RiverXkbKeymapV1 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new RiverXkbKeymapV1(handle, display);
     }
 }

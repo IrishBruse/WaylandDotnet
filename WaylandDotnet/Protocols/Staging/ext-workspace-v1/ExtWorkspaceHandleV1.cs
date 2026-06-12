@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.Staging;
 
@@ -346,14 +345,14 @@ public sealed partial class ExtWorkspaceHandleV1 : WaylandObject, IWaylandObject
                 case 0: // id
                     if (obj._onId != null)
                     {
-                        var _id = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _id = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onId?.Invoke(_id);
                     }
                     break;
                 case 1: // name
                     if (obj._onName != null)
                     {
-                        var _name = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _name = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onName?.Invoke(_name);
                     }
                     break;
@@ -545,6 +544,7 @@ public sealed partial class ExtWorkspaceHandleV1 : WaylandObject, IWaylandObject
 
     public static ExtWorkspaceHandleV1 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new ExtWorkspaceHandleV1(handle, display);
     }
 }

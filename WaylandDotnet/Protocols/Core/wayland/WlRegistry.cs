@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet;
 
@@ -150,7 +149,7 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
                     if (obj._onGlobal != null)
                     {
                         var _name = args[0].u;
-                        var __interface = Utf8StringMarshaller.ConvertToManaged(args[1].s);
+                        var __interface = Utf8StringMarshaller.ConvertToManaged(args[1].s) ?? string.Empty;
                         var _version = args[2].u;
                         obj._onGlobal?.Invoke(_name, __interface, _version);
                     }
@@ -176,6 +175,7 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
     }
     public static WlRegistry Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new WlRegistry(handle, display);
     }
 }

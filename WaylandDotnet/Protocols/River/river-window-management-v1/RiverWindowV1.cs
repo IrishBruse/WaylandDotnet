@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.River;
 
@@ -898,14 +897,14 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
                 case 3: // app_id
                     if (obj._onAppId != null)
                     {
-                        var _appId = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _appId = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onAppId?.Invoke(_appId);
                     }
                     break;
                 case 4: // title
                     if (obj._onTitle != null)
                     {
-                        var _title = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _title = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onTitle?.Invoke(_title);
                     }
                     break;
@@ -1002,7 +1001,7 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
                 case 17: // identifier
                     if (obj._onIdentifier != null)
                     {
-                        var _identifier = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _identifier = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onIdentifier?.Invoke(_identifier);
                     }
                     break;
@@ -1951,6 +1950,7 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
 
     public static RiverWindowV1 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new RiverWindowV1(handle, display);
     }
 }

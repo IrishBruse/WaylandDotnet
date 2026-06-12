@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet;
 
@@ -132,6 +131,7 @@ public sealed partial class WlCallback : WaylandObject, IWaylandObjectFactory<Wl
     }
     public static WlCallback Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new WlCallback(handle, display);
     }
 }

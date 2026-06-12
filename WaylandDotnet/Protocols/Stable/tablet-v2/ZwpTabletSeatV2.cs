@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.Stable;
 
@@ -248,6 +247,7 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
 
     public static ZwpTabletSeatV2 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new ZwpTabletSeatV2(handle, display);
     }
 }

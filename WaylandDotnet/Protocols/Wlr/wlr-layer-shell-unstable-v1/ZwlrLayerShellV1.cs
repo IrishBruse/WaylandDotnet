@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.Wlr;
 
@@ -165,6 +164,7 @@ public sealed partial class ZwlrLayerShellV1 : WaylandObject, IWaylandObjectFact
 
     public static ZwlrLayerShellV1 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new ZwlrLayerShellV1(handle, display);
     }
 }

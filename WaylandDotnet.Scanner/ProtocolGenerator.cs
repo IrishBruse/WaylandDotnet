@@ -41,7 +41,6 @@ public partial class ProtocolGenerator
         WriteLine();
         WriteLine($"#nullable enable");
         WriteLine($"#pragma warning disable CS1591");
-        WriteLine($"#pragma warning disable CS8604");
         WriteLine();
 
         if (metadata.Namespace == "Core")
@@ -435,6 +434,7 @@ public partial class ProtocolGenerator
             WriteLine("{");
             if (needsDisplay)
             {
+                WriteLine("    ArgumentNullException.ThrowIfNull(display);");
                 WriteLine($"    return new {className}(handle, display);");
             }
             else
@@ -515,6 +515,9 @@ public partial class ProtocolGenerator
         EndBlock();
         EndRegion();
     }
+
+    private static string GetDisplayReference(WaylandInterface iface) =>
+        iface.Name == "wl_display" ? "this" : "Display";
 
     private bool NeedsWlDisplay(WaylandInterface iface)
     {
@@ -809,7 +812,7 @@ public partial class ProtocolGenerator
                         WriteLine($"var _{argName} = args[{i}].f;");
                         break;
                     case "string":
-                        WriteLine($"var _{argName} = Utf8StringMarshaller.ConvertToManaged(args[{i}].s);");
+                        WriteLine($"var _{argName} = Utf8StringMarshaller.ConvertToManaged(args[{i}].s) ?? string.Empty;");
                         break;
                     case "object":
                         // Check if interface is specified
@@ -1072,10 +1075,12 @@ public partial class ProtocolGenerator
             indentLevel--;
             WriteLine(");");
 
+            var displayRef = GetDisplayReference(iface);
+
             if (isUntypedNewId)
             {
                 WriteLine();
-                WriteLine("return new WaylandObject(newProxy, Display, interfaceName, version);");
+                WriteLine($"return new WaylandObject(newProxy, {displayRef}, interfaceName, version);");
             }
             else if (newIdInterface != null)
             {
@@ -1083,7 +1088,7 @@ public partial class ProtocolGenerator
                 bool targetNeedsDisplay = interfaceNeedsDisplay.GetValueOrDefault(newIdInterface, true);
                 if (targetNeedsDisplay)
                 {
-                    WriteLine($"return new {newIdInterface.ToPascal()}(newProxy, Display);");
+                    WriteLine($"return new {newIdInterface.ToPascal()}(newProxy, {displayRef});");
                 }
                 else
                 {

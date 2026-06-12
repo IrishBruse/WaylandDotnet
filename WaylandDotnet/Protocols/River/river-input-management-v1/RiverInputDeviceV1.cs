@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.River;
 
@@ -258,7 +257,7 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
                 case 2: // name
                     if (obj._onName != null)
                     {
-                        var _name = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _name = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onName?.Invoke(_name);
                     }
                     break;
@@ -475,6 +474,7 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
 
     public static RiverInputDeviceV1 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new RiverInputDeviceV1(handle, display);
     }
 }

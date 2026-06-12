@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.Wlr;
 
@@ -581,14 +580,14 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 0: // name
                     if (obj._onName != null)
                     {
-                        var _name = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _name = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onName?.Invoke(_name);
                     }
                     break;
                 case 1: // description
                     if (obj._onDescription != null)
                     {
-                        var _description = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _description = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onDescription?.Invoke(_description);
                     }
                     break;
@@ -656,21 +655,21 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 10: // make
                     if (obj._onMake != null)
                     {
-                        var _make = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _make = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onMake?.Invoke(_make);
                     }
                     break;
                 case 11: // model
                     if (obj._onModel != null)
                     {
-                        var _model = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _model = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onModel?.Invoke(_model);
                     }
                     break;
                 case 12: // serial_number
                     if (obj._onSerialNumber != null)
                     {
-                        var _serialNumber = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _serialNumber = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onSerialNumber?.Invoke(_serialNumber);
                     }
                     break;
@@ -723,6 +722,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
 
     public static ZwlrOutputHeadV1 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new ZwlrOutputHeadV1(handle, display);
     }
 }

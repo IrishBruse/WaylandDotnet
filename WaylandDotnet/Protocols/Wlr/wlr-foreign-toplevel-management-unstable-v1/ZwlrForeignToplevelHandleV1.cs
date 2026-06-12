@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.Wlr;
 
@@ -346,14 +345,14 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
                 case 0: // title
                     if (obj._onTitle != null)
                     {
-                        var _title = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _title = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onTitle?.Invoke(_title);
                     }
                     break;
                 case 1: // app_id
                     if (obj._onAppId != null)
                     {
-                        var _appId = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _appId = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onAppId?.Invoke(_appId);
                     }
                     break;
@@ -717,6 +716,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
 
     public static ZwlrForeignToplevelHandleV1 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new ZwlrForeignToplevelHandleV1(handle, display);
     }
 }

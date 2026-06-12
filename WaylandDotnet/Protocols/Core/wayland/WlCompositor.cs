@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet;
 
@@ -130,6 +129,7 @@ public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<
 
     public static WlCompositor Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new WlCompositor(handle, display);
     }
 }

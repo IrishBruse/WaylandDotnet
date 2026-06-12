@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet;
 
@@ -156,6 +155,7 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
 
     public static WlShmPool Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new WlShmPool(handle, display);
     }
 }

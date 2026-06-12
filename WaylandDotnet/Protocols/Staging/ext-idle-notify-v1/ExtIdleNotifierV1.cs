@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.Staging;
 
@@ -151,6 +150,7 @@ public sealed partial class ExtIdleNotifierV1 : WaylandObject, IWaylandObjectFac
 
     public static ExtIdleNotifierV1 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new ExtIdleNotifierV1(handle, display);
     }
 }

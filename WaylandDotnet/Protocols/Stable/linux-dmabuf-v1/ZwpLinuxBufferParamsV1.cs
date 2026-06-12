@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet.Stable;
 
@@ -494,6 +493,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
 
     public static ZwpLinuxBufferParamsV1 Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new ZwpLinuxBufferParamsV1(handle, display);
     }
 }

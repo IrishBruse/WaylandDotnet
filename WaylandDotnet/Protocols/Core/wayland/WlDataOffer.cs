@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet;
 
@@ -226,7 +225,7 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
                 case 0: // offer
                     if (obj._onOffer != null)
                     {
-                        var _mimeType = Utf8StringMarshaller.ConvertToManaged(args[0].s);
+                        var _mimeType = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onOffer?.Invoke(_mimeType);
                     }
                     break;
@@ -465,6 +464,7 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
 
     public static WlDataOffer Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new WlDataOffer(handle, display);
     }
 }

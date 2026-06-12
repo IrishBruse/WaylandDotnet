@@ -6,7 +6,6 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS8604
 
 namespace WaylandDotnet;
 
@@ -483,6 +482,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
 
     public static WlDataDevice Create(nint handle, WlDisplay? display = null)
     {
+        ArgumentNullException.ThrowIfNull(display);
         return new WlDataDevice(handle, display);
     }
 }
