@@ -2,7 +2,16 @@
 
 ## Upcoming
 
-[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/0.5.0...HEAD)
+[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/0.5.1...HEAD)
+
+## 0.5.1
+
+- Refresh protocol XML and regenerate bindings for core `wayland` (v11 `wl_pointer.warp`), `linux-dmabuf-v1`, `xdg-shell`, and `river-window-management-v1`
+- Add weekly `update-scanner` GitHub Actions workflow to open PRs with protocol binding updates
+- Improve docs site sidebar styling, active highlight, and scroll behavior
+- Add page navigation plugin and site footer to generated protocol docs
+
+[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/0.5.0...v0.5.1)
 
 ## 0.5.0
 
