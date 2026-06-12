@@ -896,7 +896,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wl_seat
-    /// Version: 10
+    /// Version: 11
     /// Requests: 4, Events: 2
     /// </summary>
     [ModuleInitializer]
@@ -947,7 +947,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wl_seat"),
-            Version = 10,
+            Version = 11,
             MethodCount = 4,
             Methods = requests,
             EventCount = 2,
@@ -961,8 +961,8 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wl_pointer
-    /// Version: 10
-    /// Requests: 2, Events: 11
+    /// Version: 11
+    /// Requests: 2, Events: 12
     /// </summary>
     [ModuleInitializer]
     public static void CreateWlPointerInterface()
@@ -983,7 +983,7 @@ public static unsafe partial class WaylandInterfaces
         };
 
         // Event signatures
-        var events = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 11);
+        var events = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 12);
         events[0] = new WlMessage
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("enter"),
@@ -1050,14 +1050,20 @@ public static unsafe partial class WaylandInterfaces
             Signature = Utf8StringMarshaller.ConvertToUnmanaged("uu"),
             Types = (WlInterface**)CreateTypesArray([(WlInterface*)IntPtr.Zero, (WlInterface*)IntPtr.Zero])
         };
+        events[11] = new WlMessage
+        {
+            Name = Utf8StringMarshaller.ConvertToUnmanaged("warp"),
+            Signature = Utf8StringMarshaller.ConvertToUnmanaged("ff"),
+            Types = (WlInterface**)CreateTypesArray([(WlInterface*)IntPtr.Zero, (WlInterface*)IntPtr.Zero])
+        };
 
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wl_pointer"),
-            Version = 10,
+            Version = 11,
             MethodCount = 2,
             Methods = requests,
-            EventCount = 11,
+            EventCount = 12,
             Events = events
         };
 
@@ -1068,7 +1074,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wl_keyboard
-    /// Version: 10
+    /// Version: 11
     /// Requests: 1, Events: 6
     /// </summary>
     [ModuleInitializer]
@@ -1125,7 +1131,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wl_keyboard"),
-            Version = 10,
+            Version = 11,
             MethodCount = 1,
             Methods = requests,
             EventCount = 6,
@@ -1139,7 +1145,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wl_touch
-    /// Version: 10
+    /// Version: 11
     /// Requests: 1, Events: 7
     /// </summary>
     [ModuleInitializer]
@@ -1202,7 +1208,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wl_touch"),
-            Version = 10,
+            Version = 11,
             MethodCount = 1,
             Methods = requests,
             EventCount = 7,
