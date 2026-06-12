@@ -7,7 +7,6 @@
 #nullable enable
 #pragma warning disable CS1591
 #pragma warning disable CS8604
-#pragma warning disable CS0649
 
 namespace WaylandDotnet;
 
@@ -34,8 +33,6 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
     public const string InterfaceName = "wl_registry";
     public static string _StaticInterfaceName => "wl_registry";
     public const int InterfaceVersion = 1;
-
-    private bool disposed;
 
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
@@ -68,7 +65,6 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
     {
         add
         {
-            ObjectDisposedException.ThrowIf(disposed, this);
             _onGlobal += value;
             EnsureDispatcherRegistered();
         }
@@ -104,7 +100,6 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
     {
         add
         {
-            ObjectDisposedException.ThrowIf(disposed, this);
             _onGlobalRemove += value;
             EnsureDispatcherRegistered();
         }

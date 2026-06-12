@@ -7,7 +7,6 @@
 #nullable enable
 #pragma warning disable CS1591
 #pragma warning disable CS8604
-#pragma warning disable CS0649
 
 namespace WaylandDotnet.Wlr;
 
@@ -34,8 +33,6 @@ public sealed partial class ZwlrOutputConfigurationHeadV1 : WaylandObject, IWayl
     public const string InterfaceName = "zwlr_output_configuration_head_v1";
     public static string _StaticInterfaceName => "zwlr_output_configuration_head_v1";
     public const int InterfaceVersion = 4;
-
-    private bool disposed;
 
     public ZwlrOutputConfigurationHeadV1(IntPtr handle)
     {
@@ -80,8 +77,6 @@ public sealed partial class ZwlrOutputConfigurationHeadV1 : WaylandObject, IWayl
     /// </summary>
     public unsafe void SetMode(ZwlrOutputModeV1 mode)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)(mode?.Handle ?? IntPtr.Zero);
 
@@ -111,8 +106,6 @@ public sealed partial class ZwlrOutputConfigurationHeadV1 : WaylandObject, IWayl
     /// </summary>
     public unsafe void SetCustomMode(int width, int height, int refresh)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[3];
         args[0].i = width;
         args[1].i = height;
@@ -140,8 +133,6 @@ public sealed partial class ZwlrOutputConfigurationHeadV1 : WaylandObject, IWayl
     /// </summary>
     public unsafe void SetPosition(int x, int y)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[2];
         args[0].i = x;
         args[1].i = y;
@@ -168,8 +159,6 @@ public sealed partial class ZwlrOutputConfigurationHeadV1 : WaylandObject, IWayl
     /// </summary>
     public unsafe void SetTransform(int transform)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[1];
         args[0].i = transform;
 
@@ -195,8 +184,6 @@ public sealed partial class ZwlrOutputConfigurationHeadV1 : WaylandObject, IWayl
     /// </summary>
     public unsafe void SetScale(WlFixed scale)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[1];
         args[0].f = scale;
 
@@ -223,8 +210,6 @@ public sealed partial class ZwlrOutputConfigurationHeadV1 : WaylandObject, IWayl
     /// </summary>
     public unsafe void SetAdaptiveSync(uint state)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[1];
         args[0].u = state;
 

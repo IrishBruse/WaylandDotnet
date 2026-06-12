@@ -7,8 +7,6 @@ public sealed partial class WlRegistry : WaylandObject
 {
     public unsafe T Bind<T>(uint name, uint version) where T : WaylandObject, IWaylandObjectFactory<T>
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         const uint opcode = 0;
 
         var interfaceName = T._StaticInterfaceName;

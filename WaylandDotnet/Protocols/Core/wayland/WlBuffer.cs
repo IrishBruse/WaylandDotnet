@@ -7,7 +7,6 @@
 #nullable enable
 #pragma warning disable CS1591
 #pragma warning disable CS8604
-#pragma warning disable CS0649
 
 namespace WaylandDotnet;
 

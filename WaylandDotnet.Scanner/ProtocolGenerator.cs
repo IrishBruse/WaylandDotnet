@@ -42,7 +42,6 @@ public partial class ProtocolGenerator
         WriteLine($"#nullable enable");
         WriteLine($"#pragma warning disable CS1591");
         WriteLine($"#pragma warning disable CS8604");
-        WriteLine($"#pragma warning disable CS0649");
         WriteLine();
 
         if (metadata.Namespace == "Core")
@@ -408,8 +407,11 @@ public partial class ProtocolGenerator
             WriteLine($"public static string _StaticInterfaceName => \"{iface.Name}\";");
             WriteLine($"public const int InterfaceVersion = {iface.Version};");
             WriteLine();
-            WriteLine("private bool disposed;");
-            WriteLine();
+            if (HasDestructor(iface))
+            {
+                WriteLine("private bool disposed;");
+                WriteLine();
+            }
 
             // GCHandle field for event handling
             if (iface.Events.Count > 0)
@@ -566,7 +568,10 @@ public partial class ProtocolGenerator
                 WriteLine("add");
                 BeginBlock();
                 {
-                    WriteLine("ObjectDisposedException.ThrowIf(disposed, this);");
+                    if (HasDestructor(iface))
+                    {
+                        WriteLine("ObjectDisposedException.ThrowIf(disposed, this);");
+                    }
                     WriteLine($"_on{eventName} += value;");
                     WriteLine("EnsureDispatcherRegistered();");
                 }
@@ -967,8 +972,11 @@ public partial class ProtocolGenerator
         WriteLine("public unsafe " + requestDeclaration);
         BeginBlock();
         {
-            WriteLine("ObjectDisposedException.ThrowIf(disposed, this);");
-            WriteLine();
+            if (HasDestructor(iface))
+            {
+                WriteLine("ObjectDisposedException.ThrowIf(disposed, this);");
+                WriteLine();
+            }
 
             WriteLine($"var args = stackalloc WlArgument[{CalculateWireArgCount(request.Args)}];");
 
@@ -1094,6 +1102,9 @@ public partial class ProtocolGenerator
 
     private static bool IsDestructor(string? type) =>
         string.Equals(type, "destructor", StringComparison.Ordinal);
+
+    private static bool HasDestructor(WaylandInterface iface) =>
+        iface.Requests.Any(r => IsDestructor(r.Type)) || iface.Events.Any(e => IsDestructor(e.Type));
 
     private void RequestDocumentation(WaylandInterface iface, WaylandRequest request, string summary, string docs, string methodName, string requestDeclaration)
     {

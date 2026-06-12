@@ -7,7 +7,6 @@
 #nullable enable
 #pragma warning disable CS1591
 #pragma warning disable CS8604
-#pragma warning disable CS0649
 
 namespace WaylandDotnet;
 
@@ -34,8 +33,6 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     public const string InterfaceName = "wl_display";
     public static string _StaticInterfaceName => "wl_display";
     public const int InterfaceVersion = 1;
-
-    private bool disposed;
 
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
@@ -88,7 +85,6 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     {
         add
         {
-            ObjectDisposedException.ThrowIf(disposed, this);
             _onError += value;
             EnsureDispatcherRegistered();
         }
@@ -119,7 +115,6 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     {
         add
         {
-            ObjectDisposedException.ThrowIf(disposed, this);
             _onDeleteId += value;
             EnsureDispatcherRegistered();
         }
@@ -214,8 +209,6 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     /// </summary>
     public unsafe WlCallback Sync()
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)IntPtr.Zero;
 
@@ -251,8 +244,6 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     /// </summary>
     public unsafe WlRegistry GetRegistry()
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)IntPtr.Zero;
 

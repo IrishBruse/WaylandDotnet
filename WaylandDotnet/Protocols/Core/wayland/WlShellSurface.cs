@@ -7,7 +7,6 @@
 #nullable enable
 #pragma warning disable CS1591
 #pragma warning disable CS8604
-#pragma warning disable CS0649
 
 namespace WaylandDotnet;
 
@@ -34,8 +33,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     public const string InterfaceName = "wl_shell_surface";
     public static string _StaticInterfaceName => "wl_shell_surface";
     public const int InterfaceVersion = 1;
-
-    private bool disposed;
 
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
@@ -138,7 +135,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     {
         add
         {
-            ObjectDisposedException.ThrowIf(disposed, this);
             _onPing += value;
             EnsureDispatcherRegistered();
         }
@@ -181,7 +177,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     {
         add
         {
-            ObjectDisposedException.ThrowIf(disposed, this);
             _onConfigure += value;
             EnsureDispatcherRegistered();
         }
@@ -210,7 +205,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     {
         add
         {
-            ObjectDisposedException.ThrowIf(disposed, this);
             _onPopupDone += value;
             EnsureDispatcherRegistered();
         }
@@ -302,8 +296,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     /// </summary>
     public unsafe void Pong(uint serial)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[1];
         args[0].u = serial;
 
@@ -333,8 +325,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     /// </summary>
     public unsafe void Move(WlSeat seat, uint serial)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)(seat?.Handle ?? IntPtr.Zero);
         args[1].u = serial;
@@ -365,8 +355,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     /// </summary>
     public unsafe void Resize(WlSeat seat, uint serial, uint edges)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[3];
         args[0].o = (WlObject*)(seat?.Handle ?? IntPtr.Zero);
         args[1].u = serial;
@@ -396,8 +384,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     /// </summary>
     public unsafe void SetToplevel()
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[0];
 
         const uint opcode = 3;
@@ -428,8 +414,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     /// </summary>
     public unsafe void SetTransient(WlSurface parent, int x, int y, uint flags)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[4];
         args[0].o = (WlObject*)(parent?.Handle ?? IntPtr.Zero);
         args[1].i = x;
@@ -490,8 +474,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     /// </summary>
     public unsafe void SetFullscreen(uint method, uint framerate, WlOutput? output)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[3];
         args[0].u = method;
         args[1].u = framerate;
@@ -537,8 +519,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     /// </summary>
     public unsafe void SetPopup(WlSeat seat, uint serial, WlSurface parent, int x, int y, uint flags)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[6];
         args[0].o = (WlObject*)(seat?.Handle ?? IntPtr.Zero);
         args[1].u = serial;
@@ -586,8 +566,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     /// </summary>
     public unsafe void SetMaximized(WlOutput? output)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[1];
         args[0].o = (WlObject*)(output?.Handle ?? IntPtr.Zero);
 
@@ -619,8 +597,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     /// </summary>
     public unsafe void SetTitle(string title)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[1];
         args[0].s = Utf8StringMarshaller.ConvertToUnmanaged(title);
 
@@ -651,8 +627,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
     /// </summary>
     public unsafe void SetClass(string _class)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[1];
         args[0].s = Utf8StringMarshaller.ConvertToUnmanaged(_class);
 

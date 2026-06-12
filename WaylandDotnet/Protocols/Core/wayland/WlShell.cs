@@ -7,7 +7,6 @@
 #nullable enable
 #pragma warning disable CS1591
 #pragma warning disable CS8604
-#pragma warning disable CS0649
 
 namespace WaylandDotnet;
 
@@ -34,8 +33,6 @@ public sealed partial class WlShell : WaylandObject, IWaylandObjectFactory<WlShe
     public const string InterfaceName = "wl_shell";
     public static string _StaticInterfaceName => "wl_shell";
     public const int InterfaceVersion = 1;
-
-    private bool disposed;
 
     public new WlDisplay Display { get; private set; }
 
@@ -67,8 +64,6 @@ public sealed partial class WlShell : WaylandObject, IWaylandObjectFactory<WlShe
     /// </summary>
     public unsafe WlShellSurface GetShellSurface(WlSurface surface)
     {
-        ObjectDisposedException.ThrowIf(disposed, this);
-
         var args = stackalloc WlArgument[2];
         args[0].o = (WlObject*)IntPtr.Zero;
         args[1].o = (WlObject*)(surface?.Handle ?? IntPtr.Zero);
