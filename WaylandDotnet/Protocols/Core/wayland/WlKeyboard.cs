@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// wl_keyboard
 /// <para> keyboard input device </para>
-/// <para> Version: 10 </para>
+/// <para> Version: 11 </para>
 /// <see>https://wayland.app/protocols/wayland/#wl_keyboard</see>
 /// </summary>
 public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<WlKeyboard>
 {
     public const string InterfaceName = "wl_keyboard";
     public static string _StaticInterfaceName => "wl_keyboard";
-    public const int InterfaceVersion = 10;
+    public const int InterfaceVersion = 11;
 
     private bool disposed;
 

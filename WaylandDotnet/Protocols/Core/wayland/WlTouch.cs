@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// wl_touch
 /// <para> touchscreen input device </para>
-/// <para> Version: 10 </para>
+/// <para> Version: 11 </para>
 /// <see>https://wayland.app/protocols/wayland/#wl_touch</see>
 /// </summary>
 public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTouch>
 {
     public const string InterfaceName = "wl_touch";
     public static string _StaticInterfaceName => "wl_touch";
-    public const int InterfaceVersion = 10;
+    public const int InterfaceVersion = 11;
 
     private bool disposed;
 

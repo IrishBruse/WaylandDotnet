@@ -176,6 +176,14 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     /// <br/>
     /// Attempting to place a node above itself has no effect.<br/>
     /// <br/>
+    /// Given nodes A, B, C currently rendered in that order with C on top<br/>
+    /// and A on the bottom, the following example demonstrates the behavior<br/>
+    /// of this request and the meaning of "directly above":<br/>
+    /// <br/>
+    /// 1. A.place_above(C) -&gt; B, C, A<br/>
+    /// 2. A.place_above(B) -&gt; B, A, C<br/>
+    /// 3. B.place_above(A) -&gt; A, B, C<br/>
+    /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
     /// render sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
@@ -208,6 +216,14 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     /// compositor's render list.<br/>
     /// <br/>
     /// Attempting to place a node below itself has no effect.<br/>
+    /// <br/>
+    /// Given nodes A, B, C currently rendered in that order with C on top<br/>
+    /// and A on the bottom, the following example demonstrates the behavior<br/>
+    /// of this request and the meaning of "directly below":<br/>
+    /// <br/>
+    /// 1. C.place_below(A) -&gt; C, A, B<br/>
+    /// 2. C.place_below(B) -&gt; A, C, B<br/>
+    /// 3. B.place_below(C) -&gt; A, B, C<br/>
     /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
     /// render sequence, see the river_window_manager_v1 description.<br/>

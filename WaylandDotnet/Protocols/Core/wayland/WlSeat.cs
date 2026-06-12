@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// wl_seat
 /// <para> group of input devices </para>
-/// <para> Version: 10 </para>
+/// <para> Version: 11 </para>
 /// <see>https://wayland.app/protocols/wayland/#wl_seat</see>
 /// </summary>
 public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat>
 {
     public const string InterfaceName = "wl_seat";
     public static string _StaticInterfaceName => "wl_seat";
-    public const int InterfaceVersion = 10;
+    public const int InterfaceVersion = 11;
 
     private bool disposed;
 

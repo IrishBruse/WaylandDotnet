@@ -3070,7 +3070,7 @@ These errors can be emitted in response to wl_surface requests.
         <span class="codicon codicon-symbol-interface"></span>
         WlSeat
     </a>
-    <span class="pill">version 10</span>
+    <span class="pill">version 11</span>
 </h2>
 
 Group of input devices
@@ -3305,7 +3305,7 @@ These errors can be emitted in response to wl_seat requests.
         <span class="codicon codicon-symbol-interface"></span>
         WlPointer
     </a>
-    <span class="pill">version 10</span>
+    <span class="pill">version 11</span>
 </h2>
 
 Pointer input device
@@ -3493,7 +3493,7 @@ void ButtonHandler(uint serial, uint time, uint button, uint state)
 
 Mouse button click and release notifications.
 
-The location of the click is given by the last motion or
+The location of the click is given by the last motion, warp or
 enter event.
 The time argument is a timestamp with millisecond
 granularity, with an undefined base.
@@ -3816,6 +3816,39 @@ The order of wl_pointer.axis_relative_direction,
 wl_pointer.axis_discrete and wl_pointer.axis_source is not
 guaranteed.
 
+<h3 class="decleration event" title="Warp event">
+    <a href="#/Protocols/Core/wayland/?id=onwlpointer_warp" id="onwlpointer_warp">
+        <span class="codicon codicon-symbol-event event"></span>
+        WlPointer.<span class="event">OnWarp</span>
+    </a>
+    <span class="pill">since 11</span>
+</h3>
+
+```csharp
+void WarpHandler(WlFixed surfaceX, WlFixed surfaceY)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| surface_x | fixed | Surface-local x coordinate |
+| surface_y | fixed | Surface-local y coordinate |
+
+**Pointer warp event**
+
+Notification of pointer location change within a surface.
+
+This location change is not due to events on the input device,
+but because either the surface under the pointer was moved and
+thus the relative position of the pointer changed, or because
+the compositor changed the pointer position in response to an
+event like pointer confinement being exited.
+
+The arguments surface_x and surface_y are the location relative to
+the focused surface.
+
+This event must not occur in the same wl_pointer.frame as a
+wl_pointer.enter or wl_pointer.motion event.
+
 <h3 class="decleration enum" title="Error enum">
     <a href="#/Protocols/Core/wayland/?id=wlpointer_error_enum" id="wlpointer_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
@@ -3938,7 +3971,7 @@ wl_pointer.axis event, relative to the wl_pointer.axis direction.
         <span class="codicon codicon-symbol-interface"></span>
         WlKeyboard
     </a>
-    <span class="pill">version 10</span>
+    <span class="pill">version 11</span>
 </h2>
 
 Keyboard input device
@@ -4230,7 +4263,7 @@ generated multiple times while the key is down.
         <span class="codicon codicon-symbol-interface"></span>
         WlTouch
     </a>
-    <span class="pill">version 10</span>
+    <span class="pill">version 11</span>
 </h2>
 
 Touchscreen input device

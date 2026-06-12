@@ -26,14 +26,14 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// wl_pointer
 /// <para> pointer input device </para>
-/// <para> Version: 10 </para>
+/// <para> Version: 11 </para>
 /// <see>https://wayland.app/protocols/wayland/#wl_pointer</see>
 /// </summary>
 public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlPointer>
 {
     public const string InterfaceName = "wl_pointer";
     public static string _StaticInterfaceName => "wl_pointer";
-    public const int InterfaceVersion = 10;
+    public const int InterfaceVersion = 11;
 
     private bool disposed;
 
@@ -219,7 +219,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     ///
     ///Mouse button click and release notifications.
     ///
-    ///The location of the click is given by the last motion or
+    ///The location of the click is given by the last motion, warp or
     ///enter event.
     ///The time argument is a timestamp with millisecond
     ///granularity, with an undefined base.
@@ -606,6 +606,45 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         }
     }
 
+    public delegate void WarpHandler(WlFixed surfaceX, WlFixed surfaceY);
+
+    private WarpHandler? _onWarp;
+
+    /// <summary>
+    ///Pointer warp event
+    /// <para>
+    ///
+    ///Notification of pointer location change within a surface.
+    ///
+    ///This location change is not due to events on the input device,
+    ///but because either the surface under the pointer was moved and
+    ///thus the relative position of the pointer changed, or because
+    ///the compositor changed the pointer position in response to an
+    ///event like pointer confinement being exited.
+    ///
+    ///The arguments surface_x and surface_y are the location relative to
+    ///the focused surface.
+    ///
+    ///This event must not occur in the same wl_pointer.frame as a
+    ///wl_pointer.enter or wl_pointer.motion event.
+    ///
+    /// </para>
+    /// </summary>
+    public event WarpHandler? OnWarp
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onWarp += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onWarp -= value;
+        }
+    }
+
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -735,6 +774,14 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
                         var _axis = args[0].u;
                         var _direction = args[1].u;
                         obj._onAxisRelativeDirection?.Invoke(_axis, _direction);
+                    }
+                    break;
+                case 11: // warp
+                    if (obj._onWarp != null)
+                    {
+                        var _surfaceX = args[0].f;
+                        var _surfaceY = args[1].f;
+                        obj._onWarp?.Invoke(_surfaceX, _surfaceY);
                     }
                     break;
                 default:

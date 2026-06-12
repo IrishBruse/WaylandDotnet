@@ -1984,7 +1984,7 @@
     </request>
    </interface>
 
-  <interface name="wl_seat" version="10">
+  <interface name="wl_seat" version="11">
     <description summary="group of input devices">
       A seat is a group of keyboards, pointer and touch devices. This
       object is published as a global during start up, or when such a
@@ -2118,7 +2118,7 @@
 
   </interface>
 
-  <interface name="wl_pointer" version="10">
+  <interface name="wl_pointer" version="11">
     <description summary="pointer input device">
       The wl_pointer interface represents one or more input devices,
       such as mice, which control the pointer location and pointer_focus
@@ -2228,7 +2228,7 @@
       <description summary="pointer button event">
         Mouse button click and release notifications.
 
-        The location of the click is given by the last motion or
+        The location of the click is given by the last motion, warp or
         enter event.
         The time argument is a timestamp with millisecond
         granularity, with an undefined base.
@@ -2529,9 +2529,31 @@
       <arg name="direction" type="uint" enum="axis_relative_direction"
           summary="physical direction relative to axis motion"/>
     </event>
+
+    <!-- Version 11 additions -->
+
+    <event name="warp" since="11">
+      <description summary="pointer warp event">
+	Notification of pointer location change within a surface.
+
+	This location change is not due to events on the input device,
+	but because either the surface under the pointer was moved and
+	thus the relative position of the pointer changed, or because
+	the compositor changed the pointer position in response to an
+	event like pointer confinement being exited.
+
+	The arguments surface_x and surface_y are the location relative to
+	the focused surface.
+
+	This event must not occur in the same wl_pointer.frame as a
+	wl_pointer.enter or wl_pointer.motion event.
+      </description>
+      <arg name="surface_x" type="fixed" summary="surface-local x coordinate"/>
+      <arg name="surface_y" type="fixed" summary="surface-local y coordinate"/>
+    </event>
   </interface>
 
-  <interface name="wl_keyboard" version="10">
+  <interface name="wl_keyboard" version="11">
     <description summary="keyboard input device">
       The wl_keyboard interface represents one or more keyboards
       associated with a seat.
@@ -2712,7 +2734,7 @@
     </event>
   </interface>
 
-  <interface name="wl_touch" version="10">
+  <interface name="wl_touch" version="11">
     <description summary="touchscreen input device">
       The wl_touch interface represents a touchscreen
       associated with a seat.
