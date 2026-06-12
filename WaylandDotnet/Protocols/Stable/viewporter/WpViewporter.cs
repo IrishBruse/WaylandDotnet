@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,14 +28,23 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WpViewporter : WaylandObject, IWaylandObjectFactory<WpViewporter>
 {
+    /// <summary> Wayland interface name for wp_viewporter. </summary>
     public const string InterfaceName = "wp_viewporter";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wp_viewporter";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
     private bool disposed;
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wp_viewporter proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WpViewporter(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -113,6 +121,10 @@ public sealed partial class WpViewporter : WaylandObject, IWaylandObjectFactory<
         return new WpViewport(newProxy);
     }
 
+    /// <summary> Creates a WpViewporter wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WpViewporter instance.</returns>
     public static WpViewporter Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

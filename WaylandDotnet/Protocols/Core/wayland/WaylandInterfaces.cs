@@ -1,36 +1,59 @@
 namespace WaylandDotnet.Internal;
 
 #nullable enable
-#pragma warning disable CS1591
 #pragma warning disable CA2255
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 
+/// <summary> Native Wayland interface descriptors for this protocol. </summary>
 public static unsafe partial class WaylandInterfaces
 {
+    /// <summary> Native interface descriptor for wl_display. </summary>
     public static WlInterface* WlDisplay = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_registry. </summary>
     public static WlInterface* WlRegistry = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_callback. </summary>
     public static WlInterface* WlCallback = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_compositor. </summary>
     public static WlInterface* WlCompositor = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_shm_pool. </summary>
     public static WlInterface* WlShmPool = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_shm. </summary>
     public static WlInterface* WlShm = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_buffer. </summary>
     public static WlInterface* WlBuffer = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_data_offer. </summary>
     public static WlInterface* WlDataOffer = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_data_source. </summary>
     public static WlInterface* WlDataSource = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_data_device. </summary>
     public static WlInterface* WlDataDevice = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_data_device_manager. </summary>
     public static WlInterface* WlDataDeviceManager = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_shell. </summary>
     public static WlInterface* WlShell = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_shell_surface. </summary>
     public static WlInterface* WlShellSurface = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_surface. </summary>
     public static WlInterface* WlSurface = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_seat. </summary>
     public static WlInterface* WlSeat = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_pointer. </summary>
     public static WlInterface* WlPointer = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_keyboard. </summary>
     public static WlInterface* WlKeyboard = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_touch. </summary>
     public static WlInterface* WlTouch = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_output. </summary>
     public static WlInterface* WlOutput = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_region. </summary>
     public static WlInterface* WlRegion = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_subcompositor. </summary>
     public static WlInterface* WlSubcompositor = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_subsurface. </summary>
     public static WlInterface* WlSubsurface = AllocateInterface();
+    /// <summary> Native interface descriptor for wl_fixes. </summary>
     public static WlInterface* WlFixes = AllocateInterface();
 
 

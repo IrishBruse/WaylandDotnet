@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Wlr;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwlrOutputModeV1 : WaylandObject, IWaylandObjectFactory<ZwlrOutputModeV1>
 {
+    /// <summary> Wayland interface name for zwlr_output_mode_v1. </summary>
     public const string InterfaceName = "zwlr_output_mode_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwlr_output_mode_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 3;
 
     private bool disposed;
@@ -39,26 +41,43 @@ public sealed partial class ZwlrOutputModeV1 : WaylandObject, IWaylandObjectFact
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwlr_output_mode_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwlrOutputModeV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// Mode size
+    /// <para>
+    ///
+    /// This event describes the mode size. The size is given in physical
+    /// hardware units of the output device. This is not necessarily the same as
+    /// the output size in the global compositor space. For instance, the output
+    /// may be scaled or transformed.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SizeHandler(int width, int height);
 
     private SizeHandler? _onSize;
 
     /// <summary>
-    ///Mode size
+    /// Mode size
     /// <para>
     ///
-    ///This event describes the mode size. The size is given in physical
-    ///hardware units of the output device. This is not necessarily the same as
-    ///the output size in the global compositor space. For instance, the output
-    ///may be scaled or transformed.
-    ///
+    /// This event describes the mode size. The size is given in physical
+    /// hardware units of the output device. This is not necessarily the same as
+    /// the output size in the global compositor space. For instance, the output
+    /// may be scaled or transformed.
+    /// 
     /// </para>
     /// </summary>
     public event SizeHandler? OnSize
@@ -76,17 +95,26 @@ public sealed partial class ZwlrOutputModeV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Mode refresh rate
+    /// <para>
+    ///
+    /// This event describes the mode's fixed vertical refresh rate. It is only
+    /// sent if the mode has a fixed refresh rate.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RefreshHandler(int refresh);
 
     private RefreshHandler? _onRefresh;
 
     /// <summary>
-    ///Mode refresh rate
+    /// Mode refresh rate
     /// <para>
     ///
-    ///This event describes the mode's fixed vertical refresh rate. It is only
-    ///sent if the mode has a fixed refresh rate.
-    ///
+    /// This event describes the mode's fixed vertical refresh rate. It is only
+    /// sent if the mode has a fixed refresh rate.
+    /// 
     /// </para>
     /// </summary>
     public event RefreshHandler? OnRefresh
@@ -104,16 +132,24 @@ public sealed partial class ZwlrOutputModeV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Mode is preferred
+    /// <para>
+    ///
+    /// This event advertises this mode as preferred.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PreferredHandler();
 
     private PreferredHandler? _onPreferred;
 
     /// <summary>
-    ///Mode is preferred
+    /// Mode is preferred
     /// <para>
     ///
-    ///This event advertises this mode as preferred.
-    ///
+    /// This event advertises this mode as preferred.
+    /// 
     /// </para>
     /// </summary>
     public event PreferredHandler? OnPreferred
@@ -131,18 +167,28 @@ public sealed partial class ZwlrOutputModeV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// The mode has disappeared
+    /// <para>
+    ///
+    /// This event indicates that the mode is no longer available. The mode
+    /// object becomes inert. Clients should send a destroy request and release
+    /// any resources associated with it.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FinishedHandler();
 
     private FinishedHandler? _onFinished;
 
     /// <summary>
-    ///The mode has disappeared
+    /// The mode has disappeared
     /// <para>
     ///
-    ///This event indicates that the mode is no longer available. The mode
-    ///object becomes inert. Clients should send a destroy request and release
-    ///any resources associated with it.
-    ///
+    /// This event indicates that the mode is no longer available. The mode
+    /// object becomes inert. Clients should send a destroy request and release
+    /// any resources associated with it.
+    /// 
     /// </para>
     /// </summary>
     public event FinishedHandler? OnFinished
@@ -263,6 +309,10 @@ public sealed partial class ZwlrOutputModeV1 : WaylandObject, IWaylandObjectFact
         disposed = true;
     }
 
+    /// <summary> Creates a ZwlrOutputModeV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwlrOutputModeV1 instance.</returns>
     public static ZwlrOutputModeV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

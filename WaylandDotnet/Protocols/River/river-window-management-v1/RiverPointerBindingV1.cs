@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjectFactory<RiverPointerBindingV1>
 {
+    /// <summary> Wayland interface name for river_pointer_binding_v1. </summary>
     public const string InterfaceName = "river_pointer_binding_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_pointer_binding_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 5;
 
     private bool disposed;
@@ -39,34 +41,59 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_pointer_binding_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverPointerBindingV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// The bound pointer button has been pressed
+    /// <para>
+    ///
+    /// This event indicates that the pointer button triggering the binding has
+    /// been pressed.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    ///
+    /// The compositor should wait for the manage sequence to complete before
+    /// processing further input events. This allows the window manager client
+    /// to, for example, modify key bindings and keyboard focus without racing
+    /// against future input events. The window manager should of course respond
+    /// as soon as possible as the capacity of the compositor to buffer incoming
+    /// input events is finite.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PressedHandler();
 
     private PressedHandler? _onPressed;
 
     /// <summary>
-    ///The bound pointer button has been pressed
+    /// The bound pointer button has been pressed
     /// <para>
     ///
-    ///This event indicates that the pointer button triggering the binding has
-    ///been pressed.
+    /// This event indicates that the pointer button triggering the binding has
+    /// been pressed.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
     ///
-    ///The compositor should wait for the manage sequence to complete before
-    ///processing further input events. This allows the window manager client
-    ///to, for example, modify key bindings and keyboard focus without racing
-    ///against future input events. The window manager should of course respond
-    ///as soon as possible as the capacity of the compositor to buffer incoming
-    ///input events is finite.
-    ///
+    /// The compositor should wait for the manage sequence to complete before
+    /// processing further input events. This allows the window manager client
+    /// to, for example, modify key bindings and keyboard focus without racing
+    /// against future input events. The window manager should of course respond
+    /// as soon as possible as the capacity of the compositor to buffer incoming
+    /// input events is finite.
+    /// 
     /// </para>
     /// </summary>
     public event PressedHandler? OnPressed
@@ -84,32 +111,56 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// The bound pointer button has been released
+    /// <para>
+    ///
+    /// This event indicates that the pointer button triggering the binding has
+    /// been released.
+    ///
+    /// Releasing the modifiers for the binding without releasing the pointer
+    /// button does not trigger the release event. This event is sent when the
+    /// pointer button is released, even if the modifiers have changed since the
+    /// pressed event.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    ///
+    /// The compositor should wait for the manage sequence to complete before
+    /// processing further input events. This allows the window manager client
+    /// to, for example, modify key bindings and keyboard focus without racing
+    /// against future input events. The window manager should of course respond
+    /// as soon as possible as the capacity of the compositor to buffer incoming
+    /// input events is finite.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ReleasedHandler();
 
     private ReleasedHandler? _onReleased;
 
     /// <summary>
-    ///The bound pointer button has been released
+    /// The bound pointer button has been released
     /// <para>
     ///
-    ///This event indicates that the pointer button triggering the binding has
-    ///been released.
+    /// This event indicates that the pointer button triggering the binding has
+    /// been released.
     ///
-    ///Releasing the modifiers for the binding without releasing the pointer
-    ///button does not trigger the release event. This event is sent when the
-    ///pointer button is released, even if the modifiers have changed since the
-    ///pressed event.
+    /// Releasing the modifiers for the binding without releasing the pointer
+    /// button does not trigger the release event. This event is sent when the
+    /// pointer button is released, even if the modifiers have changed since the
+    /// pressed event.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
     ///
-    ///The compositor should wait for the manage sequence to complete before
-    ///processing further input events. This allows the window manager client
-    ///to, for example, modify key bindings and keyboard focus without racing
-    ///against future input events. The window manager should of course respond
-    ///as soon as possible as the capacity of the compositor to buffer incoming
-    ///input events is finite.
-    ///
+    /// The compositor should wait for the manage sequence to complete before
+    /// processing further input events. This allows the window manager client
+    /// to, for example, modify key bindings and keyboard focus without racing
+    /// against future input events. The window manager should of course respond
+    /// as soon as possible as the capacity of the compositor to buffer incoming
+    /// input events is finite.
+    /// 
     /// </para>
     /// </summary>
     public event ReleasedHandler? OnReleased
@@ -276,6 +327,10 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
         );
     }
 
+    /// <summary> Creates a RiverPointerBindingV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverPointerBindingV1 instance.</returns>
     public static RiverPointerBindingV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

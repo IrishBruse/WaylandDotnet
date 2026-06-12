@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlPointer>
 {
+    /// <summary> Wayland interface name for wl_pointer. </summary>
     public const string InterfaceName = "wl_pointer";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_pointer";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 11;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_pointer proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlPointer(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -115,21 +123,34 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         Inverted = 1,
     }
 
+    /// <summary>
+    /// Enter event
+    /// <para>
+    ///
+    /// Notification that this seat's pointer is focused on a certain
+    /// surface.
+    ///
+    /// When a seat's focus enters a surface, the pointer image
+    /// is undefined and a client should respond to this event by setting
+    /// an appropriate pointer image with the set_cursor request.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void EnterHandler(uint serial, WlSurface surface, WlFixed surfaceX, WlFixed surfaceY);
 
     private EnterHandler? _onEnter;
 
     /// <summary>
-    ///Enter event
+    /// Enter event
     /// <para>
     ///
-    ///Notification that this seat's pointer is focused on a certain
-    ///surface.
+    /// Notification that this seat's pointer is focused on a certain
+    /// surface.
     ///
-    ///When a seat's focus enters a surface, the pointer image
-    ///is undefined and a client should respond to this event by setting
-    ///an appropriate pointer image with the set_cursor request.
-    ///
+    /// When a seat's focus enters a surface, the pointer image
+    /// is undefined and a client should respond to this event by setting
+    /// an appropriate pointer image with the set_cursor request.
+    /// 
     /// </para>
     /// </summary>
     public event EnterHandler? OnEnter
@@ -147,20 +168,32 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         }
     }
 
+    /// <summary>
+    /// Leave event
+    /// <para>
+    ///
+    /// Notification that this seat's pointer is no longer focused on
+    /// a certain surface.
+    ///
+    /// The leave notification is sent before the enter notification
+    /// for the new focus.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void LeaveHandler(uint serial, WlSurface surface);
 
     private LeaveHandler? _onLeave;
 
     /// <summary>
-    ///Leave event
+    /// Leave event
     /// <para>
     ///
-    ///Notification that this seat's pointer is no longer focused on
-    ///a certain surface.
+    /// Notification that this seat's pointer is no longer focused on
+    /// a certain surface.
     ///
-    ///The leave notification is sent before the enter notification
-    ///for the new focus.
-    ///
+    /// The leave notification is sent before the enter notification
+    /// for the new focus.
+    /// 
     /// </para>
     /// </summary>
     public event LeaveHandler? OnLeave
@@ -178,18 +211,28 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         }
     }
 
+    /// <summary>
+    /// Pointer motion event
+    /// <para>
+    ///
+    /// Notification of pointer location change. The arguments
+    /// surface_x and surface_y are the location relative to the
+    /// focused surface.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void MotionHandler(uint time, WlFixed surfaceX, WlFixed surfaceY);
 
     private MotionHandler? _onMotion;
 
     /// <summary>
-    ///Pointer motion event
+    /// Pointer motion event
     /// <para>
     ///
-    ///Notification of pointer location change. The arguments
-    ///surface_x and surface_y are the location relative to the
-    ///focused surface.
-    ///
+    /// Notification of pointer location change. The arguments
+    /// surface_x and surface_y are the location relative to the
+    /// focused surface.
+    /// 
     /// </para>
     /// </summary>
     public event MotionHandler? OnMotion
@@ -207,29 +250,50 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         }
     }
 
+    /// <summary>
+    /// Pointer button event
+    /// <para>
+    ///
+    /// Mouse button click and release notifications.
+    ///
+    /// The location of the click is given by the last motion, warp or
+    /// enter event.
+    /// The time argument is a timestamp with millisecond
+    /// granularity, with an undefined base.
+    ///
+    /// The button is a button code as defined in the Linux kernel's
+    /// linux/input-event-codes.h header file, e.g. BTN_LEFT.
+    ///
+    /// Any 16-bit button code value is reserved for future additions to the
+    /// kernel's event code list. All other button codes above 0xFFFF are
+    /// currently undefined but may be used in future versions of this
+    /// protocol.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ButtonHandler(uint serial, uint time, uint button, uint state);
 
     private ButtonHandler? _onButton;
 
     /// <summary>
-    ///Pointer button event
+    /// Pointer button event
     /// <para>
     ///
-    ///Mouse button click and release notifications.
+    /// Mouse button click and release notifications.
     ///
-    ///The location of the click is given by the last motion, warp or
-    ///enter event.
-    ///The time argument is a timestamp with millisecond
-    ///granularity, with an undefined base.
+    /// The location of the click is given by the last motion, warp or
+    /// enter event.
+    /// The time argument is a timestamp with millisecond
+    /// granularity, with an undefined base.
     ///
-    ///The button is a button code as defined in the Linux kernel's
-    ///linux/input-event-codes.h header file, e.g. BTN_LEFT.
+    /// The button is a button code as defined in the Linux kernel's
+    /// linux/input-event-codes.h header file, e.g. BTN_LEFT.
     ///
-    ///Any 16-bit button code value is reserved for future additions to the
-    ///kernel's event code list. All other button codes above 0xFFFF are
-    ///currently undefined but may be used in future versions of this
-    ///protocol.
-    ///
+    /// Any 16-bit button code value is reserved for future additions to the
+    /// kernel's event code list. All other button codes above 0xFFFF are
+    /// currently undefined but may be used in future versions of this
+    /// protocol.
+    /// 
     /// </para>
     /// </summary>
     public event ButtonHandler? OnButton
@@ -247,31 +311,54 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         }
     }
 
+    /// <summary>
+    /// Axis event
+    /// <para>
+    ///
+    /// Scroll and other axis notifications.
+    ///
+    /// For scroll events (vertical and horizontal scroll axes), the
+    /// value parameter is the length of a vector along the specified
+    /// axis in a coordinate space identical to those of motion events,
+    /// representing a relative movement along the specified axis.
+    ///
+    /// For devices that support movements non-parallel to axes multiple
+    /// axis events will be emitted.
+    ///
+    /// When applicable, for example for touch pads, the server can
+    /// choose to emit scroll events where the motion vector is
+    /// equivalent to a motion event vector.
+    ///
+    /// When applicable, a client can transform its content relative to the
+    /// scroll distance.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AxisHandler(uint time, uint axis, WlFixed value);
 
     private AxisHandler? _onAxis;
 
     /// <summary>
-    ///Axis event
+    /// Axis event
     /// <para>
     ///
-    ///Scroll and other axis notifications.
+    /// Scroll and other axis notifications.
     ///
-    ///For scroll events (vertical and horizontal scroll axes), the
-    ///value parameter is the length of a vector along the specified
-    ///axis in a coordinate space identical to those of motion events,
-    ///representing a relative movement along the specified axis.
+    /// For scroll events (vertical and horizontal scroll axes), the
+    /// value parameter is the length of a vector along the specified
+    /// axis in a coordinate space identical to those of motion events,
+    /// representing a relative movement along the specified axis.
     ///
-    ///For devices that support movements non-parallel to axes multiple
-    ///axis events will be emitted.
+    /// For devices that support movements non-parallel to axes multiple
+    /// axis events will be emitted.
     ///
-    ///When applicable, for example for touch pads, the server can
-    ///choose to emit scroll events where the motion vector is
-    ///equivalent to a motion event vector.
+    /// When applicable, for example for touch pads, the server can
+    /// choose to emit scroll events where the motion vector is
+    /// equivalent to a motion event vector.
     ///
-    ///When applicable, a client can transform its content relative to the
-    ///scroll distance.
-    ///
+    /// When applicable, a client can transform its content relative to the
+    /// scroll distance.
+    /// 
     /// </para>
     /// </summary>
     public event AxisHandler? OnAxis
@@ -289,49 +376,90 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         }
     }
 
+    /// <summary>
+    /// End of a pointer event sequence
+    /// <para>
+    ///
+    /// Indicates the end of a set of events that logically belong together.
+    /// A client is expected to accumulate the data in all events within the
+    /// frame before proceeding.
+    ///
+    /// All wl_pointer events before a wl_pointer.frame event belong
+    /// logically together. For example, in a diagonal scroll motion the
+    /// compositor will send an optional wl_pointer.axis_source event, two
+    /// wl_pointer.axis events (horizontal and vertical) and finally a
+    /// wl_pointer.frame event. The client may use this information to
+    /// calculate a diagonal vector for scrolling.
+    ///
+    /// When multiple wl_pointer.axis events occur within the same frame,
+    /// the motion vector is the combined motion of all events.
+    /// When a wl_pointer.axis and a wl_pointer.axis_stop event occur within
+    /// the same frame, this indicates that axis movement in one axis has
+    /// stopped but continues in the other axis.
+    /// When multiple wl_pointer.axis_stop events occur within the same
+    /// frame, this indicates that these axes stopped in the same instance.
+    ///
+    /// A wl_pointer.frame event is sent for every logical event group,
+    /// even if the group only contains a single wl_pointer event.
+    /// Specifically, a client may get a sequence: motion, frame, button,
+    /// frame, axis, frame, axis_stop, frame.
+    ///
+    /// The wl_pointer.enter and wl_pointer.leave events are logical events
+    /// generated by the compositor and not the hardware. These events are
+    /// also grouped by a wl_pointer.frame. When a pointer moves from one
+    /// surface to another, a compositor should group the
+    /// wl_pointer.leave event within the same wl_pointer.frame.
+    /// However, a client must not rely on wl_pointer.leave and
+    /// wl_pointer.enter being in the same wl_pointer.frame.
+    /// Compositor-specific policies may require the wl_pointer.leave and
+    /// wl_pointer.enter event being split across multiple wl_pointer.frame
+    /// groups.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FrameHandler();
 
     private FrameHandler? _onFrame;
 
     /// <summary>
-    ///End of a pointer event sequence
+    /// End of a pointer event sequence
     /// <para>
     ///
-    ///Indicates the end of a set of events that logically belong together.
-    ///A client is expected to accumulate the data in all events within the
-    ///frame before proceeding.
+    /// Indicates the end of a set of events that logically belong together.
+    /// A client is expected to accumulate the data in all events within the
+    /// frame before proceeding.
     ///
-    ///All wl_pointer events before a wl_pointer.frame event belong
-    ///logically together. For example, in a diagonal scroll motion the
-    ///compositor will send an optional wl_pointer.axis_source event, two
-    ///wl_pointer.axis events (horizontal and vertical) and finally a
-    ///wl_pointer.frame event. The client may use this information to
-    ///calculate a diagonal vector for scrolling.
+    /// All wl_pointer events before a wl_pointer.frame event belong
+    /// logically together. For example, in a diagonal scroll motion the
+    /// compositor will send an optional wl_pointer.axis_source event, two
+    /// wl_pointer.axis events (horizontal and vertical) and finally a
+    /// wl_pointer.frame event. The client may use this information to
+    /// calculate a diagonal vector for scrolling.
     ///
-    ///When multiple wl_pointer.axis events occur within the same frame,
-    ///the motion vector is the combined motion of all events.
-    ///When a wl_pointer.axis and a wl_pointer.axis_stop event occur within
-    ///the same frame, this indicates that axis movement in one axis has
-    ///stopped but continues in the other axis.
-    ///When multiple wl_pointer.axis_stop events occur within the same
-    ///frame, this indicates that these axes stopped in the same instance.
+    /// When multiple wl_pointer.axis events occur within the same frame,
+    /// the motion vector is the combined motion of all events.
+    /// When a wl_pointer.axis and a wl_pointer.axis_stop event occur within
+    /// the same frame, this indicates that axis movement in one axis has
+    /// stopped but continues in the other axis.
+    /// When multiple wl_pointer.axis_stop events occur within the same
+    /// frame, this indicates that these axes stopped in the same instance.
     ///
-    ///A wl_pointer.frame event is sent for every logical event group,
-    ///even if the group only contains a single wl_pointer event.
-    ///Specifically, a client may get a sequence: motion, frame, button,
-    ///frame, axis, frame, axis_stop, frame.
+    /// A wl_pointer.frame event is sent for every logical event group,
+    /// even if the group only contains a single wl_pointer event.
+    /// Specifically, a client may get a sequence: motion, frame, button,
+    /// frame, axis, frame, axis_stop, frame.
     ///
-    ///The wl_pointer.enter and wl_pointer.leave events are logical events
-    ///generated by the compositor and not the hardware. These events are
-    ///also grouped by a wl_pointer.frame. When a pointer moves from one
-    ///surface to another, a compositor should group the
-    ///wl_pointer.leave event within the same wl_pointer.frame.
-    ///However, a client must not rely on wl_pointer.leave and
-    ///wl_pointer.enter being in the same wl_pointer.frame.
-    ///Compositor-specific policies may require the wl_pointer.leave and
-    ///wl_pointer.enter event being split across multiple wl_pointer.frame
-    ///groups.
-    ///
+    /// The wl_pointer.enter and wl_pointer.leave events are logical events
+    /// generated by the compositor and not the hardware. These events are
+    /// also grouped by a wl_pointer.frame. When a pointer moves from one
+    /// surface to another, a compositor should group the
+    /// wl_pointer.leave event within the same wl_pointer.frame.
+    /// However, a client must not rely on wl_pointer.leave and
+    /// wl_pointer.enter being in the same wl_pointer.frame.
+    /// Compositor-specific policies may require the wl_pointer.leave and
+    /// wl_pointer.enter event being split across multiple wl_pointer.frame
+    /// groups.
+    /// 
     /// </para>
     /// </summary>
     public event FrameHandler? OnFrame
@@ -349,40 +477,72 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         }
     }
 
+    /// <summary>
+    /// Axis source event
+    /// <para>
+    ///
+    /// Source information for scroll and other axes.
+    ///
+    /// This event does not occur on its own. It is sent before a
+    /// wl_pointer.frame event and carries the source information for
+    /// all events within that frame.
+    ///
+    /// The source specifies how this event was generated. If the source is
+    /// wl_pointer.axis_source.finger, a wl_pointer.axis_stop event will be
+    /// sent when the user lifts the finger off the device.
+    ///
+    /// If the source is wl_pointer.axis_source.wheel,
+    /// wl_pointer.axis_source.wheel_tilt or
+    /// wl_pointer.axis_source.continuous, a wl_pointer.axis_stop event may
+    /// or may not be sent. Whether a compositor sends an axis_stop event
+    /// for these sources is hardware-specific and implementation-dependent;
+    /// clients must not rely on receiving an axis_stop event for these
+    /// scroll sources and should treat scroll sequences from these scroll
+    /// sources as unterminated by default.
+    ///
+    /// This event is optional. If the source is unknown for a particular
+    /// axis event sequence, no event is sent.
+    /// Only one wl_pointer.axis_source event is permitted per frame.
+    ///
+    /// The order of wl_pointer.axis_discrete and wl_pointer.axis_source is
+    /// not guaranteed.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AxisSourceHandler(uint axisSource);
 
     private AxisSourceHandler? _onAxisSource;
 
     /// <summary>
-    ///Axis source event
+    /// Axis source event
     /// <para>
     ///
-    ///Source information for scroll and other axes.
+    /// Source information for scroll and other axes.
     ///
-    ///This event does not occur on its own. It is sent before a
-    ///wl_pointer.frame event and carries the source information for
-    ///all events within that frame.
+    /// This event does not occur on its own. It is sent before a
+    /// wl_pointer.frame event and carries the source information for
+    /// all events within that frame.
     ///
-    ///The source specifies how this event was generated. If the source is
-    ///wl_pointer.axis_source.finger, a wl_pointer.axis_stop event will be
-    ///sent when the user lifts the finger off the device.
+    /// The source specifies how this event was generated. If the source is
+    /// wl_pointer.axis_source.finger, a wl_pointer.axis_stop event will be
+    /// sent when the user lifts the finger off the device.
     ///
-    ///If the source is wl_pointer.axis_source.wheel,
-    ///wl_pointer.axis_source.wheel_tilt or
-    ///wl_pointer.axis_source.continuous, a wl_pointer.axis_stop event may
-    ///or may not be sent. Whether a compositor sends an axis_stop event
-    ///for these sources is hardware-specific and implementation-dependent;
-    ///clients must not rely on receiving an axis_stop event for these
-    ///scroll sources and should treat scroll sequences from these scroll
-    ///sources as unterminated by default.
+    /// If the source is wl_pointer.axis_source.wheel,
+    /// wl_pointer.axis_source.wheel_tilt or
+    /// wl_pointer.axis_source.continuous, a wl_pointer.axis_stop event may
+    /// or may not be sent. Whether a compositor sends an axis_stop event
+    /// for these sources is hardware-specific and implementation-dependent;
+    /// clients must not rely on receiving an axis_stop event for these
+    /// scroll sources and should treat scroll sequences from these scroll
+    /// sources as unterminated by default.
     ///
-    ///This event is optional. If the source is unknown for a particular
-    ///axis event sequence, no event is sent.
-    ///Only one wl_pointer.axis_source event is permitted per frame.
+    /// This event is optional. If the source is unknown for a particular
+    /// axis event sequence, no event is sent.
+    /// Only one wl_pointer.axis_source event is permitted per frame.
     ///
-    ///The order of wl_pointer.axis_discrete and wl_pointer.axis_source is
-    ///not guaranteed.
-    ///
+    /// The order of wl_pointer.axis_discrete and wl_pointer.axis_source is
+    /// not guaranteed.
+    /// 
     /// </para>
     /// </summary>
     public event AxisSourceHandler? OnAxisSource
@@ -400,29 +560,50 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         }
     }
 
+    /// <summary>
+    /// Axis stop event
+    /// <para>
+    ///
+    /// Stop notification for scroll and other axes.
+    ///
+    /// For some wl_pointer.axis_source types, a wl_pointer.axis_stop event
+    /// is sent to notify a client that the axis sequence has terminated.
+    /// This enables the client to implement kinetic scrolling.
+    /// See the wl_pointer.axis_source documentation for information on when
+    /// this event may be generated.
+    ///
+    /// Any wl_pointer.axis events with the same axis_source after this
+    /// event should be considered as the start of a new axis motion.
+    ///
+    /// The timestamp is to be interpreted identical to the timestamp in the
+    /// wl_pointer.axis event. The timestamp value may be the same as a
+    /// preceding wl_pointer.axis event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AxisStopHandler(uint time, uint axis);
 
     private AxisStopHandler? _onAxisStop;
 
     /// <summary>
-    ///Axis stop event
+    /// Axis stop event
     /// <para>
     ///
-    ///Stop notification for scroll and other axes.
+    /// Stop notification for scroll and other axes.
     ///
-    ///For some wl_pointer.axis_source types, a wl_pointer.axis_stop event
-    ///is sent to notify a client that the axis sequence has terminated.
-    ///This enables the client to implement kinetic scrolling.
-    ///See the wl_pointer.axis_source documentation for information on when
-    ///this event may be generated.
+    /// For some wl_pointer.axis_source types, a wl_pointer.axis_stop event
+    /// is sent to notify a client that the axis sequence has terminated.
+    /// This enables the client to implement kinetic scrolling.
+    /// See the wl_pointer.axis_source documentation for information on when
+    /// this event may be generated.
     ///
-    ///Any wl_pointer.axis events with the same axis_source after this
-    ///event should be considered as the start of a new axis motion.
+    /// Any wl_pointer.axis events with the same axis_source after this
+    /// event should be considered as the start of a new axis motion.
     ///
-    ///The timestamp is to be interpreted identical to the timestamp in the
-    ///wl_pointer.axis event. The timestamp value may be the same as a
-    ///preceding wl_pointer.axis event.
-    ///
+    /// The timestamp is to be interpreted identical to the timestamp in the
+    /// wl_pointer.axis event. The timestamp value may be the same as a
+    /// preceding wl_pointer.axis event.
+    /// 
     /// </para>
     /// </summary>
     public event AxisStopHandler? OnAxisStop
@@ -440,45 +621,82 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         }
     }
 
+    /// <summary>
+    /// Axis click event
+    /// <para>
+    ///
+    /// Discrete step information for scroll and other axes.
+    ///
+    /// This event carries the axis value of the wl_pointer.axis event in
+    /// discrete steps (e.g. mouse wheel clicks).
+    ///
+    /// This event is deprecated with wl_pointer version 8 - this event is not
+    /// sent to clients supporting version 8 or later.
+    ///
+    /// This event does not occur on its own, it is coupled with a
+    /// wl_pointer.axis event that represents this axis value on a
+    /// continuous scale. The protocol guarantees that each axis_discrete
+    /// event is always followed by exactly one axis event with the same
+    /// axis number within the same wl_pointer.frame. Note that the protocol
+    /// allows for other events to occur between the axis_discrete and
+    /// its coupled axis event, including other axis_discrete or axis
+    /// events. A wl_pointer.frame must not contain more than one axis_discrete
+    /// event per axis type.
+    ///
+    /// This event is optional; continuous scrolling devices
+    /// like two-finger scrolling on touchpads do not have discrete
+    /// steps and do not generate this event.
+    ///
+    /// The discrete value carries the directional information. e.g. a value
+    /// of -2 is two steps towards the negative direction of this axis.
+    ///
+    /// The axis number is identical to the axis number in the associated
+    /// axis event.
+    ///
+    /// The order of wl_pointer.axis_discrete and wl_pointer.axis_source is
+    /// not guaranteed.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AxisDiscreteHandler(uint axis, int discrete);
 
     private AxisDiscreteHandler? _onAxisDiscrete;
 
     /// <summary>
-    ///Axis click event
+    /// Axis click event
     /// <para>
     ///
-    ///Discrete step information for scroll and other axes.
+    /// Discrete step information for scroll and other axes.
     ///
-    ///This event carries the axis value of the wl_pointer.axis event in
-    ///discrete steps (e.g. mouse wheel clicks).
+    /// This event carries the axis value of the wl_pointer.axis event in
+    /// discrete steps (e.g. mouse wheel clicks).
     ///
-    ///This event is deprecated with wl_pointer version 8 - this event is not
-    ///sent to clients supporting version 8 or later.
+    /// This event is deprecated with wl_pointer version 8 - this event is not
+    /// sent to clients supporting version 8 or later.
     ///
-    ///This event does not occur on its own, it is coupled with a
-    ///wl_pointer.axis event that represents this axis value on a
-    ///continuous scale. The protocol guarantees that each axis_discrete
-    ///event is always followed by exactly one axis event with the same
-    ///axis number within the same wl_pointer.frame. Note that the protocol
-    ///allows for other events to occur between the axis_discrete and
-    ///its coupled axis event, including other axis_discrete or axis
-    ///events. A wl_pointer.frame must not contain more than one axis_discrete
-    ///event per axis type.
+    /// This event does not occur on its own, it is coupled with a
+    /// wl_pointer.axis event that represents this axis value on a
+    /// continuous scale. The protocol guarantees that each axis_discrete
+    /// event is always followed by exactly one axis event with the same
+    /// axis number within the same wl_pointer.frame. Note that the protocol
+    /// allows for other events to occur between the axis_discrete and
+    /// its coupled axis event, including other axis_discrete or axis
+    /// events. A wl_pointer.frame must not contain more than one axis_discrete
+    /// event per axis type.
     ///
-    ///This event is optional; continuous scrolling devices
-    ///like two-finger scrolling on touchpads do not have discrete
-    ///steps and do not generate this event.
+    /// This event is optional; continuous scrolling devices
+    /// like two-finger scrolling on touchpads do not have discrete
+    /// steps and do not generate this event.
     ///
-    ///The discrete value carries the directional information. e.g. a value
-    ///of -2 is two steps towards the negative direction of this axis.
+    /// The discrete value carries the directional information. e.g. a value
+    /// of -2 is two steps towards the negative direction of this axis.
     ///
-    ///The axis number is identical to the axis number in the associated
-    ///axis event.
+    /// The axis number is identical to the axis number in the associated
+    /// axis event.
     ///
-    ///The order of wl_pointer.axis_discrete and wl_pointer.axis_source is
-    ///not guaranteed.
-    ///
+    /// The order of wl_pointer.axis_discrete and wl_pointer.axis_source is
+    /// not guaranteed.
+    /// 
     /// </para>
     /// </summary>
     public event AxisDiscreteHandler? OnAxisDiscrete
@@ -496,36 +714,64 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         }
     }
 
+    /// <summary>
+    /// Axis high-resolution scroll event
+    /// <para>
+    ///
+    /// Discrete high-resolution scroll information.
+    ///
+    /// This event carries high-resolution wheel scroll information,
+    /// with each multiple of 120 representing one logical scroll step
+    /// (a wheel detent). For example, an axis_value120 of 30 is one quarter of
+    /// a logical scroll step in the positive direction, a value120 of
+    /// -240 are two logical scroll steps in the negative direction within the
+    /// same hardware event.
+    /// Clients that rely on discrete scrolling should accumulate the
+    /// value120 to multiples of 120 before processing the event.
+    ///
+    /// The value120 must not be zero.
+    ///
+    /// This event replaces the wl_pointer.axis_discrete event in clients
+    /// supporting wl_pointer version 8 or later.
+    ///
+    /// Where a wl_pointer.axis_source event occurs in the same
+    /// wl_pointer.frame, the axis source applies to this event.
+    ///
+    /// The order of wl_pointer.axis_value120 and wl_pointer.axis_source is
+    /// not guaranteed.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AxisValue120Handler(uint axis, int value120);
 
     private AxisValue120Handler? _onAxisValue120;
 
     /// <summary>
-    ///Axis high-resolution scroll event
+    /// Axis high-resolution scroll event
     /// <para>
     ///
-    ///Discrete high-resolution scroll information.
+    /// Discrete high-resolution scroll information.
     ///
-    ///This event carries high-resolution wheel scroll information,
-    ///with each multiple of 120 representing one logical scroll step
-    ///(a wheel detent). For example, an axis_value120 of 30 is one quarter of
-    ///a logical scroll step in the positive direction, a value120 of
-    ///-240 are two logical scroll steps in the negative direction within the
-    ///same hardware event.
-    ///Clients that rely on discrete scrolling should accumulate the
-    ///value120 to multiples of 120 before processing the event.
+    /// This event carries high-resolution wheel scroll information,
+    /// with each multiple of 120 representing one logical scroll step
+    /// (a wheel detent). For example, an axis_value120 of 30 is one quarter of
+    /// a logical scroll step in the positive direction, a value120 of
+    /// -240 are two logical scroll steps in the negative direction within the
+    /// same hardware event.
+    /// Clients that rely on discrete scrolling should accumulate the
+    /// value120 to multiples of 120 before processing the event.
     ///
-    ///The value120 must not be zero.
+    /// The value120 must not be zero.
     ///
-    ///This event replaces the wl_pointer.axis_discrete event in clients
-    ///supporting wl_pointer version 8 or later.
+    /// This event replaces the wl_pointer.axis_discrete event in clients
+    /// supporting wl_pointer version 8 or later.
     ///
-    ///Where a wl_pointer.axis_source event occurs in the same
-    ///wl_pointer.frame, the axis source applies to this event.
+    /// Where a wl_pointer.axis_source event occurs in the same
+    /// wl_pointer.frame, the axis source applies to this event.
     ///
-    ///The order of wl_pointer.axis_value120 and wl_pointer.axis_source is
-    ///not guaranteed.
-    ///
+    /// The order of wl_pointer.axis_value120 and wl_pointer.axis_source is
+    /// not guaranteed.
+    /// 
     /// </para>
     /// </summary>
     public event AxisValue120Handler? OnAxisValue120
@@ -543,50 +789,92 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         }
     }
 
+    /// <summary>
+    /// Axis relative physical direction event
+    /// <para>
+    ///
+    /// Relative directional information of the entity causing the axis
+    /// motion.
+    ///
+    /// For a wl_pointer.axis event, the wl_pointer.axis_relative_direction
+    /// event specifies the movement direction of the entity causing the
+    /// wl_pointer.axis event. For example:
+    /// - if a user's fingers on a touchpad move down and this
+    /// causes a wl_pointer.axis vertical_scroll down event, the physical
+    /// direction is 'identical'
+    /// - if a user's fingers on a touchpad move down and this causes a
+    /// wl_pointer.axis vertical_scroll up scroll up event ('natural
+    /// scrolling'), the physical direction is 'inverted'.
+    ///
+    /// A client may use this information to adjust scroll motion of
+    /// components. Specifically, enabling natural scrolling causes the
+    /// content to change direction compared to traditional scrolling.
+    /// Some widgets like volume control sliders should usually match the
+    /// physical direction regardless of whether natural scrolling is
+    /// active. This event enables clients to match the scroll direction of
+    /// a widget to the physical direction.
+    ///
+    /// This event does not occur on its own, it is coupled with a
+    /// wl_pointer.axis event that represents this axis value.
+    /// The protocol guarantees that each axis_relative_direction event is
+    /// always followed by exactly one axis event with the same
+    /// axis number within the same wl_pointer.frame. Note that the protocol
+    /// allows for other events to occur between the axis_relative_direction
+    /// and its coupled axis event.
+    ///
+    /// The axis number is identical to the axis number in the associated
+    /// axis event.
+    ///
+    /// The order of wl_pointer.axis_relative_direction,
+    /// wl_pointer.axis_discrete and wl_pointer.axis_source is not
+    /// guaranteed.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AxisRelativeDirectionHandler(uint axis, uint direction);
 
     private AxisRelativeDirectionHandler? _onAxisRelativeDirection;
 
     /// <summary>
-    ///Axis relative physical direction event
+    /// Axis relative physical direction event
     /// <para>
     ///
-    ///Relative directional information of the entity causing the axis
-    ///motion.
+    /// Relative directional information of the entity causing the axis
+    /// motion.
     ///
-    ///For a wl_pointer.axis event, the wl_pointer.axis_relative_direction
-    ///event specifies the movement direction of the entity causing the
-    ///wl_pointer.axis event. For example:
-    ///- if a user's fingers on a touchpad move down and this
-    ///causes a wl_pointer.axis vertical_scroll down event, the physical
-    ///direction is 'identical'
-    ///- if a user's fingers on a touchpad move down and this causes a
-    ///wl_pointer.axis vertical_scroll up scroll up event ('natural
-    ///scrolling'), the physical direction is 'inverted'.
+    /// For a wl_pointer.axis event, the wl_pointer.axis_relative_direction
+    /// event specifies the movement direction of the entity causing the
+    /// wl_pointer.axis event. For example:
+    /// - if a user's fingers on a touchpad move down and this
+    /// causes a wl_pointer.axis vertical_scroll down event, the physical
+    /// direction is 'identical'
+    /// - if a user's fingers on a touchpad move down and this causes a
+    /// wl_pointer.axis vertical_scroll up scroll up event ('natural
+    /// scrolling'), the physical direction is 'inverted'.
     ///
-    ///A client may use this information to adjust scroll motion of
-    ///components. Specifically, enabling natural scrolling causes the
-    ///content to change direction compared to traditional scrolling.
-    ///Some widgets like volume control sliders should usually match the
-    ///physical direction regardless of whether natural scrolling is
-    ///active. This event enables clients to match the scroll direction of
-    ///a widget to the physical direction.
+    /// A client may use this information to adjust scroll motion of
+    /// components. Specifically, enabling natural scrolling causes the
+    /// content to change direction compared to traditional scrolling.
+    /// Some widgets like volume control sliders should usually match the
+    /// physical direction regardless of whether natural scrolling is
+    /// active. This event enables clients to match the scroll direction of
+    /// a widget to the physical direction.
     ///
-    ///This event does not occur on its own, it is coupled with a
-    ///wl_pointer.axis event that represents this axis value.
-    ///The protocol guarantees that each axis_relative_direction event is
-    ///always followed by exactly one axis event with the same
-    ///axis number within the same wl_pointer.frame. Note that the protocol
-    ///allows for other events to occur between the axis_relative_direction
-    ///and its coupled axis event.
+    /// This event does not occur on its own, it is coupled with a
+    /// wl_pointer.axis event that represents this axis value.
+    /// The protocol guarantees that each axis_relative_direction event is
+    /// always followed by exactly one axis event with the same
+    /// axis number within the same wl_pointer.frame. Note that the protocol
+    /// allows for other events to occur between the axis_relative_direction
+    /// and its coupled axis event.
     ///
-    ///The axis number is identical to the axis number in the associated
-    ///axis event.
+    /// The axis number is identical to the axis number in the associated
+    /// axis event.
     ///
-    ///The order of wl_pointer.axis_relative_direction,
-    ///wl_pointer.axis_discrete and wl_pointer.axis_source is not
-    ///guaranteed.
-    ///
+    /// The order of wl_pointer.axis_relative_direction,
+    /// wl_pointer.axis_discrete and wl_pointer.axis_source is not
+    /// guaranteed.
+    /// 
     /// </para>
     /// </summary>
     public event AxisRelativeDirectionHandler? OnAxisRelativeDirection
@@ -604,28 +892,48 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         }
     }
 
+    /// <summary>
+    /// Pointer warp event
+    /// <para>
+    ///
+    /// Notification of pointer location change within a surface.
+    ///
+    /// This location change is not due to events on the input device,
+    /// but because either the surface under the pointer was moved and
+    /// thus the relative position of the pointer changed, or because
+    /// the compositor changed the pointer position in response to an
+    /// event like pointer confinement being exited.
+    ///
+    /// The arguments surface_x and surface_y are the location relative to
+    /// the focused surface.
+    ///
+    /// This event must not occur in the same wl_pointer.frame as a
+    /// wl_pointer.enter or wl_pointer.motion event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void WarpHandler(WlFixed surfaceX, WlFixed surfaceY);
 
     private WarpHandler? _onWarp;
 
     /// <summary>
-    ///Pointer warp event
+    /// Pointer warp event
     /// <para>
     ///
-    ///Notification of pointer location change within a surface.
+    /// Notification of pointer location change within a surface.
     ///
-    ///This location change is not due to events on the input device,
-    ///but because either the surface under the pointer was moved and
-    ///thus the relative position of the pointer changed, or because
-    ///the compositor changed the pointer position in response to an
-    ///event like pointer confinement being exited.
+    /// This location change is not due to events on the input device,
+    /// but because either the surface under the pointer was moved and
+    /// thus the relative position of the pointer changed, or because
+    /// the compositor changed the pointer position in response to an
+    /// event like pointer confinement being exited.
     ///
-    ///The arguments surface_x and surface_y are the location relative to
-    ///the focused surface.
+    /// The arguments surface_x and surface_y are the location relative to
+    /// the focused surface.
     ///
-    ///This event must not occur in the same wl_pointer.frame as a
-    ///wl_pointer.enter or wl_pointer.motion event.
-    ///
+    /// This event must not occur in the same wl_pointer.frame as a
+    /// wl_pointer.enter or wl_pointer.motion event.
+    /// 
     /// </para>
     /// </summary>
     public event WarpHandler? OnWarp
@@ -887,6 +1195,10 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         disposed = true;
     }
 
+    /// <summary> Creates a WlPointer wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlPointer instance.</returns>
     public static WlPointer Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

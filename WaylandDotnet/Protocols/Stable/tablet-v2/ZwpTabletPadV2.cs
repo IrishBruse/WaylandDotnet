@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactory<ZwpTabletPadV2>
 {
+    /// <summary> Wayland interface name for zwp_tablet_pad_v2. </summary>
     public const string InterfaceName = "zwp_tablet_pad_v2";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwp_tablet_pad_v2";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwp_tablet_pad_v2 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwpTabletPadV2(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -59,20 +67,32 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
         Pressed = 1,
     }
 
+    /// <summary>
+    /// Group announced
+    /// <para>
+    ///
+    /// Sent on zwp_tablet_pad_v2 initialization to announce available groups.
+    /// One event is sent for each pad group available.
+    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_pad_v2.done event. At least one group will be announced.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void GroupHandler(ZwpTabletPadGroupV2 padGroup);
 
     private GroupHandler? _onGroup;
 
     /// <summary>
-    ///Group announced
+    /// Group announced
     /// <para>
     ///
-    ///Sent on zwp_tablet_pad_v2 initialization to announce available groups.
-    ///One event is sent for each pad group available.
+    /// Sent on zwp_tablet_pad_v2 initialization to announce available groups.
+    /// One event is sent for each pad group available.
     ///
-    ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_pad_v2.done event. At least one group will be announced.
-    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_pad_v2.done event. At least one group will be announced.
+    /// 
     /// </para>
     /// </summary>
     public event GroupHandler? OnGroup
@@ -90,25 +110,42 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
         }
     }
 
+    /// <summary>
+    /// Path to the device
+    /// <para>
+    ///
+    /// A system-specific device path that indicates which device is behind
+    /// this zwp_tablet_pad_v2. This information may be used to gather additional
+    /// information about the device, e.g. through libwacom.
+    ///
+    /// The format of the path is unspecified, it may be a device node, a
+    /// sysfs path, or some other identifier. It is up to the client to
+    /// identify the string provided.
+    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_pad_v2.done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PathHandler(string path);
 
     private PathHandler? _onPath;
 
     /// <summary>
-    ///Path to the device
+    /// Path to the device
     /// <para>
     ///
-    ///A system-specific device path that indicates which device is behind
-    ///this zwp_tablet_pad_v2. This information may be used to gather additional
-    ///information about the device, e.g. through libwacom.
+    /// A system-specific device path that indicates which device is behind
+    /// this zwp_tablet_pad_v2. This information may be used to gather additional
+    /// information about the device, e.g. through libwacom.
     ///
-    ///The format of the path is unspecified, it may be a device node, a
-    ///sysfs path, or some other identifier. It is up to the client to
-    ///identify the string provided.
+    /// The format of the path is unspecified, it may be a device node, a
+    /// sysfs path, or some other identifier. It is up to the client to
+    /// identify the string provided.
     ///
-    ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_pad_v2.done event.
-    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_pad_v2.done event.
+    /// 
     /// </para>
     /// </summary>
     public event PathHandler? OnPath
@@ -126,21 +163,34 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
         }
     }
 
+    /// <summary>
+    /// Buttons announced
+    /// <para>
+    ///
+    /// Sent on zwp_tablet_pad_v2 initialization to announce the available
+    /// buttons.
+    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_pad_v2.done event. This event is only sent when at least one
+    /// button is available.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ButtonsHandler(uint buttons);
 
     private ButtonsHandler? _onButtons;
 
     /// <summary>
-    ///Buttons announced
+    /// Buttons announced
     /// <para>
     ///
-    ///Sent on zwp_tablet_pad_v2 initialization to announce the available
-    ///buttons.
+    /// Sent on zwp_tablet_pad_v2 initialization to announce the available
+    /// buttons.
     ///
-    ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_pad_v2.done event. This event is only sent when at least one
-    ///button is available.
-    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_pad_v2.done event. This event is only sent when at least one
+    /// button is available.
+    /// 
     /// </para>
     /// </summary>
     public event ButtonsHandler? OnButtons
@@ -158,18 +208,28 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
         }
     }
 
+    /// <summary>
+    /// Pad description event sequence complete
+    /// <para>
+    ///
+    /// This event signals the end of the initial burst of descriptive
+    /// events. A client may consider the static description of the pad to
+    /// be complete and finalize initialization of the pad.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DoneHandler();
 
     private DoneHandler? _onDone;
 
     /// <summary>
-    ///Pad description event sequence complete
+    /// Pad description event sequence complete
     /// <para>
     ///
-    ///This event signals the end of the initial burst of descriptive
-    ///events. A client may consider the static description of the pad to
-    ///be complete and finalize initialization of the pad.
-    ///
+    /// This event signals the end of the initial burst of descriptive
+    /// events. A client may consider the static description of the pad to
+    /// be complete and finalize initialization of the pad.
+    /// 
     /// </para>
     /// </summary>
     public event DoneHandler? OnDone
@@ -187,16 +247,24 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
         }
     }
 
+    /// <summary>
+    /// Physical button state
+    /// <para>
+    ///
+    /// Sent whenever the physical state of a button changes.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ButtonHandler(uint time, uint button, uint state);
 
     private ButtonHandler? _onButton;
 
     /// <summary>
-    ///Physical button state
+    /// Physical button state
     /// <para>
     ///
-    ///Sent whenever the physical state of a button changes.
-    ///
+    /// Sent whenever the physical state of a button changes.
+    /// 
     /// </para>
     /// </summary>
     public event ButtonHandler? OnButton
@@ -214,16 +282,24 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
         }
     }
 
+    /// <summary>
+    /// Enter event
+    /// <para>
+    ///
+    /// Notification that this pad is focused on the specified surface.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void EnterHandler(uint serial, ZwpTabletV2 tablet, WlSurface surface);
 
     private EnterHandler? _onEnter;
 
     /// <summary>
-    ///Enter event
+    /// Enter event
     /// <para>
     ///
-    ///Notification that this pad is focused on the specified surface.
-    ///
+    /// Notification that this pad is focused on the specified surface.
+    /// 
     /// </para>
     /// </summary>
     public event EnterHandler? OnEnter
@@ -241,17 +317,26 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
         }
     }
 
+    /// <summary>
+    /// Leave event
+    /// <para>
+    ///
+    /// Notification that this pad is no longer focused on the specified
+    /// surface.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void LeaveHandler(uint serial, WlSurface surface);
 
     private LeaveHandler? _onLeave;
 
     /// <summary>
-    ///Leave event
+    /// Leave event
     /// <para>
     ///
-    ///Notification that this pad is no longer focused on the specified
-    ///surface.
-    ///
+    /// Notification that this pad is no longer focused on the specified
+    /// surface.
+    /// 
     /// </para>
     /// </summary>
     public event LeaveHandler? OnLeave
@@ -269,21 +354,34 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
         }
     }
 
+    /// <summary>
+    /// Pad removed event
+    /// <para>
+    ///
+    /// Sent when the pad has been removed from the system. When a tablet
+    /// is removed its pad(s) will be removed too.
+    ///
+    /// When this event is received, the client must destroy all rings, strips
+    /// and groups that were offered by this pad, and issue zwp_tablet_pad_v2.destroy
+    /// the pad itself.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RemovedHandler();
 
     private RemovedHandler? _onRemoved;
 
     /// <summary>
-    ///Pad removed event
+    /// Pad removed event
     /// <para>
     ///
-    ///Sent when the pad has been removed from the system. When a tablet
-    ///is removed its pad(s) will be removed too.
+    /// Sent when the pad has been removed from the system. When a tablet
+    /// is removed its pad(s) will be removed too.
     ///
-    ///When this event is received, the client must destroy all rings, strips
-    ///and groups that were offered by this pad, and issue zwp_tablet_pad_v2.destroy
-    ///the pad itself.
-    ///
+    /// When this event is received, the client must destroy all rings, strips
+    /// and groups that were offered by this pad, and issue zwp_tablet_pad_v2.destroy
+    /// the pad itself.
+    /// 
     /// </para>
     /// </summary>
     public event RemovedHandler? OnRemoved
@@ -496,6 +594,10 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
         disposed = true;
     }
 
+    /// <summary> Creates a ZwpTabletPadV2 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwpTabletPadV2 instance.</returns>
     public static ZwpTabletPadV2 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

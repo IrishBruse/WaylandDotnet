@@ -3,6 +3,7 @@ namespace WaylandDotnet;
 using System.Runtime.InteropServices;
 using WaylandDotnet.Internal;
 
+/// <summary> Routes Wayland client library log output to the console. </summary>
 public static partial class WaylandLogger
 {
     private static wl_log_func_t? clientLogHandler;
@@ -10,6 +11,7 @@ public static partial class WaylandLogger
     [LibraryImport("libc")]
     private static partial int vsnprintf(IntPtr buffer, UIntPtr size, IntPtr format, IntPtr args);
 
+    /// <summary> Installs the Wayland client log handler. </summary>
     public static void Initialize()
     {
         clientLogHandler = ClientLogHandler;

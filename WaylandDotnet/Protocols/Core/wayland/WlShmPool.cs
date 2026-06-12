@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,14 +28,23 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlShmPool>
 {
+    /// <summary> Wayland interface name for wl_shm_pool. </summary>
     public const string InterfaceName = "wl_shm_pool";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_shm_pool";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_shm_pool proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlShmPool(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -153,6 +161,10 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
         );
     }
 
+    /// <summary> Creates a WlShmPool wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlShmPool instance.</returns>
     public static WlShmPool Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

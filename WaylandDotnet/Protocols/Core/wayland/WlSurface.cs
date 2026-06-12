@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlSurface>
 {
+    /// <summary> Wayland interface name for wl_surface. </summary>
     public const string InterfaceName = "wl_surface";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_surface";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 7;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_surface proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlSurface(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -75,20 +83,32 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
         NoBuffer = 5,
     }
 
+    /// <summary>
+    /// Surface enters an output
+    /// <para>
+    ///
+    /// This is emitted whenever a surface's creation, movement, or resizing
+    /// results in some part of it being within the scanout region of an
+    /// output.
+    ///
+    /// Note that a surface may be overlapping with zero or more outputs.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void EnterHandler(WlOutput output);
 
     private EnterHandler? _onEnter;
 
     /// <summary>
-    ///Surface enters an output
+    /// Surface enters an output
     /// <para>
     ///
-    ///This is emitted whenever a surface's creation, movement, or resizing
-    ///results in some part of it being within the scanout region of an
-    ///output.
+    /// This is emitted whenever a surface's creation, movement, or resizing
+    /// results in some part of it being within the scanout region of an
+    /// output.
     ///
-    ///Note that a surface may be overlapping with zero or more outputs.
-    ///
+    /// Note that a surface may be overlapping with zero or more outputs.
+    /// 
     /// </para>
     /// </summary>
     public event EnterHandler? OnEnter
@@ -106,24 +126,40 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
         }
     }
 
+    /// <summary>
+    /// Surface leaves an output
+    /// <para>
+    ///
+    /// This is emitted whenever a surface's creation, movement, or resizing
+    /// results in it no longer having any part of it within the scanout region
+    /// of an output.
+    ///
+    /// Clients should not use the number of outputs the surface is on for frame
+    /// throttling purposes. The surface might be hidden even if no leave event
+    /// has been sent, and the compositor might expect new surface content
+    /// updates even if no enter event has been sent. The frame event should be
+    /// used instead.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void LeaveHandler(WlOutput output);
 
     private LeaveHandler? _onLeave;
 
     /// <summary>
-    ///Surface leaves an output
+    /// Surface leaves an output
     /// <para>
     ///
-    ///This is emitted whenever a surface's creation, movement, or resizing
-    ///results in it no longer having any part of it within the scanout region
-    ///of an output.
+    /// This is emitted whenever a surface's creation, movement, or resizing
+    /// results in it no longer having any part of it within the scanout region
+    /// of an output.
     ///
-    ///Clients should not use the number of outputs the surface is on for frame
-    ///throttling purposes. The surface might be hidden even if no leave event
-    ///has been sent, and the compositor might expect new surface content
-    ///updates even if no enter event has been sent. The frame event should be
-    ///used instead.
-    ///
+    /// Clients should not use the number of outputs the surface is on for frame
+    /// throttling purposes. The surface might be hidden even if no leave event
+    /// has been sent, and the compositor might expect new surface content
+    /// updates even if no enter event has been sent. The frame event should be
+    /// used instead.
+    /// 
     /// </para>
     /// </summary>
     public event LeaveHandler? OnLeave
@@ -141,27 +177,46 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
         }
     }
 
+    /// <summary>
+    /// Preferred buffer scale for the surface
+    /// <para>
+    ///
+    /// This event indicates the preferred buffer scale for this surface. It is
+    /// sent whenever the compositor's preference changes.
+    ///
+    /// Before receiving this event the preferred buffer scale for this surface
+    /// is 1.
+    ///
+    /// It is intended that scaling aware clients use this event to scale their
+    /// content and use wl_surface.set_buffer_scale to indicate the scale they
+    /// have rendered with. This allows clients to supply a higher detail
+    /// buffer.
+    ///
+    /// The compositor shall emit a scale value greater than 0.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PreferredBufferScaleHandler(int factor);
 
     private PreferredBufferScaleHandler? _onPreferredBufferScale;
 
     /// <summary>
-    ///Preferred buffer scale for the surface
+    /// Preferred buffer scale for the surface
     /// <para>
     ///
-    ///This event indicates the preferred buffer scale for this surface. It is
-    ///sent whenever the compositor's preference changes.
+    /// This event indicates the preferred buffer scale for this surface. It is
+    /// sent whenever the compositor's preference changes.
     ///
-    ///Before receiving this event the preferred buffer scale for this surface
-    ///is 1.
+    /// Before receiving this event the preferred buffer scale for this surface
+    /// is 1.
     ///
-    ///It is intended that scaling aware clients use this event to scale their
-    ///content and use wl_surface.set_buffer_scale to indicate the scale they
-    ///have rendered with. This allows clients to supply a higher detail
-    ///buffer.
+    /// It is intended that scaling aware clients use this event to scale their
+    /// content and use wl_surface.set_buffer_scale to indicate the scale they
+    /// have rendered with. This allows clients to supply a higher detail
+    /// buffer.
     ///
-    ///The compositor shall emit a scale value greater than 0.
-    ///
+    /// The compositor shall emit a scale value greater than 0.
+    /// 
     /// </para>
     /// </summary>
     public event PreferredBufferScaleHandler? OnPreferredBufferScale
@@ -179,24 +234,40 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
         }
     }
 
+    /// <summary>
+    /// Preferred buffer transform for the surface
+    /// <para>
+    ///
+    /// This event indicates the preferred buffer transform for this surface.
+    /// It is sent whenever the compositor's preference changes.
+    ///
+    /// Before receiving this event the preferred buffer transform for this
+    /// surface is normal.
+    ///
+    /// Applying this transformation to the surface buffer contents and using
+    /// wl_surface.set_buffer_transform might allow the compositor to use the
+    /// surface buffer more efficiently.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PreferredBufferTransformHandler(uint transform);
 
     private PreferredBufferTransformHandler? _onPreferredBufferTransform;
 
     /// <summary>
-    ///Preferred buffer transform for the surface
+    /// Preferred buffer transform for the surface
     /// <para>
     ///
-    ///This event indicates the preferred buffer transform for this surface.
-    ///It is sent whenever the compositor's preference changes.
+    /// This event indicates the preferred buffer transform for this surface.
+    /// It is sent whenever the compositor's preference changes.
     ///
-    ///Before receiving this event the preferred buffer transform for this
-    ///surface is normal.
+    /// Before receiving this event the preferred buffer transform for this
+    /// surface is normal.
     ///
-    ///Applying this transformation to the surface buffer contents and using
-    ///wl_surface.set_buffer_transform might allow the compositor to use the
-    ///surface buffer more efficiently.
-    ///
+    /// Applying this transformation to the surface buffer contents and using
+    /// wl_surface.set_buffer_transform might allow the compositor to use the
+    /// surface buffer more efficiently.
+    /// 
     /// </para>
     /// </summary>
     public event PreferredBufferTransformHandler? OnPreferredBufferTransform
@@ -950,6 +1021,10 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
         return new WlCallback(newProxy, Display);
     }
 
+    /// <summary> Creates a WlSurface wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlSurface instance.</returns>
     public static WlSurface Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

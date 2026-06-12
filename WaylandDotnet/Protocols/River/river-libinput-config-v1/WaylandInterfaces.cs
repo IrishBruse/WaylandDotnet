@@ -1,17 +1,21 @@
 namespace WaylandDotnet.Internal;
 
 #nullable enable
-#pragma warning disable CS1591
 #pragma warning disable CA2255
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 
+/// <summary> Native Wayland interface descriptors for this protocol. </summary>
 public static unsafe partial class WaylandInterfaces
 {
+    /// <summary> Native interface descriptor for river_libinput_config_v1. </summary>
     public static WlInterface* RiverLibinputConfigV1 = AllocateInterface();
+    /// <summary> Native interface descriptor for river_libinput_device_v1. </summary>
     public static WlInterface* RiverLibinputDeviceV1 = AllocateInterface();
+    /// <summary> Native interface descriptor for river_libinput_accel_config_v1. </summary>
     public static WlInterface* RiverLibinputAccelConfigV1 = AllocateInterface();
+    /// <summary> Native interface descriptor for river_libinput_result_v1. </summary>
     public static WlInterface* RiverLibinputResultV1 = AllocateInterface();
 
 

@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat>
 {
+    /// <summary> Wayland interface name for wl_seat. </summary>
     public const string InterfaceName = "wl_seat";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_seat";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 11;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_seat proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlSeat(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -73,40 +81,72 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
         MissingCapability = 0,
     }
 
+    /// <summary>
+    /// Seat capabilities changed
+    /// <para>
+    ///
+    /// This is sent on binding to the seat global or whenever a seat gains
+    /// or loses the pointer, keyboard or touch capabilities.
+    /// The argument is a capability enum containing the complete set of
+    /// capabilities this seat has.
+    ///
+    /// When the pointer capability is added, a client may create a
+    /// wl_pointer object using the wl_seat.get_pointer request. This object
+    /// will receive pointer events until the capability is removed in the
+    /// future.
+    ///
+    /// When the pointer capability is removed, a client should destroy the
+    /// wl_pointer objects associated with the seat where the capability was
+    /// removed, using the wl_pointer.release request. No further pointer
+    /// events will be received on these objects.
+    ///
+    /// In some compositors, if a seat regains the pointer capability and a
+    /// client has a previously obtained wl_pointer object of version 4 or
+    /// less, that object may start sending pointer events again. This
+    /// behavior is considered a misinterpretation of the intended behavior
+    /// and must not be relied upon by the client. wl_pointer objects of
+    /// version 5 or later must not send events if created before the most
+    /// recent event notifying the client of an added pointer capability.
+    ///
+    /// The above behavior also applies to wl_keyboard and wl_touch with the
+    /// keyboard and touch capabilities, respectively.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CapabilitiesHandler(uint capabilities);
 
     private CapabilitiesHandler? _onCapabilities;
 
     /// <summary>
-    ///Seat capabilities changed
+    /// Seat capabilities changed
     /// <para>
     ///
-    ///This is sent on binding to the seat global or whenever a seat gains
-    ///or loses the pointer, keyboard or touch capabilities.
-    ///The argument is a capability enum containing the complete set of
-    ///capabilities this seat has.
+    /// This is sent on binding to the seat global or whenever a seat gains
+    /// or loses the pointer, keyboard or touch capabilities.
+    /// The argument is a capability enum containing the complete set of
+    /// capabilities this seat has.
     ///
-    ///When the pointer capability is added, a client may create a
-    ///wl_pointer object using the wl_seat.get_pointer request. This object
-    ///will receive pointer events until the capability is removed in the
-    ///future.
+    /// When the pointer capability is added, a client may create a
+    /// wl_pointer object using the wl_seat.get_pointer request. This object
+    /// will receive pointer events until the capability is removed in the
+    /// future.
     ///
-    ///When the pointer capability is removed, a client should destroy the
-    ///wl_pointer objects associated with the seat where the capability was
-    ///removed, using the wl_pointer.release request. No further pointer
-    ///events will be received on these objects.
+    /// When the pointer capability is removed, a client should destroy the
+    /// wl_pointer objects associated with the seat where the capability was
+    /// removed, using the wl_pointer.release request. No further pointer
+    /// events will be received on these objects.
     ///
-    ///In some compositors, if a seat regains the pointer capability and a
-    ///client has a previously obtained wl_pointer object of version 4 or
-    ///less, that object may start sending pointer events again. This
-    ///behavior is considered a misinterpretation of the intended behavior
-    ///and must not be relied upon by the client. wl_pointer objects of
-    ///version 5 or later must not send events if created before the most
-    ///recent event notifying the client of an added pointer capability.
+    /// In some compositors, if a seat regains the pointer capability and a
+    /// client has a previously obtained wl_pointer object of version 4 or
+    /// less, that object may start sending pointer events again. This
+    /// behavior is considered a misinterpretation of the intended behavior
+    /// and must not be relied upon by the client. wl_pointer objects of
+    /// version 5 or later must not send events if created before the most
+    /// recent event notifying the client of an added pointer capability.
     ///
-    ///The above behavior also applies to wl_keyboard and wl_touch with the
-    ///keyboard and touch capabilities, respectively.
-    ///
+    /// The above behavior also applies to wl_keyboard and wl_touch with the
+    /// keyboard and touch capabilities, respectively.
+    /// 
     /// </para>
     /// </summary>
     public event CapabilitiesHandler? OnCapabilities
@@ -124,31 +164,54 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
         }
     }
 
+    /// <summary>
+    /// Unique identifier for this seat
+    /// <para>
+    ///
+    /// In a multi-seat configuration the seat name can be used by clients to
+    /// help identify which physical devices the seat represents.
+    ///
+    /// The seat name is a UTF-8 string with no convention defined for its
+    /// contents. Each name is unique among all wl_seat globals. The name is
+    /// only guaranteed to be unique for the current compositor instance.
+    ///
+    /// The same seat names are used for all clients. Thus, the name can be
+    /// shared across processes to refer to a specific wl_seat global.
+    ///
+    /// The name event is sent after binding to the seat global, and should be sent
+    /// before announcing capabilities. This event is only sent once per seat object,
+    /// and the name does not change over the lifetime of the wl_seat global.
+    ///
+    /// Compositors may re-use the same seat name if the wl_seat global is
+    /// destroyed and re-created later.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void NameHandler(string name);
 
     private NameHandler? _onName;
 
     /// <summary>
-    ///Unique identifier for this seat
+    /// Unique identifier for this seat
     /// <para>
     ///
-    ///In a multi-seat configuration the seat name can be used by clients to
-    ///help identify which physical devices the seat represents.
+    /// In a multi-seat configuration the seat name can be used by clients to
+    /// help identify which physical devices the seat represents.
     ///
-    ///The seat name is a UTF-8 string with no convention defined for its
-    ///contents. Each name is unique among all wl_seat globals. The name is
-    ///only guaranteed to be unique for the current compositor instance.
+    /// The seat name is a UTF-8 string with no convention defined for its
+    /// contents. Each name is unique among all wl_seat globals. The name is
+    /// only guaranteed to be unique for the current compositor instance.
     ///
-    ///The same seat names are used for all clients. Thus, the name can be
-    ///shared across processes to refer to a specific wl_seat global.
+    /// The same seat names are used for all clients. Thus, the name can be
+    /// shared across processes to refer to a specific wl_seat global.
     ///
-    ///The name event is sent after binding to the seat global, and should be sent
-    ///before announcing capabilities. This event is only sent once per seat object,
-    ///and the name does not change over the lifetime of the wl_seat global.
+    /// The name event is sent after binding to the seat global, and should be sent
+    /// before announcing capabilities. This event is only sent once per seat object,
+    /// and the name does not change over the lifetime of the wl_seat global.
     ///
-    ///Compositors may re-use the same seat name if the wl_seat global is
-    ///destroyed and re-created later.
-    ///
+    /// Compositors may re-use the same seat name if the wl_seat global is
+    /// destroyed and re-created later.
+    /// 
     /// </para>
     /// </summary>
     public event NameHandler? OnName
@@ -364,6 +427,10 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
         disposed = true;
     }
 
+    /// <summary> Creates a WlSeat wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlSeat instance.</returns>
     public static WlSeat Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

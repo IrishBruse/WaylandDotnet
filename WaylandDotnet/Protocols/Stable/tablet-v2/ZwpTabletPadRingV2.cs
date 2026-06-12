@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwpTabletPadRingV2 : WaylandObject, IWaylandObjectFactory<ZwpTabletPadRingV2>
 {
+    /// <summary> Wayland interface name for zwp_tablet_pad_ring_v2. </summary>
     public const string InterfaceName = "zwp_tablet_pad_ring_v2";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwp_tablet_pad_ring_v2";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class ZwpTabletPadRingV2 : WaylandObject, IWaylandObjectFa
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwp_tablet_pad_ring_v2 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwpTabletPadRingV2(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -55,27 +63,46 @@ public sealed partial class ZwpTabletPadRingV2 : WaylandObject, IWaylandObjectFa
         Finger = 1,
     }
 
+    /// <summary>
+    /// Ring event source
+    /// <para>
+    ///
+    /// Source information for ring events.
+    ///
+    /// This event does not occur on its own. It is sent before a
+    /// zwp_tablet_pad_ring_v2.frame event and carries the source information
+    /// for all events within that frame.
+    ///
+    /// The source specifies how this event was generated. If the source is
+    /// zwp_tablet_pad_ring_v2.source.finger, a zwp_tablet_pad_ring_v2.stop event
+    /// will be sent when the user lifts the finger off the device.
+    ///
+    /// This event is optional. If the source is unknown for an interaction,
+    /// no event is sent.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SourceHandler(uint source);
 
     private SourceHandler? _onSource;
 
     /// <summary>
-    ///Ring event source
+    /// Ring event source
     /// <para>
     ///
-    ///Source information for ring events.
+    /// Source information for ring events.
     ///
-    ///This event does not occur on its own. It is sent before a
-    ///zwp_tablet_pad_ring_v2.frame event and carries the source information
-    ///for all events within that frame.
+    /// This event does not occur on its own. It is sent before a
+    /// zwp_tablet_pad_ring_v2.frame event and carries the source information
+    /// for all events within that frame.
     ///
-    ///The source specifies how this event was generated. If the source is
-    ///zwp_tablet_pad_ring_v2.source.finger, a zwp_tablet_pad_ring_v2.stop event
-    ///will be sent when the user lifts the finger off the device.
+    /// The source specifies how this event was generated. If the source is
+    /// zwp_tablet_pad_ring_v2.source.finger, a zwp_tablet_pad_ring_v2.stop event
+    /// will be sent when the user lifts the finger off the device.
     ///
-    ///This event is optional. If the source is unknown for an interaction,
-    ///no event is sent.
-    ///
+    /// This event is optional. If the source is unknown for an interaction,
+    /// no event is sent.
+    /// 
     /// </para>
     /// </summary>
     public event SourceHandler? OnSource
@@ -93,19 +120,30 @@ public sealed partial class ZwpTabletPadRingV2 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    /// <summary>
+    /// Angle changed
+    /// <para>
+    ///
+    /// Sent whenever the angle on a ring changes.
+    ///
+    /// The angle is provided in degrees clockwise from the logical
+    /// north of the ring in the pad's current rotation.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AngleHandler(WlFixed degrees);
 
     private AngleHandler? _onAngle;
 
     /// <summary>
-    ///Angle changed
+    /// Angle changed
     /// <para>
     ///
-    ///Sent whenever the angle on a ring changes.
+    /// Sent whenever the angle on a ring changes.
     ///
-    ///The angle is provided in degrees clockwise from the logical
-    ///north of the ring in the pad's current rotation.
-    ///
+    /// The angle is provided in degrees clockwise from the logical
+    /// north of the ring in the pad's current rotation.
+    /// 
     /// </para>
     /// </summary>
     public event AngleHandler? OnAngle
@@ -123,25 +161,42 @@ public sealed partial class ZwpTabletPadRingV2 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    /// <summary>
+    /// Interaction stopped
+    /// <para>
+    ///
+    /// Stop notification for ring events.
+    ///
+    /// For some zwp_tablet_pad_ring_v2.source types, a zwp_tablet_pad_ring_v2.stop
+    /// event is sent to notify a client that the interaction with the ring
+    /// has terminated. This enables the client to implement kinetic scrolling.
+    /// See the zwp_tablet_pad_ring_v2.source documentation for information on
+    /// when this event may be generated.
+    ///
+    /// Any zwp_tablet_pad_ring_v2.angle events with the same source after this
+    /// event should be considered as the start of a new interaction.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void StopHandler();
 
     private StopHandler? _onStop;
 
     /// <summary>
-    ///Interaction stopped
+    /// Interaction stopped
     /// <para>
     ///
-    ///Stop notification for ring events.
+    /// Stop notification for ring events.
     ///
-    ///For some zwp_tablet_pad_ring_v2.source types, a zwp_tablet_pad_ring_v2.stop
-    ///event is sent to notify a client that the interaction with the ring
-    ///has terminated. This enables the client to implement kinetic scrolling.
-    ///See the zwp_tablet_pad_ring_v2.source documentation for information on
-    ///when this event may be generated.
+    /// For some zwp_tablet_pad_ring_v2.source types, a zwp_tablet_pad_ring_v2.stop
+    /// event is sent to notify a client that the interaction with the ring
+    /// has terminated. This enables the client to implement kinetic scrolling.
+    /// See the zwp_tablet_pad_ring_v2.source documentation for information on
+    /// when this event may be generated.
     ///
-    ///Any zwp_tablet_pad_ring_v2.angle events with the same source after this
-    ///event should be considered as the start of a new interaction.
-    ///
+    /// Any zwp_tablet_pad_ring_v2.angle events with the same source after this
+    /// event should be considered as the start of a new interaction.
+    /// 
     /// </para>
     /// </summary>
     public event StopHandler? OnStop
@@ -159,28 +214,48 @@ public sealed partial class ZwpTabletPadRingV2 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    /// <summary>
+    /// End of a ring event sequence
+    /// <para>
+    ///
+    /// Indicates the end of a set of ring events that logically belong
+    /// together. A client is expected to accumulate the data in all events
+    /// within the frame before proceeding.
+    ///
+    /// All zwp_tablet_pad_ring_v2 events before a zwp_tablet_pad_ring_v2.frame event belong
+    /// logically together. For example, on termination of a finger interaction
+    /// on a ring the compositor will send a zwp_tablet_pad_ring_v2.source event,
+    /// a zwp_tablet_pad_ring_v2.stop event and a zwp_tablet_pad_ring_v2.frame event.
+    ///
+    /// A zwp_tablet_pad_ring_v2.frame event is sent for every logical event
+    /// group, even if the group only contains a single zwp_tablet_pad_ring_v2
+    /// event. Specifically, a client may get a sequence: angle, frame,
+    /// angle, frame, etc.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FrameHandler(uint time);
 
     private FrameHandler? _onFrame;
 
     /// <summary>
-    ///End of a ring event sequence
+    /// End of a ring event sequence
     /// <para>
     ///
-    ///Indicates the end of a set of ring events that logically belong
-    ///together. A client is expected to accumulate the data in all events
-    ///within the frame before proceeding.
+    /// Indicates the end of a set of ring events that logically belong
+    /// together. A client is expected to accumulate the data in all events
+    /// within the frame before proceeding.
     ///
-    ///All zwp_tablet_pad_ring_v2 events before a zwp_tablet_pad_ring_v2.frame event belong
-    ///logically together. For example, on termination of a finger interaction
-    ///on a ring the compositor will send a zwp_tablet_pad_ring_v2.source event,
-    ///a zwp_tablet_pad_ring_v2.stop event and a zwp_tablet_pad_ring_v2.frame event.
+    /// All zwp_tablet_pad_ring_v2 events before a zwp_tablet_pad_ring_v2.frame event belong
+    /// logically together. For example, on termination of a finger interaction
+    /// on a ring the compositor will send a zwp_tablet_pad_ring_v2.source event,
+    /// a zwp_tablet_pad_ring_v2.stop event and a zwp_tablet_pad_ring_v2.frame event.
     ///
-    ///A zwp_tablet_pad_ring_v2.frame event is sent for every logical event
-    ///group, even if the group only contains a single zwp_tablet_pad_ring_v2
-    ///event. Specifically, a client may get a sequence: angle, frame,
-    ///angle, frame, etc.
-    ///
+    /// A zwp_tablet_pad_ring_v2.frame event is sent for every logical event
+    /// group, even if the group only contains a single zwp_tablet_pad_ring_v2
+    /// event. Specifically, a client may get a sequence: angle, frame,
+    /// angle, frame, etc.
+    /// 
     /// </para>
     /// </summary>
     public event FrameHandler? OnFrame
@@ -346,6 +421,10 @@ public sealed partial class ZwpTabletPadRingV2 : WaylandObject, IWaylandObjectFa
         disposed = true;
     }
 
+    /// <summary> Creates a ZwpTabletPadRingV2 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwpTabletPadRingV2 instance.</returns>
     public static ZwpTabletPadRingV2 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

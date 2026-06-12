@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,16 +28,25 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactory<WlShellSurface>
 {
+    /// <summary> Wayland interface name for wl_shell_surface. </summary>
     public const string InterfaceName = "wl_shell_surface";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_shell_surface";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_shell_surface proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlShellSurface(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -117,17 +125,26 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
         Fill = 3,
     }
 
+    /// <summary>
+    /// Ping client
+    /// <para>
+    ///
+    /// Ping a client to check if it is receiving events and sending
+    /// requests. A client is expected to reply with a pong request.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PingHandler(uint serial);
 
     private PingHandler? _onPing;
 
     /// <summary>
-    ///Ping client
+    /// Ping client
     /// <para>
     ///
-    ///Ping a client to check if it is receiving events and sending
-    ///requests. A client is expected to reply with a pong request.
-    ///
+    /// Ping a client to check if it is receiving events and sending
+    /// requests. A client is expected to reply with a pong request.
+    /// 
     /// </para>
     /// </summary>
     public event PingHandler? OnPing
@@ -144,32 +161,56 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
         }
     }
 
+    /// <summary>
+    /// Suggest resize
+    /// <para>
+    ///
+    /// The configure event asks the client to resize its surface.
+    ///
+    /// The size is a hint, in the sense that the client is free to
+    /// ignore it if it doesn't resize, pick a smaller size (to
+    /// satisfy aspect ratio or resize in steps of NxM pixels).
+    ///
+    /// The edges parameter provides a hint about how the surface
+    /// was resized. The client may use this information to decide
+    /// how to adjust its content to the new size (e.g. a scrolling
+    /// area might adjust its content position to leave the viewable
+    /// content unmoved).
+    ///
+    /// The client is free to dismiss all but the last configure
+    /// event it received.
+    ///
+    /// The width and height arguments specify the size of the window
+    /// in surface-local coordinates.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ConfigureHandler(uint edges, int width, int height);
 
     private ConfigureHandler? _onConfigure;
 
     /// <summary>
-    ///Suggest resize
+    /// Suggest resize
     /// <para>
     ///
-    ///The configure event asks the client to resize its surface.
+    /// The configure event asks the client to resize its surface.
     ///
-    ///The size is a hint, in the sense that the client is free to
-    ///ignore it if it doesn't resize, pick a smaller size (to
-    ///satisfy aspect ratio or resize in steps of NxM pixels).
+    /// The size is a hint, in the sense that the client is free to
+    /// ignore it if it doesn't resize, pick a smaller size (to
+    /// satisfy aspect ratio or resize in steps of NxM pixels).
     ///
-    ///The edges parameter provides a hint about how the surface
-    ///was resized. The client may use this information to decide
-    ///how to adjust its content to the new size (e.g. a scrolling
-    ///area might adjust its content position to leave the viewable
-    ///content unmoved).
+    /// The edges parameter provides a hint about how the surface
+    /// was resized. The client may use this information to decide
+    /// how to adjust its content to the new size (e.g. a scrolling
+    /// area might adjust its content position to leave the viewable
+    /// content unmoved).
     ///
-    ///The client is free to dismiss all but the last configure
-    ///event it received.
+    /// The client is free to dismiss all but the last configure
+    /// event it received.
     ///
-    ///The width and height arguments specify the size of the window
-    ///in surface-local coordinates.
-    ///
+    /// The width and height arguments specify the size of the window
+    /// in surface-local coordinates.
+    /// 
     /// </para>
     /// </summary>
     public event ConfigureHandler? OnConfigure
@@ -186,18 +227,28 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
         }
     }
 
+    /// <summary>
+    /// Popup interaction is done
+    /// <para>
+    ///
+    /// The popup_done event is sent out when a popup grab is broken,
+    /// that is, when the user clicks a surface that doesn't belong
+    /// to the client owning the popup surface.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PopupDoneHandler();
 
     private PopupDoneHandler? _onPopupDone;
 
     /// <summary>
-    ///Popup interaction is done
+    /// Popup interaction is done
     /// <para>
     ///
-    ///The popup_done event is sent out when a popup grab is broken,
-    ///that is, when the user clicks a surface that doesn't belong
-    ///to the client owning the popup surface.
-    ///
+    /// The popup_done event is sent out when a popup grab is broken,
+    /// that is, when the user clicks a surface that doesn't belong
+    /// to the client owning the popup surface.
+    /// 
     /// </para>
     /// </summary>
     public event PopupDoneHandler? OnPopupDone
@@ -641,6 +692,10 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
         );
     }
 
+    /// <summary> Creates a WlShellSurface wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlShellSurface instance.</returns>
     public static WlShellSurface Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

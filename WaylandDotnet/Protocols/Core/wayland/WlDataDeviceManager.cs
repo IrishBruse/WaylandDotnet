@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,14 +28,23 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlDataDeviceManager : WaylandObject, IWaylandObjectFactory<WlDataDeviceManager>
 {
+    /// <summary> Wayland interface name for wl_data_device_manager. </summary>
     public const string InterfaceName = "wl_data_device_manager";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_data_device_manager";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 4;
 
     private bool disposed;
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_data_device_manager proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlDataDeviceManager(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -151,6 +159,10 @@ public sealed partial class WlDataDeviceManager : WaylandObject, IWaylandObjectF
         disposed = true;
     }
 
+    /// <summary> Creates a WlDataDeviceManager wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlDataDeviceManager instance.</returns>
     public static WlDataDeviceManager Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

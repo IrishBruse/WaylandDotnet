@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverLibinputResultV1 : WaylandObject, IWaylandObjectFactory<RiverLibinputResultV1>
 {
+    /// <summary> Wayland interface name for river_libinput_result_v1. </summary>
     public const string InterfaceName = "river_libinput_result_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_libinput_result_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
     private bool disposed;
@@ -39,23 +41,37 @@ public sealed partial class RiverLibinputResultV1 : WaylandObject, IWaylandObjec
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_libinput_result_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverLibinputResultV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// Config success
+    /// <para>
+    ///
+    /// The configuration was successfully applied to the device.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SuccessHandler();
 
     private SuccessHandler? _onSuccess;
 
     /// <summary>
-    ///Config success
+    /// Config success
     /// <para>
     ///
-    ///The configuration was successfully applied to the device.
-    ///
+    /// The configuration was successfully applied to the device.
+    /// 
     /// </para>
     /// </summary>
     public event SuccessHandler? OnSuccess
@@ -73,16 +89,24 @@ public sealed partial class RiverLibinputResultV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Config unsupported
+    /// <para>
+    ///
+    /// The configuration is unsupported by the device and was ignored.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void UnsupportedHandler();
 
     private UnsupportedHandler? _onUnsupported;
 
     /// <summary>
-    ///Config unsupported
+    /// Config unsupported
     /// <para>
     ///
-    ///The configuration is unsupported by the device and was ignored.
-    ///
+    /// The configuration is unsupported by the device and was ignored.
+    /// 
     /// </para>
     /// </summary>
     public event UnsupportedHandler? OnUnsupported
@@ -100,16 +124,24 @@ public sealed partial class RiverLibinputResultV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Config invalid
+    /// <para>
+    ///
+    /// The configuration is invalid and was ignored.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void InvalidHandler();
 
     private InvalidHandler? _onInvalid;
 
     /// <summary>
-    ///Config invalid
+    /// Config invalid
     /// <para>
     ///
-    ///The configuration is invalid and was ignored.
-    ///
+    /// The configuration is invalid and was ignored.
+    /// 
     /// </para>
     /// </summary>
     public event InvalidHandler? OnInvalid
@@ -196,6 +228,10 @@ public sealed partial class RiverLibinputResultV1 : WaylandObject, IWaylandObjec
             return -1;
         }
     }
+    /// <summary> Creates a RiverLibinputResultV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverLibinputResultV1 instance.</returns>
     public static RiverLibinputResultV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<RiverSeatV1>
 {
+    /// <summary> Wayland interface name for river_seat_v1. </summary>
     public const string InterfaceName = "river_seat_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_seat_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 5;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_seat_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverSeatV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -80,25 +88,42 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         Mod5 = 128,
     }
 
+    /// <summary>
+    /// The seat is removed
+    /// <para>
+    ///
+    /// This event indicates that seat is no longer in use and should be
+    /// destroyed.
+    ///
+    /// The server will send no further events on this object and ignore any
+    /// request (other than river_seat_v1.destroy) made after this event is
+    /// sent.  The client should destroy this object with the
+    /// river_seat_v1.destroy request to free up resources.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RemovedHandler();
 
     private RemovedHandler? _onRemoved;
 
     /// <summary>
-    ///The seat is removed
+    /// The seat is removed
     /// <para>
     ///
-    ///This event indicates that seat is no longer in use and should be
-    ///destroyed.
+    /// This event indicates that seat is no longer in use and should be
+    /// destroyed.
     ///
-    ///The server will send no further events on this object and ignore any
-    ///request (other than river_seat_v1.destroy) made after this event is
-    ///sent.  The client should destroy this object with the
-    ///river_seat_v1.destroy request to free up resources.
+    /// The server will send no further events on this object and ignore any
+    /// request (other than river_seat_v1.destroy) made after this event is
+    /// sent.  The client should destroy this object with the
+    /// river_seat_v1.destroy request to free up resources.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event RemovedHandler? OnRemoved
@@ -116,33 +141,58 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         }
     }
 
+    /// <summary>
+    /// Corresponding wl_seat
+    /// <para>
+    ///
+    /// The wl_seat object corresponding to the river_seat_v1. The argument is
+    /// the global name of the wl_seat advertised with wl_registry.global.
+    ///
+    /// It is guaranteed that the corresponding wl_seat is advertised before
+    /// this event is sent.
+    ///
+    /// This event is sent exactly once. The wl_seat associated with a
+    /// river_seat_v1 cannot change. It is guaranteed that there is a 1-to-1
+    /// mapping between wl_seat and river_seat_v1 objects.
+    ///
+    /// The global_remove event for the corresponding wl_seat may be sent before
+    /// the river_seat_v1.removed event. This is due to the fact that
+    /// river_seat_v1 state changes are synced to the river window management
+    /// manage sequence while changes to globals are not.
+    ///
+    /// Rationale: The window manager may want to trigger window management
+    /// state changes based on normal input events received by its shell
+    /// surfaces for example.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void WlSeatHandler(uint name);
 
     private WlSeatHandler? _onWlSeat;
 
     /// <summary>
-    ///Corresponding wl_seat
+    /// Corresponding wl_seat
     /// <para>
     ///
-    ///The wl_seat object corresponding to the river_seat_v1. The argument is
-    ///the global name of the wl_seat advertised with wl_registry.global.
+    /// The wl_seat object corresponding to the river_seat_v1. The argument is
+    /// the global name of the wl_seat advertised with wl_registry.global.
     ///
-    ///It is guaranteed that the corresponding wl_seat is advertised before
-    ///this event is sent.
+    /// It is guaranteed that the corresponding wl_seat is advertised before
+    /// this event is sent.
     ///
-    ///This event is sent exactly once. The wl_seat associated with a
-    ///river_seat_v1 cannot change. It is guaranteed that there is a 1-to-1
-    ///mapping between wl_seat and river_seat_v1 objects.
+    /// This event is sent exactly once. The wl_seat associated with a
+    /// river_seat_v1 cannot change. It is guaranteed that there is a 1-to-1
+    /// mapping between wl_seat and river_seat_v1 objects.
     ///
-    ///The global_remove event for the corresponding wl_seat may be sent before
-    ///the river_seat_v1.removed event. This is due to the fact that
-    ///river_seat_v1 state changes are synced to the river window management
-    ///manage sequence while changes to globals are not.
+    /// The global_remove event for the corresponding wl_seat may be sent before
+    /// the river_seat_v1.removed event. This is due to the fact that
+    /// river_seat_v1 state changes are synced to the river window management
+    /// manage sequence while changes to globals are not.
     ///
-    ///Rationale: The window manager may want to trigger window management
-    ///state changes based on normal input events received by its shell
-    ///surfaces for example.
-    ///
+    /// Rationale: The window manager may want to trigger window management
+    /// state changes based on normal input events received by its shell
+    /// surfaces for example.
+    /// 
     /// </para>
     /// </summary>
     public event WlSeatHandler? OnWlSeat
@@ -160,29 +210,50 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         }
     }
 
+    /// <summary>
+    /// Pointer entered a window
+    /// <para>
+    ///
+    /// The seat's pointer entered the given window's area.
+    ///
+    /// The area of a window is defined to include the area defined by the
+    /// window dimensions, borders configured using river_window_v1.set_borders,
+    /// and the input regions of decoration surfaces. In particular, it does not
+    /// include input regions of surfaces belonging to the window that extend
+    /// outside the window dimensions.
+    ///
+    /// The pointer of a seat may only enter a single window at a time. When the
+    /// pointer moves between windows, the pointer_leave event for the old
+    /// window must be sent before the pointer_enter event for the new window.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PointerEnterHandler(RiverWindowV1 window);
 
     private PointerEnterHandler? _onPointerEnter;
 
     /// <summary>
-    ///Pointer entered a window
+    /// Pointer entered a window
     /// <para>
     ///
-    ///The seat's pointer entered the given window's area.
+    /// The seat's pointer entered the given window's area.
     ///
-    ///The area of a window is defined to include the area defined by the
-    ///window dimensions, borders configured using river_window_v1.set_borders,
-    ///and the input regions of decoration surfaces. In particular, it does not
-    ///include input regions of surfaces belonging to the window that extend
-    ///outside the window dimensions.
+    /// The area of a window is defined to include the area defined by the
+    /// window dimensions, borders configured using river_window_v1.set_borders,
+    /// and the input regions of decoration surfaces. In particular, it does not
+    /// include input regions of surfaces belonging to the window that extend
+    /// outside the window dimensions.
     ///
-    ///The pointer of a seat may only enter a single window at a time. When the
-    ///pointer moves between windows, the pointer_leave event for the old
-    ///window must be sent before the pointer_enter event for the new window.
+    /// The pointer of a seat may only enter a single window at a time. When the
+    /// pointer moves between windows, the pointer_leave event for the old
+    /// window must be sent before the pointer_enter event for the new window.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event PointerEnterHandler? OnPointerEnter
@@ -200,20 +271,32 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         }
     }
 
+    /// <summary>
+    /// Pointer left the entered window
+    /// <para>
+    ///
+    /// The seat's pointer left the window for which pointer_enter was most
+    /// recently sent. See pointer_enter for details.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PointerLeaveHandler();
 
     private PointerLeaveHandler? _onPointerLeave;
 
     /// <summary>
-    ///Pointer left the entered window
+    /// Pointer left the entered window
     /// <para>
     ///
-    ///The seat's pointer left the window for which pointer_enter was most
-    ///recently sent. See pointer_enter for details.
+    /// The seat's pointer left the window for which pointer_enter was most
+    /// recently sent. See pointer_enter for details.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event PointerLeaveHandler? OnPointerLeave
@@ -231,30 +314,52 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         }
     }
 
+    /// <summary>
+    /// A window has been interacted with
+    /// <para>
+    ///
+    /// A window has been interacted with beyond the pointer merely passing over
+    /// it. This event might be sent due to a pointer button press or due to a
+    /// touch/tablet tool interaction with the window.
+    ///
+    /// There are no guarantees regarding how this event is sent in relation to
+    /// the pointer_enter and pointer_leave events as the interaction may use
+    /// touch or tablet tool input.
+    ///
+    /// Rationale: this event gives window managers necessary information to
+    /// determine when to send keyboard focus, raise a window that already has
+    /// keyboard focus, etc. Rather than expose all pointer, touch, and tablet
+    /// events to window managers, a policy over mechanism approach is taken.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void WindowInteractionHandler(RiverWindowV1 window);
 
     private WindowInteractionHandler? _onWindowInteraction;
 
     /// <summary>
-    ///A window has been interacted with
+    /// A window has been interacted with
     /// <para>
     ///
-    ///A window has been interacted with beyond the pointer merely passing over
-    ///it. This event might be sent due to a pointer button press or due to a
-    ///touch/tablet tool interaction with the window.
+    /// A window has been interacted with beyond the pointer merely passing over
+    /// it. This event might be sent due to a pointer button press or due to a
+    /// touch/tablet tool interaction with the window.
     ///
-    ///There are no guarantees regarding how this event is sent in relation to
-    ///the pointer_enter and pointer_leave events as the interaction may use
-    ///touch or tablet tool input.
+    /// There are no guarantees regarding how this event is sent in relation to
+    /// the pointer_enter and pointer_leave events as the interaction may use
+    /// touch or tablet tool input.
     ///
-    ///Rationale: this event gives window managers necessary information to
-    ///determine when to send keyboard focus, raise a window that already has
-    ///keyboard focus, etc. Rather than expose all pointer, touch, and tablet
-    ///events to window managers, a policy over mechanism approach is taken.
+    /// Rationale: this event gives window managers necessary information to
+    /// determine when to send keyboard focus, raise a window that already has
+    /// keyboard focus, etc. Rather than expose all pointer, touch, and tablet
+    /// events to window managers, a policy over mechanism approach is taken.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event WindowInteractionHandler? OnWindowInteraction
@@ -272,31 +377,54 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         }
     }
 
+    /// <summary>
+    /// A shell surface has been interacted with
+    /// <para>
+    ///
+    /// A shell surface has been interacted with beyond the pointer merely
+    /// passing over it. This event might be sent due to a pointer button press
+    /// or due to a touch/tablet tool interaction with the shell_surface.
+    ///
+    /// There are no guarantees regarding how this event is sent in relation to
+    /// the pointer_enter and pointer_leave events as the interaction may use
+    /// touch or tablet tool input.
+    ///
+    /// Rationale: While the shell surface does receive all wl_pointer,
+    /// wl_touch, etc. input events for the surface directly, these events do
+    /// not necessarily trigger a manage sequence and therefore do not allow the
+    /// window manager to update focus or perform other actions in response to
+    /// the input in a race-free way.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ShellSurfaceInteractionHandler(RiverShellSurfaceV1 shellSurface);
 
     private ShellSurfaceInteractionHandler? _onShellSurfaceInteraction;
 
     /// <summary>
-    ///A shell surface has been interacted with
+    /// A shell surface has been interacted with
     /// <para>
     ///
-    ///A shell surface has been interacted with beyond the pointer merely
-    ///passing over it. This event might be sent due to a pointer button press
-    ///or due to a touch/tablet tool interaction with the shell_surface.
+    /// A shell surface has been interacted with beyond the pointer merely
+    /// passing over it. This event might be sent due to a pointer button press
+    /// or due to a touch/tablet tool interaction with the shell_surface.
     ///
-    ///There are no guarantees regarding how this event is sent in relation to
-    ///the pointer_enter and pointer_leave events as the interaction may use
-    ///touch or tablet tool input.
+    /// There are no guarantees regarding how this event is sent in relation to
+    /// the pointer_enter and pointer_leave events as the interaction may use
+    /// touch or tablet tool input.
     ///
-    ///Rationale: While the shell surface does receive all wl_pointer,
-    ///wl_touch, etc. input events for the surface directly, these events do
-    ///not necessarily trigger a manage sequence and therefore do not allow the
-    ///window manager to update focus or perform other actions in response to
-    ///the input in a race-free way.
+    /// Rationale: While the shell surface does receive all wl_pointer,
+    /// wl_touch, etc. input events for the surface directly, these events do
+    /// not necessarily trigger a manage sequence and therefore do not allow the
+    /// window manager to update focus or perform other actions in response to
+    /// the input in a race-free way.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event ShellSurfaceInteractionHandler? OnShellSurfaceInteraction
@@ -314,20 +442,32 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         }
     }
 
+    /// <summary>
+    /// Total cumulative motion since op start
+    /// <para>
+    ///
+    /// This event indicates the total change in position since the start of the
+    /// operation of the pointer/touch point/etc.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void OpDeltaHandler(int dx, int dy);
 
     private OpDeltaHandler? _onOpDelta;
 
     /// <summary>
-    ///Total cumulative motion since op start
+    /// Total cumulative motion since op start
     /// <para>
     ///
-    ///This event indicates the total change in position since the start of the
-    ///operation of the pointer/touch point/etc.
+    /// This event indicates the total change in position since the start of the
+    /// operation of the pointer/touch point/etc.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event OpDeltaHandler? OnOpDelta
@@ -345,25 +485,42 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         }
     }
 
+    /// <summary>
+    /// Operation input has been released
+    /// <para>
+    ///
+    /// The input driving the current interactive operation has been released.
+    /// For a pointer op for example, all pointer buttons have been released.
+    ///
+    /// Depending on the op type, op_delta events may continue to be sent until
+    /// the op is ended with the op_end request.
+    ///
+    /// This event is sent at most once during an interactive operation.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void OpReleaseHandler();
 
     private OpReleaseHandler? _onOpRelease;
 
     /// <summary>
-    ///Operation input has been released
+    /// Operation input has been released
     /// <para>
     ///
-    ///The input driving the current interactive operation has been released.
-    ///For a pointer op for example, all pointer buttons have been released.
+    /// The input driving the current interactive operation has been released.
+    /// For a pointer op for example, all pointer buttons have been released.
     ///
-    ///Depending on the op type, op_delta events may continue to be sent until
-    ///the op is ended with the op_end request.
+    /// Depending on the op type, op_delta events may continue to be sent until
+    /// the op is ended with the op_end request.
     ///
-    ///This event is sent at most once during an interactive operation.
+    /// This event is sent at most once during an interactive operation.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event OpReleaseHandler? OnOpRelease
@@ -381,24 +538,40 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         }
     }
 
+    /// <summary>
+    /// The current position of the pointer
+    /// <para>
+    ///
+    /// The current position of the pointer in the compositor's logical
+    /// coordinate space.
+    ///
+    /// This state is special in that a change in pointer position alone must
+    /// not cause the compositor to start a manage sequence.
+    ///
+    /// Assuming the seat has a pointer, this event must be sent in every manage
+    /// sequence unless there is no change in x/y position since the last time this
+    /// event was sent.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PointerPositionHandler(int x, int y);
 
     private PointerPositionHandler? _onPointerPosition;
 
     /// <summary>
-    ///The current position of the pointer
+    /// The current position of the pointer
     /// <para>
     ///
-    ///The current position of the pointer in the compositor's logical
-    ///coordinate space.
+    /// The current position of the pointer in the compositor's logical
+    /// coordinate space.
     ///
-    ///This state is special in that a change in pointer position alone must
-    ///not cause the compositor to start a manage sequence.
+    /// This state is special in that a change in pointer position alone must
+    /// not cause the compositor to start a manage sequence.
     ///
-    ///Assuming the seat has a pointer, this event must be sent in every manage
-    ///sequence unless there is no change in x/y position since the last time this
-    ///event was sent.
-    ///
+    /// Assuming the seat has a pointer, this event must be sent in every manage
+    /// sequence unless there is no change in x/y position since the last time this
+    /// event was sent.
+    /// 
     /// </para>
     /// </summary>
     public event PointerPositionHandler? OnPointerPosition
@@ -836,6 +1009,10 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         );
     }
 
+    /// <summary> Creates a RiverSeatV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverSeatV1 instance.</returns>
     public static RiverSeatV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

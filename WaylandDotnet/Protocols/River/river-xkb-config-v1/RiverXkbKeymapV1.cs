@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverXkbKeymapV1 : WaylandObject, IWaylandObjectFactory<RiverXkbKeymapV1>
 {
+    /// <summary> Wayland interface name for river_xkb_keymap_v1. </summary>
     public const string InterfaceName = "river_xkb_keymap_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_xkb_keymap_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,24 +41,39 @@ public sealed partial class RiverXkbKeymapV1 : WaylandObject, IWaylandObjectFact
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_xkb_keymap_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverXkbKeymapV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// Keymap creation succeeded
+    /// <para>
+    ///
+    /// The keymap object was successfully created and may be used with the
+    /// river_xkb_keyboard_v1.set_keymap request.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SuccessHandler();
 
     private SuccessHandler? _onSuccess;
 
     /// <summary>
-    ///Keymap creation succeeded
+    /// Keymap creation succeeded
     /// <para>
     ///
-    ///The keymap object was successfully created and may be used with the
-    ///river_xkb_keyboard_v1.set_keymap request.
-    ///
+    /// The keymap object was successfully created and may be used with the
+    /// river_xkb_keyboard_v1.set_keymap request.
+    /// 
     /// </para>
     /// </summary>
     public event SuccessHandler? OnSuccess
@@ -74,19 +91,30 @@ public sealed partial class RiverXkbKeymapV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Keymap creation failed
+    /// <para>
+    ///
+    /// The compositor failed to create a keymap from the given parameters.
+    ///
+    /// It is a protocol error to use this keymap object with
+    /// river_xkb_keyboard_v1.set_keymap.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FailureHandler(string errorMsg);
 
     private FailureHandler? _onFailure;
 
     /// <summary>
-    ///Keymap creation failed
+    /// Keymap creation failed
     /// <para>
     ///
-    ///The compositor failed to create a keymap from the given parameters.
+    /// The compositor failed to create a keymap from the given parameters.
     ///
-    ///It is a protocol error to use this keymap object with
-    ///river_xkb_keyboard_v1.set_keymap.
-    ///
+    /// It is a protocol error to use this keymap object with
+    /// river_xkb_keyboard_v1.set_keymap.
+    /// 
     /// </para>
     /// </summary>
     public event FailureHandler? OnFailure
@@ -193,6 +221,10 @@ public sealed partial class RiverXkbKeymapV1 : WaylandObject, IWaylandObjectFact
         disposed = true;
     }
 
+    /// <summary> Creates a RiverXkbKeymapV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverXkbKeymapV1 instance.</returns>
     public static RiverXkbKeymapV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

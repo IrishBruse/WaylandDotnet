@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<WlDataOffer>
 {
+    /// <summary> Wayland interface name for wl_data_offer. </summary>
     public const string InterfaceName = "wl_data_offer";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_data_offer";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 4;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_data_offer proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlDataOffer(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -67,17 +75,26 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
         InvalidOffer = 3,
     }
 
+    /// <summary>
+    /// Advertise offered mime type
+    /// <para>
+    ///
+    /// Sent immediately after creating the wl_data_offer object.  One
+    /// event per offered mime type.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void OfferHandler(string mimeType);
 
     private OfferHandler? _onOffer;
 
     /// <summary>
-    ///Advertise offered mime type
+    /// Advertise offered mime type
     /// <para>
     ///
-    ///Sent immediately after creating the wl_data_offer object.  One
-    ///event per offered mime type.
-    ///
+    /// Sent immediately after creating the wl_data_offer object.  One
+    /// event per offered mime type.
+    /// 
     /// </para>
     /// </summary>
     public event OfferHandler? OnOffer
@@ -95,19 +112,30 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
         }
     }
 
+    /// <summary>
+    /// Notify the source-side available actions
+    /// <para>
+    ///
+    /// This event indicates the actions offered by the data source. It
+    /// will be sent immediately after creating the wl_data_offer object,
+    /// or anytime the source side changes its offered actions through
+    /// wl_data_source.set_actions.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SourceActionsHandler(uint sourceActions);
 
     private SourceActionsHandler? _onSourceActions;
 
     /// <summary>
-    ///Notify the source-side available actions
+    /// Notify the source-side available actions
     /// <para>
     ///
-    ///This event indicates the actions offered by the data source. It
-    ///will be sent immediately after creating the wl_data_offer object,
-    ///or anytime the source side changes its offered actions through
-    ///wl_data_source.set_actions.
-    ///
+    /// This event indicates the actions offered by the data source. It
+    /// will be sent immediately after creating the wl_data_offer object,
+    /// or anytime the source side changes its offered actions through
+    /// wl_data_source.set_actions.
+    /// 
     /// </para>
     /// </summary>
     public event SourceActionsHandler? OnSourceActions
@@ -125,50 +153,92 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
         }
     }
 
+    /// <summary>
+    /// Notify the selected action
+    /// <para>
+    ///
+    /// This event indicates the action selected by the compositor after
+    /// matching the source/destination side actions. Only one action (or
+    /// none) will be offered here.
+    ///
+    /// This event can be emitted multiple times during the drag-and-drop
+    /// operation in response to destination side action changes through
+    /// wl_data_offer.set_actions.
+    ///
+    /// This event will no longer be emitted after wl_data_device.drop
+    /// happened on the drag-and-drop destination, the client must
+    /// honor the last action received, or the last preferred one set
+    /// through wl_data_offer.set_actions when handling an "ask" action.
+    ///
+    /// Compositors may also change the selected action on the fly, mainly
+    /// in response to keyboard modifier changes during the drag-and-drop
+    /// operation.
+    ///
+    /// The most recent action received is always the valid one. Prior to
+    /// receiving wl_data_device.drop, the chosen action may change (e.g.
+    /// due to keyboard modifiers being pressed). At the time of receiving
+    /// wl_data_device.drop the drag-and-drop destination must honor the
+    /// last action received.
+    ///
+    /// Action changes may still happen after wl_data_device.drop,
+    /// especially on "ask" actions, where the drag-and-drop destination
+    /// may choose another action afterwards. Action changes happening
+    /// at this stage are always the result of inter-client negotiation, the
+    /// compositor shall no longer be able to induce a different action.
+    ///
+    /// Upon "ask" actions, it is expected that the drag-and-drop destination
+    /// may potentially choose a different action and/or mime type,
+    /// based on wl_data_offer.source_actions and finally chosen by the
+    /// user (e.g. popping up a menu with the available options). The
+    /// final wl_data_offer.set_actions and wl_data_offer.accept requests
+    /// must happen before the call to wl_data_offer.finish.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ActionHandler(uint dndAction);
 
     private ActionHandler? _onAction;
 
     /// <summary>
-    ///Notify the selected action
+    /// Notify the selected action
     /// <para>
     ///
-    ///This event indicates the action selected by the compositor after
-    ///matching the source/destination side actions. Only one action (or
-    ///none) will be offered here.
+    /// This event indicates the action selected by the compositor after
+    /// matching the source/destination side actions. Only one action (or
+    /// none) will be offered here.
     ///
-    ///This event can be emitted multiple times during the drag-and-drop
-    ///operation in response to destination side action changes through
-    ///wl_data_offer.set_actions.
+    /// This event can be emitted multiple times during the drag-and-drop
+    /// operation in response to destination side action changes through
+    /// wl_data_offer.set_actions.
     ///
-    ///This event will no longer be emitted after wl_data_device.drop
-    ///happened on the drag-and-drop destination, the client must
-    ///honor the last action received, or the last preferred one set
-    ///through wl_data_offer.set_actions when handling an "ask" action.
+    /// This event will no longer be emitted after wl_data_device.drop
+    /// happened on the drag-and-drop destination, the client must
+    /// honor the last action received, or the last preferred one set
+    /// through wl_data_offer.set_actions when handling an "ask" action.
     ///
-    ///Compositors may also change the selected action on the fly, mainly
-    ///in response to keyboard modifier changes during the drag-and-drop
-    ///operation.
+    /// Compositors may also change the selected action on the fly, mainly
+    /// in response to keyboard modifier changes during the drag-and-drop
+    /// operation.
     ///
-    ///The most recent action received is always the valid one. Prior to
-    ///receiving wl_data_device.drop, the chosen action may change (e.g.
-    ///due to keyboard modifiers being pressed). At the time of receiving
-    ///wl_data_device.drop the drag-and-drop destination must honor the
-    ///last action received.
+    /// The most recent action received is always the valid one. Prior to
+    /// receiving wl_data_device.drop, the chosen action may change (e.g.
+    /// due to keyboard modifiers being pressed). At the time of receiving
+    /// wl_data_device.drop the drag-and-drop destination must honor the
+    /// last action received.
     ///
-    ///Action changes may still happen after wl_data_device.drop,
-    ///especially on "ask" actions, where the drag-and-drop destination
-    ///may choose another action afterwards. Action changes happening
-    ///at this stage are always the result of inter-client negotiation, the
-    ///compositor shall no longer be able to induce a different action.
+    /// Action changes may still happen after wl_data_device.drop,
+    /// especially on "ask" actions, where the drag-and-drop destination
+    /// may choose another action afterwards. Action changes happening
+    /// at this stage are always the result of inter-client negotiation, the
+    /// compositor shall no longer be able to induce a different action.
     ///
-    ///Upon "ask" actions, it is expected that the drag-and-drop destination
-    ///may potentially choose a different action and/or mime type,
-    ///based on wl_data_offer.source_actions and finally chosen by the
-    ///user (e.g. popping up a menu with the available options). The
-    ///final wl_data_offer.set_actions and wl_data_offer.accept requests
-    ///must happen before the call to wl_data_offer.finish.
-    ///
+    /// Upon "ask" actions, it is expected that the drag-and-drop destination
+    /// may potentially choose a different action and/or mime type,
+    /// based on wl_data_offer.source_actions and finally chosen by the
+    /// user (e.g. popping up a menu with the available options). The
+    /// final wl_data_offer.set_actions and wl_data_offer.accept requests
+    /// must happen before the call to wl_data_offer.finish.
+    /// 
     /// </para>
     /// </summary>
     public event ActionHandler? OnAction
@@ -462,6 +532,10 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
         );
     }
 
+    /// <summary> Creates a WlDataOffer wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlDataOffer instance.</returns>
     public static WlDataOffer Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

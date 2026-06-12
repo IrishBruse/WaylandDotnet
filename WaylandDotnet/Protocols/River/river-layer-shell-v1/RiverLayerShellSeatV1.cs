@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverLayerShellSeatV1 : WaylandObject, IWaylandObjectFactory<RiverLayerShellSeatV1>
 {
+    /// <summary> Wayland interface name for river_layer_shell_seat_v1. </summary>
     public const string InterfaceName = "river_layer_shell_seat_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_layer_shell_seat_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
     private bool disposed;
@@ -39,32 +41,55 @@ public sealed partial class RiverLayerShellSeatV1 : WaylandObject, IWaylandObjec
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_layer_shell_seat_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverLayerShellSeatV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// Layer shell surface has exclusive focus
+    /// <para>
+    ///
+    /// A layer shell surface will be given exclusive keyboard focus at the end
+    /// of the manage sequence in which this event is sent. The window manager
+    /// may want to update window decorations or similar to indicate that no
+    /// window is focused.
+    ///
+    /// Until the focus_non_exclusive or focus_none event is sent, all window
+    /// manager requests to change focus are ignored.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FocusExclusiveHandler();
 
     private FocusExclusiveHandler? _onFocusExclusive;
 
     /// <summary>
-    ///Layer shell surface has exclusive focus
+    /// Layer shell surface has exclusive focus
     /// <para>
     ///
-    ///A layer shell surface will be given exclusive keyboard focus at the end
-    ///of the manage sequence in which this event is sent. The window manager
-    ///may want to update window decorations or similar to indicate that no
-    ///window is focused.
+    /// A layer shell surface will be given exclusive keyboard focus at the end
+    /// of the manage sequence in which this event is sent. The window manager
+    /// may want to update window decorations or similar to indicate that no
+    /// window is focused.
     ///
-    ///Until the focus_non_exclusive or focus_none event is sent, all window
-    ///manager requests to change focus are ignored.
+    /// Until the focus_non_exclusive or focus_none event is sent, all window
+    /// manager requests to change focus are ignored.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event FocusExclusiveHandler? OnFocusExclusive
@@ -82,31 +107,54 @@ public sealed partial class RiverLayerShellSeatV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Layer shell surface wants non-exclusive focus
+    /// <para>
+    ///
+    /// A layer shell surface will be given non-exclusive keyboard focus at the
+    /// end of the manage sequence in which this event is sent. The window
+    /// manager may want to update window decorations or similar to indicate
+    /// that no window is focused.
+    ///
+    /// The window manager continues to control focus and may choose to focus a
+    /// different window/shell surface at any time. If the window manager sets
+    /// focus during the same manage sequence in which this event is sent, the
+    /// layer surface will not be focused.
+    ///
+    /// If the layer surface with non-exclusive focus is closed or the window
+    /// manager chooses to move focus away from the layer surface, a focus_none
+    /// event will be sent in the next manage sequence.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FocusNonExclusiveHandler();
 
     private FocusNonExclusiveHandler? _onFocusNonExclusive;
 
     /// <summary>
-    ///Layer shell surface wants non-exclusive focus
+    /// Layer shell surface wants non-exclusive focus
     /// <para>
     ///
-    ///A layer shell surface will be given non-exclusive keyboard focus at the
-    ///end of the manage sequence in which this event is sent. The window
-    ///manager may want to update window decorations or similar to indicate
-    ///that no window is focused.
+    /// A layer shell surface will be given non-exclusive keyboard focus at the
+    /// end of the manage sequence in which this event is sent. The window
+    /// manager may want to update window decorations or similar to indicate
+    /// that no window is focused.
     ///
-    ///The window manager continues to control focus and may choose to focus a
-    ///different window/shell surface at any time. If the window manager sets
-    ///focus during the same manage sequence in which this event is sent, the
-    ///layer surface will not be focused.
+    /// The window manager continues to control focus and may choose to focus a
+    /// different window/shell surface at any time. If the window manager sets
+    /// focus during the same manage sequence in which this event is sent, the
+    /// layer surface will not be focused.
     ///
-    ///If the layer surface with non-exclusive focus is closed or the window
-    ///manager chooses to move focus away from the layer surface, a focus_none
-    ///event will be sent in the next manage sequence.
+    /// If the layer surface with non-exclusive focus is closed or the window
+    /// manager chooses to move focus away from the layer surface, a focus_none
+    /// event will be sent in the next manage sequence.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event FocusNonExclusiveHandler? OnFocusNonExclusive
@@ -124,21 +172,34 @@ public sealed partial class RiverLayerShellSeatV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// No layer shell surface has focus
+    /// <para>
+    ///
+    /// No layer shell surface will have keyboard focus at the end of the manage
+    /// sequence in which this event is sent. The window manager may want to
+    /// return focus to whichever window last had focus, for example.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FocusNoneHandler();
 
     private FocusNoneHandler? _onFocusNone;
 
     /// <summary>
-    ///No layer shell surface has focus
+    /// No layer shell surface has focus
     /// <para>
     ///
-    ///No layer shell surface will have keyboard focus at the end of the manage
-    ///sequence in which this event is sent. The window manager may want to
-    ///return focus to whichever window last had focus, for example.
+    /// No layer shell surface will have keyboard focus at the end of the manage
+    /// sequence in which this event is sent. The window manager may want to
+    /// return focus to whichever window last had focus, for example.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event FocusNoneHandler? OnFocusNone
@@ -253,6 +314,10 @@ public sealed partial class RiverLayerShellSeatV1 : WaylandObject, IWaylandObjec
         disposed = true;
     }
 
+    /// <summary> Creates a RiverLayerShellSeatV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverLayerShellSeatV1 instance.</returns>
     public static RiverLayerShellSeatV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

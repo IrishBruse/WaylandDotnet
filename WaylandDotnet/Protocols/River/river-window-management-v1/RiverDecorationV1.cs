@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,12 +28,19 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverDecorationV1 : WaylandObject, IWaylandObjectFactory<RiverDecorationV1>
 {
+    /// <summary> Wayland interface name for river_decoration_v1. </summary>
     public const string InterfaceName = "river_decoration_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_decoration_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 5;
 
     private bool disposed;
 
+    /// <summary>
+    /// Wraps an existing river_decoration_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
     public RiverDecorationV1(IntPtr handle)
     {
         Handle = handle;
@@ -146,6 +152,10 @@ public sealed partial class RiverDecorationV1 : WaylandObject, IWaylandObjectFac
         );
     }
 
+    /// <summary> Creates a RiverDecorationV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverDecorationV1 instance.</returns>
     public static RiverDecorationV1 Create(nint handle, WlDisplay? display = null)
     {
         return new RiverDecorationV1(handle);

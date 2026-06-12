@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverLayerShellOutputV1 : WaylandObject, IWaylandObjectFactory<RiverLayerShellOutputV1>
 {
+    /// <summary> Wayland interface name for river_layer_shell_output_v1. </summary>
     public const string InterfaceName = "river_layer_shell_output_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_layer_shell_output_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
     private bool disposed;
@@ -39,31 +41,53 @@ public sealed partial class RiverLayerShellOutputV1 : WaylandObject, IWaylandObj
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_layer_shell_output_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverLayerShellOutputV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// Area left after subtracting exclusive zones
+    /// <para>
+    ///
+    /// This event indicates the area of the output remaining after subtracting
+    /// the exclusive zones of layer surfaces. Exclusive zones are a hint, the
+    /// window manager is free to ignore this area hint if it wishes.
+    ///
+    /// The x and y values are in the global coordinate space, not relative to
+    /// the position of the output.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void NonExclusiveAreaHandler(int x, int y, int width, int height);
 
     private NonExclusiveAreaHandler? _onNonExclusiveArea;
 
     /// <summary>
-    ///Area left after subtracting exclusive zones
+    /// Area left after subtracting exclusive zones
     /// <para>
     ///
-    ///This event indicates the area of the output remaining after subtracting
-    ///the exclusive zones of layer surfaces. Exclusive zones are a hint, the
-    ///window manager is free to ignore this area hint if it wishes.
+    /// This event indicates the area of the output remaining after subtracting
+    /// the exclusive zones of layer surfaces. Exclusive zones are a hint, the
+    /// window manager is free to ignore this area hint if it wishes.
     ///
-    ///The x and y values are in the global coordinate space, not relative to
-    ///the position of the output.
+    /// The x and y values are in the global coordinate space, not relative to
+    /// the position of the output.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event NonExclusiveAreaHandler? OnNonExclusiveArea
@@ -204,6 +228,10 @@ public sealed partial class RiverLayerShellOutputV1 : WaylandObject, IWaylandObj
         );
     }
 
+    /// <summary> Creates a RiverLayerShellOutputV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverLayerShellOutputV1 instance.</returns>
     public static RiverLayerShellOutputV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

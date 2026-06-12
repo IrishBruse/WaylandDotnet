@@ -1,22 +1,31 @@
 namespace WaylandDotnet.Internal;
 
 #nullable enable
-#pragma warning disable CS1591
 #pragma warning disable CA2255
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 
+/// <summary> Native Wayland interface descriptors for this protocol. </summary>
 public static unsafe partial class WaylandInterfaces
 {
+    /// <summary> Native interface descriptor for zwp_tablet_manager_v2. </summary>
     public static WlInterface* ZwpTabletManagerV2 = AllocateInterface();
+    /// <summary> Native interface descriptor for zwp_tablet_seat_v2. </summary>
     public static WlInterface* ZwpTabletSeatV2 = AllocateInterface();
+    /// <summary> Native interface descriptor for zwp_tablet_tool_v2. </summary>
     public static WlInterface* ZwpTabletToolV2 = AllocateInterface();
+    /// <summary> Native interface descriptor for zwp_tablet_v2. </summary>
     public static WlInterface* ZwpTabletV2 = AllocateInterface();
+    /// <summary> Native interface descriptor for zwp_tablet_pad_ring_v2. </summary>
     public static WlInterface* ZwpTabletPadRingV2 = AllocateInterface();
+    /// <summary> Native interface descriptor for zwp_tablet_pad_strip_v2. </summary>
     public static WlInterface* ZwpTabletPadStripV2 = AllocateInterface();
+    /// <summary> Native interface descriptor for zwp_tablet_pad_group_v2. </summary>
     public static WlInterface* ZwpTabletPadGroupV2 = AllocateInterface();
+    /// <summary> Native interface descriptor for zwp_tablet_pad_v2. </summary>
     public static WlInterface* ZwpTabletPadV2 = AllocateInterface();
+    /// <summary> Native interface descriptor for zwp_tablet_pad_dial_v2. </summary>
     public static WlInterface* ZwpTabletPadDialV2 = AllocateInterface();
 
 

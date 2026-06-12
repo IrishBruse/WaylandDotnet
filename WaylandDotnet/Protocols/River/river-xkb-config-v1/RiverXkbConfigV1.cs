@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverXkbConfigV1 : WaylandObject, IWaylandObjectFactory<RiverXkbConfigV1>
 {
+    /// <summary> Wayland interface name for river_xkb_config_v1. </summary>
     public const string InterfaceName = "river_xkb_config_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_xkb_config_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class RiverXkbConfigV1 : WaylandObject, IWaylandObjectFact
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_xkb_config_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverXkbConfigV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -72,18 +80,28 @@ public sealed partial class RiverXkbConfigV1 : WaylandObject, IWaylandObjectFact
         TextV2 = 2,
     }
 
+    /// <summary>
+    /// The server has finished with the object
+    /// <para>
+    ///
+    /// This event indicates that the server will send no further events on this
+    /// object. The client should destroy the object. See
+    /// river_xkb_config_v1.destroy for more information.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FinishedHandler();
 
     private FinishedHandler? _onFinished;
 
     /// <summary>
-    ///The server has finished with the object
+    /// The server has finished with the object
     /// <para>
     ///
-    ///This event indicates that the server will send no further events on this
-    ///object. The client should destroy the object. See
-    ///river_xkb_config_v1.destroy for more information.
-    ///
+    /// This event indicates that the server will send no further events on this
+    /// object. The client should destroy the object. See
+    /// river_xkb_config_v1.destroy for more information.
+    /// 
     /// </para>
     /// </summary>
     public event FinishedHandler? OnFinished
@@ -101,17 +119,26 @@ public sealed partial class RiverXkbConfigV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// New xkb keyboard
+    /// <para>
+    ///
+    /// A new xkbcommon keyboard has been created. Not every
+    /// river_input_device_v1 is necessarily an xkbcommon keyboard as well.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void XkbKeyboardHandler(RiverXkbKeyboardV1 id);
 
     private XkbKeyboardHandler? _onXkbKeyboard;
 
     /// <summary>
-    ///New xkb keyboard
+    /// New xkb keyboard
     /// <para>
     ///
-    ///A new xkbcommon keyboard has been created. Not every
-    ///river_input_device_v1 is necessarily an xkbcommon keyboard as well.
-    ///
+    /// A new xkbcommon keyboard has been created. Not every
+    /// river_input_device_v1 is necessarily an xkbcommon keyboard as well.
+    /// 
     /// </para>
     /// </summary>
     public event XkbKeyboardHandler? OnXkbKeyboard
@@ -294,6 +321,10 @@ public sealed partial class RiverXkbConfigV1 : WaylandObject, IWaylandObjectFact
         return new RiverXkbKeymapV1(newProxy, Display);
     }
 
+    /// <summary> Creates a RiverXkbConfigV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverXkbConfigV1 instance.</returns>
     public static RiverXkbConfigV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

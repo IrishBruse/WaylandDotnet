@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,12 +28,21 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlShell : WaylandObject, IWaylandObjectFactory<WlShell>
 {
+    /// <summary> Wayland interface name for wl_shell. </summary>
     public const string InterfaceName = "wl_shell";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_shell";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_shell proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlShell(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -81,6 +89,10 @@ public sealed partial class WlShell : WaylandObject, IWaylandObjectFactory<WlShe
         return new WlShellSurface(newProxy, Display);
     }
 
+    /// <summary> Creates a WlShell wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlShell instance.</returns>
     public static WlShell Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

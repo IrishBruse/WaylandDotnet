@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
 {
+    /// <summary> Wayland interface name for wl_shm. </summary>
     public const string InterfaceName = "wl_shm";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_shm";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_shm proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlShm(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -640,22 +648,36 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
         S416 = 0x36313453,
     }
 
+    /// <summary>
+    /// Pixel format description
+    /// <para>
+    ///
+    /// Informs the client about a valid pixel format that
+    /// can be used for buffers. Known formats include
+    /// argb8888 and xrgb8888.
+    ///
+    /// Extensions to drm_fourcc.h (or the format enum) do not require
+    /// increasing the wl_shm version; as a result, clients may receive format
+    /// codes which were not in the list at the time the client was made.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FormatHandler(uint format);
 
     private FormatHandler? _onFormat;
 
     /// <summary>
-    ///Pixel format description
+    /// Pixel format description
     /// <para>
     ///
-    ///Informs the client about a valid pixel format that
-    ///can be used for buffers. Known formats include
-    ///argb8888 and xrgb8888.
+    /// Informs the client about a valid pixel format that
+    /// can be used for buffers. Known formats include
+    /// argb8888 and xrgb8888.
     ///
-    ///Extensions to drm_fourcc.h (or the format enum) do not require
-    ///increasing the wl_shm version; as a result, clients may receive format
-    ///codes which were not in the list at the time the client was made.
-    ///
+    /// Extensions to drm_fourcc.h (or the format enum) do not require
+    /// increasing the wl_shm version; as a result, clients may receive format
+    /// codes which were not in the list at the time the client was made.
+    /// 
     /// </para>
     /// </summary>
     public event FormatHandler? OnFormat
@@ -793,6 +815,10 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
         disposed = true;
     }
 
+    /// <summary> Creates a WlShm wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlShm instance.</returns>
     public static WlShm Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Staging;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ExtWorkspaceManagerV1 : WaylandObject, IWaylandObjectFactory<ExtWorkspaceManagerV1>
 {
+    /// <summary> Wayland interface name for ext_workspace_manager_v1. </summary>
     public const string InterfaceName = "ext_workspace_manager_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "ext_workspace_manager_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
     private bool disposed;
@@ -39,27 +41,45 @@ public sealed partial class ExtWorkspaceManagerV1 : WaylandObject, IWaylandObjec
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing ext_workspace_manager_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ExtWorkspaceManagerV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// A workspace group has been created
+    /// <para>
+    ///
+    /// This event is emitted whenever a new workspace group has been created.
+    ///
+    /// All initial details of the workspace group (outputs) will be
+    /// sent immediately after this event via the corresponding events in
+    /// ext_workspace_group_handle_v1 and ext_workspace_handle_v1.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void WorkspaceGroupHandler(ExtWorkspaceGroupHandleV1 workspaceGroup);
 
     private WorkspaceGroupHandler? _onWorkspaceGroup;
 
     /// <summary>
-    ///A workspace group has been created
+    /// A workspace group has been created
     /// <para>
     ///
-    ///This event is emitted whenever a new workspace group has been created.
+    /// This event is emitted whenever a new workspace group has been created.
     ///
-    ///All initial details of the workspace group (outputs) will be
-    ///sent immediately after this event via the corresponding events in
-    ///ext_workspace_group_handle_v1 and ext_workspace_handle_v1.
-    ///
+    /// All initial details of the workspace group (outputs) will be
+    /// sent immediately after this event via the corresponding events in
+    /// ext_workspace_group_handle_v1 and ext_workspace_handle_v1.
+    /// 
     /// </para>
     /// </summary>
     public event WorkspaceGroupHandler? OnWorkspaceGroup
@@ -77,22 +97,36 @@ public sealed partial class ExtWorkspaceManagerV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Workspace has been created
+    /// <para>
+    ///
+    /// This event is emitted whenever a new workspace has been created.
+    ///
+    /// All initial details of the workspace (name, coordinates, state) will
+    /// be sent immediately after this event via the corresponding events in
+    /// ext_workspace_handle_v1.
+    ///
+    /// Workspaces start off unassigned to any workspace group.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void WorkspaceHandler(ExtWorkspaceHandleV1 workspace);
 
     private WorkspaceHandler? _onWorkspace;
 
     /// <summary>
-    ///Workspace has been created
+    /// Workspace has been created
     /// <para>
     ///
-    ///This event is emitted whenever a new workspace has been created.
+    /// This event is emitted whenever a new workspace has been created.
     ///
-    ///All initial details of the workspace (name, coordinates, state) will
-    ///be sent immediately after this event via the corresponding events in
-    ///ext_workspace_handle_v1.
+    /// All initial details of the workspace (name, coordinates, state) will
+    /// be sent immediately after this event via the corresponding events in
+    /// ext_workspace_handle_v1.
     ///
-    ///Workspaces start off unassigned to any workspace group.
-    ///
+    /// Workspaces start off unassigned to any workspace group.
+    /// 
     /// </para>
     /// </summary>
     public event WorkspaceHandler? OnWorkspace
@@ -110,26 +144,44 @@ public sealed partial class ExtWorkspaceManagerV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// All information about the workspaces and workspace groups has been sent
+    /// <para>
+    ///
+    /// This event is sent after all changes in all workspaces and workspace groups have been
+    /// sent.
+    ///
+    /// This allows changes to one or more ext_workspace_group_handle_v1
+    /// properties and ext_workspace_handle_v1 properties
+    /// to be seen as atomic, even if they happen via multiple events.
+    /// In particular, an output moving from one workspace group to
+    /// another sends an output_enter event and an output_leave event to the two
+    /// ext_workspace_group_handle_v1 objects in question. The compositor sends
+    /// the done event only after updating the output information in both
+    /// workspace groups.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DoneHandler();
 
     private DoneHandler? _onDone;
 
     /// <summary>
-    ///All information about the workspaces and workspace groups has been sent
+    /// All information about the workspaces and workspace groups has been sent
     /// <para>
     ///
-    ///This event is sent after all changes in all workspaces and workspace groups have been
-    ///sent.
+    /// This event is sent after all changes in all workspaces and workspace groups have been
+    /// sent.
     ///
-    ///This allows changes to one or more ext_workspace_group_handle_v1
-    ///properties and ext_workspace_handle_v1 properties
-    ///to be seen as atomic, even if they happen via multiple events.
-    ///In particular, an output moving from one workspace group to
-    ///another sends an output_enter event and an output_leave event to the two
-    ///ext_workspace_group_handle_v1 objects in question. The compositor sends
-    ///the done event only after updating the output information in both
-    ///workspace groups.
-    ///
+    /// This allows changes to one or more ext_workspace_group_handle_v1
+    /// properties and ext_workspace_handle_v1 properties
+    /// to be seen as atomic, even if they happen via multiple events.
+    /// In particular, an output moving from one workspace group to
+    /// another sends an output_enter event and an output_leave event to the two
+    /// ext_workspace_group_handle_v1 objects in question. The compositor sends
+    /// the done event only after updating the output information in both
+    /// workspace groups.
+    /// 
     /// </para>
     /// </summary>
     public event DoneHandler? OnDone
@@ -147,18 +199,28 @@ public sealed partial class ExtWorkspaceManagerV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// The compositor has finished with the workspace_manager
+    /// <para>
+    ///
+    /// This event indicates that the compositor is done sending events to the
+    /// ext_workspace_manager_v1. The server will destroy the object
+    /// immediately after sending this request.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FinishedHandler();
 
     private FinishedHandler? _onFinished;
 
     /// <summary>
-    ///The compositor has finished with the workspace_manager
+    /// The compositor has finished with the workspace_manager
     /// <para>
     ///
-    ///This event indicates that the compositor is done sending events to the
-    ///ext_workspace_manager_v1. The server will destroy the object
-    ///immediately after sending this request.
-    ///
+    /// This event indicates that the compositor is done sending events to the
+    /// ext_workspace_manager_v1. The server will destroy the object
+    /// immediately after sending this request.
+    /// 
     /// </para>
     /// </summary>
     public event FinishedHandler? OnFinished
@@ -320,6 +382,10 @@ public sealed partial class ExtWorkspaceManagerV1 : WaylandObject, IWaylandObjec
         );
     }
 
+    /// <summary> Creates a ExtWorkspaceManagerV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ExtWorkspaceManagerV1 instance.</returns>
     public static ExtWorkspaceManagerV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

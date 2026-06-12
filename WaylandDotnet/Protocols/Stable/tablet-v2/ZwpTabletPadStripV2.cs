@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwpTabletPadStripV2 : WaylandObject, IWaylandObjectFactory<ZwpTabletPadStripV2>
 {
+    /// <summary> Wayland interface name for zwp_tablet_pad_strip_v2. </summary>
     public const string InterfaceName = "zwp_tablet_pad_strip_v2";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwp_tablet_pad_strip_v2";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class ZwpTabletPadStripV2 : WaylandObject, IWaylandObjectF
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwp_tablet_pad_strip_v2 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwpTabletPadStripV2(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -55,27 +63,46 @@ public sealed partial class ZwpTabletPadStripV2 : WaylandObject, IWaylandObjectF
         Finger = 1,
     }
 
+    /// <summary>
+    /// Strip event source
+    /// <para>
+    ///
+    /// Source information for strip events.
+    ///
+    /// This event does not occur on its own. It is sent before a
+    /// zwp_tablet_pad_strip_v2.frame event and carries the source information
+    /// for all events within that frame.
+    ///
+    /// The source specifies how this event was generated. If the source is
+    /// zwp_tablet_pad_strip_v2.source.finger, a zwp_tablet_pad_strip_v2.stop event
+    /// will be sent when the user lifts their finger off the device.
+    ///
+    /// This event is optional. If the source is unknown for an interaction,
+    /// no event is sent.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SourceHandler(uint source);
 
     private SourceHandler? _onSource;
 
     /// <summary>
-    ///Strip event source
+    /// Strip event source
     /// <para>
     ///
-    ///Source information for strip events.
+    /// Source information for strip events.
     ///
-    ///This event does not occur on its own. It is sent before a
-    ///zwp_tablet_pad_strip_v2.frame event and carries the source information
-    ///for all events within that frame.
+    /// This event does not occur on its own. It is sent before a
+    /// zwp_tablet_pad_strip_v2.frame event and carries the source information
+    /// for all events within that frame.
     ///
-    ///The source specifies how this event was generated. If the source is
-    ///zwp_tablet_pad_strip_v2.source.finger, a zwp_tablet_pad_strip_v2.stop event
-    ///will be sent when the user lifts their finger off the device.
+    /// The source specifies how this event was generated. If the source is
+    /// zwp_tablet_pad_strip_v2.source.finger, a zwp_tablet_pad_strip_v2.stop event
+    /// will be sent when the user lifts their finger off the device.
     ///
-    ///This event is optional. If the source is unknown for an interaction,
-    ///no event is sent.
-    ///
+    /// This event is optional. If the source is unknown for an interaction,
+    /// no event is sent.
+    /// 
     /// </para>
     /// </summary>
     public event SourceHandler? OnSource
@@ -93,20 +120,32 @@ public sealed partial class ZwpTabletPadStripV2 : WaylandObject, IWaylandObjectF
         }
     }
 
+    /// <summary>
+    /// Position changed
+    /// <para>
+    ///
+    /// Sent whenever the position on a strip changes.
+    ///
+    /// The position is normalized to a range of [0, 65535], the 0-value
+    /// represents the top-most and/or left-most position of the strip in
+    /// the pad's current rotation.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PositionHandler(uint position);
 
     private PositionHandler? _onPosition;
 
     /// <summary>
-    ///Position changed
+    /// Position changed
     /// <para>
     ///
-    ///Sent whenever the position on a strip changes.
+    /// Sent whenever the position on a strip changes.
     ///
-    ///The position is normalized to a range of [0, 65535], the 0-value
-    ///represents the top-most and/or left-most position of the strip in
-    ///the pad's current rotation.
-    ///
+    /// The position is normalized to a range of [0, 65535], the 0-value
+    /// represents the top-most and/or left-most position of the strip in
+    /// the pad's current rotation.
+    /// 
     /// </para>
     /// </summary>
     public event PositionHandler? OnPosition
@@ -124,25 +163,42 @@ public sealed partial class ZwpTabletPadStripV2 : WaylandObject, IWaylandObjectF
         }
     }
 
+    /// <summary>
+    /// Interaction stopped
+    /// <para>
+    ///
+    /// Stop notification for strip events.
+    ///
+    /// For some zwp_tablet_pad_strip_v2.source types, a zwp_tablet_pad_strip_v2.stop
+    /// event is sent to notify a client that the interaction with the strip
+    /// has terminated. This enables the client to implement kinetic
+    /// scrolling. See the zwp_tablet_pad_strip_v2.source documentation for
+    /// information on when this event may be generated.
+    ///
+    /// Any zwp_tablet_pad_strip_v2.position events with the same source after this
+    /// event should be considered as the start of a new interaction.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void StopHandler();
 
     private StopHandler? _onStop;
 
     /// <summary>
-    ///Interaction stopped
+    /// Interaction stopped
     /// <para>
     ///
-    ///Stop notification for strip events.
+    /// Stop notification for strip events.
     ///
-    ///For some zwp_tablet_pad_strip_v2.source types, a zwp_tablet_pad_strip_v2.stop
-    ///event is sent to notify a client that the interaction with the strip
-    ///has terminated. This enables the client to implement kinetic
-    ///scrolling. See the zwp_tablet_pad_strip_v2.source documentation for
-    ///information on when this event may be generated.
+    /// For some zwp_tablet_pad_strip_v2.source types, a zwp_tablet_pad_strip_v2.stop
+    /// event is sent to notify a client that the interaction with the strip
+    /// has terminated. This enables the client to implement kinetic
+    /// scrolling. See the zwp_tablet_pad_strip_v2.source documentation for
+    /// information on when this event may be generated.
     ///
-    ///Any zwp_tablet_pad_strip_v2.position events with the same source after this
-    ///event should be considered as the start of a new interaction.
-    ///
+    /// Any zwp_tablet_pad_strip_v2.position events with the same source after this
+    /// event should be considered as the start of a new interaction.
+    /// 
     /// </para>
     /// </summary>
     public event StopHandler? OnStop
@@ -160,29 +216,50 @@ public sealed partial class ZwpTabletPadStripV2 : WaylandObject, IWaylandObjectF
         }
     }
 
+    /// <summary>
+    /// End of a strip event sequence
+    /// <para>
+    ///
+    /// Indicates the end of a set of events that represent one logical
+    /// hardware strip event. A client is expected to accumulate the data
+    /// in all events within the frame before proceeding.
+    ///
+    /// All zwp_tablet_pad_strip_v2 events before a zwp_tablet_pad_strip_v2.frame event belong
+    /// logically together. For example, on termination of a finger interaction
+    /// on a strip the compositor will send a zwp_tablet_pad_strip_v2.source event,
+    /// a zwp_tablet_pad_strip_v2.stop event and a zwp_tablet_pad_strip_v2.frame
+    /// event.
+    ///
+    /// A zwp_tablet_pad_strip_v2.frame event is sent for every logical event
+    /// group, even if the group only contains a single zwp_tablet_pad_strip_v2
+    /// event. Specifically, a client may get a sequence: position, frame,
+    /// position, frame, etc.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FrameHandler(uint time);
 
     private FrameHandler? _onFrame;
 
     /// <summary>
-    ///End of a strip event sequence
+    /// End of a strip event sequence
     /// <para>
     ///
-    ///Indicates the end of a set of events that represent one logical
-    ///hardware strip event. A client is expected to accumulate the data
-    ///in all events within the frame before proceeding.
+    /// Indicates the end of a set of events that represent one logical
+    /// hardware strip event. A client is expected to accumulate the data
+    /// in all events within the frame before proceeding.
     ///
-    ///All zwp_tablet_pad_strip_v2 events before a zwp_tablet_pad_strip_v2.frame event belong
-    ///logically together. For example, on termination of a finger interaction
-    ///on a strip the compositor will send a zwp_tablet_pad_strip_v2.source event,
-    ///a zwp_tablet_pad_strip_v2.stop event and a zwp_tablet_pad_strip_v2.frame
-    ///event.
+    /// All zwp_tablet_pad_strip_v2 events before a zwp_tablet_pad_strip_v2.frame event belong
+    /// logically together. For example, on termination of a finger interaction
+    /// on a strip the compositor will send a zwp_tablet_pad_strip_v2.source event,
+    /// a zwp_tablet_pad_strip_v2.stop event and a zwp_tablet_pad_strip_v2.frame
+    /// event.
     ///
-    ///A zwp_tablet_pad_strip_v2.frame event is sent for every logical event
-    ///group, even if the group only contains a single zwp_tablet_pad_strip_v2
-    ///event. Specifically, a client may get a sequence: position, frame,
-    ///position, frame, etc.
-    ///
+    /// A zwp_tablet_pad_strip_v2.frame event is sent for every logical event
+    /// group, even if the group only contains a single zwp_tablet_pad_strip_v2
+    /// event. Specifically, a client may get a sequence: position, frame,
+    /// position, frame, etc.
+    /// 
     /// </para>
     /// </summary>
     public event FrameHandler? OnFrame
@@ -348,6 +425,10 @@ public sealed partial class ZwpTabletPadStripV2 : WaylandObject, IWaylandObjectF
         disposed = true;
     }
 
+    /// <summary> Creates a ZwpTabletPadStripV2 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwpTabletPadStripV2 instance.</returns>
     public static ZwpTabletPadStripV2 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

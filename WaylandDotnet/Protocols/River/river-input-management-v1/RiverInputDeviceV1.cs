@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFactory<RiverInputDeviceV1>
 {
+    /// <summary> Wayland interface name for river_input_device_v1. </summary>
     public const string InterfaceName = "river_input_device_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_input_device_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_input_device_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverInputDeviceV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -84,21 +92,34 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
         Tablet = 3,
     }
 
+    /// <summary>
+    /// The input device is removed
+    /// <para>
+    ///
+    /// This event indicates that the input device has been removed.
+    ///
+    /// The server will send no further events on this object and ignore any
+    /// request (other than river_input_device_v1.destroy) made after this event is
+    /// sent. The client should destroy this object with the
+    /// river_input_device_v1.destroy request to free up resources.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RemovedHandler();
 
     private RemovedHandler? _onRemoved;
 
     /// <summary>
-    ///The input device is removed
+    /// The input device is removed
     /// <para>
     ///
-    ///This event indicates that the input device has been removed.
+    /// This event indicates that the input device has been removed.
     ///
-    ///The server will send no further events on this object and ignore any
-    ///request (other than river_input_device_v1.destroy) made after this event is
-    ///sent. The client should destroy this object with the
-    ///river_input_device_v1.destroy request to free up resources.
-    ///
+    /// The server will send no further events on this object and ignore any
+    /// request (other than river_input_device_v1.destroy) made after this event is
+    /// sent. The client should destroy this object with the
+    /// river_input_device_v1.destroy request to free up resources.
+    /// 
     /// </para>
     /// </summary>
     public event RemovedHandler? OnRemoved
@@ -116,18 +137,28 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    /// <summary>
+    /// The type of the input device
+    /// <para>
+    ///
+    /// The type of the input device. This event is sent once when the
+    /// river_input_device_v1 object is created. The device type cannot
+    /// change during the lifetime of the object.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TypeHandler(uint type);
 
     private TypeHandler? _onType;
 
     /// <summary>
-    ///The type of the input device
+    /// The type of the input device
     /// <para>
     ///
-    ///The type of the input device. This event is sent once when the
-    ///river_input_device_v1 object is created. The device type cannot
-    ///change during the lifetime of the object.
-    ///
+    /// The type of the input device. This event is sent once when the
+    /// river_input_device_v1 object is created. The device type cannot
+    /// change during the lifetime of the object.
+    /// 
     /// </para>
     /// </summary>
     public event TypeHandler? OnType
@@ -145,18 +176,28 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    /// <summary>
+    /// The name of the input device
+    /// <para>
+    ///
+    /// The name of the input device. This event is sent once when the
+    /// river_input_device_v1 object is created. The device name cannot
+    /// change during the lifetime of the object.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void NameHandler(string name);
 
     private NameHandler? _onName;
 
     /// <summary>
-    ///The name of the input device
+    /// The name of the input device
     /// <para>
     ///
-    ///The name of the input device. This event is sent once when the
-    ///river_input_device_v1 object is created. The device name cannot
-    ///change during the lifetime of the object.
-    ///
+    /// The name of the input device. This event is sent once when the
+    /// river_input_device_v1 object is created. The device name cannot
+    /// change during the lifetime of the object.
+    /// 
     /// </para>
     /// </summary>
     public event NameHandler? OnName
@@ -174,20 +215,32 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    /// <summary>
+    /// All information has been sent
+    /// <para>
+    ///
+    /// This event is sent after all information about the input device has
+    /// been sent.
+    ///
+    /// This allows changes to one or more river_input_device_v1 properties to
+    /// be seen as atomic, even if they happen via multiple events.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DoneHandler();
 
     private DoneHandler? _onDone;
 
     /// <summary>
-    ///All information has been sent
+    /// All information has been sent
     /// <para>
     ///
-    ///This event is sent after all information about the input device has
-    ///been sent.
+    /// This event is sent after all information about the input device has
+    /// been sent.
     ///
-    ///This allows changes to one or more river_input_device_v1 properties to
-    ///be seen as atomic, even if they happen via multiple events.
-    ///
+    /// This allows changes to one or more river_input_device_v1 properties to
+    /// be seen as atomic, even if they happen via multiple events.
+    /// 
     /// </para>
     /// </summary>
     public event DoneHandler? OnDone
@@ -472,6 +525,10 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
         );
     }
 
+    /// <summary> Creates a RiverInputDeviceV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverInputDeviceV1 instance.</returns>
     public static RiverInputDeviceV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

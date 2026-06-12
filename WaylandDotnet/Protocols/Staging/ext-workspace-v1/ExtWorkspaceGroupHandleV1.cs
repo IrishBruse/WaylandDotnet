@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Staging;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandObjectFactory<ExtWorkspaceGroupHandleV1>
 {
+    /// <summary> Wayland interface name for ext_workspace_group_handle_v1. </summary>
     public const string InterfaceName = "ext_workspace_group_handle_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "ext_workspace_group_handle_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing ext_workspace_group_handle_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ExtWorkspaceGroupHandleV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -56,28 +64,48 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
         CreateWorkspace = 1,
     }
 
+    /// <summary>
+    /// Compositor capabilities
+    /// <para>
+    ///
+    /// This event advertises the capabilities supported by the compositor. If
+    /// a capability isn't supported, clients should hide or disable the UI
+    /// elements that expose this functionality. For instance, if the
+    /// compositor doesn't advertise support for creating workspaces, a button
+    /// triggering the create_workspace request should not be displayed.
+    ///
+    /// The compositor will ignore requests it doesn't support. For instance,
+    /// a compositor which doesn't advertise support for creating workspaces will ignore
+    /// create_workspace requests.
+    ///
+    /// Compositors must send this event once after creation of an
+    /// ext_workspace_group_handle_v1. When the capabilities change, compositors
+    /// must send this event again.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CapabilitiesHandler(uint capabilities);
 
     private CapabilitiesHandler? _onCapabilities;
 
     /// <summary>
-    ///Compositor capabilities
+    /// Compositor capabilities
     /// <para>
     ///
-    ///This event advertises the capabilities supported by the compositor. If
-    ///a capability isn't supported, clients should hide or disable the UI
-    ///elements that expose this functionality. For instance, if the
-    ///compositor doesn't advertise support for creating workspaces, a button
-    ///triggering the create_workspace request should not be displayed.
+    /// This event advertises the capabilities supported by the compositor. If
+    /// a capability isn't supported, clients should hide or disable the UI
+    /// elements that expose this functionality. For instance, if the
+    /// compositor doesn't advertise support for creating workspaces, a button
+    /// triggering the create_workspace request should not be displayed.
     ///
-    ///The compositor will ignore requests it doesn't support. For instance,
-    ///a compositor which doesn't advertise support for creating workspaces will ignore
-    ///create_workspace requests.
+    /// The compositor will ignore requests it doesn't support. For instance,
+    /// a compositor which doesn't advertise support for creating workspaces will ignore
+    /// create_workspace requests.
     ///
-    ///Compositors must send this event once after creation of an
-    ///ext_workspace_group_handle_v1. When the capabilities change, compositors
-    ///must send this event again.
-    ///
+    /// Compositors must send this event once after creation of an
+    /// ext_workspace_group_handle_v1. When the capabilities change, compositors
+    /// must send this event again.
+    /// 
     /// </para>
     /// </summary>
     public event CapabilitiesHandler? OnCapabilities
@@ -95,18 +123,28 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
         }
     }
 
+    /// <summary>
+    /// Output assigned to workspace group
+    /// <para>
+    ///
+    /// This event is emitted whenever an output is assigned to the workspace
+    /// group or a new `wl_output` object is bound by the client, which was already
+    /// assigned to this workspace_group.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void OutputEnterHandler(WlOutput output);
 
     private OutputEnterHandler? _onOutputEnter;
 
     /// <summary>
-    ///Output assigned to workspace group
+    /// Output assigned to workspace group
     /// <para>
     ///
-    ///This event is emitted whenever an output is assigned to the workspace
-    ///group or a new `wl_output` object is bound by the client, which was already
-    ///assigned to this workspace_group.
-    ///
+    /// This event is emitted whenever an output is assigned to the workspace
+    /// group or a new `wl_output` object is bound by the client, which was already
+    /// assigned to this workspace_group.
+    /// 
     /// </para>
     /// </summary>
     public event OutputEnterHandler? OnOutputEnter
@@ -124,17 +162,26 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
         }
     }
 
+    /// <summary>
+    /// Output removed from workspace group
+    /// <para>
+    ///
+    /// This event is emitted whenever an output is removed from the workspace
+    /// group.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void OutputLeaveHandler(WlOutput output);
 
     private OutputLeaveHandler? _onOutputLeave;
 
     /// <summary>
-    ///Output removed from workspace group
+    /// Output removed from workspace group
     /// <para>
     ///
-    ///This event is emitted whenever an output is removed from the workspace
-    ///group.
-    ///
+    /// This event is emitted whenever an output is removed from the workspace
+    /// group.
+    /// 
     /// </para>
     /// </summary>
     public event OutputLeaveHandler? OnOutputLeave
@@ -152,18 +199,28 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
         }
     }
 
+    /// <summary>
+    /// Workspace added to workspace group
+    /// <para>
+    ///
+    /// This event is emitted whenever a workspace is assigned to this group.
+    /// A workspace may only ever be assigned to a single group at a single point
+    /// in time, but can be re-assigned during its lifetime.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void WorkspaceEnterHandler(ExtWorkspaceHandleV1 workspace);
 
     private WorkspaceEnterHandler? _onWorkspaceEnter;
 
     /// <summary>
-    ///Workspace added to workspace group
+    /// Workspace added to workspace group
     /// <para>
     ///
-    ///This event is emitted whenever a workspace is assigned to this group.
-    ///A workspace may only ever be assigned to a single group at a single point
-    ///in time, but can be re-assigned during its lifetime.
-    ///
+    /// This event is emitted whenever a workspace is assigned to this group.
+    /// A workspace may only ever be assigned to a single group at a single point
+    /// in time, but can be re-assigned during its lifetime.
+    /// 
     /// </para>
     /// </summary>
     public event WorkspaceEnterHandler? OnWorkspaceEnter
@@ -181,16 +238,24 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
         }
     }
 
+    /// <summary>
+    /// Workspace removed from workspace group
+    /// <para>
+    ///
+    /// This event is emitted whenever a workspace is removed from this group.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void WorkspaceLeaveHandler(ExtWorkspaceHandleV1 workspace);
 
     private WorkspaceLeaveHandler? _onWorkspaceLeave;
 
     /// <summary>
-    ///Workspace removed from workspace group
+    /// Workspace removed from workspace group
     /// <para>
     ///
-    ///This event is emitted whenever a workspace is removed from this group.
-    ///
+    /// This event is emitted whenever a workspace is removed from this group.
+    /// 
     /// </para>
     /// </summary>
     public event WorkspaceLeaveHandler? OnWorkspaceLeave
@@ -208,23 +273,38 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
         }
     }
 
+    /// <summary>
+    /// This workspace group has been removed
+    /// <para>
+    ///
+    /// This event is send when the group associated with the ext_workspace_group_handle_v1
+    /// has been removed. After sending this request the compositor will immediately consider
+    /// the object inert. Any requests will be ignored except the destroy request.
+    /// It is guaranteed there won't be any more events referencing this
+    /// ext_workspace_group_handle_v1.
+    ///
+    /// The compositor must remove all workspaces belonging to a workspace group
+    /// via a workspace_leave event before removing the workspace group.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RemovedHandler();
 
     private RemovedHandler? _onRemoved;
 
     /// <summary>
-    ///This workspace group has been removed
+    /// This workspace group has been removed
     /// <para>
     ///
-    ///This event is send when the group associated with the ext_workspace_group_handle_v1
-    ///has been removed. After sending this request the compositor will immediately consider
-    ///the object inert. Any requests will be ignored except the destroy request.
-    ///It is guaranteed there won't be any more events referencing this
-    ///ext_workspace_group_handle_v1.
+    /// This event is send when the group associated with the ext_workspace_group_handle_v1
+    /// has been removed. After sending this request the compositor will immediately consider
+    /// the object inert. Any requests will be ignored except the destroy request.
+    /// It is guaranteed there won't be any more events referencing this
+    /// ext_workspace_group_handle_v1.
     ///
-    ///The compositor must remove all workspaces belonging to a workspace group
-    ///via a workspace_leave event before removing the workspace group.
-    ///
+    /// The compositor must remove all workspaces belonging to a workspace group
+    /// via a workspace_leave event before removing the workspace group.
+    /// 
     /// </para>
     /// </summary>
     public event RemovedHandler? OnRemoved
@@ -401,6 +481,10 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
         disposed = true;
     }
 
+    /// <summary> Creates a ExtWorkspaceGroupHandleV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ExtWorkspaceGroupHandleV1 instance.</returns>
     public static ExtWorkspaceGroupHandleV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

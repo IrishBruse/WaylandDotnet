@@ -1,18 +1,23 @@
 namespace WaylandDotnet.Internal;
 
 #nullable enable
-#pragma warning disable CS1591
 #pragma warning disable CA2255
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 
+/// <summary> Native Wayland interface descriptors for this protocol. </summary>
 public static unsafe partial class WaylandInterfaces
 {
+    /// <summary> Native interface descriptor for zwlr_output_manager_v1. </summary>
     public static WlInterface* ZwlrOutputManagerV1 = AllocateInterface();
+    /// <summary> Native interface descriptor for zwlr_output_head_v1. </summary>
     public static WlInterface* ZwlrOutputHeadV1 = AllocateInterface();
+    /// <summary> Native interface descriptor for zwlr_output_mode_v1. </summary>
     public static WlInterface* ZwlrOutputModeV1 = AllocateInterface();
+    /// <summary> Native interface descriptor for zwlr_output_configuration_v1. </summary>
     public static WlInterface* ZwlrOutputConfigurationV1 = AllocateInterface();
+    /// <summary> Native interface descriptor for zwlr_output_configuration_head_v1. </summary>
     public static WlInterface* ZwlrOutputConfigurationHeadV1 = AllocateInterface();
 
 

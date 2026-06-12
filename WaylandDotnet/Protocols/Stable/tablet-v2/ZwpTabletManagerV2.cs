@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,14 +28,23 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwpTabletManagerV2 : WaylandObject, IWaylandObjectFactory<ZwpTabletManagerV2>
 {
+    /// <summary> Wayland interface name for zwp_tablet_manager_v2. </summary>
     public const string InterfaceName = "zwp_tablet_manager_v2";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwp_tablet_manager_v2";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwp_tablet_manager_v2 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwpTabletManagerV2(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -101,6 +109,10 @@ public sealed partial class ZwpTabletManagerV2 : WaylandObject, IWaylandObjectFa
         disposed = true;
     }
 
+    /// <summary> Creates a ZwpTabletManagerV2 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwpTabletManagerV2 instance.</returns>
     public static ZwpTabletManagerV2 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

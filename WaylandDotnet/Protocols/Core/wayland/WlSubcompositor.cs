@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,14 +28,23 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlSubcompositor : WaylandObject, IWaylandObjectFactory<WlSubcompositor>
 {
+    /// <summary> Wayland interface name for wl_subcompositor. </summary>
     public const string InterfaceName = "wl_subcompositor";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_subcompositor";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
     private bool disposed;
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_subcompositor proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlSubcompositor(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -133,6 +141,10 @@ public sealed partial class WlSubcompositor : WaylandObject, IWaylandObjectFacto
         return new WlSubsurface(newProxy);
     }
 
+    /// <summary> Creates a WlSubcompositor wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlSubcompositor instance.</returns>
     public static WlSubcompositor Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

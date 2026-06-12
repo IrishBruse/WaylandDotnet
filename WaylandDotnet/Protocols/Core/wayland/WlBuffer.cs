@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBuffer>
 {
+    /// <summary> Wayland interface name for wl_buffer. </summary>
     public const string InterfaceName = "wl_buffer";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_buffer";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
     private bool disposed;
@@ -39,36 +41,63 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_buffer proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlBuffer(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// Compositor releases buffer
+    /// <para>
+    ///
+    /// Sent when this wl_buffer is no longer used by the compositor.
+    ///
+    /// For more information on when release events may or may not be sent,
+    /// and what consequences it has, please see the description of
+    /// wl_surface.attach.
+    ///
+    /// If a client receives a release event before the frame callback
+    /// requested in the same wl_surface.commit that attaches this
+    /// wl_buffer to a surface, then the client is immediately free to
+    /// reuse the buffer and its backing storage, and does not need a
+    /// second buffer for the next surface content update. Typically
+    /// this is possible, when the compositor maintains a copy of the
+    /// wl_surface contents, e.g. as a GL texture. This is an important
+    /// optimization for GL(ES) compositors with wl_shm clients.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ReleaseHandler();
 
     private ReleaseHandler? _onRelease;
 
     /// <summary>
-    ///Compositor releases buffer
+    /// Compositor releases buffer
     /// <para>
     ///
-    ///Sent when this wl_buffer is no longer used by the compositor.
+    /// Sent when this wl_buffer is no longer used by the compositor.
     ///
-    ///For more information on when release events may or may not be sent,
-    ///and what consequences it has, please see the description of
-    ///wl_surface.attach.
+    /// For more information on when release events may or may not be sent,
+    /// and what consequences it has, please see the description of
+    /// wl_surface.attach.
     ///
-    ///If a client receives a release event before the frame callback
-    ///requested in the same wl_surface.commit that attaches this
-    ///wl_buffer to a surface, then the client is immediately free to
-    ///reuse the buffer and its backing storage, and does not need a
-    ///second buffer for the next surface content update. Typically
-    ///this is possible, when the compositor maintains a copy of the
-    ///wl_surface contents, e.g. as a GL texture. This is an important
-    ///optimization for GL(ES) compositors with wl_shm clients.
-    ///
+    /// If a client receives a release event before the frame callback
+    /// requested in the same wl_surface.commit that attaches this
+    /// wl_buffer to a surface, then the client is immediately free to
+    /// reuse the buffer and its backing storage, and does not need a
+    /// second buffer for the next surface content update. Typically
+    /// this is possible, when the compositor maintains a copy of the
+    /// wl_surface contents, e.g. as a GL texture. This is an important
+    /// optimization for GL(ES) compositors with wl_shm clients.
+    /// 
     /// </para>
     /// </summary>
     public event ReleaseHandler? OnRelease
@@ -170,6 +199,10 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
         disposed = true;
     }
 
+    /// <summary> Creates a WlBuffer wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlBuffer instance.</returns>
     public static WlBuffer Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

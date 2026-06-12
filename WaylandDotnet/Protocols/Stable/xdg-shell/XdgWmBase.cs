@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<XdgWmBase>
 {
+    /// <summary> Wayland interface name for xdg_wm_base. </summary>
     public const string InterfaceName = "xdg_wm_base";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "xdg_wm_base";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 7;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing xdg_wm_base proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public XdgWmBase(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -79,28 +87,48 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
         Unresponsive = 6,
     }
 
+    /// <summary>
+    /// Check if the client is alive
+    /// <para>
+    ///
+    /// The ping event asks the client if it's still alive. Pass the
+    /// serial specified in the event back to the compositor by sending
+    /// a "pong" request back with the specified serial. See xdg_wm_base.pong.
+    ///
+    /// Compositors can use this to determine if the client is still
+    /// alive. It's unspecified what will happen if the client doesn't
+    /// respond to the ping request, or in what timeframe. Clients should
+    /// try to respond in a reasonable amount of time. The “unresponsive”
+    /// error is provided for compositors that wish to disconnect unresponsive
+    /// clients.
+    ///
+    /// A compositor is free to ping in any way it wants, but a client must
+    /// always respond to any xdg_wm_base object it created.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PingHandler(uint serial);
 
     private PingHandler? _onPing;
 
     /// <summary>
-    ///Check if the client is alive
+    /// Check if the client is alive
     /// <para>
     ///
-    ///The ping event asks the client if it's still alive. Pass the
-    ///serial specified in the event back to the compositor by sending
-    ///a "pong" request back with the specified serial. See xdg_wm_base.pong.
+    /// The ping event asks the client if it's still alive. Pass the
+    /// serial specified in the event back to the compositor by sending
+    /// a "pong" request back with the specified serial. See xdg_wm_base.pong.
     ///
-    ///Compositors can use this to determine if the client is still
-    ///alive. It's unspecified what will happen if the client doesn't
-    ///respond to the ping request, or in what timeframe. Clients should
-    ///try to respond in a reasonable amount of time. The “unresponsive”
-    ///error is provided for compositors that wish to disconnect unresponsive
-    ///clients.
+    /// Compositors can use this to determine if the client is still
+    /// alive. It's unspecified what will happen if the client doesn't
+    /// respond to the ping request, or in what timeframe. Clients should
+    /// try to respond in a reasonable amount of time. The “unresponsive”
+    /// error is provided for compositors that wish to disconnect unresponsive
+    /// clients.
     ///
-    ///A compositor is free to ping in any way it wants, but a client must
-    ///always respond to any xdg_wm_base object it created.
-    ///
+    /// A compositor is free to ping in any way it wants, but a client must
+    /// always respond to any xdg_wm_base object it created.
+    /// 
     /// </para>
     /// </summary>
     public event PingHandler? OnPing
@@ -305,6 +333,10 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
         );
     }
 
+    /// <summary> Creates a XdgWmBase wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new XdgWmBase instance.</returns>
     public static XdgWmBase Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

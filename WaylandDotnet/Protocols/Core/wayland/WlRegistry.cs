@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,35 +28,56 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<WlRegistry>
 {
+    /// <summary> Wayland interface name for wl_registry. </summary>
     public const string InterfaceName = "wl_registry";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_registry";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_registry proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlRegistry(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// Announce global object
+    /// <para>
+    ///
+    /// Notify the client of global objects.
+    ///
+    /// The event notifies the client that a global object with
+    /// the given name is now available, and it implements the
+    /// given version of the given interface.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void GlobalHandler(uint name, string _interface, uint version);
 
     private GlobalHandler? _onGlobal;
 
     /// <summary>
-    ///Announce global object
+    /// Announce global object
     /// <para>
     ///
-    ///Notify the client of global objects.
+    /// Notify the client of global objects.
     ///
-    ///The event notifies the client that a global object with
-    ///the given name is now available, and it implements the
-    ///given version of the given interface.
-    ///
+    /// The event notifies the client that a global object with
+    /// the given name is now available, and it implements the
+    /// given version of the given interface.
+    /// 
     /// </para>
     /// </summary>
     public event GlobalHandler? OnGlobal
@@ -74,25 +94,42 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
         }
     }
 
+    /// <summary>
+    /// Announce removal of global object
+    /// <para>
+    ///
+    /// Notify the client of removed global objects.
+    ///
+    /// This event notifies the client that the global identified
+    /// by name is no longer available.  If the client bound to
+    /// the global using the bind request, the client should now
+    /// destroy that object.
+    ///
+    /// The object remains valid and requests to the object will be
+    /// ignored until the client destroys it, to avoid races between
+    /// the global going away and a client sending a request to it.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void GlobalRemoveHandler(uint name);
 
     private GlobalRemoveHandler? _onGlobalRemove;
 
     /// <summary>
-    ///Announce removal of global object
+    /// Announce removal of global object
     /// <para>
     ///
-    ///Notify the client of removed global objects.
+    /// Notify the client of removed global objects.
     ///
-    ///This event notifies the client that the global identified
-    ///by name is no longer available.  If the client bound to
-    ///the global using the bind request, the client should now
-    ///destroy that object.
+    /// This event notifies the client that the global identified
+    /// by name is no longer available.  If the client bound to
+    /// the global using the bind request, the client should now
+    /// destroy that object.
     ///
-    ///The object remains valid and requests to the object will be
-    ///ignored until the client destroys it, to avoid races between
-    ///the global going away and a client sending a request to it.
-    ///
+    /// The object remains valid and requests to the object will be
+    /// ignored until the client destroys it, to avoid races between
+    /// the global going away and a client sending a request to it.
+    /// 
     /// </para>
     /// </summary>
     public event GlobalRemoveHandler? OnGlobalRemove
@@ -173,6 +210,10 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
             return -1;
         }
     }
+    /// <summary> Creates a WlRegistry wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlRegistry instance.</returns>
     public static WlRegistry Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

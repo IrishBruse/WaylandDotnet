@@ -40,7 +40,6 @@ public partial class ProtocolGenerator
         WriteLine($"// </auto-generated>");
         WriteLine();
         WriteLine($"#nullable enable");
-        WriteLine($"#pragma warning disable CS1591");
         WriteLine();
 
         if (metadata.Namespace == "Core")
@@ -157,12 +156,12 @@ public partial class ProtocolGenerator
         WriteLine($"namespace {ProjectNamespace}.Internal;");
         WriteLine();
         WriteLine($"#nullable enable");
-        WriteLine($"#pragma warning disable CS1591");
         WriteLine($"#pragma warning disable CA2255");
         WriteLine("using System.Runtime.CompilerServices;");
         WriteLine("using System.Runtime.InteropServices;");
         WriteLine("using System.Runtime.InteropServices.Marshalling;");
         WriteLine();
+        WriteLine("/// <summary> Native Wayland interface descriptors for this protocol. </summary>");
         WriteLine("public static unsafe partial class WaylandInterfaces");
         BeginBlock();
         {
@@ -170,6 +169,7 @@ public partial class ProtocolGenerator
             foreach (var iface in interfaces)
             {
                 var className = iface.Name.ToPascal();
+                WriteLine($"/// <summary> Native interface descriptor for {EscapeXmlDoc(iface.Name)}. </summary>");
                 WriteLine($"public static WlInterface* {className} = AllocateInterface();");
             }
             WriteLine();
@@ -402,8 +402,11 @@ public partial class ProtocolGenerator
         WriteLine($"public sealed partial class {className} : WaylandObject, IWaylandObjectFactory<{className}>");
         BeginBlock();
         {
+            WriteLine($"/// <summary> Wayland interface name for {EscapeXmlDoc(iface.Name)}. </summary>");
             WriteLine($"public const string InterfaceName = \"{iface.Name}\";");
+            WriteLine($"/// <summary> Static interface name used by <see cref=\"IWaylandObjectFactory{{T}}\"/>. </summary>");
             WriteLine($"public static string _StaticInterfaceName => \"{iface.Name}\";");
+            WriteLine($"/// <summary> Interface version supported by this binding. </summary>");
             WriteLine($"public const int InterfaceVersion = {iface.Version};");
             WriteLine();
             if (HasDestructor(iface))
@@ -430,6 +433,10 @@ public partial class ProtocolGenerator
             GenerateEnumDocumentation(iface);
 
             bool needsDisplay = NeedsWlDisplay(iface);
+            WriteLine($"/// <summary> Creates a {className} wrapper from an existing proxy handle. </summary>");
+            WriteLine($"/// <param name=\"handle\">The native Wayland proxy handle.</param>");
+            WriteLine($"/// <param name=\"display\">The display connection that owns this object, when required.</param>");
+            WriteLine($"/// <returns>A new {className} instance.</returns>");
             WriteLine($"public static {className} Create(nint handle, WlDisplay? display = null)");
             WriteLine("{");
             if (needsDisplay)
@@ -474,12 +481,8 @@ public partial class ProtocolGenerator
             foreach (var entry in enumDef?.Entries ?? [])
             {
                 var desc = EscapeXmlDoc(entry.Summary).Trim();
-                if (!string.IsNullOrEmpty(desc))
-                {
-                    desc = " " + desc;
-                }
                 WriteLine("/// <summary>");
-                WriteLine($"///{desc ?? string.Empty}");
+                WriteXmlDocLine(desc);
                 WriteLine("/// </summary>");
                 WriteLine($"{entry.Name.ToPascal()} = {entry.Value},");
             }
@@ -496,12 +499,22 @@ public partial class ProtocolGenerator
         BeginRegion();
         if (needsDisplay)
         {
+            WriteLine("/// <summary> The display connection that owns this object. </summary>");
             WriteLine("public new WlDisplay Display { get; private set; }");
             WriteLine();
+            WriteLine("/// <summary>");
+            WriteLine($"/// Wraps an existing {EscapeXmlDoc(iface.Name)} proxy handle.");
+            WriteLine("/// </summary>");
+            WriteLine($"/// <param name=\"handle\">The native Wayland proxy handle.</param>");
+            WriteLine($"/// <param name=\"display\">The display connection that owns this object.</param>");
             WriteLine($"public {className}(IntPtr handle, WlDisplay display)");
         }
         else
         {
+            WriteLine("/// <summary>");
+            WriteLine($"/// Wraps an existing {EscapeXmlDoc(iface.Name)} proxy handle.");
+            WriteLine("/// </summary>");
+            WriteLine($"/// <param name=\"handle\">The native Wayland proxy handle.</param>");
             WriteLine($"public {className}(IntPtr handle)");
         }
         BeginBlock();
@@ -546,6 +559,7 @@ public partial class ProtocolGenerator
 
             var parameters = string.Join(", ", evt.Args.Select(arg => $"{MapTypeToCSharp(arg.Type, arg.Interface, arg.AllowNull)} {arg.Name.ToCamel()}"));
 
+            WriteEventXmlDoc(evt);
             WriteLine($"public delegate void {delegateName}({parameters});");
             WriteLine();
 
@@ -556,15 +570,7 @@ public partial class ProtocolGenerator
 
 
             // Generate event property with lazy registration
-            WriteLine("/// <summary>");
-            WriteLine($"///{evt.Description.Summary.CapitalizeFirst()}");
-            WriteLine("/// <para>");
-            foreach (var line in evt.Description.Text.EnumerateLines())
-            {
-                WriteLine($"///{line.TrimStart()}");
-            }
-            WriteLine("/// </para>");
-            WriteLine("/// </summary>");
+            WriteEventXmlDoc(evt);
             WriteLine($"public event {delegateName}? On{eventName}");
             BeginBlock();
             {
@@ -1224,6 +1230,30 @@ public partial class ProtocolGenerator
             .Replace("&", "&amp;")
             .Replace("<", "&lt;")
             .Replace(">", "&gt;");
+    }
+
+    private void WriteEventXmlDoc(WaylandEvent evt)
+    {
+        WriteLine("/// <summary>");
+        WriteXmlDocLine(evt.Description.Summary.CapitalizeFirst());
+        WriteLine("/// <para>");
+        foreach (var line in evt.Description.Text.EnumerateLines())
+        {
+            WriteXmlDocLine(line.ToString());
+        }
+        WriteLine("/// </para>");
+        WriteLine("/// </summary>");
+    }
+
+    private void WriteXmlDocLine(string? text)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            WriteLine("///");
+            return;
+        }
+
+        WriteLine($"/// {text.TrimStart()}");
     }
 
     public void WriteLine(string text = "")

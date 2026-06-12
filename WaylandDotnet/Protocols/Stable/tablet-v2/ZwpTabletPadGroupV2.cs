@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectFactory<ZwpTabletPadGroupV2>
 {
+    /// <summary> Wayland interface name for zwp_tablet_pad_group_v2. </summary>
     public const string InterfaceName = "zwp_tablet_pad_group_v2";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwp_tablet_pad_group_v2";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,34 +41,59 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwp_tablet_pad_group_v2 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwpTabletPadGroupV2(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// Buttons announced
+    /// <para>
+    ///
+    /// Sent on zwp_tablet_pad_group_v2 initialization to announce the available
+    /// buttons in the group. Button indices start at 0, a button may only be
+    /// in one group at a time.
+    ///
+    /// This event is first sent in the initial burst of events before the
+    /// zwp_tablet_pad_group_v2.done event.
+    ///
+    /// Some buttons are reserved by the compositor. These buttons may not be
+    /// assigned to any zwp_tablet_pad_group_v2. Compositors may broadcast this
+    /// event in the case of changes to the mapping of these reserved buttons.
+    /// If the compositor happens to reserve all buttons in a group, this event
+    /// will be sent with an empty array.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ButtonsHandler(byte[] buttons);
 
     private ButtonsHandler? _onButtons;
 
     /// <summary>
-    ///Buttons announced
+    /// Buttons announced
     /// <para>
     ///
-    ///Sent on zwp_tablet_pad_group_v2 initialization to announce the available
-    ///buttons in the group. Button indices start at 0, a button may only be
-    ///in one group at a time.
+    /// Sent on zwp_tablet_pad_group_v2 initialization to announce the available
+    /// buttons in the group. Button indices start at 0, a button may only be
+    /// in one group at a time.
     ///
-    ///This event is first sent in the initial burst of events before the
-    ///zwp_tablet_pad_group_v2.done event.
+    /// This event is first sent in the initial burst of events before the
+    /// zwp_tablet_pad_group_v2.done event.
     ///
-    ///Some buttons are reserved by the compositor. These buttons may not be
-    ///assigned to any zwp_tablet_pad_group_v2. Compositors may broadcast this
-    ///event in the case of changes to the mapping of these reserved buttons.
-    ///If the compositor happens to reserve all buttons in a group, this event
-    ///will be sent with an empty array.
-    ///
+    /// Some buttons are reserved by the compositor. These buttons may not be
+    /// assigned to any zwp_tablet_pad_group_v2. Compositors may broadcast this
+    /// event in the case of changes to the mapping of these reserved buttons.
+    /// If the compositor happens to reserve all buttons in a group, this event
+    /// will be sent with an empty array.
+    /// 
     /// </para>
     /// </summary>
     public event ButtonsHandler? OnButtons
@@ -84,20 +111,32 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
         }
     }
 
+    /// <summary>
+    /// Ring announced
+    /// <para>
+    ///
+    /// Sent on zwp_tablet_pad_group_v2 initialization to announce available rings.
+    /// One event is sent for each ring available on this pad group.
+    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_pad_group_v2.done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RingHandler(ZwpTabletPadRingV2 ring);
 
     private RingHandler? _onRing;
 
     /// <summary>
-    ///Ring announced
+    /// Ring announced
     /// <para>
     ///
-    ///Sent on zwp_tablet_pad_group_v2 initialization to announce available rings.
-    ///One event is sent for each ring available on this pad group.
+    /// Sent on zwp_tablet_pad_group_v2 initialization to announce available rings.
+    /// One event is sent for each ring available on this pad group.
     ///
-    ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_pad_group_v2.done event.
-    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_pad_group_v2.done event.
+    /// 
     /// </para>
     /// </summary>
     public event RingHandler? OnRing
@@ -115,20 +154,32 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
         }
     }
 
+    /// <summary>
+    /// Strip announced
+    /// <para>
+    ///
+    /// Sent on zwp_tablet_pad_v2 initialization to announce available strips.
+    /// One event is sent for each strip available on this pad group.
+    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_pad_group_v2.done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void StripHandler(ZwpTabletPadStripV2 strip);
 
     private StripHandler? _onStrip;
 
     /// <summary>
-    ///Strip announced
+    /// Strip announced
     /// <para>
     ///
-    ///Sent on zwp_tablet_pad_v2 initialization to announce available strips.
-    ///One event is sent for each strip available on this pad group.
+    /// Sent on zwp_tablet_pad_v2 initialization to announce available strips.
+    /// One event is sent for each strip available on this pad group.
     ///
-    ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_pad_group_v2.done event.
-    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_pad_group_v2.done event.
+    /// 
     /// </para>
     /// </summary>
     public event StripHandler? OnStrip
@@ -146,27 +197,46 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
         }
     }
 
+    /// <summary>
+    /// Mode-switch ability announced
+    /// <para>
+    ///
+    /// Sent on zwp_tablet_pad_group_v2 initialization to announce that the pad
+    /// group may switch between modes. A client may use a mode to store a
+    /// specific configuration for buttons, rings and strips and use the
+    /// zwp_tablet_pad_group_v2.mode_switch event to toggle between these
+    /// configurations. Mode indices start at 0.
+    ///
+    /// Switching modes is compositor-dependent. See the
+    /// zwp_tablet_pad_group_v2.mode_switch event for more details.
+    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_pad_group_v2.done event. This event is only sent when
+    /// more than one mode is available.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ModesHandler(uint modes);
 
     private ModesHandler? _onModes;
 
     /// <summary>
-    ///Mode-switch ability announced
+    /// Mode-switch ability announced
     /// <para>
     ///
-    ///Sent on zwp_tablet_pad_group_v2 initialization to announce that the pad
-    ///group may switch between modes. A client may use a mode to store a
-    ///specific configuration for buttons, rings and strips and use the
-    ///zwp_tablet_pad_group_v2.mode_switch event to toggle between these
-    ///configurations. Mode indices start at 0.
+    /// Sent on zwp_tablet_pad_group_v2 initialization to announce that the pad
+    /// group may switch between modes. A client may use a mode to store a
+    /// specific configuration for buttons, rings and strips and use the
+    /// zwp_tablet_pad_group_v2.mode_switch event to toggle between these
+    /// configurations. Mode indices start at 0.
     ///
-    ///Switching modes is compositor-dependent. See the
-    ///zwp_tablet_pad_group_v2.mode_switch event for more details.
+    /// Switching modes is compositor-dependent. See the
+    /// zwp_tablet_pad_group_v2.mode_switch event for more details.
     ///
-    ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_pad_group_v2.done event. This event is only sent when
-    ///more than one mode is available.
-    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_pad_group_v2.done event. This event is only sent when
+    /// more than one mode is available.
+    /// 
     /// </para>
     /// </summary>
     public event ModesHandler? OnModes
@@ -184,19 +254,30 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
         }
     }
 
+    /// <summary>
+    /// Tablet group description events sequence complete
+    /// <para>
+    ///
+    /// This event is sent immediately to signal the end of the initial
+    /// burst of descriptive events. A client may consider the static
+    /// description of the tablet to be complete and finalize initialization
+    /// of the tablet group.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DoneHandler();
 
     private DoneHandler? _onDone;
 
     /// <summary>
-    ///Tablet group description events sequence complete
+    /// Tablet group description events sequence complete
     /// <para>
     ///
-    ///This event is sent immediately to signal the end of the initial
-    ///burst of descriptive events. A client may consider the static
-    ///description of the tablet to be complete and finalize initialization
-    ///of the tablet group.
-    ///
+    /// This event is sent immediately to signal the end of the initial
+    /// burst of descriptive events. A client may consider the static
+    /// description of the tablet to be complete and finalize initialization
+    /// of the tablet group.
+    /// 
     /// </para>
     /// </summary>
     public event DoneHandler? OnDone
@@ -214,42 +295,76 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
         }
     }
 
+    /// <summary>
+    /// Mode switch event
+    /// <para>
+    ///
+    /// Notification that the mode was switched.
+    ///
+    /// A mode applies to all buttons, rings, strips and dials in a group
+    /// simultaneously, but a client is not required to assign different actions
+    /// for each mode. For example, a client may have mode-specific button
+    /// mappings but map the ring to vertical scrolling in all modes. Mode
+    /// indices start at 0.
+    ///
+    /// Switching modes is compositor-dependent. The compositor may provide
+    /// visual cues to the user about the mode, e.g. by toggling LEDs on
+    /// the tablet device. Mode-switching may be software-controlled or
+    /// controlled by one or more physical buttons. For example, on a Wacom
+    /// Intuos Pro, the button inside the ring may be assigned to switch
+    /// between modes.
+    ///
+    /// The compositor will also send this event after zwp_tablet_pad_v2.enter on
+    /// each group in order to notify of the current mode. Groups that only
+    /// feature one mode will use mode=0 when emitting this event.
+    ///
+    /// If a button action in the new mode differs from the action in the
+    /// previous mode, the client should immediately issue a
+    /// zwp_tablet_pad_v2.set_feedback request for each changed button.
+    ///
+    /// If a ring, strip or dial action in the new mode differs from the action
+    /// in the previous mode, the client should immediately issue a
+    /// zwp_tablet_ring_v2.set_feedback, zwp_tablet_strip_v2.set_feedback or
+    /// zwp_tablet_dial_v2.set_feedback request for each changed ring, strip or dial.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ModeSwitchHandler(uint time, uint serial, uint mode);
 
     private ModeSwitchHandler? _onModeSwitch;
 
     /// <summary>
-    ///Mode switch event
+    /// Mode switch event
     /// <para>
     ///
-    ///Notification that the mode was switched.
+    /// Notification that the mode was switched.
     ///
-    ///A mode applies to all buttons, rings, strips and dials in a group
-    ///simultaneously, but a client is not required to assign different actions
-    ///for each mode. For example, a client may have mode-specific button
-    ///mappings but map the ring to vertical scrolling in all modes. Mode
-    ///indices start at 0.
+    /// A mode applies to all buttons, rings, strips and dials in a group
+    /// simultaneously, but a client is not required to assign different actions
+    /// for each mode. For example, a client may have mode-specific button
+    /// mappings but map the ring to vertical scrolling in all modes. Mode
+    /// indices start at 0.
     ///
-    ///Switching modes is compositor-dependent. The compositor may provide
-    ///visual cues to the user about the mode, e.g. by toggling LEDs on
-    ///the tablet device. Mode-switching may be software-controlled or
-    ///controlled by one or more physical buttons. For example, on a Wacom
-    ///Intuos Pro, the button inside the ring may be assigned to switch
-    ///between modes.
+    /// Switching modes is compositor-dependent. The compositor may provide
+    /// visual cues to the user about the mode, e.g. by toggling LEDs on
+    /// the tablet device. Mode-switching may be software-controlled or
+    /// controlled by one or more physical buttons. For example, on a Wacom
+    /// Intuos Pro, the button inside the ring may be assigned to switch
+    /// between modes.
     ///
-    ///The compositor will also send this event after zwp_tablet_pad_v2.enter on
-    ///each group in order to notify of the current mode. Groups that only
-    ///feature one mode will use mode=0 when emitting this event.
+    /// The compositor will also send this event after zwp_tablet_pad_v2.enter on
+    /// each group in order to notify of the current mode. Groups that only
+    /// feature one mode will use mode=0 when emitting this event.
     ///
-    ///If a button action in the new mode differs from the action in the
-    ///previous mode, the client should immediately issue a
-    ///zwp_tablet_pad_v2.set_feedback request for each changed button.
+    /// If a button action in the new mode differs from the action in the
+    /// previous mode, the client should immediately issue a
+    /// zwp_tablet_pad_v2.set_feedback request for each changed button.
     ///
-    ///If a ring, strip or dial action in the new mode differs from the action
-    ///in the previous mode, the client should immediately issue a
-    ///zwp_tablet_ring_v2.set_feedback, zwp_tablet_strip_v2.set_feedback or
-    ///zwp_tablet_dial_v2.set_feedback request for each changed ring, strip or dial.
-    ///
+    /// If a ring, strip or dial action in the new mode differs from the action
+    /// in the previous mode, the client should immediately issue a
+    /// zwp_tablet_ring_v2.set_feedback, zwp_tablet_strip_v2.set_feedback or
+    /// zwp_tablet_dial_v2.set_feedback request for each changed ring, strip or dial.
+    /// 
     /// </para>
     /// </summary>
     public event ModeSwitchHandler? OnModeSwitch
@@ -267,20 +382,32 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
         }
     }
 
+    /// <summary>
+    /// Dial announced
+    /// <para>
+    ///
+    /// Sent on zwp_tablet_pad_v2 initialization to announce available dials.
+    /// One event is sent for each dial available on this pad group.
+    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_pad_group_v2.done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DialHandler(ZwpTabletPadDialV2 dial);
 
     private DialHandler? _onDial;
 
     /// <summary>
-    ///Dial announced
+    /// Dial announced
     /// <para>
     ///
-    ///Sent on zwp_tablet_pad_v2 initialization to announce available dials.
-    ///One event is sent for each dial available on this pad group.
+    /// Sent on zwp_tablet_pad_v2 initialization to announce available dials.
+    /// One event is sent for each dial available on this pad group.
     ///
-    ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_pad_group_v2.done event.
-    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_pad_group_v2.done event.
+    /// 
     /// </para>
     /// </summary>
     public event DialHandler? OnDial
@@ -430,6 +557,10 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
         disposed = true;
     }
 
+    /// <summary> Creates a ZwpTabletPadGroupV2 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwpTabletPadGroupV2 instance.</returns>
     public static ZwpTabletPadGroupV2 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

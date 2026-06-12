@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFactory<ZwpTabletToolV2>
 {
+    /// <summary> Wayland interface name for zwp_tablet_tool_v2. </summary>
     public const string InterfaceName = "zwp_tablet_tool_v2";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwp_tablet_tool_v2";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwp_tablet_tool_v2 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwpTabletToolV2(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -134,20 +142,32 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         Role = 0,
     }
 
+    /// <summary>
+    /// Tool type
+    /// <para>
+    ///
+    /// The tool type is the high-level type of the tool and usually decides
+    /// the interaction expected from this tool.
+    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_tool_v2.done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TypeHandler(uint toolType);
 
     private TypeHandler? _onType;
 
     /// <summary>
-    ///Tool type
+    /// Tool type
     /// <para>
     ///
-    ///The tool type is the high-level type of the tool and usually decides
-    ///the interaction expected from this tool.
+    /// The tool type is the high-level type of the tool and usually decides
+    /// the interaction expected from this tool.
     ///
-    ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_tool_v2.done event.
-    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_tool_v2.done event.
+    /// 
     /// </para>
     /// </summary>
     public event TypeHandler? OnType
@@ -165,30 +185,52 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Unique hardware serial number of the tool
+    /// <para>
+    ///
+    /// If the physical tool can be identified by a unique 64-bit serial
+    /// number, this event notifies the client of this serial number.
+    ///
+    /// If multiple tablets are available in the same seat and the tool is
+    /// uniquely identifiable by the serial number, that tool may move
+    /// between tablets.
+    ///
+    /// Otherwise, if the tool has no serial number and this event is
+    /// missing, the tool is tied to the tablet it first comes into
+    /// proximity with. Even if the physical tool is used on multiple
+    /// tablets, separate zwp_tablet_tool_v2 objects will be created, one per
+    /// tablet.
+    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_tool_v2.done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void HardwareSerialHandler(uint hardwareSerialHi, uint hardwareSerialLo);
 
     private HardwareSerialHandler? _onHardwareSerial;
 
     /// <summary>
-    ///Unique hardware serial number of the tool
+    /// Unique hardware serial number of the tool
     /// <para>
     ///
-    ///If the physical tool can be identified by a unique 64-bit serial
-    ///number, this event notifies the client of this serial number.
+    /// If the physical tool can be identified by a unique 64-bit serial
+    /// number, this event notifies the client of this serial number.
     ///
-    ///If multiple tablets are available in the same seat and the tool is
-    ///uniquely identifiable by the serial number, that tool may move
-    ///between tablets.
+    /// If multiple tablets are available in the same seat and the tool is
+    /// uniquely identifiable by the serial number, that tool may move
+    /// between tablets.
     ///
-    ///Otherwise, if the tool has no serial number and this event is
-    ///missing, the tool is tied to the tablet it first comes into
-    ///proximity with. Even if the physical tool is used on multiple
-    ///tablets, separate zwp_tablet_tool_v2 objects will be created, one per
-    ///tablet.
+    /// Otherwise, if the tool has no serial number and this event is
+    /// missing, the tool is tied to the tablet it first comes into
+    /// proximity with. Even if the physical tool is used on multiple
+    /// tablets, separate zwp_tablet_tool_v2 objects will be created, one per
+    /// tablet.
     ///
-    ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_tool_v2.done event.
-    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_tool_v2.done event.
+    /// 
     /// </para>
     /// </summary>
     public event HardwareSerialHandler? OnHardwareSerial
@@ -206,25 +248,42 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Hardware id notification in Wacom's format
+    /// <para>
+    ///
+    /// This event notifies the client of a hardware id available on this tool.
+    ///
+    /// The hardware id is a device-specific 64-bit id that provides extra
+    /// information about the tool in use, beyond the wl_tool.type
+    /// enumeration. The format of the id is specific to tablets made by
+    /// Wacom Inc. For example, the hardware id of a Wacom Grip
+    /// Pen (a stylus) is 0x802.
+    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_tool_v2.done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void HardwareIdWacomHandler(uint hardwareIdHi, uint hardwareIdLo);
 
     private HardwareIdWacomHandler? _onHardwareIdWacom;
 
     /// <summary>
-    ///Hardware id notification in Wacom's format
+    /// Hardware id notification in Wacom's format
     /// <para>
     ///
-    ///This event notifies the client of a hardware id available on this tool.
+    /// This event notifies the client of a hardware id available on this tool.
     ///
-    ///The hardware id is a device-specific 64-bit id that provides extra
-    ///information about the tool in use, beyond the wl_tool.type
-    ///enumeration. The format of the id is specific to tablets made by
-    ///Wacom Inc. For example, the hardware id of a Wacom Grip
-    ///Pen (a stylus) is 0x802.
+    /// The hardware id is a device-specific 64-bit id that provides extra
+    /// information about the tool in use, beyond the wl_tool.type
+    /// enumeration. The format of the id is specific to tablets made by
+    /// Wacom Inc. For example, the hardware id of a Wacom Grip
+    /// Pen (a stylus) is 0x802.
     ///
-    ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_tool_v2.done event.
-    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_tool_v2.done event.
+    /// 
     /// </para>
     /// </summary>
     public event HardwareIdWacomHandler? OnHardwareIdWacom
@@ -242,22 +301,36 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Tool capability notification
+    /// <para>
+    ///
+    /// This event notifies the client of any capabilities of this tool,
+    /// beyond the main set of x/y axes and tip up/down detection.
+    ///
+    /// One event is sent for each extra capability available on this tool.
+    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_tool_v2.done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CapabilityHandler(uint capability);
 
     private CapabilityHandler? _onCapability;
 
     /// <summary>
-    ///Tool capability notification
+    /// Tool capability notification
     /// <para>
     ///
-    ///This event notifies the client of any capabilities of this tool,
-    ///beyond the main set of x/y axes and tip up/down detection.
+    /// This event notifies the client of any capabilities of this tool,
+    /// beyond the main set of x/y axes and tip up/down detection.
     ///
-    ///One event is sent for each extra capability available on this tool.
+    /// One event is sent for each extra capability available on this tool.
     ///
-    ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_tool_v2.done event.
-    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_tool_v2.done event.
+    /// 
     /// </para>
     /// </summary>
     public event CapabilityHandler? OnCapability
@@ -275,18 +348,28 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Tool description events sequence complete
+    /// <para>
+    ///
+    /// This event signals the end of the initial burst of descriptive
+    /// events. A client may consider the static description of the tool to
+    /// be complete and finalize initialization of the tool.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DoneHandler();
 
     private DoneHandler? _onDone;
 
     /// <summary>
-    ///Tool description events sequence complete
+    /// Tool description events sequence complete
     /// <para>
     ///
-    ///This event signals the end of the initial burst of descriptive
-    ///events. A client may consider the static description of the tool to
-    ///be complete and finalize initialization of the tool.
-    ///
+    /// This event signals the end of the initial burst of descriptive
+    /// events. A client may consider the static description of the tool to
+    /// be complete and finalize initialization of the tool.
+    /// 
     /// </para>
     /// </summary>
     public event DoneHandler? OnDone
@@ -304,29 +387,50 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Tool removed
+    /// <para>
+    ///
+    /// This event is sent when the tool is removed from the system and will
+    /// send no further events. Should the physical tool come back into
+    /// proximity later, a new zwp_tablet_tool_v2 object will be created.
+    ///
+    /// It is compositor-dependent when a tool is removed. A compositor may
+    /// remove a tool on proximity out, tablet removal or any other reason.
+    /// A compositor may also keep a tool alive until shutdown.
+    ///
+    /// If the tool is currently in proximity, a proximity_out event will be
+    /// sent before the removed event. See zwp_tablet_tool_v2.proximity_out for
+    /// the handling of any buttons logically down.
+    ///
+    /// When this event is received, the client must zwp_tablet_tool_v2.destroy
+    /// the object.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RemovedHandler();
 
     private RemovedHandler? _onRemoved;
 
     /// <summary>
-    ///Tool removed
+    /// Tool removed
     /// <para>
     ///
-    ///This event is sent when the tool is removed from the system and will
-    ///send no further events. Should the physical tool come back into
-    ///proximity later, a new zwp_tablet_tool_v2 object will be created.
+    /// This event is sent when the tool is removed from the system and will
+    /// send no further events. Should the physical tool come back into
+    /// proximity later, a new zwp_tablet_tool_v2 object will be created.
     ///
-    ///It is compositor-dependent when a tool is removed. A compositor may
-    ///remove a tool on proximity out, tablet removal or any other reason.
-    ///A compositor may also keep a tool alive until shutdown.
+    /// It is compositor-dependent when a tool is removed. A compositor may
+    /// remove a tool on proximity out, tablet removal or any other reason.
+    /// A compositor may also keep a tool alive until shutdown.
     ///
-    ///If the tool is currently in proximity, a proximity_out event will be
-    ///sent before the removed event. See zwp_tablet_tool_v2.proximity_out for
-    ///the handling of any buttons logically down.
+    /// If the tool is currently in proximity, a proximity_out event will be
+    /// sent before the removed event. See zwp_tablet_tool_v2.proximity_out for
+    /// the handling of any buttons logically down.
     ///
-    ///When this event is received, the client must zwp_tablet_tool_v2.destroy
-    ///the object.
-    ///
+    /// When this event is received, the client must zwp_tablet_tool_v2.destroy
+    /// the object.
+    /// 
     /// </para>
     /// </summary>
     public event RemovedHandler? OnRemoved
@@ -344,24 +448,40 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Proximity in event
+    /// <para>
+    ///
+    /// Notification that this tool is focused on a certain surface.
+    ///
+    /// This event can be received when the tool has moved from one surface to
+    /// another, or when the tool has come back into proximity above the
+    /// surface.
+    ///
+    /// If any button is logically down when the tool comes into proximity,
+    /// the respective button event is sent after the proximity_in event but
+    /// within the same frame as the proximity_in event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ProximityInHandler(uint serial, ZwpTabletV2 tablet, WlSurface surface);
 
     private ProximityInHandler? _onProximityIn;
 
     /// <summary>
-    ///Proximity in event
+    /// Proximity in event
     /// <para>
     ///
-    ///Notification that this tool is focused on a certain surface.
+    /// Notification that this tool is focused on a certain surface.
     ///
-    ///This event can be received when the tool has moved from one surface to
-    ///another, or when the tool has come back into proximity above the
-    ///surface.
+    /// This event can be received when the tool has moved from one surface to
+    /// another, or when the tool has come back into proximity above the
+    /// surface.
     ///
-    ///If any button is logically down when the tool comes into proximity,
-    ///the respective button event is sent after the proximity_in event but
-    ///within the same frame as the proximity_in event.
-    ///
+    /// If any button is logically down when the tool comes into proximity,
+    /// the respective button event is sent after the proximity_in event but
+    /// within the same frame as the proximity_in event.
+    /// 
     /// </para>
     /// </summary>
     public event ProximityInHandler? OnProximityIn
@@ -379,27 +499,46 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Proximity out event
+    /// <para>
+    ///
+    /// Notification that this tool has either left proximity, or is no
+    /// longer focused on a certain surface.
+    ///
+    /// When the tablet tool leaves proximity of the tablet, button release
+    /// events are sent for each button that was held down at the time of
+    /// leaving proximity. These events are sent before the proximity_out
+    /// event but within the same zwp_tablet_v2.frame.
+    ///
+    /// If the tool stays within proximity of the tablet, but the focus
+    /// changes from one surface to another, a button release event may not
+    /// be sent until the button is actually released or the tool leaves the
+    /// proximity of the tablet.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ProximityOutHandler();
 
     private ProximityOutHandler? _onProximityOut;
 
     /// <summary>
-    ///Proximity out event
+    /// Proximity out event
     /// <para>
     ///
-    ///Notification that this tool has either left proximity, or is no
-    ///longer focused on a certain surface.
+    /// Notification that this tool has either left proximity, or is no
+    /// longer focused on a certain surface.
     ///
-    ///When the tablet tool leaves proximity of the tablet, button release
-    ///events are sent for each button that was held down at the time of
-    ///leaving proximity. These events are sent before the proximity_out
-    ///event but within the same zwp_tablet_v2.frame.
+    /// When the tablet tool leaves proximity of the tablet, button release
+    /// events are sent for each button that was held down at the time of
+    /// leaving proximity. These events are sent before the proximity_out
+    /// event but within the same zwp_tablet_v2.frame.
     ///
-    ///If the tool stays within proximity of the tablet, but the focus
-    ///changes from one surface to another, a button release event may not
-    ///be sent until the button is actually released or the tool leaves the
-    ///proximity of the tablet.
-    ///
+    /// If the tool stays within proximity of the tablet, but the focus
+    /// changes from one surface to another, a button release event may not
+    /// be sent until the button is actually released or the tool leaves the
+    /// proximity of the tablet.
+    /// 
     /// </para>
     /// </summary>
     public event ProximityOutHandler? OnProximityOut
@@ -417,27 +556,46 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Tablet tool is making contact
+    /// <para>
+    ///
+    /// Sent whenever the tablet tool comes in contact with the surface of the
+    /// tablet.
+    ///
+    /// If the tool is already in contact with the tablet when entering the
+    /// input region, the client owning said region will receive a
+    /// zwp_tablet_v2.proximity_in event, followed by a zwp_tablet_v2.down
+    /// event and a zwp_tablet_v2.frame event.
+    ///
+    /// Note that this event describes logical contact, not physical
+    /// contact. On some devices, a compositor may not consider a tool in
+    /// logical contact until a minimum physical pressure threshold is
+    /// exceeded.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DownHandler(uint serial);
 
     private DownHandler? _onDown;
 
     /// <summary>
-    ///Tablet tool is making contact
+    /// Tablet tool is making contact
     /// <para>
     ///
-    ///Sent whenever the tablet tool comes in contact with the surface of the
-    ///tablet.
+    /// Sent whenever the tablet tool comes in contact with the surface of the
+    /// tablet.
     ///
-    ///If the tool is already in contact with the tablet when entering the
-    ///input region, the client owning said region will receive a
-    ///zwp_tablet_v2.proximity_in event, followed by a zwp_tablet_v2.down
-    ///event and a zwp_tablet_v2.frame event.
+    /// If the tool is already in contact with the tablet when entering the
+    /// input region, the client owning said region will receive a
+    /// zwp_tablet_v2.proximity_in event, followed by a zwp_tablet_v2.down
+    /// event and a zwp_tablet_v2.frame event.
     ///
-    ///Note that this event describes logical contact, not physical
-    ///contact. On some devices, a compositor may not consider a tool in
-    ///logical contact until a minimum physical pressure threshold is
-    ///exceeded.
-    ///
+    /// Note that this event describes logical contact, not physical
+    /// contact. On some devices, a compositor may not consider a tool in
+    /// logical contact until a minimum physical pressure threshold is
+    /// exceeded.
+    /// 
     /// </para>
     /// </summary>
     public event DownHandler? OnDown
@@ -455,31 +613,54 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Tablet tool is no longer making contact
+    /// <para>
+    ///
+    /// Sent whenever the tablet tool stops making contact with the surface of
+    /// the tablet, or when the tablet tool moves out of the input region
+    /// and the compositor grab (if any) is dismissed.
+    ///
+    /// If the tablet tool moves out of the input region while in contact
+    /// with the surface of the tablet and the compositor does not have an
+    /// ongoing grab on the surface, the client owning said region will
+    /// receive a zwp_tablet_v2.up event, followed by a zwp_tablet_v2.proximity_out
+    /// event and a zwp_tablet_v2.frame event. If the compositor has an ongoing
+    /// grab on this device, this event sequence is sent whenever the grab
+    /// is dismissed in the future.
+    ///
+    /// Note that this event describes logical contact, not physical
+    /// contact. On some devices, a compositor may not consider a tool out
+    /// of logical contact until physical pressure falls below a specific
+    /// threshold.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void UpHandler();
 
     private UpHandler? _onUp;
 
     /// <summary>
-    ///Tablet tool is no longer making contact
+    /// Tablet tool is no longer making contact
     /// <para>
     ///
-    ///Sent whenever the tablet tool stops making contact with the surface of
-    ///the tablet, or when the tablet tool moves out of the input region
-    ///and the compositor grab (if any) is dismissed.
+    /// Sent whenever the tablet tool stops making contact with the surface of
+    /// the tablet, or when the tablet tool moves out of the input region
+    /// and the compositor grab (if any) is dismissed.
     ///
-    ///If the tablet tool moves out of the input region while in contact
-    ///with the surface of the tablet and the compositor does not have an
-    ///ongoing grab on the surface, the client owning said region will
-    ///receive a zwp_tablet_v2.up event, followed by a zwp_tablet_v2.proximity_out
-    ///event and a zwp_tablet_v2.frame event. If the compositor has an ongoing
-    ///grab on this device, this event sequence is sent whenever the grab
-    ///is dismissed in the future.
+    /// If the tablet tool moves out of the input region while in contact
+    /// with the surface of the tablet and the compositor does not have an
+    /// ongoing grab on the surface, the client owning said region will
+    /// receive a zwp_tablet_v2.up event, followed by a zwp_tablet_v2.proximity_out
+    /// event and a zwp_tablet_v2.frame event. If the compositor has an ongoing
+    /// grab on this device, this event sequence is sent whenever the grab
+    /// is dismissed in the future.
     ///
-    ///Note that this event describes logical contact, not physical
-    ///contact. On some devices, a compositor may not consider a tool out
-    ///of logical contact until physical pressure falls below a specific
-    ///threshold.
-    ///
+    /// Note that this event describes logical contact, not physical
+    /// contact. On some devices, a compositor may not consider a tool out
+    /// of logical contact until physical pressure falls below a specific
+    /// threshold.
+    /// 
     /// </para>
     /// </summary>
     public event UpHandler? OnUp
@@ -497,16 +678,24 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Motion event
+    /// <para>
+    ///
+    /// Sent whenever a tablet tool moves.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void MotionHandler(WlFixed x, WlFixed y);
 
     private MotionHandler? _onMotion;
 
     /// <summary>
-    ///Motion event
+    /// Motion event
     /// <para>
     ///
-    ///Sent whenever a tablet tool moves.
-    ///
+    /// Sent whenever a tablet tool moves.
+    /// 
     /// </para>
     /// </summary>
     public event MotionHandler? OnMotion
@@ -524,20 +713,32 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Pressure change event
+    /// <para>
+    ///
+    /// Sent whenever the pressure axis on a tool changes. The value of this
+    /// event is normalized to a value between 0 and 65535.
+    ///
+    /// Note that pressure may be nonzero even when a tool is not in logical
+    /// contact. See the down and up events for more details.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PressureHandler(uint pressure);
 
     private PressureHandler? _onPressure;
 
     /// <summary>
-    ///Pressure change event
+    /// Pressure change event
     /// <para>
     ///
-    ///Sent whenever the pressure axis on a tool changes. The value of this
-    ///event is normalized to a value between 0 and 65535.
+    /// Sent whenever the pressure axis on a tool changes. The value of this
+    /// event is normalized to a value between 0 and 65535.
     ///
-    ///Note that pressure may be nonzero even when a tool is not in logical
-    ///contact. See the down and up events for more details.
-    ///
+    /// Note that pressure may be nonzero even when a tool is not in logical
+    /// contact. See the down and up events for more details.
+    /// 
     /// </para>
     /// </summary>
     public event PressureHandler? OnPressure
@@ -555,20 +756,32 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Distance change event
+    /// <para>
+    ///
+    /// Sent whenever the distance axis on a tool changes. The value of this
+    /// event is normalized to a value between 0 and 65535.
+    ///
+    /// Note that distance may be nonzero even when a tool is not in logical
+    /// contact. See the down and up events for more details.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DistanceHandler(uint distance);
 
     private DistanceHandler? _onDistance;
 
     /// <summary>
-    ///Distance change event
+    /// Distance change event
     /// <para>
     ///
-    ///Sent whenever the distance axis on a tool changes. The value of this
-    ///event is normalized to a value between 0 and 65535.
+    /// Sent whenever the distance axis on a tool changes. The value of this
+    /// event is normalized to a value between 0 and 65535.
     ///
-    ///Note that distance may be nonzero even when a tool is not in logical
-    ///contact. See the down and up events for more details.
-    ///
+    /// Note that distance may be nonzero even when a tool is not in logical
+    /// contact. See the down and up events for more details.
+    /// 
     /// </para>
     /// </summary>
     public event DistanceHandler? OnDistance
@@ -586,19 +799,30 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Tilt change event
+    /// <para>
+    ///
+    /// Sent whenever one or both of the tilt axes on a tool change. Each tilt
+    /// value is in degrees, relative to the z-axis of the tablet.
+    /// The angle is positive when the top of a tool tilts along the
+    /// positive x or y axis.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TiltHandler(WlFixed tiltX, WlFixed tiltY);
 
     private TiltHandler? _onTilt;
 
     /// <summary>
-    ///Tilt change event
+    /// Tilt change event
     /// <para>
     ///
-    ///Sent whenever one or both of the tilt axes on a tool change. Each tilt
-    ///value is in degrees, relative to the z-axis of the tablet.
-    ///The angle is positive when the top of a tool tilts along the
-    ///positive x or y axis.
-    ///
+    /// Sent whenever one or both of the tilt axes on a tool change. Each tilt
+    /// value is in degrees, relative to the z-axis of the tablet.
+    /// The angle is positive when the top of a tool tilts along the
+    /// positive x or y axis.
+    /// 
     /// </para>
     /// </summary>
     public event TiltHandler? OnTilt
@@ -616,18 +840,28 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Z-rotation change event
+    /// <para>
+    ///
+    /// Sent whenever the z-rotation axis on the tool changes. The
+    /// rotation value is in degrees clockwise from the tool's
+    /// logical neutral position.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RotationHandler(WlFixed degrees);
 
     private RotationHandler? _onRotation;
 
     /// <summary>
-    ///Z-rotation change event
+    /// Z-rotation change event
     /// <para>
     ///
-    ///Sent whenever the z-rotation axis on the tool changes. The
-    ///rotation value is in degrees clockwise from the tool's
-    ///logical neutral position.
-    ///
+    /// Sent whenever the z-rotation axis on the tool changes. The
+    /// rotation value is in degrees clockwise from the tool's
+    /// logical neutral position.
+    /// 
     /// </para>
     /// </summary>
     public event RotationHandler? OnRotation
@@ -645,20 +879,32 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Slider position change event
+    /// <para>
+    ///
+    /// Sent whenever the slider position on the tool changes. The
+    /// value is normalized between -65535 and 65535, with 0 as the logical
+    /// neutral position of the slider.
+    ///
+    /// The slider is available on e.g. the Wacom Airbrush tool.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SliderHandler(int position);
 
     private SliderHandler? _onSlider;
 
     /// <summary>
-    ///Slider position change event
+    /// Slider position change event
     /// <para>
     ///
-    ///Sent whenever the slider position on the tool changes. The
-    ///value is normalized between -65535 and 65535, with 0 as the logical
-    ///neutral position of the slider.
+    /// Sent whenever the slider position on the tool changes. The
+    /// value is normalized between -65535 and 65535, with 0 as the logical
+    /// neutral position of the slider.
     ///
-    ///The slider is available on e.g. the Wacom Airbrush tool.
-    ///
+    /// The slider is available on e.g. the Wacom Airbrush tool.
+    /// 
     /// </para>
     /// </summary>
     public event SliderHandler? OnSlider
@@ -676,27 +922,46 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Wheel delta event
+    /// <para>
+    ///
+    /// Sent whenever the wheel on the tool emits an event. This event
+    /// contains two values for the same axis change. The degrees value is
+    /// in the same orientation as the wl_pointer.vertical_scroll axis. The
+    /// clicks value is in discrete logical clicks of the mouse wheel. This
+    /// value may be zero if the movement of the wheel was less
+    /// than one logical click.
+    ///
+    /// Clients should choose either value and avoid mixing degrees and
+    /// clicks. The compositor may accumulate values smaller than a logical
+    /// click and emulate click events when a certain threshold is met.
+    /// Thus, zwp_tablet_tool_v2.wheel events with non-zero clicks values may
+    /// have different degrees values.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void WheelHandler(WlFixed degrees, int clicks);
 
     private WheelHandler? _onWheel;
 
     /// <summary>
-    ///Wheel delta event
+    /// Wheel delta event
     /// <para>
     ///
-    ///Sent whenever the wheel on the tool emits an event. This event
-    ///contains two values for the same axis change. The degrees value is
-    ///in the same orientation as the wl_pointer.vertical_scroll axis. The
-    ///clicks value is in discrete logical clicks of the mouse wheel. This
-    ///value may be zero if the movement of the wheel was less
-    ///than one logical click.
+    /// Sent whenever the wheel on the tool emits an event. This event
+    /// contains two values for the same axis change. The degrees value is
+    /// in the same orientation as the wl_pointer.vertical_scroll axis. The
+    /// clicks value is in discrete logical clicks of the mouse wheel. This
+    /// value may be zero if the movement of the wheel was less
+    /// than one logical click.
     ///
-    ///Clients should choose either value and avoid mixing degrees and
-    ///clicks. The compositor may accumulate values smaller than a logical
-    ///click and emulate click events when a certain threshold is met.
-    ///Thus, zwp_tablet_tool_v2.wheel events with non-zero clicks values may
-    ///have different degrees values.
-    ///
+    /// Clients should choose either value and avoid mixing degrees and
+    /// clicks. The compositor may accumulate values smaller than a logical
+    /// click and emulate click events when a certain threshold is met.
+    /// Thus, zwp_tablet_tool_v2.wheel events with non-zero clicks values may
+    /// have different degrees values.
+    /// 
     /// </para>
     /// </summary>
     public event WheelHandler? OnWheel
@@ -714,21 +979,34 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Button event
+    /// <para>
+    ///
+    /// Sent whenever a button on the tool is pressed or released.
+    ///
+    /// If a button is held down when the tool moves in or out of proximity,
+    /// button events are generated by the compositor. See
+    /// zwp_tablet_tool_v2.proximity_in and zwp_tablet_tool_v2.proximity_out for
+    /// details.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ButtonHandler(uint serial, uint button, uint state);
 
     private ButtonHandler? _onButton;
 
     /// <summary>
-    ///Button event
+    /// Button event
     /// <para>
     ///
-    ///Sent whenever a button on the tool is pressed or released.
+    /// Sent whenever a button on the tool is pressed or released.
     ///
-    ///If a button is held down when the tool moves in or out of proximity,
-    ///button events are generated by the compositor. See
-    ///zwp_tablet_tool_v2.proximity_in and zwp_tablet_tool_v2.proximity_out for
-    ///details.
-    ///
+    /// If a button is held down when the tool moves in or out of proximity,
+    /// button events are generated by the compositor. See
+    /// zwp_tablet_tool_v2.proximity_in and zwp_tablet_tool_v2.proximity_out for
+    /// details.
+    /// 
     /// </para>
     /// </summary>
     public event ButtonHandler? OnButton
@@ -746,19 +1024,30 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// Frame event
+    /// <para>
+    ///
+    /// Marks the end of a series of axis and/or button updates from the
+    /// tablet. The Wayland protocol requires axis updates to be sent
+    /// sequentially, however all events within a frame should be considered
+    /// one hardware event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FrameHandler(uint time);
 
     private FrameHandler? _onFrame;
 
     /// <summary>
-    ///Frame event
+    /// Frame event
     /// <para>
     ///
-    ///Marks the end of a series of axis and/or button updates from the
-    ///tablet. The Wayland protocol requires axis updates to be sent
-    ///sequentially, however all events within a frame should be considered
-    ///one hardware event.
-    ///
+    /// Marks the end of a series of axis and/or button updates from the
+    /// tablet. The Wayland protocol requires axis updates to be sent
+    /// sequentially, however all events within a frame should be considered
+    /// one hardware event.
+    /// 
     /// </para>
     /// </summary>
     public event FrameHandler? OnFrame
@@ -1052,6 +1341,10 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         disposed = true;
     }
 
+    /// <summary> Creates a ZwpTabletToolV2 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwpTabletToolV2 instance.</returns>
     public static ZwpTabletToolV2 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

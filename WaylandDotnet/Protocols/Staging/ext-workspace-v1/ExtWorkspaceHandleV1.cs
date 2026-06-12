@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Staging;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ExtWorkspaceHandleV1 : WaylandObject, IWaylandObjectFactory<ExtWorkspaceHandleV1>
 {
+    /// <summary> Wayland interface name for ext_workspace_handle_v1. </summary>
     public const string InterfaceName = "ext_workspace_handle_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "ext_workspace_handle_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class ExtWorkspaceHandleV1 : WaylandObject, IWaylandObject
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing ext_workspace_handle_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ExtWorkspaceHandleV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -86,28 +94,48 @@ public sealed partial class ExtWorkspaceHandleV1 : WaylandObject, IWaylandObject
         Assign = 8,
     }
 
+    /// <summary>
+    /// Workspace id
+    /// <para>
+    ///
+    /// If this event is emitted, it will be send immediately after the
+    /// ext_workspace_handle_v1 is created or when an id is assigned to
+    /// a workspace (at most once during its lifetime).
+    ///
+    /// An id will never change during the lifetime of the `ext_workspace_handle_v1`
+    /// and is guaranteed to be unique during its lifetime.
+    ///
+    /// Ids are not human-readable and shouldn't be displayed, use `name` for that purpose.
+    ///
+    /// Compositors are expected to only send ids for workspaces likely stable across multiple
+    /// sessions and can be used by clients to store preferences for workspaces. Workspaces without
+    /// ids should be considered temporary and any data associated with them should be deleted once
+    /// the respective object is lost.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void IdHandler(string id);
 
     private IdHandler? _onId;
 
     /// <summary>
-    ///Workspace id
+    /// Workspace id
     /// <para>
     ///
-    ///If this event is emitted, it will be send immediately after the
-    ///ext_workspace_handle_v1 is created or when an id is assigned to
-    ///a workspace (at most once during its lifetime).
+    /// If this event is emitted, it will be send immediately after the
+    /// ext_workspace_handle_v1 is created or when an id is assigned to
+    /// a workspace (at most once during its lifetime).
     ///
-    ///An id will never change during the lifetime of the `ext_workspace_handle_v1`
-    ///and is guaranteed to be unique during its lifetime.
+    /// An id will never change during the lifetime of the `ext_workspace_handle_v1`
+    /// and is guaranteed to be unique during its lifetime.
     ///
-    ///Ids are not human-readable and shouldn't be displayed, use `name` for that purpose.
+    /// Ids are not human-readable and shouldn't be displayed, use `name` for that purpose.
     ///
-    ///Compositors are expected to only send ids for workspaces likely stable across multiple
-    ///sessions and can be used by clients to store preferences for workspaces. Workspaces without
-    ///ids should be considered temporary and any data associated with them should be deleted once
-    ///the respective object is lost.
-    ///
+    /// Compositors are expected to only send ids for workspaces likely stable across multiple
+    /// sessions and can be used by clients to store preferences for workspaces. Workspaces without
+    /// ids should be considered temporary and any data associated with them should be deleted once
+    /// the respective object is lost.
+    /// 
     /// </para>
     /// </summary>
     public event IdHandler? OnId
@@ -125,20 +153,32 @@ public sealed partial class ExtWorkspaceHandleV1 : WaylandObject, IWaylandObject
         }
     }
 
+    /// <summary>
+    /// Workspace name changed
+    /// <para>
+    ///
+    /// This event is emitted immediately after the ext_workspace_handle_v1 is
+    /// created and whenever the name of the workspace changes.
+    ///
+    /// A name is meant to be human-readable and can be displayed to a user.
+    /// Unlike the id it is neither stable nor unique.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void NameHandler(string name);
 
     private NameHandler? _onName;
 
     /// <summary>
-    ///Workspace name changed
+    /// Workspace name changed
     /// <para>
     ///
-    ///This event is emitted immediately after the ext_workspace_handle_v1 is
-    ///created and whenever the name of the workspace changes.
+    /// This event is emitted immediately after the ext_workspace_handle_v1 is
+    /// created and whenever the name of the workspace changes.
     ///
-    ///A name is meant to be human-readable and can be displayed to a user.
-    ///Unlike the id it is neither stable nor unique.
-    ///
+    /// A name is meant to be human-readable and can be displayed to a user.
+    /// Unlike the id it is neither stable nor unique.
+    /// 
     /// </para>
     /// </summary>
     public event NameHandler? OnName
@@ -156,33 +196,58 @@ public sealed partial class ExtWorkspaceHandleV1 : WaylandObject, IWaylandObject
         }
     }
 
+    /// <summary>
+    /// Workspace coordinates changed
+    /// <para>
+    ///
+    /// This event is used to organize workspaces into an N-dimensional grid
+    /// within a workspace group, and if supported, is emitted immediately after
+    /// the ext_workspace_handle_v1 is created and whenever the coordinates of
+    /// the workspace change. Compositors may not send this event if they do not
+    /// conceptually arrange workspaces in this way. If compositors simply
+    /// number workspaces, without any geometric interpretation, they may send
+    /// 1D coordinates, which clients should not interpret as implying any
+    /// geometry. Sending an empty array means that the compositor no longer
+    /// orders the workspace geometrically.
+    ///
+    /// Coordinates have an arbitrary number of dimensions N with an uint32
+    /// position along each dimension. By convention if N > 1, the first
+    /// dimension is X, the second Y, the third Z, and so on. The compositor may
+    /// chose to utilize these events for a more novel workspace layout
+    /// convention, however. No guarantee is made about the grid being filled or
+    /// bounded; there may be a workspace at coordinate 1 and another at
+    /// coordinate 1000 and none in between. Within a workspace group, however,
+    /// workspaces must have unique coordinates of equal dimensionality.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CoordinatesHandler(byte[] coordinates);
 
     private CoordinatesHandler? _onCoordinates;
 
     /// <summary>
-    ///Workspace coordinates changed
+    /// Workspace coordinates changed
     /// <para>
     ///
-    ///This event is used to organize workspaces into an N-dimensional grid
-    ///within a workspace group, and if supported, is emitted immediately after
-    ///the ext_workspace_handle_v1 is created and whenever the coordinates of
-    ///the workspace change. Compositors may not send this event if they do not
-    ///conceptually arrange workspaces in this way. If compositors simply
-    ///number workspaces, without any geometric interpretation, they may send
-    ///1D coordinates, which clients should not interpret as implying any
-    ///geometry. Sending an empty array means that the compositor no longer
-    ///orders the workspace geometrically.
+    /// This event is used to organize workspaces into an N-dimensional grid
+    /// within a workspace group, and if supported, is emitted immediately after
+    /// the ext_workspace_handle_v1 is created and whenever the coordinates of
+    /// the workspace change. Compositors may not send this event if they do not
+    /// conceptually arrange workspaces in this way. If compositors simply
+    /// number workspaces, without any geometric interpretation, they may send
+    /// 1D coordinates, which clients should not interpret as implying any
+    /// geometry. Sending an empty array means that the compositor no longer
+    /// orders the workspace geometrically.
     ///
-    ///Coordinates have an arbitrary number of dimensions N with an uint32
-    ///position along each dimension. By convention if N > 1, the first
-    ///dimension is X, the second Y, the third Z, and so on. The compositor may
-    ///chose to utilize these events for a more novel workspace layout
-    ///convention, however. No guarantee is made about the grid being filled or
-    ///bounded; there may be a workspace at coordinate 1 and another at
-    ///coordinate 1000 and none in between. Within a workspace group, however,
-    ///workspaces must have unique coordinates of equal dimensionality.
-    ///
+    /// Coordinates have an arbitrary number of dimensions N with an uint32
+    /// position along each dimension. By convention if N > 1, the first
+    /// dimension is X, the second Y, the third Z, and so on. The compositor may
+    /// chose to utilize these events for a more novel workspace layout
+    /// convention, however. No guarantee is made about the grid being filled or
+    /// bounded; there may be a workspace at coordinate 1 and another at
+    /// coordinate 1000 and none in between. Within a workspace group, however,
+    /// workspaces must have unique coordinates of equal dimensionality.
+    /// 
     /// </para>
     /// </summary>
     public event CoordinatesHandler? OnCoordinates
@@ -200,21 +265,34 @@ public sealed partial class ExtWorkspaceHandleV1 : WaylandObject, IWaylandObject
         }
     }
 
+    /// <summary>
+    /// The state of the workspace changed
+    /// <para>
+    ///
+    /// This event is emitted immediately after the ext_workspace_handle_v1 is
+    /// created and each time the workspace state changes, either because of a
+    /// compositor action or because of a request in this protocol.
+    ///
+    /// Missing states convey the opposite meaning, e.g. an unset active bit
+    /// means the workspace is currently inactive.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void StateHandler(uint state);
 
     private StateHandler? _onState;
 
     /// <summary>
-    ///The state of the workspace changed
+    /// The state of the workspace changed
     /// <para>
     ///
-    ///This event is emitted immediately after the ext_workspace_handle_v1 is
-    ///created and each time the workspace state changes, either because of a
-    ///compositor action or because of a request in this protocol.
+    /// This event is emitted immediately after the ext_workspace_handle_v1 is
+    /// created and each time the workspace state changes, either because of a
+    /// compositor action or because of a request in this protocol.
     ///
-    ///Missing states convey the opposite meaning, e.g. an unset active bit
-    ///means the workspace is currently inactive.
-    ///
+    /// Missing states convey the opposite meaning, e.g. an unset active bit
+    /// means the workspace is currently inactive.
+    /// 
     /// </para>
     /// </summary>
     public event StateHandler? OnState
@@ -232,28 +310,48 @@ public sealed partial class ExtWorkspaceHandleV1 : WaylandObject, IWaylandObject
         }
     }
 
+    /// <summary>
+    /// Compositor capabilities
+    /// <para>
+    ///
+    /// This event advertises the capabilities supported by the compositor. If
+    /// a capability isn't supported, clients should hide or disable the UI
+    /// elements that expose this functionality. For instance, if the
+    /// compositor doesn't advertise support for removing workspaces, a button
+    /// triggering the remove request should not be displayed.
+    ///
+    /// The compositor will ignore requests it doesn't support. For instance,
+    /// a compositor which doesn't advertise support for remove will ignore
+    /// remove requests.
+    ///
+    /// Compositors must send this event once after creation of an
+    /// ext_workspace_handle_v1 . When the capabilities change, compositors
+    /// must send this event again.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CapabilitiesHandler(uint capabilities);
 
     private CapabilitiesHandler? _onCapabilities;
 
     /// <summary>
-    ///Compositor capabilities
+    /// Compositor capabilities
     /// <para>
     ///
-    ///This event advertises the capabilities supported by the compositor. If
-    ///a capability isn't supported, clients should hide or disable the UI
-    ///elements that expose this functionality. For instance, if the
-    ///compositor doesn't advertise support for removing workspaces, a button
-    ///triggering the remove request should not be displayed.
+    /// This event advertises the capabilities supported by the compositor. If
+    /// a capability isn't supported, clients should hide or disable the UI
+    /// elements that expose this functionality. For instance, if the
+    /// compositor doesn't advertise support for removing workspaces, a button
+    /// triggering the remove request should not be displayed.
     ///
-    ///The compositor will ignore requests it doesn't support. For instance,
-    ///a compositor which doesn't advertise support for remove will ignore
-    ///remove requests.
+    /// The compositor will ignore requests it doesn't support. For instance,
+    /// a compositor which doesn't advertise support for remove will ignore
+    /// remove requests.
     ///
-    ///Compositors must send this event once after creation of an
-    ///ext_workspace_handle_v1 . When the capabilities change, compositors
-    ///must send this event again.
-    ///
+    /// Compositors must send this event once after creation of an
+    /// ext_workspace_handle_v1 . When the capabilities change, compositors
+    /// must send this event again.
+    /// 
     /// </para>
     /// </summary>
     public event CapabilitiesHandler? OnCapabilities
@@ -271,24 +369,40 @@ public sealed partial class ExtWorkspaceHandleV1 : WaylandObject, IWaylandObject
         }
     }
 
+    /// <summary>
+    /// This workspace has been removed
+    /// <para>
+    ///
+    /// This event is send when the workspace associated with the ext_workspace_handle_v1
+    /// has been removed. After sending this request, the compositor will immediately consider
+    /// the object inert. Any requests will be ignored except the destroy request.
+    ///
+    /// It is guaranteed there won't be any more events referencing this
+    /// ext_workspace_handle_v1.
+    ///
+    /// The compositor must only remove a workspaces not currently belonging to any
+    /// workspace_group.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RemovedHandler();
 
     private RemovedHandler? _onRemoved;
 
     /// <summary>
-    ///This workspace has been removed
+    /// This workspace has been removed
     /// <para>
     ///
-    ///This event is send when the workspace associated with the ext_workspace_handle_v1
-    ///has been removed. After sending this request, the compositor will immediately consider
-    ///the object inert. Any requests will be ignored except the destroy request.
+    /// This event is send when the workspace associated with the ext_workspace_handle_v1
+    /// has been removed. After sending this request, the compositor will immediately consider
+    /// the object inert. Any requests will be ignored except the destroy request.
     ///
-    ///It is guaranteed there won't be any more events referencing this
-    ///ext_workspace_handle_v1.
+    /// It is guaranteed there won't be any more events referencing this
+    /// ext_workspace_handle_v1.
     ///
-    ///The compositor must only remove a workspaces not currently belonging to any
-    ///workspace_group.
-    ///
+    /// The compositor must only remove a workspaces not currently belonging to any
+    /// workspace_group.
+    /// 
     /// </para>
     /// </summary>
     public event RemovedHandler? OnRemoved
@@ -542,6 +656,10 @@ public sealed partial class ExtWorkspaceHandleV1 : WaylandObject, IWaylandObject
         );
     }
 
+    /// <summary> Creates a ExtWorkspaceHandleV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ExtWorkspaceHandleV1 instance.</returns>
     public static ExtWorkspaceHandleV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

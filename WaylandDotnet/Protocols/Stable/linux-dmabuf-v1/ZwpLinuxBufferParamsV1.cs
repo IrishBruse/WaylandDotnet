@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObjectFactory<ZwpLinuxBufferParamsV1>
 {
+    /// <summary> Wayland interface name for zwp_linux_buffer_params_v1. </summary>
     public const string InterfaceName = "zwp_linux_buffer_params_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwp_linux_buffer_params_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 6;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwp_linux_buffer_params_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwpLinuxBufferParamsV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -105,20 +113,32 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
         BottomFirst = 4,
     }
 
+    /// <summary>
+    /// Buffer creation succeeded
+    /// <para>
+    ///
+    /// This event indicates that the attempted buffer creation was
+    /// successful. It provides the new wl_buffer referencing the dmabuf(s).
+    ///
+    /// Upon receiving this event, the client should destroy the
+    /// zwp_linux_buffer_params_v1 object.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CreatedHandler(WlBuffer buffer);
 
     private CreatedHandler? _onCreated;
 
     /// <summary>
-    ///Buffer creation succeeded
+    /// Buffer creation succeeded
     /// <para>
     ///
-    ///This event indicates that the attempted buffer creation was
-    ///successful. It provides the new wl_buffer referencing the dmabuf(s).
+    /// This event indicates that the attempted buffer creation was
+    /// successful. It provides the new wl_buffer referencing the dmabuf(s).
     ///
-    ///Upon receiving this event, the client should destroy the
-    ///zwp_linux_buffer_params_v1 object.
-    ///
+    /// Upon receiving this event, the client should destroy the
+    /// zwp_linux_buffer_params_v1 object.
+    /// 
     /// </para>
     /// </summary>
     public event CreatedHandler? OnCreated
@@ -136,21 +156,34 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
         }
     }
 
+    /// <summary>
+    /// Buffer creation failed
+    /// <para>
+    ///
+    /// This event indicates that the attempted buffer creation has
+    /// failed. It usually means that one of the dmabuf constraints
+    /// has not been fulfilled.
+    ///
+    /// Upon receiving this event, the client should destroy the
+    /// zwp_linux_buffer_params_v1 object.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FailedHandler();
 
     private FailedHandler? _onFailed;
 
     /// <summary>
-    ///Buffer creation failed
+    /// Buffer creation failed
     /// <para>
     ///
-    ///This event indicates that the attempted buffer creation has
-    ///failed. It usually means that one of the dmabuf constraints
-    ///has not been fulfilled.
+    /// This event indicates that the attempted buffer creation has
+    /// failed. It usually means that one of the dmabuf constraints
+    /// has not been fulfilled.
     ///
-    ///Upon receiving this event, the client should destroy the
-    ///zwp_linux_buffer_params_v1 object.
-    ///
+    /// Upon receiving this event, the client should destroy the
+    /// zwp_linux_buffer_params_v1 object.
+    /// 
     /// </para>
     /// </summary>
     public event FailedHandler? OnFailed
@@ -491,6 +524,10 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
         );
     }
 
+    /// <summary> Creates a ZwpLinuxBufferParamsV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwpLinuxBufferParamsV1 instance.</returns>
     public static ZwpLinuxBufferParamsV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

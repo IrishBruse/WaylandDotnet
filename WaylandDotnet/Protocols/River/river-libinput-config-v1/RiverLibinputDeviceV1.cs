@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjectFactory<RiverLibinputDeviceV1>
 {
+    /// <summary> Wayland interface name for river_libinput_device_v1. </summary>
     public const string InterfaceName = "river_libinput_device_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_libinput_device_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_libinput_device_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverLibinputDeviceV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -358,21 +366,34 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         Enabled = 1,
     }
 
+    /// <summary>
+    /// The libinput device is removed
+    /// <para>
+    ///
+    /// This event indicates that the libinput device has been removed.
+    ///
+    /// The server will send no further events on this object and ignore any
+    /// request (other than river_libinput_device_v1.destroy) made after this
+    /// event is sent. The client should destroy this object with the
+    /// river_libinput_device_v1.destroy request to free up resources.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RemovedHandler();
 
     private RemovedHandler? _onRemoved;
 
     /// <summary>
-    ///The libinput device is removed
+    /// The libinput device is removed
     /// <para>
     ///
-    ///This event indicates that the libinput device has been removed.
+    /// This event indicates that the libinput device has been removed.
     ///
-    ///The server will send no further events on this object and ignore any
-    ///request (other than river_libinput_device_v1.destroy) made after this
-    ///event is sent. The client should destroy this object with the
-    ///river_libinput_device_v1.destroy request to free up resources.
-    ///
+    /// The server will send no further events on this object and ignore any
+    /// request (other than river_libinput_device_v1.destroy) made after this
+    /// event is sent. The client should destroy this object with the
+    /// river_libinput_device_v1.destroy request to free up resources.
+    /// 
     /// </para>
     /// </summary>
     public event RemovedHandler? OnRemoved
@@ -390,18 +411,28 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Corresponding river input device
+    /// <para>
+    ///
+    /// The river_input_device_v1 corresponding to this libinput device.
+    /// This event will always be the first event sent on the
+    /// river_libinput_device_v1 object, and it will be sent exactly once.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void InputDeviceHandler(RiverInputDeviceV1 device);
 
     private InputDeviceHandler? _onInputDevice;
 
     /// <summary>
-    ///Corresponding river input device
+    /// Corresponding river input device
     /// <para>
     ///
-    ///The river_input_device_v1 corresponding to this libinput device.
-    ///This event will always be the first event sent on the
-    ///river_libinput_device_v1 object, and it will be sent exactly once.
-    ///
+    /// The river_input_device_v1 corresponding to this libinput device.
+    /// This event will always be the first event sent on the
+    /// river_libinput_device_v1 object, and it will be sent exactly once.
+    /// 
     /// </para>
     /// </summary>
     public event InputDeviceHandler? OnInputDevice
@@ -419,16 +450,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Supported send events modes
+    /// <para>
+    ///
+    /// Supported send events modes.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SendEventsSupportHandler(uint modes);
 
     private SendEventsSupportHandler? _onSendEventsSupport;
 
     /// <summary>
-    ///Supported send events modes
+    /// Supported send events modes
     /// <para>
     ///
-    ///Supported send events modes.
-    ///
+    /// Supported send events modes.
+    /// 
     /// </para>
     /// </summary>
     public event SendEventsSupportHandler? OnSendEventsSupport
@@ -446,16 +485,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default send events mode
+    /// <para>
+    ///
+    /// Default send events mode.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SendEventsDefaultHandler(uint mode);
 
     private SendEventsDefaultHandler? _onSendEventsDefault;
 
     /// <summary>
-    ///Default send events mode
+    /// Default send events mode
     /// <para>
     ///
-    ///Default send events mode.
-    ///
+    /// Default send events mode.
+    /// 
     /// </para>
     /// </summary>
     public event SendEventsDefaultHandler? OnSendEventsDefault
@@ -473,16 +520,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current send events mode
+    /// <para>
+    ///
+    /// Current send events mode.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SendEventsCurrentHandler(uint mode);
 
     private SendEventsCurrentHandler? _onSendEventsCurrent;
 
     /// <summary>
-    ///Current send events mode
+    /// Current send events mode
     /// <para>
     ///
-    ///Current send events mode.
-    ///
+    /// Current send events mode.
+    /// 
     /// </para>
     /// </summary>
     public event SendEventsCurrentHandler? OnSendEventsCurrent
@@ -500,17 +555,26 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Tap-to-click/drag support
+    /// <para>
+    ///
+    /// The number of fingers supported for tap-to-click/drag.
+    /// If finger_count is 0, tap-to-click and drag are unsupported.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TapSupportHandler(int fingerCount);
 
     private TapSupportHandler? _onTapSupport;
 
     /// <summary>
-    ///Tap-to-click/drag support
+    /// Tap-to-click/drag support
     /// <para>
     ///
-    ///The number of fingers supported for tap-to-click/drag.
-    ///If finger_count is 0, tap-to-click and drag are unsupported.
-    ///
+    /// The number of fingers supported for tap-to-click/drag.
+    /// If finger_count is 0, tap-to-click and drag are unsupported.
+    /// 
     /// </para>
     /// </summary>
     public event TapSupportHandler? OnTapSupport
@@ -528,16 +592,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default tap-to-click state
+    /// <para>
+    ///
+    /// Default tap-to-click state.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TapDefaultHandler(uint state);
 
     private TapDefaultHandler? _onTapDefault;
 
     /// <summary>
-    ///Default tap-to-click state
+    /// Default tap-to-click state
     /// <para>
     ///
-    ///Default tap-to-click state.
-    ///
+    /// Default tap-to-click state.
+    /// 
     /// </para>
     /// </summary>
     public event TapDefaultHandler? OnTapDefault
@@ -555,16 +627,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current tap-to-click state
+    /// <para>
+    ///
+    /// Current tap-to-click state.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TapCurrentHandler(uint state);
 
     private TapCurrentHandler? _onTapCurrent;
 
     /// <summary>
-    ///Current tap-to-click state
+    /// Current tap-to-click state
     /// <para>
     ///
-    ///Current tap-to-click state.
-    ///
+    /// Current tap-to-click state.
+    /// 
     /// </para>
     /// </summary>
     public event TapCurrentHandler? OnTapCurrent
@@ -582,16 +662,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default tap-to-click button map
+    /// <para>
+    ///
+    /// Default tap-to-click button map.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TapButtonMapDefaultHandler(uint buttonMap);
 
     private TapButtonMapDefaultHandler? _onTapButtonMapDefault;
 
     /// <summary>
-    ///Default tap-to-click button map
+    /// Default tap-to-click button map
     /// <para>
     ///
-    ///Default tap-to-click button map.
-    ///
+    /// Default tap-to-click button map.
+    /// 
     /// </para>
     /// </summary>
     public event TapButtonMapDefaultHandler? OnTapButtonMapDefault
@@ -609,16 +697,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current tap-to-click button map
+    /// <para>
+    ///
+    /// Current tap-to-click button map.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TapButtonMapCurrentHandler(uint buttonMap);
 
     private TapButtonMapCurrentHandler? _onTapButtonMapCurrent;
 
     /// <summary>
-    ///Current tap-to-click button map
+    /// Current tap-to-click button map
     /// <para>
     ///
-    ///Current tap-to-click button map.
-    ///
+    /// Current tap-to-click button map.
+    /// 
     /// </para>
     /// </summary>
     public event TapButtonMapCurrentHandler? OnTapButtonMapCurrent
@@ -636,16 +732,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default tap-and-drag state
+    /// <para>
+    ///
+    /// Default tap-and-drag state.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DragDefaultHandler(uint state);
 
     private DragDefaultHandler? _onDragDefault;
 
     /// <summary>
-    ///Default tap-and-drag state
+    /// Default tap-and-drag state
     /// <para>
     ///
-    ///Default tap-and-drag state.
-    ///
+    /// Default tap-and-drag state.
+    /// 
     /// </para>
     /// </summary>
     public event DragDefaultHandler? OnDragDefault
@@ -663,16 +767,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current tap-and-drag state
+    /// <para>
+    ///
+    /// Current tap-and-drag state.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DragCurrentHandler(uint state);
 
     private DragCurrentHandler? _onDragCurrent;
 
     /// <summary>
-    ///Current tap-and-drag state
+    /// Current tap-and-drag state
     /// <para>
     ///
-    ///Current tap-and-drag state.
-    ///
+    /// Current tap-and-drag state.
+    /// 
     /// </para>
     /// </summary>
     public event DragCurrentHandler? OnDragCurrent
@@ -690,16 +802,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default drag lock state
+    /// <para>
+    ///
+    /// Default drag lock state.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DragLockDefaultHandler(uint state);
 
     private DragLockDefaultHandler? _onDragLockDefault;
 
     /// <summary>
-    ///Default drag lock state
+    /// Default drag lock state
     /// <para>
     ///
-    ///Default drag lock state.
-    ///
+    /// Default drag lock state.
+    /// 
     /// </para>
     /// </summary>
     public event DragLockDefaultHandler? OnDragLockDefault
@@ -717,16 +837,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current drag lock state
+    /// <para>
+    ///
+    /// Current drag lock state.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DragLockCurrentHandler(uint state);
 
     private DragLockCurrentHandler? _onDragLockCurrent;
 
     /// <summary>
-    ///Current drag lock state
+    /// Current drag lock state
     /// <para>
     ///
-    ///Current drag lock state.
-    ///
+    /// Current drag lock state.
+    /// 
     /// </para>
     /// </summary>
     public event DragLockCurrentHandler? OnDragLockCurrent
@@ -744,17 +872,26 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Three finger drag support
+    /// <para>
+    ///
+    /// The number of fingers supported for three/four finger drag.
+    /// If finger_count is less than 3, three finger drag is unsupported.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ThreeFingerDragSupportHandler(int fingerCount);
 
     private ThreeFingerDragSupportHandler? _onThreeFingerDragSupport;
 
     /// <summary>
-    ///Three finger drag support
+    /// Three finger drag support
     /// <para>
     ///
-    ///The number of fingers supported for three/four finger drag.
-    ///If finger_count is less than 3, three finger drag is unsupported.
-    ///
+    /// The number of fingers supported for three/four finger drag.
+    /// If finger_count is less than 3, three finger drag is unsupported.
+    /// 
     /// </para>
     /// </summary>
     public event ThreeFingerDragSupportHandler? OnThreeFingerDragSupport
@@ -772,16 +909,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default three finger drag state
+    /// <para>
+    ///
+    /// Default three finger drag state.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ThreeFingerDragDefaultHandler(uint state);
 
     private ThreeFingerDragDefaultHandler? _onThreeFingerDragDefault;
 
     /// <summary>
-    ///Default three finger drag state
+    /// Default three finger drag state
     /// <para>
     ///
-    ///Default three finger drag state.
-    ///
+    /// Default three finger drag state.
+    /// 
     /// </para>
     /// </summary>
     public event ThreeFingerDragDefaultHandler? OnThreeFingerDragDefault
@@ -799,16 +944,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current three finger drag state
+    /// <para>
+    ///
+    /// Current three finger drag state.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ThreeFingerDragCurrentHandler(uint state);
 
     private ThreeFingerDragCurrentHandler? _onThreeFingerDragCurrent;
 
     /// <summary>
-    ///Current three finger drag state
+    /// Current three finger drag state
     /// <para>
     ///
-    ///Current three finger drag state.
-    ///
+    /// Current three finger drag state.
+    /// 
     /// </para>
     /// </summary>
     public event ThreeFingerDragCurrentHandler? OnThreeFingerDragCurrent
@@ -826,16 +979,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Support for a calibration matrix
+    /// <para>
+    ///
+    /// A calibration matrix is supported if the supported argument is non-zero.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CalibrationMatrixSupportHandler(int supported);
 
     private CalibrationMatrixSupportHandler? _onCalibrationMatrixSupport;
 
     /// <summary>
-    ///Support for a calibration matrix
+    /// Support for a calibration matrix
     /// <para>
     ///
-    ///A calibration matrix is supported if the supported argument is non-zero.
-    ///
+    /// A calibration matrix is supported if the supported argument is non-zero.
+    /// 
     /// </para>
     /// </summary>
     public event CalibrationMatrixSupportHandler? OnCalibrationMatrixSupport
@@ -853,16 +1014,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default calibration matrix
+    /// <para>
+    ///
+    /// Default calibration matrix.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CalibrationMatrixDefaultHandler(byte[] matrix);
 
     private CalibrationMatrixDefaultHandler? _onCalibrationMatrixDefault;
 
     /// <summary>
-    ///Default calibration matrix
+    /// Default calibration matrix
     /// <para>
     ///
-    ///Default calibration matrix.
-    ///
+    /// Default calibration matrix.
+    /// 
     /// </para>
     /// </summary>
     public event CalibrationMatrixDefaultHandler? OnCalibrationMatrixDefault
@@ -880,16 +1049,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current calibration matrix
+    /// <para>
+    ///
+    /// Current calibration matrix.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CalibrationMatrixCurrentHandler(byte[] matrix);
 
     private CalibrationMatrixCurrentHandler? _onCalibrationMatrixCurrent;
 
     /// <summary>
-    ///Current calibration matrix
+    /// Current calibration matrix
     /// <para>
     ///
-    ///Current calibration matrix.
-    ///
+    /// Current calibration matrix.
+    /// 
     /// </para>
     /// </summary>
     public event CalibrationMatrixCurrentHandler? OnCalibrationMatrixCurrent
@@ -907,16 +1084,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Supported acceleration profiles
+    /// <para>
+    ///
+    /// Supported acceleration profiles.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AccelProfilesSupportHandler(uint profiles);
 
     private AccelProfilesSupportHandler? _onAccelProfilesSupport;
 
     /// <summary>
-    ///Supported acceleration profiles
+    /// Supported acceleration profiles
     /// <para>
     ///
-    ///Supported acceleration profiles.
-    ///
+    /// Supported acceleration profiles.
+    /// 
     /// </para>
     /// </summary>
     public event AccelProfilesSupportHandler? OnAccelProfilesSupport
@@ -934,16 +1119,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default acceleration profile
+    /// <para>
+    ///
+    /// Default acceleration profile.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AccelProfileDefaultHandler(uint profile);
 
     private AccelProfileDefaultHandler? _onAccelProfileDefault;
 
     /// <summary>
-    ///Default acceleration profile
+    /// Default acceleration profile
     /// <para>
     ///
-    ///Default acceleration profile.
-    ///
+    /// Default acceleration profile.
+    /// 
     /// </para>
     /// </summary>
     public event AccelProfileDefaultHandler? OnAccelProfileDefault
@@ -961,16 +1154,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current acceleration profile
+    /// <para>
+    ///
+    /// Current acceleration profile.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AccelProfileCurrentHandler(uint profile);
 
     private AccelProfileCurrentHandler? _onAccelProfileCurrent;
 
     /// <summary>
-    ///Current acceleration profile
+    /// Current acceleration profile
     /// <para>
     ///
-    ///Current acceleration profile.
-    ///
+    /// Current acceleration profile.
+    /// 
     /// </para>
     /// </summary>
     public event AccelProfileCurrentHandler? OnAccelProfileCurrent
@@ -988,16 +1189,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default acceleration speed
+    /// <para>
+    ///
+    /// Default acceleration speed.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AccelSpeedDefaultHandler(byte[] speed);
 
     private AccelSpeedDefaultHandler? _onAccelSpeedDefault;
 
     /// <summary>
-    ///Default acceleration speed
+    /// Default acceleration speed
     /// <para>
     ///
-    ///Default acceleration speed.
-    ///
+    /// Default acceleration speed.
+    /// 
     /// </para>
     /// </summary>
     public event AccelSpeedDefaultHandler? OnAccelSpeedDefault
@@ -1015,16 +1224,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current acceleration speed
+    /// <para>
+    ///
+    /// Current acceleration speed.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AccelSpeedCurrentHandler(byte[] speed);
 
     private AccelSpeedCurrentHandler? _onAccelSpeedCurrent;
 
     /// <summary>
-    ///Current acceleration speed
+    /// Current acceleration speed
     /// <para>
     ///
-    ///Current acceleration speed.
-    ///
+    /// Current acceleration speed.
+    /// 
     /// </para>
     /// </summary>
     public event AccelSpeedCurrentHandler? OnAccelSpeedCurrent
@@ -1042,16 +1259,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Support for natural scroll
+    /// <para>
+    ///
+    /// Natural scroll is supported if the supported argument is non-zero.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void NaturalScrollSupportHandler(int supported);
 
     private NaturalScrollSupportHandler? _onNaturalScrollSupport;
 
     /// <summary>
-    ///Support for natural scroll
+    /// Support for natural scroll
     /// <para>
     ///
-    ///Natural scroll is supported if the supported argument is non-zero.
-    ///
+    /// Natural scroll is supported if the supported argument is non-zero.
+    /// 
     /// </para>
     /// </summary>
     public event NaturalScrollSupportHandler? OnNaturalScrollSupport
@@ -1069,16 +1294,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default natural scroll
+    /// <para>
+    ///
+    /// Default natural scroll.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void NaturalScrollDefaultHandler(uint state);
 
     private NaturalScrollDefaultHandler? _onNaturalScrollDefault;
 
     /// <summary>
-    ///Default natural scroll
+    /// Default natural scroll
     /// <para>
     ///
-    ///Default natural scroll.
-    ///
+    /// Default natural scroll.
+    /// 
     /// </para>
     /// </summary>
     public event NaturalScrollDefaultHandler? OnNaturalScrollDefault
@@ -1096,16 +1329,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current natural scroll state
+    /// <para>
+    ///
+    /// Current natural scroll.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void NaturalScrollCurrentHandler(uint state);
 
     private NaturalScrollCurrentHandler? _onNaturalScrollCurrent;
 
     /// <summary>
-    ///Current natural scroll state
+    /// Current natural scroll state
     /// <para>
     ///
-    ///Current natural scroll.
-    ///
+    /// Current natural scroll.
+    /// 
     /// </para>
     /// </summary>
     public event NaturalScrollCurrentHandler? OnNaturalScrollCurrent
@@ -1123,16 +1364,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Support for left-handed mode
+    /// <para>
+    ///
+    /// Left-handed mode is supported if the supported argument is non-zero.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void LeftHandedSupportHandler(int supported);
 
     private LeftHandedSupportHandler? _onLeftHandedSupport;
 
     /// <summary>
-    ///Support for left-handed mode
+    /// Support for left-handed mode
     /// <para>
     ///
-    ///Left-handed mode is supported if the supported argument is non-zero.
-    ///
+    /// Left-handed mode is supported if the supported argument is non-zero.
+    /// 
     /// </para>
     /// </summary>
     public event LeftHandedSupportHandler? OnLeftHandedSupport
@@ -1150,16 +1399,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default left-handed mode
+    /// <para>
+    ///
+    /// Default left-handed mode.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void LeftHandedDefaultHandler(uint state);
 
     private LeftHandedDefaultHandler? _onLeftHandedDefault;
 
     /// <summary>
-    ///Default left-handed mode
+    /// Default left-handed mode
     /// <para>
     ///
-    ///Default left-handed mode.
-    ///
+    /// Default left-handed mode.
+    /// 
     /// </para>
     /// </summary>
     public event LeftHandedDefaultHandler? OnLeftHandedDefault
@@ -1177,16 +1434,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current left-handed mode state
+    /// <para>
+    ///
+    /// Current left-handed mode.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void LeftHandedCurrentHandler(uint state);
 
     private LeftHandedCurrentHandler? _onLeftHandedCurrent;
 
     /// <summary>
-    ///Current left-handed mode state
+    /// Current left-handed mode state
     /// <para>
     ///
-    ///Current left-handed mode.
-    ///
+    /// Current left-handed mode.
+    /// 
     /// </para>
     /// </summary>
     public event LeftHandedCurrentHandler? OnLeftHandedCurrent
@@ -1204,16 +1469,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Supported click methods
+    /// <para>
+    ///
+    /// The click methods supported by the device.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ClickMethodSupportHandler(uint methods);
 
     private ClickMethodSupportHandler? _onClickMethodSupport;
 
     /// <summary>
-    ///Supported click methods
+    /// Supported click methods
     /// <para>
     ///
-    ///The click methods supported by the device.
-    ///
+    /// The click methods supported by the device.
+    /// 
     /// </para>
     /// </summary>
     public event ClickMethodSupportHandler? OnClickMethodSupport
@@ -1231,16 +1504,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default click method
+    /// <para>
+    ///
+    /// Default click method.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ClickMethodDefaultHandler(uint method);
 
     private ClickMethodDefaultHandler? _onClickMethodDefault;
 
     /// <summary>
-    ///Default click method
+    /// Default click method
     /// <para>
     ///
-    ///Default click method.
-    ///
+    /// Default click method.
+    /// 
     /// </para>
     /// </summary>
     public event ClickMethodDefaultHandler? OnClickMethodDefault
@@ -1258,16 +1539,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current click method
+    /// <para>
+    ///
+    /// Current click method.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ClickMethodCurrentHandler(uint method);
 
     private ClickMethodCurrentHandler? _onClickMethodCurrent;
 
     /// <summary>
-    ///Current click method
+    /// Current click method
     /// <para>
     ///
-    ///Current click method.
-    ///
+    /// Current click method.
+    /// 
     /// </para>
     /// </summary>
     public event ClickMethodCurrentHandler? OnClickMethodCurrent
@@ -1285,17 +1574,26 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default clickfinger button map
+    /// <para>
+    ///
+    /// Default clickfinger button map.
+    /// Supported if click_methods.clickfinger is supported.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ClickfingerButtonMapDefaultHandler(uint buttonMap);
 
     private ClickfingerButtonMapDefaultHandler? _onClickfingerButtonMapDefault;
 
     /// <summary>
-    ///Default clickfinger button map
+    /// Default clickfinger button map
     /// <para>
     ///
-    ///Default clickfinger button map.
-    ///Supported if click_methods.clickfinger is supported.
-    ///
+    /// Default clickfinger button map.
+    /// Supported if click_methods.clickfinger is supported.
+    /// 
     /// </para>
     /// </summary>
     public event ClickfingerButtonMapDefaultHandler? OnClickfingerButtonMapDefault
@@ -1313,17 +1611,26 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current clickfinger button map
+    /// <para>
+    ///
+    /// Current clickfinger button map.
+    /// Supported if click_methods.clickfinger is supported.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ClickfingerButtonMapCurrentHandler(uint buttonMap);
 
     private ClickfingerButtonMapCurrentHandler? _onClickfingerButtonMapCurrent;
 
     /// <summary>
-    ///Current clickfinger button map
+    /// Current clickfinger button map
     /// <para>
     ///
-    ///Current clickfinger button map.
-    ///Supported if click_methods.clickfinger is supported.
-    ///
+    /// Current clickfinger button map.
+    /// Supported if click_methods.clickfinger is supported.
+    /// 
     /// </para>
     /// </summary>
     public event ClickfingerButtonMapCurrentHandler? OnClickfingerButtonMapCurrent
@@ -1341,17 +1648,26 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Support for middle mouse button emulation
+    /// <para>
+    ///
+    /// Middle mouse button emulation is supported if the supported argument is
+    /// non-zero.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void MiddleEmulationSupportHandler(int supported);
 
     private MiddleEmulationSupportHandler? _onMiddleEmulationSupport;
 
     /// <summary>
-    ///Support for middle mouse button emulation
+    /// Support for middle mouse button emulation
     /// <para>
     ///
-    ///Middle mouse button emulation is supported if the supported argument is
-    ///non-zero.
-    ///
+    /// Middle mouse button emulation is supported if the supported argument is
+    /// non-zero.
+    /// 
     /// </para>
     /// </summary>
     public event MiddleEmulationSupportHandler? OnMiddleEmulationSupport
@@ -1369,16 +1685,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default middle mouse button emulation
+    /// <para>
+    ///
+    /// Default middle mouse button emulation.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void MiddleEmulationDefaultHandler(uint state);
 
     private MiddleEmulationDefaultHandler? _onMiddleEmulationDefault;
 
     /// <summary>
-    ///Default middle mouse button emulation
+    /// Default middle mouse button emulation
     /// <para>
     ///
-    ///Default middle mouse button emulation.
-    ///
+    /// Default middle mouse button emulation.
+    /// 
     /// </para>
     /// </summary>
     public event MiddleEmulationDefaultHandler? OnMiddleEmulationDefault
@@ -1396,16 +1720,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current middle mouse button emulation state
+    /// <para>
+    ///
+    /// Current middle mouse button emulation.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void MiddleEmulationCurrentHandler(uint state);
 
     private MiddleEmulationCurrentHandler? _onMiddleEmulationCurrent;
 
     /// <summary>
-    ///Current middle mouse button emulation state
+    /// Current middle mouse button emulation state
     /// <para>
     ///
-    ///Current middle mouse button emulation.
-    ///
+    /// Current middle mouse button emulation.
+    /// 
     /// </para>
     /// </summary>
     public event MiddleEmulationCurrentHandler? OnMiddleEmulationCurrent
@@ -1423,16 +1755,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Supported scroll methods
+    /// <para>
+    ///
+    /// The scroll methods supported by the device.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ScrollMethodSupportHandler(uint methods);
 
     private ScrollMethodSupportHandler? _onScrollMethodSupport;
 
     /// <summary>
-    ///Supported scroll methods
+    /// Supported scroll methods
     /// <para>
     ///
-    ///The scroll methods supported by the device.
-    ///
+    /// The scroll methods supported by the device.
+    /// 
     /// </para>
     /// </summary>
     public event ScrollMethodSupportHandler? OnScrollMethodSupport
@@ -1450,16 +1790,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default scroll method
+    /// <para>
+    ///
+    /// Default scroll method.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ScrollMethodDefaultHandler(uint method);
 
     private ScrollMethodDefaultHandler? _onScrollMethodDefault;
 
     /// <summary>
-    ///Default scroll method
+    /// Default scroll method
     /// <para>
     ///
-    ///Default scroll method.
-    ///
+    /// Default scroll method.
+    /// 
     /// </para>
     /// </summary>
     public event ScrollMethodDefaultHandler? OnScrollMethodDefault
@@ -1477,16 +1825,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current scroll method
+    /// <para>
+    ///
+    /// Current scroll method.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ScrollMethodCurrentHandler(uint method);
 
     private ScrollMethodCurrentHandler? _onScrollMethodCurrent;
 
     /// <summary>
-    ///Current scroll method
+    /// Current scroll method
     /// <para>
     ///
-    ///Current scroll method.
-    ///
+    /// Current scroll method.
+    /// 
     /// </para>
     /// </summary>
     public event ScrollMethodCurrentHandler? OnScrollMethodCurrent
@@ -1504,17 +1860,26 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default scroll button
+    /// <para>
+    ///
+    /// Default scroll button.
+    /// Supported if scroll_methods.on_button_down is supported.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ScrollButtonDefaultHandler(uint button);
 
     private ScrollButtonDefaultHandler? _onScrollButtonDefault;
 
     /// <summary>
-    ///Default scroll button
+    /// Default scroll button
     /// <para>
     ///
-    ///Default scroll button.
-    ///Supported if scroll_methods.on_button_down is supported.
-    ///
+    /// Default scroll button.
+    /// Supported if scroll_methods.on_button_down is supported.
+    /// 
     /// </para>
     /// </summary>
     public event ScrollButtonDefaultHandler? OnScrollButtonDefault
@@ -1532,17 +1897,26 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current scroll button
+    /// <para>
+    ///
+    /// Current scroll button.
+    /// Supported if scroll_methods.on_button_down is supported.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ScrollButtonCurrentHandler(uint button);
 
     private ScrollButtonCurrentHandler? _onScrollButtonCurrent;
 
     /// <summary>
-    ///Current scroll button
+    /// Current scroll button
     /// <para>
     ///
-    ///Current scroll button.
-    ///Supported if scroll_methods.on_button_down is supported.
-    ///
+    /// Current scroll button.
+    /// Supported if scroll_methods.on_button_down is supported.
+    /// 
     /// </para>
     /// </summary>
     public event ScrollButtonCurrentHandler? OnScrollButtonCurrent
@@ -1560,17 +1934,26 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default scroll button lock state
+    /// <para>
+    ///
+    /// Default scroll button lock state.
+    /// Supported if scroll_methods.on_button_down is supported.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ScrollButtonLockDefaultHandler(uint state);
 
     private ScrollButtonLockDefaultHandler? _onScrollButtonLockDefault;
 
     /// <summary>
-    ///Default scroll button lock state
+    /// Default scroll button lock state
     /// <para>
     ///
-    ///Default scroll button lock state.
-    ///Supported if scroll_methods.on_button_down is supported.
-    ///
+    /// Default scroll button lock state.
+    /// Supported if scroll_methods.on_button_down is supported.
+    /// 
     /// </para>
     /// </summary>
     public event ScrollButtonLockDefaultHandler? OnScrollButtonLockDefault
@@ -1588,17 +1971,26 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current scroll button lock state
+    /// <para>
+    ///
+    /// Current scroll button lock state.
+    /// Supported if scroll_methods.on_button_down is supported.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ScrollButtonLockCurrentHandler(uint state);
 
     private ScrollButtonLockCurrentHandler? _onScrollButtonLockCurrent;
 
     /// <summary>
-    ///Current scroll button lock state
+    /// Current scroll button lock state
     /// <para>
     ///
-    ///Current scroll button lock state.
-    ///Supported if scroll_methods.on_button_down is supported.
-    ///
+    /// Current scroll button lock state.
+    /// Supported if scroll_methods.on_button_down is supported.
+    /// 
     /// </para>
     /// </summary>
     public event ScrollButtonLockCurrentHandler? OnScrollButtonLockCurrent
@@ -1616,17 +2008,26 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Support for disable-while-typing
+    /// <para>
+    ///
+    /// Disable-while-typing is supported if the supported argument is
+    /// non-zero.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DwtSupportHandler(int supported);
 
     private DwtSupportHandler? _onDwtSupport;
 
     /// <summary>
-    ///Support for disable-while-typing
+    /// Support for disable-while-typing
     /// <para>
     ///
-    ///Disable-while-typing is supported if the supported argument is
-    ///non-zero.
-    ///
+    /// Disable-while-typing is supported if the supported argument is
+    /// non-zero.
+    /// 
     /// </para>
     /// </summary>
     public event DwtSupportHandler? OnDwtSupport
@@ -1644,16 +2045,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default disable-while-typing state
+    /// <para>
+    ///
+    /// Default disable-while-typing state.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DwtDefaultHandler(uint state);
 
     private DwtDefaultHandler? _onDwtDefault;
 
     /// <summary>
-    ///Default disable-while-typing state
+    /// Default disable-while-typing state
     /// <para>
     ///
-    ///Default disable-while-typing state.
-    ///
+    /// Default disable-while-typing state.
+    /// 
     /// </para>
     /// </summary>
     public event DwtDefaultHandler? OnDwtDefault
@@ -1671,16 +2080,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current disable-while-typing state
+    /// <para>
+    ///
+    /// Current disable-while-typing state.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DwtCurrentHandler(uint state);
 
     private DwtCurrentHandler? _onDwtCurrent;
 
     /// <summary>
-    ///Current disable-while-typing state
+    /// Current disable-while-typing state
     /// <para>
     ///
-    ///Current disable-while-typing state.
-    ///
+    /// Current disable-while-typing state.
+    /// 
     /// </para>
     /// </summary>
     public event DwtCurrentHandler? OnDwtCurrent
@@ -1698,17 +2115,26 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Support for disable-while-trackpointing
+    /// <para>
+    ///
+    /// Disable-while-trackpointing is supported if the supported argument is
+    /// non-zero.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DwtpSupportHandler(int supported);
 
     private DwtpSupportHandler? _onDwtpSupport;
 
     /// <summary>
-    ///Support for disable-while-trackpointing
+    /// Support for disable-while-trackpointing
     /// <para>
     ///
-    ///Disable-while-trackpointing is supported if the supported argument is
-    ///non-zero.
-    ///
+    /// Disable-while-trackpointing is supported if the supported argument is
+    /// non-zero.
+    /// 
     /// </para>
     /// </summary>
     public event DwtpSupportHandler? OnDwtpSupport
@@ -1726,16 +2152,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default disable-while-trackpointing state
+    /// <para>
+    ///
+    /// Default disable-while-trackpointing state.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DwtpDefaultHandler(uint state);
 
     private DwtpDefaultHandler? _onDwtpDefault;
 
     /// <summary>
-    ///Default disable-while-trackpointing state
+    /// Default disable-while-trackpointing state
     /// <para>
     ///
-    ///Default disable-while-trackpointing state.
-    ///
+    /// Default disable-while-trackpointing state.
+    /// 
     /// </para>
     /// </summary>
     public event DwtpDefaultHandler? OnDwtpDefault
@@ -1753,16 +2187,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current disable-while-trackpointing state
+    /// <para>
+    ///
+    /// Current disable-while-trackpointing state.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DwtpCurrentHandler(uint state);
 
     private DwtpCurrentHandler? _onDwtpCurrent;
 
     /// <summary>
-    ///Current disable-while-trackpointing state
+    /// Current disable-while-trackpointing state
     /// <para>
     ///
-    ///Current disable-while-trackpointing state.
-    ///
+    /// Current disable-while-trackpointing state.
+    /// 
     /// </para>
     /// </summary>
     public event DwtpCurrentHandler? OnDwtpCurrent
@@ -1780,16 +2222,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Support for rotation
+    /// <para>
+    ///
+    /// Rotation is supported if the supported argument is non-zero.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RotationSupportHandler(int supported);
 
     private RotationSupportHandler? _onRotationSupport;
 
     /// <summary>
-    ///Support for rotation
+    /// Support for rotation
     /// <para>
     ///
-    ///Rotation is supported if the supported argument is non-zero.
-    ///
+    /// Rotation is supported if the supported argument is non-zero.
+    /// 
     /// </para>
     /// </summary>
     public event RotationSupportHandler? OnRotationSupport
@@ -1807,16 +2257,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Default rotation angle
+    /// <para>
+    ///
+    /// Default rotation angle.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RotationDefaultHandler(uint angle);
 
     private RotationDefaultHandler? _onRotationDefault;
 
     /// <summary>
-    ///Default rotation angle
+    /// Default rotation angle
     /// <para>
     ///
-    ///Default rotation angle.
-    ///
+    /// Default rotation angle.
+    /// 
     /// </para>
     /// </summary>
     public event RotationDefaultHandler? OnRotationDefault
@@ -1834,16 +2292,24 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Current rotation angle
+    /// <para>
+    ///
+    /// Current rotation angle.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RotationCurrentHandler(uint angle);
 
     private RotationCurrentHandler? _onRotationCurrent;
 
     /// <summary>
-    ///Current rotation angle
+    /// Current rotation angle
     /// <para>
     ///
-    ///Current rotation angle.
-    ///
+    /// Current rotation angle.
+    /// 
     /// </para>
     /// </summary>
     public event RotationCurrentHandler? OnRotationCurrent
@@ -1861,20 +2327,32 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// All information has been sent
+    /// <para>
+    ///
+    /// This event is sent after all information about the libinput device has
+    /// been sent.
+    ///
+    /// This allows changes to one or more river_libinput_device_v1 properties
+    /// to be seen as atomic, even if they happen via multiple events.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DoneHandler();
 
     private DoneHandler? _onDone;
 
     /// <summary>
-    ///All information has been sent
+    /// All information has been sent
     /// <para>
     ///
-    ///This event is sent after all information about the libinput device has
-    ///been sent.
+    /// This event is sent after all information about the libinput device has
+    /// been sent.
     ///
-    ///This allows changes to one or more river_libinput_device_v1 properties
-    ///to be seen as atomic, even if they happen via multiple events.
-    ///
+    /// This allows changes to one or more river_libinput_device_v1 properties
+    /// to be seen as atomic, even if they happen via multiple events.
+    /// 
     /// </para>
     /// </summary>
     public event DoneHandler? OnDone
@@ -3003,6 +3481,10 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
+    /// <summary> Creates a RiverLibinputDeviceV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverLibinputDeviceV1 instance.</returns>
     public static RiverLibinputDeviceV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

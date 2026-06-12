@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObjectFactory<RiverWindowManagerV1>
 {
+    /// <summary> Wayland interface name for river_window_manager_v1. </summary>
     public const string InterfaceName = "river_window_manager_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_window_manager_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 5;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_window_manager_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverWindowManagerV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -63,24 +71,40 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         Unresponsive = 2,
     }
 
+    /// <summary>
+    /// Window management unavailable
+    /// <para>
+    ///
+    /// This event indicates that window management is not available to the
+    /// client, perhaps due to another window management client already running.
+    /// The circumstances causing this event to be sent are compositor policy.
+    ///
+    /// If sent, this event is guaranteed to be the first and only event sent by
+    /// the server.
+    ///
+    /// The server will send no further events on this object. The client should
+    /// destroy this object and all objects created through this interface.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void UnavailableHandler();
 
     private UnavailableHandler? _onUnavailable;
 
     /// <summary>
-    ///Window management unavailable
+    /// Window management unavailable
     /// <para>
     ///
-    ///This event indicates that window management is not available to the
-    ///client, perhaps due to another window management client already running.
-    ///The circumstances causing this event to be sent are compositor policy.
+    /// This event indicates that window management is not available to the
+    /// client, perhaps due to another window management client already running.
+    /// The circumstances causing this event to be sent are compositor policy.
     ///
-    ///If sent, this event is guaranteed to be the first and only event sent by
-    ///the server.
+    /// If sent, this event is guaranteed to be the first and only event sent by
+    /// the server.
     ///
-    ///The server will send no further events on this object. The client should
-    ///destroy this object and all objects created through this interface.
-    ///
+    /// The server will send no further events on this object. The client should
+    /// destroy this object and all objects created through this interface.
+    /// 
     /// </para>
     /// </summary>
     public event UnavailableHandler? OnUnavailable
@@ -98,18 +122,28 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         }
     }
 
+    /// <summary>
+    /// The server has finished with the window manager
+    /// <para>
+    ///
+    /// This event indicates that the server will send no further events on this
+    /// object. The client should destroy the object. See
+    /// river_window_manager_v1.destroy for more information.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FinishedHandler();
 
     private FinishedHandler? _onFinished;
 
     /// <summary>
-    ///The server has finished with the window manager
+    /// The server has finished with the window manager
     /// <para>
     ///
-    ///This event indicates that the server will send no further events on this
-    ///object. The client should destroy the object. See
-    ///river_window_manager_v1.destroy for more information.
-    ///
+    /// This event indicates that the server will send no further events on this
+    /// object. The client should destroy the object. See
+    /// river_window_manager_v1.destroy for more information.
+    /// 
     /// </para>
     /// </summary>
     public event FinishedHandler? OnFinished
@@ -127,24 +161,40 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         }
     }
 
+    /// <summary>
+    /// Start a manage sequence
+    /// <para>
+    ///
+    /// This event indicates that the server has sent events indicating all
+    /// state changes since the last manage sequence.
+    ///
+    /// In response to this event, the client should make requests modifying
+    /// window management state as it chooses. Then, the client must make the
+    /// manage_finish request.
+    ///
+    /// See the description of the river_window_manager_v1 interface for a
+    /// complete overview of the manage/render sequence loop.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ManageStartHandler();
 
     private ManageStartHandler? _onManageStart;
 
     /// <summary>
-    ///Start a manage sequence
+    /// Start a manage sequence
     /// <para>
     ///
-    ///This event indicates that the server has sent events indicating all
-    ///state changes since the last manage sequence.
+    /// This event indicates that the server has sent events indicating all
+    /// state changes since the last manage sequence.
     ///
-    ///In response to this event, the client should make requests modifying
-    ///window management state as it chooses. Then, the client must make the
-    ///manage_finish request.
+    /// In response to this event, the client should make requests modifying
+    /// window management state as it chooses. Then, the client must make the
+    /// manage_finish request.
     ///
-    ///See the description of the river_window_manager_v1 interface for a
-    ///complete overview of the manage/render sequence loop.
-    ///
+    /// See the description of the river_window_manager_v1 interface for a
+    /// complete overview of the manage/render sequence loop.
+    /// 
     /// </para>
     /// </summary>
     public event ManageStartHandler? OnManageStart
@@ -162,24 +212,40 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         }
     }
 
+    /// <summary>
+    /// Start a render sequence
+    /// <para>
+    ///
+    /// This event indicates that the server has sent all
+    /// river_window_v1.dimensions events necessary.
+    ///
+    /// In response to this event, the client should make requests modifying
+    /// rendering state as it chooses. Then, the client must make the
+    /// render_finish request.
+    ///
+    /// See the description of the river_window_manager_v1 interface for a
+    /// complete overview of the manage/render sequence loop.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RenderStartHandler();
 
     private RenderStartHandler? _onRenderStart;
 
     /// <summary>
-    ///Start a render sequence
+    /// Start a render sequence
     /// <para>
     ///
-    ///This event indicates that the server has sent all
-    ///river_window_v1.dimensions events necessary.
+    /// This event indicates that the server has sent all
+    /// river_window_v1.dimensions events necessary.
     ///
-    ///In response to this event, the client should make requests modifying
-    ///rendering state as it chooses. Then, the client must make the
-    ///render_finish request.
+    /// In response to this event, the client should make requests modifying
+    /// rendering state as it chooses. Then, the client must make the
+    /// render_finish request.
     ///
-    ///See the description of the river_window_manager_v1 interface for a
-    ///complete overview of the manage/render sequence loop.
-    ///
+    /// See the description of the river_window_manager_v1 interface for a
+    /// complete overview of the manage/render sequence loop.
+    /// 
     /// </para>
     /// </summary>
     public event RenderStartHandler? OnRenderStart
@@ -197,22 +263,36 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         }
     }
 
+    /// <summary>
+    /// The session has been locked
+    /// <para>
+    ///
+    /// This event indicates that the session has been locked.
+    ///
+    /// The window manager may wish to restrict which key bindings are available
+    /// while locked or otherwise use this information.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SessionLockedHandler();
 
     private SessionLockedHandler? _onSessionLocked;
 
     /// <summary>
-    ///The session has been locked
+    /// The session has been locked
     /// <para>
     ///
-    ///This event indicates that the session has been locked.
+    /// This event indicates that the session has been locked.
     ///
-    ///The window manager may wish to restrict which key bindings are available
-    ///while locked or otherwise use this information.
+    /// The window manager may wish to restrict which key bindings are available
+    /// while locked or otherwise use this information.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event SessionLockedHandler? OnSessionLocked
@@ -230,19 +310,30 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         }
     }
 
+    /// <summary>
+    /// The session has been unlocked
+    /// <para>
+    ///
+    /// This event indicates that the session has been unlocked.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SessionUnlockedHandler();
 
     private SessionUnlockedHandler? _onSessionUnlocked;
 
     /// <summary>
-    ///The session has been unlocked
+    /// The session has been unlocked
     /// <para>
     ///
-    ///This event indicates that the session has been unlocked.
+    /// This event indicates that the session has been unlocked.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event SessionUnlockedHandler? OnSessionUnlocked
@@ -260,19 +351,30 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         }
     }
 
+    /// <summary>
+    /// New window
+    /// <para>
+    ///
+    /// A new window has been created.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void WindowHandler(RiverWindowV1 id);
 
     private WindowHandler? _onWindow;
 
     /// <summary>
-    ///New window
+    /// New window
     /// <para>
     ///
-    ///A new window has been created.
+    /// A new window has been created.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event WindowHandler? OnWindow
@@ -290,21 +392,34 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         }
     }
 
+    /// <summary>
+    /// New output
+    /// <para>
+    ///
+    /// A new logical output has been created, perhaps due to a new physical
+    /// monitor being plugged in or perhaps due to a change in configuration.
+    ///
+    /// This event will be followed by river_output_v1.position and dimensions
+    /// events as well as a manage_start event after all other new state has
+    /// been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void OutputHandler(RiverOutputV1 id);
 
     private OutputHandler? _onOutput;
 
     /// <summary>
-    ///New output
+    /// New output
     /// <para>
     ///
-    ///A new logical output has been created, perhaps due to a new physical
-    ///monitor being plugged in or perhaps due to a change in configuration.
+    /// A new logical output has been created, perhaps due to a new physical
+    /// monitor being plugged in or perhaps due to a change in configuration.
     ///
-    ///This event will be followed by river_output_v1.position and dimensions
-    ///events as well as a manage_start event after all other new state has
-    ///been sent by the server.
-    ///
+    /// This event will be followed by river_output_v1.position and dimensions
+    /// events as well as a manage_start event after all other new state has
+    /// been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event OutputHandler? OnOutput
@@ -322,19 +437,30 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         }
     }
 
+    /// <summary>
+    /// New seat
+    /// <para>
+    ///
+    /// A new seat has been created.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SeatHandler(RiverSeatV1 id);
 
     private SeatHandler? _onSeat;
 
     /// <summary>
-    ///New seat
+    /// New seat
     /// <para>
     ///
-    ///A new seat has been created.
+    /// A new seat has been created.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event SeatHandler? OnSeat
@@ -700,6 +826,10 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         );
     }
 
+    /// <summary> Creates a RiverWindowManagerV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverWindowManagerV1 instance.</returns>
     public static RiverWindowManagerV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

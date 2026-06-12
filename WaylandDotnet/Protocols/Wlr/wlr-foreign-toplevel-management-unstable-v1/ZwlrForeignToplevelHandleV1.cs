@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Wlr;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylandObjectFactory<ZwlrForeignToplevelHandleV1>
 {
+    /// <summary> Wayland interface name for zwlr_foreign_toplevel_handle_v1. </summary>
     public const string InterfaceName = "zwlr_foreign_toplevel_handle_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwlr_foreign_toplevel_handle_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 3;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwlr_foreign_toplevel_handle_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwlrForeignToplevelHandleV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -76,16 +84,24 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
         InvalidRectangle = 0,
     }
 
+    /// <summary>
+    /// Title change
+    /// <para>
+    ///
+    /// This event is emitted whenever the title of the toplevel changes.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TitleHandler(string title);
 
     private TitleHandler? _onTitle;
 
     /// <summary>
-    ///Title change
+    /// Title change
     /// <para>
     ///
-    ///This event is emitted whenever the title of the toplevel changes.
-    ///
+    /// This event is emitted whenever the title of the toplevel changes.
+    /// 
     /// </para>
     /// </summary>
     public event TitleHandler? OnTitle
@@ -103,16 +119,24 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
         }
     }
 
+    /// <summary>
+    /// App-id change
+    /// <para>
+    ///
+    /// This event is emitted whenever the app-id of the toplevel changes.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AppIdHandler(string appId);
 
     private AppIdHandler? _onAppId;
 
     /// <summary>
-    ///App-id change
+    /// App-id change
     /// <para>
     ///
-    ///This event is emitted whenever the app-id of the toplevel changes.
-    ///
+    /// This event is emitted whenever the app-id of the toplevel changes.
+    /// 
     /// </para>
     /// </summary>
     public event AppIdHandler? OnAppId
@@ -130,17 +154,26 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
         }
     }
 
+    /// <summary>
+    /// Toplevel entered an output
+    /// <para>
+    ///
+    /// This event is emitted whenever the toplevel becomes visible on
+    /// the given output. A toplevel may be visible on multiple outputs.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void OutputEnterHandler(WlOutput output);
 
     private OutputEnterHandler? _onOutputEnter;
 
     /// <summary>
-    ///Toplevel entered an output
+    /// Toplevel entered an output
     /// <para>
     ///
-    ///This event is emitted whenever the toplevel becomes visible on
-    ///the given output. A toplevel may be visible on multiple outputs.
-    ///
+    /// This event is emitted whenever the toplevel becomes visible on
+    /// the given output. A toplevel may be visible on multiple outputs.
+    /// 
     /// </para>
     /// </summary>
     public event OutputEnterHandler? OnOutputEnter
@@ -158,18 +191,28 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
         }
     }
 
+    /// <summary>
+    /// Toplevel left an output
+    /// <para>
+    ///
+    /// This event is emitted whenever the toplevel stops being visible on
+    /// the given output. It is guaranteed that an entered-output event
+    /// with the same output has been emitted before this event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void OutputLeaveHandler(WlOutput output);
 
     private OutputLeaveHandler? _onOutputLeave;
 
     /// <summary>
-    ///Toplevel left an output
+    /// Toplevel left an output
     /// <para>
     ///
-    ///This event is emitted whenever the toplevel stops being visible on
-    ///the given output. It is guaranteed that an entered-output event
-    ///with the same output has been emitted before this event.
-    ///
+    /// This event is emitted whenever the toplevel stops being visible on
+    /// the given output. It is guaranteed that an entered-output event
+    /// with the same output has been emitted before this event.
+    /// 
     /// </para>
     /// </summary>
     public event OutputLeaveHandler? OnOutputLeave
@@ -187,18 +230,28 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
         }
     }
 
+    /// <summary>
+    /// The toplevel state changed
+    /// <para>
+    ///
+    /// This event is emitted immediately after the zlw_foreign_toplevel_handle_v1
+    /// is created and each time the toplevel state changes, either because of a
+    /// compositor action or because of a request in this protocol.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void StateHandler(byte[] state);
 
     private StateHandler? _onState;
 
     /// <summary>
-    ///The toplevel state changed
+    /// The toplevel state changed
     /// <para>
     ///
-    ///This event is emitted immediately after the zlw_foreign_toplevel_handle_v1
-    ///is created and each time the toplevel state changes, either because of a
-    ///compositor action or because of a request in this protocol.
-    ///
+    /// This event is emitted immediately after the zlw_foreign_toplevel_handle_v1
+    /// is created and each time the toplevel state changes, either because of a
+    /// compositor action or because of a request in this protocol.
+    /// 
     /// </para>
     /// </summary>
     public event StateHandler? OnState
@@ -216,20 +269,32 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
         }
     }
 
+    /// <summary>
+    /// All information about the toplevel has been sent
+    /// <para>
+    ///
+    /// This event is sent after all changes in the toplevel state have been
+    /// sent.
+    ///
+    /// This allows changes to the zwlr_foreign_toplevel_handle_v1 properties
+    /// to be seen as atomic, even if they happen via multiple events.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DoneHandler();
 
     private DoneHandler? _onDone;
 
     /// <summary>
-    ///All information about the toplevel has been sent
+    /// All information about the toplevel has been sent
     /// <para>
     ///
-    ///This event is sent after all changes in the toplevel state have been
-    ///sent.
+    /// This event is sent after all changes in the toplevel state have been
+    /// sent.
     ///
-    ///This allows changes to the zwlr_foreign_toplevel_handle_v1 properties
-    ///to be seen as atomic, even if they happen via multiple events.
-    ///
+    /// This allows changes to the zwlr_foreign_toplevel_handle_v1 properties
+    /// to be seen as atomic, even if they happen via multiple events.
+    /// 
     /// </para>
     /// </summary>
     public event DoneHandler? OnDone
@@ -247,19 +312,30 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
         }
     }
 
+    /// <summary>
+    /// This toplevel has been destroyed
+    /// <para>
+    ///
+    /// This event means the toplevel has been destroyed. It is guaranteed there
+    /// won't be any more events for this zwlr_foreign_toplevel_handle_v1. The
+    /// toplevel itself becomes inert so any requests will be ignored except the
+    /// destroy request.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ClosedHandler();
 
     private ClosedHandler? _onClosed;
 
     /// <summary>
-    ///This toplevel has been destroyed
+    /// This toplevel has been destroyed
     /// <para>
     ///
-    ///This event means the toplevel has been destroyed. It is guaranteed there
-    ///won't be any more events for this zwlr_foreign_toplevel_handle_v1. The
-    ///toplevel itself becomes inert so any requests will be ignored except the
-    ///destroy request.
-    ///
+    /// This event means the toplevel has been destroyed. It is guaranteed there
+    /// won't be any more events for this zwlr_foreign_toplevel_handle_v1. The
+    /// toplevel itself becomes inert so any requests will be ignored except the
+    /// destroy request.
+    /// 
     /// </para>
     /// </summary>
     public event ClosedHandler? OnClosed
@@ -277,18 +353,28 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
         }
     }
 
+    /// <summary>
+    /// Parent change
+    /// <para>
+    ///
+    /// This event is emitted whenever the parent of the toplevel changes.
+    ///
+    /// No event is emitted when the parent handle is destroyed by the client.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ParentHandler(ZwlrForeignToplevelHandleV1? parent);
 
     private ParentHandler? _onParent;
 
     /// <summary>
-    ///Parent change
+    /// Parent change
     /// <para>
     ///
-    ///This event is emitted whenever the parent of the toplevel changes.
+    /// This event is emitted whenever the parent of the toplevel changes.
     ///
-    ///No event is emitted when the parent handle is destroyed by the client.
-    ///
+    /// No event is emitted when the parent handle is destroyed by the client.
+    /// 
     /// </para>
     /// </summary>
     public event ParentHandler? OnParent
@@ -714,6 +800,10 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
         );
     }
 
+    /// <summary> Creates a ZwlrForeignToplevelHandleV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwlrForeignToplevelHandleV1 instance.</returns>
     public static ZwlrForeignToplevelHandleV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

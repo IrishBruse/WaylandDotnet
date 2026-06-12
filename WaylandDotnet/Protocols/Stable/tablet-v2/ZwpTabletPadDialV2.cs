@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwpTabletPadDialV2 : WaylandObject, IWaylandObjectFactory<ZwpTabletPadDialV2>
 {
+    /// <summary> Wayland interface name for zwp_tablet_pad_dial_v2. </summary>
     public const string InterfaceName = "zwp_tablet_pad_dial_v2";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwp_tablet_pad_dial_v2";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,32 +41,55 @@ public sealed partial class ZwpTabletPadDialV2 : WaylandObject, IWaylandObjectFa
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwp_tablet_pad_dial_v2 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwpTabletPadDialV2(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// Delta movement
+    /// <para>
+    ///
+    /// Sent whenever the position on a dial changes.
+    ///
+    /// This event carries the wheel delta as multiples or fractions
+    /// of 120 with each multiple of 120 representing one logical wheel detent.
+    /// For example, an axis_value120 of 30 is one quarter of
+    /// a logical wheel step in the positive direction, a value120 of
+    /// -240 are two logical wheel steps in the negative direction within the
+    /// same hardware event. See the wl_pointer.axis_value120 for more details.
+    ///
+    /// The value120 must not be zero.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DeltaHandler(int value120);
 
     private DeltaHandler? _onDelta;
 
     /// <summary>
-    ///Delta movement
+    /// Delta movement
     /// <para>
     ///
-    ///Sent whenever the position on a dial changes.
+    /// Sent whenever the position on a dial changes.
     ///
-    ///This event carries the wheel delta as multiples or fractions
-    ///of 120 with each multiple of 120 representing one logical wheel detent.
-    ///For example, an axis_value120 of 30 is one quarter of
-    ///a logical wheel step in the positive direction, a value120 of
-    ///-240 are two logical wheel steps in the negative direction within the
-    ///same hardware event. See the wl_pointer.axis_value120 for more details.
+    /// This event carries the wheel delta as multiples or fractions
+    /// of 120 with each multiple of 120 representing one logical wheel detent.
+    /// For example, an axis_value120 of 30 is one quarter of
+    /// a logical wheel step in the positive direction, a value120 of
+    /// -240 are two logical wheel steps in the negative direction within the
+    /// same hardware event. See the wl_pointer.axis_value120 for more details.
     ///
-    ///The value120 must not be zero.
-    ///
+    /// The value120 must not be zero.
+    /// 
     /// </para>
     /// </summary>
     public event DeltaHandler? OnDelta
@@ -82,26 +107,44 @@ public sealed partial class ZwpTabletPadDialV2 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    /// <summary>
+    /// End of a dial event sequence
+    /// <para>
+    ///
+    /// Indicates the end of a set of events that represent one logical
+    /// hardware dial event. A client is expected to accumulate the data
+    /// in all events within the frame before proceeding.
+    ///
+    /// All zwp_tablet_pad_dial_v2 events before a zwp_tablet_pad_dial_v2.frame event belong
+    /// logically together.
+    ///
+    /// A zwp_tablet_pad_dial_v2.frame event is sent for every logical event
+    /// group, even if the group only contains a single zwp_tablet_pad_dial_v2
+    /// event. Specifically, a client may get a sequence: delta, frame,
+    /// delta, frame, etc.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FrameHandler(uint time);
 
     private FrameHandler? _onFrame;
 
     /// <summary>
-    ///End of a dial event sequence
+    /// End of a dial event sequence
     /// <para>
     ///
-    ///Indicates the end of a set of events that represent one logical
-    ///hardware dial event. A client is expected to accumulate the data
-    ///in all events within the frame before proceeding.
+    /// Indicates the end of a set of events that represent one logical
+    /// hardware dial event. A client is expected to accumulate the data
+    /// in all events within the frame before proceeding.
     ///
-    ///All zwp_tablet_pad_dial_v2 events before a zwp_tablet_pad_dial_v2.frame event belong
-    ///logically together.
+    /// All zwp_tablet_pad_dial_v2 events before a zwp_tablet_pad_dial_v2.frame event belong
+    /// logically together.
     ///
-    ///A zwp_tablet_pad_dial_v2.frame event is sent for every logical event
-    ///group, even if the group only contains a single zwp_tablet_pad_dial_v2
-    ///event. Specifically, a client may get a sequence: delta, frame,
-    ///delta, frame, etc.
-    ///
+    /// A zwp_tablet_pad_dial_v2.frame event is sent for every logical event
+    /// group, even if the group only contains a single zwp_tablet_pad_dial_v2
+    /// event. Specifically, a client may get a sequence: delta, frame,
+    /// delta, frame, etc.
+    /// 
     /// </para>
     /// </summary>
     public event FrameHandler? OnFrame
@@ -254,6 +297,10 @@ public sealed partial class ZwpTabletPadDialV2 : WaylandObject, IWaylandObjectFa
         disposed = true;
     }
 
+    /// <summary> Creates a ZwpTabletPadDialV2 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwpTabletPadDialV2 instance.</returns>
     public static ZwpTabletPadDialV2 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

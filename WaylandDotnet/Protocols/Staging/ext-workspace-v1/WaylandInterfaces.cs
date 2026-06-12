@@ -1,16 +1,19 @@
 namespace WaylandDotnet.Internal;
 
 #nullable enable
-#pragma warning disable CS1591
 #pragma warning disable CA2255
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 
+/// <summary> Native Wayland interface descriptors for this protocol. </summary>
 public static unsafe partial class WaylandInterfaces
 {
+    /// <summary> Native interface descriptor for ext_workspace_manager_v1. </summary>
     public static WlInterface* ExtWorkspaceManagerV1 = AllocateInterface();
+    /// <summary> Native interface descriptor for ext_workspace_group_handle_v1. </summary>
     public static WlInterface* ExtWorkspaceGroupHandleV1 = AllocateInterface();
+    /// <summary> Native interface descriptor for ext_workspace_handle_v1. </summary>
     public static WlInterface* ExtWorkspaceHandleV1 = AllocateInterface();
 
 

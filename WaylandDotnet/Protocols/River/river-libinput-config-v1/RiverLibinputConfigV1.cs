@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjectFactory<RiverLibinputConfigV1>
 {
+    /// <summary> Wayland interface name for river_libinput_config_v1. </summary>
     public const string InterfaceName = "river_libinput_config_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_libinput_config_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_libinput_config_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverLibinputConfigV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -59,18 +67,28 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
         InvalidDestroy = 1,
     }
 
+    /// <summary>
+    /// The server has finished with the object
+    /// <para>
+    ///
+    /// This event indicates that the server will send no further events on this
+    /// object. The client should destroy the object. See
+    /// river_libinput_config_v1.destroy for more information.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FinishedHandler();
 
     private FinishedHandler? _onFinished;
 
     /// <summary>
-    ///The server has finished with the object
+    /// The server has finished with the object
     /// <para>
     ///
-    ///This event indicates that the server will send no further events on this
-    ///object. The client should destroy the object. See
-    ///river_libinput_config_v1.destroy for more information.
-    ///
+    /// This event indicates that the server will send no further events on this
+    /// object. The client should destroy the object. See
+    /// river_libinput_config_v1.destroy for more information.
+    /// 
     /// </para>
     /// </summary>
     public event FinishedHandler? OnFinished
@@ -88,17 +106,26 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// New libinput device
+    /// <para>
+    ///
+    /// A new libinput device has been created. Not every river_input_device_v1
+    /// is necessarily a libinput device as well.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void LibinputDeviceHandler(RiverLibinputDeviceV1 id);
 
     private LibinputDeviceHandler? _onLibinputDevice;
 
     /// <summary>
-    ///New libinput device
+    /// New libinput device
     /// <para>
     ///
-    ///A new libinput device has been created. Not every river_input_device_v1
-    ///is necessarily a libinput device as well.
-    ///
+    /// A new libinput device has been created. Not every river_input_device_v1
+    /// is necessarily a libinput device as well.
+    /// 
     /// </para>
     /// </summary>
     public event LibinputDeviceHandler? OnLibinputDevice
@@ -279,6 +306,10 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
         return new RiverLibinputAccelConfigV1(newProxy, Display);
     }
 
+    /// <summary> Creates a RiverLibinputConfigV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverLibinputConfigV1 instance.</returns>
     public static RiverLibinputConfigV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

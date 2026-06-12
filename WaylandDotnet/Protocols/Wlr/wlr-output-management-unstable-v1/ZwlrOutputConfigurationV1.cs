@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Wlr;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwlrOutputConfigurationV1 : WaylandObject, IWaylandObjectFactory<ZwlrOutputConfigurationV1>
 {
+    /// <summary> Wayland interface name for zwlr_output_configuration_v1. </summary>
     public const string InterfaceName = "zwlr_output_configuration_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwlr_output_configuration_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 4;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class ZwlrOutputConfigurationV1 : WaylandObject, IWaylandO
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwlr_output_configuration_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwlrOutputConfigurationV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -63,22 +71,36 @@ public sealed partial class ZwlrOutputConfigurationV1 : WaylandObject, IWaylandO
         AlreadyUsed = 3,
     }
 
+    /// <summary>
+    /// Configuration changes succeeded
+    /// <para>
+    ///
+    /// Sent after the compositor has successfully applied the changes or
+    /// tested them.
+    ///
+    /// Upon receiving this event, the client should destroy this object.
+    ///
+    /// If the current configuration has changed, events to describe the changes
+    /// will be sent followed by a wlr_output_manager.done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SucceededHandler();
 
     private SucceededHandler? _onSucceeded;
 
     /// <summary>
-    ///Configuration changes succeeded
+    /// Configuration changes succeeded
     /// <para>
     ///
-    ///Sent after the compositor has successfully applied the changes or
-    ///tested them.
+    /// Sent after the compositor has successfully applied the changes or
+    /// tested them.
     ///
-    ///Upon receiving this event, the client should destroy this object.
+    /// Upon receiving this event, the client should destroy this object.
     ///
-    ///If the current configuration has changed, events to describe the changes
-    ///will be sent followed by a wlr_output_manager.done event.
-    ///
+    /// If the current configuration has changed, events to describe the changes
+    /// will be sent followed by a wlr_output_manager.done event.
+    /// 
     /// </para>
     /// </summary>
     public event SucceededHandler? OnSucceeded
@@ -96,20 +118,32 @@ public sealed partial class ZwlrOutputConfigurationV1 : WaylandObject, IWaylandO
         }
     }
 
+    /// <summary>
+    /// Configuration changes failed
+    /// <para>
+    ///
+    /// Sent if the compositor rejects the changes or failed to apply them. The
+    /// compositor should revert any changes made by the apply request that
+    /// triggered this event.
+    ///
+    /// Upon receiving this event, the client should destroy this object.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FailedHandler();
 
     private FailedHandler? _onFailed;
 
     /// <summary>
-    ///Configuration changes failed
+    /// Configuration changes failed
     /// <para>
     ///
-    ///Sent if the compositor rejects the changes or failed to apply them. The
-    ///compositor should revert any changes made by the apply request that
-    ///triggered this event.
+    /// Sent if the compositor rejects the changes or failed to apply them. The
+    /// compositor should revert any changes made by the apply request that
+    /// triggered this event.
     ///
-    ///Upon receiving this event, the client should destroy this object.
-    ///
+    /// Upon receiving this event, the client should destroy this object.
+    /// 
     /// </para>
     /// </summary>
     public event FailedHandler? OnFailed
@@ -127,23 +161,38 @@ public sealed partial class ZwlrOutputConfigurationV1 : WaylandObject, IWaylandO
         }
     }
 
+    /// <summary>
+    /// Configuration has been cancelled
+    /// <para>
+    ///
+    /// Sent if the compositor cancels the configuration because the state of an
+    /// output changed and the client has outdated information (e.g. after an
+    /// output has been hotplugged).
+    ///
+    /// The client can create a new configuration with a newer serial and try
+    /// again.
+    ///
+    /// Upon receiving this event, the client should destroy this object.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CancelledHandler();
 
     private CancelledHandler? _onCancelled;
 
     /// <summary>
-    ///Configuration has been cancelled
+    /// Configuration has been cancelled
     /// <para>
     ///
-    ///Sent if the compositor cancels the configuration because the state of an
-    ///output changed and the client has outdated information (e.g. after an
-    ///output has been hotplugged).
+    /// Sent if the compositor cancels the configuration because the state of an
+    /// output changed and the client has outdated information (e.g. after an
+    /// output has been hotplugged).
     ///
-    ///The client can create a new configuration with a newer serial and try
-    ///again.
+    /// The client can create a new configuration with a newer serial and try
+    /// again.
     ///
-    ///Upon receiving this event, the client should destroy this object.
-    ///
+    /// Upon receiving this event, the client should destroy this object.
+    /// 
     /// </para>
     /// </summary>
     public event CancelledHandler? OnCancelled
@@ -386,6 +435,10 @@ public sealed partial class ZwlrOutputConfigurationV1 : WaylandObject, IWaylandO
         disposed = true;
     }
 
+    /// <summary> Creates a ZwlrOutputConfigurationV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwlrOutputConfigurationV1 instance.</returns>
     public static ZwlrOutputConfigurationV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

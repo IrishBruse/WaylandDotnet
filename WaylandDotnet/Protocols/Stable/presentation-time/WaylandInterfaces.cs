@@ -1,15 +1,17 @@
 namespace WaylandDotnet.Internal;
 
 #nullable enable
-#pragma warning disable CS1591
 #pragma warning disable CA2255
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 
+/// <summary> Native Wayland interface descriptors for this protocol. </summary>
 public static unsafe partial class WaylandInterfaces
 {
+    /// <summary> Native interface descriptor for wp_presentation. </summary>
     public static WlInterface* WpPresentation = AllocateInterface();
+    /// <summary> Native interface descriptor for wp_presentation_feedback. </summary>
     public static WlInterface* WpPresentationFeedback = AllocateInterface();
 
 

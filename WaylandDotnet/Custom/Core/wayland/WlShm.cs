@@ -80,6 +80,14 @@ public partial class WlShm
         return buffer;
     }
 
+    /// <summary>
+    /// Creates a shared memory buffer filled with a checkerboard pattern.
+    /// </summary>
+    /// <param name="width">Buffer width in pixels.</param>
+    /// <param name="height">Buffer height in pixels.</param>
+    /// <param name="colorA">First ARGB color value.</param>
+    /// <param name="colorB">Second ARGB color value.</param>
+    /// <returns>A WlBuffer that can be attached to a surface, or null on failure.</returns>
     public unsafe WlBuffer? CreateCheckerboardColorBuffer(int width, int height, uint colorA, uint colorB)
     {
         int stride = width * 4;

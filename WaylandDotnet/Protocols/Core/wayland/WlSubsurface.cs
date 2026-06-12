@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,12 +28,19 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlSubsurface : WaylandObject, IWaylandObjectFactory<WlSubsurface>
 {
+    /// <summary> Wayland interface name for wl_subsurface. </summary>
     public const string InterfaceName = "wl_subsurface";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_subsurface";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
     private bool disposed;
 
+    /// <summary>
+    /// Wraps an existing wl_subsurface proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
     public WlSubsurface(IntPtr handle)
     {
         Handle = handle;
@@ -241,6 +247,10 @@ public sealed partial class WlSubsurface : WaylandObject, IWaylandObjectFactory<
         );
     }
 
+    /// <summary> Creates a WlSubsurface wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlSubsurface instance.</returns>
     public static WlSubsurface Create(nint handle, WlDisplay? display = null)
     {
         return new WlSubsurface(handle);

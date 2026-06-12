@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverInputManagerV1 : WaylandObject, IWaylandObjectFactory<RiverInputManagerV1>
 {
+    /// <summary> Wayland interface name for river_input_manager_v1. </summary>
     public const string InterfaceName = "river_input_manager_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_input_manager_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class RiverInputManagerV1 : WaylandObject, IWaylandObjectF
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_input_manager_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverInputManagerV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -55,18 +63,28 @@ public sealed partial class RiverInputManagerV1 : WaylandObject, IWaylandObjectF
         InvalidDestroy = 0,
     }
 
+    /// <summary>
+    /// The server has finished with the input manager
+    /// <para>
+    ///
+    /// This event indicates that the server will send no further events on this
+    /// object. The client should destroy the object. See
+    /// river_input_manager_v1.destroy for more information.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FinishedHandler();
 
     private FinishedHandler? _onFinished;
 
     /// <summary>
-    ///The server has finished with the input manager
+    /// The server has finished with the input manager
     /// <para>
     ///
-    ///This event indicates that the server will send no further events on this
-    ///object. The client should destroy the object. See
-    ///river_input_manager_v1.destroy for more information.
-    ///
+    /// This event indicates that the server will send no further events on this
+    /// object. The client should destroy the object. See
+    /// river_input_manager_v1.destroy for more information.
+    /// 
     /// </para>
     /// </summary>
     public event FinishedHandler? OnFinished
@@ -84,16 +102,24 @@ public sealed partial class RiverInputManagerV1 : WaylandObject, IWaylandObjectF
         }
     }
 
+    /// <summary>
+    /// New input device
+    /// <para>
+    ///
+    /// A new input device has been created.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void InputDeviceHandler(RiverInputDeviceV1 id);
 
     private InputDeviceHandler? _onInputDevice;
 
     /// <summary>
-    ///New input device
+    /// New input device
     /// <para>
     ///
-    ///A new input device has been created.
-    ///
+    /// A new input device has been created.
+    /// 
     /// </para>
     /// </summary>
     public event InputDeviceHandler? OnInputDevice
@@ -308,6 +334,10 @@ public sealed partial class RiverInputManagerV1 : WaylandObject, IWaylandObjectF
         );
     }
 
+    /// <summary> Creates a RiverInputManagerV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverInputManagerV1 instance.</returns>
     public static RiverInputManagerV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

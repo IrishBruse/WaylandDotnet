@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgPopup>
 {
+    /// <summary> Wayland interface name for xdg_popup. </summary>
     public const string InterfaceName = "xdg_popup";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "xdg_popup";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 7;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing xdg_popup proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public XdgPopup(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -55,27 +63,46 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
         InvalidGrab = 0,
     }
 
+    /// <summary>
+    /// Configure the popup surface
+    /// <para>
+    ///
+    /// This event asks the popup surface to configure itself given the
+    /// configuration. The configured state should not be applied immediately.
+    /// See xdg_surface.configure for details.
+    ///
+    /// The x and y arguments represent the position the popup was placed at
+    /// given the xdg_positioner rule, relative to the upper left corner of the
+    /// window geometry of the parent surface.
+    ///
+    /// For version 2 or older, the configure event for an xdg_popup is only
+    /// ever sent once for the initial configuration. Starting with version 3,
+    /// it may be sent again if the popup is setup with an xdg_positioner with
+    /// set_reactive requested, or in response to xdg_popup.reposition requests.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ConfigureHandler(int x, int y, int width, int height);
 
     private ConfigureHandler? _onConfigure;
 
     /// <summary>
-    ///Configure the popup surface
+    /// Configure the popup surface
     /// <para>
     ///
-    ///This event asks the popup surface to configure itself given the
-    ///configuration. The configured state should not be applied immediately.
-    ///See xdg_surface.configure for details.
+    /// This event asks the popup surface to configure itself given the
+    /// configuration. The configured state should not be applied immediately.
+    /// See xdg_surface.configure for details.
     ///
-    ///The x and y arguments represent the position the popup was placed at
-    ///given the xdg_positioner rule, relative to the upper left corner of the
-    ///window geometry of the parent surface.
+    /// The x and y arguments represent the position the popup was placed at
+    /// given the xdg_positioner rule, relative to the upper left corner of the
+    /// window geometry of the parent surface.
     ///
-    ///For version 2 or older, the configure event for an xdg_popup is only
-    ///ever sent once for the initial configuration. Starting with version 3,
-    ///it may be sent again if the popup is setup with an xdg_positioner with
-    ///set_reactive requested, or in response to xdg_popup.reposition requests.
-    ///
+    /// For version 2 or older, the configure event for an xdg_popup is only
+    /// ever sent once for the initial configuration. Starting with version 3,
+    /// it may be sent again if the popup is setup with an xdg_positioner with
+    /// set_reactive requested, or in response to xdg_popup.reposition requests.
+    /// 
     /// </para>
     /// </summary>
     public event ConfigureHandler? OnConfigure
@@ -93,18 +120,28 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
         }
     }
 
+    /// <summary>
+    /// Popup interaction is done
+    /// <para>
+    ///
+    /// The popup_done event is sent out when a popup is dismissed by the
+    /// compositor. The client should destroy the xdg_popup object at this
+    /// point.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PopupDoneHandler();
 
     private PopupDoneHandler? _onPopupDone;
 
     /// <summary>
-    ///Popup interaction is done
+    /// Popup interaction is done
     /// <para>
     ///
-    ///The popup_done event is sent out when a popup is dismissed by the
-    ///compositor. The client should destroy the xdg_popup object at this
-    ///point.
-    ///
+    /// The popup_done event is sent out when a popup is dismissed by the
+    /// compositor. The client should destroy the xdg_popup object at this
+    /// point.
+    /// 
     /// </para>
     /// </summary>
     public event PopupDoneHandler? OnPopupDone
@@ -122,30 +159,52 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
         }
     }
 
+    /// <summary>
+    /// Signal the completion of a repositioned request
+    /// <para>
+    ///
+    /// The repositioned event is sent as part of a popup configuration
+    /// sequence, together with xdg_popup.configure and lastly
+    /// xdg_surface.configure to notify the completion of a reposition request.
+    ///
+    /// The repositioned event is to notify about the completion of a
+    /// xdg_popup.reposition request. The token argument is the token passed
+    /// in the xdg_popup.reposition request.
+    ///
+    /// Immediately after this event is emitted, xdg_popup.configure and
+    /// xdg_surface.configure will be sent with the updated size and position,
+    /// as well as a new configure serial.
+    ///
+    /// The client should optionally update the content of the popup, but must
+    /// acknowledge the new popup configuration for the new position to take
+    /// effect. See xdg_surface.ack_configure for details.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RepositionedHandler(uint token);
 
     private RepositionedHandler? _onRepositioned;
 
     /// <summary>
-    ///Signal the completion of a repositioned request
+    /// Signal the completion of a repositioned request
     /// <para>
     ///
-    ///The repositioned event is sent as part of a popup configuration
-    ///sequence, together with xdg_popup.configure and lastly
-    ///xdg_surface.configure to notify the completion of a reposition request.
+    /// The repositioned event is sent as part of a popup configuration
+    /// sequence, together with xdg_popup.configure and lastly
+    /// xdg_surface.configure to notify the completion of a reposition request.
     ///
-    ///The repositioned event is to notify about the completion of a
-    ///xdg_popup.reposition request. The token argument is the token passed
-    ///in the xdg_popup.reposition request.
+    /// The repositioned event is to notify about the completion of a
+    /// xdg_popup.reposition request. The token argument is the token passed
+    /// in the xdg_popup.reposition request.
     ///
-    ///Immediately after this event is emitted, xdg_popup.configure and
-    ///xdg_surface.configure will be sent with the updated size and position,
-    ///as well as a new configure serial.
+    /// Immediately after this event is emitted, xdg_popup.configure and
+    /// xdg_surface.configure will be sent with the updated size and position,
+    /// as well as a new configure serial.
     ///
-    ///The client should optionally update the content of the popup, but must
-    ///acknowledge the new popup configuration for the new position to take
-    ///effect. See xdg_surface.ack_configure for details.
-    ///
+    /// The client should optionally update the content of the popup, but must
+    /// acknowledge the new popup configuration for the new position to take
+    /// effect. See xdg_surface.ack_configure for details.
+    /// 
     /// </para>
     /// </summary>
     public event RepositionedHandler? OnRepositioned
@@ -379,6 +438,10 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
         );
     }
 
+    /// <summary> Creates a XdgPopup wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new XdgPopup instance.</returns>
     public static XdgPopup Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

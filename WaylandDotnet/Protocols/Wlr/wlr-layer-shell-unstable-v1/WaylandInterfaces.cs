@@ -1,15 +1,17 @@
 namespace WaylandDotnet.Internal;
 
 #nullable enable
-#pragma warning disable CS1591
 #pragma warning disable CA2255
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 
+/// <summary> Native Wayland interface descriptors for this protocol. </summary>
 public static unsafe partial class WaylandInterfaces
 {
+    /// <summary> Native interface descriptor for zwlr_layer_shell_v1. </summary>
     public static WlInterface* ZwlrLayerShellV1 = AllocateInterface();
+    /// <summary> Native interface descriptor for zwlr_layer_surface_v1. </summary>
     public static WlInterface* ZwlrLayerSurfaceV1 = AllocateInterface();
 
 

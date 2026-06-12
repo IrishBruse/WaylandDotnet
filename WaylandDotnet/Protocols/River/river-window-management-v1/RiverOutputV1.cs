@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory<RiverOutputV1>
 {
+    /// <summary> Wayland interface name for river_output_v1. </summary>
     public const string InterfaceName = "river_output_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_output_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 5;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_output_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverOutputV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -68,28 +76,48 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
         Async = 1,
     }
 
+    /// <summary>
+    /// The output is removed
+    /// <para>
+    ///
+    /// This event indicates that the logical output is no longer conceptually
+    /// part of window management space.
+    ///
+    /// The server will send no further events on this object and ignore any
+    /// request (other than river_output_v1.destroy) made after this event is
+    /// sent. The client should destroy this object with the
+    /// river_output_v1.destroy request to free up resources.
+    ///
+    /// This event may be sent because a corresponding physical output has been
+    /// physically unplugged or because some output configuration has changed.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RemovedHandler();
 
     private RemovedHandler? _onRemoved;
 
     /// <summary>
-    ///The output is removed
+    /// The output is removed
     /// <para>
     ///
-    ///This event indicates that the logical output is no longer conceptually
-    ///part of window management space.
+    /// This event indicates that the logical output is no longer conceptually
+    /// part of window management space.
     ///
-    ///The server will send no further events on this object and ignore any
-    ///request (other than river_output_v1.destroy) made after this event is
-    ///sent. The client should destroy this object with the
-    ///river_output_v1.destroy request to free up resources.
+    /// The server will send no further events on this object and ignore any
+    /// request (other than river_output_v1.destroy) made after this event is
+    /// sent. The client should destroy this object with the
+    /// river_output_v1.destroy request to free up resources.
     ///
-    ///This event may be sent because a corresponding physical output has been
-    ///physically unplugged or because some output configuration has changed.
+    /// This event may be sent because a corresponding physical output has been
+    /// physically unplugged or because some output configuration has changed.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event RemovedHandler? OnRemoved
@@ -107,33 +135,58 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// Corresponding wl_output
+    /// <para>
+    ///
+    /// The wl_output object corresponding to the river_output_v1. The argument
+    /// is the global name of the wl_output advertised with wl_registry.global.
+    ///
+    /// It is guaranteed that the corresponding wl_output is advertised before
+    /// this event is sent.
+    ///
+    /// This event is sent exactly once. The wl_output associated with a
+    /// river_output_v1 cannot change. It is guaranteed that there is a 1-to-1
+    /// mapping between wl_output and river_output_v1 objects.
+    ///
+    /// The global_remove event for the corresponding wl_output may be sent
+    /// before the river_output_v1.removed event. This is due to the fact that
+    /// river_output_v1 state changes are synced to the river window management
+    /// manage sequence while changes to globals are not.
+    ///
+    /// Rationale: The window manager may need information provided by the
+    /// wl_output interface such as the name/description. It also may need the
+    /// wl_output object to start screencopy for example.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void WlOutputHandler(uint name);
 
     private WlOutputHandler? _onWlOutput;
 
     /// <summary>
-    ///Corresponding wl_output
+    /// Corresponding wl_output
     /// <para>
     ///
-    ///The wl_output object corresponding to the river_output_v1. The argument
-    ///is the global name of the wl_output advertised with wl_registry.global.
+    /// The wl_output object corresponding to the river_output_v1. The argument
+    /// is the global name of the wl_output advertised with wl_registry.global.
     ///
-    ///It is guaranteed that the corresponding wl_output is advertised before
-    ///this event is sent.
+    /// It is guaranteed that the corresponding wl_output is advertised before
+    /// this event is sent.
     ///
-    ///This event is sent exactly once. The wl_output associated with a
-    ///river_output_v1 cannot change. It is guaranteed that there is a 1-to-1
-    ///mapping between wl_output and river_output_v1 objects.
+    /// This event is sent exactly once. The wl_output associated with a
+    /// river_output_v1 cannot change. It is guaranteed that there is a 1-to-1
+    /// mapping between wl_output and river_output_v1 objects.
     ///
-    ///The global_remove event for the corresponding wl_output may be sent
-    ///before the river_output_v1.removed event. This is due to the fact that
-    ///river_output_v1 state changes are synced to the river window management
-    ///manage sequence while changes to globals are not.
+    /// The global_remove event for the corresponding wl_output may be sent
+    /// before the river_output_v1.removed event. This is due to the fact that
+    /// river_output_v1 state changes are synced to the river window management
+    /// manage sequence while changes to globals are not.
     ///
-    ///Rationale: The window manager may need information provided by the
-    ///wl_output interface such as the name/description. It also may need the
-    ///wl_output object to start screencopy for example.
-    ///
+    /// Rationale: The window manager may need information provided by the
+    /// wl_output interface such as the name/description. It also may need the
+    /// wl_output object to start screencopy for example.
+    /// 
     /// </para>
     /// </summary>
     public event WlOutputHandler? OnWlOutput
@@ -151,28 +204,48 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// Output position
+    /// <para>
+    ///
+    /// This event indicates the position of the output in the compositor's
+    /// logical coordinate space. The x and y coordinates may be positive or
+    /// negative.
+    ///
+    /// This event is sent once when the river_output_v1 is created and again
+    /// whenever the position changes.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    ///
+    /// The server must guarantee that the position and dimensions events do not
+    /// cause the areas of multiple logical outputs to overlap when the
+    /// corresponding manage_start event is received.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PositionHandler(int x, int y);
 
     private PositionHandler? _onPosition;
 
     /// <summary>
-    ///Output position
+    /// Output position
     /// <para>
     ///
-    ///This event indicates the position of the output in the compositor's
-    ///logical coordinate space. The x and y coordinates may be positive or
-    ///negative.
+    /// This event indicates the position of the output in the compositor's
+    /// logical coordinate space. The x and y coordinates may be positive or
+    /// negative.
     ///
-    ///This event is sent once when the river_output_v1 is created and again
-    ///whenever the position changes.
+    /// This event is sent once when the river_output_v1 is created and again
+    /// whenever the position changes.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
     ///
-    ///The server must guarantee that the position and dimensions events do not
-    ///cause the areas of multiple logical outputs to overlap when the
-    ///corresponding manage_start event is received.
-    ///
+    /// The server must guarantee that the position and dimensions events do not
+    /// cause the areas of multiple logical outputs to overlap when the
+    /// corresponding manage_start event is received.
+    /// 
     /// </para>
     /// </summary>
     public event PositionHandler? OnPosition
@@ -190,28 +263,48 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// Output dimensions
+    /// <para>
+    ///
+    /// This event indicates the dimensions of the output in the compositor's
+    /// logical coordinate space. The width and height will always be strictly
+    /// greater than zero.
+    ///
+    /// This event is sent once when the river_output_v1 is created and again
+    /// whenever the dimensions change.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    ///
+    /// The server must guarantee that the position and dimensions events do not
+    /// cause the areas of multiple logical outputs to overlap when the
+    /// corresponding manage_start event is received.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DimensionsHandler(int width, int height);
 
     private DimensionsHandler? _onDimensions;
 
     /// <summary>
-    ///Output dimensions
+    /// Output dimensions
     /// <para>
     ///
-    ///This event indicates the dimensions of the output in the compositor's
-    ///logical coordinate space. The width and height will always be strictly
-    ///greater than zero.
+    /// This event indicates the dimensions of the output in the compositor's
+    /// logical coordinate space. The width and height will always be strictly
+    /// greater than zero.
     ///
-    ///This event is sent once when the river_output_v1 is created and again
-    ///whenever the dimensions change.
+    /// This event is sent once when the river_output_v1 is created and again
+    /// whenever the dimensions change.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
     ///
-    ///The server must guarantee that the position and dimensions events do not
-    ///cause the areas of multiple logical outputs to overlap when the
-    ///corresponding manage_start event is received.
-    ///
+    /// The server must guarantee that the position and dimensions events do not
+    /// cause the areas of multiple logical outputs to overlap when the
+    /// corresponding manage_start event is received.
+    /// 
     /// </para>
     /// </summary>
     public event DimensionsHandler? OnDimensions
@@ -229,23 +322,38 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// Output screen capture sessions
+    /// <para>
+    ///
+    /// This event informs the window manager of the number of active screen
+    /// capture sessions for the output.
+    ///
+    /// This event is sent once when the river_output_v1 is created and again
+    /// whenever the number of capture sessions changes.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CaptureSessionsHandler(uint count);
 
     private CaptureSessionsHandler? _onCaptureSessions;
 
     /// <summary>
-    ///Output screen capture sessions
+    /// Output screen capture sessions
     /// <para>
     ///
-    ///This event informs the window manager of the number of active screen
-    ///capture sessions for the output.
+    /// This event informs the window manager of the number of active screen
+    /// capture sessions for the output.
     ///
-    ///This event is sent once when the river_output_v1 is created and again
-    ///whenever the number of capture sessions changes.
+    /// This event is sent once when the river_output_v1 is created and again
+    /// whenever the number of capture sessions changes.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event CaptureSessionsHandler? OnCaptureSessions
@@ -410,6 +518,10 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
         );
     }
 
+    /// <summary> Creates a RiverOutputV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverOutputV1 instance.</returns>
     public static RiverOutputV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

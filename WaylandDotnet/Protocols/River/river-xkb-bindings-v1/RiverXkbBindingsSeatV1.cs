@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObjectFactory<RiverXkbBindingsSeatV1>
 {
+    /// <summary> Wayland interface name for river_xkb_bindings_seat_v1. </summary>
     public const string InterfaceName = "river_xkb_bindings_seat_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_xkb_bindings_seat_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 3;
 
     private bool disposed;
@@ -39,27 +41,45 @@ public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObje
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_xkb_bindings_seat_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverXkbBindingsSeatV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// An unbound key press event was eaten
+    /// <para>
+    ///
+    /// An unbound key press event was eaten due to the ensure_next_key_eaten
+    /// request.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AteUnboundKeyHandler();
 
     private AteUnboundKeyHandler? _onAteUnboundKey;
 
     /// <summary>
-    ///An unbound key press event was eaten
+    /// An unbound key press event was eaten
     /// <para>
     ///
-    ///An unbound key press event was eaten due to the ensure_next_key_eaten
-    ///request.
+    /// An unbound key press event was eaten due to the ensure_next_key_eaten
+    /// request.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event AteUnboundKeyHandler? OnAteUnboundKey
@@ -77,36 +97,64 @@ public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObje
         }
     }
 
+    /// <summary>
+    /// Active modifiers for the seat changed
+    /// <para>
+    ///
+    /// The set of currently active modifiers for the seat changed. This event
+    /// is only sent when there is a change in state for modifiers marked as
+    /// watched using the modifiers_watch request.
+    ///
+    /// The old and new arguments convey the set of modifiers active before and
+    /// after the change. All modifiers are included in the old and new
+    /// arguments, including modifiers that are not watched.
+    ///
+    /// Since this event is only sent when there is a change in state for
+    /// watched modifiers, it follows that at least one watched modifier is
+    /// active in old but inactive in new or vice-versa.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    ///
+    /// The compositor should wait for the manage sequence to complete before
+    /// processing further input events. This allows the window manager client
+    /// to, for example, modify key bindings and keyboard focus without racing
+    /// against future input events. The window manager should of course respond
+    /// as soon as possible as the capacity of the compositor to buffer incoming
+    /// input events is finite.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ModifiersUpdateHandler(uint old, uint _new);
 
     private ModifiersUpdateHandler? _onModifiersUpdate;
 
     /// <summary>
-    ///Active modifiers for the seat changed
+    /// Active modifiers for the seat changed
     /// <para>
     ///
-    ///The set of currently active modifiers for the seat changed. This event
-    ///is only sent when there is a change in state for modifiers marked as
-    ///watched using the modifiers_watch request.
+    /// The set of currently active modifiers for the seat changed. This event
+    /// is only sent when there is a change in state for modifiers marked as
+    /// watched using the modifiers_watch request.
     ///
-    ///The old and new arguments convey the set of modifiers active before and
-    ///after the change. All modifiers are included in the old and new
-    ///arguments, including modifiers that are not watched.
+    /// The old and new arguments convey the set of modifiers active before and
+    /// after the change. All modifiers are included in the old and new
+    /// arguments, including modifiers that are not watched.
     ///
-    ///Since this event is only sent when there is a change in state for
-    ///watched modifiers, it follows that at least one watched modifier is
-    ///active in old but inactive in new or vice-versa.
+    /// Since this event is only sent when there is a change in state for
+    /// watched modifiers, it follows that at least one watched modifier is
+    /// active in old but inactive in new or vice-versa.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
     ///
-    ///The compositor should wait for the manage sequence to complete before
-    ///processing further input events. This allows the window manager client
-    ///to, for example, modify key bindings and keyboard focus without racing
-    ///against future input events. The window manager should of course respond
-    ///as soon as possible as the capacity of the compositor to buffer incoming
-    ///input events is finite.
-    ///
+    /// The compositor should wait for the manage sequence to complete before
+    /// processing further input events. This allows the window manager client
+    /// to, for example, modify key bindings and keyboard focus without racing
+    /// against future input events. The window manager should of course respond
+    /// as soon as possible as the capacity of the compositor to buffer incoming
+    /// input events is finite.
+    /// 
     /// </para>
     /// </summary>
     public event ModifiersUpdateHandler? OnModifiersUpdate
@@ -333,6 +381,10 @@ public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObje
         );
     }
 
+    /// <summary> Creates a RiverXkbBindingsSeatV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverXkbBindingsSeatV1 instance.</returns>
     public static RiverXkbBindingsSeatV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

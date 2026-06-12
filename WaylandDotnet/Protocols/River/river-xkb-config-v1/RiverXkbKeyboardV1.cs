@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFactory<RiverXkbKeyboardV1>
 {
+    /// <summary> Wayland interface name for river_xkb_keyboard_v1. </summary>
     public const string InterfaceName = "river_xkb_keyboard_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_xkb_keyboard_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_xkb_keyboard_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverXkbKeyboardV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -55,21 +63,34 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
         InvalidKeymap = 0,
     }
 
+    /// <summary>
+    /// The xkb keyboard is removed
+    /// <para>
+    ///
+    /// This event indicates that the xkb keyboard has been removed.
+    ///
+    /// The server will send no further events on this object and ignore any
+    /// request (other than river_xkb_keyboard_v1.destroy) made after this event
+    /// is sent. The client should destroy this object with the
+    /// river_xkb_keyboard_v1.destroy request to free up resources.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RemovedHandler();
 
     private RemovedHandler? _onRemoved;
 
     /// <summary>
-    ///The xkb keyboard is removed
+    /// The xkb keyboard is removed
     /// <para>
     ///
-    ///This event indicates that the xkb keyboard has been removed.
+    /// This event indicates that the xkb keyboard has been removed.
     ///
-    ///The server will send no further events on this object and ignore any
-    ///request (other than river_xkb_keyboard_v1.destroy) made after this event
-    ///is sent. The client should destroy this object with the
-    ///river_xkb_keyboard_v1.destroy request to free up resources.
-    ///
+    /// The server will send no further events on this object and ignore any
+    /// request (other than river_xkb_keyboard_v1.destroy) made after this event
+    /// is sent. The client should destroy this object with the
+    /// river_xkb_keyboard_v1.destroy request to free up resources.
+    /// 
     /// </para>
     /// </summary>
     public event RemovedHandler? OnRemoved
@@ -87,18 +108,28 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    /// <summary>
+    /// Corresponding river input device
+    /// <para>
+    ///
+    /// The river_input_device_v1 corresponding to this xkb keyboard. This event
+    /// will always be the first event sent on the river_xkb_keyboard_v1 object,
+    /// and it will be sent exactly once.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void InputDeviceHandler(RiverInputDeviceV1 device);
 
     private InputDeviceHandler? _onInputDevice;
 
     /// <summary>
-    ///Corresponding river input device
+    /// Corresponding river input device
     /// <para>
     ///
-    ///The river_input_device_v1 corresponding to this xkb keyboard. This event
-    ///will always be the first event sent on the river_xkb_keyboard_v1 object,
-    ///and it will be sent exactly once.
-    ///
+    /// The river_input_device_v1 corresponding to this xkb keyboard. This event
+    /// will always be the first event sent on the river_xkb_keyboard_v1 object,
+    /// and it will be sent exactly once.
+    /// 
     /// </para>
     /// </summary>
     public event InputDeviceHandler? OnInputDevice
@@ -116,20 +147,32 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    /// <summary>
+    /// Currently active layout
+    /// <para>
+    ///
+    /// The currently active layout index and name. The name arg may be null if
+    /// the active layout does not have a name.
+    ///
+    /// This event is sent once when the river_xkb_keyboard_v1 is created and
+    /// again whenever the layout changes.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void LayoutHandler(uint index, string? name);
 
     private LayoutHandler? _onLayout;
 
     /// <summary>
-    ///Currently active layout
+    /// Currently active layout
     /// <para>
     ///
-    ///The currently active layout index and name. The name arg may be null if
-    ///the active layout does not have a name.
+    /// The currently active layout index and name. The name arg may be null if
+    /// the active layout does not have a name.
     ///
-    ///This event is sent once when the river_xkb_keyboard_v1 is created and
-    ///again whenever the layout changes.
-    ///
+    /// This event is sent once when the river_xkb_keyboard_v1 is created and
+    /// again whenever the layout changes.
+    /// 
     /// </para>
     /// </summary>
     public event LayoutHandler? OnLayout
@@ -147,19 +190,30 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    /// <summary>
+    /// Capslock is currently enabled
+    /// <para>
+    ///
+    /// Capslock is currently enabled for the keyboard.
+    ///
+    /// This event is sent once when the river_xkb_keyboard_v1 is created and
+    /// again whenever the capslock state changes.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CapslockEnabledHandler();
 
     private CapslockEnabledHandler? _onCapslockEnabled;
 
     /// <summary>
-    ///Capslock is currently enabled
+    /// Capslock is currently enabled
     /// <para>
     ///
-    ///Capslock is currently enabled for the keyboard.
+    /// Capslock is currently enabled for the keyboard.
     ///
-    ///This event is sent once when the river_xkb_keyboard_v1 is created and
-    ///again whenever the capslock state changes.
-    ///
+    /// This event is sent once when the river_xkb_keyboard_v1 is created and
+    /// again whenever the capslock state changes.
+    /// 
     /// </para>
     /// </summary>
     public event CapslockEnabledHandler? OnCapslockEnabled
@@ -177,19 +231,30 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    /// <summary>
+    /// Capslock is currently disabled
+    /// <para>
+    ///
+    /// Capslock is currently disabled for the keyboard.
+    ///
+    /// This event is sent once when the river_xkb_keyboard_v1 is created and
+    /// again whenever the capslock state changes.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CapslockDisabledHandler();
 
     private CapslockDisabledHandler? _onCapslockDisabled;
 
     /// <summary>
-    ///Capslock is currently disabled
+    /// Capslock is currently disabled
     /// <para>
     ///
-    ///Capslock is currently disabled for the keyboard.
+    /// Capslock is currently disabled for the keyboard.
     ///
-    ///This event is sent once when the river_xkb_keyboard_v1 is created and
-    ///again whenever the capslock state changes.
-    ///
+    /// This event is sent once when the river_xkb_keyboard_v1 is created and
+    /// again whenever the capslock state changes.
+    /// 
     /// </para>
     /// </summary>
     public event CapslockDisabledHandler? OnCapslockDisabled
@@ -207,19 +272,30 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    /// <summary>
+    /// Numlock is currently enabled
+    /// <para>
+    ///
+    /// Numlock is currently enabled for the keyboard.
+    ///
+    /// This event is sent once when the river_xkb_keyboard_v1 is created and
+    /// again whenever the numlock state changes.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void NumlockEnabledHandler();
 
     private NumlockEnabledHandler? _onNumlockEnabled;
 
     /// <summary>
-    ///Numlock is currently enabled
+    /// Numlock is currently enabled
     /// <para>
     ///
-    ///Numlock is currently enabled for the keyboard.
+    /// Numlock is currently enabled for the keyboard.
     ///
-    ///This event is sent once when the river_xkb_keyboard_v1 is created and
-    ///again whenever the numlock state changes.
-    ///
+    /// This event is sent once when the river_xkb_keyboard_v1 is created and
+    /// again whenever the numlock state changes.
+    /// 
     /// </para>
     /// </summary>
     public event NumlockEnabledHandler? OnNumlockEnabled
@@ -237,19 +313,30 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    /// <summary>
+    /// Numlock is currently disabled
+    /// <para>
+    ///
+    /// Numlock is currently disabled for the keyboard.
+    ///
+    /// This event is sent once when the river_xkb_keyboard_v1 is created and
+    /// again whenever the numlock state changes.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void NumlockDisabledHandler();
 
     private NumlockDisabledHandler? _onNumlockDisabled;
 
     /// <summary>
-    ///Numlock is currently disabled
+    /// Numlock is currently disabled
     /// <para>
     ///
-    ///Numlock is currently disabled for the keyboard.
+    /// Numlock is currently disabled for the keyboard.
     ///
-    ///This event is sent once when the river_xkb_keyboard_v1 is created and
-    ///again whenever the numlock state changes.
-    ///
+    /// This event is sent once when the river_xkb_keyboard_v1 is created and
+    /// again whenever the numlock state changes.
+    /// 
     /// </para>
     /// </summary>
     public event NumlockDisabledHandler? OnNumlockDisabled
@@ -267,20 +354,32 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    /// <summary>
+    /// All information has been sent
+    /// <para>
+    ///
+    /// This event is sent after all information about the keyboard has been
+    /// sent.
+    ///
+    /// This allows changes to one or more river_xkb_keyboard_v1 properties to
+    /// be seen as atomic, even if they happen via multiple events.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DoneHandler();
 
     private DoneHandler? _onDone;
 
     /// <summary>
-    ///All information has been sent
+    /// All information has been sent
     /// <para>
     ///
-    ///This event is sent after all information about the keyboard has been
-    ///sent.
+    /// This event is sent after all information about the keyboard has been
+    /// sent.
     ///
-    ///This allows changes to one or more river_xkb_keyboard_v1 properties to
-    ///be seen as atomic, even if they happen via multiple events.
-    ///
+    /// This allows changes to one or more river_xkb_keyboard_v1 properties to
+    /// be seen as atomic, even if they happen via multiple events.
+    /// 
     /// </para>
     /// </summary>
     public event DoneHandler? OnDone
@@ -619,6 +718,10 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
         );
     }
 
+    /// <summary> Creates a RiverXkbKeyboardV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverXkbKeyboardV1 instance.</returns>
     public static RiverXkbKeyboardV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

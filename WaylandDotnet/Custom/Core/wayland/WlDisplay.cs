@@ -88,5 +88,7 @@ public sealed partial class WlDisplay
         return WaylandNative.DisplayFlush(Handle);
     }
 
+    /// <summary> Converts a display wrapper to its native handle. </summary>
+    /// <param name="from">The display wrapper.</param>
     public static implicit operator IntPtr(WlDisplay? from) => from?.Handle ?? IntPtr.Zero;
 }

@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,12 +28,19 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WpViewport : WaylandObject, IWaylandObjectFactory<WpViewport>
 {
+    /// <summary> Wayland interface name for wp_viewport. </summary>
     public const string InterfaceName = "wp_viewport";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wp_viewport";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
     private bool disposed;
 
+    /// <summary>
+    /// Wraps an existing wp_viewport proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
     public WpViewport(IntPtr handle)
     {
         Handle = handle;
@@ -164,6 +170,10 @@ public sealed partial class WpViewport : WaylandObject, IWaylandObjectFactory<Wp
         );
     }
 
+    /// <summary> Creates a WpViewport wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WpViewport instance.</returns>
     public static WpViewport Create(nint handle, WlDisplay? display = null)
     {
         return new WpViewport(handle);

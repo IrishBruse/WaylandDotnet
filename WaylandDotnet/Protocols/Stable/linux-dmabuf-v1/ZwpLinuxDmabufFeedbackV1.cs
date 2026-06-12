@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandObjectFactory<ZwpLinuxDmabufFeedbackV1>
 {
+    /// <summary> Wayland interface name for zwp_linux_dmabuf_feedback_v1. </summary>
     public const string InterfaceName = "zwp_linux_dmabuf_feedback_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwp_linux_dmabuf_feedback_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 6;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwp_linux_dmabuf_feedback_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwpLinuxDmabufFeedbackV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -60,20 +68,32 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
         Sampling = 2,
     }
 
+    /// <summary>
+    /// All feedback has been sent
+    /// <para>
+    ///
+    /// This event is sent after all parameters of a zwp_linux_dmabuf_feedback_v1
+    /// object have been sent.
+    ///
+    /// This allows changes to the zwp_linux_dmabuf_feedback_v1 parameters to be
+    /// seen as atomic, even if they happen via multiple events.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DoneHandler();
 
     private DoneHandler? _onDone;
 
     /// <summary>
-    ///All feedback has been sent
+    /// All feedback has been sent
     /// <para>
     ///
-    ///This event is sent after all parameters of a zwp_linux_dmabuf_feedback_v1
-    ///object have been sent.
+    /// This event is sent after all parameters of a zwp_linux_dmabuf_feedback_v1
+    /// object have been sent.
     ///
-    ///This allows changes to the zwp_linux_dmabuf_feedback_v1 parameters to be
-    ///seen as atomic, even if they happen via multiple events.
-    ///
+    /// This allows changes to the zwp_linux_dmabuf_feedback_v1 parameters to be
+    /// seen as atomic, even if they happen via multiple events.
+    /// 
     /// </para>
     /// </summary>
     public event DoneHandler? OnDone
@@ -91,29 +111,50 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
         }
     }
 
+    /// <summary>
+    /// Format and modifier table
+    /// <para>
+    ///
+    /// This event provides a file descriptor which can be memory-mapped to
+    /// access the format and modifier table.
+    ///
+    /// The table contains a tightly packed array of consecutive format +
+    /// modifier pairs. Each pair is 16 bytes wide. It contains a format as a
+    /// 32-bit unsigned integer, followed by 4 bytes of unused padding, and a
+    /// modifier as a 64-bit unsigned integer. The native endianness is used.
+    ///
+    /// The client must map the file descriptor in read-only private mode.
+    ///
+    /// Compositors are not allowed to mutate the table file contents once this
+    /// event has been sent. Instead, compositors must create a new, separate
+    /// table file and re-send feedback parameters. Compositors are allowed to
+    /// store duplicate format + modifier pairs in the table.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FormatTableHandler(int fd, uint size);
 
     private FormatTableHandler? _onFormatTable;
 
     /// <summary>
-    ///Format and modifier table
+    /// Format and modifier table
     /// <para>
     ///
-    ///This event provides a file descriptor which can be memory-mapped to
-    ///access the format and modifier table.
+    /// This event provides a file descriptor which can be memory-mapped to
+    /// access the format and modifier table.
     ///
-    ///The table contains a tightly packed array of consecutive format +
-    ///modifier pairs. Each pair is 16 bytes wide. It contains a format as a
-    ///32-bit unsigned integer, followed by 4 bytes of unused padding, and a
-    ///modifier as a 64-bit unsigned integer. The native endianness is used.
+    /// The table contains a tightly packed array of consecutive format +
+    /// modifier pairs. Each pair is 16 bytes wide. It contains a format as a
+    /// 32-bit unsigned integer, followed by 4 bytes of unused padding, and a
+    /// modifier as a 64-bit unsigned integer. The native endianness is used.
     ///
-    ///The client must map the file descriptor in read-only private mode.
+    /// The client must map the file descriptor in read-only private mode.
     ///
-    ///Compositors are not allowed to mutate the table file contents once this
-    ///event has been sent. Instead, compositors must create a new, separate
-    ///table file and re-send feedback parameters. Compositors are allowed to
-    ///store duplicate format + modifier pairs in the table.
-    ///
+    /// Compositors are not allowed to mutate the table file contents once this
+    /// event has been sent. Instead, compositors must create a new, separate
+    /// table file and re-send feedback parameters. Compositors are allowed to
+    /// store duplicate format + modifier pairs in the table.
+    /// 
     /// </para>
     /// </summary>
     public event FormatTableHandler? OnFormatTable
@@ -131,41 +172,74 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
         }
     }
 
+    /// <summary>
+    /// Preferred main device
+    /// <para>
+    ///
+    /// This event advertises the main device that the server prefers to use
+    /// when direct scan-out to the target device isn't possible. The
+    /// advertised main device may be different for each
+    /// zwp_linux_dmabuf_feedback_v1 object, and may change over time.
+    ///
+    /// There is exactly one main device. The compositor must send at least
+    /// one preference tranche with tranche_target_device equal to main_device.
+    ///
+    /// Clients need to create buffers that the main device can import and
+    /// read from, otherwise creating the dmabuf wl_buffer will fail (see the
+    /// zwp_linux_buffer_params_v1.create and create_immed requests for details).
+    /// The main device will also likely be kept active by the compositor,
+    /// so clients can use it instead of waking up another device for power
+    /// savings.
+    ///
+    /// In general the device is a DRM node. The DRM node type (primary vs.
+    /// render) is unspecified. Clients must not rely on the compositor sending
+    /// a particular node type. Clients cannot check two devices for equality
+    /// by comparing the dev_t value.
+    ///
+    /// If explicit modifiers are not supported and the client performs buffer
+    /// allocations on a different device than the main device, then the client
+    /// must force the buffer to have a linear layout.
+    ///
+    /// With version 6 and above, this event is no longer sent. Clients should
+    /// use a device with the sampling flag in the tranches instead.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void MainDeviceHandler(byte[] device);
 
     private MainDeviceHandler? _onMainDevice;
 
     /// <summary>
-    ///Preferred main device
+    /// Preferred main device
     /// <para>
     ///
-    ///This event advertises the main device that the server prefers to use
-    ///when direct scan-out to the target device isn't possible. The
-    ///advertised main device may be different for each
-    ///zwp_linux_dmabuf_feedback_v1 object, and may change over time.
+    /// This event advertises the main device that the server prefers to use
+    /// when direct scan-out to the target device isn't possible. The
+    /// advertised main device may be different for each
+    /// zwp_linux_dmabuf_feedback_v1 object, and may change over time.
     ///
-    ///There is exactly one main device. The compositor must send at least
-    ///one preference tranche with tranche_target_device equal to main_device.
+    /// There is exactly one main device. The compositor must send at least
+    /// one preference tranche with tranche_target_device equal to main_device.
     ///
-    ///Clients need to create buffers that the main device can import and
-    ///read from, otherwise creating the dmabuf wl_buffer will fail (see the
-    ///zwp_linux_buffer_params_v1.create and create_immed requests for details).
-    ///The main device will also likely be kept active by the compositor,
-    ///so clients can use it instead of waking up another device for power
-    ///savings.
+    /// Clients need to create buffers that the main device can import and
+    /// read from, otherwise creating the dmabuf wl_buffer will fail (see the
+    /// zwp_linux_buffer_params_v1.create and create_immed requests for details).
+    /// The main device will also likely be kept active by the compositor,
+    /// so clients can use it instead of waking up another device for power
+    /// savings.
     ///
-    ///In general the device is a DRM node. The DRM node type (primary vs.
-    ///render) is unspecified. Clients must not rely on the compositor sending
-    ///a particular node type. Clients cannot check two devices for equality
-    ///by comparing the dev_t value.
+    /// In general the device is a DRM node. The DRM node type (primary vs.
+    /// render) is unspecified. Clients must not rely on the compositor sending
+    /// a particular node type. Clients cannot check two devices for equality
+    /// by comparing the dev_t value.
     ///
-    ///If explicit modifiers are not supported and the client performs buffer
-    ///allocations on a different device than the main device, then the client
-    ///must force the buffer to have a linear layout.
+    /// If explicit modifiers are not supported and the client performs buffer
+    /// allocations on a different device than the main device, then the client
+    /// must force the buffer to have a linear layout.
     ///
-    ///With version 6 and above, this event is no longer sent. Clients should
-    ///use a device with the sampling flag in the tranches instead.
-    ///
+    /// With version 6 and above, this event is no longer sent. Clients should
+    /// use a device with the sampling flag in the tranches instead.
+    /// 
     /// </para>
     /// </summary>
     public event MainDeviceHandler? OnMainDevice
@@ -183,19 +257,30 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
         }
     }
 
+    /// <summary>
+    /// A preference tranche has been sent
+    /// <para>
+    ///
+    /// This event splits tranche_target_device and tranche_formats events into
+    /// preference tranches. It is sent after a set of tranche_target_device
+    /// and tranche_formats events; it represents the end of a tranche. The
+    /// next tranche will have a lower preference.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TrancheDoneHandler();
 
     private TrancheDoneHandler? _onTrancheDone;
 
     /// <summary>
-    ///A preference tranche has been sent
+    /// A preference tranche has been sent
     /// <para>
     ///
-    ///This event splits tranche_target_device and tranche_formats events into
-    ///preference tranches. It is sent after a set of tranche_target_device
-    ///and tranche_formats events; it represents the end of a tranche. The
-    ///next tranche will have a lower preference.
-    ///
+    /// This event splits tranche_target_device and tranche_formats events into
+    /// preference tranches. It is sent after a set of tranche_target_device
+    /// and tranche_formats events; it represents the end of a tranche. The
+    /// next tranche will have a lower preference.
+    /// 
     /// </para>
     /// </summary>
     public event TrancheDoneHandler? OnTrancheDone
@@ -213,41 +298,74 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
         }
     }
 
+    /// <summary>
+    /// Target device
+    /// <para>
+    ///
+    /// This event advertises the target device that the server prefers to use
+    /// for a buffer created given this tranche. The advertised target device
+    /// may be different for each preference tranche, and may change over time.
+    ///
+    /// There is exactly one target device per tranche.
+    ///
+    /// The target device may be a scan-out device, for example if the
+    /// compositor prefers to directly scan-out a buffer created given this
+    /// tranche. The target device may be a rendering device, for example if
+    /// the compositor prefers to texture from said buffer.
+    ///
+    /// The client can use this hint to allocate the buffer in a way that makes
+    /// it accessible from the target device, ideally directly. The buffer must
+    /// still be accessible from a device with the sampling flag, either through
+    /// direct import or a potentially more expensive fallback path. If the
+    /// buffer can't be directly imported for sampling, then clients must be
+    /// prepared for the compositor changing the tranche priority or making
+    /// wl_buffer creation fail (see the zwp_linux_buffer_params_v1.create and
+    /// create_immed requests for details).
+    ///
+    /// If the device is a DRM node, the DRM node type (primary vs. render) is
+    /// unspecified. Clients must not rely on the compositor sending a
+    /// particular node type. Clients cannot check two devices for equality by
+    /// comparing the dev_t value.
+    ///
+    /// This event is tied to a preference tranche, see the tranche_done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TrancheTargetDeviceHandler(byte[] device);
 
     private TrancheTargetDeviceHandler? _onTrancheTargetDevice;
 
     /// <summary>
-    ///Target device
+    /// Target device
     /// <para>
     ///
-    ///This event advertises the target device that the server prefers to use
-    ///for a buffer created given this tranche. The advertised target device
-    ///may be different for each preference tranche, and may change over time.
+    /// This event advertises the target device that the server prefers to use
+    /// for a buffer created given this tranche. The advertised target device
+    /// may be different for each preference tranche, and may change over time.
     ///
-    ///There is exactly one target device per tranche.
+    /// There is exactly one target device per tranche.
     ///
-    ///The target device may be a scan-out device, for example if the
-    ///compositor prefers to directly scan-out a buffer created given this
-    ///tranche. The target device may be a rendering device, for example if
-    ///the compositor prefers to texture from said buffer.
+    /// The target device may be a scan-out device, for example if the
+    /// compositor prefers to directly scan-out a buffer created given this
+    /// tranche. The target device may be a rendering device, for example if
+    /// the compositor prefers to texture from said buffer.
     ///
-    ///The client can use this hint to allocate the buffer in a way that makes
-    ///it accessible from the target device, ideally directly. The buffer must
-    ///still be accessible from a device with the sampling flag, either through
-    ///direct import or a potentially more expensive fallback path. If the
-    ///buffer can't be directly imported for sampling, then clients must be
-    ///prepared for the compositor changing the tranche priority or making
-    ///wl_buffer creation fail (see the zwp_linux_buffer_params_v1.create and
-    ///create_immed requests for details).
+    /// The client can use this hint to allocate the buffer in a way that makes
+    /// it accessible from the target device, ideally directly. The buffer must
+    /// still be accessible from a device with the sampling flag, either through
+    /// direct import or a potentially more expensive fallback path. If the
+    /// buffer can't be directly imported for sampling, then clients must be
+    /// prepared for the compositor changing the tranche priority or making
+    /// wl_buffer creation fail (see the zwp_linux_buffer_params_v1.create and
+    /// create_immed requests for details).
     ///
-    ///If the device is a DRM node, the DRM node type (primary vs. render) is
-    ///unspecified. Clients must not rely on the compositor sending a
-    ///particular node type. Clients cannot check two devices for equality by
-    ///comparing the dev_t value.
+    /// If the device is a DRM node, the DRM node type (primary vs. render) is
+    /// unspecified. Clients must not rely on the compositor sending a
+    /// particular node type. Clients cannot check two devices for equality by
+    /// comparing the dev_t value.
     ///
-    ///This event is tied to a preference tranche, see the tranche_done event.
-    ///
+    /// This event is tied to a preference tranche, see the tranche_done event.
+    /// 
     /// </para>
     /// </summary>
     public event TrancheTargetDeviceHandler? OnTrancheTargetDevice
@@ -265,39 +383,70 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
         }
     }
 
+    /// <summary>
+    /// Supported buffer format modifiers
+    /// <para>
+    ///
+    /// This event advertises the format + modifier combinations that the
+    /// compositor supports.
+    ///
+    /// It carries an array of indices, each referring to a format + modifier
+    /// pair in the last received format table (see the format_table event).
+    /// Each index is a 16-bit unsigned integer in native endianness.
+    ///
+    /// For legacy support, DRM_FORMAT_MOD_INVALID is an allowed modifier.
+    /// It indicates that the server can support the format with an implicit
+    /// modifier. When a buffer has DRM_FORMAT_MOD_INVALID as its modifier, it
+    /// is as if no explicit modifier is specified. The effective modifier
+    /// will be derived from the dmabuf.
+    ///
+    /// A compositor that sends valid modifiers and DRM_FORMAT_MOD_INVALID for
+    /// a given format supports both explicit modifiers and implicit modifiers.
+    ///
+    /// Compositors must not send duplicate format + modifier pairs within the
+    /// same tranche or across two different tranches with the same target
+    /// device and flags.
+    ///
+    /// This event is tied to a preference tranche, see the tranche_done event.
+    ///
+    /// For the definition of the format and modifier codes, see the
+    /// zwp_linux_buffer_params_v1.create request.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TrancheFormatsHandler(byte[] indices);
 
     private TrancheFormatsHandler? _onTrancheFormats;
 
     /// <summary>
-    ///Supported buffer format modifiers
+    /// Supported buffer format modifiers
     /// <para>
     ///
-    ///This event advertises the format + modifier combinations that the
-    ///compositor supports.
+    /// This event advertises the format + modifier combinations that the
+    /// compositor supports.
     ///
-    ///It carries an array of indices, each referring to a format + modifier
-    ///pair in the last received format table (see the format_table event).
-    ///Each index is a 16-bit unsigned integer in native endianness.
+    /// It carries an array of indices, each referring to a format + modifier
+    /// pair in the last received format table (see the format_table event).
+    /// Each index is a 16-bit unsigned integer in native endianness.
     ///
-    ///For legacy support, DRM_FORMAT_MOD_INVALID is an allowed modifier.
-    ///It indicates that the server can support the format with an implicit
-    ///modifier. When a buffer has DRM_FORMAT_MOD_INVALID as its modifier, it
-    ///is as if no explicit modifier is specified. The effective modifier
-    ///will be derived from the dmabuf.
+    /// For legacy support, DRM_FORMAT_MOD_INVALID is an allowed modifier.
+    /// It indicates that the server can support the format with an implicit
+    /// modifier. When a buffer has DRM_FORMAT_MOD_INVALID as its modifier, it
+    /// is as if no explicit modifier is specified. The effective modifier
+    /// will be derived from the dmabuf.
     ///
-    ///A compositor that sends valid modifiers and DRM_FORMAT_MOD_INVALID for
-    ///a given format supports both explicit modifiers and implicit modifiers.
+    /// A compositor that sends valid modifiers and DRM_FORMAT_MOD_INVALID for
+    /// a given format supports both explicit modifiers and implicit modifiers.
     ///
-    ///Compositors must not send duplicate format + modifier pairs within the
-    ///same tranche or across two different tranches with the same target
-    ///device and flags.
+    /// Compositors must not send duplicate format + modifier pairs within the
+    /// same tranche or across two different tranches with the same target
+    /// device and flags.
     ///
-    ///This event is tied to a preference tranche, see the tranche_done event.
+    /// This event is tied to a preference tranche, see the tranche_done event.
     ///
-    ///For the definition of the format and modifier codes, see the
-    ///zwp_linux_buffer_params_v1.create request.
-    ///
+    /// For the definition of the format and modifier codes, see the
+    /// zwp_linux_buffer_params_v1.create request.
+    /// 
     /// </para>
     /// </summary>
     public event TrancheFormatsHandler? OnTrancheFormats
@@ -315,19 +464,30 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
         }
     }
 
+    /// <summary>
+    /// Tranche flags
+    /// <para>
+    ///
+    /// This event sets tranche-specific flags. This event is tied to a
+    /// preference tranche, see the tranche_done event.
+    /// With version 6 and above, the compositor must set at least one flag
+    /// in each tranche.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TrancheFlagsHandler(uint flags);
 
     private TrancheFlagsHandler? _onTrancheFlags;
 
     /// <summary>
-    ///Tranche flags
+    /// Tranche flags
     /// <para>
     ///
-    ///This event sets tranche-specific flags. This event is tied to a
-    ///preference tranche, see the tranche_done event.
-    ///With version 6 and above, the compositor must set at least one flag
-    ///in each tranche.
-    ///
+    /// This event sets tranche-specific flags. This event is tied to a
+    /// preference tranche, see the tranche_done event.
+    /// With version 6 and above, the compositor must set at least one flag
+    /// in each tranche.
+    /// 
     /// </para>
     /// </summary>
     public event TrancheFlagsHandler? OnTrancheFlags
@@ -469,6 +629,10 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
         disposed = true;
     }
 
+    /// <summary> Creates a ZwpLinuxDmabufFeedbackV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwpLinuxDmabufFeedbackV1 instance.</returns>
     public static ZwpLinuxDmabufFeedbackV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

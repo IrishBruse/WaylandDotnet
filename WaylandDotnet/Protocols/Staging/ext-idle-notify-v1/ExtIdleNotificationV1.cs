@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Staging;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ExtIdleNotificationV1 : WaylandObject, IWaylandObjectFactory<ExtIdleNotificationV1>
 {
+    /// <summary> Wayland interface name for ext_idle_notification_v1. </summary>
     public const string InterfaceName = "ext_idle_notification_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "ext_idle_notification_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,26 +41,43 @@ public sealed partial class ExtIdleNotificationV1 : WaylandObject, IWaylandObjec
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing ext_idle_notification_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ExtIdleNotificationV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// Notification object is idle
+    /// <para>
+    ///
+    /// This event is sent when the notification object becomes idle.
+    ///
+    /// It's a compositor protocol error to send this event twice without a
+    /// resumed event in-between.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void IdledHandler();
 
     private IdledHandler? _onIdled;
 
     /// <summary>
-    ///Notification object is idle
+    /// Notification object is idle
     /// <para>
     ///
-    ///This event is sent when the notification object becomes idle.
+    /// This event is sent when the notification object becomes idle.
     ///
-    ///It's a compositor protocol error to send this event twice without a
-    ///resumed event in-between.
-    ///
+    /// It's a compositor protocol error to send this event twice without a
+    /// resumed event in-between.
+    /// 
     /// </para>
     /// </summary>
     public event IdledHandler? OnIdled
@@ -76,20 +95,32 @@ public sealed partial class ExtIdleNotificationV1 : WaylandObject, IWaylandObjec
         }
     }
 
+    /// <summary>
+    /// Notification object is no longer idle
+    /// <para>
+    ///
+    /// This event is sent when the notification object stops being idle.
+    ///
+    /// It's a compositor protocol error to send this event twice without an
+    /// idled event in-between. It's a compositor protocol error to send this
+    /// event prior to any idled event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ResumedHandler();
 
     private ResumedHandler? _onResumed;
 
     /// <summary>
-    ///Notification object is no longer idle
+    /// Notification object is no longer idle
     /// <para>
     ///
-    ///This event is sent when the notification object stops being idle.
+    /// This event is sent when the notification object stops being idle.
     ///
-    ///It's a compositor protocol error to send this event twice without an
-    ///idled event in-between. It's a compositor protocol error to send this
-    ///event prior to any idled event.
-    ///
+    /// It's a compositor protocol error to send this event twice without an
+    /// idled event in-between. It's a compositor protocol error to send this
+    /// event prior to any idled event.
+    /// 
     /// </para>
     /// </summary>
     public event ResumedHandler? OnResumed
@@ -194,6 +225,10 @@ public sealed partial class ExtIdleNotificationV1 : WaylandObject, IWaylandObjec
         disposed = true;
     }
 
+    /// <summary> Creates a ExtIdleNotificationV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ExtIdleNotificationV1 instance.</returns>
     public static ExtIdleNotificationV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

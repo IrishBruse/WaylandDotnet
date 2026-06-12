@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTouch>
 {
+    /// <summary> Wayland interface name for wl_touch. </summary>
     public const string InterfaceName = "wl_touch";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_touch";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 11;
 
     private bool disposed;
@@ -39,26 +41,43 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_touch proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlTouch(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// Touch down event and beginning of a touch sequence
+    /// <para>
+    ///
+    /// A new touch point has appeared on the surface. This touch point is
+    /// assigned a unique ID. Future events from this touch point reference
+    /// this ID. The ID ceases to be valid after a touch up event and may be
+    /// reused in the future.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DownHandler(uint serial, uint time, WlSurface surface, int id, WlFixed x, WlFixed y);
 
     private DownHandler? _onDown;
 
     /// <summary>
-    ///Touch down event and beginning of a touch sequence
+    /// Touch down event and beginning of a touch sequence
     /// <para>
     ///
-    ///A new touch point has appeared on the surface. This touch point is
-    ///assigned a unique ID. Future events from this touch point reference
-    ///this ID. The ID ceases to be valid after a touch up event and may be
-    ///reused in the future.
-    ///
+    /// A new touch point has appeared on the surface. This touch point is
+    /// assigned a unique ID. Future events from this touch point reference
+    /// this ID. The ID ceases to be valid after a touch up event and may be
+    /// reused in the future.
+    /// 
     /// </para>
     /// </summary>
     public event DownHandler? OnDown
@@ -76,18 +95,28 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
         }
     }
 
+    /// <summary>
+    /// End of a touch event sequence
+    /// <para>
+    ///
+    /// The touch point has disappeared. No further events will be sent for
+    /// this touch point and the touch point's ID is released and may be
+    /// reused in a future touch down event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void UpHandler(uint serial, uint time, int id);
 
     private UpHandler? _onUp;
 
     /// <summary>
-    ///End of a touch event sequence
+    /// End of a touch event sequence
     /// <para>
     ///
-    ///The touch point has disappeared. No further events will be sent for
-    ///this touch point and the touch point's ID is released and may be
-    ///reused in a future touch down event.
-    ///
+    /// The touch point has disappeared. No further events will be sent for
+    /// this touch point and the touch point's ID is released and may be
+    /// reused in a future touch down event.
+    /// 
     /// </para>
     /// </summary>
     public event UpHandler? OnUp
@@ -105,16 +134,24 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
         }
     }
 
+    /// <summary>
+    /// Update of touch point coordinates
+    /// <para>
+    ///
+    /// A touch point has changed coordinates.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void MotionHandler(uint time, int id, WlFixed x, WlFixed y);
 
     private MotionHandler? _onMotion;
 
     /// <summary>
-    ///Update of touch point coordinates
+    /// Update of touch point coordinates
     /// <para>
     ///
-    ///A touch point has changed coordinates.
-    ///
+    /// A touch point has changed coordinates.
+    /// 
     /// </para>
     /// </summary>
     public event MotionHandler? OnMotion
@@ -132,23 +169,38 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
         }
     }
 
+    /// <summary>
+    /// End of touch frame event
+    /// <para>
+    ///
+    /// Indicates the end of a set of events that logically belong together.
+    /// A client is expected to accumulate the data in all events within the
+    /// frame before proceeding.
+    ///
+    /// A wl_touch.frame terminates at least one event but otherwise no
+    /// guarantee is provided about the set of events within a frame. A client
+    /// must assume that any state not updated in a frame is unchanged from the
+    /// previously known state.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FrameHandler();
 
     private FrameHandler? _onFrame;
 
     /// <summary>
-    ///End of touch frame event
+    /// End of touch frame event
     /// <para>
     ///
-    ///Indicates the end of a set of events that logically belong together.
-    ///A client is expected to accumulate the data in all events within the
-    ///frame before proceeding.
+    /// Indicates the end of a set of events that logically belong together.
+    /// A client is expected to accumulate the data in all events within the
+    /// frame before proceeding.
     ///
-    ///A wl_touch.frame terminates at least one event but otherwise no
-    ///guarantee is provided about the set of events within a frame. A client
-    ///must assume that any state not updated in a frame is unchanged from the
-    ///previously known state.
-    ///
+    /// A wl_touch.frame terminates at least one event but otherwise no
+    /// guarantee is provided about the set of events within a frame. A client
+    /// must assume that any state not updated in a frame is unchanged from the
+    /// previously known state.
+    /// 
     /// </para>
     /// </summary>
     public event FrameHandler? OnFrame
@@ -166,23 +218,38 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
         }
     }
 
+    /// <summary>
+    /// Touch session cancelled
+    /// <para>
+    ///
+    /// Sent if the compositor decides the touch stream is a global
+    /// gesture. No further events are sent to the clients from that
+    /// particular gesture. Touch cancellation applies to all touch points
+    /// currently active on this client's surface. The client is
+    /// responsible for finalizing the touch points, future touch points on
+    /// this surface may reuse the touch point ID.
+    ///
+    /// No frame event is required after the cancel event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CancelHandler();
 
     private CancelHandler? _onCancel;
 
     /// <summary>
-    ///Touch session cancelled
+    /// Touch session cancelled
     /// <para>
     ///
-    ///Sent if the compositor decides the touch stream is a global
-    ///gesture. No further events are sent to the clients from that
-    ///particular gesture. Touch cancellation applies to all touch points
-    ///currently active on this client's surface. The client is
-    ///responsible for finalizing the touch points, future touch points on
-    ///this surface may reuse the touch point ID.
+    /// Sent if the compositor decides the touch stream is a global
+    /// gesture. No further events are sent to the clients from that
+    /// particular gesture. Touch cancellation applies to all touch points
+    /// currently active on this client's surface. The client is
+    /// responsible for finalizing the touch points, future touch points on
+    /// this surface may reuse the touch point ID.
     ///
-    ///No frame event is required after the cancel event.
-    ///
+    /// No frame event is required after the cancel event.
+    /// 
     /// </para>
     /// </summary>
     public event CancelHandler? OnCancel
@@ -200,40 +267,72 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
         }
     }
 
+    /// <summary>
+    /// Update shape of touch point
+    /// <para>
+    ///
+    /// Sent when a touchpoint has changed its shape.
+    ///
+    /// This event does not occur on its own. It is sent before a
+    /// wl_touch.frame event and carries the new shape information for
+    /// any previously reported, or new touch points of that frame.
+    ///
+    /// Other events describing the touch point such as wl_touch.down,
+    /// wl_touch.motion or wl_touch.orientation may be sent within the
+    /// same wl_touch.frame. A client should treat these events as a single
+    /// logical touch point update. The order of wl_touch.shape,
+    /// wl_touch.orientation and wl_touch.motion is not guaranteed.
+    /// A wl_touch.down event is guaranteed to occur before the first
+    /// wl_touch.shape event for this touch ID but both events may occur within
+    /// the same wl_touch.frame.
+    ///
+    /// A touchpoint shape is approximated by an ellipse through the major and
+    /// minor axis length. The major axis length describes the longer diameter
+    /// of the ellipse, while the minor axis length describes the shorter
+    /// diameter. Major and minor are orthogonal and both are specified in
+    /// surface-local coordinates. The center of the ellipse is always at the
+    /// touchpoint location as reported by wl_touch.down or wl_touch.motion.
+    ///
+    /// This event is only sent by the compositor if the touch device supports
+    /// shape reports. The client has to make reasonable assumptions about the
+    /// shape if it did not receive this event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ShapeHandler(int id, WlFixed major, WlFixed minor);
 
     private ShapeHandler? _onShape;
 
     /// <summary>
-    ///Update shape of touch point
+    /// Update shape of touch point
     /// <para>
     ///
-    ///Sent when a touchpoint has changed its shape.
+    /// Sent when a touchpoint has changed its shape.
     ///
-    ///This event does not occur on its own. It is sent before a
-    ///wl_touch.frame event and carries the new shape information for
-    ///any previously reported, or new touch points of that frame.
+    /// This event does not occur on its own. It is sent before a
+    /// wl_touch.frame event and carries the new shape information for
+    /// any previously reported, or new touch points of that frame.
     ///
-    ///Other events describing the touch point such as wl_touch.down,
-    ///wl_touch.motion or wl_touch.orientation may be sent within the
-    ///same wl_touch.frame. A client should treat these events as a single
-    ///logical touch point update. The order of wl_touch.shape,
-    ///wl_touch.orientation and wl_touch.motion is not guaranteed.
-    ///A wl_touch.down event is guaranteed to occur before the first
-    ///wl_touch.shape event for this touch ID but both events may occur within
-    ///the same wl_touch.frame.
+    /// Other events describing the touch point such as wl_touch.down,
+    /// wl_touch.motion or wl_touch.orientation may be sent within the
+    /// same wl_touch.frame. A client should treat these events as a single
+    /// logical touch point update. The order of wl_touch.shape,
+    /// wl_touch.orientation and wl_touch.motion is not guaranteed.
+    /// A wl_touch.down event is guaranteed to occur before the first
+    /// wl_touch.shape event for this touch ID but both events may occur within
+    /// the same wl_touch.frame.
     ///
-    ///A touchpoint shape is approximated by an ellipse through the major and
-    ///minor axis length. The major axis length describes the longer diameter
-    ///of the ellipse, while the minor axis length describes the shorter
-    ///diameter. Major and minor are orthogonal and both are specified in
-    ///surface-local coordinates. The center of the ellipse is always at the
-    ///touchpoint location as reported by wl_touch.down or wl_touch.motion.
+    /// A touchpoint shape is approximated by an ellipse through the major and
+    /// minor axis length. The major axis length describes the longer diameter
+    /// of the ellipse, while the minor axis length describes the shorter
+    /// diameter. Major and minor are orthogonal and both are specified in
+    /// surface-local coordinates. The center of the ellipse is always at the
+    /// touchpoint location as reported by wl_touch.down or wl_touch.motion.
     ///
-    ///This event is only sent by the compositor if the touch device supports
-    ///shape reports. The client has to make reasonable assumptions about the
-    ///shape if it did not receive this event.
-    ///
+    /// This event is only sent by the compositor if the touch device supports
+    /// shape reports. The client has to make reasonable assumptions about the
+    /// shape if it did not receive this event.
+    /// 
     /// </para>
     /// </summary>
     public event ShapeHandler? OnShape
@@ -251,38 +350,68 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
         }
     }
 
+    /// <summary>
+    /// Update orientation of touch point
+    /// <para>
+    ///
+    /// Sent when a touchpoint has changed its orientation.
+    ///
+    /// This event does not occur on its own. It is sent before a
+    /// wl_touch.frame event and carries the new shape information for
+    /// any previously reported, or new touch points of that frame.
+    ///
+    /// Other events describing the touch point such as wl_touch.down,
+    /// wl_touch.motion or wl_touch.shape may be sent within the
+    /// same wl_touch.frame. A client should treat these events as a single
+    /// logical touch point update. The order of wl_touch.shape,
+    /// wl_touch.orientation and wl_touch.motion is not guaranteed.
+    /// A wl_touch.down event is guaranteed to occur before the first
+    /// wl_touch.orientation event for this touch ID but both events may occur
+    /// within the same wl_touch.frame.
+    ///
+    /// The orientation describes the clockwise angle of a touchpoint's major
+    /// axis to the positive surface y-axis and is normalized to the -180 to
+    /// +180 degree range. The granularity of orientation depends on the touch
+    /// device, some devices only support binary rotation values between 0 and
+    /// 90 degrees.
+    ///
+    /// This event is only sent by the compositor if the touch device supports
+    /// orientation reports.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void OrientationHandler(int id, WlFixed orientation);
 
     private OrientationHandler? _onOrientation;
 
     /// <summary>
-    ///Update orientation of touch point
+    /// Update orientation of touch point
     /// <para>
     ///
-    ///Sent when a touchpoint has changed its orientation.
+    /// Sent when a touchpoint has changed its orientation.
     ///
-    ///This event does not occur on its own. It is sent before a
-    ///wl_touch.frame event and carries the new shape information for
-    ///any previously reported, or new touch points of that frame.
+    /// This event does not occur on its own. It is sent before a
+    /// wl_touch.frame event and carries the new shape information for
+    /// any previously reported, or new touch points of that frame.
     ///
-    ///Other events describing the touch point such as wl_touch.down,
-    ///wl_touch.motion or wl_touch.shape may be sent within the
-    ///same wl_touch.frame. A client should treat these events as a single
-    ///logical touch point update. The order of wl_touch.shape,
-    ///wl_touch.orientation and wl_touch.motion is not guaranteed.
-    ///A wl_touch.down event is guaranteed to occur before the first
-    ///wl_touch.orientation event for this touch ID but both events may occur
-    ///within the same wl_touch.frame.
+    /// Other events describing the touch point such as wl_touch.down,
+    /// wl_touch.motion or wl_touch.shape may be sent within the
+    /// same wl_touch.frame. A client should treat these events as a single
+    /// logical touch point update. The order of wl_touch.shape,
+    /// wl_touch.orientation and wl_touch.motion is not guaranteed.
+    /// A wl_touch.down event is guaranteed to occur before the first
+    /// wl_touch.orientation event for this touch ID but both events may occur
+    /// within the same wl_touch.frame.
     ///
-    ///The orientation describes the clockwise angle of a touchpoint's major
-    ///axis to the positive surface y-axis and is normalized to the -180 to
-    ///+180 degree range. The granularity of orientation depends on the touch
-    ///device, some devices only support binary rotation values between 0 and
-    ///90 degrees.
+    /// The orientation describes the clockwise angle of a touchpoint's major
+    /// axis to the positive surface y-axis and is normalized to the -180 to
+    /// +180 degree range. The granularity of orientation depends on the touch
+    /// device, some devices only support binary rotation values between 0 and
+    /// 90 degrees.
     ///
-    ///This event is only sent by the compositor if the touch device supports
-    ///orientation reports.
-    ///
+    /// This event is only sent by the compositor if the touch device supports
+    /// orientation reports.
+    /// 
     /// </para>
     /// </summary>
     public event OrientationHandler? OnOrientation
@@ -435,6 +564,10 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
         disposed = true;
     }
 
+    /// <summary> Creates a WlTouch wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlTouch instance.</returns>
     public static WlTouch Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

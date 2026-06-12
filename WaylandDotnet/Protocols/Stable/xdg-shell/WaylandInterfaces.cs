@@ -1,18 +1,23 @@
 namespace WaylandDotnet.Internal;
 
 #nullable enable
-#pragma warning disable CS1591
 #pragma warning disable CA2255
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 
+/// <summary> Native Wayland interface descriptors for this protocol. </summary>
 public static unsafe partial class WaylandInterfaces
 {
+    /// <summary> Native interface descriptor for xdg_wm_base. </summary>
     public static WlInterface* XdgWmBase = AllocateInterface();
+    /// <summary> Native interface descriptor for xdg_positioner. </summary>
     public static WlInterface* XdgPositioner = AllocateInterface();
+    /// <summary> Native interface descriptor for xdg_surface. </summary>
     public static WlInterface* XdgSurface = AllocateInterface();
+    /// <summary> Native interface descriptor for xdg_toplevel. </summary>
     public static WlInterface* XdgToplevel = AllocateInterface();
+    /// <summary> Native interface descriptor for xdg_popup. </summary>
     public static WlInterface* XdgPopup = AllocateInterface();
 
 

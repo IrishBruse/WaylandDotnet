@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Staging;
 
@@ -29,14 +28,23 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ExtIdleNotifierV1 : WaylandObject, IWaylandObjectFactory<ExtIdleNotifierV1>
 {
+    /// <summary> Wayland interface name for ext_idle_notifier_v1. </summary>
     public const string InterfaceName = "ext_idle_notifier_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "ext_idle_notifier_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing ext_idle_notifier_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ExtIdleNotifierV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -148,6 +156,10 @@ public sealed partial class ExtIdleNotifierV1 : WaylandObject, IWaylandObjectFac
         return new ExtIdleNotificationV1(newProxy, Display);
     }
 
+    /// <summary> Creates a ExtIdleNotifierV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ExtIdleNotifierV1 instance.</returns>
     public static ExtIdleNotifierV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

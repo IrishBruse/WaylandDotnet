@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<XdgToplevel>
 {
+    /// <summary> Wayland interface name for xdg_toplevel. </summary>
     public const string InterfaceName = "xdg_toplevel";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "xdg_toplevel";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 7;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing xdg_toplevel proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public XdgToplevel(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -182,37 +190,66 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
         Minimize = 4,
     }
 
+    /// <summary>
+    /// Suggest a surface change
+    /// <para>
+    ///
+    /// This configure event asks the client to resize its toplevel surface or
+    /// to change its state. The configured state should not be applied
+    /// immediately. See xdg_surface.configure for details.
+    ///
+    /// The width and height arguments specify a hint to the window
+    /// about how its surface should be resized in window geometry
+    /// coordinates. See set_window_geometry.
+    ///
+    /// If the width or height arguments are zero, it means the client
+    /// should decide its own window dimension. This may happen when the
+    /// compositor needs to configure the state of the surface but doesn't
+    /// have any information about any previous or expected dimension.
+    ///
+    /// The states listed in the event specify how the width/height
+    /// arguments should be interpreted, and possibly how it should be
+    /// drawn.
+    ///
+    /// The states are sent as an array of 32-bit unsigned integers in
+    /// native endianness. State values are defined in the state enum.
+    ///
+    /// Clients must send an ack_configure in response to this event. See
+    /// xdg_surface.configure and xdg_surface.ack_configure for details.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ConfigureHandler(int width, int height, byte[] states);
 
     private ConfigureHandler? _onConfigure;
 
     /// <summary>
-    ///Suggest a surface change
+    /// Suggest a surface change
     /// <para>
     ///
-    ///This configure event asks the client to resize its toplevel surface or
-    ///to change its state. The configured state should not be applied
-    ///immediately. See xdg_surface.configure for details.
+    /// This configure event asks the client to resize its toplevel surface or
+    /// to change its state. The configured state should not be applied
+    /// immediately. See xdg_surface.configure for details.
     ///
-    ///The width and height arguments specify a hint to the window
-    ///about how its surface should be resized in window geometry
-    ///coordinates. See set_window_geometry.
+    /// The width and height arguments specify a hint to the window
+    /// about how its surface should be resized in window geometry
+    /// coordinates. See set_window_geometry.
     ///
-    ///If the width or height arguments are zero, it means the client
-    ///should decide its own window dimension. This may happen when the
-    ///compositor needs to configure the state of the surface but doesn't
-    ///have any information about any previous or expected dimension.
+    /// If the width or height arguments are zero, it means the client
+    /// should decide its own window dimension. This may happen when the
+    /// compositor needs to configure the state of the surface but doesn't
+    /// have any information about any previous or expected dimension.
     ///
-    ///The states listed in the event specify how the width/height
-    ///arguments should be interpreted, and possibly how it should be
-    ///drawn.
+    /// The states listed in the event specify how the width/height
+    /// arguments should be interpreted, and possibly how it should be
+    /// drawn.
     ///
-    ///The states are sent as an array of 32-bit unsigned integers in
-    ///native endianness. State values are defined in the state enum.
+    /// The states are sent as an array of 32-bit unsigned integers in
+    /// native endianness. State values are defined in the state enum.
     ///
-    ///Clients must send an ack_configure in response to this event. See
-    ///xdg_surface.configure and xdg_surface.ack_configure for details.
-    ///
+    /// Clients must send an ack_configure in response to this event. See
+    /// xdg_surface.configure and xdg_surface.ack_configure for details.
+    /// 
     /// </para>
     /// </summary>
     public event ConfigureHandler? OnConfigure
@@ -230,23 +267,38 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
         }
     }
 
+    /// <summary>
+    /// Surface wants to be closed
+    /// <para>
+    ///
+    /// The close event is sent by the compositor when the user
+    /// wants the surface to be closed. This should be equivalent to
+    /// the user clicking the close button in client-side decorations,
+    /// if your application has any.
+    ///
+    /// This is only a request that the user intends to close the
+    /// window. The client may choose to ignore this request, or show
+    /// a dialog to ask the user to save their data, etc.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CloseHandler();
 
     private CloseHandler? _onClose;
 
     /// <summary>
-    ///Surface wants to be closed
+    /// Surface wants to be closed
     /// <para>
     ///
-    ///The close event is sent by the compositor when the user
-    ///wants the surface to be closed. This should be equivalent to
-    ///the user clicking the close button in client-side decorations,
-    ///if your application has any.
+    /// The close event is sent by the compositor when the user
+    /// wants the surface to be closed. This should be equivalent to
+    /// the user clicking the close button in client-side decorations,
+    /// if your application has any.
     ///
-    ///This is only a request that the user intends to close the
-    ///window. The client may choose to ignore this request, or show
-    ///a dialog to ask the user to save their data, etc.
-    ///
+    /// This is only a request that the user intends to close the
+    /// window. The client may choose to ignore this request, or show
+    /// a dialog to ask the user to save their data, etc.
+    /// 
     /// </para>
     /// </summary>
     public event CloseHandler? OnClose
@@ -264,30 +316,52 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
         }
     }
 
+    /// <summary>
+    /// Recommended window geometry bounds
+    /// <para>
+    ///
+    /// The configure_bounds event may be sent prior to a xdg_toplevel.configure
+    /// event to communicate the bounds a window geometry size is recommended
+    /// to constrain to.
+    ///
+    /// The passed width and height are in surface coordinate space. If width
+    /// and height are 0, it means bounds is unknown and equivalent to as if no
+    /// configure_bounds event was ever sent for this surface.
+    ///
+    /// The bounds can for example correspond to the size of a monitor excluding
+    /// any panels or other shell components, so that a surface isn't created in
+    /// a way that it cannot fit.
+    ///
+    /// The bounds may change at any point, and in such a case, a new
+    /// xdg_toplevel.configure_bounds will be sent, followed by
+    /// xdg_toplevel.configure and xdg_surface.configure.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ConfigureBoundsHandler(int width, int height);
 
     private ConfigureBoundsHandler? _onConfigureBounds;
 
     /// <summary>
-    ///Recommended window geometry bounds
+    /// Recommended window geometry bounds
     /// <para>
     ///
-    ///The configure_bounds event may be sent prior to a xdg_toplevel.configure
-    ///event to communicate the bounds a window geometry size is recommended
-    ///to constrain to.
+    /// The configure_bounds event may be sent prior to a xdg_toplevel.configure
+    /// event to communicate the bounds a window geometry size is recommended
+    /// to constrain to.
     ///
-    ///The passed width and height are in surface coordinate space. If width
-    ///and height are 0, it means bounds is unknown and equivalent to as if no
-    ///configure_bounds event was ever sent for this surface.
+    /// The passed width and height are in surface coordinate space. If width
+    /// and height are 0, it means bounds is unknown and equivalent to as if no
+    /// configure_bounds event was ever sent for this surface.
     ///
-    ///The bounds can for example correspond to the size of a monitor excluding
-    ///any panels or other shell components, so that a surface isn't created in
-    ///a way that it cannot fit.
+    /// The bounds can for example correspond to the size of a monitor excluding
+    /// any panels or other shell components, so that a surface isn't created in
+    /// a way that it cannot fit.
     ///
-    ///The bounds may change at any point, and in such a case, a new
-    ///xdg_toplevel.configure_bounds will be sent, followed by
-    ///xdg_toplevel.configure and xdg_surface.configure.
-    ///
+    /// The bounds may change at any point, and in such a case, a new
+    /// xdg_toplevel.configure_bounds will be sent, followed by
+    /// xdg_toplevel.configure and xdg_surface.configure.
+    /// 
     /// </para>
     /// </summary>
     public event ConfigureBoundsHandler? OnConfigureBounds
@@ -305,35 +379,62 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
         }
     }
 
+    /// <summary>
+    /// Compositor capabilities
+    /// <para>
+    ///
+    /// This event advertises the capabilities supported by the compositor. If
+    /// a capability isn't supported, clients should hide or disable the UI
+    /// elements that expose this functionality. For instance, if the
+    /// compositor doesn't advertise support for minimized toplevels, a button
+    /// triggering the set_minimized request should not be displayed.
+    ///
+    /// The compositor will ignore requests it doesn't support. For instance,
+    /// a compositor which doesn't advertise support for minimized will ignore
+    /// set_minimized requests.
+    ///
+    /// Compositors must send this event once before the first
+    /// xdg_surface.configure event. When the capabilities change, compositors
+    /// must send this event again and then send an xdg_surface.configure
+    /// event.
+    ///
+    /// The configured state should not be applied immediately. See
+    /// xdg_surface.configure for details.
+    ///
+    /// The capabilities are sent as an array of 32-bit unsigned integers in
+    /// native endianness. Capability values are defined in the wm_capabilities enum.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void WmCapabilitiesHandler(byte[] capabilities);
 
     private WmCapabilitiesHandler? _onWmCapabilities;
 
     /// <summary>
-    ///Compositor capabilities
+    /// Compositor capabilities
     /// <para>
     ///
-    ///This event advertises the capabilities supported by the compositor. If
-    ///a capability isn't supported, clients should hide or disable the UI
-    ///elements that expose this functionality. For instance, if the
-    ///compositor doesn't advertise support for minimized toplevels, a button
-    ///triggering the set_minimized request should not be displayed.
+    /// This event advertises the capabilities supported by the compositor. If
+    /// a capability isn't supported, clients should hide or disable the UI
+    /// elements that expose this functionality. For instance, if the
+    /// compositor doesn't advertise support for minimized toplevels, a button
+    /// triggering the set_minimized request should not be displayed.
     ///
-    ///The compositor will ignore requests it doesn't support. For instance,
-    ///a compositor which doesn't advertise support for minimized will ignore
-    ///set_minimized requests.
+    /// The compositor will ignore requests it doesn't support. For instance,
+    /// a compositor which doesn't advertise support for minimized will ignore
+    /// set_minimized requests.
     ///
-    ///Compositors must send this event once before the first
-    ///xdg_surface.configure event. When the capabilities change, compositors
-    ///must send this event again and then send an xdg_surface.configure
-    ///event.
+    /// Compositors must send this event once before the first
+    /// xdg_surface.configure event. When the capabilities change, compositors
+    /// must send this event again and then send an xdg_surface.configure
+    /// event.
     ///
-    ///The configured state should not be applied immediately. See
-    ///xdg_surface.configure for details.
+    /// The configured state should not be applied immediately. See
+    /// xdg_surface.configure for details.
     ///
-    ///The capabilities are sent as an array of 32-bit unsigned integers in
-    ///native endianness. Capability values are defined in the wm_capabilities enum.
-    ///
+    /// The capabilities are sent as an array of 32-bit unsigned integers in
+    /// native endianness. Capability values are defined in the wm_capabilities enum.
+    /// 
     /// </para>
     /// </summary>
     public event WmCapabilitiesHandler? OnWmCapabilities
@@ -1062,6 +1163,10 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
         );
     }
 
+    /// <summary> Creates a XdgToplevel wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new XdgToplevel instance.</returns>
     public static XdgToplevel Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

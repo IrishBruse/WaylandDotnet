@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,14 +28,23 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverShellSurfaceV1 : WaylandObject, IWaylandObjectFactory<RiverShellSurfaceV1>
 {
+    /// <summary> Wayland interface name for river_shell_surface_v1. </summary>
     public const string InterfaceName = "river_shell_surface_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_shell_surface_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 5;
 
     private bool disposed;
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_shell_surface_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverShellSurfaceV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -150,6 +158,10 @@ public sealed partial class RiverShellSurfaceV1 : WaylandObject, IWaylandObjectF
         );
     }
 
+    /// <summary> Creates a RiverShellSurfaceV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverShellSurfaceV1 instance.</returns>
     public static RiverShellSurfaceV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

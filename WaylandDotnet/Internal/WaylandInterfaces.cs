@@ -2,6 +2,7 @@ namespace WaylandDotnet.Internal;
 
 using System.Runtime.InteropServices;
 
+/// <summary> Native Wayland interface registry and lookup helpers. </summary>
 public unsafe static partial class WaylandInterfaces
 {
     private static Dictionary<string, IntPtr> Interfaces = new();
@@ -24,6 +25,10 @@ public unsafe static partial class WaylandInterfaces
         return ptr;
     }
 
+    /// <summary> Returns the native interface descriptor for the given interface name. </summary>
+    /// <param name="interfaceName">The Wayland interface name.</param>
+    /// <returns>A pointer to the interface descriptor.</returns>
+    /// <exception cref="InvalidOperationException">The interface was not registered.</exception>
     public static WlInterface* GetInterfacePtr(string interfaceName)
     {
         if (Interfaces.TryGetValue(interfaceName, out nint ptr))

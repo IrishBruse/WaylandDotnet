@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<XdgSurface>
 {
+    /// <summary> Wayland interface name for xdg_surface. </summary>
     public const string InterfaceName = "xdg_surface";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "xdg_surface";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 7;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing xdg_surface proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public XdgSurface(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -75,31 +83,54 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
         DefunctRoleObject = 6,
     }
 
+    /// <summary>
+    /// Suggest a surface change
+    /// <para>
+    ///
+    /// The configure event marks the end of a configure sequence. A configure
+    /// sequence is a set of one or more events configuring the state of the
+    /// xdg_surface, including the final xdg_surface.configure event.
+    ///
+    /// Where applicable, xdg_surface surface roles will during a configure
+    /// sequence extend this event as a latched state sent as events before the
+    /// xdg_surface.configure event. Such events should be considered to make up
+    /// a set of atomically applied configuration states, where the
+    /// xdg_surface.configure commits the accumulated state.
+    ///
+    /// Clients should arrange their surface for the new states, and then send
+    /// an ack_configure request with the serial sent in this configure event at
+    /// some point before committing the new surface.
+    ///
+    /// If the client receives multiple configure events before it can respond
+    /// to one, it is free to discard all but the last event it received.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ConfigureHandler(uint serial);
 
     private ConfigureHandler? _onConfigure;
 
     /// <summary>
-    ///Suggest a surface change
+    /// Suggest a surface change
     /// <para>
     ///
-    ///The configure event marks the end of a configure sequence. A configure
-    ///sequence is a set of one or more events configuring the state of the
-    ///xdg_surface, including the final xdg_surface.configure event.
+    /// The configure event marks the end of a configure sequence. A configure
+    /// sequence is a set of one or more events configuring the state of the
+    /// xdg_surface, including the final xdg_surface.configure event.
     ///
-    ///Where applicable, xdg_surface surface roles will during a configure
-    ///sequence extend this event as a latched state sent as events before the
-    ///xdg_surface.configure event. Such events should be considered to make up
-    ///a set of atomically applied configuration states, where the
-    ///xdg_surface.configure commits the accumulated state.
+    /// Where applicable, xdg_surface surface roles will during a configure
+    /// sequence extend this event as a latched state sent as events before the
+    /// xdg_surface.configure event. Such events should be considered to make up
+    /// a set of atomically applied configuration states, where the
+    /// xdg_surface.configure commits the accumulated state.
     ///
-    ///Clients should arrange their surface for the new states, and then send
-    ///an ack_configure request with the serial sent in this configure event at
-    ///some point before committing the new surface.
+    /// Clients should arrange their surface for the new states, and then send
+    /// an ack_configure request with the serial sent in this configure event at
+    /// some point before committing the new surface.
     ///
-    ///If the client receives multiple configure events before it can respond
-    ///to one, it is free to discard all but the last event it received.
-    ///
+    /// If the client receives multiple configure events before it can respond
+    /// to one, it is free to discard all but the last event it received.
+    /// 
     /// </para>
     /// </summary>
     public event ConfigureHandler? OnConfigure
@@ -399,6 +430,10 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
         );
     }
 
+    /// <summary> Creates a XdgSurface wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new XdgSurface instance.</returns>
     public static XdgSurface Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

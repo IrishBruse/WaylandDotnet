@@ -3,11 +3,13 @@ namespace WaylandDotnet.Internal;
 using System;
 using System.Runtime.InteropServices;
 
+/// <summary> Wayland client library log callback. </summary>
+/// <param name="fmt">printf-style format string.</param>
+/// <param name="args">Format arguments.</param>
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 public delegate void wl_log_func_t(IntPtr fmt, IntPtr args);
 
 /// <summary>
-/// /// <summary> LibraryImport </summary>
 /// Native Wayland library imports (AOT-friendly using LibraryImport)
 /// </summary>
 public static partial class WaylandNative
@@ -15,6 +17,7 @@ public static partial class WaylandNative
     private const string LibWayland = "libwayland-client.so.0";
     // private const string LibWayland = "libwayland-client-debug.so";
 
+    /// <summary> Installs the client log handler. </summary>
     [LibraryImport(LibWayland, EntryPoint = "wl_log_set_handler_client")]
     public static partial void LogSetHandlerClient(wl_log_func_t handler);
 
@@ -26,6 +29,7 @@ public static partial class WaylandNative
     [LibraryImport(LibWayland, EntryPoint = "wl_display_disconnect")]
     public static partial void DisplayDisconnect(IntPtr display);
 
+    /// <summary> Dispatches pending events without blocking. </summary>
     [LibraryImport(LibWayland, EntryPoint = "wl_display_dispatch_pending")]
     public static partial int DispatchPending(IntPtr display);
 

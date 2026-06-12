@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,14 +28,21 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlDisplay>
 {
+    /// <summary> Wayland interface name for wl_display. </summary>
     public const string InterfaceName = "wl_display";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_display";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
     private GCHandle gcHandle;
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary>
+    /// Wraps an existing wl_display proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
     public WlDisplay(IntPtr handle)
     {
         Handle = handle;
@@ -62,22 +68,36 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
         Implementation = 3,
     }
 
+    /// <summary>
+    /// Fatal error event
+    /// <para>
+    ///
+    /// The error event is sent out when a fatal (non-recoverable)
+    /// error has occurred.  The object_id argument is the object
+    /// where the error occurred, most often in response to a request
+    /// to that object.  The code identifies the error and is defined
+    /// by the object interface.  As such, each interface defines its
+    /// own set of error codes.  The message is a brief description
+    /// of the error, for (debugging) convenience.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ErrorHandler(WaylandObject objectId, uint code, string message);
 
     private ErrorHandler? _onError;
 
     /// <summary>
-    ///Fatal error event
+    /// Fatal error event
     /// <para>
     ///
-    ///The error event is sent out when a fatal (non-recoverable)
-    ///error has occurred.  The object_id argument is the object
-    ///where the error occurred, most often in response to a request
-    ///to that object.  The code identifies the error and is defined
-    ///by the object interface.  As such, each interface defines its
-    ///own set of error codes.  The message is a brief description
-    ///of the error, for (debugging) convenience.
-    ///
+    /// The error event is sent out when a fatal (non-recoverable)
+    /// error has occurred.  The object_id argument is the object
+    /// where the error occurred, most often in response to a request
+    /// to that object.  The code identifies the error and is defined
+    /// by the object interface.  As such, each interface defines its
+    /// own set of error codes.  The message is a brief description
+    /// of the error, for (debugging) convenience.
+    /// 
     /// </para>
     /// </summary>
     public event ErrorHandler? OnError
@@ -94,20 +114,32 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
         }
     }
 
+    /// <summary>
+    /// Acknowledge object ID deletion
+    /// <para>
+    ///
+    /// This event is used internally by the object ID management
+    /// logic. When a client deletes an object that it had created,
+    /// the server will send this event to acknowledge that it has
+    /// seen the delete request. When the client receives this event,
+    /// it will know that it can safely reuse the object ID.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DeleteIdHandler(uint id);
 
     private DeleteIdHandler? _onDeleteId;
 
     /// <summary>
-    ///Acknowledge object ID deletion
+    /// Acknowledge object ID deletion
     /// <para>
     ///
-    ///This event is used internally by the object ID management
-    ///logic. When a client deletes an object that it had created,
-    ///the server will send this event to acknowledge that it has
-    ///seen the delete request. When the client receives this event,
-    ///it will know that it can safely reuse the object ID.
-    ///
+    /// This event is used internally by the object ID management
+    /// logic. When a client deletes an object that it had created,
+    /// the server will send this event to acknowledge that it has
+    /// seen the delete request. When the client receives this event,
+    /// it will know that it can safely reuse the object ID.
+    /// 
     /// </para>
     /// </summary>
     public event DeleteIdHandler? OnDeleteId
@@ -260,6 +292,10 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
         return new WlRegistry(newProxy, this);
     }
 
+    /// <summary> Creates a WlDisplay wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlDisplay instance.</returns>
     public static WlDisplay Create(nint handle, WlDisplay? display = null)
     {
         return new WlDisplay(handle);

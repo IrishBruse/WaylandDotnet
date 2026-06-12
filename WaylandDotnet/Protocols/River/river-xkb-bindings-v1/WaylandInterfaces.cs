@@ -1,16 +1,19 @@
 namespace WaylandDotnet.Internal;
 
 #nullable enable
-#pragma warning disable CS1591
 #pragma warning disable CA2255
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 
+/// <summary> Native Wayland interface descriptors for this protocol. </summary>
 public static unsafe partial class WaylandInterfaces
 {
+    /// <summary> Native interface descriptor for river_xkb_bindings_v1. </summary>
     public static WlInterface* RiverXkbBindingsV1 = AllocateInterface();
+    /// <summary> Native interface descriptor for river_xkb_binding_v1. </summary>
     public static WlInterface* RiverXkbBindingV1 = AllocateInterface();
+    /// <summary> Native interface descriptor for river_xkb_bindings_seat_v1. </summary>
     public static WlInterface* RiverXkbBindingsSeatV1 = AllocateInterface();
 
 

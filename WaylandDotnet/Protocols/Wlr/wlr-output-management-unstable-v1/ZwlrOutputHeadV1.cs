@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Wlr;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFactory<ZwlrOutputHeadV1>
 {
+    /// <summary> Wayland interface name for zwlr_output_head_v1. </summary>
     public const string InterfaceName = "zwlr_output_head_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwlr_output_head_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 4;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwlr_output_head_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwlrOutputHeadV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -59,33 +67,58 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         Enabled = 1,
     }
 
+    /// <summary>
+    /// Head name
+    /// <para>
+    ///
+    /// This event describes the head name.
+    ///
+    /// The naming convention is compositor defined, but limited to alphanumeric
+    /// characters and dashes (-). Each name is unique among all wlr_output_head
+    /// objects, but if a wlr_output_head object is destroyed the same name may
+    /// be reused later. The names will also remain consistent across sessions
+    /// with the same hardware and software configuration.
+    ///
+    /// Examples of names include 'HDMI-A-1', 'WL-1', 'X11-1', etc. However, do
+    /// not assume that the name is a reflection of an underlying DRM
+    /// connector, X11 connection, etc.
+    ///
+    /// If this head matches a wl_output, the wl_output.name event must report
+    /// the same name.
+    ///
+    /// The name event is sent after a wlr_output_head object is created. This
+    /// event is only sent once per object, and the name does not change over
+    /// the lifetime of the wlr_output_head object.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void NameHandler(string name);
 
     private NameHandler? _onName;
 
     /// <summary>
-    ///Head name
+    /// Head name
     /// <para>
     ///
-    ///This event describes the head name.
+    /// This event describes the head name.
     ///
-    ///The naming convention is compositor defined, but limited to alphanumeric
-    ///characters and dashes (-). Each name is unique among all wlr_output_head
-    ///objects, but if a wlr_output_head object is destroyed the same name may
-    ///be reused later. The names will also remain consistent across sessions
-    ///with the same hardware and software configuration.
+    /// The naming convention is compositor defined, but limited to alphanumeric
+    /// characters and dashes (-). Each name is unique among all wlr_output_head
+    /// objects, but if a wlr_output_head object is destroyed the same name may
+    /// be reused later. The names will also remain consistent across sessions
+    /// with the same hardware and software configuration.
     ///
-    ///Examples of names include 'HDMI-A-1', 'WL-1', 'X11-1', etc. However, do
-    ///not assume that the name is a reflection of an underlying DRM
-    ///connector, X11 connection, etc.
+    /// Examples of names include 'HDMI-A-1', 'WL-1', 'X11-1', etc. However, do
+    /// not assume that the name is a reflection of an underlying DRM
+    /// connector, X11 connection, etc.
     ///
-    ///If this head matches a wl_output, the wl_output.name event must report
-    ///the same name.
+    /// If this head matches a wl_output, the wl_output.name event must report
+    /// the same name.
     ///
-    ///The name event is sent after a wlr_output_head object is created. This
-    ///event is only sent once per object, and the name does not change over
-    ///the lifetime of the wlr_output_head object.
-    ///
+    /// The name event is sent after a wlr_output_head object is created. This
+    /// event is only sent once per object, and the name does not change over
+    /// the lifetime of the wlr_output_head object.
+    /// 
     /// </para>
     /// </summary>
     public event NameHandler? OnName
@@ -103,29 +136,50 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Head description
+    /// <para>
+    ///
+    /// This event describes a human-readable description of the head.
+    ///
+    /// The description is a UTF-8 string with no convention defined for its
+    /// contents. Examples might include 'Foocorp 11" Display' or 'Virtual X11
+    /// output via :1'. However, do not assume that the name is a reflection of
+    /// the make, model, serial of the underlying DRM connector or the display
+    /// name of the underlying X11 connection, etc.
+    ///
+    /// If this head matches a wl_output, the wl_output.description event must
+    /// report the same name.
+    ///
+    /// The description event is sent after a wlr_output_head object is created.
+    /// This event is only sent once per object, and the description does not
+    /// change over the lifetime of the wlr_output_head object.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DescriptionHandler(string description);
 
     private DescriptionHandler? _onDescription;
 
     /// <summary>
-    ///Head description
+    /// Head description
     /// <para>
     ///
-    ///This event describes a human-readable description of the head.
+    /// This event describes a human-readable description of the head.
     ///
-    ///The description is a UTF-8 string with no convention defined for its
-    ///contents. Examples might include 'Foocorp 11" Display' or 'Virtual X11
-    ///output via :1'. However, do not assume that the name is a reflection of
-    ///the make, model, serial of the underlying DRM connector or the display
-    ///name of the underlying X11 connection, etc.
+    /// The description is a UTF-8 string with no convention defined for its
+    /// contents. Examples might include 'Foocorp 11" Display' or 'Virtual X11
+    /// output via :1'. However, do not assume that the name is a reflection of
+    /// the make, model, serial of the underlying DRM connector or the display
+    /// name of the underlying X11 connection, etc.
     ///
-    ///If this head matches a wl_output, the wl_output.description event must
-    ///report the same name.
+    /// If this head matches a wl_output, the wl_output.description event must
+    /// report the same name.
     ///
-    ///The description event is sent after a wlr_output_head object is created.
-    ///This event is only sent once per object, and the description does not
-    ///change over the lifetime of the wlr_output_head object.
-    ///
+    /// The description event is sent after a wlr_output_head object is created.
+    /// This event is only sent once per object, and the description does not
+    /// change over the lifetime of the wlr_output_head object.
+    /// 
     /// </para>
     /// </summary>
     public event DescriptionHandler? OnDescription
@@ -143,22 +197,36 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Head physical size
+    /// <para>
+    ///
+    /// This event describes the physical size of the head. This event is only
+    /// sent if the head has a physical size (e.g. is not a projector or a
+    /// virtual device).
+    ///
+    /// The physical size event is sent after a wlr_output_head object is created. This
+    /// event is only sent once per object, and the physical size does not change over
+    /// the lifetime of the wlr_output_head object.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PhysicalSizeHandler(int width, int height);
 
     private PhysicalSizeHandler? _onPhysicalSize;
 
     /// <summary>
-    ///Head physical size
+    /// Head physical size
     /// <para>
     ///
-    ///This event describes the physical size of the head. This event is only
-    ///sent if the head has a physical size (e.g. is not a projector or a
-    ///virtual device).
+    /// This event describes the physical size of the head. This event is only
+    /// sent if the head has a physical size (e.g. is not a projector or a
+    /// virtual device).
     ///
-    ///The physical size event is sent after a wlr_output_head object is created. This
-    ///event is only sent once per object, and the physical size does not change over
-    ///the lifetime of the wlr_output_head object.
-    ///
+    /// The physical size event is sent after a wlr_output_head object is created. This
+    /// event is only sent once per object, and the physical size does not change over
+    /// the lifetime of the wlr_output_head object.
+    /// 
     /// </para>
     /// </summary>
     public event PhysicalSizeHandler? OnPhysicalSize
@@ -176,17 +244,26 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Introduce a mode
+    /// <para>
+    ///
+    /// This event introduces a mode for this head. It is sent once per
+    /// supported mode.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ModeHandler(ZwlrOutputModeV1 mode);
 
     private ModeHandler? _onMode;
 
     /// <summary>
-    ///Introduce a mode
+    /// Introduce a mode
     /// <para>
     ///
-    ///This event introduces a mode for this head. It is sent once per
-    ///supported mode.
-    ///
+    /// This event introduces a mode for this head. It is sent once per
+    /// supported mode.
+    /// 
     /// </para>
     /// </summary>
     public event ModeHandler? OnMode
@@ -204,20 +281,32 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Head is enabled or disabled
+    /// <para>
+    ///
+    /// This event describes whether the head is enabled. A disabled head is not
+    /// mapped to a region of the global compositor space.
+    ///
+    /// When a head is disabled, some properties (current_mode, position,
+    /// transform and scale) are irrelevant.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void EnabledHandler(int enabled);
 
     private EnabledHandler? _onEnabled;
 
     /// <summary>
-    ///Head is enabled or disabled
+    /// Head is enabled or disabled
     /// <para>
     ///
-    ///This event describes whether the head is enabled. A disabled head is not
-    ///mapped to a region of the global compositor space.
+    /// This event describes whether the head is enabled. A disabled head is not
+    /// mapped to a region of the global compositor space.
     ///
-    ///When a head is disabled, some properties (current_mode, position,
-    ///transform and scale) are irrelevant.
-    ///
+    /// When a head is disabled, some properties (current_mode, position,
+    /// transform and scale) are irrelevant.
+    /// 
     /// </para>
     /// </summary>
     public event EnabledHandler? OnEnabled
@@ -235,17 +324,26 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Current mode
+    /// <para>
+    ///
+    /// This event describes the mode currently in use for this head. It is only
+    /// sent if the output is enabled.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CurrentModeHandler(ZwlrOutputModeV1 mode);
 
     private CurrentModeHandler? _onCurrentMode;
 
     /// <summary>
-    ///Current mode
+    /// Current mode
     /// <para>
     ///
-    ///This event describes the mode currently in use for this head. It is only
-    ///sent if the output is enabled.
-    ///
+    /// This event describes the mode currently in use for this head. It is only
+    /// sent if the output is enabled.
+    /// 
     /// </para>
     /// </summary>
     public event CurrentModeHandler? OnCurrentMode
@@ -263,17 +361,26 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Current position
+    /// <para>
+    ///
+    /// This events describes the position of the head in the global compositor
+    /// space. It is only sent if the output is enabled.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PositionHandler(int x, int y);
 
     private PositionHandler? _onPosition;
 
     /// <summary>
-    ///Current position
+    /// Current position
     /// <para>
     ///
-    ///This events describes the position of the head in the global compositor
-    ///space. It is only sent if the output is enabled.
-    ///
+    /// This events describes the position of the head in the global compositor
+    /// space. It is only sent if the output is enabled.
+    /// 
     /// </para>
     /// </summary>
     public event PositionHandler? OnPosition
@@ -291,17 +398,26 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Current transformation
+    /// <para>
+    ///
+    /// This event describes the transformation currently applied to the head.
+    /// It is only sent if the output is enabled.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TransformHandler(int transform);
 
     private TransformHandler? _onTransform;
 
     /// <summary>
-    ///Current transformation
+    /// Current transformation
     /// <para>
     ///
-    ///This event describes the transformation currently applied to the head.
-    ///It is only sent if the output is enabled.
-    ///
+    /// This event describes the transformation currently applied to the head.
+    /// It is only sent if the output is enabled.
+    /// 
     /// </para>
     /// </summary>
     public event TransformHandler? OnTransform
@@ -319,17 +435,26 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Current scale
+    /// <para>
+    ///
+    /// This events describes the scale of the head in the global compositor
+    /// space. It is only sent if the output is enabled.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ScaleHandler(WlFixed scale);
 
     private ScaleHandler? _onScale;
 
     /// <summary>
-    ///Current scale
+    /// Current scale
     /// <para>
     ///
-    ///This events describes the scale of the head in the global compositor
-    ///space. It is only sent if the output is enabled.
-    ///
+    /// This events describes the scale of the head in the global compositor
+    /// space. It is only sent if the output is enabled.
+    /// 
     /// </para>
     /// </summary>
     public event ScaleHandler? OnScale
@@ -347,18 +472,28 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// The head has disappeared
+    /// <para>
+    ///
+    /// This event indicates that the head is no longer available. The head
+    /// object becomes inert. Clients should send a destroy request and release
+    /// any resources associated with it.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FinishedHandler();
 
     private FinishedHandler? _onFinished;
 
     /// <summary>
-    ///The head has disappeared
+    /// The head has disappeared
     /// <para>
     ///
-    ///This event indicates that the head is no longer available. The head
-    ///object becomes inert. Clients should send a destroy request and release
-    ///any resources associated with it.
-    ///
+    /// This event indicates that the head is no longer available. The head
+    /// object becomes inert. Clients should send a destroy request and release
+    /// any resources associated with it.
+    /// 
     /// </para>
     /// </summary>
     public event FinishedHandler? OnFinished
@@ -376,34 +511,60 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Head manufacturer
+    /// <para>
+    ///
+    /// This event describes the manufacturer of the head.
+    ///
+    /// Together with the model and serial_number events the purpose is to
+    /// allow clients to recognize heads from previous sessions and for example
+    /// load head-specific configurations back.
+    ///
+    /// It is not guaranteed this event will be ever sent. A reason for that
+    /// can be that the compositor does not have information about the make of
+    /// the head or the definition of a make is not sensible in the current
+    /// setup, for example in a virtual session. Clients can still try to
+    /// identify the head by available information from other events but should
+    /// be aware that there is an increased risk of false positives.
+    ///
+    /// If sent, the make event is sent after a wlr_output_head object is
+    /// created and only sent once per object. The make does not change over
+    /// the lifetime of the wlr_output_head object.
+    ///
+    /// It is not recommended to display the make string in UI to users. For
+    /// that the string provided by the description event should be preferred.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void MakeHandler(string make);
 
     private MakeHandler? _onMake;
 
     /// <summary>
-    ///Head manufacturer
+    /// Head manufacturer
     /// <para>
     ///
-    ///This event describes the manufacturer of the head.
+    /// This event describes the manufacturer of the head.
     ///
-    ///Together with the model and serial_number events the purpose is to
-    ///allow clients to recognize heads from previous sessions and for example
-    ///load head-specific configurations back.
+    /// Together with the model and serial_number events the purpose is to
+    /// allow clients to recognize heads from previous sessions and for example
+    /// load head-specific configurations back.
     ///
-    ///It is not guaranteed this event will be ever sent. A reason for that
-    ///can be that the compositor does not have information about the make of
-    ///the head or the definition of a make is not sensible in the current
-    ///setup, for example in a virtual session. Clients can still try to
-    ///identify the head by available information from other events but should
-    ///be aware that there is an increased risk of false positives.
+    /// It is not guaranteed this event will be ever sent. A reason for that
+    /// can be that the compositor does not have information about the make of
+    /// the head or the definition of a make is not sensible in the current
+    /// setup, for example in a virtual session. Clients can still try to
+    /// identify the head by available information from other events but should
+    /// be aware that there is an increased risk of false positives.
     ///
-    ///If sent, the make event is sent after a wlr_output_head object is
-    ///created and only sent once per object. The make does not change over
-    ///the lifetime of the wlr_output_head object.
+    /// If sent, the make event is sent after a wlr_output_head object is
+    /// created and only sent once per object. The make does not change over
+    /// the lifetime of the wlr_output_head object.
     ///
-    ///It is not recommended to display the make string in UI to users. For
-    ///that the string provided by the description event should be preferred.
-    ///
+    /// It is not recommended to display the make string in UI to users. For
+    /// that the string provided by the description event should be preferred.
+    /// 
     /// </para>
     /// </summary>
     public event MakeHandler? OnMake
@@ -421,34 +582,60 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Head model
+    /// <para>
+    ///
+    /// This event describes the model of the head.
+    ///
+    /// Together with the make and serial_number events the purpose is to
+    /// allow clients to recognize heads from previous sessions and for example
+    /// load head-specific configurations back.
+    ///
+    /// It is not guaranteed this event will be ever sent. A reason for that
+    /// can be that the compositor does not have information about the model of
+    /// the head or the definition of a model is not sensible in the current
+    /// setup, for example in a virtual session. Clients can still try to
+    /// identify the head by available information from other events but should
+    /// be aware that there is an increased risk of false positives.
+    ///
+    /// If sent, the model event is sent after a wlr_output_head object is
+    /// created and only sent once per object. The model does not change over
+    /// the lifetime of the wlr_output_head object.
+    ///
+    /// It is not recommended to display the model string in UI to users. For
+    /// that the string provided by the description event should be preferred.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ModelHandler(string model);
 
     private ModelHandler? _onModel;
 
     /// <summary>
-    ///Head model
+    /// Head model
     /// <para>
     ///
-    ///This event describes the model of the head.
+    /// This event describes the model of the head.
     ///
-    ///Together with the make and serial_number events the purpose is to
-    ///allow clients to recognize heads from previous sessions and for example
-    ///load head-specific configurations back.
+    /// Together with the make and serial_number events the purpose is to
+    /// allow clients to recognize heads from previous sessions and for example
+    /// load head-specific configurations back.
     ///
-    ///It is not guaranteed this event will be ever sent. A reason for that
-    ///can be that the compositor does not have information about the model of
-    ///the head or the definition of a model is not sensible in the current
-    ///setup, for example in a virtual session. Clients can still try to
-    ///identify the head by available information from other events but should
-    ///be aware that there is an increased risk of false positives.
+    /// It is not guaranteed this event will be ever sent. A reason for that
+    /// can be that the compositor does not have information about the model of
+    /// the head or the definition of a model is not sensible in the current
+    /// setup, for example in a virtual session. Clients can still try to
+    /// identify the head by available information from other events but should
+    /// be aware that there is an increased risk of false positives.
     ///
-    ///If sent, the model event is sent after a wlr_output_head object is
-    ///created and only sent once per object. The model does not change over
-    ///the lifetime of the wlr_output_head object.
+    /// If sent, the model event is sent after a wlr_output_head object is
+    /// created and only sent once per object. The model does not change over
+    /// the lifetime of the wlr_output_head object.
     ///
-    ///It is not recommended to display the model string in UI to users. For
-    ///that the string provided by the description event should be preferred.
-    ///
+    /// It is not recommended to display the model string in UI to users. For
+    /// that the string provided by the description event should be preferred.
+    /// 
     /// </para>
     /// </summary>
     public event ModelHandler? OnModel
@@ -466,35 +653,62 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Head serial number
+    /// <para>
+    ///
+    /// This event describes the serial number of the head.
+    ///
+    /// Together with the make and model events the purpose is to allow clients
+    /// to recognize heads from previous sessions and for example load head-
+    /// specific configurations back.
+    ///
+    /// It is not guaranteed this event will be ever sent. A reason for that
+    /// can be that the compositor does not have information about the serial
+    /// number of the head or the definition of a serial number is not sensible
+    /// in the current setup. Clients can still try to identify the head by
+    /// available information from other events but should be aware that there
+    /// is an increased risk of false positives.
+    ///
+    /// If sent, the serial number event is sent after a wlr_output_head object
+    /// is created and only sent once per object. The serial number does not
+    /// change over the lifetime of the wlr_output_head object.
+    ///
+    /// It is not recommended to display the serial_number string in UI to
+    /// users. For that the string provided by the description event should be
+    /// preferred.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SerialNumberHandler(string serialNumber);
 
     private SerialNumberHandler? _onSerialNumber;
 
     /// <summary>
-    ///Head serial number
+    /// Head serial number
     /// <para>
     ///
-    ///This event describes the serial number of the head.
+    /// This event describes the serial number of the head.
     ///
-    ///Together with the make and model events the purpose is to allow clients
-    ///to recognize heads from previous sessions and for example load head-
-    ///specific configurations back.
+    /// Together with the make and model events the purpose is to allow clients
+    /// to recognize heads from previous sessions and for example load head-
+    /// specific configurations back.
     ///
-    ///It is not guaranteed this event will be ever sent. A reason for that
-    ///can be that the compositor does not have information about the serial
-    ///number of the head or the definition of a serial number is not sensible
-    ///in the current setup. Clients can still try to identify the head by
-    ///available information from other events but should be aware that there
-    ///is an increased risk of false positives.
+    /// It is not guaranteed this event will be ever sent. A reason for that
+    /// can be that the compositor does not have information about the serial
+    /// number of the head or the definition of a serial number is not sensible
+    /// in the current setup. Clients can still try to identify the head by
+    /// available information from other events but should be aware that there
+    /// is an increased risk of false positives.
     ///
-    ///If sent, the serial number event is sent after a wlr_output_head object
-    ///is created and only sent once per object. The serial number does not
-    ///change over the lifetime of the wlr_output_head object.
+    /// If sent, the serial number event is sent after a wlr_output_head object
+    /// is created and only sent once per object. The serial number does not
+    /// change over the lifetime of the wlr_output_head object.
     ///
-    ///It is not recommended to display the serial_number string in UI to
-    ///users. For that the string provided by the description event should be
-    ///preferred.
-    ///
+    /// It is not recommended to display the serial_number string in UI to
+    /// users. For that the string provided by the description event should be
+    /// preferred.
+    /// 
     /// </para>
     /// </summary>
     public event SerialNumberHandler? OnSerialNumber
@@ -512,18 +726,28 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Current adaptive sync state
+    /// <para>
+    ///
+    /// This event describes whether adaptive sync is currently enabled for
+    /// the head or not. Adaptive sync is also known as Variable Refresh
+    /// Rate or VRR.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AdaptiveSyncHandler(uint state);
 
     private AdaptiveSyncHandler? _onAdaptiveSync;
 
     /// <summary>
-    ///Current adaptive sync state
+    /// Current adaptive sync state
     /// <para>
     ///
-    ///This event describes whether adaptive sync is currently enabled for
-    ///the head or not. Adaptive sync is also known as Variable Refresh
-    ///Rate or VRR.
-    ///
+    /// This event describes whether adaptive sync is currently enabled for
+    /// the head or not. Adaptive sync is also known as Variable Refresh
+    /// Rate or VRR.
+    /// 
     /// </para>
     /// </summary>
     public event AdaptiveSyncHandler? OnAdaptiveSync
@@ -720,6 +944,10 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         disposed = true;
     }
 
+    /// <summary> Creates a ZwlrOutputHeadV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwlrOutputHeadV1 instance.</returns>
     public static ZwlrOutputHeadV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

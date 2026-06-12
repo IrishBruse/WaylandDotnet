@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<WlDataSource>
 {
+    /// <summary> Wayland interface name for wl_data_source. </summary>
     public const string InterfaceName = "wl_data_source";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_data_source";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 4;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_data_source proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlDataSource(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -59,19 +67,30 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
         InvalidSource = 1,
     }
 
+    /// <summary>
+    /// A target accepts an offered mime type
+    /// <para>
+    ///
+    /// Sent when a target accepts pointer_focus or motion events.  If
+    /// a target does not accept any of the offered types, type is NULL.
+    ///
+    /// Used for feedback during drag-and-drop.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TargetHandler(string? mimeType);
 
     private TargetHandler? _onTarget;
 
     /// <summary>
-    ///A target accepts an offered mime type
+    /// A target accepts an offered mime type
     /// <para>
     ///
-    ///Sent when a target accepts pointer_focus or motion events.  If
-    ///a target does not accept any of the offered types, type is NULL.
+    /// Sent when a target accepts pointer_focus or motion events.  If
+    /// a target does not accept any of the offered types, type is NULL.
     ///
-    ///Used for feedback during drag-and-drop.
-    ///
+    /// Used for feedback during drag-and-drop.
+    /// 
     /// </para>
     /// </summary>
     public event TargetHandler? OnTarget
@@ -89,18 +108,28 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
         }
     }
 
+    /// <summary>
+    /// Send the data
+    /// <para>
+    ///
+    /// Request for data from the client.  Send the data as the
+    /// specified mime type over the passed file descriptor, then
+    /// close it.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SendHandler(string mimeType, int fd);
 
     private SendHandler? _onSend;
 
     /// <summary>
-    ///Send the data
+    /// Send the data
     /// <para>
     ///
-    ///Request for data from the client.  Send the data as the
-    ///specified mime type over the passed file descriptor, then
-    ///close it.
-    ///
+    /// Request for data from the client.  Send the data as the
+    /// specified mime type over the passed file descriptor, then
+    /// close it.
+    /// 
     /// </para>
     /// </summary>
     public event SendHandler? OnSend
@@ -118,35 +147,62 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
         }
     }
 
+    /// <summary>
+    /// Selection was cancelled
+    /// <para>
+    ///
+    /// This data source is no longer valid. There are several reasons why
+    /// this could happen:
+    ///
+    /// - The data source has been replaced by another data source.
+    /// - The drag-and-drop operation was performed, but the drop destination
+    /// did not accept any of the mime types offered through
+    /// wl_data_source.target.
+    /// - The drag-and-drop operation was performed, but the drop destination
+    /// did not select any of the actions present in the mask offered through
+    /// wl_data_source.action.
+    /// - The drag-and-drop operation was performed but didn't happen over a
+    /// surface.
+    /// - The compositor cancelled the drag-and-drop operation (e.g. compositor
+    /// dependent timeouts to avoid stale drag-and-drop transfers).
+    ///
+    /// The client should clean up and destroy this data source.
+    ///
+    /// For objects of version 2 or older, wl_data_source.cancelled will
+    /// only be emitted if the data source was replaced by another data
+    /// source.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CancelledHandler();
 
     private CancelledHandler? _onCancelled;
 
     /// <summary>
-    ///Selection was cancelled
+    /// Selection was cancelled
     /// <para>
     ///
-    ///This data source is no longer valid. There are several reasons why
-    ///this could happen:
+    /// This data source is no longer valid. There are several reasons why
+    /// this could happen:
     ///
-    ///- The data source has been replaced by another data source.
-    ///- The drag-and-drop operation was performed, but the drop destination
-    ///did not accept any of the mime types offered through
-    ///wl_data_source.target.
-    ///- The drag-and-drop operation was performed, but the drop destination
-    ///did not select any of the actions present in the mask offered through
-    ///wl_data_source.action.
-    ///- The drag-and-drop operation was performed but didn't happen over a
-    ///surface.
-    ///- The compositor cancelled the drag-and-drop operation (e.g. compositor
-    ///dependent timeouts to avoid stale drag-and-drop transfers).
+    /// - The data source has been replaced by another data source.
+    /// - The drag-and-drop operation was performed, but the drop destination
+    /// did not accept any of the mime types offered through
+    /// wl_data_source.target.
+    /// - The drag-and-drop operation was performed, but the drop destination
+    /// did not select any of the actions present in the mask offered through
+    /// wl_data_source.action.
+    /// - The drag-and-drop operation was performed but didn't happen over a
+    /// surface.
+    /// - The compositor cancelled the drag-and-drop operation (e.g. compositor
+    /// dependent timeouts to avoid stale drag-and-drop transfers).
     ///
-    ///The client should clean up and destroy this data source.
+    /// The client should clean up and destroy this data source.
     ///
-    ///For objects of version 2 or older, wl_data_source.cancelled will
-    ///only be emitted if the data source was replaced by another data
-    ///source.
-    ///
+    /// For objects of version 2 or older, wl_data_source.cancelled will
+    /// only be emitted if the data source was replaced by another data
+    /// source.
+    /// 
     /// </para>
     /// </summary>
     public event CancelledHandler? OnCancelled
@@ -164,24 +220,40 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
         }
     }
 
+    /// <summary>
+    /// The drag-and-drop operation physically finished
+    /// <para>
+    ///
+    /// The user performed the drop action. This event does not indicate
+    /// acceptance, wl_data_source.cancelled may still be emitted afterwards
+    /// if the drop destination does not accept any mime type.
+    ///
+    /// However, this event might not be received if the compositor cancelled
+    /// the drag-and-drop operation before this event could happen.
+    ///
+    /// Note that the data_source may still be used in the future and should
+    /// not be destroyed here.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DndDropPerformedHandler();
 
     private DndDropPerformedHandler? _onDndDropPerformed;
 
     /// <summary>
-    ///The drag-and-drop operation physically finished
+    /// The drag-and-drop operation physically finished
     /// <para>
     ///
-    ///The user performed the drop action. This event does not indicate
-    ///acceptance, wl_data_source.cancelled may still be emitted afterwards
-    ///if the drop destination does not accept any mime type.
+    /// The user performed the drop action. This event does not indicate
+    /// acceptance, wl_data_source.cancelled may still be emitted afterwards
+    /// if the drop destination does not accept any mime type.
     ///
-    ///However, this event might not be received if the compositor cancelled
-    ///the drag-and-drop operation before this event could happen.
+    /// However, this event might not be received if the compositor cancelled
+    /// the drag-and-drop operation before this event could happen.
     ///
-    ///Note that the data_source may still be used in the future and should
-    ///not be destroyed here.
-    ///
+    /// Note that the data_source may still be used in the future and should
+    /// not be destroyed here.
+    /// 
     /// </para>
     /// </summary>
     public event DndDropPerformedHandler? OnDndDropPerformed
@@ -199,21 +271,34 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
         }
     }
 
+    /// <summary>
+    /// The drag-and-drop operation concluded
+    /// <para>
+    ///
+    /// The drop destination finished interoperating with this data
+    /// source, so the client is now free to destroy this data source and
+    /// free all associated data.
+    ///
+    /// If the action used to perform the operation was "move", the
+    /// source can now delete the transferred data.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DndFinishedHandler();
 
     private DndFinishedHandler? _onDndFinished;
 
     /// <summary>
-    ///The drag-and-drop operation concluded
+    /// The drag-and-drop operation concluded
     /// <para>
     ///
-    ///The drop destination finished interoperating with this data
-    ///source, so the client is now free to destroy this data source and
-    ///free all associated data.
+    /// The drop destination finished interoperating with this data
+    /// source, so the client is now free to destroy this data source and
+    /// free all associated data.
     ///
-    ///If the action used to perform the operation was "move", the
-    ///source can now delete the transferred data.
-    ///
+    /// If the action used to perform the operation was "move", the
+    /// source can now delete the transferred data.
+    /// 
     /// </para>
     /// </summary>
     public event DndFinishedHandler? OnDndFinished
@@ -231,40 +316,72 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
         }
     }
 
+    /// <summary>
+    /// Notify the selected action
+    /// <para>
+    ///
+    /// This event indicates the action selected by the compositor after
+    /// matching the source/destination side actions. Only one action (or
+    /// none) will be offered here.
+    ///
+    /// This event can be emitted multiple times during the drag-and-drop
+    /// operation, mainly in response to destination side changes through
+    /// wl_data_offer.set_actions, and as the data device enters/leaves
+    /// surfaces.
+    ///
+    /// It is only possible to receive this event after
+    /// wl_data_source.dnd_drop_performed if the drag-and-drop operation
+    /// ended in an "ask" action, in which case the final wl_data_source.action
+    /// event will happen immediately before wl_data_source.dnd_finished.
+    ///
+    /// Compositors may also change the selected action on the fly, mainly
+    /// in response to keyboard modifier changes during the drag-and-drop
+    /// operation.
+    ///
+    /// The most recent action received is always the valid one. The chosen
+    /// action may change alongside negotiation (e.g. an "ask" action can turn
+    /// into a "move" operation), so the effects of the final action must
+    /// always be applied in wl_data_source.dnd_finished.
+    ///
+    /// Clients can trigger cursor surface changes from this point, so
+    /// they reflect the current action.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ActionHandler(uint dndAction);
 
     private ActionHandler? _onAction;
 
     /// <summary>
-    ///Notify the selected action
+    /// Notify the selected action
     /// <para>
     ///
-    ///This event indicates the action selected by the compositor after
-    ///matching the source/destination side actions. Only one action (or
-    ///none) will be offered here.
+    /// This event indicates the action selected by the compositor after
+    /// matching the source/destination side actions. Only one action (or
+    /// none) will be offered here.
     ///
-    ///This event can be emitted multiple times during the drag-and-drop
-    ///operation, mainly in response to destination side changes through
-    ///wl_data_offer.set_actions, and as the data device enters/leaves
-    ///surfaces.
+    /// This event can be emitted multiple times during the drag-and-drop
+    /// operation, mainly in response to destination side changes through
+    /// wl_data_offer.set_actions, and as the data device enters/leaves
+    /// surfaces.
     ///
-    ///It is only possible to receive this event after
-    ///wl_data_source.dnd_drop_performed if the drag-and-drop operation
-    ///ended in an "ask" action, in which case the final wl_data_source.action
-    ///event will happen immediately before wl_data_source.dnd_finished.
+    /// It is only possible to receive this event after
+    /// wl_data_source.dnd_drop_performed if the drag-and-drop operation
+    /// ended in an "ask" action, in which case the final wl_data_source.action
+    /// event will happen immediately before wl_data_source.dnd_finished.
     ///
-    ///Compositors may also change the selected action on the fly, mainly
-    ///in response to keyboard modifier changes during the drag-and-drop
-    ///operation.
+    /// Compositors may also change the selected action on the fly, mainly
+    /// in response to keyboard modifier changes during the drag-and-drop
+    /// operation.
     ///
-    ///The most recent action received is always the valid one. The chosen
-    ///action may change alongside negotiation (e.g. an "ask" action can turn
-    ///into a "move" operation), so the effects of the final action must
-    ///always be applied in wl_data_source.dnd_finished.
+    /// The most recent action received is always the valid one. The chosen
+    /// action may change alongside negotiation (e.g. an "ask" action can turn
+    /// into a "move" operation), so the effects of the final action must
+    /// always be applied in wl_data_source.dnd_finished.
     ///
-    ///Clients can trigger cursor surface changes from this point, so
-    ///they reflect the current action.
-    ///
+    /// Clients can trigger cursor surface changes from this point, so
+    /// they reflect the current action.
+    /// 
     /// </para>
     /// </summary>
     public event ActionHandler? OnAction
@@ -465,6 +582,10 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
         );
     }
 
+    /// <summary> Creates a WlDataSource wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlDataSource instance.</returns>
     public static WlDataSource Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,12 +28,19 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlFixes : WaylandObject, IWaylandObjectFactory<WlFixes>
 {
+    /// <summary> Wayland interface name for wl_fixes. </summary>
     public const string InterfaceName = "wl_fixes";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_fixes";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
 
+    /// <summary>
+    /// Wraps an existing wl_fixes proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
     public WlFixes(IntPtr handle)
     {
         Handle = handle;
@@ -157,6 +163,10 @@ public sealed partial class WlFixes : WaylandObject, IWaylandObjectFactory<WlFix
         );
     }
 
+    /// <summary> Creates a WlFixes wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlFixes instance.</returns>
     public static WlFixes Create(nint handle, WlDisplay? display = null)
     {
         return new WlFixes(handle);

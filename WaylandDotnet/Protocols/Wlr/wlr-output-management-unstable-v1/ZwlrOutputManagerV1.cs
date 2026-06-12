@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Wlr;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwlrOutputManagerV1 : WaylandObject, IWaylandObjectFactory<ZwlrOutputManagerV1>
 {
+    /// <summary> Wayland interface name for zwlr_output_manager_v1. </summary>
     public const string InterfaceName = "zwlr_output_manager_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwlr_output_manager_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 4;
 
     private bool disposed;
@@ -39,25 +41,41 @@ public sealed partial class ZwlrOutputManagerV1 : WaylandObject, IWaylandObjectF
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwlr_output_manager_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwlrOutputManagerV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// Introduce a new head
+    /// <para>
+    ///
+    /// This event introduces a new head. This happens whenever a new head
+    /// appears (e.g. a monitor is plugged in) or after the output manager is
+    /// bound.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void HeadHandler(ZwlrOutputHeadV1 head);
 
     private HeadHandler? _onHead;
 
     /// <summary>
-    ///Introduce a new head
+    /// Introduce a new head
     /// <para>
     ///
-    ///This event introduces a new head. This happens whenever a new head
-    ///appears (e.g. a monitor is plugged in) or after the output manager is
-    ///bound.
-    ///
+    /// This event introduces a new head. This happens whenever a new head
+    /// appears (e.g. a monitor is plugged in) or after the output manager is
+    /// bound.
+    /// 
     /// </para>
     /// </summary>
     public event HeadHandler? OnHead
@@ -75,26 +93,44 @@ public sealed partial class ZwlrOutputManagerV1 : WaylandObject, IWaylandObjectF
         }
     }
 
+    /// <summary>
+    /// Sent all information about current configuration
+    /// <para>
+    ///
+    /// This event is sent after all information has been sent after binding to
+    /// the output manager object and after any subsequent changes. This applies
+    /// to child head and mode objects as well. In other words, this event is
+    /// sent whenever a head or mode is created or destroyed and whenever one of
+    /// their properties has been changed. Not all state is re-sent each time
+    /// the current configuration changes: only the actual changes are sent.
+    ///
+    /// This allows changes to the output configuration to be seen as atomic,
+    /// even if they happen via multiple events.
+    ///
+    /// A serial is sent to be used in a future create_configuration request.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DoneHandler(uint serial);
 
     private DoneHandler? _onDone;
 
     /// <summary>
-    ///Sent all information about current configuration
+    /// Sent all information about current configuration
     /// <para>
     ///
-    ///This event is sent after all information has been sent after binding to
-    ///the output manager object and after any subsequent changes. This applies
-    ///to child head and mode objects as well. In other words, this event is
-    ///sent whenever a head or mode is created or destroyed and whenever one of
-    ///their properties has been changed. Not all state is re-sent each time
-    ///the current configuration changes: only the actual changes are sent.
+    /// This event is sent after all information has been sent after binding to
+    /// the output manager object and after any subsequent changes. This applies
+    /// to child head and mode objects as well. In other words, this event is
+    /// sent whenever a head or mode is created or destroyed and whenever one of
+    /// their properties has been changed. Not all state is re-sent each time
+    /// the current configuration changes: only the actual changes are sent.
     ///
-    ///This allows changes to the output configuration to be seen as atomic,
-    ///even if they happen via multiple events.
+    /// This allows changes to the output configuration to be seen as atomic,
+    /// even if they happen via multiple events.
     ///
-    ///A serial is sent to be used in a future create_configuration request.
-    ///
+    /// A serial is sent to be used in a future create_configuration request.
+    /// 
     /// </para>
     /// </summary>
     public event DoneHandler? OnDone
@@ -112,19 +148,30 @@ public sealed partial class ZwlrOutputManagerV1 : WaylandObject, IWaylandObjectF
         }
     }
 
+    /// <summary>
+    /// The compositor has finished with the manager
+    /// <para>
+    ///
+    /// This event indicates that the compositor is done sending manager events.
+    /// The compositor will destroy the object immediately after sending this
+    /// event, so it will become invalid and the client should release any
+    /// resources associated with it.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FinishedHandler();
 
     private FinishedHandler? _onFinished;
 
     /// <summary>
-    ///The compositor has finished with the manager
+    /// The compositor has finished with the manager
     /// <para>
     ///
-    ///This event indicates that the compositor is done sending manager events.
-    ///The compositor will destroy the object immediately after sending this
-    ///event, so it will become invalid and the client should release any
-    ///resources associated with it.
-    ///
+    /// This event indicates that the compositor is done sending manager events.
+    /// The compositor will destroy the object immediately after sending this
+    /// event, so it will become invalid and the client should release any
+    /// resources associated with it.
+    /// 
     /// </para>
     /// </summary>
     public event FinishedHandler? OnFinished
@@ -274,6 +321,10 @@ public sealed partial class ZwlrOutputManagerV1 : WaylandObject, IWaylandObjectF
         );
     }
 
+    /// <summary> Creates a ZwlrOutputManagerV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwlrOutputManagerV1 instance.</returns>
     public static ZwlrOutputManagerV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

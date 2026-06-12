@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Wlr;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwlrForeignToplevelManagerV1 : WaylandObject, IWaylandObjectFactory<ZwlrForeignToplevelManagerV1>
 {
+    /// <summary> Wayland interface name for zwlr_foreign_toplevel_manager_v1. </summary>
     public const string InterfaceName = "zwlr_foreign_toplevel_manager_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwlr_foreign_toplevel_manager_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 3;
 
     private bool disposed;
@@ -39,29 +41,49 @@ public sealed partial class ZwlrForeignToplevelManagerV1 : WaylandObject, IWayla
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwlr_foreign_toplevel_manager_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwlrForeignToplevelManagerV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// A toplevel has been created
+    /// <para>
+    ///
+    /// This event is emitted whenever a new toplevel window is created. It
+    /// is emitted for all toplevels, regardless of the app that has created
+    /// them.
+    ///
+    /// All initial details of the toplevel(title, app_id, states, etc.) will
+    /// be sent immediately after this event via the corresponding events in
+    /// zwlr_foreign_toplevel_handle_v1.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ToplevelHandler(ZwlrForeignToplevelHandleV1 toplevel);
 
     private ToplevelHandler? _onToplevel;
 
     /// <summary>
-    ///A toplevel has been created
+    /// A toplevel has been created
     /// <para>
     ///
-    ///This event is emitted whenever a new toplevel window is created. It
-    ///is emitted for all toplevels, regardless of the app that has created
-    ///them.
+    /// This event is emitted whenever a new toplevel window is created. It
+    /// is emitted for all toplevels, regardless of the app that has created
+    /// them.
     ///
-    ///All initial details of the toplevel(title, app_id, states, etc.) will
-    ///be sent immediately after this event via the corresponding events in
-    ///zwlr_foreign_toplevel_handle_v1.
-    ///
+    /// All initial details of the toplevel(title, app_id, states, etc.) will
+    /// be sent immediately after this event via the corresponding events in
+    /// zwlr_foreign_toplevel_handle_v1.
+    /// 
     /// </para>
     /// </summary>
     public event ToplevelHandler? OnToplevel
@@ -79,19 +101,30 @@ public sealed partial class ZwlrForeignToplevelManagerV1 : WaylandObject, IWayla
         }
     }
 
+    /// <summary>
+    /// The compositor has finished with the toplevel manager
+    /// <para>
+    ///
+    /// This event indicates that the compositor is done sending events to the
+    /// zwlr_foreign_toplevel_manager_v1. The server will destroy the object
+    /// immediately after sending this request, so it will become invalid and
+    /// the client should free any resources associated with it.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FinishedHandler();
 
     private FinishedHandler? _onFinished;
 
     /// <summary>
-    ///The compositor has finished with the toplevel manager
+    /// The compositor has finished with the toplevel manager
     /// <para>
     ///
-    ///This event indicates that the compositor is done sending events to the
-    ///zwlr_foreign_toplevel_manager_v1. The server will destroy the object
-    ///immediately after sending this request, so it will become invalid and
-    ///the client should free any resources associated with it.
-    ///
+    /// This event indicates that the compositor is done sending events to the
+    /// zwlr_foreign_toplevel_manager_v1. The server will destroy the object
+    /// immediately after sending this request, so it will become invalid and
+    /// the client should free any resources associated with it.
+    /// 
     /// </para>
     /// </summary>
     public event FinishedHandler? OnFinished
@@ -203,6 +236,10 @@ public sealed partial class ZwlrForeignToplevelManagerV1 : WaylandObject, IWayla
         );
     }
 
+    /// <summary> Creates a ZwlrForeignToplevelManagerV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwlrForeignToplevelManagerV1 instance.</returns>
     public static ZwlrForeignToplevelManagerV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

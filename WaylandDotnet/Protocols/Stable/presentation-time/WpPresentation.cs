@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WpPresentation : WaylandObject, IWaylandObjectFactory<WpPresentation>
 {
+    /// <summary> Wayland interface name for wp_presentation. </summary>
     public const string InterfaceName = "wp_presentation";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wp_presentation";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class WpPresentation : WaylandObject, IWaylandObjectFactor
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wp_presentation proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WpPresentation(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -59,43 +67,78 @@ public sealed partial class WpPresentation : WaylandObject, IWaylandObjectFactor
         InvalidFlag = 1,
     }
 
+    /// <summary>
+    /// Clock ID for timestamps
+    /// <para>
+    ///
+    /// This event tells the client in which clock domain the
+    /// compositor interprets the timestamps used by the presentation
+    /// extension. This clock is called the presentation clock.
+    ///
+    /// The compositor sends this event when the client binds to the
+    /// presentation interface. The presentation clock does not change
+    /// during the lifetime of the client connection.
+    ///
+    /// The clock identifier is platform dependent. On POSIX platforms, the
+    /// identifier value is one of the clockid_t values accepted by
+    /// clock_gettime(). clock_gettime() is defined by POSIX.1-2001.
+    ///
+    /// Timestamps in this clock domain are expressed as tv_sec_hi,
+    /// tv_sec_lo, tv_nsec triples, each component being an unsigned
+    /// 32-bit value. Whole seconds are in tv_sec which is a 64-bit
+    /// value combined from tv_sec_hi and tv_sec_lo, and the
+    /// additional fractional part in tv_nsec as nanoseconds. Hence,
+    /// for valid timestamps tv_nsec must be in [0, 999999999].
+    ///
+    /// Note that clock_id applies only to the presentation clock,
+    /// and implies nothing about e.g. the timestamps used in the
+    /// Wayland core protocol input events.
+    ///
+    /// Compositors should prefer a clock which does not jump and is
+    /// not slewed e.g. by NTP. The absolute value of the clock is
+    /// irrelevant. Precision of one millisecond or better is
+    /// recommended. Clients must be able to query the current clock
+    /// value directly, not by asking the compositor.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ClockIdHandler(uint clkId);
 
     private ClockIdHandler? _onClockId;
 
     /// <summary>
-    ///Clock ID for timestamps
+    /// Clock ID for timestamps
     /// <para>
     ///
-    ///This event tells the client in which clock domain the
-    ///compositor interprets the timestamps used by the presentation
-    ///extension. This clock is called the presentation clock.
+    /// This event tells the client in which clock domain the
+    /// compositor interprets the timestamps used by the presentation
+    /// extension. This clock is called the presentation clock.
     ///
-    ///The compositor sends this event when the client binds to the
-    ///presentation interface. The presentation clock does not change
-    ///during the lifetime of the client connection.
+    /// The compositor sends this event when the client binds to the
+    /// presentation interface. The presentation clock does not change
+    /// during the lifetime of the client connection.
     ///
-    ///The clock identifier is platform dependent. On POSIX platforms, the
-    ///identifier value is one of the clockid_t values accepted by
-    ///clock_gettime(). clock_gettime() is defined by POSIX.1-2001.
+    /// The clock identifier is platform dependent. On POSIX platforms, the
+    /// identifier value is one of the clockid_t values accepted by
+    /// clock_gettime(). clock_gettime() is defined by POSIX.1-2001.
     ///
-    ///Timestamps in this clock domain are expressed as tv_sec_hi,
-    ///tv_sec_lo, tv_nsec triples, each component being an unsigned
-    ///32-bit value. Whole seconds are in tv_sec which is a 64-bit
-    ///value combined from tv_sec_hi and tv_sec_lo, and the
-    ///additional fractional part in tv_nsec as nanoseconds. Hence,
-    ///for valid timestamps tv_nsec must be in [0, 999999999].
+    /// Timestamps in this clock domain are expressed as tv_sec_hi,
+    /// tv_sec_lo, tv_nsec triples, each component being an unsigned
+    /// 32-bit value. Whole seconds are in tv_sec which is a 64-bit
+    /// value combined from tv_sec_hi and tv_sec_lo, and the
+    /// additional fractional part in tv_nsec as nanoseconds. Hence,
+    /// for valid timestamps tv_nsec must be in [0, 999999999].
     ///
-    ///Note that clock_id applies only to the presentation clock,
-    ///and implies nothing about e.g. the timestamps used in the
-    ///Wayland core protocol input events.
+    /// Note that clock_id applies only to the presentation clock,
+    /// and implies nothing about e.g. the timestamps used in the
+    /// Wayland core protocol input events.
     ///
-    ///Compositors should prefer a clock which does not jump and is
-    ///not slewed e.g. by NTP. The absolute value of the clock is
-    ///irrelevant. Precision of one millisecond or better is
-    ///recommended. Clients must be able to query the current clock
-    ///value directly, not by asking the compositor.
-    ///
+    /// Compositors should prefer a clock which does not jump and is
+    /// not slewed e.g. by NTP. The absolute value of the clock is
+    /// irrelevant. Precision of one millisecond or better is
+    /// recommended. Clients must be able to query the current clock
+    /// value directly, not by asking the compositor.
+    /// 
     /// </para>
     /// </summary>
     public event ClockIdHandler? OnClockId
@@ -234,6 +277,10 @@ public sealed partial class WpPresentation : WaylandObject, IWaylandObjectFactor
         return new WpPresentationFeedback(newProxy, Display);
     }
 
+    /// <summary> Creates a WpPresentation wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WpPresentation instance.</returns>
     public static WpPresentation Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

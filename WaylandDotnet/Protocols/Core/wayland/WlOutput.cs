@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOutput>
 {
+    /// <summary> Wayland interface name for wl_output. </summary>
     public const string InterfaceName = "wl_output";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_output";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 4;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_output proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlOutput(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -126,35 +134,62 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
         Preferred = 0x2,
     }
 
+    /// <summary>
+    /// Properties of the output
+    /// <para>
+    ///
+    /// The geometry event describes geometric properties of the output.
+    /// The event is sent when binding to the output object and whenever
+    /// any of the properties change.
+    ///
+    /// The physical size can be set to zero if it doesn't make sense for this
+    /// output (e.g. for projectors or virtual outputs).
+    ///
+    /// The geometry event will be followed by a done event (starting from
+    /// version 2).
+    ///
+    /// Clients should use wl_surface.preferred_buffer_transform instead of the
+    /// transform advertised by this event to find the preferred buffer
+    /// transform to use for a surface.
+    ///
+    /// Note: wl_output only advertises partial information about the output
+    /// position and identification. Some compositors, for instance those not
+    /// implementing a desktop-style output layout or those exposing virtual
+    /// outputs, might fake this information. Instead of using x and y, clients
+    /// should use xdg_output.logical_position. Instead of using make and model,
+    /// clients should use name and description.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void GeometryHandler(int x, int y, int physicalWidth, int physicalHeight, int subpixel, string make, string model, int transform);
 
     private GeometryHandler? _onGeometry;
 
     /// <summary>
-    ///Properties of the output
+    /// Properties of the output
     /// <para>
     ///
-    ///The geometry event describes geometric properties of the output.
-    ///The event is sent when binding to the output object and whenever
-    ///any of the properties change.
+    /// The geometry event describes geometric properties of the output.
+    /// The event is sent when binding to the output object and whenever
+    /// any of the properties change.
     ///
-    ///The physical size can be set to zero if it doesn't make sense for this
-    ///output (e.g. for projectors or virtual outputs).
+    /// The physical size can be set to zero if it doesn't make sense for this
+    /// output (e.g. for projectors or virtual outputs).
     ///
-    ///The geometry event will be followed by a done event (starting from
-    ///version 2).
+    /// The geometry event will be followed by a done event (starting from
+    /// version 2).
     ///
-    ///Clients should use wl_surface.preferred_buffer_transform instead of the
-    ///transform advertised by this event to find the preferred buffer
-    ///transform to use for a surface.
+    /// Clients should use wl_surface.preferred_buffer_transform instead of the
+    /// transform advertised by this event to find the preferred buffer
+    /// transform to use for a surface.
     ///
-    ///Note: wl_output only advertises partial information about the output
-    ///position and identification. Some compositors, for instance those not
-    ///implementing a desktop-style output layout or those exposing virtual
-    ///outputs, might fake this information. Instead of using x and y, clients
-    ///should use xdg_output.logical_position. Instead of using make and model,
-    ///clients should use name and description.
-    ///
+    /// Note: wl_output only advertises partial information about the output
+    /// position and identification. Some compositors, for instance those not
+    /// implementing a desktop-style output layout or those exposing virtual
+    /// outputs, might fake this information. Instead of using x and y, clients
+    /// should use xdg_output.logical_position. Instead of using make and model,
+    /// clients should use name and description.
+    /// 
     /// </para>
     /// </summary>
     public event GeometryHandler? OnGeometry
@@ -172,48 +207,88 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
         }
     }
 
+    /// <summary>
+    /// Advertise available modes for the output
+    /// <para>
+    ///
+    /// The mode event describes an available mode for the output.
+    ///
+    /// The event is sent when binding to the output object and there
+    /// will always be one mode, the current mode.  The event is sent
+    /// again if an output changes mode, for the mode that is now
+    /// current.  In other words, the current mode is always the last
+    /// mode that was received with the current flag set.
+    ///
+    /// Non-current modes are deprecated. A compositor can decide to only
+    /// advertise the current mode and never send other modes. Clients
+    /// should not rely on non-current modes.
+    ///
+    /// The size of a mode is given in physical hardware units of
+    /// the output device. This is not necessarily the same as
+    /// the output size in the global compositor space. For instance,
+    /// the output may be scaled, as described in wl_output.scale,
+    /// or transformed, as described in wl_output.transform. Clients
+    /// willing to retrieve the output size in the global compositor
+    /// space should use xdg_output.logical_size instead.
+    ///
+    /// The vertical refresh rate can be set to zero if it doesn't make
+    /// sense for this output (e.g. for virtual outputs).
+    ///
+    /// The mode event will be followed by a done event (starting from
+    /// version 2).
+    ///
+    /// Clients should not use the refresh rate to schedule frames. Instead,
+    /// they should use the wl_surface.frame event or the presentation-time
+    /// protocol.
+    ///
+    /// Note: this information is not always meaningful for all outputs. Some
+    /// compositors, such as those exposing virtual outputs, might fake the
+    /// refresh rate or the size.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ModeHandler(uint flags, int width, int height, int refresh);
 
     private ModeHandler? _onMode;
 
     /// <summary>
-    ///Advertise available modes for the output
+    /// Advertise available modes for the output
     /// <para>
     ///
-    ///The mode event describes an available mode for the output.
+    /// The mode event describes an available mode for the output.
     ///
-    ///The event is sent when binding to the output object and there
-    ///will always be one mode, the current mode.  The event is sent
-    ///again if an output changes mode, for the mode that is now
-    ///current.  In other words, the current mode is always the last
-    ///mode that was received with the current flag set.
+    /// The event is sent when binding to the output object and there
+    /// will always be one mode, the current mode.  The event is sent
+    /// again if an output changes mode, for the mode that is now
+    /// current.  In other words, the current mode is always the last
+    /// mode that was received with the current flag set.
     ///
-    ///Non-current modes are deprecated. A compositor can decide to only
-    ///advertise the current mode and never send other modes. Clients
-    ///should not rely on non-current modes.
+    /// Non-current modes are deprecated. A compositor can decide to only
+    /// advertise the current mode and never send other modes. Clients
+    /// should not rely on non-current modes.
     ///
-    ///The size of a mode is given in physical hardware units of
-    ///the output device. This is not necessarily the same as
-    ///the output size in the global compositor space. For instance,
-    ///the output may be scaled, as described in wl_output.scale,
-    ///or transformed, as described in wl_output.transform. Clients
-    ///willing to retrieve the output size in the global compositor
-    ///space should use xdg_output.logical_size instead.
+    /// The size of a mode is given in physical hardware units of
+    /// the output device. This is not necessarily the same as
+    /// the output size in the global compositor space. For instance,
+    /// the output may be scaled, as described in wl_output.scale,
+    /// or transformed, as described in wl_output.transform. Clients
+    /// willing to retrieve the output size in the global compositor
+    /// space should use xdg_output.logical_size instead.
     ///
-    ///The vertical refresh rate can be set to zero if it doesn't make
-    ///sense for this output (e.g. for virtual outputs).
+    /// The vertical refresh rate can be set to zero if it doesn't make
+    /// sense for this output (e.g. for virtual outputs).
     ///
-    ///The mode event will be followed by a done event (starting from
-    ///version 2).
+    /// The mode event will be followed by a done event (starting from
+    /// version 2).
     ///
-    ///Clients should not use the refresh rate to schedule frames. Instead,
-    ///they should use the wl_surface.frame event or the presentation-time
-    ///protocol.
+    /// Clients should not use the refresh rate to schedule frames. Instead,
+    /// they should use the wl_surface.frame event or the presentation-time
+    /// protocol.
     ///
-    ///Note: this information is not always meaningful for all outputs. Some
-    ///compositors, such as those exposing virtual outputs, might fake the
-    ///refresh rate or the size.
-    ///
+    /// Note: this information is not always meaningful for all outputs. Some
+    /// compositors, such as those exposing virtual outputs, might fake the
+    /// refresh rate or the size.
+    /// 
     /// </para>
     /// </summary>
     public event ModeHandler? OnMode
@@ -231,20 +306,32 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
         }
     }
 
+    /// <summary>
+    /// Sent all information about output
+    /// <para>
+    ///
+    /// This event is sent after all other properties have been
+    /// sent after binding to the output object and after any
+    /// other property changes done after that. This allows
+    /// changes to the output properties to be seen as
+    /// atomic, even if they happen via multiple events.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DoneHandler();
 
     private DoneHandler? _onDone;
 
     /// <summary>
-    ///Sent all information about output
+    /// Sent all information about output
     /// <para>
     ///
-    ///This event is sent after all other properties have been
-    ///sent after binding to the output object and after any
-    ///other property changes done after that. This allows
-    ///changes to the output properties to be seen as
-    ///atomic, even if they happen via multiple events.
-    ///
+    /// This event is sent after all other properties have been
+    /// sent after binding to the output object and after any
+    /// other property changes done after that. This allows
+    /// changes to the output properties to be seen as
+    /// atomic, even if they happen via multiple events.
+    /// 
     /// </para>
     /// </summary>
     public event DoneHandler? OnDone
@@ -262,33 +349,58 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
         }
     }
 
+    /// <summary>
+    /// Output scaling properties
+    /// <para>
+    ///
+    /// This event contains scaling geometry information
+    /// that is not in the geometry event. It may be sent after
+    /// binding the output object or if the output scale changes
+    /// later. The compositor will emit a non-zero, positive
+    /// value for scale. If it is not sent, the client should
+    /// assume a scale of 1.
+    ///
+    /// A scale larger than 1 means that the compositor will
+    /// automatically scale surface buffers by this amount
+    /// when rendering. This is used for very high resolution
+    /// displays where applications rendering at the native
+    /// resolution would be too small to be legible.
+    ///
+    /// Clients should use wl_surface.preferred_buffer_scale
+    /// instead of this event to find the preferred buffer
+    /// scale to use for a surface.
+    ///
+    /// The scale event will be followed by a done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ScaleHandler(int factor);
 
     private ScaleHandler? _onScale;
 
     /// <summary>
-    ///Output scaling properties
+    /// Output scaling properties
     /// <para>
     ///
-    ///This event contains scaling geometry information
-    ///that is not in the geometry event. It may be sent after
-    ///binding the output object or if the output scale changes
-    ///later. The compositor will emit a non-zero, positive
-    ///value for scale. If it is not sent, the client should
-    ///assume a scale of 1.
+    /// This event contains scaling geometry information
+    /// that is not in the geometry event. It may be sent after
+    /// binding the output object or if the output scale changes
+    /// later. The compositor will emit a non-zero, positive
+    /// value for scale. If it is not sent, the client should
+    /// assume a scale of 1.
     ///
-    ///A scale larger than 1 means that the compositor will
-    ///automatically scale surface buffers by this amount
-    ///when rendering. This is used for very high resolution
-    ///displays where applications rendering at the native
-    ///resolution would be too small to be legible.
+    /// A scale larger than 1 means that the compositor will
+    /// automatically scale surface buffers by this amount
+    /// when rendering. This is used for very high resolution
+    /// displays where applications rendering at the native
+    /// resolution would be too small to be legible.
     ///
-    ///Clients should use wl_surface.preferred_buffer_scale
-    ///instead of this event to find the preferred buffer
-    ///scale to use for a surface.
+    /// Clients should use wl_surface.preferred_buffer_scale
+    /// instead of this event to find the preferred buffer
+    /// scale to use for a surface.
     ///
-    ///The scale event will be followed by a done event.
-    ///
+    /// The scale event will be followed by a done event.
+    /// 
     /// </para>
     /// </summary>
     public event ScaleHandler? OnScale
@@ -306,43 +418,78 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
         }
     }
 
+    /// <summary>
+    /// Name of this output
+    /// <para>
+    ///
+    /// Many compositors will assign user-friendly names to their outputs, show
+    /// them to the user, allow the user to refer to an output, etc. The client
+    /// may wish to know this name as well to offer the user similar behaviors.
+    ///
+    /// The name is a UTF-8 string with no convention defined for its contents.
+    /// Each name is unique among all wl_output globals. The name is only
+    /// guaranteed to be unique for the compositor instance.
+    ///
+    /// The same output name is used for all clients for a given wl_output
+    /// global. Thus, the name can be shared across processes to refer to a
+    /// specific wl_output global.
+    ///
+    /// The name is not guaranteed to be persistent across sessions, thus cannot
+    /// be used to reliably identify an output in e.g. configuration files.
+    ///
+    /// Examples of names include 'HDMI-A-1', 'WL-1', 'X11-1', etc. However, do
+    /// not assume that the name is a reflection of an underlying DRM connector,
+    /// X11 connection, etc.
+    ///
+    /// The name event is sent after binding the output object. This event is
+    /// only sent once per output object, and the name does not change over the
+    /// lifetime of the wl_output global.
+    ///
+    /// Compositors may re-use the same output name if the wl_output global is
+    /// destroyed and re-created later. Compositors should avoid re-using the
+    /// same name if possible.
+    ///
+    /// The name event will be followed by a done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void NameHandler(string name);
 
     private NameHandler? _onName;
 
     /// <summary>
-    ///Name of this output
+    /// Name of this output
     /// <para>
     ///
-    ///Many compositors will assign user-friendly names to their outputs, show
-    ///them to the user, allow the user to refer to an output, etc. The client
-    ///may wish to know this name as well to offer the user similar behaviors.
+    /// Many compositors will assign user-friendly names to their outputs, show
+    /// them to the user, allow the user to refer to an output, etc. The client
+    /// may wish to know this name as well to offer the user similar behaviors.
     ///
-    ///The name is a UTF-8 string with no convention defined for its contents.
-    ///Each name is unique among all wl_output globals. The name is only
-    ///guaranteed to be unique for the compositor instance.
+    /// The name is a UTF-8 string with no convention defined for its contents.
+    /// Each name is unique among all wl_output globals. The name is only
+    /// guaranteed to be unique for the compositor instance.
     ///
-    ///The same output name is used for all clients for a given wl_output
-    ///global. Thus, the name can be shared across processes to refer to a
-    ///specific wl_output global.
+    /// The same output name is used for all clients for a given wl_output
+    /// global. Thus, the name can be shared across processes to refer to a
+    /// specific wl_output global.
     ///
-    ///The name is not guaranteed to be persistent across sessions, thus cannot
-    ///be used to reliably identify an output in e.g. configuration files.
+    /// The name is not guaranteed to be persistent across sessions, thus cannot
+    /// be used to reliably identify an output in e.g. configuration files.
     ///
-    ///Examples of names include 'HDMI-A-1', 'WL-1', 'X11-1', etc. However, do
-    ///not assume that the name is a reflection of an underlying DRM connector,
-    ///X11 connection, etc.
+    /// Examples of names include 'HDMI-A-1', 'WL-1', 'X11-1', etc. However, do
+    /// not assume that the name is a reflection of an underlying DRM connector,
+    /// X11 connection, etc.
     ///
-    ///The name event is sent after binding the output object. This event is
-    ///only sent once per output object, and the name does not change over the
-    ///lifetime of the wl_output global.
+    /// The name event is sent after binding the output object. This event is
+    /// only sent once per output object, and the name does not change over the
+    /// lifetime of the wl_output global.
     ///
-    ///Compositors may re-use the same output name if the wl_output global is
-    ///destroyed and re-created later. Compositors should avoid re-using the
-    ///same name if possible.
+    /// Compositors may re-use the same output name if the wl_output global is
+    /// destroyed and re-created later. Compositors should avoid re-using the
+    /// same name if possible.
     ///
-    ///The name event will be followed by a done event.
-    ///
+    /// The name event will be followed by a done event.
+    /// 
     /// </para>
     /// </summary>
     public event NameHandler? OnName
@@ -360,29 +507,50 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
         }
     }
 
+    /// <summary>
+    /// Human-readable description of this output
+    /// <para>
+    ///
+    /// Many compositors can produce human-readable descriptions of their
+    /// outputs. The client may wish to know this description as well, e.g. for
+    /// output selection purposes.
+    ///
+    /// The description is a UTF-8 string with no convention defined for its
+    /// contents. The description is not guaranteed to be unique among all
+    /// wl_output globals. Examples might include 'Foocorp 11" Display' or
+    /// 'Virtual X11 output via :1'.
+    ///
+    /// The description event is sent after binding the output object and
+    /// whenever the description changes. The description is optional, and may
+    /// not be sent at all.
+    ///
+    /// The description event will be followed by a done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DescriptionHandler(string description);
 
     private DescriptionHandler? _onDescription;
 
     /// <summary>
-    ///Human-readable description of this output
+    /// Human-readable description of this output
     /// <para>
     ///
-    ///Many compositors can produce human-readable descriptions of their
-    ///outputs. The client may wish to know this description as well, e.g. for
-    ///output selection purposes.
+    /// Many compositors can produce human-readable descriptions of their
+    /// outputs. The client may wish to know this description as well, e.g. for
+    /// output selection purposes.
     ///
-    ///The description is a UTF-8 string with no convention defined for its
-    ///contents. The description is not guaranteed to be unique among all
-    ///wl_output globals. Examples might include 'Foocorp 11" Display' or
-    ///'Virtual X11 output via :1'.
+    /// The description is a UTF-8 string with no convention defined for its
+    /// contents. The description is not guaranteed to be unique among all
+    /// wl_output globals. Examples might include 'Foocorp 11" Display' or
+    /// 'Virtual X11 output via :1'.
     ///
-    ///The description event is sent after binding the output object and
-    ///whenever the description changes. The description is optional, and may
-    ///not be sent at all.
+    /// The description event is sent after binding the output object and
+    /// whenever the description changes. The description is optional, and may
+    /// not be sent at all.
     ///
-    ///The description event will be followed by a done event.
-    ///
+    /// The description event will be followed by a done event.
+    /// 
     /// </para>
     /// </summary>
     public event DescriptionHandler? OnDescription
@@ -527,6 +695,10 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
         disposed = true;
     }
 
+    /// <summary> Creates a WlOutput wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlOutput instance.</returns>
     public static WlOutput Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

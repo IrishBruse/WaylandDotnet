@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFactory<ZwpTabletSeatV2>
 {
+    /// <summary> Wayland interface name for zwp_tablet_seat_v2. </summary>
     public const string InterfaceName = "zwp_tablet_seat_v2";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwp_tablet_seat_v2";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,26 +41,43 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwp_tablet_seat_v2 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwpTabletSeatV2(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// New device notification
+    /// <para>
+    ///
+    /// This event is sent whenever a new tablet becomes available on this
+    /// seat. This event only provides the object id of the tablet, any
+    /// static information about the tablet (device name, vid/pid, etc.) is
+    /// sent through the zwp_tablet_v2 interface.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TabletAddedHandler(ZwpTabletV2 id);
 
     private TabletAddedHandler? _onTabletAdded;
 
     /// <summary>
-    ///New device notification
+    /// New device notification
     /// <para>
     ///
-    ///This event is sent whenever a new tablet becomes available on this
-    ///seat. This event only provides the object id of the tablet, any
-    ///static information about the tablet (device name, vid/pid, etc.) is
-    ///sent through the zwp_tablet_v2 interface.
-    ///
+    /// This event is sent whenever a new tablet becomes available on this
+    /// seat. This event only provides the object id of the tablet, any
+    /// static information about the tablet (device name, vid/pid, etc.) is
+    /// sent through the zwp_tablet_v2 interface.
+    /// 
     /// </para>
     /// </summary>
     public event TabletAddedHandler? OnTabletAdded
@@ -76,19 +95,30 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// A new tool has been used with a tablet
+    /// <para>
+    ///
+    /// This event is sent whenever a tool that has not previously been used
+    /// with a tablet comes into use. This event only provides the object id
+    /// of the tool; any static information about the tool (capabilities,
+    /// type, etc.) is sent through the zwp_tablet_tool_v2 interface.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ToolAddedHandler(ZwpTabletToolV2 id);
 
     private ToolAddedHandler? _onToolAdded;
 
     /// <summary>
-    ///A new tool has been used with a tablet
+    /// A new tool has been used with a tablet
     /// <para>
     ///
-    ///This event is sent whenever a tool that has not previously been used
-    ///with a tablet comes into use. This event only provides the object id
-    ///of the tool; any static information about the tool (capabilities,
-    ///type, etc.) is sent through the zwp_tablet_tool_v2 interface.
-    ///
+    /// This event is sent whenever a tool that has not previously been used
+    /// with a tablet comes into use. This event only provides the object id
+    /// of the tool; any static information about the tool (capabilities,
+    /// type, etc.) is sent through the zwp_tablet_tool_v2 interface.
+    /// 
     /// </para>
     /// </summary>
     public event ToolAddedHandler? OnToolAdded
@@ -106,25 +136,42 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
         }
     }
 
+    /// <summary>
+    /// New pad notification
+    /// <para>
+    ///
+    /// This event is sent whenever a new pad is known to the system. Typically,
+    /// pads are physically attached to tablets and a pad_added event is
+    /// sent immediately after the zwp_tablet_seat_v2.tablet_added.
+    /// However, some standalone pad devices logically attach to tablets at
+    /// runtime, and the client must wait for zwp_tablet_pad_v2.enter to know
+    /// the tablet a pad is attached to.
+    ///
+    /// This event only provides the object id of the pad. All further
+    /// features (buttons, strips, rings) are sent through the zwp_tablet_pad_v2
+    /// interface.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PadAddedHandler(ZwpTabletPadV2 id);
 
     private PadAddedHandler? _onPadAdded;
 
     /// <summary>
-    ///New pad notification
+    /// New pad notification
     /// <para>
     ///
-    ///This event is sent whenever a new pad is known to the system. Typically,
-    ///pads are physically attached to tablets and a pad_added event is
-    ///sent immediately after the zwp_tablet_seat_v2.tablet_added.
-    ///However, some standalone pad devices logically attach to tablets at
-    ///runtime, and the client must wait for zwp_tablet_pad_v2.enter to know
-    ///the tablet a pad is attached to.
+    /// This event is sent whenever a new pad is known to the system. Typically,
+    /// pads are physically attached to tablets and a pad_added event is
+    /// sent immediately after the zwp_tablet_seat_v2.tablet_added.
+    /// However, some standalone pad devices logically attach to tablets at
+    /// runtime, and the client must wait for zwp_tablet_pad_v2.enter to know
+    /// the tablet a pad is attached to.
     ///
-    ///This event only provides the object id of the pad. All further
-    ///features (buttons, strips, rings) are sent through the zwp_tablet_pad_v2
-    ///interface.
-    ///
+    /// This event only provides the object id of the pad. All further
+    /// features (buttons, strips, rings) are sent through the zwp_tablet_pad_v2
+    /// interface.
+    /// 
     /// </para>
     /// </summary>
     public event PadAddedHandler? OnPadAdded
@@ -245,6 +292,10 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
         disposed = true;
     }
 
+    /// <summary> Creates a ZwpTabletSeatV2 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwpTabletSeatV2 instance.</returns>
     public static ZwpTabletSeatV2 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,14 +28,23 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverLibinputAccelConfigV1 : WaylandObject, IWaylandObjectFactory<RiverLibinputAccelConfigV1>
 {
+    /// <summary> Wayland interface name for river_libinput_accel_config_v1. </summary>
     public const string InterfaceName = "river_libinput_accel_config_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_libinput_accel_config_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 1;
 
     private bool disposed;
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_libinput_accel_config_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverLibinputAccelConfigV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -129,6 +137,10 @@ public sealed partial class RiverLibinputAccelConfigV1 : WaylandObject, IWayland
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
+    /// <summary> Creates a RiverLibinputAccelConfigV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverLibinputAccelConfigV1 instance.</returns>
     public static RiverLibinputAccelConfigV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

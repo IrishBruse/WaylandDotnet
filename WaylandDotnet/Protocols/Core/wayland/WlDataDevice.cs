@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<WlDataDevice>
 {
+    /// <summary> Wayland interface name for wl_data_device. </summary>
     public const string InterfaceName = "wl_data_device";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_data_device";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 4;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing wl_data_device proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public WlDataDevice(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -59,22 +67,36 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
         UsedSource = 1,
     }
 
+    /// <summary>
+    /// Introduce a new wl_data_offer
+    /// <para>
+    ///
+    /// The data_offer event introduces a new wl_data_offer object,
+    /// which will subsequently be used in either the
+    /// data_device.enter event (for drag-and-drop) or the
+    /// data_device.selection event (for selections).  Immediately
+    /// following the data_device.data_offer event, the new data_offer
+    /// object will send out data_offer.offer events to describe the
+    /// mime types it offers.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DataOfferHandler(WlDataOffer id);
 
     private DataOfferHandler? _onDataOffer;
 
     /// <summary>
-    ///Introduce a new wl_data_offer
+    /// Introduce a new wl_data_offer
     /// <para>
     ///
-    ///The data_offer event introduces a new wl_data_offer object,
-    ///which will subsequently be used in either the
-    ///data_device.enter event (for drag-and-drop) or the
-    ///data_device.selection event (for selections).  Immediately
-    ///following the data_device.data_offer event, the new data_offer
-    ///object will send out data_offer.offer events to describe the
-    ///mime types it offers.
-    ///
+    /// The data_offer event introduces a new wl_data_offer object,
+    /// which will subsequently be used in either the
+    /// data_device.enter event (for drag-and-drop) or the
+    /// data_device.selection event (for selections).  Immediately
+    /// following the data_device.data_offer event, the new data_offer
+    /// object will send out data_offer.offer events to describe the
+    /// mime types it offers.
+    /// 
     /// </para>
     /// </summary>
     public event DataOfferHandler? OnDataOffer
@@ -92,19 +114,30 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
         }
     }
 
+    /// <summary>
+    /// Initiate drag-and-drop session
+    /// <para>
+    ///
+    /// This event is sent when an active drag-and-drop pointer enters
+    /// a surface owned by the client.  The position of the pointer at
+    /// enter time is provided by the x and y arguments, in surface-local
+    /// coordinates.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void EnterHandler(uint serial, WlSurface surface, WlFixed x, WlFixed y, WlDataOffer? id);
 
     private EnterHandler? _onEnter;
 
     /// <summary>
-    ///Initiate drag-and-drop session
+    /// Initiate drag-and-drop session
     /// <para>
     ///
-    ///This event is sent when an active drag-and-drop pointer enters
-    ///a surface owned by the client.  The position of the pointer at
-    ///enter time is provided by the x and y arguments, in surface-local
-    ///coordinates.
-    ///
+    /// This event is sent when an active drag-and-drop pointer enters
+    /// a surface owned by the client.  The position of the pointer at
+    /// enter time is provided by the x and y arguments, in surface-local
+    /// coordinates.
+    /// 
     /// </para>
     /// </summary>
     public event EnterHandler? OnEnter
@@ -122,18 +155,28 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
         }
     }
 
+    /// <summary>
+    /// End drag-and-drop session
+    /// <para>
+    ///
+    /// This event is sent when the drag-and-drop pointer leaves the
+    /// surface and the session ends.  The client must destroy the
+    /// wl_data_offer introduced at enter time at this point.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void LeaveHandler();
 
     private LeaveHandler? _onLeave;
 
     /// <summary>
-    ///End drag-and-drop session
+    /// End drag-and-drop session
     /// <para>
     ///
-    ///This event is sent when the drag-and-drop pointer leaves the
-    ///surface and the session ends.  The client must destroy the
-    ///wl_data_offer introduced at enter time at this point.
-    ///
+    /// This event is sent when the drag-and-drop pointer leaves the
+    /// surface and the session ends.  The client must destroy the
+    /// wl_data_offer introduced at enter time at this point.
+    /// 
     /// </para>
     /// </summary>
     public event LeaveHandler? OnLeave
@@ -151,19 +194,30 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
         }
     }
 
+    /// <summary>
+    /// Drag-and-drop session motion
+    /// <para>
+    ///
+    /// This event is sent when the drag-and-drop pointer moves within
+    /// the currently focused surface. The new position of the pointer
+    /// is provided by the x and y arguments, in surface-local
+    /// coordinates.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void MotionHandler(uint time, WlFixed x, WlFixed y);
 
     private MotionHandler? _onMotion;
 
     /// <summary>
-    ///Drag-and-drop session motion
+    /// Drag-and-drop session motion
     /// <para>
     ///
-    ///This event is sent when the drag-and-drop pointer moves within
-    ///the currently focused surface. The new position of the pointer
-    ///is provided by the x and y arguments, in surface-local
-    ///coordinates.
-    ///
+    /// This event is sent when the drag-and-drop pointer moves within
+    /// the currently focused surface. The new position of the pointer
+    /// is provided by the x and y arguments, in surface-local
+    /// coordinates.
+    /// 
     /// </para>
     /// </summary>
     public event MotionHandler? OnMotion
@@ -181,28 +235,48 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
         }
     }
 
+    /// <summary>
+    /// End drag-and-drop session successfully
+    /// <para>
+    ///
+    /// The event is sent when a drag-and-drop operation is ended
+    /// because the implicit grab is removed.
+    ///
+    /// The drag-and-drop destination is expected to honor the last action
+    /// received through wl_data_offer.action, if the resulting action is
+    /// "copy" or "move", the destination can still perform
+    /// wl_data_offer.receive requests, and is expected to end all
+    /// transfers with a wl_data_offer.finish request.
+    ///
+    /// If the resulting action is "ask", the action will not be considered
+    /// final. The drag-and-drop destination is expected to perform one last
+    /// wl_data_offer.set_actions request, or wl_data_offer.destroy in order
+    /// to cancel the operation.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DropHandler();
 
     private DropHandler? _onDrop;
 
     /// <summary>
-    ///End drag-and-drop session successfully
+    /// End drag-and-drop session successfully
     /// <para>
     ///
-    ///The event is sent when a drag-and-drop operation is ended
-    ///because the implicit grab is removed.
+    /// The event is sent when a drag-and-drop operation is ended
+    /// because the implicit grab is removed.
     ///
-    ///The drag-and-drop destination is expected to honor the last action
-    ///received through wl_data_offer.action, if the resulting action is
-    ///"copy" or "move", the destination can still perform
-    ///wl_data_offer.receive requests, and is expected to end all
-    ///transfers with a wl_data_offer.finish request.
+    /// The drag-and-drop destination is expected to honor the last action
+    /// received through wl_data_offer.action, if the resulting action is
+    /// "copy" or "move", the destination can still perform
+    /// wl_data_offer.receive requests, and is expected to end all
+    /// transfers with a wl_data_offer.finish request.
     ///
-    ///If the resulting action is "ask", the action will not be considered
-    ///final. The drag-and-drop destination is expected to perform one last
-    ///wl_data_offer.set_actions request, or wl_data_offer.destroy in order
-    ///to cancel the operation.
-    ///
+    /// If the resulting action is "ask", the action will not be considered
+    /// final. The drag-and-drop destination is expected to perform one last
+    /// wl_data_offer.set_actions request, or wl_data_offer.destroy in order
+    /// to cancel the operation.
+    /// 
     /// </para>
     /// </summary>
     public event DropHandler? OnDrop
@@ -220,27 +294,46 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
         }
     }
 
+    /// <summary>
+    /// Advertise new selection
+    /// <para>
+    ///
+    /// The selection event is sent out to notify the client of a new
+    /// wl_data_offer for the selection for this device.  The
+    /// data_device.data_offer and the data_offer.offer events are
+    /// sent out immediately before this event to introduce the data
+    /// offer object.  The selection event is sent to a client
+    /// immediately before receiving keyboard focus and when a new
+    /// selection is set while the client has keyboard focus.  The
+    /// data_offer is valid until a new data_offer or NULL is received
+    /// or until the client loses keyboard focus.  Switching surface with
+    /// keyboard focus within the same client doesn't mean a new selection
+    /// will be sent.  The client must destroy the previous selection
+    /// data_offer, if any, upon receiving this event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void SelectionHandler(WlDataOffer? id);
 
     private SelectionHandler? _onSelection;
 
     /// <summary>
-    ///Advertise new selection
+    /// Advertise new selection
     /// <para>
     ///
-    ///The selection event is sent out to notify the client of a new
-    ///wl_data_offer for the selection for this device.  The
-    ///data_device.data_offer and the data_offer.offer events are
-    ///sent out immediately before this event to introduce the data
-    ///offer object.  The selection event is sent to a client
-    ///immediately before receiving keyboard focus and when a new
-    ///selection is set while the client has keyboard focus.  The
-    ///data_offer is valid until a new data_offer or NULL is received
-    ///or until the client loses keyboard focus.  Switching surface with
-    ///keyboard focus within the same client doesn't mean a new selection
-    ///will be sent.  The client must destroy the previous selection
-    ///data_offer, if any, upon receiving this event.
-    ///
+    /// The selection event is sent out to notify the client of a new
+    /// wl_data_offer for the selection for this device.  The
+    /// data_device.data_offer and the data_offer.offer events are
+    /// sent out immediately before this event to introduce the data
+    /// offer object.  The selection event is sent to a client
+    /// immediately before receiving keyboard focus and when a new
+    /// selection is set while the client has keyboard focus.  The
+    /// data_offer is valid until a new data_offer or NULL is received
+    /// or until the client loses keyboard focus.  Switching surface with
+    /// keyboard focus within the same client doesn't mean a new selection
+    /// will be sent.  The client must destroy the previous selection
+    /// data_offer, if any, upon receiving this event.
+    /// 
     /// </para>
     /// </summary>
     public event SelectionHandler? OnSelection
@@ -480,6 +573,10 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
         disposed = true;
     }
 
+    /// <summary> Creates a WlDataDevice wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new WlDataDevice instance.</returns>
     public static WlDataDevice Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

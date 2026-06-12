@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFactory<RiverXkbBindingV1>
 {
+    /// <summary> Wayland interface name for river_xkb_binding_v1. </summary>
     public const string InterfaceName = "river_xkb_binding_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_xkb_binding_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 3;
 
     private bool disposed;
@@ -39,34 +41,59 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_xkb_binding_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverXkbBindingV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// The key triggering the binding has been pressed
+    /// <para>
+    ///
+    /// This event indicates that the physical key triggering the binding has
+    /// been pressed.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    ///
+    /// The compositor should wait for the manage sequence to complete before
+    /// processing further input events. This allows the window manager client
+    /// to, for example, modify key bindings and keyboard focus without racing
+    /// against future input events. The window manager should of course respond
+    /// as soon as possible as the capacity of the compositor to buffer incoming
+    /// input events is finite.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PressedHandler();
 
     private PressedHandler? _onPressed;
 
     /// <summary>
-    ///The key triggering the binding has been pressed
+    /// The key triggering the binding has been pressed
     /// <para>
     ///
-    ///This event indicates that the physical key triggering the binding has
-    ///been pressed.
+    /// This event indicates that the physical key triggering the binding has
+    /// been pressed.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
     ///
-    ///The compositor should wait for the manage sequence to complete before
-    ///processing further input events. This allows the window manager client
-    ///to, for example, modify key bindings and keyboard focus without racing
-    ///against future input events. The window manager should of course respond
-    ///as soon as possible as the capacity of the compositor to buffer incoming
-    ///input events is finite.
-    ///
+    /// The compositor should wait for the manage sequence to complete before
+    /// processing further input events. This allows the window manager client
+    /// to, for example, modify key bindings and keyboard focus without racing
+    /// against future input events. The window manager should of course respond
+    /// as soon as possible as the capacity of the compositor to buffer incoming
+    /// input events is finite.
+    /// 
     /// </para>
     /// </summary>
     public event PressedHandler? OnPressed
@@ -84,32 +111,56 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
         }
     }
 
+    /// <summary>
+    /// The key triggering the binding has been released
+    /// <para>
+    ///
+    /// This event indicates that the physical key triggering the binding has
+    /// been released.
+    ///
+    /// Releasing the modifiers for the binding without releasing the "main"
+    /// physical key that produces the bound keysym does not trigger the release
+    /// event. This event is sent when the "main" key is released, even if the
+    /// modifiers have changed since the pressed event.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    ///
+    /// The compositor should wait for the manage sequence to complete before
+    /// processing further input events. This allows the window manager client
+    /// to, for example, modify key bindings and keyboard focus without racing
+    /// against future input events. The window manager should of course respond
+    /// as soon as possible as the capacity of the compositor to buffer incoming
+    /// input events is finite.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ReleasedHandler();
 
     private ReleasedHandler? _onReleased;
 
     /// <summary>
-    ///The key triggering the binding has been released
+    /// The key triggering the binding has been released
     /// <para>
     ///
-    ///This event indicates that the physical key triggering the binding has
-    ///been released.
+    /// This event indicates that the physical key triggering the binding has
+    /// been released.
     ///
-    ///Releasing the modifiers for the binding without releasing the "main"
-    ///physical key that produces the bound keysym does not trigger the release
-    ///event. This event is sent when the "main" key is released, even if the
-    ///modifiers have changed since the pressed event.
+    /// Releasing the modifiers for the binding without releasing the "main"
+    /// physical key that produces the bound keysym does not trigger the release
+    /// event. This event is sent when the "main" key is released, even if the
+    /// modifiers have changed since the pressed event.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
     ///
-    ///The compositor should wait for the manage sequence to complete before
-    ///processing further input events. This allows the window manager client
-    ///to, for example, modify key bindings and keyboard focus without racing
-    ///against future input events. The window manager should of course respond
-    ///as soon as possible as the capacity of the compositor to buffer incoming
-    ///input events is finite.
-    ///
+    /// The compositor should wait for the manage sequence to complete before
+    /// processing further input events. This allows the window manager client
+    /// to, for example, modify key bindings and keyboard focus without racing
+    /// against future input events. The window manager should of course respond
+    /// as soon as possible as the capacity of the compositor to buffer incoming
+    /// input events is finite.
+    /// 
     /// </para>
     /// </summary>
     public event ReleasedHandler? OnReleased
@@ -127,25 +178,42 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
         }
     }
 
+    /// <summary>
+    /// Repeating should be stopped
+    /// <para>
+    ///
+    /// This event indicates that repeating should be stopped for the binding if
+    /// the window manager has been repeating some action since the pressed
+    /// event.
+    ///
+    /// This event is generally sent when some other (possibly unbound) key is
+    /// pressed after the pressed event is sent and before the released event
+    /// is sent for this binding.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void StopRepeatHandler();
 
     private StopRepeatHandler? _onStopRepeat;
 
     /// <summary>
-    ///Repeating should be stopped
+    /// Repeating should be stopped
     /// <para>
     ///
-    ///This event indicates that repeating should be stopped for the binding if
-    ///the window manager has been repeating some action since the pressed
-    ///event.
+    /// This event indicates that repeating should be stopped for the binding if
+    /// the window manager has been repeating some action since the pressed
+    /// event.
     ///
-    ///This event is generally sent when some other (possibly unbound) key is
-    ///pressed after the pressed event is sent and before the released event
-    ///is sent for this binding.
+    /// This event is generally sent when some other (possibly unbound) key is
+    /// pressed after the pressed event is sent and before the released event
+    /// is sent for this binding.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event StopRepeatHandler? OnStopRepeat
@@ -356,6 +424,10 @@ public sealed partial class RiverXkbBindingV1 : WaylandObject, IWaylandObjectFac
         );
     }
 
+    /// <summary> Creates a RiverXkbBindingV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverXkbBindingV1 instance.</returns>
     public static RiverXkbBindingV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

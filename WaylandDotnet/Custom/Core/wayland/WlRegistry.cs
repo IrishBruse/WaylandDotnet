@@ -5,6 +5,13 @@ using WaylandDotnet.Internal;
 
 public sealed partial class WlRegistry : WaylandObject
 {
+    /// <summary>
+    /// Binds a global registry entry to a typed Wayland object.
+    /// </summary>
+    /// <typeparam name="T">The interface type to bind.</typeparam>
+    /// <param name="name">The global object name.</param>
+    /// <param name="version">The interface version to request.</param>
+    /// <returns>The bound object.</returns>
     public unsafe T Bind<T>(uint name, uint version) where T : WaylandObject, IWaylandObjectFactory<T>
     {
         const uint opcode = 0;

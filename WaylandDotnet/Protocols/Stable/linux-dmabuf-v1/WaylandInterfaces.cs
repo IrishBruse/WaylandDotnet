@@ -1,16 +1,19 @@
 namespace WaylandDotnet.Internal;
 
 #nullable enable
-#pragma warning disable CS1591
 #pragma warning disable CA2255
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 
+/// <summary> Native Wayland interface descriptors for this protocol. </summary>
 public static unsafe partial class WaylandInterfaces
 {
+    /// <summary> Native interface descriptor for zwp_linux_dmabuf_v1. </summary>
     public static WlInterface* ZwpLinuxDmabufV1 = AllocateInterface();
+    /// <summary> Native interface descriptor for zwp_linux_buffer_params_v1. </summary>
     public static WlInterface* ZwpLinuxBufferParamsV1 = AllocateInterface();
+    /// <summary> Native interface descriptor for zwp_linux_dmabuf_feedback_v1. </summary>
     public static WlInterface* ZwpLinuxDmabufFeedbackV1 = AllocateInterface();
 
 

@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.River;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory<RiverWindowV1>
 {
+    /// <summary> Wayland interface name for river_window_v1. </summary>
     public const string InterfaceName = "river_window_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_window_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 5;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing river_window_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public RiverWindowV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -136,25 +144,42 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         Minimize = 8,
     }
 
+    /// <summary>
+    /// The window has been closed
+    /// <para>
+    ///
+    /// The window has been closed by the server, perhaps due to an
+    /// xdg_toplevel.close request or similar.
+    ///
+    /// The server will send no further events on this object and ignore any
+    /// request other than river_window_v1.destroy made after this event is
+    /// sent. The client should destroy this object with the
+    /// river_window_v1.destroy request to free up resources.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ClosedHandler();
 
     private ClosedHandler? _onClosed;
 
     /// <summary>
-    ///The window has been closed
+    /// The window has been closed
     /// <para>
     ///
-    ///The window has been closed by the server, perhaps due to an
-    ///xdg_toplevel.close request or similar.
+    /// The window has been closed by the server, perhaps due to an
+    /// xdg_toplevel.close request or similar.
     ///
-    ///The server will send no further events on this object and ignore any
-    ///request other than river_window_v1.destroy made after this event is
-    ///sent. The client should destroy this object with the
-    ///river_window_v1.destroy request to free up resources.
+    /// The server will send no further events on this object and ignore any
+    /// request other than river_window_v1.destroy made after this event is
+    /// sent. The client should destroy this object with the
+    /// river_window_v1.destroy request to free up resources.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event ClosedHandler? OnClosed
@@ -172,28 +197,48 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// The window's preferred min/max dimensions
+    /// <para>
+    ///
+    /// This event informs the window manager of the window's preferred min/max
+    /// dimensions. These preferences are a hint, and the window manager is free
+    /// to propose dimensions outside of these bounds.
+    ///
+    /// All min/max width/height values must be strictly greater than or equal
+    /// to 0. A value of 0 indicates that the window has no preference for that
+    /// value.
+    ///
+    /// The min_width/min_height must be strictly less than or equal to the
+    /// max_width/max_height.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DimensionsHintHandler(int minWidth, int minHeight, int maxWidth, int maxHeight);
 
     private DimensionsHintHandler? _onDimensionsHint;
 
     /// <summary>
-    ///The window's preferred min/max dimensions
+    /// The window's preferred min/max dimensions
     /// <para>
     ///
-    ///This event informs the window manager of the window's preferred min/max
-    ///dimensions. These preferences are a hint, and the window manager is free
-    ///to propose dimensions outside of these bounds.
+    /// This event informs the window manager of the window's preferred min/max
+    /// dimensions. These preferences are a hint, and the window manager is free
+    /// to propose dimensions outside of these bounds.
     ///
-    ///All min/max width/height values must be strictly greater than or equal
-    ///to 0. A value of 0 indicates that the window has no preference for that
-    ///value.
+    /// All min/max width/height values must be strictly greater than or equal
+    /// to 0. A value of 0 indicates that the window has no preference for that
+    /// value.
     ///
-    ///The min_width/min_height must be strictly less than or equal to the
-    ///max_width/max_height.
+    /// The min_width/min_height must be strictly less than or equal to the
+    /// max_width/max_height.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event DimensionsHintHandler? OnDimensionsHint
@@ -211,32 +256,56 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// Window dimensions
+    /// <para>
+    ///
+    /// This event indicates the dimensions of the window in the compositor's
+    /// logical coordinate space. The width and height must be strictly greater
+    /// than zero.
+    ///
+    /// Note that the dimensions of a river_window_v1 refer to the dimensions of
+    /// the window content and are unaffected by the presence of borders or
+    /// decoration surfaces.
+    ///
+    /// This event is sent as part of a render sequence before the render_start
+    /// event.
+    ///
+    /// It may be sent due to a propose_dimensions or fullscreen request in a
+    /// previous manage sequence or because a window independently decides to
+    /// change its dimensions.
+    ///
+    /// The window will not be displayed until the first dimensions event is
+    /// received and the render sequence is finished.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DimensionsHandler(int width, int height);
 
     private DimensionsHandler? _onDimensions;
 
     /// <summary>
-    ///Window dimensions
+    /// Window dimensions
     /// <para>
     ///
-    ///This event indicates the dimensions of the window in the compositor's
-    ///logical coordinate space. The width and height must be strictly greater
-    ///than zero.
+    /// This event indicates the dimensions of the window in the compositor's
+    /// logical coordinate space. The width and height must be strictly greater
+    /// than zero.
     ///
-    ///Note that the dimensions of a river_window_v1 refer to the dimensions of
-    ///the window content and are unaffected by the presence of borders or
-    ///decoration surfaces.
+    /// Note that the dimensions of a river_window_v1 refer to the dimensions of
+    /// the window content and are unaffected by the presence of borders or
+    /// decoration surfaces.
     ///
-    ///This event is sent as part of a render sequence before the render_start
-    ///event.
+    /// This event is sent as part of a render sequence before the render_start
+    /// event.
     ///
-    ///It may be sent due to a propose_dimensions or fullscreen request in a
-    ///previous manage sequence or because a window independently decides to
-    ///change its dimensions.
+    /// It may be sent due to a propose_dimensions or fullscreen request in a
+    /// previous manage sequence or because a window independently decides to
+    /// change its dimensions.
     ///
-    ///The window will not be displayed until the first dimensions event is
-    ///received and the render sequence is finished.
-    ///
+    /// The window will not be displayed until the first dimensions event is
+    /// received and the render sequence is finished.
+    /// 
     /// </para>
     /// </summary>
     public event DimensionsHandler? OnDimensions
@@ -254,23 +323,38 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// The window set an application ID
+    /// <para>
+    ///
+    /// The window set an application ID.
+    ///
+    /// The app_id argument will be null if the window has never set an
+    /// application ID or if the window cleared its application ID. (Xwayland
+    /// windows may do this for example, though xdg-toplevels may not.)
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void AppIdHandler(string? appId);
 
     private AppIdHandler? _onAppId;
 
     /// <summary>
-    ///The window set an application ID
+    /// The window set an application ID
     /// <para>
     ///
-    ///The window set an application ID.
+    /// The window set an application ID.
     ///
-    ///The app_id argument will be null if the window has never set an
-    ///application ID or if the window cleared its application ID. (Xwayland
-    ///windows may do this for example, though xdg-toplevels may not.)
+    /// The app_id argument will be null if the window has never set an
+    /// application ID or if the window cleared its application ID. (Xwayland
+    /// windows may do this for example, though xdg-toplevels may not.)
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event AppIdHandler? OnAppId
@@ -288,23 +372,38 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// The window set a title
+    /// <para>
+    ///
+    /// The window set a title.
+    ///
+    /// The title argument will be null if the window has never set a title or
+    /// if the window cleared its title. (Xwayland windows may do this for
+    /// example, though xdg-toplevels may not.)
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void TitleHandler(string? title);
 
     private TitleHandler? _onTitle;
 
     /// <summary>
-    ///The window set a title
+    /// The window set a title
     /// <para>
     ///
-    ///The window set a title.
+    /// The window set a title.
     ///
-    ///The title argument will be null if the window has never set a title or
-    ///if the window cleared its title. (Xwayland windows may do this for
-    ///example, though xdg-toplevels may not.)
+    /// The title argument will be null if the window has never set a title or
+    /// if the window cleared its title. (Xwayland windows may do this for
+    /// example, though xdg-toplevels may not.)
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event TitleHandler? OnTitle
@@ -322,28 +421,48 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// The window set a parent
+    /// <para>
+    ///
+    /// The window set a parent window. If this event is never received or if
+    /// the parent argument is null then the window has no parent.
+    ///
+    /// A surface with a parent set might be a dialog, file picker, or similar
+    /// for the parent window.
+    ///
+    /// Child windows should generally be rendered directly above their parent.
+    ///
+    /// The compositor must guarantee that there are no loops in the window
+    /// tree: a parent must not be the descendant of one of its children.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ParentHandler(RiverWindowV1? parent);
 
     private ParentHandler? _onParent;
 
     /// <summary>
-    ///The window set a parent
+    /// The window set a parent
     /// <para>
     ///
-    ///The window set a parent window. If this event is never received or if
-    ///the parent argument is null then the window has no parent.
+    /// The window set a parent window. If this event is never received or if
+    /// the parent argument is null then the window has no parent.
     ///
-    ///A surface with a parent set might be a dialog, file picker, or similar
-    ///for the parent window.
+    /// A surface with a parent set might be a dialog, file picker, or similar
+    /// for the parent window.
     ///
-    ///Child windows should generally be rendered directly above their parent.
+    /// Child windows should generally be rendered directly above their parent.
     ///
-    ///The compositor must guarantee that there are no loops in the window
-    ///tree: a parent must not be the descendant of one of its children.
+    /// The compositor must guarantee that there are no loops in the window
+    /// tree: a parent must not be the descendant of one of its children.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event ParentHandler? OnParent
@@ -361,23 +480,38 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// Supported/preferred decoration style
+    /// <para>
+    ///
+    /// Information from the window about the supported and preferred client
+    /// side/server side decoration options.
+    ///
+    /// This event may be sent multiple times over the lifetime of the window if
+    /// the window changes its preferences.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DecorationHintHandler(uint hint);
 
     private DecorationHintHandler? _onDecorationHint;
 
     /// <summary>
-    ///Supported/preferred decoration style
+    /// Supported/preferred decoration style
     /// <para>
     ///
-    ///Information from the window about the supported and preferred client
-    ///side/server side decoration options.
+    /// Information from the window about the supported and preferred client
+    /// side/server side decoration options.
     ///
-    ///This event may be sent multiple times over the lifetime of the window if
-    ///the window changes its preferences.
+    /// This event may be sent multiple times over the lifetime of the window if
+    /// the window changes its preferences.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event DecorationHintHandler? OnDecorationHint
@@ -395,28 +529,48 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// Window requested interactive pointer move
+    /// <para>
+    ///
+    /// This event informs the window manager that the window has requested to
+    /// be interactively moved using the pointer. The seat argument indicates the
+    /// seat for the move.
+    ///
+    /// The xdg-shell protocol for example allows windows to request that an
+    /// interactive move be started, perhaps when a client-side rendered
+    /// titlebar is dragged.
+    ///
+    /// The window manager may use the river_seat_v1.op_start_pointer request to
+    /// interactively move the window or ignore this event entirely.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PointerMoveRequestedHandler(RiverSeatV1 seat);
 
     private PointerMoveRequestedHandler? _onPointerMoveRequested;
 
     /// <summary>
-    ///Window requested interactive pointer move
+    /// Window requested interactive pointer move
     /// <para>
     ///
-    ///This event informs the window manager that the window has requested to
-    ///be interactively moved using the pointer. The seat argument indicates the
-    ///seat for the move.
+    /// This event informs the window manager that the window has requested to
+    /// be interactively moved using the pointer. The seat argument indicates the
+    /// seat for the move.
     ///
-    ///The xdg-shell protocol for example allows windows to request that an
-    ///interactive move be started, perhaps when a client-side rendered
-    ///titlebar is dragged.
+    /// The xdg-shell protocol for example allows windows to request that an
+    /// interactive move be started, perhaps when a client-side rendered
+    /// titlebar is dragged.
     ///
-    ///The window manager may use the river_seat_v1.op_start_pointer request to
-    ///interactively move the window or ignore this event entirely.
+    /// The window manager may use the river_seat_v1.op_start_pointer request to
+    /// interactively move the window or ignore this event entirely.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event PointerMoveRequestedHandler? OnPointerMoveRequested
@@ -434,32 +588,56 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// Window requested interactive pointer resize
+    /// <para>
+    ///
+    /// This event informs the window manager that the window has requested to
+    /// be interactively resized using the pointer. The seat argument indicates
+    /// the seat for the resize.
+    ///
+    /// The edges argument indicates which edges the window has requested to be
+    /// resized from. The edges argument will never be none and will never have
+    /// both top and bottom or both left and right edges set.
+    ///
+    /// The xdg-shell protocol for example allows windows to request that an
+    /// interactive resize be started, perhaps when the corner of client-side
+    /// rendered decorations is dragged.
+    ///
+    /// The window manager may use the river_seat_v1.op_start_pointer request to
+    /// interactively resize the window or ignore this event entirely.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PointerResizeRequestedHandler(RiverSeatV1 seat, uint edges);
 
     private PointerResizeRequestedHandler? _onPointerResizeRequested;
 
     /// <summary>
-    ///Window requested interactive pointer resize
+    /// Window requested interactive pointer resize
     /// <para>
     ///
-    ///This event informs the window manager that the window has requested to
-    ///be interactively resized using the pointer. The seat argument indicates
-    ///the seat for the resize.
+    /// This event informs the window manager that the window has requested to
+    /// be interactively resized using the pointer. The seat argument indicates
+    /// the seat for the resize.
     ///
-    ///The edges argument indicates which edges the window has requested to be
-    ///resized from. The edges argument will never be none and will never have
-    ///both top and bottom or both left and right edges set.
+    /// The edges argument indicates which edges the window has requested to be
+    /// resized from. The edges argument will never be none and will never have
+    /// both top and bottom or both left and right edges set.
     ///
-    ///The xdg-shell protocol for example allows windows to request that an
-    ///interactive resize be started, perhaps when the corner of client-side
-    ///rendered decorations is dragged.
+    /// The xdg-shell protocol for example allows windows to request that an
+    /// interactive resize be started, perhaps when the corner of client-side
+    /// rendered decorations is dragged.
     ///
-    ///The window manager may use the river_seat_v1.op_start_pointer request to
-    ///interactively resize the window or ignore this event entirely.
+    /// The window manager may use the river_seat_v1.op_start_pointer request to
+    /// interactively resize the window or ignore this event entirely.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event PointerResizeRequestedHandler? OnPointerResizeRequested
@@ -477,29 +655,50 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// Window requested that the window menu be shown
+    /// <para>
+    ///
+    /// The xdg-shell protocol for example allows windows to request that a
+    /// window menu be shown, for example when the user right clicks on client
+    /// side window decorations.
+    ///
+    /// A window menu might include options to maximize or minimize the window.
+    ///
+    /// The window manager is free to ignore this request and decide what the
+    /// window menu contains if it does choose to show one.
+    ///
+    /// The x and y arguments indicate where the window requested that the
+    /// window menu be shown.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ShowWindowMenuRequestedHandler(int x, int y);
 
     private ShowWindowMenuRequestedHandler? _onShowWindowMenuRequested;
 
     /// <summary>
-    ///Window requested that the window menu be shown
+    /// Window requested that the window menu be shown
     /// <para>
     ///
-    ///The xdg-shell protocol for example allows windows to request that a
-    ///window menu be shown, for example when the user right clicks on client
-    ///side window decorations.
+    /// The xdg-shell protocol for example allows windows to request that a
+    /// window menu be shown, for example when the user right clicks on client
+    /// side window decorations.
     ///
-    ///A window menu might include options to maximize or minimize the window.
+    /// A window menu might include options to maximize or minimize the window.
     ///
-    ///The window manager is free to ignore this request and decide what the
-    ///window menu contains if it does choose to show one.
+    /// The window manager is free to ignore this request and decide what the
+    /// window menu contains if it does choose to show one.
     ///
-    ///The x and y arguments indicate where the window requested that the
-    ///window menu be shown.
+    /// The x and y arguments indicate where the window requested that the
+    /// window menu be shown.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event ShowWindowMenuRequestedHandler? OnShowWindowMenuRequested
@@ -517,23 +716,38 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// The window requested to be maximized
+    /// <para>
+    ///
+    /// The xdg-shell protocol for example allows windows to request to be
+    /// maximized.
+    ///
+    /// The window manager is free to honor this request using
+    /// river_window_v1.inform_maximized or ignore it.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void MaximizeRequestedHandler();
 
     private MaximizeRequestedHandler? _onMaximizeRequested;
 
     /// <summary>
-    ///The window requested to be maximized
+    /// The window requested to be maximized
     /// <para>
     ///
-    ///The xdg-shell protocol for example allows windows to request to be
-    ///maximized.
+    /// The xdg-shell protocol for example allows windows to request to be
+    /// maximized.
     ///
-    ///The window manager is free to honor this request using
-    ///river_window_v1.inform_maximized or ignore it.
+    /// The window manager is free to honor this request using
+    /// river_window_v1.inform_maximized or ignore it.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event MaximizeRequestedHandler? OnMaximizeRequested
@@ -551,23 +765,38 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// The window requested to be unmaximized
+    /// <para>
+    ///
+    /// The xdg-shell protocol for example allows windows to request to be
+    /// unmaximized.
+    ///
+    /// The window manager is free to honor this request using
+    /// river_window_v1.inform_unmaximized or ignore it.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void UnmaximizeRequestedHandler();
 
     private UnmaximizeRequestedHandler? _onUnmaximizeRequested;
 
     /// <summary>
-    ///The window requested to be unmaximized
+    /// The window requested to be unmaximized
     /// <para>
     ///
-    ///The xdg-shell protocol for example allows windows to request to be
-    ///unmaximized.
+    /// The xdg-shell protocol for example allows windows to request to be
+    /// unmaximized.
     ///
-    ///The window manager is free to honor this request using
-    ///river_window_v1.inform_unmaximized or ignore it.
+    /// The window manager is free to honor this request using
+    /// river_window_v1.inform_unmaximized or ignore it.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event UnmaximizeRequestedHandler? OnUnmaximizeRequested
@@ -585,26 +814,44 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// The window requested to be fullscreen
+    /// <para>
+    ///
+    /// The xdg-shell protocol for example allows windows to request that they
+    /// be made fullscreen and allows them to provide an optional output hint.
+    ///
+    /// If the output argument is null, the window has no preference and the
+    /// window manager should choose an output.
+    ///
+    /// The window manager is free to honor this request using
+    /// river_window_v1.fullscreen or ignore it.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FullscreenRequestedHandler(RiverOutputV1? output);
 
     private FullscreenRequestedHandler? _onFullscreenRequested;
 
     /// <summary>
-    ///The window requested to be fullscreen
+    /// The window requested to be fullscreen
     /// <para>
     ///
-    ///The xdg-shell protocol for example allows windows to request that they
-    ///be made fullscreen and allows them to provide an optional output hint.
+    /// The xdg-shell protocol for example allows windows to request that they
+    /// be made fullscreen and allows them to provide an optional output hint.
     ///
-    ///If the output argument is null, the window has no preference and the
-    ///window manager should choose an output.
+    /// If the output argument is null, the window has no preference and the
+    /// window manager should choose an output.
     ///
-    ///The window manager is free to honor this request using
-    ///river_window_v1.fullscreen or ignore it.
+    /// The window manager is free to honor this request using
+    /// river_window_v1.fullscreen or ignore it.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event FullscreenRequestedHandler? OnFullscreenRequested
@@ -622,23 +869,38 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// The window requested to exit fullscreen
+    /// <para>
+    ///
+    /// The xdg-shell protocol for example allows windows to request to exit
+    /// fullscreen.
+    ///
+    /// The window manager is free to honor this request using
+    /// river_window_v1.exit_fullscreen or ignore it.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ExitFullscreenRequestedHandler();
 
     private ExitFullscreenRequestedHandler? _onExitFullscreenRequested;
 
     /// <summary>
-    ///The window requested to exit fullscreen
+    /// The window requested to exit fullscreen
     /// <para>
     ///
-    ///The xdg-shell protocol for example allows windows to request to exit
-    ///fullscreen.
+    /// The xdg-shell protocol for example allows windows to request to exit
+    /// fullscreen.
     ///
-    ///The window manager is free to honor this request using
-    ///river_window_v1.exit_fullscreen or ignore it.
+    /// The window manager is free to honor this request using
+    /// river_window_v1.exit_fullscreen or ignore it.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event ExitFullscreenRequestedHandler? OnExitFullscreenRequested
@@ -656,23 +918,38 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// The window requested to be minimized
+    /// <para>
+    ///
+    /// The xdg-shell protocol for example allows windows to request to be
+    /// minimized.
+    ///
+    /// The window manager is free to ignore this request, hide the window, or
+    /// do whatever else it chooses.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void MinimizeRequestedHandler();
 
     private MinimizeRequestedHandler? _onMinimizeRequested;
 
     /// <summary>
-    ///The window requested to be minimized
+    /// The window requested to be minimized
     /// <para>
     ///
-    ///The xdg-shell protocol for example allows windows to request to be
-    ///minimized.
+    /// The xdg-shell protocol for example allows windows to request to be
+    /// minimized.
     ///
-    ///The window manager is free to ignore this request, hide the window, or
-    ///do whatever else it chooses.
+    /// The window manager is free to ignore this request, hide the window, or
+    /// do whatever else it chooses.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event MinimizeRequestedHandler? OnMinimizeRequested
@@ -690,25 +967,42 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// Unreliable PID of the window's creator
+    /// <para>
+    ///
+    /// This event gives an unreliable PID of the process that created the
+    /// window. Obtaining this information is inherently racy due to PID reuse.
+    /// Therefore, this PID must not be used for anything security sensitive.
+    ///
+    /// Note also that a single process may create multiple windows, so there is
+    /// not necessarily a 1-to-1 mapping from PID to window. Multiple windows
+    /// may have the same PID.
+    ///
+    /// This event is sent once when the river_window_v1 is created and never
+    /// sent again.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void UnreliablePidHandler(int unreliablePid);
 
     private UnreliablePidHandler? _onUnreliablePid;
 
     /// <summary>
-    ///Unreliable PID of the window's creator
+    /// Unreliable PID of the window's creator
     /// <para>
     ///
-    ///This event gives an unreliable PID of the process that created the
-    ///window. Obtaining this information is inherently racy due to PID reuse.
-    ///Therefore, this PID must not be used for anything security sensitive.
+    /// This event gives an unreliable PID of the process that created the
+    /// window. Obtaining this information is inherently racy due to PID reuse.
+    /// Therefore, this PID must not be used for anything security sensitive.
     ///
-    ///Note also that a single process may create multiple windows, so there is
-    ///not necessarily a 1-to-1 mapping from PID to window. Multiple windows
-    ///may have the same PID.
+    /// Note also that a single process may create multiple windows, so there is
+    /// not necessarily a 1-to-1 mapping from PID to window. Multiple windows
+    /// may have the same PID.
     ///
-    ///This event is sent once when the river_window_v1 is created and never
-    ///sent again.
-    ///
+    /// This event is sent once when the river_window_v1 is created and never
+    /// sent again.
+    /// 
     /// </para>
     /// </summary>
     public event UnreliablePidHandler? OnUnreliablePid
@@ -726,19 +1020,30 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// Presentation hint set by the window
+    /// <para>
+    ///
+    /// This event communicates the window's preferred presentation mode.
+    ///
+    /// This event will be followed by a render_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PresentationHintHandler(uint hint);
 
     private PresentationHintHandler? _onPresentationHint;
 
     /// <summary>
-    ///Presentation hint set by the window
+    /// Presentation hint set by the window
     /// <para>
     ///
-    ///This event communicates the window's preferred presentation mode.
+    /// This event communicates the window's preferred presentation mode.
     ///
-    ///This event will be followed by a render_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a render_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event PresentationHintHandler? OnPresentationHint
@@ -756,33 +1061,58 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// Unique window identifier
+    /// <para>
+    ///
+    /// The identifier is a string that contains up to 32 printable ASCII bytes.
+    /// The identifier must not be an empty string.
+    ///
+    /// It is compositor policy how the identifier is generated, but the following
+    /// properties must be upheld:
+    ///
+    /// 1. The identifier must uniquely identify the window. Two windows must not
+    /// share the same identifier.
+    ///
+    /// 2. The identifier must not be reused. This avoids races around window
+    /// creation/destruction when identifiers are used in out-of-band IPC.
+    ///
+    /// If the compositor implements the ext-foreign-toplevel-list-v1 protocol,
+    /// the river_window_v1.identifier event must match the corresponding
+    /// ext_foreign_toplevel_handle_v1.identifier event.
+    ///
+    /// This event is sent once when the river_window_v1 is created and never
+    /// sent again.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void IdentifierHandler(string identifier);
 
     private IdentifierHandler? _onIdentifier;
 
     /// <summary>
-    ///Unique window identifier
+    /// Unique window identifier
     /// <para>
     ///
-    ///The identifier is a string that contains up to 32 printable ASCII bytes.
-    ///The identifier must not be an empty string.
+    /// The identifier is a string that contains up to 32 printable ASCII bytes.
+    /// The identifier must not be an empty string.
     ///
-    ///It is compositor policy how the identifier is generated, but the following
-    ///properties must be upheld:
+    /// It is compositor policy how the identifier is generated, but the following
+    /// properties must be upheld:
     ///
-    ///1. The identifier must uniquely identify the window. Two windows must not
-    ///share the same identifier.
+    /// 1. The identifier must uniquely identify the window. Two windows must not
+    /// share the same identifier.
     ///
-    ///2. The identifier must not be reused. This avoids races around window
-    ///creation/destruction when identifiers are used in out-of-band IPC.
+    /// 2. The identifier must not be reused. This avoids races around window
+    /// creation/destruction when identifiers are used in out-of-band IPC.
     ///
-    ///If the compositor implements the ext-foreign-toplevel-list-v1 protocol,
-    ///the river_window_v1.identifier event must match the corresponding
-    ///ext_foreign_toplevel_handle_v1.identifier event.
+    /// If the compositor implements the ext-foreign-toplevel-list-v1 protocol,
+    /// the river_window_v1.identifier event must match the corresponding
+    /// ext_foreign_toplevel_handle_v1.identifier event.
     ///
-    ///This event is sent once when the river_window_v1 is created and never
-    ///sent again.
-    ///
+    /// This event is sent once when the river_window_v1 is created and never
+    /// sent again.
+    /// 
     /// </para>
     /// </summary>
     public event IdentifierHandler? OnIdentifier
@@ -800,23 +1130,38 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// Window screen capture sessions
+    /// <para>
+    ///
+    /// This event informs the window manager of the number of active screen
+    /// capture sessions for the window.
+    ///
+    /// This event is sent once when the river_window_v1 is created and again
+    /// whenever the number of capture sessions changes.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void CaptureSessionsHandler(uint count);
 
     private CaptureSessionsHandler? _onCaptureSessions;
 
     /// <summary>
-    ///Window screen capture sessions
+    /// Window screen capture sessions
     /// <para>
     ///
-    ///This event informs the window manager of the number of active screen
-    ///capture sessions for the window.
+    /// This event informs the window manager of the number of active screen
+    /// capture sessions for the window.
     ///
-    ///This event is sent once when the river_window_v1 is created and again
-    ///whenever the number of capture sessions changes.
+    /// This event is sent once when the river_window_v1 is created and again
+    /// whenever the number of capture sessions changes.
     ///
-    ///This event will be followed by a manage_start event after all other new
-    ///state has been sent by the server.
-    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
     /// </para>
     /// </summary>
     public event CaptureSessionsHandler? OnCaptureSessions
@@ -1948,6 +2293,10 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         );
     }
 
+    /// <summary> Creates a RiverWindowV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new RiverWindowV1 instance.</returns>
     public static RiverWindowV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

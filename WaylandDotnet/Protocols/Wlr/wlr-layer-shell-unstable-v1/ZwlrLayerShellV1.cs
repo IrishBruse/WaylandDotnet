@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Wlr;
 
@@ -29,14 +28,23 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwlrLayerShellV1 : WaylandObject, IWaylandObjectFactory<ZwlrLayerShellV1>
 {
+    /// <summary> Wayland interface name for zwlr_layer_shell_v1. </summary>
     public const string InterfaceName = "zwlr_layer_shell_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwlr_layer_shell_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 5;
 
     private bool disposed;
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwlr_layer_shell_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwlrLayerShellV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -162,6 +170,10 @@ public sealed partial class ZwlrLayerShellV1 : WaylandObject, IWaylandObjectFact
         disposed = true;
     }
 
+    /// <summary> Creates a ZwlrLayerShellV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwlrLayerShellV1 instance.</returns>
     public static ZwlrLayerShellV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

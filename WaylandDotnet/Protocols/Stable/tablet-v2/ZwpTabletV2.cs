@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<ZwpTabletV2>
 {
+    /// <summary> Wayland interface name for zwp_tablet_v2. </summary>
     public const string InterfaceName = "zwp_tablet_v2";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwp_tablet_v2";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 2;
 
     private bool disposed;
@@ -39,8 +41,14 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwp_tablet_v2 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwpTabletV2(IntPtr handle, WlDisplay display)
     {
         Display = display;
@@ -71,21 +79,34 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
         I2c = 24,
     }
 
+    /// <summary>
+    /// Tablet device name
+    /// <para>
+    ///
+    /// A descriptive name for the tablet device.
+    ///
+    /// If the device has no descriptive name, this event is not sent.
+    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_v2.done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void NameHandler(string name);
 
     private NameHandler? _onName;
 
     /// <summary>
-    ///Tablet device name
+    /// Tablet device name
     /// <para>
     ///
-    ///A descriptive name for the tablet device.
+    /// A descriptive name for the tablet device.
     ///
-    ///If the device has no descriptive name, this event is not sent.
+    /// If the device has no descriptive name, this event is not sent.
     ///
-    ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_v2.done event.
-    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_v2.done event.
+    /// 
     /// </para>
     /// </summary>
     public event NameHandler? OnName
@@ -103,27 +124,46 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
         }
     }
 
+    /// <summary>
+    /// Tablet device vendor/product id
+    /// <para>
+    ///
+    /// The vendor and product IDs for the tablet device.
+    ///
+    /// The interpretation of the id depends on the zwp_tablet_v2.bustype.
+    /// Prior to version v2 of this protocol, the id was implied to be a USB
+    /// vendor and product ID. If no zwp_tablet_v2.bustype is sent, the ID
+    /// is to be interpreted as USB vendor and product ID.
+    ///
+    /// If the device has no vendor/product ID, this event is not sent.
+    /// This can happen for virtual devices or non-USB devices, for instance.
+    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_v2.done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void IdHandler(uint vid, uint pid);
 
     private IdHandler? _onId;
 
     /// <summary>
-    ///Tablet device vendor/product id
+    /// Tablet device vendor/product id
     /// <para>
     ///
-    ///The vendor and product IDs for the tablet device.
+    /// The vendor and product IDs for the tablet device.
     ///
-    ///The interpretation of the id depends on the zwp_tablet_v2.bustype.
-    ///Prior to version v2 of this protocol, the id was implied to be a USB
-    ///vendor and product ID. If no zwp_tablet_v2.bustype is sent, the ID
-    ///is to be interpreted as USB vendor and product ID.
+    /// The interpretation of the id depends on the zwp_tablet_v2.bustype.
+    /// Prior to version v2 of this protocol, the id was implied to be a USB
+    /// vendor and product ID. If no zwp_tablet_v2.bustype is sent, the ID
+    /// is to be interpreted as USB vendor and product ID.
     ///
-    ///If the device has no vendor/product ID, this event is not sent.
-    ///This can happen for virtual devices or non-USB devices, for instance.
+    /// If the device has no vendor/product ID, this event is not sent.
+    /// This can happen for virtual devices or non-USB devices, for instance.
     ///
-    ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_v2.done event.
-    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_v2.done event.
+    /// 
     /// </para>
     /// </summary>
     public event IdHandler? OnId
@@ -141,29 +181,50 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
         }
     }
 
+    /// <summary>
+    /// Path to the device
+    /// <para>
+    ///
+    /// A system-specific device path that indicates which device is behind
+    /// this zwp_tablet_v2. This information may be used to gather additional
+    /// information about the device, e.g. through libwacom.
+    ///
+    /// A device may have more than one device path. If so, multiple
+    /// zwp_tablet_v2.path events are sent. A device may be emulated and not
+    /// have a device path, and in that case this event will not be sent.
+    ///
+    /// The format of the path is unspecified, it may be a device node, a
+    /// sysfs path, or some other identifier. It is up to the client to
+    /// identify the string provided.
+    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_v2.done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void PathHandler(string path);
 
     private PathHandler? _onPath;
 
     /// <summary>
-    ///Path to the device
+    /// Path to the device
     /// <para>
     ///
-    ///A system-specific device path that indicates which device is behind
-    ///this zwp_tablet_v2. This information may be used to gather additional
-    ///information about the device, e.g. through libwacom.
+    /// A system-specific device path that indicates which device is behind
+    /// this zwp_tablet_v2. This information may be used to gather additional
+    /// information about the device, e.g. through libwacom.
     ///
-    ///A device may have more than one device path. If so, multiple
-    ///zwp_tablet_v2.path events are sent. A device may be emulated and not
-    ///have a device path, and in that case this event will not be sent.
+    /// A device may have more than one device path. If so, multiple
+    /// zwp_tablet_v2.path events are sent. A device may be emulated and not
+    /// have a device path, and in that case this event will not be sent.
     ///
-    ///The format of the path is unspecified, it may be a device node, a
-    ///sysfs path, or some other identifier. It is up to the client to
-    ///identify the string provided.
+    /// The format of the path is unspecified, it may be a device node, a
+    /// sysfs path, or some other identifier. It is up to the client to
+    /// identify the string provided.
     ///
-    ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_v2.done event.
-    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_v2.done event.
+    /// 
     /// </para>
     /// </summary>
     public event PathHandler? OnPath
@@ -181,19 +242,30 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
         }
     }
 
+    /// <summary>
+    /// Tablet description events sequence complete
+    /// <para>
+    ///
+    /// This event is sent immediately to signal the end of the initial
+    /// burst of descriptive events. A client may consider the static
+    /// description of the tablet to be complete and finalize initialization
+    /// of the tablet.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void DoneHandler();
 
     private DoneHandler? _onDone;
 
     /// <summary>
-    ///Tablet description events sequence complete
+    /// Tablet description events sequence complete
     /// <para>
     ///
-    ///This event is sent immediately to signal the end of the initial
-    ///burst of descriptive events. A client may consider the static
-    ///description of the tablet to be complete and finalize initialization
-    ///of the tablet.
-    ///
+    /// This event is sent immediately to signal the end of the initial
+    /// burst of descriptive events. A client may consider the static
+    /// description of the tablet to be complete and finalize initialization
+    /// of the tablet.
+    /// 
     /// </para>
     /// </summary>
     public event DoneHandler? OnDone
@@ -211,20 +283,32 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
         }
     }
 
+    /// <summary>
+    /// Tablet removed event
+    /// <para>
+    ///
+    /// Sent when the tablet has been removed from the system. When a tablet
+    /// is removed, some tools may be removed.
+    ///
+    /// When this event is received, the client must zwp_tablet_v2.destroy
+    /// the object.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void RemovedHandler();
 
     private RemovedHandler? _onRemoved;
 
     /// <summary>
-    ///Tablet removed event
+    /// Tablet removed event
     /// <para>
     ///
-    ///Sent when the tablet has been removed from the system. When a tablet
-    ///is removed, some tools may be removed.
+    /// Sent when the tablet has been removed from the system. When a tablet
+    /// is removed, some tools may be removed.
     ///
-    ///When this event is received, the client must zwp_tablet_v2.destroy
-    ///the object.
-    ///
+    /// When this event is received, the client must zwp_tablet_v2.destroy
+    /// the object.
+    /// 
     /// </para>
     /// </summary>
     public event RemovedHandler? OnRemoved
@@ -242,23 +326,38 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
         }
     }
 
+    /// <summary>
+    /// Tablet device bus type
+    /// <para>
+    ///
+    /// The bustype argument is one of the BUS_ defines in the Linux kernel's
+    /// linux/input.h
+    ///
+    /// If the device has no known bustype or the bustype cannot be
+    /// queried, this event is not sent.
+    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_v2.done event.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void BustypeHandler(uint bustype);
 
     private BustypeHandler? _onBustype;
 
     /// <summary>
-    ///Tablet device bus type
+    /// Tablet device bus type
     /// <para>
     ///
-    ///The bustype argument is one of the BUS_ defines in the Linux kernel's
-    ///linux/input.h
+    /// The bustype argument is one of the BUS_ defines in the Linux kernel's
+    /// linux/input.h
     ///
-    ///If the device has no known bustype or the bustype cannot be
-    ///queried, this event is not sent.
+    /// If the device has no known bustype or the bustype cannot be
+    /// queried, this event is not sent.
     ///
-    ///This event is sent in the initial burst of events before the
-    ///zwp_tablet_v2.done event.
-    ///
+    /// This event is sent in the initial burst of events before the
+    /// zwp_tablet_v2.done event.
+    /// 
     /// </para>
     /// </summary>
     public event BustypeHandler? OnBustype
@@ -392,6 +491,10 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
         disposed = true;
     }
 
+    /// <summary> Creates a ZwpTabletV2 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwpTabletV2 instance.</returns>
     public static ZwpTabletV2 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);

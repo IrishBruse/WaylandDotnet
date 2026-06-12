@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,12 +28,19 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory<XdgPositioner>
 {
+    /// <summary> Wayland interface name for xdg_positioner. </summary>
     public const string InterfaceName = "xdg_positioner";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "xdg_positioner";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 7;
 
     private bool disposed;
 
+    /// <summary>
+    /// Wraps an existing xdg_positioner proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
     public XdgPositioner(IntPtr handle)
     {
         Handle = handle;
@@ -499,6 +505,10 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
         );
     }
 
+    /// <summary> Creates a XdgPositioner wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new XdgPositioner instance.</returns>
     public static XdgPositioner Create(nint handle, WlDisplay? display = null)
     {
         return new XdgPositioner(handle);

@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Wlr;
 
@@ -29,10 +28,17 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwlrOutputConfigurationHeadV1 : WaylandObject, IWaylandObjectFactory<ZwlrOutputConfigurationHeadV1>
 {
+    /// <summary> Wayland interface name for zwlr_output_configuration_head_v1. </summary>
     public const string InterfaceName = "zwlr_output_configuration_head_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwlr_output_configuration_head_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 4;
 
+    /// <summary>
+    /// Wraps an existing zwlr_output_configuration_head_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
     public ZwlrOutputConfigurationHeadV1(IntPtr handle)
     {
         Handle = handle;
@@ -224,6 +230,10 @@ public sealed partial class ZwlrOutputConfigurationHeadV1 : WaylandObject, IWayl
         );
     }
 
+    /// <summary> Creates a ZwlrOutputConfigurationHeadV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwlrOutputConfigurationHeadV1 instance.</returns>
     public static ZwlrOutputConfigurationHeadV1 Create(nint handle, WlDisplay? display = null)
     {
         return new ZwlrOutputConfigurationHeadV1(handle);

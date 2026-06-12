@@ -5,7 +5,6 @@
 // </auto-generated>
 
 #nullable enable
-#pragma warning disable CS1591
 
 namespace WaylandDotnet.Stable;
 
@@ -29,8 +28,11 @@ using WaylandDotnet.Wlr;
 /// </summary>
 public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFactory<ZwpLinuxDmabufV1>
 {
+    /// <summary> Wayland interface name for zwp_linux_dmabuf_v1. </summary>
     public const string InterfaceName = "zwp_linux_dmabuf_v1";
+    /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "zwp_linux_dmabuf_v1";
+    /// <summary> Interface version supported by this binding. </summary>
     public const int InterfaceVersion = 6;
 
     private bool disposed;
@@ -39,33 +41,57 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
+    /// <summary> The display connection that owns this object. </summary>
     public new WlDisplay Display { get; private set; }
 
+    /// <summary>
+    /// Wraps an existing zwp_linux_dmabuf_v1 proxy handle.
+    /// </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object.</param>
     public ZwpLinuxDmabufV1(IntPtr handle, WlDisplay display)
     {
         Display = display;
         Handle = handle;
     }
+    /// <summary>
+    /// Supported buffer format
+    /// <para>
+    ///
+    /// This event advertises one buffer format that the server supports.
+    /// All the supported formats are advertised once when the client
+    /// binds to this interface. A roundtrip after binding guarantees
+    /// that the client has received all supported formats.
+    ///
+    /// For the definition of the format codes, see the
+    /// zwp_linux_buffer_params_v1::create request.
+    ///
+    /// Starting version 4, the format event is deprecated and must not be
+    /// sent by compositors. Instead, use get_default_feedback or
+    /// get_surface_feedback.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void FormatHandler(uint format);
 
     private FormatHandler? _onFormat;
 
     /// <summary>
-    ///Supported buffer format
+    /// Supported buffer format
     /// <para>
     ///
-    ///This event advertises one buffer format that the server supports.
-    ///All the supported formats are advertised once when the client
-    ///binds to this interface. A roundtrip after binding guarantees
-    ///that the client has received all supported formats.
+    /// This event advertises one buffer format that the server supports.
+    /// All the supported formats are advertised once when the client
+    /// binds to this interface. A roundtrip after binding guarantees
+    /// that the client has received all supported formats.
     ///
-    ///For the definition of the format codes, see the
-    ///zwp_linux_buffer_params_v1::create request.
+    /// For the definition of the format codes, see the
+    /// zwp_linux_buffer_params_v1::create request.
     ///
-    ///Starting version 4, the format event is deprecated and must not be
-    ///sent by compositors. Instead, use get_default_feedback or
-    ///get_surface_feedback.
-    ///
+    /// Starting version 4, the format event is deprecated and must not be
+    /// sent by compositors. Instead, use get_default_feedback or
+    /// get_surface_feedback.
+    /// 
     /// </para>
     /// </summary>
     public event FormatHandler? OnFormat
@@ -83,38 +109,68 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
         }
     }
 
+    /// <summary>
+    /// Supported buffer format modifier
+    /// <para>
+    ///
+    /// This event advertises the formats that the server supports, along with
+    /// the modifiers supported for each format. All the supported modifiers
+    /// for all the supported formats are advertised once when the client
+    /// binds to this interface. A roundtrip after binding guarantees that
+    /// the client has received all supported format-modifier pairs.
+    ///
+    /// For legacy support, DRM_FORMAT_MOD_INVALID (that is, modifier_hi ==
+    /// 0x00ffffff and modifier_lo == 0xffffffff) is allowed in this event.
+    /// It indicates that the server can support the format with an implicit
+    /// modifier. When a plane has DRM_FORMAT_MOD_INVALID as its modifier, it
+    /// is as if no explicit modifier is specified. The effective modifier
+    /// will be derived from the dmabuf.
+    ///
+    /// A compositor that sends valid modifiers and DRM_FORMAT_MOD_INVALID for
+    /// a given format supports both explicit modifiers and implicit modifiers.
+    ///
+    /// For the definition of the format and modifier codes, see the
+    /// zwp_linux_buffer_params_v1::create and zwp_linux_buffer_params_v1::add
+    /// requests.
+    ///
+    /// Starting version 4, the modifier event is deprecated and must not be
+    /// sent by compositors. Instead, use get_default_feedback or
+    /// get_surface_feedback.
+    /// 
+    /// </para>
+    /// </summary>
     public delegate void ModifierHandler(uint format, uint modifierHi, uint modifierLo);
 
     private ModifierHandler? _onModifier;
 
     /// <summary>
-    ///Supported buffer format modifier
+    /// Supported buffer format modifier
     /// <para>
     ///
-    ///This event advertises the formats that the server supports, along with
-    ///the modifiers supported for each format. All the supported modifiers
-    ///for all the supported formats are advertised once when the client
-    ///binds to this interface. A roundtrip after binding guarantees that
-    ///the client has received all supported format-modifier pairs.
+    /// This event advertises the formats that the server supports, along with
+    /// the modifiers supported for each format. All the supported modifiers
+    /// for all the supported formats are advertised once when the client
+    /// binds to this interface. A roundtrip after binding guarantees that
+    /// the client has received all supported format-modifier pairs.
     ///
-    ///For legacy support, DRM_FORMAT_MOD_INVALID (that is, modifier_hi ==
-    ///0x00ffffff and modifier_lo == 0xffffffff) is allowed in this event.
-    ///It indicates that the server can support the format with an implicit
-    ///modifier. When a plane has DRM_FORMAT_MOD_INVALID as its modifier, it
-    ///is as if no explicit modifier is specified. The effective modifier
-    ///will be derived from the dmabuf.
+    /// For legacy support, DRM_FORMAT_MOD_INVALID (that is, modifier_hi ==
+    /// 0x00ffffff and modifier_lo == 0xffffffff) is allowed in this event.
+    /// It indicates that the server can support the format with an implicit
+    /// modifier. When a plane has DRM_FORMAT_MOD_INVALID as its modifier, it
+    /// is as if no explicit modifier is specified. The effective modifier
+    /// will be derived from the dmabuf.
     ///
-    ///A compositor that sends valid modifiers and DRM_FORMAT_MOD_INVALID for
-    ///a given format supports both explicit modifiers and implicit modifiers.
+    /// A compositor that sends valid modifiers and DRM_FORMAT_MOD_INVALID for
+    /// a given format supports both explicit modifiers and implicit modifiers.
     ///
-    ///For the definition of the format and modifier codes, see the
-    ///zwp_linux_buffer_params_v1::create and zwp_linux_buffer_params_v1::add
-    ///requests.
+    /// For the definition of the format and modifier codes, see the
+    /// zwp_linux_buffer_params_v1::create and zwp_linux_buffer_params_v1::add
+    /// requests.
     ///
-    ///Starting version 4, the modifier event is deprecated and must not be
-    ///sent by compositors. Instead, use get_default_feedback or
-    ///get_surface_feedback.
-    ///
+    /// Starting version 4, the modifier event is deprecated and must not be
+    /// sent by compositors. Instead, use get_default_feedback or
+    /// get_surface_feedback.
+    /// 
     /// </para>
     /// </summary>
     public event ModifierHandler? OnModifier
@@ -323,6 +379,10 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
         return new ZwpLinuxDmabufFeedbackV1(newProxy, Display);
     }
 
+    /// <summary> Creates a ZwpLinuxDmabufV1 wrapper from an existing proxy handle. </summary>
+    /// <param name="handle">The native Wayland proxy handle.</param>
+    /// <param name="display">The display connection that owns this object, when required.</param>
+    /// <returns>A new ZwpLinuxDmabufV1 instance.</returns>
     public static ZwpLinuxDmabufV1 Create(nint handle, WlDisplay? display = null)
     {
         ArgumentNullException.ThrowIfNull(display);
