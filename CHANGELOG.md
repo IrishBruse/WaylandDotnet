@@ -2,7 +2,7 @@
 
 ## Upcoming
 
-[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/0.5.1...HEAD)
+[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/v0.5.1...HEAD)
 
 ## 0.5.1
 
@@ -11,7 +11,7 @@
 - Improve docs site sidebar styling, active highlight, and scroll behavior
 - Add page navigation plugin and site footer to generated protocol docs
 
-[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/0.5.0...v0.5.1)
+[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/v0.5.0...v0.5.1)
 
 ## 0.5.0
 
@@ -23,7 +23,7 @@
 - Add `CONTRIBUTING.md` with protocol maintenance workflow
 - Streamline README and consolidate docs sidebar
 
-[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/0.4.0...v0.5.0)
+[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/v0.4.0...v0.5.0)
 
 ## 0.4.0
 
@@ -32,7 +32,7 @@
 - Fix quick-start example in README
 - Clean up scanner generator and README
 
-[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/0.3.0...v0.4.0)
+[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/v0.3.0...v0.4.0)
 
 ## 0.3.0
 
@@ -41,7 +41,7 @@
 - Fix Wayland display discovery in Taskbar example
 - Update NuGet release workflow
 
-[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/0.2.0...0.3.0)
+[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/v0.2.0...v0.3.0)
 
 ## 0.2.0
 
@@ -56,7 +56,7 @@
 - Simplify HTML generation
 - Add debug flag to generator
 
-[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/0.1.0...0.2.0)
+[Diff](https://github.com/IrishBruse/WaylandDotnet/compare/v0.1.0...v0.2.0)
 
 ## 0.1.0
 
@@ -68,4 +68,4 @@
 - Add documentation site with protocol and tutorial docs
 - Publish WaylandDotnet and WaylandDotnet.Scanner to NuGet
 
-[Diff](https://github.com/IrishBruse/WaylandDotnet/commits/0.1.0)
+[Diff](https://github.com/IrishBruse/WaylandDotnet/commits/v0.1.0)
