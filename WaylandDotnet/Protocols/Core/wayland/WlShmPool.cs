@@ -6,8 +6,8 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS0108
 #pragma warning disable CS8604
+#pragma warning disable CS0649
 
 namespace WaylandDotnet;
 
@@ -37,7 +37,7 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
 
     private bool disposed;
 
-    public WlDisplay Display { get; private set; }
+    public new WlDisplay Display { get; private set; }
 
     public WlShmPool(IntPtr handle, WlDisplay display)
     {
@@ -116,6 +116,7 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
             0,
             (nint)args
         );
+        disposed = true;
     }
 
     /// <summary>

@@ -6,8 +6,8 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS0108
 #pragma warning disable CS8604
+#pragma warning disable CS0649
 
 namespace WaylandDotnet;
 
@@ -41,7 +41,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlDisplay Display { get; private set; }
+    public new WlDisplay Display { get; private set; }
 
     public WlOutput(IntPtr handle, WlDisplay display)
     {
@@ -526,6 +526,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
             0,
             (nint)args
         );
+        disposed = true;
     }
 
     public static WlOutput Create(nint handle, WlDisplay? display = null)

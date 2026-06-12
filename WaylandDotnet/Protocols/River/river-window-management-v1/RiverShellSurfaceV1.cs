@@ -6,8 +6,8 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS0108
 #pragma warning disable CS8604
+#pragma warning disable CS0649
 
 namespace WaylandDotnet.River;
 
@@ -37,7 +37,7 @@ public sealed partial class RiverShellSurfaceV1 : WaylandObject, IWaylandObjectF
 
     private bool disposed;
 
-    public WlDisplay Display { get; private set; }
+    public new WlDisplay Display { get; private set; }
 
     public RiverShellSurfaceV1(IntPtr handle, WlDisplay display)
     {
@@ -82,6 +82,7 @@ public sealed partial class RiverShellSurfaceV1 : WaylandObject, IWaylandObjectF
             0,
             (nint)args
         );
+        disposed = true;
     }
 
     /// <summary>

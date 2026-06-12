@@ -6,8 +6,8 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS0108
 #pragma warning disable CS8604
+#pragma warning disable CS0649
 
 namespace WaylandDotnet.Stable;
 
@@ -37,7 +37,7 @@ public sealed partial class ZwpTabletManagerV2 : WaylandObject, IWaylandObjectFa
 
     private bool disposed;
 
-    public WlDisplay Display { get; private set; }
+    public new WlDisplay Display { get; private set; }
 
     public ZwpTabletManagerV2(IntPtr handle, WlDisplay display)
     {
@@ -100,6 +100,7 @@ public sealed partial class ZwpTabletManagerV2 : WaylandObject, IWaylandObjectFa
             0,
             (nint)args
         );
+        disposed = true;
     }
 
     public static ZwpTabletManagerV2 Create(nint handle, WlDisplay? display = null)

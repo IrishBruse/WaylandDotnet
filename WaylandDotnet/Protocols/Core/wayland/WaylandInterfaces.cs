@@ -2,7 +2,6 @@ namespace WaylandDotnet.Internal;
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS0108
 #pragma warning disable CA2255
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;

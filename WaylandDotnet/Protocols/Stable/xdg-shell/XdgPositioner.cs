@@ -6,8 +6,8 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS0108
 #pragma warning disable CS8604
+#pragma warning disable CS0649
 
 namespace WaylandDotnet.Stable;
 
@@ -190,6 +190,7 @@ public sealed partial class XdgPositioner : WaylandObject, IWaylandObjectFactory
             0,
             (nint)args
         );
+        disposed = true;
     }
 
     /// <summary>

@@ -41,8 +41,8 @@ public partial class ProtocolGenerator
         WriteLine();
         WriteLine($"#nullable enable");
         WriteLine($"#pragma warning disable CS1591");
-        WriteLine($"#pragma warning disable CS0108");
         WriteLine($"#pragma warning disable CS8604");
+        WriteLine($"#pragma warning disable CS0649");
         WriteLine();
 
         if (metadata.Namespace == "Core")
@@ -160,7 +160,6 @@ public partial class ProtocolGenerator
         WriteLine();
         WriteLine($"#nullable enable");
         WriteLine($"#pragma warning disable CS1591");
-        WriteLine($"#pragma warning disable CS0108");
         WriteLine($"#pragma warning disable CA2255");
         WriteLine("using System.Runtime.CompilerServices;");
         WriteLine("using System.Runtime.InteropServices;");
@@ -495,7 +494,7 @@ public partial class ProtocolGenerator
         BeginRegion();
         if (needsDisplay)
         {
-            WriteLine("public WlDisplay Display { get; private set; }");
+            WriteLine("public new WlDisplay Display { get; private set; }");
             WriteLine();
             WriteLine($"public {className}(IntPtr handle, WlDisplay display)");
         }
@@ -879,6 +878,10 @@ public partial class ProtocolGenerator
                 return $"_{arg.Name.ToCamel()}";
             }));
             WriteLine($"obj._on{eventName}?.Invoke({parameters});");
+            if (IsDestructor(evt.Type))
+            {
+                WriteLine("obj.disposed = true;");
+            }
         }
         EndBlock();
     }
@@ -1079,10 +1082,18 @@ public partial class ProtocolGenerator
                     WriteLine($"return new {newIdInterface.ToPascal()}(newProxy);");
                 }
             }
+
+            if (IsDestructor(request.Type))
+            {
+                WriteLine("disposed = true;");
+            }
         }
         EndBlock();
         WriteLine();
     }
+
+    private static bool IsDestructor(string? type) =>
+        string.Equals(type, "destructor", StringComparison.Ordinal);
 
     private void RequestDocumentation(WaylandInterface iface, WaylandRequest request, string summary, string docs, string methodName, string requestDeclaration)
     {

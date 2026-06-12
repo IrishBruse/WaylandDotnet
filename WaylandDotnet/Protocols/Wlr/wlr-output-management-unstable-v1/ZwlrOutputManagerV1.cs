@@ -6,8 +6,8 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS0108
 #pragma warning disable CS8604
+#pragma warning disable CS0649
 
 namespace WaylandDotnet.Wlr;
 
@@ -41,7 +41,7 @@ public sealed partial class ZwlrOutputManagerV1 : WaylandObject, IWaylandObjectF
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlDisplay Display { get; private set; }
+    public new WlDisplay Display { get; private set; }
 
     public ZwlrOutputManagerV1(IntPtr handle, WlDisplay display)
     {
@@ -200,6 +200,7 @@ public sealed partial class ZwlrOutputManagerV1 : WaylandObject, IWaylandObjectF
                     if (obj._onFinished != null)
                     {
                         obj._onFinished?.Invoke();
+                        obj.disposed = true;
                     }
                     break;
                 default:

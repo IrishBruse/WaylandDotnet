@@ -59,9 +59,13 @@ public sealed partial class WlDisplay
     public int Roundtrip() => WaylandNative.DisplayRoundtrip(Handle);
 
     /// <summary>
-    /// TODO: move to dispose
+    /// Disconnect from the Wayland display
     /// </summary>
-    public void Disconnect() => WaylandNative.DisplayDisconnect(Handle);
+    public void Disconnect()
+    {
+        WaylandNative.DisplayDisconnect(Handle);
+        disposed = true;
+    }
 
     /// <summary>
     /// Flush buffered requests to the server

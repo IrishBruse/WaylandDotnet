@@ -6,8 +6,8 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS0108
 #pragma warning disable CS8604
+#pragma warning disable CS0649
 
 namespace WaylandDotnet.Stable;
 
@@ -41,7 +41,7 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlDisplay Display { get; private set; }
+    public new WlDisplay Display { get; private set; }
 
     public WpPresentationFeedback(IntPtr handle, WlDisplay display)
     {
@@ -257,12 +257,14 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
                         var _seqLo = args[5].u;
                         var _flags = args[6].u;
                         obj._onPresented?.Invoke(_tvSecHi, _tvSecLo, _tvNsec, _refresh, _seqHi, _seqLo, _flags);
+                        obj.disposed = true;
                     }
                     break;
                 case 2: // discarded
                     if (obj._onDiscarded != null)
                     {
                         obj._onDiscarded?.Invoke();
+                        obj.disposed = true;
                     }
                     break;
                 default:

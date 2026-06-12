@@ -6,8 +6,8 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS0108
 #pragma warning disable CS8604
+#pragma warning disable CS0649
 
 namespace WaylandDotnet.Stable;
 
@@ -41,7 +41,7 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlDisplay Display { get; private set; }
+    public new WlDisplay Display { get; private set; }
 
     public XdgPopup(IntPtr handle, WlDisplay display)
     {
@@ -264,6 +264,7 @@ public sealed partial class XdgPopup : WaylandObject, IWaylandObjectFactory<XdgP
             0,
             (nint)args
         );
+        disposed = true;
     }
 
     /// <summary>

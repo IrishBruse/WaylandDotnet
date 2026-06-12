@@ -6,8 +6,8 @@
 
 #nullable enable
 #pragma warning disable CS1591
-#pragma warning disable CS0108
 #pragma warning disable CS8604
+#pragma warning disable CS0649
 
 namespace WaylandDotnet.River;
 
@@ -41,7 +41,7 @@ public sealed partial class RiverLibinputResultV1 : WaylandObject, IWaylandObjec
     private bool dispatcherRegistered = false;
     private readonly object dispatcherLock = new object();
 
-    public WlDisplay Display { get; private set; }
+    public new WlDisplay Display { get; private set; }
 
     public RiverLibinputResultV1(IntPtr handle, WlDisplay display)
     {
@@ -169,18 +169,21 @@ public sealed partial class RiverLibinputResultV1 : WaylandObject, IWaylandObjec
                     if (obj._onSuccess != null)
                     {
                         obj._onSuccess?.Invoke();
+                        obj.disposed = true;
                     }
                     break;
                 case 1: // unsupported
                     if (obj._onUnsupported != null)
                     {
                         obj._onUnsupported?.Invoke();
+                        obj.disposed = true;
                     }
                     break;
                 case 2: // invalid
                     if (obj._onInvalid != null)
                     {
                         obj._onInvalid?.Invoke();
+                        obj.disposed = true;
                     }
                     break;
                 default:
