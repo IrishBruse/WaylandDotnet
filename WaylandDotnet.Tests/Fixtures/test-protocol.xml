@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol name="test_protocol">
+
+  <copyright>
+    Copyright (c) Test Project
+    All rights reserved.
+  </copyright>
+
+  <interface name="test_ping" version="1">
+    <description summary="minimal ping interface">
+      An interface with only a simple request and no events.
+    </description>
+
+    <request name="ping">
+      <description summary="send ping">
+        Sends a ping with a serial number.
+      </description>
+      <arg name="serial" type="uint" summary="serial number"/>
+    </request>
+  </interface>
+
+  <interface name="test_widget" version="3">
+    <description summary="widget &amp; gadget &lt;test&gt;">
+      Multi-line
+      widget description.
+    </description>
+
+    <enum name="state">
+      <description summary="widget state">
+        Normal enum values.
+      </description>
+      <entry name="idle" value="0" summary="idle state"/>
+      <entry name="active" value="1" summary="active state"/>
+    </enum>
+
+    <enum name="flags" bitfield="true">
+      <description summary="widget flags">
+        Bitfield enum values.
+      </description>
+      <entry name="visible" value="1" summary="visible flag"/>
+      <entry name="focused" value="2" summary="focused flag"/>
+    </enum>
+
+    <request name="configure">
+      <description summary="configure widget">
+        Configure the widget with various argument types.
+      </description>
+      <arg name="width" type="int" summary="width in pixels"/>
+      <arg name="height" type="uint" summary="height in pixels"/>
+      <arg name="scale" type="fixed" summary="scale factor"/>
+      <arg name="label" type="string" allow-null="true" summary="optional label"/>
+      <arg name="parent" type="object" interface="test_widget" allow-null="true" summary="optional parent"/>
+      <arg name="data" type="array" summary="raw data"/>
+      <arg name="fd" type="fd" summary="file descriptor"/>
+    </request>
+
+    <request name="create_child">
+      <description summary="create child widget">
+        Creates a child widget.
+      </description>
+      <arg name="child" type="new_id" interface="test_widget" summary="new child widget"/>
+    </request>
+
+    <request name="destroy" type="destructor">
+      <description summary="destroy widget">
+        Destroys the widget.
+      </description>
+    </request>
+
+    <event name="update" since="2">
+      <description summary="widget updated">
+        Notifies that the widget was updated.
+      </description>
+      <arg name="serial" type="uint" summary="update serial"/>
+      <arg name="payload" type="array" summary="update payload"/>
+    </event>
+
+    <event name="gone" type="destructor">
+      <description summary="widget gone">
+        Widget was destroyed on the server side.
+      </description>
+    </event>
+  </interface>
+
+  <interface name="wl_registry" version="1">
+    <description summary="registry for bind expansion test">
+      Minimal registry used to test untyped new_id signature expansion.
+    </description>
+
+    <request name="bind">
+      <description summary="bind global">
+        Binds a global object.
+      </description>
+      <arg name="name" type="uint" summary="global name"/>
+      <arg name="id" type="new_id" summary="bound object id"/>
+    </request>
+
+    <event name="global">
+      <description summary="global advertised">
+        A global object was advertised.
+      </description>
+      <arg name="name" type="uint" summary="global name"/>
+      <arg name="interface" type="string" summary="interface name"/>
+      <arg name="version" type="uint" summary="interface version"/>
+    </event>
+  </interface>
+
+</protocol>

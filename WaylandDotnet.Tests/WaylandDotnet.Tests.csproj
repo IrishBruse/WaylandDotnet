@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\WaylandScanner\Protocols\**\*.xml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="Fixtures\**\*.xml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>
