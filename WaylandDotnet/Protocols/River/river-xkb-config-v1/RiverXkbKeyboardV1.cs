@@ -429,7 +429,6 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverXkbKeyboardV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
@@ -442,9 +441,8 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
                 case 1: // input_device
                     if (obj._onInputDevice != null)
                     {
-                        RiverInputDeviceV1? _device = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'device'");
-                        _device = new RiverInputDeviceV1((IntPtr)args[0].o, obj.Display);
+                        var _device = new RiverInputDeviceV1((IntPtr)args[0].o, obj.Display!);
                         obj._onInputDevice?.Invoke(_device);
                     }
                     break;

@@ -188,7 +188,6 @@ public sealed partial class WpPresentation : WaylandObject, IWaylandObjectFactor
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WpPresentation)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

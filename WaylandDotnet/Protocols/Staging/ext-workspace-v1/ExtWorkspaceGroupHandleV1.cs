@@ -354,7 +354,6 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ExtWorkspaceGroupHandleV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
@@ -368,36 +367,32 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
                 case 1: // output_enter
                     if (obj._onOutputEnter != null)
                     {
-                        WlOutput? _output = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'output'");
-                        _output = new WlOutput((IntPtr)args[0].o, obj.Display);
+                        var _output = new WlOutput((IntPtr)args[0].o, obj.Display!);
                         obj._onOutputEnter?.Invoke(_output);
                     }
                     break;
                 case 2: // output_leave
                     if (obj._onOutputLeave != null)
                     {
-                        WlOutput? _output = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'output'");
-                        _output = new WlOutput((IntPtr)args[0].o, obj.Display);
+                        var _output = new WlOutput((IntPtr)args[0].o, obj.Display!);
                         obj._onOutputLeave?.Invoke(_output);
                     }
                     break;
                 case 3: // workspace_enter
                     if (obj._onWorkspaceEnter != null)
                     {
-                        ExtWorkspaceHandleV1? _workspace = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'workspace'");
-                        _workspace = new ExtWorkspaceHandleV1((IntPtr)args[0].o, obj.Display);
+                        var _workspace = new ExtWorkspaceHandleV1((IntPtr)args[0].o, obj.Display!);
                         obj._onWorkspaceEnter?.Invoke(_workspace);
                     }
                     break;
                 case 4: // workspace_leave
                     if (obj._onWorkspaceLeave != null)
                     {
-                        ExtWorkspaceHandleV1? _workspace = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'workspace'");
-                        _workspace = new ExtWorkspaceHandleV1((IntPtr)args[0].o, obj.Display);
+                        var _workspace = new ExtWorkspaceHandleV1((IntPtr)args[0].o, obj.Display!);
                         obj._onWorkspaceLeave?.Invoke(_workspace);
                     }
                     break;

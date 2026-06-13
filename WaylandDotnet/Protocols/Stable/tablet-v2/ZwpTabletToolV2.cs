@@ -1097,7 +1097,6 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwpTabletToolV2)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
@@ -1147,12 +1146,10 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                     if (obj._onProximityIn != null)
                     {
                         var _serial = args[0].u;
-                        ZwpTabletV2? _tablet = null;
                         if (args[1].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'tablet'");
-                        _tablet = new ZwpTabletV2((IntPtr)args[1].o, obj.Display);
-                        WlSurface? _surface = null;
+                        var _tablet = new ZwpTabletV2((IntPtr)args[1].o, obj.Display!);
                         if (args[2].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'surface'");
-                        _surface = new WlSurface((IntPtr)args[2].o, obj.Display);
+                        var _surface = new WlSurface((IntPtr)args[2].o, obj.Display!);
                         obj._onProximityIn?.Invoke(_serial, _tablet, _surface);
                     }
                     break;

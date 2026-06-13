@@ -188,14 +188,14 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlDisplay)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
                 case 0: // error
                     if (obj._onError != null)
                     {
-                        var _objectId = new WlDisplay((IntPtr)args[0].o);
+                        if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'object_id'");
+                        var _objectId = new WaylandProxy((IntPtr)args[0].o);
                         var _code = args[1].u;
                         var _message = Utf8StringMarshaller.ConvertToManaged(args[2].s) ?? string.Empty;
                         obj._onError?.Invoke(_objectId, _code, _message);

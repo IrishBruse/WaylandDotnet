@@ -431,7 +431,6 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlDataSource)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

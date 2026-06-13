@@ -121,7 +121,6 @@ public sealed partial class WlCallback : WaylandObject, IWaylandObjectFactory<Wl
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlCallback)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

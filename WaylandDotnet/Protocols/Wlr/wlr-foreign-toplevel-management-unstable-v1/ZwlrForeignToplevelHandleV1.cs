@@ -424,7 +424,6 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwlrForeignToplevelHandleV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
@@ -445,18 +444,16 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
                 case 2: // output_enter
                     if (obj._onOutputEnter != null)
                     {
-                        WlOutput? _output = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'output'");
-                        _output = new WlOutput((IntPtr)args[0].o, obj.Display);
+                        var _output = new WlOutput((IntPtr)args[0].o, obj.Display!);
                         obj._onOutputEnter?.Invoke(_output);
                     }
                     break;
                 case 3: // output_leave
                     if (obj._onOutputLeave != null)
                     {
-                        WlOutput? _output = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'output'");
-                        _output = new WlOutput((IntPtr)args[0].o, obj.Display);
+                        var _output = new WlOutput((IntPtr)args[0].o, obj.Display!);
                         obj._onOutputLeave?.Invoke(_output);
                     }
                     break;
@@ -483,8 +480,10 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
                     if (obj._onParent != null)
                     {
                         ZwlrForeignToplevelHandleV1? _parent = null;
-                        if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'parent'");
-                        _parent = new ZwlrForeignToplevelHandleV1((IntPtr)args[0].o, obj.Display);
+                        if (args[0].o != (WlObject*)IntPtr.Zero)
+                        {
+                            _parent = new ZwlrForeignToplevelHandleV1((IntPtr)args[0].o, obj.Display!);
+                        }
                         obj._onParent?.Invoke(_parent);
                     }
                     break;

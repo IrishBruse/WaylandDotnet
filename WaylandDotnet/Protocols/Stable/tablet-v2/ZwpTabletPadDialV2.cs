@@ -194,7 +194,6 @@ public sealed partial class ZwpTabletPadDialV2 : WaylandObject, IWaylandObjectFa
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwpTabletPadDialV2)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

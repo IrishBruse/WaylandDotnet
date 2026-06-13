@@ -175,7 +175,6 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverLibinputConfigV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
@@ -188,9 +187,8 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
                 case 1: // libinput_device
                     if (obj._onLibinputDevice != null)
                     {
-                        RiverLibinputDeviceV1? _id = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
-                        _id = new RiverLibinputDeviceV1((IntPtr)args[0].o, obj.Display);
+                        var _id = new RiverLibinputDeviceV1((IntPtr)args[0].o, obj.Display!);
                         obj._onLibinputDevice?.Invoke(_id);
                     }
                     break;

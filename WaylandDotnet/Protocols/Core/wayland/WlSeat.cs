@@ -261,7 +261,6 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlSeat)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

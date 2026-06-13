@@ -797,7 +797,6 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwlrOutputHeadV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
@@ -826,9 +825,8 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 3: // mode
                     if (obj._onMode != null)
                     {
-                        ZwlrOutputModeV1? _mode = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'mode'");
-                        _mode = new ZwlrOutputModeV1((IntPtr)args[0].o, obj.Display);
+                        var _mode = new ZwlrOutputModeV1((IntPtr)args[0].o, obj.Display!);
                         obj._onMode?.Invoke(_mode);
                     }
                     break;
@@ -842,9 +840,8 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 5: // current_mode
                     if (obj._onCurrentMode != null)
                     {
-                        ZwlrOutputModeV1? _mode = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'mode'");
-                        _mode = new ZwlrOutputModeV1((IntPtr)args[0].o, obj.Display);
+                        var _mode = new ZwlrOutputModeV1((IntPtr)args[0].o, obj.Display!);
                         obj._onCurrentMode?.Invoke(_mode);
                     }
                     break;

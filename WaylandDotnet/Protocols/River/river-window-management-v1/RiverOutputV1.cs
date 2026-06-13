@@ -403,7 +403,6 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverOutputV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

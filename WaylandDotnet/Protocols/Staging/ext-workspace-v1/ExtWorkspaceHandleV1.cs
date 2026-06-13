@@ -452,7 +452,6 @@ public sealed partial class ExtWorkspaceHandleV1 : WaylandObject, IWaylandObject
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ExtWorkspaceHandleV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

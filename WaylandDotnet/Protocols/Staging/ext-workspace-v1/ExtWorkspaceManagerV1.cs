@@ -270,25 +270,22 @@ public sealed partial class ExtWorkspaceManagerV1 : WaylandObject, IWaylandObjec
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ExtWorkspaceManagerV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
                 case 0: // workspace_group
                     if (obj._onWorkspaceGroup != null)
                     {
-                        ExtWorkspaceGroupHandleV1? _workspaceGroup = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'workspace_group'");
-                        _workspaceGroup = new ExtWorkspaceGroupHandleV1((IntPtr)args[0].o, obj.Display);
+                        var _workspaceGroup = new ExtWorkspaceGroupHandleV1((IntPtr)args[0].o, obj.Display!);
                         obj._onWorkspaceGroup?.Invoke(_workspaceGroup);
                     }
                     break;
                 case 1: // workspace
                     if (obj._onWorkspace != null)
                     {
-                        ExtWorkspaceHandleV1? _workspace = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'workspace'");
-                        _workspace = new ExtWorkspaceHandleV1((IntPtr)args[0].o, obj.Display);
+                        var _workspace = new ExtWorkspaceHandleV1((IntPtr)args[0].o, obj.Display!);
                         obj._onWorkspace?.Invoke(_workspace);
                     }
                     break;

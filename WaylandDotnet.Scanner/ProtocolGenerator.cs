@@ -220,8 +220,8 @@ public partial class ProtocolGenerator
                     WriteLine($"requests[{i}] = new WlMessage");
                     BeginBlock();
                     {
-                        WriteLine($"Name = Utf8StringMarshaller.ConvertToUnmanaged(\"{request.Name}\"),");
-                        WriteLine($"Signature = Utf8StringMarshaller.ConvertToUnmanaged(\"{finalSignature}\"),");
+                        WriteLine($"Name = Utf8StringMarshaller.ConvertToUnmanaged(\"{EscapeCString(request.Name)}\"),");
+                        WriteLine($"Signature = Utf8StringMarshaller.ConvertToUnmanaged(\"{EscapeCString(finalSignature)}\"),");
                         WriteLine($"Types = (WlInterface**){finalTypes}");
                     }
                     EndBlock(";");
@@ -244,8 +244,8 @@ public partial class ProtocolGenerator
                     WriteLine($"events[{i}] = new WlMessage");
                     BeginBlock();
                     {
-                        WriteLine($"Name = Utf8StringMarshaller.ConvertToUnmanaged(\"{evt.Name}\"),");
-                        WriteLine($"Signature = Utf8StringMarshaller.ConvertToUnmanaged(\"{signature}\"),");
+                        WriteLine($"Name = Utf8StringMarshaller.ConvertToUnmanaged(\"{EscapeCString(evt.Name)}\"),");
+                        WriteLine($"Signature = Utf8StringMarshaller.ConvertToUnmanaged(\"{EscapeCString(signature)}\"),");
                         WriteLine($"Types = (WlInterface**){types}");
                     }
                     EndBlock(";");
@@ -257,7 +257,7 @@ public partial class ProtocolGenerator
             WriteLine($"var iface = new WlInterface");
             BeginBlock();
             {
-                WriteLine($"Name = Utf8StringMarshaller.ConvertToUnmanaged(\"{iface.Name}\"),");
+                WriteLine($"Name = Utf8StringMarshaller.ConvertToUnmanaged(\"{EscapeCString(iface.Name)}\"),");
                 WriteLine($"Version = {iface.Version},");
                 WriteLine($"MethodCount = {requestCount},");
                 WriteLine($"Methods = {(requestCount > 0 ? "requests" : "(WlMessage*)IntPtr.Zero")},");
@@ -268,7 +268,7 @@ public partial class ProtocolGenerator
             WriteLine();
 
             WriteLine($"Marshal.StructureToPtr(iface, (IntPtr){className}, false);");
-            WriteLine($"Interfaces.Add(\"{iface.Name}\", (IntPtr){className});");
+            WriteLine($"Interfaces.Add(\"{EscapeCString(iface.Name)}\", (IntPtr){className});");
         }
         EndBlock();
         WriteLine();
@@ -403,9 +403,9 @@ public partial class ProtocolGenerator
         BeginBlock();
         {
             WriteLine($"/// <summary> Wayland interface name for {EscapeXmlDoc(iface.Name)}. </summary>");
-            WriteLine($"public const string InterfaceName = \"{iface.Name}\";");
+            WriteLine($"public const string InterfaceName = \"{EscapeCString(iface.Name)}\";");
             WriteLine($"/// <summary> Static interface name used by <see cref=\"IWaylandObjectFactory{{T}}\"/>. </summary>");
-            WriteLine($"public static string _StaticInterfaceName => \"{iface.Name}\";");
+            WriteLine($"public static string _StaticInterfaceName => \"{EscapeCString(iface.Name)}\";");
             WriteLine($"/// <summary> Interface version supported by this binding. </summary>");
             WriteLine($"public const int InterfaceVersion = {iface.Version};");
             WriteLine();
@@ -757,7 +757,6 @@ public partial class ProtocolGenerator
             {
                 WriteLine("var handle = GCHandle.FromIntPtr(userData);");
                 WriteLine($"var obj = ({className})handle.Target!;");
-                WriteLine($"var display = obj.Display;");
                 WriteLine();
                 WriteLine("switch (opcode)");
                 BeginBlock();
@@ -821,52 +820,12 @@ public partial class ProtocolGenerator
                         WriteLine($"var _{argName} = Utf8StringMarshaller.ConvertToManaged(args[{i}].s) ?? string.Empty;");
                         break;
                     case "object":
-                        // Check if interface is specified
-                        if (!string.IsNullOrEmpty(arg.Interface))
-                        {
-                            var interfaceType = arg.Interface.ToPascal();
-                            WriteLine($"{interfaceType}? _{argName} = null;");
-                            WriteLine($"if (args[{i}].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException(\"Received null object for non-nullable argument '{arg.Name}'\");");
-                            bool targetNeedsDisplay = interfaceNeedsDisplay.GetValueOrDefault(arg.Interface, true);
-                            if (targetNeedsDisplay)
-                            {
-                                WriteLine($"_{argName} = new {interfaceType}((IntPtr)args[{i}].o, obj.Display);");
-                            }
-                            else
-                            {
-                                WriteLine($"_{argName} = new {interfaceType}((IntPtr)args[{i}].o);");
-                            }
-                        }
-                        else
-                        {
-                            // Generic object pointer - use current interface
-                            bool currentNeedsDisplay = interfaceNeedsDisplay.GetValueOrDefault(iface.Name, true);
-                            if (currentNeedsDisplay)
-                            {
-                                WriteLine($"var _{argName} = new {iface.Name.ToPascal()}((IntPtr)args[{i}].o, obj.Display);");
-                            }
-                            else
-                            {
-                                WriteLine($"var _{argName} = new {iface.Name.ToPascal()}((IntPtr)args[{i}].o);");
-                            }
-                        }
+                        GenerateWireObjectUnmarshal(arg, i, arg.Interface);
                         break;
                     case "new_id":
-                        // Handle new_id if needed
                         if (!string.IsNullOrEmpty(arg.Interface))
                         {
-                            var interfaceType = arg.Interface.ToPascal();
-                            WriteLine($"{interfaceType}? _{argName} = null;");
-                            WriteLine($"if (args[{i}].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException(\"Received null object for non-nullable argument '{arg.Name}'\");");
-                            bool targetNeedsDisplay = interfaceNeedsDisplay.GetValueOrDefault(arg.Interface, true);
-                            if (targetNeedsDisplay)
-                            {
-                                WriteLine($"_{argName} = new {interfaceType}((IntPtr)args[{i}].o, obj.Display);");
-                            }
-                            else
-                            {
-                                WriteLine($"_{argName} = new {interfaceType}((IntPtr)args[{i}].o);");
-                            }
+                            GenerateWireObjectUnmarshal(arg, i, arg.Interface);
                         }
                         else
                         {
@@ -1086,7 +1045,7 @@ public partial class ProtocolGenerator
             if (isUntypedNewId)
             {
                 WriteLine();
-                WriteLine($"return new WaylandObject(newProxy, {displayRef}, interfaceName, version);");
+                WriteLine($"return new WaylandProxy(newProxy, {displayRef});");
             }
             else if (newIdInterface != null)
             {
@@ -1217,6 +1176,68 @@ public partial class ProtocolGenerator
         };
     }
 
+    private static bool ArgAllowsNull(WaylandArg arg) =>
+        arg.AllowNull?.ToLower() == "true";
+
+    private void GenerateWireObjectUnmarshal(WaylandArg arg, int argIndex, string? interfaceName = null)
+    {
+        var argName = arg.Name.ToCamel();
+        var allowsNull = ArgAllowsNull(arg);
+        var escapedArgName = EscapeCString(arg.Name);
+
+        if (string.IsNullOrEmpty(interfaceName))
+        {
+            if (allowsNull)
+            {
+                WriteLine($"WaylandProxy? _{argName} = null;");
+                WriteLine($"if (args[{argIndex}].o != (WlObject*)IntPtr.Zero)");
+                BeginBlock();
+                {
+                    WriteLine($"_{argName} = new WaylandProxy((IntPtr)args[{argIndex}].o);");
+                }
+                EndBlock();
+            }
+            else
+            {
+                WriteLine($"if (args[{argIndex}].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException(\"Received null object for non-nullable argument '{escapedArgName}'\");");
+                WriteLine($"var _{argName} = new WaylandProxy((IntPtr)args[{argIndex}].o);");
+            }
+
+            return;
+        }
+
+        var interfaceType = interfaceName.ToPascal();
+        if (allowsNull)
+        {
+            WriteLine($"{interfaceType}? _{argName} = null;");
+            WriteLine($"if (args[{argIndex}].o != (WlObject*)IntPtr.Zero)");
+            BeginBlock();
+            {
+                WriteWireObjectConstruction(interfaceType, argName, argIndex, interfaceName);
+            }
+            EndBlock();
+        }
+        else
+        {
+            WriteLine($"if (args[{argIndex}].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException(\"Received null object for non-nullable argument '{escapedArgName}'\");");
+            WriteWireObjectConstruction(interfaceType, argName, argIndex, interfaceName, declareLocal: true);
+        }
+    }
+
+    private void WriteWireObjectConstruction(string interfaceType, string argName, int argIndex, string interfaceName, bool declareLocal = false)
+    {
+        bool targetNeedsDisplay = interfaceNeedsDisplay.GetValueOrDefault(interfaceName, true);
+        var assignmentPrefix = declareLocal ? $"var _{argName} =" : $"_{argName} =";
+        if (targetNeedsDisplay)
+        {
+            WriteLine($"{assignmentPrefix} new {interfaceType}((IntPtr)args[{argIndex}].o, obj.Display!);");
+        }
+        else
+        {
+            WriteLine($"{assignmentPrefix} new {interfaceType}((IntPtr)args[{argIndex}].o);");
+        }
+    }
+
     private static string EscapeXmlDoc(string? text)
     {
         if (string.IsNullOrWhiteSpace(text)) return "";
@@ -1230,6 +1251,18 @@ public partial class ProtocolGenerator
             .Replace("&", "&amp;")
             .Replace("<", "&lt;")
             .Replace(">", "&gt;");
+    }
+
+    private static string EscapeCString(string? text)
+    {
+        if (string.IsNullOrEmpty(text)) return "";
+
+        return text
+            .Replace("\\", "\\\\")
+            .Replace("\"", "\\\"")
+            .Replace("\r", "\\r")
+            .Replace("\n", "\\n")
+            .Replace("\t", "\\t");
     }
 
     private void WriteEventXmlDoc(WaylandEvent evt)

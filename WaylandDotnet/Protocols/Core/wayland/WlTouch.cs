@@ -461,7 +461,6 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlTouch)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
@@ -470,9 +469,8 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
                     {
                         var _serial = args[0].u;
                         var _time = args[1].u;
-                        WlSurface? _surface = null;
                         if (args[2].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'surface'");
-                        _surface = new WlSurface((IntPtr)args[2].o, obj.Display);
+                        var _surface = new WlSurface((IntPtr)args[2].o, obj.Display!);
                         var _id = args[3].i;
                         var _x = args[4].f;
                         var _y = args[5].f;

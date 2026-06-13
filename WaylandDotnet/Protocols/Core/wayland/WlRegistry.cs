@@ -178,7 +178,6 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlRegistry)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

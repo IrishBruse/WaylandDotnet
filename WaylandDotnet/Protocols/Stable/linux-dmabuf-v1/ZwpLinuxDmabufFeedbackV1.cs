@@ -537,7 +537,6 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwpLinuxDmabufFeedbackV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

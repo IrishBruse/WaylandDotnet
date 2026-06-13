@@ -510,7 +510,6 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverWindowManagerV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
@@ -553,27 +552,24 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
                 case 6: // window
                     if (obj._onWindow != null)
                     {
-                        RiverWindowV1? _id = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
-                        _id = new RiverWindowV1((IntPtr)args[0].o, obj.Display);
+                        var _id = new RiverWindowV1((IntPtr)args[0].o, obj.Display!);
                         obj._onWindow?.Invoke(_id);
                     }
                     break;
                 case 7: // output
                     if (obj._onOutput != null)
                     {
-                        RiverOutputV1? _id = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
-                        _id = new RiverOutputV1((IntPtr)args[0].o, obj.Display);
+                        var _id = new RiverOutputV1((IntPtr)args[0].o, obj.Display!);
                         obj._onOutput?.Invoke(_id);
                     }
                     break;
                 case 8: // seat
                     if (obj._onSeat != null)
                     {
-                        RiverSeatV1? _id = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
-                        _id = new RiverSeatV1((IntPtr)args[0].o, obj.Display);
+                        var _id = new RiverSeatV1((IntPtr)args[0].o, obj.Display!);
                         obj._onSeat?.Invoke(_id);
                     }
                     break;

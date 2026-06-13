@@ -727,7 +727,6 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlShm)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

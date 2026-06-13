@@ -178,7 +178,6 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (XdgWmBase)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

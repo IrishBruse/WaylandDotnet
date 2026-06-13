@@ -431,16 +431,14 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwpTabletPadV2)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
                 case 0: // group
                     if (obj._onGroup != null)
                     {
-                        ZwpTabletPadGroupV2? _padGroup = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'pad_group'");
-                        _padGroup = new ZwpTabletPadGroupV2((IntPtr)args[0].o, obj.Display);
+                        var _padGroup = new ZwpTabletPadGroupV2((IntPtr)args[0].o, obj.Display!);
                         obj._onGroup?.Invoke(_padGroup);
                     }
                     break;
@@ -477,12 +475,10 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
                     if (obj._onEnter != null)
                     {
                         var _serial = args[0].u;
-                        ZwpTabletV2? _tablet = null;
                         if (args[1].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'tablet'");
-                        _tablet = new ZwpTabletV2((IntPtr)args[1].o, obj.Display);
-                        WlSurface? _surface = null;
+                        var _tablet = new ZwpTabletV2((IntPtr)args[1].o, obj.Display!);
                         if (args[2].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'surface'");
-                        _surface = new WlSurface((IntPtr)args[2].o, obj.Display);
+                        var _surface = new WlSurface((IntPtr)args[2].o, obj.Display!);
                         obj._onEnter?.Invoke(_serial, _tablet, _surface);
                     }
                     break;
@@ -490,9 +486,8 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
                     if (obj._onLeave != null)
                     {
                         var _serial = args[0].u;
-                        WlSurface? _surface = null;
                         if (args[1].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'surface'");
-                        _surface = new WlSurface((IntPtr)args[1].o, obj.Display);
+                        var _surface = new WlSurface((IntPtr)args[1].o, obj.Display!);
                         obj._onLeave?.Invoke(_serial, _surface);
                     }
                     break;

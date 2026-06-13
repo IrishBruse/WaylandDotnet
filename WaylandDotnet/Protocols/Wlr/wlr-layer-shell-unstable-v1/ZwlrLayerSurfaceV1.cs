@@ -266,7 +266,6 @@ public sealed partial class ZwlrLayerSurfaceV1 : WaylandObject, IWaylandObjectFa
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwlrLayerSurfaceV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

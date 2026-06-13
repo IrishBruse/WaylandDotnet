@@ -221,34 +221,30 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwpTabletSeatV2)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
                 case 0: // tablet_added
                     if (obj._onTabletAdded != null)
                     {
-                        ZwpTabletV2? _id = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
-                        _id = new ZwpTabletV2((IntPtr)args[0].o, obj.Display);
+                        var _id = new ZwpTabletV2((IntPtr)args[0].o, obj.Display!);
                         obj._onTabletAdded?.Invoke(_id);
                     }
                     break;
                 case 1: // tool_added
                     if (obj._onToolAdded != null)
                     {
-                        ZwpTabletToolV2? _id = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
-                        _id = new ZwpTabletToolV2((IntPtr)args[0].o, obj.Display);
+                        var _id = new ZwpTabletToolV2((IntPtr)args[0].o, obj.Display!);
                         obj._onToolAdded?.Invoke(_id);
                     }
                     break;
                 case 2: // pad_added
                     if (obj._onPadAdded != null)
                     {
-                        ZwpTabletPadV2? _id = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
-                        _id = new ZwpTabletPadV2((IntPtr)args[0].o, obj.Display);
+                        var _id = new ZwpTabletPadV2((IntPtr)args[0].o, obj.Display!);
                         obj._onPadAdded?.Invoke(_id);
                     }
                     break;

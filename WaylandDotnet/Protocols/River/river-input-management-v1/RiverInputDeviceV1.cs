@@ -290,7 +290,6 @@ public sealed partial class RiverInputDeviceV1 : WaylandObject, IWaylandObjectFa
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverInputDeviceV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

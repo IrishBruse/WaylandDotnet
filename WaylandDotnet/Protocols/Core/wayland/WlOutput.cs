@@ -600,7 +600,6 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlOutput)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

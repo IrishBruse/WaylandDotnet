@@ -11,5 +11,5 @@ public abstract class WaylandObject
     public IntPtr Handle { get; set; }
 
     /// <summary> The display connection that owns this object, when applicable. </summary>
-    public WlDisplay? Display { get; }
+    public WlDisplay? Display { get; protected set; }
 }

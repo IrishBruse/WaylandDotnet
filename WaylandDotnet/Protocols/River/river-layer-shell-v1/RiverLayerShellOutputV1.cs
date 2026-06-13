@@ -137,7 +137,6 @@ public sealed partial class RiverLayerShellOutputV1 : WaylandObject, IWaylandObj
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverLayerShellOutputV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

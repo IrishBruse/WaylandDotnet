@@ -309,7 +309,6 @@ public sealed partial class ZwpTabletPadStripV2 : WaylandObject, IWaylandObjectF
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwpTabletPadStripV2)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

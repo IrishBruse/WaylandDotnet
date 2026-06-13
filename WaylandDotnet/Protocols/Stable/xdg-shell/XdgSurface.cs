@@ -180,7 +180,6 @@ public sealed partial class XdgSurface : WaylandObject, IWaylandObjectFactory<Xd
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (XdgSurface)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

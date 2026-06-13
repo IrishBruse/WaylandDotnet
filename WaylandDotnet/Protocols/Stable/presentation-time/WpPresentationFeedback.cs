@@ -313,16 +313,14 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WpPresentationFeedback)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
                 case 0: // sync_output
                     if (obj._onSyncOutput != null)
                     {
-                        WlOutput? _output = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'output'");
-                        _output = new WlOutput((IntPtr)args[0].o, obj.Display);
+                        var _output = new WlOutput((IntPtr)args[0].o, obj.Display!);
                         obj._onSyncOutput?.Invoke(_output);
                     }
                     break;

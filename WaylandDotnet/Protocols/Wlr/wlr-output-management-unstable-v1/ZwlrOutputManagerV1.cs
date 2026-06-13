@@ -221,16 +221,14 @@ public sealed partial class ZwlrOutputManagerV1 : WaylandObject, IWaylandObjectF
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwlrOutputManagerV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
                 case 0: // head
                     if (obj._onHead != null)
                     {
-                        ZwlrOutputHeadV1? _head = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'head'");
-                        _head = new ZwlrOutputHeadV1((IntPtr)args[0].o, obj.Display);
+                        var _head = new ZwlrOutputHeadV1((IntPtr)args[0].o, obj.Display!);
                         obj._onHead?.Invoke(_head);
                     }
                     break;

@@ -407,7 +407,6 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwpTabletV2)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

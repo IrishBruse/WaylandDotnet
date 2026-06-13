@@ -170,7 +170,6 @@ public sealed partial class ExtIdleNotificationV1 : WaylandObject, IWaylandObjec
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ExtIdleNotificationV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

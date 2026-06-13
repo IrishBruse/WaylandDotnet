@@ -288,7 +288,6 @@ public sealed partial class WlDataOffer : WaylandObject, IWaylandObjectFactory<W
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlDataOffer)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

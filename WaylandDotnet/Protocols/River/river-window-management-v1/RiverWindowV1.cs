@@ -1211,7 +1211,6 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverWindowV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
@@ -1257,8 +1256,10 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
                     if (obj._onParent != null)
                     {
                         RiverWindowV1? _parent = null;
-                        if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'parent'");
-                        _parent = new RiverWindowV1((IntPtr)args[0].o, obj.Display);
+                        if (args[0].o != (WlObject*)IntPtr.Zero)
+                        {
+                            _parent = new RiverWindowV1((IntPtr)args[0].o, obj.Display!);
+                        }
                         obj._onParent?.Invoke(_parent);
                     }
                     break;
@@ -1272,18 +1273,16 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
                 case 7: // pointer_move_requested
                     if (obj._onPointerMoveRequested != null)
                     {
-                        RiverSeatV1? _seat = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'seat'");
-                        _seat = new RiverSeatV1((IntPtr)args[0].o, obj.Display);
+                        var _seat = new RiverSeatV1((IntPtr)args[0].o, obj.Display!);
                         obj._onPointerMoveRequested?.Invoke(_seat);
                     }
                     break;
                 case 8: // pointer_resize_requested
                     if (obj._onPointerResizeRequested != null)
                     {
-                        RiverSeatV1? _seat = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'seat'");
-                        _seat = new RiverSeatV1((IntPtr)args[0].o, obj.Display);
+                        var _seat = new RiverSeatV1((IntPtr)args[0].o, obj.Display!);
                         var _edges = args[1].u;
                         obj._onPointerResizeRequested?.Invoke(_seat, _edges);
                     }
@@ -1312,8 +1311,10 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
                     if (obj._onFullscreenRequested != null)
                     {
                         RiverOutputV1? _output = null;
-                        if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'output'");
-                        _output = new RiverOutputV1((IntPtr)args[0].o, obj.Display);
+                        if (args[0].o != (WlObject*)IntPtr.Zero)
+                        {
+                            _output = new RiverOutputV1((IntPtr)args[0].o, obj.Display!);
+                        }
                         obj._onFullscreenRequested?.Invoke(_output);
                     }
                     break;

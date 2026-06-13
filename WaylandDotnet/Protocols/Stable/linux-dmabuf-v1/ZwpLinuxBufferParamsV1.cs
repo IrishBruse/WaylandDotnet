@@ -233,16 +233,14 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwpLinuxBufferParamsV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
                 case 0: // created
                     if (obj._onCreated != null)
                     {
-                        WlBuffer? _buffer = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'buffer'");
-                        _buffer = new WlBuffer((IntPtr)args[0].o, obj.Display);
+                        var _buffer = new WlBuffer((IntPtr)args[0].o, obj.Display!);
                         obj._onCreated?.Invoke(_buffer);
                     }
                     break;

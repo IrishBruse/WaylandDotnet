@@ -457,7 +457,6 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwpTabletPadGroupV2)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
@@ -471,18 +470,16 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
                 case 1: // ring
                     if (obj._onRing != null)
                     {
-                        ZwpTabletPadRingV2? _ring = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'ring'");
-                        _ring = new ZwpTabletPadRingV2((IntPtr)args[0].o, obj.Display);
+                        var _ring = new ZwpTabletPadRingV2((IntPtr)args[0].o, obj.Display!);
                         obj._onRing?.Invoke(_ring);
                     }
                     break;
                 case 2: // strip
                     if (obj._onStrip != null)
                     {
-                        ZwpTabletPadStripV2? _strip = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'strip'");
-                        _strip = new ZwpTabletPadStripV2((IntPtr)args[0].o, obj.Display);
+                        var _strip = new ZwpTabletPadStripV2((IntPtr)args[0].o, obj.Display!);
                         obj._onStrip?.Invoke(_strip);
                     }
                     break;
@@ -511,9 +508,8 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
                 case 6: // dial
                     if (obj._onDial != null)
                     {
-                        ZwpTabletPadDialV2? _dial = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'dial'");
-                        _dial = new ZwpTabletPadDialV2((IntPtr)args[0].o, obj.Display);
+                        var _dial = new ZwpTabletPadDialV2((IntPtr)args[0].o, obj.Display!);
                         obj._onDial?.Invoke(_dial);
                     }
                     break;

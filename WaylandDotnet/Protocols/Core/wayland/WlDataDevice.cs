@@ -383,16 +383,14 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlDataDevice)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
                 case 0: // data_offer
                     if (obj._onDataOffer != null)
                     {
-                        WlDataOffer? _id = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
-                        _id = new WlDataOffer((IntPtr)args[0].o, obj.Display);
+                        var _id = new WlDataOffer((IntPtr)args[0].o, obj.Display!);
                         obj._onDataOffer?.Invoke(_id);
                     }
                     break;
@@ -400,14 +398,15 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
                     if (obj._onEnter != null)
                     {
                         var _serial = args[0].u;
-                        WlSurface? _surface = null;
                         if (args[1].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'surface'");
-                        _surface = new WlSurface((IntPtr)args[1].o, obj.Display);
+                        var _surface = new WlSurface((IntPtr)args[1].o, obj.Display!);
                         var _x = args[2].f;
                         var _y = args[3].f;
                         WlDataOffer? _id = null;
-                        if (args[4].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
-                        _id = new WlDataOffer((IntPtr)args[4].o, obj.Display);
+                        if (args[4].o != (WlObject*)IntPtr.Zero)
+                        {
+                            _id = new WlDataOffer((IntPtr)args[4].o, obj.Display!);
+                        }
                         obj._onEnter?.Invoke(_serial, _surface, _x, _y, _id);
                     }
                     break;
@@ -436,8 +435,10 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
                     if (obj._onSelection != null)
                     {
                         WlDataOffer? _id = null;
-                        if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
-                        _id = new WlDataOffer((IntPtr)args[0].o, obj.Display);
+                        if (args[0].o != (WlObject*)IntPtr.Zero)
+                        {
+                            _id = new WlDataOffer((IntPtr)args[0].o, obj.Display!);
+                        }
                         obj._onSelection?.Invoke(_id);
                     }
                     break;

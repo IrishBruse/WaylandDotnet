@@ -983,7 +983,6 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlPointer)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
@@ -991,9 +990,8 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
                     if (obj._onEnter != null)
                     {
                         var _serial = args[0].u;
-                        WlSurface? _surface = null;
                         if (args[1].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'surface'");
-                        _surface = new WlSurface((IntPtr)args[1].o, obj.Display);
+                        var _surface = new WlSurface((IntPtr)args[1].o, obj.Display!);
                         var _surfaceX = args[2].f;
                         var _surfaceY = args[3].f;
                         obj._onEnter?.Invoke(_serial, _surface, _surfaceX, _surfaceY);
@@ -1003,9 +1001,8 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
                     if (obj._onLeave != null)
                     {
                         var _serial = args[0].u;
-                        WlSurface? _surface = null;
                         if (args[1].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'surface'");
-                        _surface = new WlSurface((IntPtr)args[1].o, obj.Display);
+                        var _surface = new WlSurface((IntPtr)args[1].o, obj.Display!);
                         obj._onLeave?.Invoke(_serial, _surface);
                     }
                     break;

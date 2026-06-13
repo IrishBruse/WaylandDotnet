@@ -621,7 +621,6 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverSeatV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
@@ -641,9 +640,8 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
                 case 2: // pointer_enter
                     if (obj._onPointerEnter != null)
                     {
-                        RiverWindowV1? _window = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'window'");
-                        _window = new RiverWindowV1((IntPtr)args[0].o, obj.Display);
+                        var _window = new RiverWindowV1((IntPtr)args[0].o, obj.Display!);
                         obj._onPointerEnter?.Invoke(_window);
                     }
                     break;
@@ -656,18 +654,16 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
                 case 4: // window_interaction
                     if (obj._onWindowInteraction != null)
                     {
-                        RiverWindowV1? _window = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'window'");
-                        _window = new RiverWindowV1((IntPtr)args[0].o, obj.Display);
+                        var _window = new RiverWindowV1((IntPtr)args[0].o, obj.Display!);
                         obj._onWindowInteraction?.Invoke(_window);
                     }
                     break;
                 case 5: // shell_surface_interaction
                     if (obj._onShellSurfaceInteraction != null)
                     {
-                        RiverShellSurfaceV1? _shellSurface = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'shell_surface'");
-                        _shellSurface = new RiverShellSurfaceV1((IntPtr)args[0].o, obj.Display);
+                        var _shellSurface = new RiverShellSurfaceV1((IntPtr)args[0].o, obj.Display!);
                         obj._onShellSurfaceInteraction?.Invoke(_shellSurface);
                     }
                     break;

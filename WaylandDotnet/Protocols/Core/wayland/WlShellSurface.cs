@@ -297,7 +297,6 @@ public sealed partial class WlShellSurface : WaylandObject, IWaylandObjectFactor
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlShellSurface)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

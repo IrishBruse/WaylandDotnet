@@ -147,7 +147,6 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlBuffer)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

@@ -164,7 +164,6 @@ public sealed partial class RiverXkbKeymapV1 : WaylandObject, IWaylandObjectFact
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverXkbKeymapV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

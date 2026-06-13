@@ -484,7 +484,6 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (XdgToplevel)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

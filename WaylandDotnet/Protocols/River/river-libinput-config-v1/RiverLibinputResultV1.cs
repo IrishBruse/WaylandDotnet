@@ -191,7 +191,6 @@ public sealed partial class RiverLibinputResultV1 : WaylandObject, IWaylandObjec
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverLibinputResultV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

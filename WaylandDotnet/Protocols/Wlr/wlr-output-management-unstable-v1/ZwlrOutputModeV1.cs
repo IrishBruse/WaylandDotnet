@@ -238,7 +238,6 @@ public sealed partial class ZwlrOutputModeV1 : WaylandObject, IWaylandObjectFact
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwlrOutputModeV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

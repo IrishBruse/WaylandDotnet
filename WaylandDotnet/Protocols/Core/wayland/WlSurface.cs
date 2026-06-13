@@ -317,25 +317,22 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlSurface)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
                 case 0: // enter
                     if (obj._onEnter != null)
                     {
-                        WlOutput? _output = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'output'");
-                        _output = new WlOutput((IntPtr)args[0].o, obj.Display);
+                        var _output = new WlOutput((IntPtr)args[0].o, obj.Display!);
                         obj._onEnter?.Invoke(_output);
                     }
                     break;
                 case 1: // leave
                     if (obj._onLeave != null)
                     {
-                        WlOutput? _output = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'output'");
-                        _output = new WlOutput((IntPtr)args[0].o, obj.Display);
+                        var _output = new WlOutput((IntPtr)args[0].o, obj.Display!);
                         obj._onLeave?.Invoke(_output);
                     }
                     break;

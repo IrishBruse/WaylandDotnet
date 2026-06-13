@@ -204,7 +204,6 @@ public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObje
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverXkbBindingsSeatV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

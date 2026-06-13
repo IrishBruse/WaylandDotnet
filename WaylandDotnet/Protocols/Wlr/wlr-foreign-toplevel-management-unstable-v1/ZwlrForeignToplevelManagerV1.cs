@@ -174,16 +174,14 @@ public sealed partial class ZwlrForeignToplevelManagerV1 : WaylandObject, IWayla
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwlrForeignToplevelManagerV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
                 case 0: // toplevel
                     if (obj._onToplevel != null)
                     {
-                        ZwlrForeignToplevelHandleV1? _toplevel = null;
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'toplevel'");
-                        _toplevel = new ZwlrForeignToplevelHandleV1((IntPtr)args[0].o, obj.Display);
+                        var _toplevel = new ZwlrForeignToplevelHandleV1((IntPtr)args[0].o, obj.Display!);
                         obj._onToplevel?.Invoke(_toplevel);
                     }
                     break;

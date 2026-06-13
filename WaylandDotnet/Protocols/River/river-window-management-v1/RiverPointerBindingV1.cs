@@ -210,7 +210,6 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverPointerBindingV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {

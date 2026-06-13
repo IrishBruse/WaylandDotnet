@@ -220,7 +220,6 @@ public sealed partial class ZwpLinuxDmabufV1 : WaylandObject, IWaylandObjectFact
         {
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwpLinuxDmabufV1)handle.Target!;
-            var display = obj.Display;
 
             switch (opcode)
             {
