@@ -610,6 +610,11 @@ events and then a tranche_done event), then one done event.
 With version 6 and above, the compositor must always advertise at least
 one tranche with the sampling flag set.
 
+The compositor sends a format_table event at least once for each dmabuf
+parameters feedback object, before any tranche events. Unless the format
+table contents change later, the compositor is free not to send another
+format_table event for the same dmabuf parameters feedback object.
+
 
 <h3 class="decleration request" title="Destroy request">
     <a href="#/Protocols/Stable/linux-dmabuf-v1/?id=zwplinuxdmabuffeedbackv1_destroy" id="zwplinuxdmabuffeedbackv1_destroy">
