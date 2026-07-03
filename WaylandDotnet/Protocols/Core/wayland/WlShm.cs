@@ -23,7 +23,7 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// wl_shm
 /// <para> shared memory support </para>
-/// <para> Version: 2 </para>
+/// <para> Version: 3 </para>
 /// <see>https://wayland.app/protocols/wayland/#wl_shm</see>
 /// </summary>
 public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
@@ -33,7 +33,7 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
     /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_shm";
     /// <summary> Interface version supported by this binding. </summary>
-    public const int InterfaceVersion = 2;
+    public const int InterfaceVersion = 3;
 
     private bool disposed;
 
@@ -62,7 +62,7 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
         /// </summary>
         InvalidFormat = 0,
         /// <summary>
-        /// invalid size or stride during pool or buffer creation
+        /// invalid size or stride during pool creation
         /// </summary>
         InvalidStride = 1,
         /// <summary>

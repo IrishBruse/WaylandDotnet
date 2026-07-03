@@ -100,11 +100,15 @@
 
     <event name="delete_id">
       <description summary="acknowledge object ID deletion">
-        This event is used internally by the object ID management
-        logic. When a client deletes an object that it had created,
-        the server will send this event to acknowledge that it has
-        seen the delete request. When the client receives this event,
-        it will know that it can safely reuse the object ID.
+        This event is used internally by the object ID management logic.
+
+        When the server stops using an object created by the client, the server
+        sends this event. In particular, after sending this event, the server
+        will no longer send any events that contain the object as the receiver
+        or as an argument.
+
+        When the client receives this event, it knows that it can reuse the
+        object ID.
       </description>
       <arg name="id" type="uint" summary="deleted object ID"/>
     </event>
@@ -220,7 +224,7 @@
     </request>
   </interface>
 
-  <interface name="wl_shm_pool" version="2">
+  <interface name="wl_shm_pool" version="3">
     <description summary="a shared memory pool">
       The wl_shm_pool object encapsulates a piece of memory shared
       between the compositor and client.  Through the wl_shm_pool
@@ -230,6 +234,14 @@
       setup/teardown overhead and is useful when interactively resizing
       a surface or for many small buffers.
     </description>
+
+    <enum name="error" since="3">
+      <description summary="wl_shm_pool error values">
+        These errors can be emitted in response to wl_shm_pool requests.
+      </description>
+      <entry name="invalid_format" value="0" summary="buffer format is not known"/>
+      <entry name="invalid_stride" value="1" summary="invalid size or stride during buffer creation"/>
+    </enum>
 
     <request name="create_buffer">
       <description summary="create a buffer from the pool">
@@ -280,7 +292,7 @@
     </request>
   </interface>
 
-  <interface name="wl_shm" version="2">
+  <interface name="wl_shm" version="3">
     <description summary="shared memory support">
       A singleton global object that provides support for shared
       memory.
@@ -293,12 +305,12 @@
       that can be used for buffers.
     </description>
 
-    <enum name="error">
+    <enum name="error" since="3">
       <description summary="wl_shm error values">
         These errors can be emitted in response to wl_shm requests.
       </description>
-      <entry name="invalid_format" value="0" summary="buffer format is not known"/>
-      <entry name="invalid_stride" value="1" summary="invalid size or stride during pool or buffer creation"/>
+      <entry name="invalid_format" value="0" summary="buffer format is not known" deprecated-since="3"/>
+      <entry name="invalid_stride" value="1" summary="invalid size or stride during pool creation"/>
       <entry name="invalid_fd" value="2" summary="mmapping the file descriptor failed"/>
     </enum>
 
