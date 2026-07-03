@@ -1,3 +1,5 @@
 bin/
 obj/
 tmp/
+__pycache__/
+*.py[cod]
