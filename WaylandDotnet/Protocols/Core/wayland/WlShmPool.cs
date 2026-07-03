@@ -23,7 +23,7 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// wl_shm_pool
 /// <para> a shared memory pool </para>
-/// <para> Version: 2 </para>
+/// <para> Version: 3 </para>
 /// <see>https://wayland.app/protocols/wayland/#wl_shm_pool</see>
 /// </summary>
 public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlShmPool>
@@ -33,7 +33,7 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
     /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wl_shm_pool";
     /// <summary> Interface version supported by this binding. </summary>
-    public const int InterfaceVersion = 2;
+    public const int InterfaceVersion = 3;
 
     private bool disposed;
 
@@ -50,6 +50,19 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
         Display = display;
         Handle = handle;
     }
+    /// <summary> wl_shm_pool error values </summary>
+    public enum Error : uint
+    {
+        /// <summary>
+        /// buffer format is not known
+        /// </summary>
+        InvalidFormat = 0,
+        /// <summary>
+        /// invalid size or stride during buffer creation
+        /// </summary>
+        InvalidStride = 1,
+    }
+
     /// <summary>
     /// Create a buffer from the pool
     /// <para>

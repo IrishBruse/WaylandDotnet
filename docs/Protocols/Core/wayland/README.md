@@ -119,11 +119,15 @@ void DeleteIdHandler(uint id)
 
 **Acknowledge object ID deletion**
 
-This event is used internally by the object ID management
-logic. When a client deletes an object that it had created,
-the server will send this event to acknowledge that it has
-seen the delete request. When the client receives this event,
-it will know that it can safely reuse the object ID.
+This event is used internally by the object ID management logic.
+
+When the server stops using an object created by the client, the server
+sends this event. In particular, after sending this event, the server
+will no longer send any events that contain the object as the receiver
+or as an argument.
+
+When the client receives this event, it knows that it can reuse the
+object ID.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="#/Protocols/Core/wayland/?id=wldisplay_error_enum" id="wldisplay_error_enum">
@@ -349,7 +353,7 @@ This request destroys the wl_compositor. This has no effect on any other objects
         <span class="codicon codicon-symbol-interface"></span>
         WlShmPool
     </a>
-    <span class="pill">version 2</span>
+    <span class="pill">version 3</span>
 </h2>
 
 A shared memory pool
@@ -447,12 +451,33 @@ file descriptor passed at creation time. It is the client's
 responsibility to ensure that the file is at least as big as
 the new pool size.
 
+<h3 class="decleration enum" title="Error enum">
+    <a href="#/Protocols/Core/wayland/?id=wlshmpool_error_enum" id="wlshmpool_error_enum">
+        <span class="codicon codicon-symbol-enum enum"></span>
+        WlShmPool.<span class="enum">Error</span>
+    </a>
+</h3>
+
+```csharp
+public enum Error
+```
+
+Wl_shm_pool error values
+
+
+These errors can be emitted in response to wl_shm_pool requests.
+
+
+| Value | Integer | Description |
+| --- | --- | --- |
+| InvalidFormat | 0 | Buffer format is not known |
+| InvalidStride | 1 | Invalid size or stride during buffer creation |
 <h2 class="decleration interface">
     <a href="#/Protocols/Core/wayland/?id=wlshm" id="wlshm">
         <span class="codicon codicon-symbol-interface"></span>
         WlShm
     </a>
-    <span class="pill">version 2</span>
+    <span class="pill">version 3</span>
 </h2>
 
 Shared memory support
@@ -560,7 +585,7 @@ These errors can be emitted in response to wl_shm requests.
 | Value | Integer | Description |
 | --- | --- | --- |
 | InvalidFormat | 0 | Buffer format is not known |
-| InvalidStride | 1 | Invalid size or stride during pool or buffer creation |
+| InvalidStride | 1 | Invalid size or stride during pool creation |
 | InvalidFd | 2 | Mmapping the file descriptor failed |
 <h3 class="decleration enum" title="Format enum">
     <a href="#/Protocols/Core/wayland/?id=wlshm_format_enum" id="wlshm_format_enum">

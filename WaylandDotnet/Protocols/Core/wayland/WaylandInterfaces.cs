@@ -235,7 +235,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wl_shm_pool
-    /// Version: 2
+    /// Version: 3
     /// Requests: 3, Events: 0
     /// </summary>
     [ModuleInitializer]
@@ -265,7 +265,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wl_shm_pool"),
-            Version = 2,
+            Version = 3,
             MethodCount = 3,
             Methods = requests,
             EventCount = 0,
@@ -279,7 +279,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wl_shm
-    /// Version: 2
+    /// Version: 3
     /// Requests: 2, Events: 1
     /// </summary>
     [ModuleInitializer]
@@ -312,7 +312,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wl_shm"),
-            Version = 2,
+            Version = 3,
             MethodCount = 2,
             Methods = requests,
             EventCount = 1,
