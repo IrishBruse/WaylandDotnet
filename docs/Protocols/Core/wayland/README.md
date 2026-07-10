@@ -629,7 +629,7 @@ extension, pre-multiplied alpha is used for pixel values.
 | Bgrx4444 | 0x32315842 | 16-bit BGRx format, [15:0] B:G:R:x 4:4:4:4 little endian |
 | Argb4444 | 0x32315241 | 16-bit ARGB format, [15:0] A:R:G:B 4:4:4:4 little endian |
 | Abgr4444 | 0x32314241 | 16-bit ABGR format, [15:0] A:B:G:R 4:4:4:4 little endian |
-| Rgba4444 | 0x32314152 | 16-bit RBGA format, [15:0] R:G:B:A 4:4:4:4 little endian |
+| Rgba4444 | 0x32314152 | 16-bit RGBA format, [15:0] R:G:B:A 4:4:4:4 little endian |
 | Bgra4444 | 0x32314142 | 16-bit BGRA format, [15:0] B:G:R:A 4:4:4:4 little endian |
 | Xrgb1555 | 0x35315258 | 16-bit xRGB format, [15:0] x:R:G:B 1:5:5:5 little endian |
 | Xbgr1555 | 0x35314258 | 16-bit xBGR 1555 format, [15:0] x:B:G:R 1:5:5:5 little endian |
@@ -747,9 +747,9 @@ extension, pre-multiplied alpha is used for pixel values.
 | Gr1616f | 0x48205247 | [31:0] G:R 16:16 little endian |
 | Bgr161616f | 0x48524742 | [47:0] B:G:R 16:16:16 little endian |
 | R32f | 0x46202052 | [31:0] R 32 little endian |
-| Gr3232f | 0x46205247 | [63:0] R:G 32:32 little endian |
-| Bgr323232f | 0x46524742 | [95:0] R:G:B 32:32:32 little endian |
-| Abgr32323232f | 0x46384241 | [127:0] R:G:B:A 32:32:32:32 little endian |
+| Gr3232f | 0x46205247 | [63:0] G:R 32:32 little endian |
+| Bgr323232f | 0x46524742 | [95:0] B:G:R 32:32:32 little endian |
+| Abgr32323232f | 0x46384241 | [127:0] A:B:G:R 32:32:32:32 little endian |
 | Nv20 | 0x3032564e | 2x1 subsampled Cr:Cb plane |
 | Nv30 | 0x3033564e | Non-subsampled Cr:Cb plane |
 | S010 | 0x30313053 | 2x2 subsampled Cb (1) and Cr (2) planes 10 bits per channel |
@@ -761,6 +761,11 @@ extension, pre-multiplied alpha is used for pixel values.
 | S016 | 0x36313053 | 2x2 subsampled Cb (1) and Cr (2) planes 16 bits per channel |
 | S216 | 0x36313253 | 2x1 subsampled Cb (1) and Cr (2) planes 16 bits per channel |
 | S416 | 0x36313453 | Non-subsampled Cb (1) and Cr (2) planes 16 bits per channel |
+| Xvuy2101010 | 0x30335958 | [31:0] x:Cr:Cb:Y 2:10:10:10 little endian |
+| P230 | 0x30333250 | 2x1 subsampled Cr:Cb plane 10 bits per channel packed |
+| T430 | 0x30333454 |  |
+| Y8 | 0x59455247 | 8-bit Y-only |
+| Xyyy2101010 | 0x34415059 | [31:0] x:Y2:Y1:Y0 2:10:10:10 little endian |
 <h2 class="decleration interface">
     <a href="#/Protocols/Core/wayland/?id=wlbuffer" id="wlbuffer">
         <span class="codicon codicon-symbol-interface"></span>
