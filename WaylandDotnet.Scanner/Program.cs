@@ -10,6 +10,18 @@ using WaylandDotnet.Scanner.Data;
 
 public class Program
 {
+    static readonly HttpClient ProtocolDownloadClient = CreateProtocolDownloadClient();
+
+    static HttpClient CreateProtocolDownloadClient()
+    {
+        var client = new HttpClient
+        {
+            Timeout = TimeSpan.FromMinutes(2),
+        };
+        client.DefaultRequestHeaders.UserAgent.ParseAdd("WaylandDotnet-Scanner/1.0");
+        return client;
+    }
+
     public static int Main(string[] args)
     {
         var inputArg = new Argument<FileInfo?>("input")
@@ -266,7 +278,12 @@ public class Program
 
         ScannerConsole.WritePhase("download");
 
-        Parallel.ForEach(downloads, item =>
+        var parallelOptions = new ParallelOptions
+        {
+            MaxDegreeOfParallelism = 2,
+        };
+
+        Parallel.ForEach(downloads, parallelOptions, item =>
         {
             var dir = Path.GetDirectoryName(item.Dest);
             if (dir != null)
@@ -274,8 +291,7 @@ public class Program
                 Directory.CreateDirectory(dir);
             }
 
-            using var http = new HttpClient();
-            var bytes = http.GetByteArrayAsync(item.Url).GetAwaiter().GetResult();
+            var bytes = DownloadProtocolBytes(item.Url);
             File.WriteAllBytes(item.Dest, bytes);
         });
 
@@ -290,6 +306,28 @@ public class Program
 
         ScannerConsole.WriteDone($"Done - {downloads.Length} protocols");
     }
+
+    static byte[] DownloadProtocolBytes(string url)
+    {
+        const int maxAttempts = 5;
+
+        for (var attempt = 1; attempt <= maxAttempts; attempt++)
+        {
+            try
+            {
+                return ProtocolDownloadClient.GetByteArrayAsync(url).GetAwaiter().GetResult();
+            }
+            catch (Exception ex) when (attempt < maxAttempts && IsTransientDownloadError(ex))
+            {
+                Thread.Sleep(TimeSpan.FromSeconds(Math.Pow(2, attempt - 1)));
+            }
+        }
+
+        throw new InvalidOperationException($"Failed to download {url} after {maxAttempts} attempts.");
+    }
+
+    static bool IsTransientDownloadError(Exception ex) =>
+        ex is HttpRequestException or HttpIOException or TaskCanceledException;
 
     static RootConfig ParseRootConfig(FileInfo input)
     {
