@@ -65,6 +65,11 @@ internal static class ScannerConsole
         Console.WriteLine();
     }
 
+    public static void WriteWarning(string message)
+    {
+        Console.WriteLine(Paint(Yellow, $"warning: {message}"));
+    }
+
     public static void WriteInfo(string message)
     {
         Console.WriteLine(Paint(Dim, message));

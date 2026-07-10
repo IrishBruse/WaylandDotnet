@@ -278,12 +278,10 @@ public class Program
 
         ScannerConsole.WritePhase("download");
 
-        var parallelOptions = new ParallelOptions
-        {
-            MaxDegreeOfParallelism = 2,
-        };
+        var downloaded = new List<(string Namespace, string Name)>();
+        var skipped = new List<(string Namespace, string Name, string Reason)>();
 
-        Parallel.ForEach(downloads, parallelOptions, item =>
+        foreach (var item in downloads)
         {
             var dir = Path.GetDirectoryName(item.Dest);
             if (dir != null)
@@ -291,43 +289,65 @@ public class Program
                 Directory.CreateDirectory(dir);
             }
 
-            var bytes = DownloadProtocolBytes(item.Url);
+            if (!TryDownloadProtocolBytes(item.Url, item.Name, out var bytes, out var skipReason))
+            {
+                ScannerConsole.WriteWarning(skipReason);
+                skipped.Add((item.Namespace, item.Name, skipReason));
+                continue;
+            }
+
             File.WriteAllBytes(item.Dest, bytes);
-        });
+            downloaded.Add((item.Namespace, item.Name));
+        }
 
         foreach (var group in downloads.GroupBy(d => d.Namespace).OrderBy(g => g.Key))
         {
             ScannerConsole.WriteSection(group.Key);
             foreach (var item in group.OrderBy(d => d.Name))
             {
-                ScannerConsole.WriteDownloaded(item.Name);
+                if (downloaded.Any(d => d.Namespace == item.Namespace && d.Name == item.Name))
+                {
+                    ScannerConsole.WriteDownloaded(item.Name);
+                }
+                else if (skipped.Any(s => s.Namespace == item.Namespace && s.Name == item.Name))
+                {
+                    ScannerConsole.WriteSkipped(item.Name);
+                }
             }
         }
 
-        ScannerConsole.WriteDone($"Done - {downloads.Length} protocols");
+        var summary = skipped.Count == 0
+            ? $"Done - {downloaded.Count} protocols"
+            : $"Done - {downloaded.Count} protocols, {skipped.Count} skipped";
+        ScannerConsole.WriteDone(summary);
     }
 
-    static byte[] DownloadProtocolBytes(string url)
+    static bool TryDownloadProtocolBytes(
+        string url,
+        string name,
+        out byte[] bytes,
+        out string skipReason)
     {
-        const int maxAttempts = 5;
+        bytes = [];
+        skipReason = "";
 
-        for (var attempt = 1; attempt <= maxAttempts; attempt++)
+        try
         {
-            try
-            {
-                return ProtocolDownloadClient.GetByteArrayAsync(url).GetAwaiter().GetResult();
-            }
-            catch (Exception ex) when (attempt < maxAttempts && IsTransientDownloadError(ex))
-            {
-                Thread.Sleep(TimeSpan.FromSeconds(Math.Pow(2, attempt - 1)));
-            }
+            bytes = ProtocolDownloadClient.GetByteArrayAsync(url).GetAwaiter().GetResult();
+            return true;
         }
-
-        throw new InvalidOperationException($"Failed to download {url} after {maxAttempts} attempts.");
+        catch (HttpRequestException ex) when (IsSkippableHttpError(ex))
+        {
+            skipReason = $"Skipped {name}: upstream returned {(int?)ex.StatusCode ?? 503}";
+            return false;
+        }
     }
 
-    static bool IsTransientDownloadError(Exception ex) =>
-        ex is HttpRequestException or HttpIOException or TaskCanceledException;
+    static bool IsSkippableHttpError(HttpRequestException ex)
+    {
+        var statusCode = (int?)ex.StatusCode;
+        return statusCode is 502 or 503 or 504;
+    }
 
     static RootConfig ParseRootConfig(FileInfo input)
     {
