@@ -119,7 +119,7 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
         /// </summary>
         Abgr4444 = 0x32314241,
         /// <summary>
-        /// 16-bit RBGA format, [15:0] R:G:B:A 4:4:4:4 little endian
+        /// 16-bit RGBA format, [15:0] R:G:B:A 4:4:4:4 little endian
         /// </summary>
         Rgba4444 = 0x32314152,
         /// <summary>
@@ -591,15 +591,15 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
         /// </summary>
         R32f = 0x46202052,
         /// <summary>
-        /// [63:0] R:G 32:32 little endian
+        /// [63:0] G:R 32:32 little endian
         /// </summary>
         Gr3232f = 0x46205247,
         /// <summary>
-        /// [95:0] R:G:B 32:32:32 little endian
+        /// [95:0] B:G:R 32:32:32 little endian
         /// </summary>
         Bgr323232f = 0x46524742,
         /// <summary>
-        /// [127:0] R:G:B:A 32:32:32:32 little endian
+        /// [127:0] A:B:G:R 32:32:32:32 little endian
         /// </summary>
         Abgr32323232f = 0x46384241,
         /// <summary>
@@ -646,6 +646,26 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
         /// non-subsampled Cb (1) and Cr (2) planes 16 bits per channel
         /// </summary>
         S416 = 0x36313453,
+        /// <summary>
+        /// [31:0] x:Cr:Cb:Y 2:10:10:10 little endian
+        /// </summary>
+        Xvuy2101010 = 0x30335958,
+        /// <summary>
+        /// 2x1 subsampled Cr:Cb plane 10 bits per channel packed
+        /// </summary>
+        P230 = 0x30333250,
+        /// <summary>
+        ///
+        /// </summary>
+        T430 = 0x30333454,
+        /// <summary>
+        /// 8-bit Y-only
+        /// </summary>
+        Y8 = 0x59455247,
+        /// <summary>
+        /// [31:0] x:Y2:Y1:Y0 2:10:10:10 little endian
+        /// </summary>
+        Xyyy2101010 = 0x34415059,
     }
 
     /// <summary>
