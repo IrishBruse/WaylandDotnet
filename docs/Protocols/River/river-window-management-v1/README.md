@@ -366,6 +366,10 @@ This event indicates that the session has been locked.
 The window manager may wish to restrict which key bindings are available
 while locked or otherwise use this information.
 
+If the session is currently locked when the river_window_manager_v1
+object is created, the session_locked event will be sent in the first
+manage sequence.
+
 This event will be followed by a manage_start event after all other new
 state has been sent by the server.
 
@@ -1248,8 +1252,8 @@ All min/max width/height values must be strictly greater than or equal
 to 0. A value of 0 indicates that the window has no preference for that
 value.
 
-The min_width/min_height must be strictly less than or equal to the
-max_width/max_height.
+If the max_width/max_height is greater than 0, the min_width/min_height
+must be strictly less than or equal to the max_width/max_height.
 
 This event will be followed by a manage_start event after all other new
 state has been sent by the server.
@@ -2681,6 +2685,10 @@ coordinate space.
 
 If the given position is outside the bounds of all outputs, the pointer
 will be warped to the closest point inside an output instead.
+
+If an op_start_pointer request is made during the same manage sequence
+as a pointer_warp request, the warp is applied first by the server
+regardless of the relative ordering of the two requests.
 
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.

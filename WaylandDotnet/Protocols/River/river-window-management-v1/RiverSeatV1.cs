@@ -980,6 +980,10 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// If the given position is outside the bounds of all outputs, the pointer<br/>
     /// will be warped to the closest point inside an output instead.<br/>
     /// <br/>
+    /// If an op_start_pointer request is made during the same manage sequence<br/>
+    /// as a pointer_warp request, the warp is applied first by the server<br/>
+    /// regardless of the relative ordering of the two requests.<br/>
+    /// <br/>
     /// This request modifies window management state and may only be made as<br/>
     /// part of a manage sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
