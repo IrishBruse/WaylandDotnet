@@ -9,6 +9,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 concurrency:
   group: update-scanner
@@ -49,15 +50,47 @@ jobs:
           PR_BODY_PATH: ${{ runner.temp }}/pr-body.md
         run: python3 .github/scripts/summarize-protocol-changes.py >> "$GITHUB_OUTPUT"
 
+      - name: Configure git identity for automation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
       - name: Create pull request
+        id: pr
+        continue-on-error: true
         uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: automated/scanner-update
           delete-branch: true
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           commit-message: ${{ steps.summary.outputs.commit_message }}
           title: ${{ steps.summary.outputs.title }}
           body-path: ${{ runner.temp }}/pr-body.md
           labels: |
             automated
             protocols
+
+      - name: Open issue when pull request creation fails
+        if: steps.pr.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          compare_url="https://github.com/${{ github.repository }}/compare/main...automated/scanner-update"
+          run_url="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          body_file="${{ runner.temp }}/pr-issue-body.md"
+          {
+            echo "The scanner workflow updated \`automated/scanner-update\` but GitHub did not create a pull request."
+            echo ""
+            echo "**Compare and open a PR manually:** ${compare_url}"
+            echo ""
+            echo "**Workflow run:** ${run_url}"
+            echo ""
+            echo "If this repeats, check [GitHub pull request creation](https://github.com/${{ github.repository }}/pulls) or contact GitHub support with the request id from the failed job log."
+          } > "$body_file"
+          gh issue create \
+            --title "Scanner update: pull request creation failed" \
+            --label automated \
+            --body-file "$body_file"
+          echo "::warning::create-pull-request failed; opened an issue with the compare link for a manual PR."
