@@ -2070,7 +2070,8 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
     /// <br/>
     /// Make the window fullscreen on the given output. If multiple windows are<br/>
     /// fullscreen on the same output at the same time only the "top" window in<br/>
-    /// rendering order shall be displayed.<br/>
+    /// rendering order shall be displayed. If the window is already fullscreen<br/>
+    /// on a different output, the window is switched to the new output.<br/>
     /// <br/>
     /// All river_shell_surface_v1 objects above the top fullscreen window in<br/>
     /// the rendering order will continue to be rendered.<br/>
