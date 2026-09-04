@@ -9,7 +9,7 @@
         <span class="codicon codicon-symbol-interface"></span>
         RiverXkbConfigV1
     </a>
-    <span class="pill">version 2</span>
+    <span class="pill">version 3</span>
 </h2>
 
 Xkb config global interface
@@ -166,7 +166,7 @@ public enum KeymapFormat
         <span class="codicon codicon-symbol-interface"></span>
         RiverXkbKeymapV1
     </a>
-    <span class="pill">version 2</span>
+    <span class="pill">version 3</span>
 </h2>
 
 Xkbcommon keymap
@@ -237,7 +237,7 @@ river_xkb_keyboard_v1.set_keymap.
         <span class="codicon codicon-symbol-interface"></span>
         RiverXkbKeyboardV1
     </a>
-    <span class="pill">version 2</span>
+    <span class="pill">version 3</span>
 </h2>
 
 Xkbcommon keyboard device
@@ -392,6 +392,40 @@ void NumlockDisable()
 **Disable numlock**
 
 Disable numlock for the keyboard.
+
+<h3 class="decleration request" title="ScrolllockEnable request">
+    <a href="#/Protocols/River/river-xkb-config-v1/?id=riverxkbkeyboardv1_scrolllockenable" id="riverxkbkeyboardv1_scrolllockenable">
+        <span class="codicon codicon-symbol-method method"></span>
+        RiverXkbKeyboardV1.<span class="method">ScrolllockEnable</span>
+    </a>
+    <span class="pill">since 3</span>
+</h3>
+
+```csharp
+void ScrolllockEnable()
+```
+
+
+**Enable scrolllock**
+
+Enable scrolllock for the keyboard.
+
+<h3 class="decleration request" title="ScrolllockDisable request">
+    <a href="#/Protocols/River/river-xkb-config-v1/?id=riverxkbkeyboardv1_scrolllockdisable" id="riverxkbkeyboardv1_scrolllockdisable">
+        <span class="codicon codicon-symbol-method method"></span>
+        RiverXkbKeyboardV1.<span class="method">ScrolllockDisable</span>
+    </a>
+    <span class="pill">since 3</span>
+</h3>
+
+```csharp
+void ScrolllockDisable()
+```
+
+
+**Disable scrolllock**
+
+Disable scrolllock for the keyboard.
 
 <h3 class="decleration event" title="Removed event">
     <a href="#/Protocols/River/river-xkb-config-v1/?id=onriverxkbkeyboardv1_removed" id="onriverxkbkeyboardv1_removed">
@@ -555,6 +589,46 @@ sent.
 
 This allows changes to one or more river_xkb_keyboard_v1 properties to
 be seen as atomic, even if they happen via multiple events.
+
+<h3 class="decleration event" title="ScrolllockEnabled event">
+    <a href="#/Protocols/River/river-xkb-config-v1/?id=onriverxkbkeyboardv1_scrolllockenabled" id="onriverxkbkeyboardv1_scrolllockenabled">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverXkbKeyboardV1.<span class="event">OnScrolllockEnabled</span>
+    </a>
+    <span class="pill">since 3</span>
+</h3>
+
+```csharp
+void ScrolllockEnabledHandler()
+```
+
+
+**Scrolllock is currently enabled**
+
+Scrolllock is currently enabled for the keyboard.
+
+This event is sent once when the river_xkb_keyboard_v1 is created and
+again whenever the scrolllock state changes.
+
+<h3 class="decleration event" title="ScrolllockDisabled event">
+    <a href="#/Protocols/River/river-xkb-config-v1/?id=onriverxkbkeyboardv1_scrolllockdisabled" id="onriverxkbkeyboardv1_scrolllockdisabled">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverXkbKeyboardV1.<span class="event">OnScrolllockDisabled</span>
+    </a>
+    <span class="pill">since 3</span>
+</h3>
+
+```csharp
+void ScrolllockDisabledHandler()
+```
+
+
+**Scrolllock is currently disabled**
+
+Scrolllock is currently disabled for the keyboard.
+
+This event is sent once when the river_xkb_keyboard_v1 is created and
+again whenever the scrolllock state changes.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="#/Protocols/River/river-xkb-config-v1/?id=riverxkbkeyboardv1_error_enum" id="riverxkbkeyboardv1_error_enum">

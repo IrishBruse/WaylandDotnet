@@ -494,7 +494,7 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
     /// request is never made, the preferred presentation mode is vsync.<br/>
     /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
-    /// render sequence, see the river_window_manager_v1 description.<br/>
+    /// manage or render sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
     /// </para>
     /// </summary>

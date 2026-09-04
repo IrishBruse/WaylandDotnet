@@ -23,7 +23,7 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_xkb_keyboard_v1
 /// <para> xkbcommon keyboard device </para>
-/// <para> Version: 2 </para>
+/// <para> Version: 3 </para>
 /// <see>https://wayland.app/protocols/river-xkb-config-v1/#river_xkb_keyboard_v1</see>
 /// </summary>
 public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFactory<RiverXkbKeyboardV1>
@@ -33,7 +33,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
     /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_xkb_keyboard_v1";
     /// <summary> Interface version supported by this binding. </summary>
-    public const int InterfaceVersion = 2;
+    public const int InterfaceVersion = 3;
 
     private bool disposed;
 
@@ -397,6 +397,88 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
         }
     }
 
+    /// <summary>
+    /// Scrolllock is currently enabled
+    /// <para>
+    ///
+    /// Scrolllock is currently enabled for the keyboard.
+    ///
+    /// This event is sent once when the river_xkb_keyboard_v1 is created and
+    /// again whenever the scrolllock state changes.
+    /// 
+    /// </para>
+    /// </summary>
+    public delegate void ScrolllockEnabledHandler();
+
+    private ScrolllockEnabledHandler? _onScrolllockEnabled;
+
+    /// <summary>
+    /// Scrolllock is currently enabled
+    /// <para>
+    ///
+    /// Scrolllock is currently enabled for the keyboard.
+    ///
+    /// This event is sent once when the river_xkb_keyboard_v1 is created and
+    /// again whenever the scrolllock state changes.
+    /// 
+    /// </para>
+    /// </summary>
+    public event ScrolllockEnabledHandler? OnScrolllockEnabled
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onScrolllockEnabled += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onScrolllockEnabled -= value;
+        }
+    }
+
+    /// <summary>
+    /// Scrolllock is currently disabled
+    /// <para>
+    ///
+    /// Scrolllock is currently disabled for the keyboard.
+    ///
+    /// This event is sent once when the river_xkb_keyboard_v1 is created and
+    /// again whenever the scrolllock state changes.
+    /// 
+    /// </para>
+    /// </summary>
+    public delegate void ScrolllockDisabledHandler();
+
+    private ScrolllockDisabledHandler? _onScrolllockDisabled;
+
+    /// <summary>
+    /// Scrolllock is currently disabled
+    /// <para>
+    ///
+    /// Scrolllock is currently disabled for the keyboard.
+    ///
+    /// This event is sent once when the river_xkb_keyboard_v1 is created and
+    /// again whenever the scrolllock state changes.
+    /// 
+    /// </para>
+    /// </summary>
+    public event ScrolllockDisabledHandler? OnScrolllockDisabled
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onScrolllockDisabled += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onScrolllockDisabled -= value;
+        }
+    }
+
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -482,6 +564,18 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
                     if (obj._onDone != null)
                     {
                         obj._onDone?.Invoke();
+                    }
+                    break;
+                case 8: // scrolllock_enabled
+                    if (obj._onScrolllockEnabled != null)
+                    {
+                        obj._onScrolllockEnabled?.Invoke();
+                    }
+                    break;
+                case 9: // scrolllock_disabled
+                    if (obj._onScrolllockDisabled != null)
+                    {
+                        obj._onScrolllockDisabled?.Invoke();
                     }
                     break;
                 default:
@@ -705,6 +799,58 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
         var args = stackalloc WlArgument[0];
 
         const uint opcode = 7;
+
+        var newProxy = WaylandNative.ProxyMarshalArrayFlags(
+            Handle,
+            opcode,
+            (WlInterface*)IntPtr.Zero,
+            0,
+            0,
+            (nint)args
+        );
+    }
+
+    /// <summary>
+    /// Enable scrolllock
+    /// <para>
+    /// <br/>
+    /// Enable scrolllock for the keyboard.<br/>
+    /// <br/>
+    /// </para>
+    /// </summary>
+    public unsafe void ScrolllockEnable()
+    {
+        ObjectDisposedException.ThrowIf(disposed, this);
+
+        var args = stackalloc WlArgument[0];
+
+        const uint opcode = 8;
+
+        var newProxy = WaylandNative.ProxyMarshalArrayFlags(
+            Handle,
+            opcode,
+            (WlInterface*)IntPtr.Zero,
+            0,
+            0,
+            (nint)args
+        );
+    }
+
+    /// <summary>
+    /// Disable scrolllock
+    /// <para>
+    /// <br/>
+    /// Disable scrolllock for the keyboard.<br/>
+    /// <br/>
+    /// </para>
+    /// </summary>
+    public unsafe void ScrolllockDisable()
+    {
+        ObjectDisposedException.ThrowIf(disposed, this);
+
+        var args = stackalloc WlArgument[0];
+
+        const uint opcode = 9;
 
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
