@@ -136,7 +136,7 @@ public sealed partial class RiverShellSurfaceV1 : WaylandObject, IWaylandObjectF
     /// so is a protocol error.<br/>
     /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
-    /// render sequence, see the river_window_manager_v1 description.<br/>
+    /// manage or render sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
     /// </para>
     /// </summary>

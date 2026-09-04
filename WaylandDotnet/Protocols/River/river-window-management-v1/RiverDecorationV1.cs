@@ -93,7 +93,7 @@ public sealed partial class RiverDecorationV1 : WaylandObject, IWaylandObjectFac
     /// protocol and left up to the compositor.<br/>
     /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
-    /// render sequence, see the river_window_manager_v1 description.<br/>
+    /// manage or render sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
     /// </para>
     /// </summary>
@@ -130,7 +130,7 @@ public sealed partial class RiverDecorationV1 : WaylandObject, IWaylandObjectFac
     /// to do so is a protocol error.<br/>
     /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
-    /// render sequence, see the river_window_manager_v1 description.<br/>
+    /// manage or render sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
     /// </para>
     /// </summary>

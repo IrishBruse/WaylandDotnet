@@ -88,7 +88,7 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     /// this protocol and left up to the compositor.<br/>
     /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
-    /// render sequence, see the river_window_manager_v1 description.<br/>
+    /// manage or render sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
     /// </para>
     /// </summary>
@@ -120,7 +120,7 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     /// render list.<br/>
     /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
-    /// render sequence, see the river_window_manager_v1 description.<br/>
+    /// manage or render sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
     /// </para>
     /// </summary>
@@ -150,7 +150,7 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     /// render list.<br/>
     /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
-    /// render sequence, see the river_window_manager_v1 description.<br/>
+    /// manage or render sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
     /// </para>
     /// </summary>
@@ -190,7 +190,7 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     /// 3. B.place_above(A) -&gt; A, B, C<br/>
     /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
-    /// render sequence, see the river_window_manager_v1 description.<br/>
+    /// manage or render sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
     /// </para>
     /// </summary>
@@ -231,7 +231,7 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     /// 3. B.place_below(C) -&gt; A, B, C<br/>
     /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
-    /// render sequence, see the river_window_manager_v1 description.<br/>
+    /// manage or render sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
     /// </para>
     /// </summary>

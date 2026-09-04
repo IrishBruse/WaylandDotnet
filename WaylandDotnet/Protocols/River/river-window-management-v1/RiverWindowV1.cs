@@ -1531,7 +1531,7 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
     /// the hide request.<br/>
     /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
-    /// render sequence, see the river_window_manager_v1 description.<br/>
+    /// manage or render sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
     /// </para>
     /// </summary>
@@ -1565,7 +1565,7 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
     /// the hide request.<br/>
     /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
-    /// render sequence, see the river_window_manager_v1 description.<br/>
+    /// manage or render sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
     /// </para>
     /// </summary>
@@ -1687,7 +1687,7 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
     /// presence of borders or decoration surfaces.<br/>
     /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
-    /// render sequence, see the river_window_manager_v1 description.<br/>
+    /// manage or render sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
     /// </para>
     /// </summary>
@@ -2180,7 +2180,7 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
     /// Both set_clip_box and set_content_clip_box may be enabled simultaneously.<br/>
     /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
-    /// render sequence, see the river_window_manager_v1 description.<br/>
+    /// manage or render sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
     /// </para>
     /// </summary>
@@ -2228,7 +2228,7 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
     /// Both set_clip_box and set_content_clip_box may be enabled simultaneously.<br/>
     /// <br/>
     /// This request modifies rendering state and may only be made as part of a<br/>
-    /// render sequence, see the river_window_manager_v1 description.<br/>
+    /// manage or render sequence, see the river_window_manager_v1 description.<br/>
     /// <br/>
     /// </para>
     /// </summary>

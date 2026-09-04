@@ -19,7 +19,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_xkb_config_v1
-    /// Version: 2
+    /// Version: 3
     /// Requests: 3, Events: 2
     /// </summary>
     [ModuleInitializer]
@@ -64,7 +64,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_xkb_config_v1"),
-            Version = 2,
+            Version = 3,
             MethodCount = 3,
             Methods = requests,
             EventCount = 2,
@@ -78,7 +78,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_xkb_keymap_v1
-    /// Version: 2
+    /// Version: 3
     /// Requests: 1, Events: 2
     /// </summary>
     [ModuleInitializer]
@@ -111,7 +111,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_xkb_keymap_v1"),
-            Version = 2,
+            Version = 3,
             MethodCount = 1,
             Methods = requests,
             EventCount = 2,
@@ -125,14 +125,14 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_xkb_keyboard_v1
-    /// Version: 2
-    /// Requests: 8, Events: 8
+    /// Version: 3
+    /// Requests: 10, Events: 10
     /// </summary>
     [ModuleInitializer]
     public static void CreateRiverXkbKeyboardV1Interface()
     {
         // Request signatures
-        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 8);
+        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 10);
         requests[0] = new WlMessage
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("destroy"),
@@ -181,9 +181,21 @@ public static unsafe partial class WaylandInterfaces
             Signature = Utf8StringMarshaller.ConvertToUnmanaged(""),
             Types = (WlInterface**)IntPtr.Zero
         };
+        requests[8] = new WlMessage
+        {
+            Name = Utf8StringMarshaller.ConvertToUnmanaged("scrolllock_enable"),
+            Signature = Utf8StringMarshaller.ConvertToUnmanaged(""),
+            Types = (WlInterface**)IntPtr.Zero
+        };
+        requests[9] = new WlMessage
+        {
+            Name = Utf8StringMarshaller.ConvertToUnmanaged("scrolllock_disable"),
+            Signature = Utf8StringMarshaller.ConvertToUnmanaged(""),
+            Types = (WlInterface**)IntPtr.Zero
+        };
 
         // Event signatures
-        var events = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 8);
+        var events = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 10);
         events[0] = new WlMessage
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("removed"),
@@ -232,14 +244,26 @@ public static unsafe partial class WaylandInterfaces
             Signature = Utf8StringMarshaller.ConvertToUnmanaged(""),
             Types = (WlInterface**)IntPtr.Zero
         };
+        events[8] = new WlMessage
+        {
+            Name = Utf8StringMarshaller.ConvertToUnmanaged("scrolllock_enabled"),
+            Signature = Utf8StringMarshaller.ConvertToUnmanaged(""),
+            Types = (WlInterface**)IntPtr.Zero
+        };
+        events[9] = new WlMessage
+        {
+            Name = Utf8StringMarshaller.ConvertToUnmanaged("scrolllock_disabled"),
+            Signature = Utf8StringMarshaller.ConvertToUnmanaged(""),
+            Types = (WlInterface**)IntPtr.Zero
+        };
 
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_xkb_keyboard_v1"),
-            Version = 2,
-            MethodCount = 8,
+            Version = 3,
+            MethodCount = 10,
             Methods = requests,
-            EventCount = 8,
+            EventCount = 10,
             Events = events
         };
 

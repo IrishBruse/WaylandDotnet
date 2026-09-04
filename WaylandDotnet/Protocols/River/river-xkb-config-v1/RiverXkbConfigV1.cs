@@ -23,7 +23,7 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_xkb_config_v1
 /// <para> xkb config global interface </para>
-/// <para> Version: 2 </para>
+/// <para> Version: 3 </para>
 /// <see>https://wayland.app/protocols/river-xkb-config-v1/#river_xkb_config_v1</see>
 /// </summary>
 public sealed partial class RiverXkbConfigV1 : WaylandObject, IWaylandObjectFactory<RiverXkbConfigV1>
@@ -33,7 +33,7 @@ public sealed partial class RiverXkbConfigV1 : WaylandObject, IWaylandObjectFact
     /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_xkb_config_v1";
     /// <summary> Interface version supported by this binding. </summary>
-    public const int InterfaceVersion = 2;
+    public const int InterfaceVersion = 3;
 
     private bool disposed;
 

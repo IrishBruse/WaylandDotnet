@@ -629,7 +629,7 @@ Newly created windows are considered shown unless explicitly hidden with
 the hide request.
 
 This request modifies rendering state and may only be made as part of a
-render sequence, see the river_window_manager_v1 description.
+manage or render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request" title="Show request">
     <a href="#/Protocols/River/river-window-management-v1/?id=riverwindowv1_show" id="riverwindowv1_show">
@@ -653,7 +653,7 @@ Newly created windows are considered shown unless explicitly hidden with
 the hide request.
 
 This request modifies rendering state and may only be made as part of a
-render sequence, see the river_window_manager_v1 description.
+manage or render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request" title="UseCsd request">
     <a href="#/Protocols/River/river-window-management-v1/?id=riverwindowv1_usecsd" id="riverwindowv1_usecsd">
@@ -753,7 +753,7 @@ position/dimensions of the window content and are unaffected by the
 presence of borders or decoration surfaces.
 
 This request modifies rendering state and may only be made as part of a
-render sequence, see the river_window_manager_v1 description.
+manage or render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request" title="SetTiled request">
     <a href="#/Protocols/River/river-window-management-v1/?id=riverwindowv1_settiled" id="riverwindowv1_settiled">
@@ -1123,7 +1123,7 @@ The clip box is ignored while the window is fullscreen.
 Both set_clip_box and set_content_clip_box may be enabled simultaneously.
 
 This request modifies rendering state and may only be made as part of a
-render sequence, see the river_window_manager_v1 description.
+manage or render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request" title="SetContentClipBox request">
     <a href="#/Protocols/River/river-window-management-v1/?id=riverwindowv1_setcontentclipbox" id="riverwindowv1_setcontentclipbox">
@@ -1164,7 +1164,7 @@ The content clip box is ignored while the window is fullscreen.
 Both set_clip_box and set_content_clip_box may be enabled simultaneously.
 
 This request modifies rendering state and may only be made as part of a
-render sequence, see the river_window_manager_v1 description.
+manage or render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request" title="SetDimensionBounds request">
     <a href="#/Protocols/River/river-window-management-v1/?id=riverwindowv1_setdimensionbounds" id="riverwindowv1_setdimensionbounds">
@@ -1875,7 +1875,7 @@ If this request is never sent, the x and y offsets are undefined by this
 protocol and left up to the compositor.
 
 This request modifies rendering state and may only be made as part of a
-render sequence, see the river_window_manager_v1 description.
+manage or render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request" title="SyncNextCommit request">
     <a href="#/Protocols/River/river-window-management-v1/?id=riverdecorationv1_syncnextcommit" id="riverdecorationv1_syncnextcommit">
@@ -1900,7 +1900,7 @@ surface after this request and before the render_finish request, failure
 to do so is a protocol error.
 
 This request modifies rendering state and may only be made as part of a
-render sequence, see the river_window_manager_v1 description.
+manage or render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="#/Protocols/River/river-window-management-v1/?id=riverdecorationv1_error_enum" id="riverdecorationv1_error_enum">
@@ -1995,7 +1995,7 @@ after this request and before the render_finish request, failure to do
 so is a protocol error.
 
 This request modifies rendering state and may only be made as part of a
-render sequence, see the river_window_manager_v1 description.
+manage or render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration enum" title="Error enum">
     <a href="#/Protocols/River/river-window-management-v1/?id=rivershellsurfacev1_error_enum" id="rivershellsurfacev1_error_enum">
@@ -2080,7 +2080,7 @@ If this request is never sent, the position of the node is undefined by
 this protocol and left up to the compositor.
 
 This request modifies rendering state and may only be made as part of a
-render sequence, see the river_window_manager_v1 description.
+manage or render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request" title="PlaceTop request">
     <a href="#/Protocols/River/river-window-management-v1/?id=rivernodev1_placetop" id="rivernodev1_placetop">
@@ -2100,7 +2100,7 @@ This request places the node above all other nodes in the compositor's
 render list.
 
 This request modifies rendering state and may only be made as part of a
-render sequence, see the river_window_manager_v1 description.
+manage or render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request" title="PlaceBottom request">
     <a href="#/Protocols/River/river-window-management-v1/?id=rivernodev1_placebottom" id="rivernodev1_placebottom">
@@ -2120,7 +2120,7 @@ This request places the node below all other nodes in the compositor's
 render list.
 
 This request modifies rendering state and may only be made as part of a
-render sequence, see the river_window_manager_v1 description.
+manage or render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request" title="PlaceAbove request">
     <a href="#/Protocols/River/river-window-management-v1/?id=rivernodev1_placeabove" id="rivernodev1_placeabove">
@@ -2153,7 +2153,7 @@ of this request and the meaning of "directly above":
 3. B.place_above(A) -&gt; A, B, C
 
 This request modifies rendering state and may only be made as part of a
-render sequence, see the river_window_manager_v1 description.
+manage or render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration request" title="PlaceBelow request">
     <a href="#/Protocols/River/river-window-management-v1/?id=rivernodev1_placebelow" id="rivernodev1_placebelow">
@@ -2186,7 +2186,7 @@ of this request and the meaning of "directly below":
 3. B.place_below(C) -&gt; A, B, C
 
 This request modifies rendering state and may only be made as part of a
-render sequence, see the river_window_manager_v1 description.
+manage or render sequence, see the river_window_manager_v1 description.
 
 <h2 class="decleration interface">
     <a href="#/Protocols/River/river-window-management-v1/?id=riveroutputv1" id="riveroutputv1">
@@ -2250,7 +2250,7 @@ always respect the preference of the window manager if possible. If this
 request is never made, the preferred presentation mode is vsync.
 
 This request modifies rendering state and may only be made as part of a
-render sequence, see the river_window_manager_v1 description.
+manage or render sequence, see the river_window_manager_v1 description.
 
 <h3 class="decleration event" title="Removed event">
     <a href="#/Protocols/River/river-window-management-v1/?id=onriveroutputv1_removed" id="onriveroutputv1_removed">
