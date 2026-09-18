@@ -23,7 +23,7 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_node_v1
 /// <para> a node in the render list </para>
-/// <para> Version: 5 </para>
+/// <para> Version: 6 </para>
 /// <see>https://wayland.app/protocols/river-window-management-v1/#river_node_v1</see>
 /// </summary>
 public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<RiverNodeV1>
@@ -33,7 +33,7 @@ public sealed partial class RiverNodeV1 : WaylandObject, IWaylandObjectFactory<R
     /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_node_v1";
     /// <summary> Interface version supported by this binding. </summary>
-    public const int InterfaceVersion = 5;
+    public const int InterfaceVersion = 6;
 
     private bool disposed;
 

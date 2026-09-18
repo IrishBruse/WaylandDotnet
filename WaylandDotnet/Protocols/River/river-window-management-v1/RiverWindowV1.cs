@@ -23,7 +23,7 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_window_v1
 /// <para> a logical window </para>
-/// <para> Version: 5 </para>
+/// <para> Version: 6 </para>
 /// <see>https://wayland.app/protocols/river-window-management-v1/#river_window_v1</see>
 /// </summary>
 public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory<RiverWindowV1>
@@ -33,7 +33,7 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
     /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_window_v1";
     /// <summary> Interface version supported by this binding. </summary>
-    public const int InterfaceVersion = 5;
+    public const int InterfaceVersion = 6;
 
     private bool disposed;
 
@@ -1179,6 +1179,136 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
         }
     }
 
+    /// <summary>
+    /// Window requested interactive touch move
+    /// <para>
+    ///
+    /// This event informs the window manager that the window has requested to
+    /// be interactively moved using touch input. The seat argument indicates
+    /// the seat for the move and the touch point argument indicates the
+    /// transient ID of the touch point used.
+    ///
+    /// The xdg-shell protocol for example allows windows to request that an
+    /// interactive move be started, perhaps when a client-side rendered
+    /// titlebar is dragged.
+    ///
+    /// The window manager may use the river_seat_v1.op_start_touch request to
+    /// interactively move the window or ignore this event entirely.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
+    public delegate void TouchMoveRequestedHandler(RiverSeatV1 seat, int touchPoint);
+
+    private TouchMoveRequestedHandler? _onTouchMoveRequested;
+
+    /// <summary>
+    /// Window requested interactive touch move
+    /// <para>
+    ///
+    /// This event informs the window manager that the window has requested to
+    /// be interactively moved using touch input. The seat argument indicates
+    /// the seat for the move and the touch point argument indicates the
+    /// transient ID of the touch point used.
+    ///
+    /// The xdg-shell protocol for example allows windows to request that an
+    /// interactive move be started, perhaps when a client-side rendered
+    /// titlebar is dragged.
+    ///
+    /// The window manager may use the river_seat_v1.op_start_touch request to
+    /// interactively move the window or ignore this event entirely.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
+    public event TouchMoveRequestedHandler? OnTouchMoveRequested
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onTouchMoveRequested += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onTouchMoveRequested -= value;
+        }
+    }
+
+    /// <summary>
+    /// Window requested interactive touch resize
+    /// <para>
+    ///
+    /// This event informs the window manager that the window has requested to
+    /// be interactively resized using touch input. The seat argument indicates
+    /// the seat for the resize and the touch point argument indicates the
+    /// transient ID of the touch point used.
+    ///
+    /// The edges argument indicates which edges the window has requested to be
+    /// resized from. The edges argument will never be none and will never have
+    /// both top and bottom or both left and right edges set.
+    ///
+    /// The xdg-shell protocol for example allows windows to request that an
+    /// interactive resize be started, perhaps when the corner of client-side
+    /// rendered decorations is dragged.
+    ///
+    /// The window manager may use the river_seat_v1.op_start_touch request to
+    /// interactively resize the window or ignore this event entirely.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
+    public delegate void TouchResizeRequestedHandler(RiverSeatV1 seat, int touchPoint, uint edges);
+
+    private TouchResizeRequestedHandler? _onTouchResizeRequested;
+
+    /// <summary>
+    /// Window requested interactive touch resize
+    /// <para>
+    ///
+    /// This event informs the window manager that the window has requested to
+    /// be interactively resized using touch input. The seat argument indicates
+    /// the seat for the resize and the touch point argument indicates the
+    /// transient ID of the touch point used.
+    ///
+    /// The edges argument indicates which edges the window has requested to be
+    /// resized from. The edges argument will never be none and will never have
+    /// both top and bottom or both left and right edges set.
+    ///
+    /// The xdg-shell protocol for example allows windows to request that an
+    /// interactive resize be started, perhaps when the corner of client-side
+    /// rendered decorations is dragged.
+    ///
+    /// The window manager may use the river_seat_v1.op_start_touch request to
+    /// interactively resize the window or ignore this event entirely.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
+    public event TouchResizeRequestedHandler? OnTouchResizeRequested
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onTouchResizeRequested += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onTouchResizeRequested -= value;
+        }
+    }
+
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -1356,6 +1486,25 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
                     {
                         var _count = args[0].u;
                         obj._onCaptureSessions?.Invoke(_count);
+                    }
+                    break;
+                case 19: // touch_move_requested
+                    if (obj._onTouchMoveRequested != null)
+                    {
+                        if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'seat'");
+                        var _seat = new RiverSeatV1((IntPtr)args[0].o, obj.Display!);
+                        var _touchPoint = args[1].i;
+                        obj._onTouchMoveRequested?.Invoke(_seat, _touchPoint);
+                    }
+                    break;
+                case 20: // touch_resize_requested
+                    if (obj._onTouchResizeRequested != null)
+                    {
+                        if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'seat'");
+                        var _seat = new RiverSeatV1((IntPtr)args[0].o, obj.Display!);
+                        var _touchPoint = args[1].i;
+                        var _edges = args[2].u;
+                        obj._onTouchResizeRequested?.Invoke(_seat, _touchPoint, _edges);
                     }
                     break;
                 default:
