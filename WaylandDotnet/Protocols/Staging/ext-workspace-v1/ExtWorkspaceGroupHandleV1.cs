@@ -9,6 +9,7 @@
 namespace WaylandDotnet.Staging;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -352,6 +353,10 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 6, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ExtWorkspaceGroupHandleV1)handle.Target!;
 
@@ -360,6 +365,7 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
                 case 0: // capabilities
                     if (obj._onCapabilities != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _capabilities = args[0].u;
                         obj._onCapabilities?.Invoke(_capabilities);
                     }
@@ -367,6 +373,7 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
                 case 1: // output_enter
                     if (obj._onOutputEnter != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'output'");
                         var _output = new WlOutput((IntPtr)args[0].o, obj.Display!);
                         obj._onOutputEnter?.Invoke(_output);
@@ -375,6 +382,7 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
                 case 2: // output_leave
                     if (obj._onOutputLeave != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'output'");
                         var _output = new WlOutput((IntPtr)args[0].o, obj.Display!);
                         obj._onOutputLeave?.Invoke(_output);
@@ -383,6 +391,7 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
                 case 3: // workspace_enter
                     if (obj._onWorkspaceEnter != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'workspace'");
                         var _workspace = new ExtWorkspaceHandleV1((IntPtr)args[0].o, obj.Display!);
                         obj._onWorkspaceEnter?.Invoke(_workspace);
@@ -391,6 +400,7 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
                 case 4: // workspace_leave
                     if (obj._onWorkspaceLeave != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'workspace'");
                         var _workspace = new ExtWorkspaceHandleV1((IntPtr)args[0].o, obj.Display!);
                         obj._onWorkspaceLeave?.Invoke(_workspace);
@@ -435,6 +445,7 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -465,6 +476,7 @@ public sealed partial class ExtWorkspaceGroupHandleV1 : WaylandObject, IWaylandO
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

@@ -9,6 +9,7 @@
 namespace WaylandDotnet.Wlr;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -240,6 +241,10 @@ public sealed partial class ZwlrOutputConfigurationV1 : WaylandObject, IWaylandO
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 3, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwlrOutputConfigurationV1)handle.Target!;
 
@@ -294,6 +299,7 @@ public sealed partial class ZwlrOutputConfigurationV1 : WaylandObject, IWaylandO
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -303,6 +309,7 @@ public sealed partial class ZwlrOutputConfigurationV1 : WaylandObject, IWaylandO
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new ZwlrOutputConfigurationHeadV1(newProxy);
     }
 
@@ -323,6 +330,7 @@ public sealed partial class ZwlrOutputConfigurationV1 : WaylandObject, IWaylandO
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -358,6 +366,7 @@ public sealed partial class ZwlrOutputConfigurationV1 : WaylandObject, IWaylandO
 
         const uint opcode = 2;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -392,6 +401,7 @@ public sealed partial class ZwlrOutputConfigurationV1 : WaylandObject, IWaylandO
 
         const uint opcode = 3;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -423,6 +433,7 @@ public sealed partial class ZwlrOutputConfigurationV1 : WaylandObject, IWaylandO
 
         const uint opcode = 4;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

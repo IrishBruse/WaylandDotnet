@@ -9,6 +9,7 @@
 namespace WaylandDotnet.River;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -162,6 +163,10 @@ public sealed partial class RiverXkbKeymapV1 : WaylandObject, IWaylandObjectFact
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 2, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverXkbKeymapV1)handle.Target!;
 
@@ -176,6 +181,7 @@ public sealed partial class RiverXkbKeymapV1 : WaylandObject, IWaylandObjectFact
                 case 1: // failure
                     if (obj._onFailure != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _errorMsg = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onFailure?.Invoke(_errorMsg);
                     }
@@ -209,6 +215,7 @@ public sealed partial class RiverXkbKeymapV1 : WaylandObject, IWaylandObjectFact
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

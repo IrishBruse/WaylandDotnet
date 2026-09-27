@@ -9,6 +9,7 @@
 namespace WaylandDotnet.Wlr;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -172,6 +173,10 @@ public sealed partial class ZwlrForeignToplevelManagerV1 : WaylandObject, IWayla
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 2, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwlrForeignToplevelManagerV1)handle.Target!;
 
@@ -180,6 +185,7 @@ public sealed partial class ZwlrForeignToplevelManagerV1 : WaylandObject, IWayla
                 case 0: // toplevel
                     if (obj._onToplevel != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'toplevel'");
                         var _toplevel = new ZwlrForeignToplevelHandleV1((IntPtr)args[0].o, obj.Display!);
                         obj._onToplevel?.Invoke(_toplevel);
@@ -224,6 +230,7 @@ public sealed partial class ZwlrForeignToplevelManagerV1 : WaylandObject, IWayla
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

@@ -9,6 +9,7 @@
 namespace WaylandDotnet.River;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -2400,6 +2401,10 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 56, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverLibinputDeviceV1)handle.Target!;
 
@@ -2414,6 +2419,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 1: // input_device
                     if (obj._onInputDevice != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'device'");
                         var _device = new RiverInputDeviceV1((IntPtr)args[0].o, obj.Display!);
                         obj._onInputDevice?.Invoke(_device);
@@ -2422,6 +2428,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 2: // send_events_support
                     if (obj._onSendEventsSupport != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _modes = args[0].u;
                         obj._onSendEventsSupport?.Invoke(_modes);
                     }
@@ -2429,6 +2436,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 3: // send_events_default
                     if (obj._onSendEventsDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _mode = args[0].u;
                         obj._onSendEventsDefault?.Invoke(_mode);
                     }
@@ -2436,6 +2444,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 4: // send_events_current
                     if (obj._onSendEventsCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _mode = args[0].u;
                         obj._onSendEventsCurrent?.Invoke(_mode);
                     }
@@ -2443,6 +2452,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 5: // tap_support
                     if (obj._onTapSupport != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _fingerCount = args[0].i;
                         obj._onTapSupport?.Invoke(_fingerCount);
                     }
@@ -2450,6 +2460,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 6: // tap_default
                     if (obj._onTapDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onTapDefault?.Invoke(_state);
                     }
@@ -2457,6 +2468,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 7: // tap_current
                     if (obj._onTapCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onTapCurrent?.Invoke(_state);
                     }
@@ -2464,6 +2476,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 8: // tap_button_map_default
                     if (obj._onTapButtonMapDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _buttonMap = args[0].u;
                         obj._onTapButtonMapDefault?.Invoke(_buttonMap);
                     }
@@ -2471,6 +2484,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 9: // tap_button_map_current
                     if (obj._onTapButtonMapCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _buttonMap = args[0].u;
                         obj._onTapButtonMapCurrent?.Invoke(_buttonMap);
                     }
@@ -2478,6 +2492,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 10: // drag_default
                     if (obj._onDragDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onDragDefault?.Invoke(_state);
                     }
@@ -2485,6 +2500,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 11: // drag_current
                     if (obj._onDragCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onDragCurrent?.Invoke(_state);
                     }
@@ -2492,6 +2508,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 12: // drag_lock_default
                     if (obj._onDragLockDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onDragLockDefault?.Invoke(_state);
                     }
@@ -2499,6 +2516,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 13: // drag_lock_current
                     if (obj._onDragLockCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onDragLockCurrent?.Invoke(_state);
                     }
@@ -2506,6 +2524,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 14: // three_finger_drag_support
                     if (obj._onThreeFingerDragSupport != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _fingerCount = args[0].i;
                         obj._onThreeFingerDragSupport?.Invoke(_fingerCount);
                     }
@@ -2513,6 +2532,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 15: // three_finger_drag_default
                     if (obj._onThreeFingerDragDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onThreeFingerDragDefault?.Invoke(_state);
                     }
@@ -2520,6 +2540,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 16: // three_finger_drag_current
                     if (obj._onThreeFingerDragCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onThreeFingerDragCurrent?.Invoke(_state);
                     }
@@ -2527,6 +2548,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 17: // calibration_matrix_support
                     if (obj._onCalibrationMatrixSupport != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _supported = args[0].i;
                         obj._onCalibrationMatrixSupport?.Invoke(_supported);
                     }
@@ -2534,6 +2556,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 18: // calibration_matrix_default
                     if (obj._onCalibrationMatrixDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _matrix = args[0].a;
                         obj._onCalibrationMatrixDefault?.Invoke(WaylandMarshal.ToSpan(_matrix));
                     }
@@ -2541,6 +2564,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 19: // calibration_matrix_current
                     if (obj._onCalibrationMatrixCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _matrix = args[0].a;
                         obj._onCalibrationMatrixCurrent?.Invoke(WaylandMarshal.ToSpan(_matrix));
                     }
@@ -2548,6 +2572,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 20: // accel_profiles_support
                     if (obj._onAccelProfilesSupport != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _profiles = args[0].u;
                         obj._onAccelProfilesSupport?.Invoke(_profiles);
                     }
@@ -2555,6 +2580,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 21: // accel_profile_default
                     if (obj._onAccelProfileDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _profile = args[0].u;
                         obj._onAccelProfileDefault?.Invoke(_profile);
                     }
@@ -2562,6 +2588,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 22: // accel_profile_current
                     if (obj._onAccelProfileCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _profile = args[0].u;
                         obj._onAccelProfileCurrent?.Invoke(_profile);
                     }
@@ -2569,6 +2596,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 23: // accel_speed_default
                     if (obj._onAccelSpeedDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _speed = args[0].a;
                         obj._onAccelSpeedDefault?.Invoke(WaylandMarshal.ToSpan(_speed));
                     }
@@ -2576,6 +2604,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 24: // accel_speed_current
                     if (obj._onAccelSpeedCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _speed = args[0].a;
                         obj._onAccelSpeedCurrent?.Invoke(WaylandMarshal.ToSpan(_speed));
                     }
@@ -2583,6 +2612,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 25: // natural_scroll_support
                     if (obj._onNaturalScrollSupport != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _supported = args[0].i;
                         obj._onNaturalScrollSupport?.Invoke(_supported);
                     }
@@ -2590,6 +2620,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 26: // natural_scroll_default
                     if (obj._onNaturalScrollDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onNaturalScrollDefault?.Invoke(_state);
                     }
@@ -2597,6 +2628,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 27: // natural_scroll_current
                     if (obj._onNaturalScrollCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onNaturalScrollCurrent?.Invoke(_state);
                     }
@@ -2604,6 +2636,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 28: // left_handed_support
                     if (obj._onLeftHandedSupport != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _supported = args[0].i;
                         obj._onLeftHandedSupport?.Invoke(_supported);
                     }
@@ -2611,6 +2644,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 29: // left_handed_default
                     if (obj._onLeftHandedDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onLeftHandedDefault?.Invoke(_state);
                     }
@@ -2618,6 +2652,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 30: // left_handed_current
                     if (obj._onLeftHandedCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onLeftHandedCurrent?.Invoke(_state);
                     }
@@ -2625,6 +2660,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 31: // click_method_support
                     if (obj._onClickMethodSupport != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _methods = args[0].u;
                         obj._onClickMethodSupport?.Invoke(_methods);
                     }
@@ -2632,6 +2668,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 32: // click_method_default
                     if (obj._onClickMethodDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _method = args[0].u;
                         obj._onClickMethodDefault?.Invoke(_method);
                     }
@@ -2639,6 +2676,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 33: // click_method_current
                     if (obj._onClickMethodCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _method = args[0].u;
                         obj._onClickMethodCurrent?.Invoke(_method);
                     }
@@ -2646,6 +2684,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 34: // clickfinger_button_map_default
                     if (obj._onClickfingerButtonMapDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _buttonMap = args[0].u;
                         obj._onClickfingerButtonMapDefault?.Invoke(_buttonMap);
                     }
@@ -2653,6 +2692,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 35: // clickfinger_button_map_current
                     if (obj._onClickfingerButtonMapCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _buttonMap = args[0].u;
                         obj._onClickfingerButtonMapCurrent?.Invoke(_buttonMap);
                     }
@@ -2660,6 +2700,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 36: // middle_emulation_support
                     if (obj._onMiddleEmulationSupport != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _supported = args[0].i;
                         obj._onMiddleEmulationSupport?.Invoke(_supported);
                     }
@@ -2667,6 +2708,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 37: // middle_emulation_default
                     if (obj._onMiddleEmulationDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onMiddleEmulationDefault?.Invoke(_state);
                     }
@@ -2674,6 +2716,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 38: // middle_emulation_current
                     if (obj._onMiddleEmulationCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onMiddleEmulationCurrent?.Invoke(_state);
                     }
@@ -2681,6 +2724,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 39: // scroll_method_support
                     if (obj._onScrollMethodSupport != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _methods = args[0].u;
                         obj._onScrollMethodSupport?.Invoke(_methods);
                     }
@@ -2688,6 +2732,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 40: // scroll_method_default
                     if (obj._onScrollMethodDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _method = args[0].u;
                         obj._onScrollMethodDefault?.Invoke(_method);
                     }
@@ -2695,6 +2740,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 41: // scroll_method_current
                     if (obj._onScrollMethodCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _method = args[0].u;
                         obj._onScrollMethodCurrent?.Invoke(_method);
                     }
@@ -2702,6 +2748,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 42: // scroll_button_default
                     if (obj._onScrollButtonDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _button = args[0].u;
                         obj._onScrollButtonDefault?.Invoke(_button);
                     }
@@ -2709,6 +2756,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 43: // scroll_button_current
                     if (obj._onScrollButtonCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _button = args[0].u;
                         obj._onScrollButtonCurrent?.Invoke(_button);
                     }
@@ -2716,6 +2764,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 44: // scroll_button_lock_default
                     if (obj._onScrollButtonLockDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onScrollButtonLockDefault?.Invoke(_state);
                     }
@@ -2723,6 +2772,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 45: // scroll_button_lock_current
                     if (obj._onScrollButtonLockCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onScrollButtonLockCurrent?.Invoke(_state);
                     }
@@ -2730,6 +2780,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 46: // dwt_support
                     if (obj._onDwtSupport != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _supported = args[0].i;
                         obj._onDwtSupport?.Invoke(_supported);
                     }
@@ -2737,6 +2788,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 47: // dwt_default
                     if (obj._onDwtDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onDwtDefault?.Invoke(_state);
                     }
@@ -2744,6 +2796,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 48: // dwt_current
                     if (obj._onDwtCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onDwtCurrent?.Invoke(_state);
                     }
@@ -2751,6 +2804,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 49: // dwtp_support
                     if (obj._onDwtpSupport != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _supported = args[0].i;
                         obj._onDwtpSupport?.Invoke(_supported);
                     }
@@ -2758,6 +2812,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 50: // dwtp_default
                     if (obj._onDwtpDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onDwtpDefault?.Invoke(_state);
                     }
@@ -2765,6 +2820,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 51: // dwtp_current
                     if (obj._onDwtpCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onDwtpCurrent?.Invoke(_state);
                     }
@@ -2772,6 +2828,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 52: // rotation_support
                     if (obj._onRotationSupport != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _supported = args[0].i;
                         obj._onRotationSupport?.Invoke(_supported);
                     }
@@ -2779,6 +2836,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 53: // rotation_default
                     if (obj._onRotationDefault != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _angle = args[0].u;
                         obj._onRotationDefault?.Invoke(_angle);
                     }
@@ -2786,6 +2844,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
                 case 54: // rotation_current
                     if (obj._onRotationCurrent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _angle = args[0].u;
                         obj._onRotationCurrent?.Invoke(_angle);
                     }
@@ -2825,6 +2884,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -2854,6 +2914,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -2863,6 +2924,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -2885,6 +2947,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 2;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -2894,6 +2957,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -2917,6 +2981,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 3;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -2926,6 +2991,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -2947,6 +3013,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 4;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -2956,6 +3023,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -2981,6 +3049,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 5;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -2990,6 +3059,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3011,6 +3081,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 6;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3020,6 +3091,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3041,6 +3113,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 7;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3050,6 +3123,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3071,6 +3145,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 8;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3080,6 +3155,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3103,6 +3179,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 9;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3112,6 +3189,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3133,6 +3211,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 10;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3142,6 +3221,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3163,6 +3243,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 11;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3172,6 +3253,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3193,6 +3275,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 12;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3202,6 +3285,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3223,6 +3307,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 13;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3232,6 +3317,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3254,6 +3340,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 14;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3263,6 +3350,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3284,6 +3372,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 15;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3293,6 +3382,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3314,6 +3404,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 16;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3323,6 +3414,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3345,6 +3437,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 17;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3354,6 +3447,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3376,6 +3470,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 18;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3385,6 +3480,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3406,6 +3502,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 19;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3415,6 +3512,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3436,6 +3534,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 20;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3445,6 +3544,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 
@@ -3467,6 +3567,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 21;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -3476,6 +3577,7 @@ public sealed partial class RiverLibinputDeviceV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputResultV1(newProxy, Display);
     }
 

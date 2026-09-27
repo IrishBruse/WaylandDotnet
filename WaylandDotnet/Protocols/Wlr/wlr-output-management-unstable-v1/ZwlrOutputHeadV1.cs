@@ -9,6 +9,7 @@
 namespace WaylandDotnet.Wlr;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -795,6 +796,10 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 14, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwlrOutputHeadV1)handle.Target!;
 
@@ -803,6 +808,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 0: // name
                     if (obj._onName != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _name = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onName?.Invoke(_name);
                     }
@@ -810,6 +816,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 1: // description
                     if (obj._onDescription != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _description = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onDescription?.Invoke(_description);
                     }
@@ -817,6 +824,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 2: // physical_size
                     if (obj._onPhysicalSize != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _width = args[0].i;
                         var _height = args[1].i;
                         obj._onPhysicalSize?.Invoke(_width, _height);
@@ -825,6 +833,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 3: // mode
                     if (obj._onMode != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'mode'");
                         var _mode = new ZwlrOutputModeV1((IntPtr)args[0].o, obj.Display!);
                         obj._onMode?.Invoke(_mode);
@@ -833,6 +842,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 4: // enabled
                     if (obj._onEnabled != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _enabled = args[0].i;
                         obj._onEnabled?.Invoke(_enabled);
                     }
@@ -840,6 +850,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 5: // current_mode
                     if (obj._onCurrentMode != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'mode'");
                         var _mode = new ZwlrOutputModeV1((IntPtr)args[0].o, obj.Display!);
                         obj._onCurrentMode?.Invoke(_mode);
@@ -848,6 +859,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 6: // position
                     if (obj._onPosition != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _x = args[0].i;
                         var _y = args[1].i;
                         obj._onPosition?.Invoke(_x, _y);
@@ -856,6 +868,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 7: // transform
                     if (obj._onTransform != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _transform = args[0].i;
                         obj._onTransform?.Invoke(_transform);
                     }
@@ -863,6 +876,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 8: // scale
                     if (obj._onScale != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _scale = args[0].f;
                         obj._onScale?.Invoke(_scale);
                     }
@@ -876,6 +890,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 10: // make
                     if (obj._onMake != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _make = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onMake?.Invoke(_make);
                     }
@@ -883,6 +898,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 11: // model
                     if (obj._onModel != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _model = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onModel?.Invoke(_model);
                     }
@@ -890,6 +906,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 12: // serial_number
                     if (obj._onSerialNumber != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _serialNumber = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onSerialNumber?.Invoke(_serialNumber);
                     }
@@ -897,6 +914,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
                 case 13: // adaptive_sync
                     if (obj._onAdaptiveSync != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].u;
                         obj._onAdaptiveSync?.Invoke(_state);
                     }
@@ -930,6 +948,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

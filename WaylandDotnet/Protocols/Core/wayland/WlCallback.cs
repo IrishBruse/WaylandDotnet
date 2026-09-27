@@ -9,6 +9,7 @@
 namespace WaylandDotnet;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -119,6 +120,10 @@ public sealed partial class WlCallback : WaylandObject, IWaylandObjectFactory<Wl
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 1, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlCallback)handle.Target!;
 
@@ -127,6 +132,7 @@ public sealed partial class WlCallback : WaylandObject, IWaylandObjectFactory<Wl
                 case 0: // done
                     if (obj._onDone != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _callbackData = args[0].u;
                         obj._onDone?.Invoke(_callbackData);
                         obj.disposed = true;

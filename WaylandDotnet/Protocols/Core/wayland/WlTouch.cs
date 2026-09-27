@@ -9,6 +9,7 @@
 namespace WaylandDotnet;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -459,6 +460,10 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 7, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlTouch)handle.Target!;
 
@@ -467,6 +472,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
                 case 0: // down
                     if (obj._onDown != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _serial = args[0].u;
                         var _time = args[1].u;
                         if (args[2].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'surface'");
@@ -480,6 +486,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
                 case 1: // up
                     if (obj._onUp != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _serial = args[0].u;
                         var _time = args[1].u;
                         var _id = args[2].i;
@@ -489,6 +496,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
                 case 2: // motion
                     if (obj._onMotion != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _time = args[0].u;
                         var _id = args[1].i;
                         var _x = args[2].f;
@@ -511,6 +519,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
                 case 5: // shape
                     if (obj._onShape != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _id = args[0].i;
                         var _major = args[1].f;
                         var _minor = args[2].f;
@@ -520,6 +529,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
                 case 6: // orientation
                     if (obj._onOrientation != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _id = args[0].i;
                         var _orientation = args[1].f;
                         obj._onOrientation?.Invoke(_id, _orientation);
@@ -551,6 +561,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

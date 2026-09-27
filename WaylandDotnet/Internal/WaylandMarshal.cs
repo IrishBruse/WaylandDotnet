@@ -1,5 +1,6 @@
 namespace WaylandDotnet.Internal;
 
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 /// <summary> Marshaling helpers for Wayland wire types. </summary>
@@ -10,7 +11,18 @@ public static class WaylandMarshal
     /// <returns>The array contents, or an empty array when absent.</returns>
     public unsafe static byte[] ToSpan(WlArray* array)
     {
-        if (array == null || array->data == null || array->size == 0)
+        if (array == null)
+        {
+            return [];
+        }
+
+        Debug.Assert(array->size >= 0);
+        if (array->size > 0)
+        {
+            Debug.Assert(array->data != null, "non-zero wl_array size requires data");
+        }
+
+        if (array->data == null || array->size == 0)
         {
             return [];
         }
@@ -37,11 +49,22 @@ public static class WaylandMarshal
         arrayPtr->alloc = data.Length;
         arrayPtr->data = (void*)dataPtr;
 
+        Debug.Assert(arrayPtr != null);
+        Debug.Assert(dataPtr != IntPtr.Zero);
+        Debug.Assert(arrayPtr->size == data.Length);
+        Debug.Assert(arrayPtr->alloc >= arrayPtr->size);
+        Debug.Assert(arrayPtr->data == (void*)dataPtr);
+
         return arrayPtr;
     }
 
     private static unsafe void CopyMemory(nint dest, byte[] src, int length)
     {
+        Debug.Assert(dest != 0);
+        Debug.Assert(src != null);
+        Debug.Assert(length >= 0);
+        Debug.Assert(length <= src.Length);
+
         for (int i = 0; i < length; i++)
         {
             ((byte*)dest)[i] = src[i];

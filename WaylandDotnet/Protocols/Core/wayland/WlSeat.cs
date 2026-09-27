@@ -9,6 +9,7 @@
 namespace WaylandDotnet;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -259,6 +260,10 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 2, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlSeat)handle.Target!;
 
@@ -267,6 +272,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
                 case 0: // capabilities
                     if (obj._onCapabilities != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _capabilities = args[0].u;
                         obj._onCapabilities?.Invoke(_capabilities);
                     }
@@ -274,6 +280,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
                 case 1: // name
                     if (obj._onName != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _name = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onName?.Invoke(_name);
                     }
@@ -314,6 +321,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -323,6 +331,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new WlPointer(newProxy, Display);
     }
 
@@ -350,6 +359,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -359,6 +369,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new WlKeyboard(newProxy, Display);
     }
 
@@ -386,6 +397,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
 
         const uint opcode = 2;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -395,6 +407,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new WlTouch(newProxy, Display);
     }
 
@@ -415,6 +428,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
 
         const uint opcode = 3;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

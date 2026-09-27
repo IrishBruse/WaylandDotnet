@@ -9,6 +9,7 @@
 namespace WaylandDotnet;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -176,6 +177,10 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 2, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlRegistry)handle.Target!;
 
@@ -184,6 +189,7 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
                 case 0: // global
                     if (obj._onGlobal != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _name = args[0].u;
                         var __interface = Utf8StringMarshaller.ConvertToManaged(args[1].s) ?? string.Empty;
                         var _version = args[2].u;
@@ -193,6 +199,7 @@ public sealed partial class WlRegistry : WaylandObject, IWaylandObjectFactory<Wl
                 case 1: // global_remove
                     if (obj._onGlobalRemove != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _name = args[0].u;
                         obj._onGlobalRemove?.Invoke(_name);
                     }

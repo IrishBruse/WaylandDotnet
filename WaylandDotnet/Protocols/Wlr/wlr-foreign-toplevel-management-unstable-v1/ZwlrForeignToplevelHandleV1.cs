@@ -9,6 +9,7 @@
 namespace WaylandDotnet.Wlr;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -422,6 +423,10 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 8, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwlrForeignToplevelHandleV1)handle.Target!;
 
@@ -430,6 +435,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
                 case 0: // title
                     if (obj._onTitle != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _title = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onTitle?.Invoke(_title);
                     }
@@ -437,6 +443,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
                 case 1: // app_id
                     if (obj._onAppId != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _appId = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onAppId?.Invoke(_appId);
                     }
@@ -444,6 +451,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
                 case 2: // output_enter
                     if (obj._onOutputEnter != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'output'");
                         var _output = new WlOutput((IntPtr)args[0].o, obj.Display!);
                         obj._onOutputEnter?.Invoke(_output);
@@ -452,6 +460,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
                 case 3: // output_leave
                     if (obj._onOutputLeave != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'output'");
                         var _output = new WlOutput((IntPtr)args[0].o, obj.Display!);
                         obj._onOutputLeave?.Invoke(_output);
@@ -460,6 +469,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
                 case 4: // state
                     if (obj._onState != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _state = args[0].a;
                         obj._onState?.Invoke(WaylandMarshal.ToSpan(_state));
                     }
@@ -479,6 +489,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
                 case 7: // parent
                     if (obj._onParent != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         ZwlrForeignToplevelHandleV1? _parent = null;
                         if (args[0].o != (WlObject*)IntPtr.Zero)
                         {
@@ -516,6 +527,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -543,6 +555,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -570,6 +583,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
 
         const uint opcode = 2;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -597,6 +611,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
 
         const uint opcode = 3;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -625,6 +640,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
 
         const uint opcode = 4;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -656,6 +672,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
 
         const uint opcode = 5;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -697,6 +714,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
 
         const uint opcode = 6;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -727,6 +745,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
 
         const uint opcode = 7;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -762,6 +781,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
 
         const uint opcode = 8;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -789,6 +809,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
 
         const uint opcode = 9;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

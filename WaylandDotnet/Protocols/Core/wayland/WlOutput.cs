@@ -9,6 +9,7 @@
 namespace WaylandDotnet;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -598,6 +599,10 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 6, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlOutput)handle.Target!;
 
@@ -606,6 +611,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
                 case 0: // geometry
                     if (obj._onGeometry != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _x = args[0].i;
                         var _y = args[1].i;
                         var _physicalWidth = args[2].i;
@@ -620,6 +626,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
                 case 1: // mode
                     if (obj._onMode != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _flags = args[0].u;
                         var _width = args[1].i;
                         var _height = args[2].i;
@@ -636,6 +643,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
                 case 3: // scale
                     if (obj._onScale != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _factor = args[0].i;
                         obj._onScale?.Invoke(_factor);
                     }
@@ -643,6 +651,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
                 case 4: // name
                     if (obj._onName != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _name = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onName?.Invoke(_name);
                     }
@@ -650,6 +659,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
                 case 5: // description
                     if (obj._onDescription != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _description = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onDescription?.Invoke(_description);
                     }
@@ -683,6 +693,7 @@ public sealed partial class WlOutput : WaylandObject, IWaylandObjectFactory<WlOu
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

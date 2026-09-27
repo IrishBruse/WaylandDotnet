@@ -9,6 +9,7 @@
 namespace WaylandDotnet.Stable;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -231,6 +232,10 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 2, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwpLinuxBufferParamsV1)handle.Target!;
 
@@ -239,6 +244,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
                 case 0: // created
                     if (obj._onCreated != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'buffer'");
                         var _buffer = new WlBuffer((IntPtr)args[0].o, obj.Display!);
                         obj._onCreated?.Invoke(_buffer);
@@ -279,6 +285,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -330,6 +337,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -418,6 +426,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
 
         const uint opcode = 2;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -471,6 +480,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
 
         const uint opcode = 3;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -480,6 +490,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new WlBuffer(newProxy, Display);
     }
 
@@ -512,6 +523,7 @@ public sealed partial class ZwpLinuxBufferParamsV1 : WaylandObject, IWaylandObje
 
         const uint opcode = 4;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

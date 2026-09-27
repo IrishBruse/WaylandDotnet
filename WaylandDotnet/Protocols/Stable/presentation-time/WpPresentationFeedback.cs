@@ -9,6 +9,7 @@
 namespace WaylandDotnet.Stable;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -311,6 +312,10 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 3, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WpPresentationFeedback)handle.Target!;
 
@@ -319,6 +324,7 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
                 case 0: // sync_output
                     if (obj._onSyncOutput != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'output'");
                         var _output = new WlOutput((IntPtr)args[0].o, obj.Display!);
                         obj._onSyncOutput?.Invoke(_output);
@@ -327,6 +333,7 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
                 case 1: // presented
                     if (obj._onPresented != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _tvSecHi = args[0].u;
                         var _tvSecLo = args[1].u;
                         var _tvNsec = args[2].u;

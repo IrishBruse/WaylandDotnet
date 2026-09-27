@@ -9,6 +9,7 @@
 namespace WaylandDotnet;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -67,6 +68,7 @@ public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -76,6 +78,7 @@ public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new WlSurface(newProxy, Display);
     }
 
@@ -96,6 +99,7 @@ public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -105,6 +109,7 @@ public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new WlRegion(newProxy);
     }
 
@@ -124,6 +129,7 @@ public sealed partial class WlCompositor : WaylandObject, IWaylandObjectFactory<
 
         const uint opcode = 2;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

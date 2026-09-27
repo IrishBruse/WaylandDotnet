@@ -50,6 +50,7 @@ public partial class ProtocolGenerator
 
         WriteLine();
         WriteLine($"using System;");
+        WriteLine($"using System.Diagnostics;");
         WriteLine($"using System.Runtime.CompilerServices;");
         WriteLine($"using System.Runtime.InteropServices;");
         WriteLine($"using System.Runtime.InteropServices.Marshalling;");
@@ -587,6 +588,10 @@ public partial class ProtocolGenerator
             WriteLine("try");
             BeginBlock();
             {
+                WriteLine("Debug.Assert(userData != IntPtr.Zero, \"dispatcher user data is null\");");
+                WriteLine("Debug.Assert(target != IntPtr.Zero, \"dispatcher target proxy is null\");");
+                WriteLine("Debug.Assert(message != null, \"dispatcher message is null\");");
+                WriteLine($"Debug.Assert(opcode < {iface.Events.Count}, \"dispatcher opcode is out of range\");");
                 WriteLine("var handle = GCHandle.FromIntPtr(userData);");
                 WriteLine($"var obj = ({className})handle.Target!;");
                 WriteLine();
@@ -631,6 +636,11 @@ public partial class ProtocolGenerator
         WriteLine($"if (obj._on{eventName} != null)");
         BeginBlock();
         {
+            if (evt.Args.Count > 0)
+            {
+                WriteLine("Debug.Assert(args != null, \"dispatcher arguments are null\");");
+            }
+
             // Extract arguments from WlArgument array
             for (int i = 0; i < evt.Args.Count; i++)
             {
@@ -861,6 +871,7 @@ public partial class ProtocolGenerator
             WriteLine($"const uint opcode = {opcode};");
             WriteLine();
 
+            WriteLine("Debug.Assert(Handle != IntPtr.Zero, \"request sent on a null proxy\");");
             WriteLine($"var newProxy = WaylandNative.ProxyMarshalArrayFlags(");
             indentLevel++;
             WriteLine("Handle,");
@@ -877,11 +888,13 @@ public partial class ProtocolGenerator
             if (isUntypedNewId)
             {
                 WriteLine();
+                WriteLine("Debug.Assert(newProxy != IntPtr.Zero, \"compositor returned a null object\");");
                 WriteLine($"return new WaylandProxy(newProxy, {displayRef});");
             }
             else if (newIdInterface != null)
             {
                 WriteLine();
+                WriteLine("Debug.Assert(newProxy != IntPtr.Zero, \"compositor returned a null object\");");
                 bool targetNeedsDisplay = interfaceNeedsDisplay.GetValueOrDefault(newIdInterface, true);
                 if (targetNeedsDisplay)
                 {

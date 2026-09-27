@@ -189,6 +189,8 @@ public class ProtocolGeneratorTests : IDisposable
         Assert.Contains("args[4].o = (WlObject*)(parent?.Handle ?? IntPtr.Zero);", output);
         Assert.Contains("WaylandMarshal.CreateWlArray(data)", output);
         Assert.Contains("args[6].h = fd;", output);
+        Assert.Contains("Debug.Assert(Handle != IntPtr.Zero, \"request sent on a null proxy\");", output);
+        Assert.DoesNotContain("Debug.Assert(newProxy != IntPtr.Zero, \"compositor returned a null object\");", output);
         Assert.Contains("#region GenerateRequests", output);
     }
 
@@ -212,6 +214,8 @@ public class ProtocolGeneratorTests : IDisposable
         Assert.Contains("stackalloc WlArgument[1]", output);
         Assert.Contains("WaylandInterfaces.TestWidget", output);
         Assert.Contains("return new TestWidget(newProxy, Display);", output);
+        Assert.Contains("Debug.Assert(Handle != IntPtr.Zero, \"request sent on a null proxy\");", output);
+        Assert.Contains("Debug.Assert(newProxy != IntPtr.Zero, \"compositor returned a null object\");", output);
     }
 
     [Fact]
@@ -328,6 +332,11 @@ public class ProtocolGeneratorTests : IDisposable
         Assert.Contains("case 1: // gone", output);
         Assert.Contains("obj.disposed = true;", output);
         Assert.Contains("ObjectDisposedException.ThrowIf(disposed, this);", output);
+        Assert.Contains("Debug.Assert(userData != IntPtr.Zero, \"dispatcher user data is null\");", output);
+        Assert.Contains("Debug.Assert(target != IntPtr.Zero, \"dispatcher target proxy is null\");", output);
+        Assert.Contains("Debug.Assert(message != null, \"dispatcher message is null\");", output);
+        Assert.Contains("Debug.Assert(opcode < 2, \"dispatcher opcode is out of range\");", output);
+        Assert.Contains("Debug.Assert(args != null, \"dispatcher arguments are null\");", output);
     }
 
     [Fact]

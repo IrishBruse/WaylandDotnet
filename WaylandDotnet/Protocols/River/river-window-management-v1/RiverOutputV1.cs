@@ -9,6 +9,7 @@
 namespace WaylandDotnet.River;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -401,6 +402,10 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 5, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverOutputV1)handle.Target!;
 
@@ -415,6 +420,7 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
                 case 1: // wl_output
                     if (obj._onWlOutput != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _name = args[0].u;
                         obj._onWlOutput?.Invoke(_name);
                     }
@@ -422,6 +428,7 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
                 case 2: // position
                     if (obj._onPosition != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _x = args[0].i;
                         var _y = args[1].i;
                         obj._onPosition?.Invoke(_x, _y);
@@ -430,6 +437,7 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
                 case 3: // dimensions
                     if (obj._onDimensions != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _width = args[0].i;
                         var _height = args[1].i;
                         obj._onDimensions?.Invoke(_width, _height);
@@ -438,6 +446,7 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
                 case 4: // capture_sessions
                     if (obj._onCaptureSessions != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _count = args[0].u;
                         obj._onCaptureSessions?.Invoke(_count);
                     }
@@ -474,6 +483,7 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -507,6 +517,7 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

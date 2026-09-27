@@ -9,6 +9,7 @@
 namespace WaylandDotnet;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -429,6 +430,10 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 6, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlDataSource)handle.Target!;
 
@@ -437,6 +442,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
                 case 0: // target
                     if (obj._onTarget != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _mimeType = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onTarget?.Invoke(_mimeType);
                     }
@@ -444,6 +450,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
                 case 1: // send
                     if (obj._onSend != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _mimeType = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         var _fd = args[1].h;
                         obj._onSend?.Invoke(_mimeType, _fd);
@@ -470,6 +477,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
                 case 5: // action
                     if (obj._onAction != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _dndAction = args[0].u;
                         obj._onAction?.Invoke(_dndAction);
                     }
@@ -505,6 +513,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -531,6 +540,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -571,6 +581,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
 
         const uint opcode = 2;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

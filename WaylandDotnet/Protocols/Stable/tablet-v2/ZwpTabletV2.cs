@@ -9,6 +9,7 @@
 namespace WaylandDotnet.Stable;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -405,6 +406,10 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 6, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwpTabletV2)handle.Target!;
 
@@ -413,6 +418,7 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
                 case 0: // name
                     if (obj._onName != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _name = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onName?.Invoke(_name);
                     }
@@ -420,6 +426,7 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
                 case 1: // id
                     if (obj._onId != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _vid = args[0].u;
                         var _pid = args[1].u;
                         obj._onId?.Invoke(_vid, _pid);
@@ -428,6 +435,7 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
                 case 2: // path
                     if (obj._onPath != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _path = Utf8StringMarshaller.ConvertToManaged(args[0].s) ?? string.Empty;
                         obj._onPath?.Invoke(_path);
                     }
@@ -447,6 +455,7 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
                 case 5: // bustype
                     if (obj._onBustype != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _bustype = args[0].u;
                         obj._onBustype?.Invoke(_bustype);
                     }
@@ -479,6 +488,7 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

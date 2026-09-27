@@ -9,6 +9,7 @@
 namespace WaylandDotnet.River;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -516,6 +517,10 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 9, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverWindowManagerV1)handle.Target!;
 
@@ -560,6 +565,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
                 case 6: // window
                     if (obj._onWindow != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
                         var _id = new RiverWindowV1((IntPtr)args[0].o, obj.Display!);
                         obj._onWindow?.Invoke(_id);
@@ -568,6 +574,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
                 case 7: // output
                     if (obj._onOutput != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
                         var _id = new RiverOutputV1((IntPtr)args[0].o, obj.Display!);
                         obj._onOutput?.Invoke(_id);
@@ -576,6 +583,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
                 case 8: // seat
                     if (obj._onSeat != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
                         var _id = new RiverSeatV1((IntPtr)args[0].o, obj.Display!);
                         obj._onSeat?.Invoke(_id);
@@ -615,6 +623,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -648,6 +657,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -685,6 +695,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
 
         const uint opcode = 2;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -718,6 +729,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
 
         const uint opcode = 3;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -754,6 +766,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
 
         const uint opcode = 4;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -786,6 +799,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
 
         const uint opcode = 5;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -795,6 +809,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverShellSurfaceV1(newProxy, Display);
     }
 
@@ -820,6 +835,7 @@ public sealed partial class RiverWindowManagerV1 : WaylandObject, IWaylandObject
 
         const uint opcode = 6;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

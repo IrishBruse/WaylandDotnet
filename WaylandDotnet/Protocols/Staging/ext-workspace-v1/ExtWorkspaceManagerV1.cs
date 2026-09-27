@@ -9,6 +9,7 @@
 namespace WaylandDotnet.Staging;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -268,6 +269,10 @@ public sealed partial class ExtWorkspaceManagerV1 : WaylandObject, IWaylandObjec
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 4, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ExtWorkspaceManagerV1)handle.Target!;
 
@@ -276,6 +281,7 @@ public sealed partial class ExtWorkspaceManagerV1 : WaylandObject, IWaylandObjec
                 case 0: // workspace_group
                     if (obj._onWorkspaceGroup != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'workspace_group'");
                         var _workspaceGroup = new ExtWorkspaceGroupHandleV1((IntPtr)args[0].o, obj.Display!);
                         obj._onWorkspaceGroup?.Invoke(_workspaceGroup);
@@ -284,6 +290,7 @@ public sealed partial class ExtWorkspaceManagerV1 : WaylandObject, IWaylandObjec
                 case 1: // workspace
                     if (obj._onWorkspace != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'workspace'");
                         var _workspace = new ExtWorkspaceHandleV1((IntPtr)args[0].o, obj.Display!);
                         obj._onWorkspace?.Invoke(_workspace);
@@ -337,6 +344,7 @@ public sealed partial class ExtWorkspaceManagerV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -369,6 +377,7 @@ public sealed partial class ExtWorkspaceManagerV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

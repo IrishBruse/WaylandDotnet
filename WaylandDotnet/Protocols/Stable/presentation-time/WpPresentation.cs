@@ -9,6 +9,7 @@
 namespace WaylandDotnet.Stable;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -186,6 +187,10 @@ public sealed partial class WpPresentation : WaylandObject, IWaylandObjectFactor
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 1, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WpPresentation)handle.Target!;
 
@@ -194,6 +199,7 @@ public sealed partial class WpPresentation : WaylandObject, IWaylandObjectFactor
                 case 0: // clock_id
                     if (obj._onClockId != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _clkId = args[0].u;
                         obj._onClockId?.Invoke(_clkId);
                     }
@@ -228,6 +234,7 @@ public sealed partial class WpPresentation : WaylandObject, IWaylandObjectFactor
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -264,6 +271,7 @@ public sealed partial class WpPresentation : WaylandObject, IWaylandObjectFactor
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -273,6 +281,7 @@ public sealed partial class WpPresentation : WaylandObject, IWaylandObjectFactor
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new WpPresentationFeedback(newProxy, Display);
     }
 

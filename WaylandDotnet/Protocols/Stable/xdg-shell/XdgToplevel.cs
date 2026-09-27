@@ -9,6 +9,7 @@
 namespace WaylandDotnet.Stable;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -482,6 +483,10 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 4, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (XdgToplevel)handle.Target!;
 
@@ -490,6 +495,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
                 case 0: // configure
                     if (obj._onConfigure != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _width = args[0].i;
                         var _height = args[1].i;
                         var _states = args[2].a;
@@ -505,6 +511,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
                 case 2: // configure_bounds
                     if (obj._onConfigureBounds != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _width = args[0].i;
                         var _height = args[1].i;
                         obj._onConfigureBounds?.Invoke(_width, _height);
@@ -513,6 +520,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
                 case 3: // wm_capabilities
                     if (obj._onWmCapabilities != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _capabilities = args[0].a;
                         obj._onWmCapabilities?.Invoke(WaylandMarshal.ToSpan(_capabilities));
                     }
@@ -546,6 +554,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -593,6 +602,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -626,6 +636,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
 
         const uint opcode = 2;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -675,6 +686,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
 
         const uint opcode = 3;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -716,6 +728,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
 
         const uint opcode = 4;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -759,6 +772,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
 
         const uint opcode = 5;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -818,6 +832,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
 
         const uint opcode = 6;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -878,6 +893,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
 
         const uint opcode = 7;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -938,6 +954,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
 
         const uint opcode = 8;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -982,6 +999,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
 
         const uint opcode = 9;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -1028,6 +1046,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
 
         const uint opcode = 10;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -1077,6 +1096,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
 
         const uint opcode = 11;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -1119,6 +1139,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
 
         const uint opcode = 12;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -1152,6 +1173,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
 
         const uint opcode = 13;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

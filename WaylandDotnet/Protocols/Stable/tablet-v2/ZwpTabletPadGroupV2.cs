@@ -9,6 +9,7 @@
 namespace WaylandDotnet.Stable;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -455,6 +456,10 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 7, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwpTabletPadGroupV2)handle.Target!;
 
@@ -463,6 +468,7 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
                 case 0: // buttons
                     if (obj._onButtons != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _buttons = args[0].a;
                         obj._onButtons?.Invoke(WaylandMarshal.ToSpan(_buttons));
                     }
@@ -470,6 +476,7 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
                 case 1: // ring
                     if (obj._onRing != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'ring'");
                         var _ring = new ZwpTabletPadRingV2((IntPtr)args[0].o, obj.Display!);
                         obj._onRing?.Invoke(_ring);
@@ -478,6 +485,7 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
                 case 2: // strip
                     if (obj._onStrip != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'strip'");
                         var _strip = new ZwpTabletPadStripV2((IntPtr)args[0].o, obj.Display!);
                         obj._onStrip?.Invoke(_strip);
@@ -486,6 +494,7 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
                 case 3: // modes
                     if (obj._onModes != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _modes = args[0].u;
                         obj._onModes?.Invoke(_modes);
                     }
@@ -499,6 +508,7 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
                 case 5: // mode_switch
                     if (obj._onModeSwitch != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _time = args[0].u;
                         var _serial = args[1].u;
                         var _mode = args[2].u;
@@ -508,6 +518,7 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
                 case 6: // dial
                     if (obj._onDial != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'dial'");
                         var _dial = new ZwpTabletPadDialV2((IntPtr)args[0].o, obj.Display!);
                         obj._onDial?.Invoke(_dial);
@@ -542,6 +553,7 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

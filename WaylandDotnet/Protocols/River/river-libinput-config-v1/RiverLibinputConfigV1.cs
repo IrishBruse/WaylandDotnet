@@ -9,6 +9,7 @@
 namespace WaylandDotnet.River;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -173,6 +174,10 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 2, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverLibinputConfigV1)handle.Target!;
 
@@ -187,6 +192,7 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
                 case 1: // libinput_device
                     if (obj._onLibinputDevice != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
                         var _id = new RiverLibinputDeviceV1((IntPtr)args[0].o, obj.Display!);
                         obj._onLibinputDevice?.Invoke(_id);
@@ -226,6 +232,7 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -262,6 +269,7 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -292,6 +300,7 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
 
         const uint opcode = 2;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -301,6 +310,7 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new RiverLibinputAccelConfigV1(newProxy, Display);
     }
 

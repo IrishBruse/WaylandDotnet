@@ -9,6 +9,7 @@
 namespace WaylandDotnet.Wlr;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -236,6 +237,10 @@ public sealed partial class ZwlrOutputModeV1 : WaylandObject, IWaylandObjectFact
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 4, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwlrOutputModeV1)handle.Target!;
 
@@ -244,6 +249,7 @@ public sealed partial class ZwlrOutputModeV1 : WaylandObject, IWaylandObjectFact
                 case 0: // size
                     if (obj._onSize != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _width = args[0].i;
                         var _height = args[1].i;
                         obj._onSize?.Invoke(_width, _height);
@@ -252,6 +258,7 @@ public sealed partial class ZwlrOutputModeV1 : WaylandObject, IWaylandObjectFact
                 case 1: // refresh
                     if (obj._onRefresh != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _refresh = args[0].i;
                         obj._onRefresh?.Invoke(_refresh);
                     }
@@ -297,6 +304,7 @@ public sealed partial class ZwlrOutputModeV1 : WaylandObject, IWaylandObjectFact
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

@@ -9,6 +9,7 @@
 namespace WaylandDotnet;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -194,6 +195,10 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 2, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlDisplay)handle.Target!;
 
@@ -202,6 +207,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
                 case 0: // error
                     if (obj._onError != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'object_id'");
                         var _objectId = new WaylandProxy((IntPtr)args[0].o);
                         var _code = args[1].u;
@@ -212,6 +218,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
                 case 1: // delete_id
                     if (obj._onDeleteId != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _id = args[0].u;
                         obj._onDeleteId?.Invoke(_id);
                     }
@@ -253,6 +260,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -262,6 +270,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new WlCallback(newProxy, this);
     }
 
@@ -288,6 +297,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -297,6 +307,7 @@ public sealed partial class WlDisplay : WaylandObject, IWaylandObjectFactory<WlD
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new WlRegistry(newProxy, this);
     }
 

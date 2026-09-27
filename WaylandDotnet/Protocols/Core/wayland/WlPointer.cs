@@ -9,6 +9,7 @@
 namespace WaylandDotnet;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -981,6 +982,10 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 12, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlPointer)handle.Target!;
 
@@ -989,6 +994,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
                 case 0: // enter
                     if (obj._onEnter != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _serial = args[0].u;
                         if (args[1].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'surface'");
                         var _surface = new WlSurface((IntPtr)args[1].o, obj.Display!);
@@ -1000,6 +1006,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
                 case 1: // leave
                     if (obj._onLeave != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _serial = args[0].u;
                         if (args[1].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'surface'");
                         var _surface = new WlSurface((IntPtr)args[1].o, obj.Display!);
@@ -1009,6 +1016,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
                 case 2: // motion
                     if (obj._onMotion != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _time = args[0].u;
                         var _surfaceX = args[1].f;
                         var _surfaceY = args[2].f;
@@ -1018,6 +1026,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
                 case 3: // button
                     if (obj._onButton != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _serial = args[0].u;
                         var _time = args[1].u;
                         var _button = args[2].u;
@@ -1028,6 +1037,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
                 case 4: // axis
                     if (obj._onAxis != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _time = args[0].u;
                         var _axis = args[1].u;
                         var _value = args[2].f;
@@ -1043,6 +1053,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
                 case 6: // axis_source
                     if (obj._onAxisSource != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _axisSource = args[0].u;
                         obj._onAxisSource?.Invoke(_axisSource);
                     }
@@ -1050,6 +1061,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
                 case 7: // axis_stop
                     if (obj._onAxisStop != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _time = args[0].u;
                         var _axis = args[1].u;
                         obj._onAxisStop?.Invoke(_time, _axis);
@@ -1058,6 +1070,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
                 case 8: // axis_discrete
                     if (obj._onAxisDiscrete != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _axis = args[0].u;
                         var _discrete = args[1].i;
                         obj._onAxisDiscrete?.Invoke(_axis, _discrete);
@@ -1066,6 +1079,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
                 case 9: // axis_value120
                     if (obj._onAxisValue120 != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _axis = args[0].u;
                         var _value120 = args[1].i;
                         obj._onAxisValue120?.Invoke(_axis, _value120);
@@ -1074,6 +1088,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
                 case 10: // axis_relative_direction
                     if (obj._onAxisRelativeDirection != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _axis = args[0].u;
                         var _direction = args[1].u;
                         obj._onAxisRelativeDirection?.Invoke(_axis, _direction);
@@ -1082,6 +1097,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
                 case 11: // warp
                     if (obj._onWarp != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _surfaceX = args[0].f;
                         var _surfaceY = args[1].f;
                         obj._onWarp?.Invoke(_surfaceX, _surfaceY);
@@ -1151,6 +1167,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -1181,6 +1198,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

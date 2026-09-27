@@ -9,6 +9,7 @@
 namespace WaylandDotnet.River;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -509,6 +510,10 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 10, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverXkbKeyboardV1)handle.Target!;
 
@@ -523,6 +528,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
                 case 1: // input_device
                     if (obj._onInputDevice != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'device'");
                         var _device = new RiverInputDeviceV1((IntPtr)args[0].o, obj.Display!);
                         obj._onInputDevice?.Invoke(_device);
@@ -531,6 +537,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
                 case 2: // layout
                     if (obj._onLayout != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _index = args[0].u;
                         var _name = Utf8StringMarshaller.ConvertToManaged(args[1].s) ?? string.Empty;
                         obj._onLayout?.Invoke(_index, _name);
@@ -607,6 +614,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -640,6 +648,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -668,6 +677,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
 
         const uint opcode = 2;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -696,6 +706,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
 
         const uint opcode = 3;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -722,6 +733,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
 
         const uint opcode = 4;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -748,6 +760,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
 
         const uint opcode = 5;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -774,6 +787,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
 
         const uint opcode = 6;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -800,6 +814,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
 
         const uint opcode = 7;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -826,6 +841,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
 
         const uint opcode = 8;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -852,6 +868,7 @@ public sealed partial class RiverXkbKeyboardV1 : WaylandObject, IWaylandObjectFa
 
         const uint opcode = 9;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

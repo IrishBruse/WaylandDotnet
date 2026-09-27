@@ -1,5 +1,6 @@
 namespace WaylandDotnet;
 
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 public partial class WlShm
@@ -24,6 +25,21 @@ public partial class WlShm
     private const int MAP_SHARED = 0x01;
     private const uint MFD_CLOEXEC = 0x0001;
 
+    private static void DebugAssertBufferDimensions(int width, int height)
+    {
+        Debug.Assert(width > 0);
+        Debug.Assert(height > 0);
+        Debug.Assert(width <= int.MaxValue / 4);
+    }
+
+    private static void DebugAssertBufferGeometry(int width, int height, int stride, int size)
+    {
+        Debug.Assert(stride == width * 4);
+        Debug.Assert(stride > 0 && height <= int.MaxValue / stride);
+        Debug.Assert(size == stride * height);
+        Debug.Assert(size > 0);
+    }
+
     /// <summary>
     /// Creates a shared memory buffer filled with a solid color.
     /// </summary>
@@ -33,11 +49,14 @@ public partial class WlShm
     /// <returns>A WlBuffer that can be attached to a surface, or null on failure</returns>
     public unsafe WlBuffer? CreateSolidColorBuffer(int width, int height, uint color)
     {
+        DebugAssertBufferDimensions(width, height);
         int stride = width * 4;
         int size = stride * height;
+        DebugAssertBufferGeometry(width, height, stride, size);
 
         int fd = memfd_create("wayland-buffer", MFD_CLOEXEC);
         if (fd < 0) return null;
+        Debug.Assert(fd >= 0);
 
         if (ftruncate(fd, size) != 0)
         {
@@ -51,6 +70,8 @@ public partial class WlShm
             close(fd);
             return null;
         }
+        Debug.Assert(data != IntPtr.Zero);
+        Debug.Assert(data != new IntPtr(-1));
 
         // Fill with color (convert ARGB to BGRA for XRGB format)
         byte b = (byte)(color & 0xFF);
@@ -72,6 +93,8 @@ public partial class WlShm
 
         munmap(data, size);
 
+        Debug.Assert(fd >= 0);
+        Debug.Assert(size > 0);
         WlShmPool pool = CreatePool(fd, size);
         WlBuffer buffer = pool.CreateBuffer(0, width, height, stride, (uint)WlShm.Format.Xrgb8888);
         pool.Destroy();
@@ -90,11 +113,14 @@ public partial class WlShm
     /// <returns>A WlBuffer that can be attached to a surface, or null on failure.</returns>
     public unsafe WlBuffer? CreateCheckerboardColorBuffer(int width, int height, uint colorA, uint colorB)
     {
+        DebugAssertBufferDimensions(width, height);
         int stride = width * 4;
         int size = stride * height;
+        DebugAssertBufferGeometry(width, height, stride, size);
 
         int fd = memfd_create("wayland-buffer", MFD_CLOEXEC);
         if (fd < 0) return null;
+        Debug.Assert(fd >= 0);
 
         if (ftruncate(fd, size) != 0)
         {
@@ -108,6 +134,8 @@ public partial class WlShm
             close(fd);
             return null;
         }
+        Debug.Assert(data != IntPtr.Zero);
+        Debug.Assert(data != new IntPtr(-1));
 
         // Fill with checkerboard pattern
         byte aA = (byte)(colorA & 0xFF);
@@ -135,6 +163,8 @@ public partial class WlShm
 
         munmap(data, size);
 
+        Debug.Assert(fd >= 0);
+        Debug.Assert(size > 0);
         WlShmPool pool = CreatePool(fd, size);
         WlBuffer buffer = pool.CreateBuffer(0, width, height, stride, (uint)Format.Xrgb8888);
         pool.Destroy();

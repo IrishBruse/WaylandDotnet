@@ -9,6 +9,7 @@
 namespace WaylandDotnet.Stable;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -219,6 +220,10 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 3, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwpTabletSeatV2)handle.Target!;
 
@@ -227,6 +232,7 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
                 case 0: // tablet_added
                     if (obj._onTabletAdded != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
                         var _id = new ZwpTabletV2((IntPtr)args[0].o, obj.Display!);
                         obj._onTabletAdded?.Invoke(_id);
@@ -235,6 +241,7 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
                 case 1: // tool_added
                     if (obj._onToolAdded != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
                         var _id = new ZwpTabletToolV2((IntPtr)args[0].o, obj.Display!);
                         obj._onToolAdded?.Invoke(_id);
@@ -243,6 +250,7 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
                 case 2: // pad_added
                     if (obj._onPadAdded != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
                         var _id = new ZwpTabletPadV2((IntPtr)args[0].o, obj.Display!);
                         obj._onPadAdded?.Invoke(_id);
@@ -277,6 +285,7 @@ public sealed partial class ZwpTabletSeatV2 : WaylandObject, IWaylandObjectFacto
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

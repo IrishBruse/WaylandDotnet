@@ -9,6 +9,7 @@
 namespace WaylandDotnet;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -381,6 +382,10 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 6, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlDataDevice)handle.Target!;
 
@@ -389,6 +394,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
                 case 0: // data_offer
                     if (obj._onDataOffer != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         if (args[0].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'id'");
                         var _id = new WlDataOffer((IntPtr)args[0].o, obj.Display!);
                         obj._onDataOffer?.Invoke(_id);
@@ -397,6 +403,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
                 case 1: // enter
                     if (obj._onEnter != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _serial = args[0].u;
                         if (args[1].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'surface'");
                         var _surface = new WlSurface((IntPtr)args[1].o, obj.Display!);
@@ -419,6 +426,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
                 case 3: // motion
                     if (obj._onMotion != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _time = args[0].u;
                         var _x = args[1].f;
                         var _y = args[2].f;
@@ -434,6 +442,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
                 case 5: // selection
                     if (obj._onSelection != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         WlDataOffer? _id = null;
                         if (args[0].o != (WlObject*)IntPtr.Zero)
                         {
@@ -502,6 +511,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -537,6 +547,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -563,6 +574,7 @@ public sealed partial class WlDataDevice : WaylandObject, IWaylandObjectFactory<
 
         const uint opcode = 2;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

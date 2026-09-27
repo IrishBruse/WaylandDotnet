@@ -9,6 +9,7 @@
 namespace WaylandDotnet;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -466,6 +467,10 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 6, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlKeyboard)handle.Target!;
 
@@ -474,6 +479,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
                 case 0: // keymap
                     if (obj._onKeymap != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _format = args[0].u;
                         var _fd = args[1].h;
                         var _size = args[2].u;
@@ -483,6 +489,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
                 case 1: // enter
                     if (obj._onEnter != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _serial = args[0].u;
                         if (args[1].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'surface'");
                         var _surface = new WlSurface((IntPtr)args[1].o, obj.Display!);
@@ -493,6 +500,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
                 case 2: // leave
                     if (obj._onLeave != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _serial = args[0].u;
                         if (args[1].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'surface'");
                         var _surface = new WlSurface((IntPtr)args[1].o, obj.Display!);
@@ -502,6 +510,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
                 case 3: // key
                     if (obj._onKey != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _serial = args[0].u;
                         var _time = args[1].u;
                         var _key = args[2].u;
@@ -512,6 +521,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
                 case 4: // modifiers
                     if (obj._onModifiers != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _serial = args[0].u;
                         var _modsDepressed = args[1].u;
                         var _modsLatched = args[2].u;
@@ -523,6 +533,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
                 case 5: // repeat_info
                     if (obj._onRepeatInfo != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _rate = args[0].i;
                         var _delay = args[1].i;
                         obj._onRepeatInfo?.Invoke(_rate, _delay);
@@ -554,6 +565,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

@@ -1,5 +1,6 @@
 namespace WaylandDotnet.Internal;
 
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 /// <summary> Native Wayland interface registry and lookup helpers. </summary>
@@ -9,10 +10,13 @@ public unsafe static partial class WaylandInterfaces
 
     private static IntPtr CreateTypesArray(WlInterface*[] types)
     {
+        Debug.Assert(types != null);
+
         if (types.Length == 0) return IntPtr.Zero;
 
         var size = IntPtr.Size * types.Length;
         var ptr = Marshal.AllocHGlobal(size);
+        Debug.Assert(ptr != IntPtr.Zero);
 
         for (int i = 0; i < types.Length; i++)
         {
@@ -31,9 +35,27 @@ public unsafe static partial class WaylandInterfaces
     /// <exception cref="InvalidOperationException">The interface was not registered.</exception>
     public static WlInterface* GetInterfacePtr(string interfaceName)
     {
+        Debug.Assert(!string.IsNullOrEmpty(interfaceName));
+
         if (Interfaces.TryGetValue(interfaceName, out nint ptr))
         {
-            return (WlInterface*)ptr;
+            var iface = (WlInterface*)ptr;
+            Debug.Assert(iface != null);
+            Debug.Assert(iface->Name != null);
+            Debug.Assert(iface->Version >= 1);
+            Debug.Assert(iface->MethodCount >= 0);
+            Debug.Assert(iface->EventCount >= 0);
+            if (iface->MethodCount > 0)
+            {
+                Debug.Assert(iface->Methods != null);
+            }
+
+            if (iface->EventCount > 0)
+            {
+                Debug.Assert(iface->Events != null);
+            }
+
+            return iface;
         }
 
         throw new InvalidOperationException($"Interface {interfaceName} not found");
@@ -42,7 +64,9 @@ public unsafe static partial class WaylandInterfaces
     private static WlInterface* AllocateInterface()
     {
         var size = Marshal.SizeOf<WlInterface>();
+        Debug.Assert(size > 0);
         var ptr = (WlInterface*)Marshal.AllocHGlobal(size);
+        Debug.Assert(ptr != null);
         return ptr;
     }
 }

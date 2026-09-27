@@ -1,5 +1,6 @@
 namespace WaylandDotnet;
 
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using WaylandDotnet.Internal;
 
@@ -27,6 +28,7 @@ public static partial class WaylandLogger
 
             try
             {
+                Debug.Assert(fmt != IntPtr.Zero);
                 int length = vsnprintf(buffer, (UIntPtr)bufferSize, fmt, args);
 
                 if (length < 0)
@@ -35,6 +37,7 @@ public static partial class WaylandLogger
                     return;
                 }
 
+                Debug.Assert(length >= 0 && length < bufferSize);
                 string message = Marshal.PtrToStringAnsi(buffer, length) ?? "[Wayland] <empty>";
                 Console.Error.WriteLine($"[Wayland] {message}");
             }

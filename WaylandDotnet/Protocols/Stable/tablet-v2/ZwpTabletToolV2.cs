@@ -9,6 +9,7 @@
 namespace WaylandDotnet.Stable;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -1095,6 +1096,10 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 19, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (ZwpTabletToolV2)handle.Target!;
 
@@ -1103,6 +1108,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                 case 0: // type
                     if (obj._onType != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _toolType = args[0].u;
                         obj._onType?.Invoke(_toolType);
                     }
@@ -1110,6 +1116,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                 case 1: // hardware_serial
                     if (obj._onHardwareSerial != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _hardwareSerialHi = args[0].u;
                         var _hardwareSerialLo = args[1].u;
                         obj._onHardwareSerial?.Invoke(_hardwareSerialHi, _hardwareSerialLo);
@@ -1118,6 +1125,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                 case 2: // hardware_id_wacom
                     if (obj._onHardwareIdWacom != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _hardwareIdHi = args[0].u;
                         var _hardwareIdLo = args[1].u;
                         obj._onHardwareIdWacom?.Invoke(_hardwareIdHi, _hardwareIdLo);
@@ -1126,6 +1134,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                 case 3: // capability
                     if (obj._onCapability != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _capability = args[0].u;
                         obj._onCapability?.Invoke(_capability);
                     }
@@ -1145,6 +1154,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                 case 6: // proximity_in
                     if (obj._onProximityIn != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _serial = args[0].u;
                         if (args[1].o == (WlObject*)IntPtr.Zero) throw new InvalidOperationException("Received null object for non-nullable argument 'tablet'");
                         var _tablet = new ZwpTabletV2((IntPtr)args[1].o, obj.Display!);
@@ -1162,6 +1172,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                 case 8: // down
                     if (obj._onDown != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _serial = args[0].u;
                         obj._onDown?.Invoke(_serial);
                     }
@@ -1175,6 +1186,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                 case 10: // motion
                     if (obj._onMotion != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _x = args[0].f;
                         var _y = args[1].f;
                         obj._onMotion?.Invoke(_x, _y);
@@ -1183,6 +1195,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                 case 11: // pressure
                     if (obj._onPressure != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _pressure = args[0].u;
                         obj._onPressure?.Invoke(_pressure);
                     }
@@ -1190,6 +1203,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                 case 12: // distance
                     if (obj._onDistance != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _distance = args[0].u;
                         obj._onDistance?.Invoke(_distance);
                     }
@@ -1197,6 +1211,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                 case 13: // tilt
                     if (obj._onTilt != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _tiltX = args[0].f;
                         var _tiltY = args[1].f;
                         obj._onTilt?.Invoke(_tiltX, _tiltY);
@@ -1205,6 +1220,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                 case 14: // rotation
                     if (obj._onRotation != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _degrees = args[0].f;
                         obj._onRotation?.Invoke(_degrees);
                     }
@@ -1212,6 +1228,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                 case 15: // slider
                     if (obj._onSlider != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _position = args[0].i;
                         obj._onSlider?.Invoke(_position);
                     }
@@ -1219,6 +1236,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                 case 16: // wheel
                     if (obj._onWheel != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _degrees = args[0].f;
                         var _clicks = args[1].i;
                         obj._onWheel?.Invoke(_degrees, _clicks);
@@ -1227,6 +1245,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                 case 17: // button
                     if (obj._onButton != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _serial = args[0].u;
                         var _button = args[1].u;
                         var _state = args[2].u;
@@ -1236,6 +1255,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
                 case 18: // frame
                     if (obj._onFrame != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _time = args[0].u;
                         obj._onFrame?.Invoke(_time);
                     }
@@ -1301,6 +1321,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -1327,6 +1348,7 @@ public sealed partial class ZwpTabletToolV2 : WaylandObject, IWaylandObjectFacto
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,

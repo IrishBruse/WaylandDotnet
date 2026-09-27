@@ -9,6 +9,7 @@
 namespace WaylandDotnet;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -745,6 +746,10 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
     {
         try
         {
+            Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
+            Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
+            Debug.Assert(message != null, "dispatcher message is null");
+            Debug.Assert(opcode < 1, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (WlShm)handle.Target!;
 
@@ -753,6 +758,7 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
                 case 0: // format
                     if (obj._onFormat != null)
                     {
+                        Debug.Assert(args != null, "dispatcher arguments are null");
                         var _format = args[0].u;
                         obj._onFormat?.Invoke(_format);
                     }
@@ -792,6 +798,7 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
 
         const uint opcode = 0;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
@@ -801,6 +808,7 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
             (nint)args
         );
 
+        Debug.Assert(newProxy != IntPtr.Zero, "compositor returned a null object");
         return new WlShmPool(newProxy, Display);
     }
 
@@ -823,6 +831,7 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
 
         const uint opcode = 1;
 
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
             opcode,
