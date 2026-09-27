@@ -15,4 +15,5 @@ Taskbar:
 
 [working-directory: 'RiverWindowManager']
 RiverWindowManager:
+    ./run.sh
     WAYLAND_DISPLAY=wayland-2 dotnet run

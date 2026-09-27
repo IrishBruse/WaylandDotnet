@@ -12,9 +12,12 @@ This example shows how to:
 
 ## Running
 
+`just run::RiverWindowManager` stops leftover river sessions, leaves the current session compositor running, and connects this example to a nested river on `wayland-2`.
+
+A previous copy of the example is stopped first, so river's single window-manager slot is free.
+
 ```bash
-cd Examples/RiverWindowManager
-dotnet run
+just run::RiverWindowManager
 ```
 
 ## Requirements
