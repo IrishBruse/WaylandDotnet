@@ -23,7 +23,7 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_output_v1
 /// <para> a logical output </para>
-/// <para> Version: 5 </para>
+/// <para> Version: 6 </para>
 /// <see>https://wayland.app/protocols/river-window-management-v1/#river_output_v1</see>
 /// </summary>
 public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory<RiverOutputV1>
@@ -33,7 +33,7 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
     /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_output_v1";
     /// <summary> Interface version supported by this binding. </summary>
-    public const int InterfaceVersion = 5;
+    public const int InterfaceVersion = 6;
 
     private bool disposed;
 

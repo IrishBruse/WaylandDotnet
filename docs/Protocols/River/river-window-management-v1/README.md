@@ -9,7 +9,7 @@
         <span class="codicon codicon-symbol-interface"></span>
         RiverWindowManagerV1
     </a>
-    <span class="pill">version 5</span>
+    <span class="pill">version 6</span>
 </h2>
 
 Window manager global interface
@@ -481,7 +481,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         RiverWindowV1
     </a>
-    <span class="pill">version 5</span>
+    <span class="pill">version 6</span>
 </h2>
 
 A logical window
@@ -1741,6 +1741,79 @@ whenever the number of capture sessions changes.
 This event will be followed by a manage_start event after all other new
 state has been sent by the server.
 
+<h3 class="decleration event" title="TouchMoveRequested event">
+    <a href="#/Protocols/River/river-window-management-v1/?id=onriverwindowv1_touchmoverequested" id="onriverwindowv1_touchmoverequested">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnTouchMoveRequested</span>
+    </a>
+    <span class="pill">since 6</span>
+</h3>
+
+```csharp
+void TouchMoveRequestedHandler(RiverSeatV1 seat, int touchPoint)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| seat | object | Requested seat |
+| touch_point | int | Transient touch point ID |
+
+**Window requested interactive touch move**
+
+This event informs the window manager that the window has requested to
+be interactively moved using touch input. The seat argument indicates
+the seat for the move and the touch point argument indicates the
+transient ID of the touch point used.
+
+The xdg-shell protocol for example allows windows to request that an
+interactive move be started, perhaps when a client-side rendered
+titlebar is dragged.
+
+The window manager may use the river_seat_v1.op_start_touch request to
+interactively move the window or ignore this event entirely.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="TouchResizeRequested event">
+    <a href="#/Protocols/River/river-window-management-v1/?id=onriverwindowv1_touchresizerequested" id="onriverwindowv1_touchresizerequested">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverWindowV1.<span class="event">OnTouchResizeRequested</span>
+    </a>
+    <span class="pill">since 6</span>
+</h3>
+
+```csharp
+void TouchResizeRequestedHandler(RiverSeatV1 seat, int touchPoint, uint edges)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| seat | object | Requested seat |
+| touch_point | int | Transient touch point ID |
+| edges | uint | Requested edges |
+
+**Window requested interactive touch resize**
+
+This event informs the window manager that the window has requested to
+be interactively resized using touch input. The seat argument indicates
+the seat for the resize and the touch point argument indicates the
+transient ID of the touch point used.
+
+The edges argument indicates which edges the window has requested to be
+resized from. The edges argument will never be none and will never have
+both top and bottom or both left and right edges set.
+
+The xdg-shell protocol for example allows windows to request that an
+interactive resize be started, perhaps when the corner of client-side
+rendered decorations is dragged.
+
+The window manager may use the river_seat_v1.op_start_touch request to
+interactively resize the window or ignore this event entirely.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
 <h3 class="decleration enum" title="Error enum">
     <a href="#/Protocols/River/river-window-management-v1/?id=riverwindowv1_error_enum" id="riverwindowv1_error_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
@@ -1815,7 +1888,7 @@ public enum CapabilitiesFlag
         <span class="codicon codicon-symbol-interface"></span>
         RiverDecorationV1
     </a>
-    <span class="pill">version 5</span>
+    <span class="pill">version 6</span>
 </h2>
 
 A window decoration
@@ -1921,7 +1994,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         RiverShellSurfaceV1
     </a>
-    <span class="pill">version 5</span>
+    <span class="pill">version 6</span>
 </h2>
 
 A surface for window manager UI
@@ -2017,7 +2090,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         RiverNodeV1
     </a>
-    <span class="pill">version 5</span>
+    <span class="pill">version 6</span>
 </h2>
 
 A node in the render list
@@ -2193,7 +2266,7 @@ manage or render sequence, see the river_window_manager_v1 description.
         <span class="codicon codicon-symbol-interface"></span>
         RiverOutputV1
     </a>
-    <span class="pill">version 5</span>
+    <span class="pill">version 6</span>
 </h2>
 
 A logical output
@@ -2441,7 +2514,7 @@ public enum PresentationMode
         <span class="codicon codicon-symbol-interface"></span>
         RiverSeatV1
     </a>
-    <span class="pill">version 5</span>
+    <span class="pill">version 6</span>
 </h2>
 
 A window management seat
@@ -2577,7 +2650,7 @@ The window manager may use this operation to implement interactive
 move/resize of windows by setting the position of windows and proposing
 dimensions based off of the op_delta events.
 
-This request is ignored if an operation is already in progress.
+This request is ignored if a pointer operation is already in progress.
 
 The compositor must ensure that no client has pointer focus from this
 seat during the pointer operation. This means that the window manager
@@ -2599,11 +2672,11 @@ void OpEnd()
 ```
 
 
-**End an interactive operation**
+**End an interactive pointer operation**
 
-End an interactive operation.
+End an interactive pointer operation.
 
-This request is ignored if there is no operation in progress.
+This request is ignored if there is no pointer operation in progress.
 
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
@@ -2690,6 +2763,71 @@ will be warped to the closest point inside an output instead.
 If an op_start_pointer request is made during the same manage sequence
 as a pointer_warp request, the warp is applied first by the server
 regardless of the relative ordering of the two requests.
+
+This request modifies window management state and may only be made as
+part of a manage sequence, see the river_window_manager_v1 description.
+
+<h3 class="decleration request" title="OpStartTouch request">
+    <a href="#/Protocols/River/river-window-management-v1/?id=riverseatv1_opstarttouch" id="riverseatv1_opstarttouch">
+        <span class="codicon codicon-symbol-method method"></span>
+        RiverSeatV1.<span class="method">OpStartTouch</span>
+    </a>
+    <span class="pill">since 6</span>
+</h3>
+
+```csharp
+void OpStartTouch(int touchPoint)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| touch_point | int | Transient touch point ID |
+
+**Start an interactive touch operation**
+
+Start an interactive touch operation. During the operation,
+op_delta_touch events will be sent based movement of the given touch
+point.
+
+When the touch point is released, the op_release_touch event is sent and
+the operation is automatically ended.
+
+The window manager may end the operation before the touch point is released
+using the op_end_touch request.
+
+The window manager may use this operation to implement interactive
+move/resize of windows by setting the position of windows and proposing
+dimensions based off of the op_delta_touch events.
+
+This request is ignored if a touch operation is already in progress for
+the given touch point or if the given touch point does not exist.
+
+This request modifies window management state and may only be made as
+part of a manage sequence, see the river_window_manager_v1 description.
+
+<h3 class="decleration request" title="OpEndTouch request">
+    <a href="#/Protocols/River/river-window-management-v1/?id=riverseatv1_opendtouch" id="riverseatv1_opendtouch">
+        <span class="codicon codicon-symbol-method method"></span>
+        RiverSeatV1.<span class="method">OpEndTouch</span>
+    </a>
+    <span class="pill">since 6</span>
+</h3>
+
+```csharp
+void OpEndTouch(int touchPoint)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| touch_point | int | Transient touch point ID |
+
+**End an touch operation**
+
+End a touch operation for the given touch point.
+
+This request is ignored if there is no operation in progress for the
+given touch point or if the operation has already been ended by the
+op_release_touch event.
 
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
@@ -2893,7 +3031,7 @@ void OpDeltaHandler(int dx, int dy)
 **Total cumulative motion since op start**
 
 This event indicates the total change in position since the start of the
-operation of the pointer/touch point/etc.
+pointer operation.
 
 This event will be followed by a manage_start event after all other new
 state has been sent by the server.
@@ -2910,15 +3048,15 @@ void OpReleaseHandler()
 ```
 
 
-**Operation input has been released**
+**All pointer buttors have been released**
 
-The input driving the current interactive operation has been released.
-For a pointer op for example, all pointer buttons have been released.
+All pointer buttons on the pointer device driving the operation have
+been released.
 
-Depending on the op type, op_delta events may continue to be sent until
-the op is ended with the op_end request.
+The compositor will continue to send op_delta events until the op is
+ended with the op_end request.
 
-This event is sent at most once during an interactive operation.
+This event is sent at most once during a pointer operation.
 
 This event will be followed by a manage_start event after all other new
 state has been sent by the server.
@@ -2951,6 +3089,88 @@ not cause the compositor to start a manage sequence.
 Assuming the seat has a pointer, this event must be sent in every manage
 sequence unless there is no change in x/y position since the last time this
 event was sent.
+
+<h3 class="decleration event" title="OpDeltaTouch event">
+    <a href="#/Protocols/River/river-window-management-v1/?id=onriverseatv1_opdeltatouch" id="onriverseatv1_opdeltatouch">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverSeatV1.<span class="event">OnOpDeltaTouch</span>
+    </a>
+    <span class="pill">since 6</span>
+</h3>
+
+```csharp
+void OpDeltaTouchHandler(int touchPoint, int dx, int dy)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| touch_point | int | Transient touch point ID |
+| dx | int | Total change in x |
+| dy | int | Total change in y |
+
+**Total cumulative motion since op start**
+
+This event indicates the total change in position since the start of the
+operation for the given touch point.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="OpReleaseTouch event">
+    <a href="#/Protocols/River/river-window-management-v1/?id=onriverseatv1_opreleasetouch" id="onriverseatv1_opreleasetouch">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverSeatV1.<span class="event">OnOpReleaseTouch</span>
+    </a>
+    <span class="pill">since 6</span>
+</h3>
+
+```csharp
+void OpReleaseTouchHandler(int touchPoint)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| touch_point | int | Transient touch point ID |
+
+**Operation touch point has been released**
+
+The touch point for the operation has been released and the operation is
+ended.
+
+No further op_delta_touch events will be sent for the operation.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
+<h3 class="decleration event" title="OpCancelTouch event">
+    <a href="#/Protocols/River/river-window-management-v1/?id=onriverseatv1_opcanceltouch" id="onriverseatv1_opcanceltouch">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverSeatV1.<span class="event">OnOpCancelTouch</span>
+    </a>
+    <span class="pill">since 6</span>
+</h3>
+
+```csharp
+void OpCancelTouchHandler(int touchPoint)
+```
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| touch_point | int | Transient touch point ID |
+
+**Operation touch point has been canceled**
+
+The touch point for the operation has been canceled. For example, this
+might happen due to palm detection determining that the touch point was
+actually a accidental palm contact point all along and should have been
+ignored from the start.
+
+The client should ideally behave as if this operation was never started.
+
+No further op_delta_touch events will be sent for the operation.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
 
 <h3 class="decleration enum" title="Modifiers enum">
     <a href="#/Protocols/River/river-window-management-v1/?id=riverseatv1_modifiers_enum" id="riverseatv1_modifiers_enum">
@@ -2988,7 +3208,7 @@ bindings however so these values are not included in this enum.
         <span class="codicon codicon-symbol-interface"></span>
         RiverPointerBindingV1
     </a>
-    <span class="pill">version 5</span>
+    <span class="pill">version 6</span>
 </h2>
 
 Configure a pointer binding, receive trigger events

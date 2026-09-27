@@ -23,7 +23,7 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_seat_v1
 /// <para> a window management seat </para>
-/// <para> Version: 5 </para>
+/// <para> Version: 6 </para>
 /// <see>https://wayland.app/protocols/river-window-management-v1/#river_seat_v1</see>
 /// </summary>
 public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<RiverSeatV1>
@@ -33,7 +33,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_seat_v1";
     /// <summary> Interface version supported by this binding. </summary>
-    public const int InterfaceVersion = 5;
+    public const int InterfaceVersion = 6;
 
     private bool disposed;
 
@@ -447,7 +447,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// <para>
     ///
     /// This event indicates the total change in position since the start of the
-    /// operation of the pointer/touch point/etc.
+    /// pointer operation.
     ///
     /// This event will be followed by a manage_start event after all other new
     /// state has been sent by the server.
@@ -463,7 +463,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// <para>
     ///
     /// This event indicates the total change in position since the start of the
-    /// operation of the pointer/touch point/etc.
+    /// pointer operation.
     ///
     /// This event will be followed by a manage_start event after all other new
     /// state has been sent by the server.
@@ -486,16 +486,16 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     }
 
     /// <summary>
-    /// Operation input has been released
+    /// All pointer buttors have been released
     /// <para>
     ///
-    /// The input driving the current interactive operation has been released.
-    /// For a pointer op for example, all pointer buttons have been released.
+    /// All pointer buttons on the pointer device driving the operation have
+    /// been released.
     ///
-    /// Depending on the op type, op_delta events may continue to be sent until
-    /// the op is ended with the op_end request.
+    /// The compositor will continue to send op_delta events until the op is
+    /// ended with the op_end request.
     ///
-    /// This event is sent at most once during an interactive operation.
+    /// This event is sent at most once during a pointer operation.
     ///
     /// This event will be followed by a manage_start event after all other new
     /// state has been sent by the server.
@@ -507,16 +507,16 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     private OpReleaseHandler? _onOpRelease;
 
     /// <summary>
-    /// Operation input has been released
+    /// All pointer buttors have been released
     /// <para>
     ///
-    /// The input driving the current interactive operation has been released.
-    /// For a pointer op for example, all pointer buttons have been released.
+    /// All pointer buttons on the pointer device driving the operation have
+    /// been released.
     ///
-    /// Depending on the op type, op_delta events may continue to be sent until
-    /// the op is ended with the op_end request.
+    /// The compositor will continue to send op_delta events until the op is
+    /// ended with the op_end request.
     ///
-    /// This event is sent at most once during an interactive operation.
+    /// This event is sent at most once during a pointer operation.
     ///
     /// This event will be followed by a manage_start event after all other new
     /// state has been sent by the server.
@@ -586,6 +586,151 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         remove
         {
             _onPointerPosition -= value;
+        }
+    }
+
+    /// <summary>
+    /// Total cumulative motion since op start
+    /// <para>
+    ///
+    /// This event indicates the total change in position since the start of the
+    /// operation for the given touch point.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
+    public delegate void OpDeltaTouchHandler(int touchPoint, int dx, int dy);
+
+    private OpDeltaTouchHandler? _onOpDeltaTouch;
+
+    /// <summary>
+    /// Total cumulative motion since op start
+    /// <para>
+    ///
+    /// This event indicates the total change in position since the start of the
+    /// operation for the given touch point.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
+    public event OpDeltaTouchHandler? OnOpDeltaTouch
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onOpDeltaTouch += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onOpDeltaTouch -= value;
+        }
+    }
+
+    /// <summary>
+    /// Operation touch point has been released
+    /// <para>
+    ///
+    /// The touch point for the operation has been released and the operation is
+    /// ended.
+    ///
+    /// No further op_delta_touch events will be sent for the operation.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
+    public delegate void OpReleaseTouchHandler(int touchPoint);
+
+    private OpReleaseTouchHandler? _onOpReleaseTouch;
+
+    /// <summary>
+    /// Operation touch point has been released
+    /// <para>
+    ///
+    /// The touch point for the operation has been released and the operation is
+    /// ended.
+    ///
+    /// No further op_delta_touch events will be sent for the operation.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
+    public event OpReleaseTouchHandler? OnOpReleaseTouch
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onOpReleaseTouch += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onOpReleaseTouch -= value;
+        }
+    }
+
+    /// <summary>
+    /// Operation touch point has been canceled
+    /// <para>
+    ///
+    /// The touch point for the operation has been canceled. For example, this
+    /// might happen due to palm detection determining that the touch point was
+    /// actually a accidental palm contact point all along and should have been
+    /// ignored from the start.
+    ///
+    /// The client should ideally behave as if this operation was never started.
+    ///
+    /// No further op_delta_touch events will be sent for the operation.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
+    public delegate void OpCancelTouchHandler(int touchPoint);
+
+    private OpCancelTouchHandler? _onOpCancelTouch;
+
+    /// <summary>
+    /// Operation touch point has been canceled
+    /// <para>
+    ///
+    /// The touch point for the operation has been canceled. For example, this
+    /// might happen due to palm detection determining that the touch point was
+    /// actually a accidental palm contact point all along and should have been
+    /// ignored from the start.
+    ///
+    /// The client should ideally behave as if this operation was never started.
+    ///
+    /// No further op_delta_touch events will be sent for the operation.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
+    public event OpCancelTouchHandler? OnOpCancelTouch
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onOpCancelTouch += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onOpCancelTouch -= value;
         }
     }
 
@@ -687,6 +832,29 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
                         var _x = args[0].i;
                         var _y = args[1].i;
                         obj._onPointerPosition?.Invoke(_x, _y);
+                    }
+                    break;
+                case 9: // op_delta_touch
+                    if (obj._onOpDeltaTouch != null)
+                    {
+                        var _touchPoint = args[0].i;
+                        var _dx = args[1].i;
+                        var _dy = args[2].i;
+                        obj._onOpDeltaTouch?.Invoke(_touchPoint, _dx, _dy);
+                    }
+                    break;
+                case 10: // op_release_touch
+                    if (obj._onOpReleaseTouch != null)
+                    {
+                        var _touchPoint = args[0].i;
+                        obj._onOpReleaseTouch?.Invoke(_touchPoint);
+                    }
+                    break;
+                case 11: // op_cancel_touch
+                    if (obj._onOpCancelTouch != null)
+                    {
+                        var _touchPoint = args[0].i;
+                        obj._onOpCancelTouch?.Invoke(_touchPoint);
                     }
                     break;
                 default:
@@ -838,7 +1006,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// move/resize of windows by setting the position of windows and proposing<br/>
     /// dimensions based off of the op_delta events.<br/>
     /// <br/>
-    /// This request is ignored if an operation is already in progress.<br/>
+    /// This request is ignored if a pointer operation is already in progress.<br/>
     /// <br/>
     /// The compositor must ensure that no client has pointer focus from this<br/>
     /// seat during the pointer operation. This means that the window manager<br/>
@@ -869,12 +1037,12 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     }
 
     /// <summary>
-    /// End an interactive operation
+    /// End an interactive pointer operation
     /// <para>
     /// <br/>
-    /// End an interactive operation.<br/>
+    /// End an interactive pointer operation.<br/>
     /// <br/>
-    /// This request is ignored if there is no operation in progress.<br/>
+    /// This request is ignored if there is no pointer operation in progress.<br/>
     /// <br/>
     /// This request modifies window management state and may only be made as<br/>
     /// part of a manage sequence, see the river_window_manager_v1 description.<br/>
@@ -998,6 +1166,85 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         args[1].i = y;
 
         const uint opcode = 8;
+
+        var newProxy = WaylandNative.ProxyMarshalArrayFlags(
+            Handle,
+            opcode,
+            (WlInterface*)IntPtr.Zero,
+            0,
+            0,
+            (nint)args
+        );
+    }
+
+    /// <summary>
+    /// Start an interactive touch operation
+    /// <para>
+    /// <br/>
+    /// Start an interactive touch operation. During the operation,<br/>
+    /// op_delta_touch events will be sent based movement of the given touch<br/>
+    /// point.<br/>
+    /// <br/>
+    /// When the touch point is released, the op_release_touch event is sent and<br/>
+    /// the operation is automatically ended.<br/>
+    /// <br/>
+    /// The window manager may end the operation before the touch point is released<br/>
+    /// using the op_end_touch request.<br/>
+    /// <br/>
+    /// The window manager may use this operation to implement interactive<br/>
+    /// move/resize of windows by setting the position of windows and proposing<br/>
+    /// dimensions based off of the op_delta_touch events.<br/>
+    /// <br/>
+    /// This request is ignored if a touch operation is already in progress for<br/>
+    /// the given touch point or if the given touch point does not exist.<br/>
+    /// <br/>
+    /// This request modifies window management state and may only be made as<br/>
+    /// part of a manage sequence, see the river_window_manager_v1 description.<br/>
+    /// <br/>
+    /// </para>
+    /// </summary>
+    public unsafe void OpStartTouch(int touchPoint)
+    {
+        ObjectDisposedException.ThrowIf(disposed, this);
+
+        var args = stackalloc WlArgument[1];
+        args[0].i = touchPoint;
+
+        const uint opcode = 9;
+
+        var newProxy = WaylandNative.ProxyMarshalArrayFlags(
+            Handle,
+            opcode,
+            (WlInterface*)IntPtr.Zero,
+            0,
+            0,
+            (nint)args
+        );
+    }
+
+    /// <summary>
+    /// End an touch operation
+    /// <para>
+    /// <br/>
+    /// End a touch operation for the given touch point.<br/>
+    /// <br/>
+    /// This request is ignored if there is no operation in progress for the<br/>
+    /// given touch point or if the operation has already been ended by the<br/>
+    /// op_release_touch event.<br/>
+    /// <br/>
+    /// This request modifies window management state and may only be made as<br/>
+    /// part of a manage sequence, see the river_window_manager_v1 description.<br/>
+    /// <br/>
+    /// </para>
+    /// </summary>
+    public unsafe void OpEndTouch(int touchPoint)
+    {
+        ObjectDisposedException.ThrowIf(disposed, this);
+
+        var args = stackalloc WlArgument[1];
+        args[0].i = touchPoint;
+
+        const uint opcode = 10;
 
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(
             Handle,
