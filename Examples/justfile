@@ -13,7 +13,6 @@ LayerShell:
 Taskbar:
     dotnet run
 
-[working-directory: 'RiverWindowManager']
-RiverWindowManager:
-    ./run.sh
-    WAYLAND_DISPLAY=wayland-2 dotnet run
+[working-directory: 'TinyRwm']
+TinyRwm:
+    river -c "dotnet run"

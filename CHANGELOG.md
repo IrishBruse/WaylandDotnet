@@ -2,6 +2,8 @@
 
 ## Upcoming
 
+- The RiverWindowManager example is now a C# tinyrwm.
+
 [Diff](https://github.com/IrishBruse/WaylandDotnet/compare/v0.5.1...HEAD)
 
 ## 0.5.1
