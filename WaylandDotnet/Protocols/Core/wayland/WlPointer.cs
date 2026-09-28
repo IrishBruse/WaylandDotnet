@@ -1204,7 +1204,7 @@ public sealed partial class WlPointer : WaylandObject, IWaylandObjectFactory<WlP
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

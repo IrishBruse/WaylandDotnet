@@ -232,7 +232,7 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

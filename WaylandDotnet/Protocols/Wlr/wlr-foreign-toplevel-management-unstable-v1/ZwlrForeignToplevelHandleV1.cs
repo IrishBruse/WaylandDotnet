@@ -751,7 +751,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

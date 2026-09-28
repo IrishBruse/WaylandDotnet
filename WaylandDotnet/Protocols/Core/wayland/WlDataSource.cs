@@ -546,7 +546,7 @@ public sealed partial class WlDataSource : WaylandObject, IWaylandObjectFactory<
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

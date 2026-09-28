@@ -560,7 +560,7 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

@@ -53,6 +53,9 @@ public static partial class WaylandNative
     [LibraryImport(LibWayland, EntryPoint = "wl_display_flush")]
     public static partial int DisplayFlush(IntPtr display);
 
+    /// <summary> WL_MARSHAL_FLAG_DESTROY </summary>
+    public const uint MarshalFlagDestroy = 1;
+
     /// <summary> wl_proxy_marshal_array_flags </summary>
     [LibraryImport(LibWayland, EntryPoint = "wl_proxy_marshal_array_flags")]
     public static unsafe partial IntPtr ProxyMarshalArrayFlags(IntPtr proxy, uint opcode, WlInterface* interfacePtr, uint version, uint flags, IntPtr args);

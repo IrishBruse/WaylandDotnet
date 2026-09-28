@@ -198,7 +198,7 @@ public sealed partial class WlBuffer : WaylandObject, IWaylandObjectFactory<WlBu
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

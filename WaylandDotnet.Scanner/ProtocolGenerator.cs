@@ -878,7 +878,7 @@ public partial class ProtocolGenerator
             WriteLine("opcode,");
             WriteLine($"{interfacePtrExpr},");
             WriteLine($"{versionExpr},");
-            WriteLine("0,");
+            WriteLine(IsDestructor(request.Type) ? "WaylandNative.MarshalFlagDestroy," : "0,");
             WriteLine("(nint)args");
             indentLevel--;
             WriteLine(");");

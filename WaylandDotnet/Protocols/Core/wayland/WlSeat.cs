@@ -434,7 +434,7 @@ public sealed partial class WlSeat : WaylandObject, IWaylandObjectFactory<WlSeat
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

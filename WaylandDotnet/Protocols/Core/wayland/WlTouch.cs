@@ -567,7 +567,7 @@ public sealed partial class WlTouch : WaylandObject, IWaylandObjectFactory<WlTou
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

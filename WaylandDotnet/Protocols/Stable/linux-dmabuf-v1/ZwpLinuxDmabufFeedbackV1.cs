@@ -633,7 +633,7 @@ public sealed partial class ZwpLinuxDmabufFeedbackV1 : WaylandObject, IWaylandOb
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

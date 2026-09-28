@@ -88,7 +88,7 @@ public sealed partial class WlSubcompositor : WaylandObject, IWaylandObjectFacto
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

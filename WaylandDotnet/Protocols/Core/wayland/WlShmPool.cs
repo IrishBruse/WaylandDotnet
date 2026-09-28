@@ -136,7 +136,7 @@ public sealed partial class WlShmPool : WaylandObject, IWaylandObjectFactory<WlS
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

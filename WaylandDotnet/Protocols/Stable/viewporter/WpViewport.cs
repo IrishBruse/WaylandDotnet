@@ -90,7 +90,7 @@ public sealed partial class WpViewport : WaylandObject, IWaylandObjectFactory<Wp
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

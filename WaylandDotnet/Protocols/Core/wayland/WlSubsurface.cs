@@ -80,7 +80,7 @@ public sealed partial class WlSubsurface : WaylandObject, IWaylandObjectFactory<
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

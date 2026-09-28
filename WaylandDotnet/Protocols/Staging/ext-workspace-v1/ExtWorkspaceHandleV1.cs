@@ -544,7 +544,7 @@ public sealed partial class ExtWorkspaceHandleV1 : WaylandObject, IWaylandObject
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

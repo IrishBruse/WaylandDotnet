@@ -596,7 +596,7 @@ public sealed partial class ZwpTabletPadV2 : WaylandObject, IWaylandObjectFactor
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

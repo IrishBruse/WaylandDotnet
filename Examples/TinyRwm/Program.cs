@@ -1,22 +1,11 @@
 namespace TinyRwm;
 
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using WaylandDotnet;
 using WaylandDotnet.River;
 
-static partial class Libc
-{
-    [LibraryImport("libc", EntryPoint = "signal")]
-    public static partial IntPtr Signal(int sig, IntPtr handler);
-
-    [LibraryImport("libwayland-client.so.0", EntryPoint = "wl_proxy_destroy")]
-    public static partial void ProxyDestroy(IntPtr proxy);
-}
-
 public static class Program
 {
-    private const int SigChld = 17;
     private const uint KeySpace = 0x0020;
     private const uint KeyQ = 0x0071;
     private const uint KeyN = 0x006e;
@@ -119,7 +108,7 @@ public static class Program
         }
 
         Environment.SetEnvironmentVariable("WAYLAND_DEBUG", null);
-        Libc.Signal(SigChld, (IntPtr)1);
+        ChildProcess.IgnoreExit();
 
         WlRegistry registry = display.GetRegistry();
         registry.OnGlobal += (name, interfaceName, version) =>
@@ -192,7 +181,6 @@ public static class Program
             }
 
             Outputs[i].Obj.Destroy();
-            Libc.ProxyDestroy(Outputs[i].Obj.Handle);
             Outputs.RemoveAt(i);
         }
 
@@ -332,7 +320,6 @@ public static class Program
         window.PointerMoveRequested = null;
         window.PointerResizeRequested = null;
         window.Obj.Destroy();
-        Libc.ProxyDestroy(window.Obj.Handle);
         Windows.Remove(window);
     }
 
@@ -354,7 +341,6 @@ public static class Program
         foreach (var binding in seat.XkbBindings)
         {
             binding.Obj.Destroy();
-            Libc.ProxyDestroy(binding.Obj.Handle);
         }
 
         seat.XkbBindings.Clear();
@@ -362,12 +348,10 @@ public static class Program
         foreach (var binding in seat.PointerBindings)
         {
             binding.Obj.Destroy();
-            Libc.ProxyDestroy(binding.Obj.Handle);
         }
 
         seat.PointerBindings.Clear();
         seat.Obj.Destroy();
-        Libc.ProxyDestroy(seat.Obj.Handle);
         Seats.Remove(seat);
     }
 

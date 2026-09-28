@@ -571,7 +571,7 @@ public sealed partial class WlKeyboard : WaylandObject, IWaylandObjectFactory<Wl
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

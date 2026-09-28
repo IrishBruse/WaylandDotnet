@@ -954,7 +954,7 @@ public sealed partial class ZwlrOutputHeadV1 : WaylandObject, IWaylandObjectFact
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

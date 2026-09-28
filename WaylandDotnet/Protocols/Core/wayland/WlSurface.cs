@@ -393,7 +393,7 @@ public sealed partial class WlSurface : WaylandObject, IWaylandObjectFactory<WlS
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

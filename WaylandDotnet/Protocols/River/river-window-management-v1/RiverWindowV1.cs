@@ -1567,7 +1567,7 @@ public sealed partial class RiverWindowV1 : WaylandObject, IWaylandObjectFactory
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

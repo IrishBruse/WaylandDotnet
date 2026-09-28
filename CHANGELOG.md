@@ -3,6 +3,8 @@
 ## Upcoming
 
 - The RiverWindowManager example is now a C# tinyrwm.
+- Destructor requests pass `WL_MARSHAL_FLAG_DESTROY`, so `Destroy()` releases the local proxy.
+- `ChildProcess.IgnoreExit` ignores `SIGCHLD` so spawned children are reaped.
 
 [Diff](https://github.com/IrishBruse/WaylandDotnet/compare/v0.5.1...HEAD)
 

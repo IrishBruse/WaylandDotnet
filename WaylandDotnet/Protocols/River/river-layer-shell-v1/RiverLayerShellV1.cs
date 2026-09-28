@@ -83,7 +83,7 @@ public sealed partial class RiverLayerShellV1 : WaylandObject, IWaylandObjectFac
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

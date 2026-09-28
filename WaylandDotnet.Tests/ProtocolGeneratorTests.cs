@@ -234,7 +234,25 @@ public class ProtocolGeneratorTests : IDisposable
         Assert.Contains("private bool disposed;", output);
         Assert.Contains("public unsafe void Destroy()", output);
         Assert.Contains("ObjectDisposedException.ThrowIf(disposed, this);", output);
+        Assert.Contains("WaylandNative.MarshalFlagDestroy,", output);
         Assert.Contains("disposed = true;", output);
+    }
+
+    [Fact]
+    public void GenerateRequestMethod_NonDestructor_PassesZeroMarshalFlags()
+    {
+        var generator = new ProtocolGenerator();
+        var metadata = ProtocolGeneratorTestHelpers.Metadata("test.xml", tempRoot);
+        var iface = ProtocolGeneratorTestHelpers.Iface(
+            "test_widget",
+            requests: [ProtocolGeneratorTestHelpers.Req("poke", summary: "poke widget")]);
+
+        generator.GenerateFileHeader(metadata);
+        generator.GenerateInterface(iface);
+
+        var output = generator.sb.ToString();
+        Assert.Contains("0,\n            (nint)args", output);
+        Assert.DoesNotContain("WaylandNative.MarshalFlagDestroy", output);
     }
 
     [Fact]

@@ -194,7 +194,7 @@ public sealed partial class RiverLayerShellOutputV1 : WaylandObject, IWaylandObj
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

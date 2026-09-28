@@ -439,7 +439,7 @@ public sealed partial class ZwlrOutputConfigurationV1 : WaylandObject, IWaylandO
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

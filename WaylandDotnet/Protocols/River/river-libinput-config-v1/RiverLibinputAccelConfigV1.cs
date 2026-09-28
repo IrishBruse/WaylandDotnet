@@ -100,7 +100,7 @@ public sealed partial class RiverLibinputAccelConfigV1 : WaylandObject, IWayland
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

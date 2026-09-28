@@ -494,7 +494,7 @@ public sealed partial class ZwpTabletV2 : WaylandObject, IWaylandObjectFactory<Z
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

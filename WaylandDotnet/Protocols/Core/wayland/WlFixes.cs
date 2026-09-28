@@ -75,7 +75,7 @@ public sealed partial class WlFixes : WaylandObject, IWaylandObjectFactory<WlFix
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

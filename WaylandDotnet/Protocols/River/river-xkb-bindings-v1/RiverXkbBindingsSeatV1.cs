@@ -262,7 +262,7 @@ public sealed partial class RiverXkbBindingsSeatV1 : WaylandObject, IWaylandObje
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

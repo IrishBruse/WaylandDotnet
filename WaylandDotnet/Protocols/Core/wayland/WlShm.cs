@@ -837,7 +837,7 @@ public sealed partial class WlShm : WaylandObject, IWaylandObjectFactory<WlShm>
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

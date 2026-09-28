@@ -559,7 +559,7 @@ public sealed partial class ZwpTabletPadGroupV2 : WaylandObject, IWaylandObjectF
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

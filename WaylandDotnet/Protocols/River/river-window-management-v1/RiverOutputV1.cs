@@ -489,7 +489,7 @@ public sealed partial class RiverOutputV1 : WaylandObject, IWaylandObjectFactory
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

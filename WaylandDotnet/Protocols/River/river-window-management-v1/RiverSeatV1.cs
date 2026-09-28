@@ -909,7 +909,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

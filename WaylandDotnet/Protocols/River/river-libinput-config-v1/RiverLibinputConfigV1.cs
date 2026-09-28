@@ -275,7 +275,7 @@ public sealed partial class RiverLibinputConfigV1 : WaylandObject, IWaylandObjec
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

@@ -240,7 +240,7 @@ public sealed partial class WpPresentation : WaylandObject, IWaylandObjectFactor
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;

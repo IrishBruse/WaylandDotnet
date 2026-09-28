@@ -84,7 +84,7 @@ public sealed partial class WpViewporter : WaylandObject, IWaylandObjectFactory<
             opcode,
             (WlInterface*)IntPtr.Zero,
             0,
-            0,
+            WaylandNative.MarshalFlagDestroy,
             (nint)args
         );
         disposed = true;
