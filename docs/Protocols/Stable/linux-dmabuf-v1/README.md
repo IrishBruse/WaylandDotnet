@@ -501,7 +501,7 @@ void CreatedHandler(WlBuffer buffer)
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| buffer | new_id | Id for the the newly created wl_buffer |
+| buffer | new_id | Id for the newly created wl_buffer |
 
 **Buffer creation succeeded**
 
