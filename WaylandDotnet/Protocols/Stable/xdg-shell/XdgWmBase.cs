@@ -283,7 +283,7 @@ public sealed partial class XdgWmBase : WaylandObject, IWaylandObjectFactory<Xdg
     /// While xdg_surface itself is not a role, the corresponding surface may<br/>
     /// only be assigned a role extending xdg_surface, such as xdg_toplevel or<br/>
     /// xdg_popup. It is illegal to create an xdg_surface for a wl_surface which<br/>
-    /// already has anassigned role and this will result in a role error.<br/>
+    /// already has an assigned role and this will result in a role error.<br/>
     /// <br/>
     /// See the documentation of xdg_surface for more details about what an<br/>
     /// xdg_surface is and how it is used.<br/>
