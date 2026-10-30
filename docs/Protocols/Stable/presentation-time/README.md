@@ -9,7 +9,7 @@
         <span class="codicon codicon-symbol-interface"></span>
         WpPresentation
     </a>
-    <span class="pill">version 2</span>
+    <span class="pill">version 3</span>
 </h2>
 
 Timed presentation related wl_surface requests
@@ -143,7 +143,7 @@ illegal presentation requests.
         <span class="codicon codicon-symbol-interface"></span>
         WpPresentationFeedback
     </a>
-    <span class="pill">version 2</span>
+    <span class="pill">version 3</span>
 </h2>
 
 Presentation time feedback event
@@ -243,6 +243,11 @@ compositor (e.g. fastest rate), or 0 if no such rate exists.
 For version 1, if the output does not have a constant refresh rate,
 the refresh argument must be zero.
 
+If the 'fixed_rate' flag is set, then the refresh argument is
+the output's constant refresh rate. If the 'variable_rate' flag
+is set, then the refresh argument is the output's fastest refresh
+rate.
+
 The 64-bit value combined from seq_hi and seq_lo is the value
 of the output's vertical retrace counter when the content
 update was first scanned out to the display. This value must
@@ -298,3 +303,5 @@ quality with respect to possible tearing and timings.
 | HwClock | 0x2 |  |
 | HwCompletion | 0x4 |  |
 | ZeroCopy | 0x8 |  |
+| FixedRate | 0x10 |  |
+| VariableRate | 0x20 |  |
