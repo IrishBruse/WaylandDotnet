@@ -29,7 +29,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_window_manager_v1
-    /// Version: 6
+    /// Version: 7
     /// Requests: 7, Events: 9
     /// </summary>
     [ModuleInitializer]
@@ -140,7 +140,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_window_manager_v1"),
-            Version = 6,
+            Version = 7,
             MethodCount = 7,
             Methods = requests,
             EventCount = 9,
@@ -154,7 +154,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_window_v1
-    /// Version: 6
+    /// Version: 7
     /// Requests: 24, Events: 21
     /// </summary>
     [ModuleInitializer]
@@ -439,7 +439,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_window_v1"),
-            Version = 6,
+            Version = 7,
             MethodCount = 24,
             Methods = requests,
             EventCount = 21,
@@ -453,7 +453,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_decoration_v1
-    /// Version: 6
+    /// Version: 7
     /// Requests: 3, Events: 0
     /// </summary>
     [ModuleInitializer]
@@ -483,7 +483,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_decoration_v1"),
-            Version = 6,
+            Version = 7,
             MethodCount = 3,
             Methods = requests,
             EventCount = 0,
@@ -497,7 +497,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_shell_surface_v1
-    /// Version: 6
+    /// Version: 7
     /// Requests: 3, Events: 0
     /// </summary>
     [ModuleInitializer]
@@ -527,7 +527,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_shell_surface_v1"),
-            Version = 6,
+            Version = 7,
             MethodCount = 3,
             Methods = requests,
             EventCount = 0,
@@ -541,7 +541,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_node_v1
-    /// Version: 6
+    /// Version: 7
     /// Requests: 6, Events: 0
     /// </summary>
     [ModuleInitializer]
@@ -589,7 +589,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_node_v1"),
-            Version = 6,
+            Version = 7,
             MethodCount = 6,
             Methods = requests,
             EventCount = 0,
@@ -603,7 +603,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_output_v1
-    /// Version: 6
+    /// Version: 7
     /// Requests: 2, Events: 5
     /// </summary>
     [ModuleInitializer]
@@ -660,7 +660,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_output_v1"),
-            Version = 6,
+            Version = 7,
             MethodCount = 2,
             Methods = requests,
             EventCount = 5,
@@ -674,14 +674,14 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_seat_v1
-    /// Version: 6
-    /// Requests: 11, Events: 12
+    /// Version: 7
+    /// Requests: 12, Events: 13
     /// </summary>
     [ModuleInitializer]
     public static void CreateRiverSeatV1Interface()
     {
         // Request signatures
-        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 11);
+        var requests = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 12);
         requests[0] = new WlMessage
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("destroy"),
@@ -748,9 +748,15 @@ public static unsafe partial class WaylandInterfaces
             Signature = Utf8StringMarshaller.ConvertToUnmanaged("i"),
             Types = (WlInterface**)CreateTypesArray([(WlInterface*)IntPtr.Zero])
         };
+        requests[11] = new WlMessage
+        {
+            Name = Utf8StringMarshaller.ConvertToUnmanaged("notify_next_keyboard_input"),
+            Signature = Utf8StringMarshaller.ConvertToUnmanaged(""),
+            Types = (WlInterface**)IntPtr.Zero
+        };
 
         // Event signatures
-        var events = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 12);
+        var events = (WlMessage*)Marshal.AllocHGlobal(sizeof(WlMessage) * 13);
         events[0] = new WlMessage
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("removed"),
@@ -823,14 +829,20 @@ public static unsafe partial class WaylandInterfaces
             Signature = Utf8StringMarshaller.ConvertToUnmanaged("i"),
             Types = (WlInterface**)CreateTypesArray([(WlInterface*)IntPtr.Zero])
         };
+        events[12] = new WlMessage
+        {
+            Name = Utf8StringMarshaller.ConvertToUnmanaged("keyboard_input"),
+            Signature = Utf8StringMarshaller.ConvertToUnmanaged(""),
+            Types = (WlInterface**)IntPtr.Zero
+        };
 
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_seat_v1"),
-            Version = 6,
-            MethodCount = 11,
+            Version = 7,
+            MethodCount = 12,
             Methods = requests,
-            EventCount = 12,
+            EventCount = 13,
             Events = events
         };
 
@@ -841,7 +853,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: river_pointer_binding_v1
-    /// Version: 6
+    /// Version: 7
     /// Requests: 3, Events: 2
     /// </summary>
     [ModuleInitializer]
@@ -886,7 +898,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("river_pointer_binding_v1"),
-            Version = 6,
+            Version = 7,
             MethodCount = 3,
             Methods = requests,
             EventCount = 2,

@@ -24,7 +24,7 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_pointer_binding_v1
 /// <para> configure a pointer binding, receive trigger events </para>
-/// <para> Version: 6 </para>
+/// <para> Version: 7 </para>
 /// <see>https://wayland.app/protocols/river-window-management-v1/#river_pointer_binding_v1</see>
 /// </summary>
 public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjectFactory<RiverPointerBindingV1>
@@ -34,7 +34,7 @@ public sealed partial class RiverPointerBindingV1 : WaylandObject, IWaylandObjec
     /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_pointer_binding_v1";
     /// <summary> Interface version supported by this binding. </summary>
-    public const int InterfaceVersion = 6;
+    public const int InterfaceVersion = 7;
 
     private bool disposed;
 

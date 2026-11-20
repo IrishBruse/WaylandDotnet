@@ -17,7 +17,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wp_presentation
-    /// Version: 2
+    /// Version: 3
     /// Requests: 2, Events: 1
     /// </summary>
     [ModuleInitializer]
@@ -50,7 +50,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wp_presentation"),
-            Version = 2,
+            Version = 3,
             MethodCount = 2,
             Methods = requests,
             EventCount = 1,
@@ -64,7 +64,7 @@ public static unsafe partial class WaylandInterfaces
 
     /// <summary>
     /// Interface: wp_presentation_feedback
-    /// Version: 2
+    /// Version: 3
     /// Requests: 0, Events: 3
     /// </summary>
     [ModuleInitializer]
@@ -94,7 +94,7 @@ public static unsafe partial class WaylandInterfaces
         var iface = new WlInterface
         {
             Name = Utf8StringMarshaller.ConvertToUnmanaged("wp_presentation_feedback"),
-            Version = 2,
+            Version = 3,
             MethodCount = 0,
             Methods = (WlMessage*)IntPtr.Zero,
             EventCount = 3,

@@ -9,7 +9,7 @@
         <span class="codicon codicon-symbol-interface"></span>
         RiverWindowManagerV1
     </a>
-    <span class="pill">version 6</span>
+    <span class="pill">version 7</span>
 </h2>
 
 Window manager global interface
@@ -481,7 +481,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         RiverWindowV1
     </a>
-    <span class="pill">version 6</span>
+    <span class="pill">version 7</span>
 </h2>
 
 A logical window
@@ -1888,7 +1888,7 @@ public enum CapabilitiesFlag
         <span class="codicon codicon-symbol-interface"></span>
         RiverDecorationV1
     </a>
-    <span class="pill">version 6</span>
+    <span class="pill">version 7</span>
 </h2>
 
 A window decoration
@@ -1994,7 +1994,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         RiverShellSurfaceV1
     </a>
-    <span class="pill">version 6</span>
+    <span class="pill">version 7</span>
 </h2>
 
 A surface for window manager UI
@@ -2090,7 +2090,7 @@ public enum Error
         <span class="codicon codicon-symbol-interface"></span>
         RiverNodeV1
     </a>
-    <span class="pill">version 6</span>
+    <span class="pill">version 7</span>
 </h2>
 
 A node in the render list
@@ -2266,7 +2266,7 @@ manage or render sequence, see the river_window_manager_v1 description.
         <span class="codicon codicon-symbol-interface"></span>
         RiverOutputV1
     </a>
-    <span class="pill">version 6</span>
+    <span class="pill">version 7</span>
 </h2>
 
 A logical output
@@ -2514,7 +2514,7 @@ public enum PresentationMode
         <span class="codicon codicon-symbol-interface"></span>
         RiverSeatV1
     </a>
-    <span class="pill">version 6</span>
+    <span class="pill">version 7</span>
 </h2>
 
 A window management seat
@@ -2828,6 +2828,37 @@ End a touch operation for the given touch point.
 This request is ignored if there is no operation in progress for the
 given touch point or if the operation has already been ended by the
 op_release_touch event.
+
+This request modifies window management state and may only be made as
+part of a manage sequence, see the river_window_manager_v1 description.
+
+<h3 class="decleration request" title="NotifyNextKeyboardInput request">
+    <a href="#/Protocols/River/river-window-management-v1/?id=riverseatv1_notifynextkeyboardinput" id="riverseatv1_notifynextkeyboardinput">
+        <span class="codicon codicon-symbol-method method"></span>
+        RiverSeatV1.<span class="method">NotifyNextKeyboardInput</span>
+    </a>
+    <span class="pill">since 7</span>
+</h3>
+
+```csharp
+void NotifyNextKeyboardInput()
+```
+
+
+**Get notified of the next keyboard input**
+
+Request that the keyboard_input event be sent when the next non-modifier
+key is pressed on any physical keyboard assigned to the seat. Key presses
+from virtual keyboards (e.g. on-screen keyboards) are ignored.
+
+This request has no effect on keyboard input routing. The next keyboard
+event will be routed to the client with keyboard focus or consumed by a
+keyboard binding created through the river-xkb-bindings-v1 protocol as
+usual.
+
+Rationale: this event is necessary for window managers implementing a
+"hide cursor when typing" feature. This use-case requires a notification
+that the user has started typing to know when to hide the cursor.
 
 This request modifies window management state and may only be made as
 part of a manage sequence, see the river_window_manager_v1 description.
@@ -3172,6 +3203,28 @@ No further op_delta_touch events will be sent for the operation.
 This event will be followed by a manage_start event after all other new
 state has been sent by the server.
 
+<h3 class="decleration event" title="KeyboardInput event">
+    <a href="#/Protocols/River/river-window-management-v1/?id=onriverseatv1_keyboardinput" id="onriverseatv1_keyboardinput">
+        <span class="codicon codicon-symbol-event event"></span>
+        RiverSeatV1.<span class="event">OnKeyboardInput</span>
+    </a>
+    <span class="pill">since 7</span>
+</h3>
+
+```csharp
+void KeyboardInputHandler()
+```
+
+
+**A non-modifier key was pressed**
+
+This event is sent once in response to the notify_next_keyboard_input
+request when the next non-modifier key is pressed on any physical
+keyboard assigned to the seat.
+
+This event will be followed by a manage_start event after all other new
+state has been sent by the server.
+
 <h3 class="decleration enum" title="Modifiers enum">
     <a href="#/Protocols/River/river-window-management-v1/?id=riverseatv1_modifiers_enum" id="riverseatv1_modifiers_enum">
         <span class="codicon codicon-symbol-enum enum"></span>
@@ -3208,7 +3261,7 @@ bindings however so these values are not included in this enum.
         <span class="codicon codicon-symbol-interface"></span>
         RiverPointerBindingV1
     </a>
-    <span class="pill">version 6</span>
+    <span class="pill">version 7</span>
 </h2>
 
 Configure a pointer binding, receive trigger events
