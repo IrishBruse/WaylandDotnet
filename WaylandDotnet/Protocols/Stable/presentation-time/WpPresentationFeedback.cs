@@ -24,7 +24,7 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// wp_presentation_feedback
 /// <para> presentation time feedback event </para>
-/// <para> Version: 2 </para>
+/// <para> Version: 3 </para>
 /// <see>https://wayland.app/protocols/presentation-time/#wp_presentation_feedback</see>
 /// </summary>
 public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObjectFactory<WpPresentationFeedback>
@@ -34,7 +34,7 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
     /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wp_presentation_feedback";
     /// <summary> Interface version supported by this binding. </summary>
-    public const int InterfaceVersion = 2;
+    public const int InterfaceVersion = 3;
 
     private bool disposed;
 
@@ -75,6 +75,14 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
         ///
         /// </summary>
         ZeroCopy = 0x8,
+        /// <summary>
+        ///
+        /// </summary>
+        FixedRate = 0x10,
+        /// <summary>
+        ///
+        /// </summary>
+        VariableRate = 0x20,
     }
 
     /// <summary>
@@ -162,6 +170,11 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
     /// For version 1, if the output does not have a constant refresh rate,
     /// the refresh argument must be zero.
     ///
+    /// If the 'fixed_rate' flag is set, then the refresh argument is
+    /// the output's constant refresh rate. If the 'variable_rate' flag
+    /// is set, then the refresh argument is the output's fastest refresh
+    /// rate.
+    ///
     /// The 64-bit value combined from seq_hi and seq_lo is the value
     /// of the output's vertical retrace counter when the content
     /// update was first scanned out to the display. This value must
@@ -216,6 +229,11 @@ public sealed partial class WpPresentationFeedback : WaylandObject, IWaylandObje
     /// compositor (e.g. fastest rate), or 0 if no such rate exists.
     /// For version 1, if the output does not have a constant refresh rate,
     /// the refresh argument must be zero.
+    ///
+    /// If the 'fixed_rate' flag is set, then the refresh argument is
+    /// the output's constant refresh rate. If the 'variable_rate' flag
+    /// is set, then the refresh argument is the output's fastest refresh
+    /// rate.
     ///
     /// The 64-bit value combined from seq_hi and seq_lo is the value
     /// of the output's vertical retrace counter when the content

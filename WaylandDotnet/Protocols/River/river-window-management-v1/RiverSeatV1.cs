@@ -24,7 +24,7 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// river_seat_v1
 /// <para> a window management seat </para>
-/// <para> Version: 6 </para>
+/// <para> Version: 7 </para>
 /// <see>https://wayland.app/protocols/river-window-management-v1/#river_seat_v1</see>
 /// </summary>
 public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<RiverSeatV1>
@@ -34,7 +34,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
     /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "river_seat_v1";
     /// <summary> Interface version supported by this binding. </summary>
-    public const int InterfaceVersion = 6;
+    public const int InterfaceVersion = 7;
 
     private bool disposed;
 
@@ -735,6 +735,51 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         }
     }
 
+    /// <summary>
+    /// A non-modifier key was pressed
+    /// <para>
+    ///
+    /// This event is sent once in response to the notify_next_keyboard_input
+    /// request when the next non-modifier key is pressed on any physical
+    /// keyboard assigned to the seat.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
+    public delegate void KeyboardInputHandler();
+
+    private KeyboardInputHandler? _onKeyboardInput;
+
+    /// <summary>
+    /// A non-modifier key was pressed
+    /// <para>
+    ///
+    /// This event is sent once in response to the notify_next_keyboard_input
+    /// request when the next non-modifier key is pressed on any physical
+    /// keyboard assigned to the seat.
+    ///
+    /// This event will be followed by a manage_start event after all other new
+    /// state has been sent by the server.
+    /// 
+    /// </para>
+    /// </summary>
+    public event KeyboardInputHandler? OnKeyboardInput
+    {
+        add
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
+            _onKeyboardInput += value;
+            EnsureDispatcherRegistered();
+        }
+
+        remove
+        {
+            _onKeyboardInput -= value;
+        }
+    }
+
     private unsafe void EnsureDispatcherRegistered()
     {
         lock (dispatcherLock)
@@ -768,7 +813,7 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
             Debug.Assert(userData != IntPtr.Zero, "dispatcher user data is null");
             Debug.Assert(target != IntPtr.Zero, "dispatcher target proxy is null");
             Debug.Assert(message != null, "dispatcher message is null");
-            Debug.Assert(opcode < 12, "dispatcher opcode is out of range");
+            Debug.Assert(opcode < 13, "dispatcher opcode is out of range");
             var handle = GCHandle.FromIntPtr(userData);
             var obj = (RiverSeatV1)handle.Target!;
 
@@ -869,6 +914,12 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
                         Debug.Assert(args != null, "dispatcher arguments are null");
                         var _touchPoint = args[0].i;
                         obj._onOpCancelTouch?.Invoke(_touchPoint);
+                    }
+                    break;
+                case 12: // keyboard_input
+                    if (obj._onKeyboardInput != null)
+                    {
+                        obj._onKeyboardInput?.Invoke();
                     }
                     break;
                 default:
@@ -1270,6 +1321,47 @@ public sealed partial class RiverSeatV1 : WaylandObject, IWaylandObjectFactory<R
         args[0].i = touchPoint;
 
         const uint opcode = 10;
+
+        Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
+        var newProxy = WaylandNative.ProxyMarshalArrayFlags(
+            Handle,
+            opcode,
+            (WlInterface*)IntPtr.Zero,
+            0,
+            0,
+            (nint)args
+        );
+    }
+
+    /// <summary>
+    /// Get notified of the next keyboard input
+    /// <para>
+    /// <br/>
+    /// Request that the keyboard_input event be sent when the next non-modifier<br/>
+    /// key is pressed on any physical keyboard assigned to the seat. Key presses<br/>
+    /// from virtual keyboards (e.g. on-screen keyboards) are ignored.<br/>
+    /// <br/>
+    /// This request has no effect on keyboard input routing. The next keyboard<br/>
+    /// event will be routed to the client with keyboard focus or consumed by a<br/>
+    /// keyboard binding created through the river-xkb-bindings-v1 protocol as<br/>
+    /// usual.<br/>
+    /// <br/>
+    /// Rationale: this event is necessary for window managers implementing a<br/>
+    /// "hide cursor when typing" feature. This use-case requires a notification<br/>
+    /// that the user has started typing to know when to hide the cursor.<br/>
+    /// <br/>
+    /// This request modifies window management state and may only be made as<br/>
+    /// part of a manage sequence, see the river_window_manager_v1 description.<br/>
+    /// <br/>
+    /// </para>
+    /// </summary>
+    public unsafe void NotifyNextKeyboardInput()
+    {
+        ObjectDisposedException.ThrowIf(disposed, this);
+
+        var args = stackalloc WlArgument[0];
+
+        const uint opcode = 11;
 
         Debug.Assert(Handle != IntPtr.Zero, "request sent on a null proxy");
         var newProxy = WaylandNative.ProxyMarshalArrayFlags(

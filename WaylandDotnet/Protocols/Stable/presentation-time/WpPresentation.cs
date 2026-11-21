@@ -24,7 +24,7 @@ using WaylandDotnet.Wlr;
 /// <summary>
 /// wp_presentation
 /// <para> timed presentation related wl_surface requests </para>
-/// <para> Version: 2 </para>
+/// <para> Version: 3 </para>
 /// <see>https://wayland.app/protocols/presentation-time/#wp_presentation</see>
 /// </summary>
 public sealed partial class WpPresentation : WaylandObject, IWaylandObjectFactory<WpPresentation>
@@ -34,7 +34,7 @@ public sealed partial class WpPresentation : WaylandObject, IWaylandObjectFactor
     /// <summary> Static interface name used by <see cref="IWaylandObjectFactory{T}"/>. </summary>
     public static string _StaticInterfaceName => "wp_presentation";
     /// <summary> Interface version supported by this binding. </summary>
-    public const int InterfaceVersion = 2;
+    public const int InterfaceVersion = 3;
 
     private bool disposed;
 

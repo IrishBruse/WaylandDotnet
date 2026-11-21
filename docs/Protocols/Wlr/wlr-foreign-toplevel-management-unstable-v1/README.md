@@ -409,7 +409,7 @@ void StateHandler(byte[] state)
 
 **The toplevel state changed**
 
-This event is emitted immediately after the zlw_foreign_toplevel_handle_v1
+This event is emitted immediately after the zwlr_foreign_toplevel_handle_v1
 is created and each time the toplevel state changes, either because of a
 compositor action or because of a request in this protocol.
 

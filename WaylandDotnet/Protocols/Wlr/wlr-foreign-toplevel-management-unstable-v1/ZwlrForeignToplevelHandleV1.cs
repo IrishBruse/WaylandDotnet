@@ -235,7 +235,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
     /// The toplevel state changed
     /// <para>
     ///
-    /// This event is emitted immediately after the zlw_foreign_toplevel_handle_v1
+    /// This event is emitted immediately after the zwlr_foreign_toplevel_handle_v1
     /// is created and each time the toplevel state changes, either because of a
     /// compositor action or because of a request in this protocol.
     /// 
@@ -249,7 +249,7 @@ public sealed partial class ZwlrForeignToplevelHandleV1 : WaylandObject, IWaylan
     /// The toplevel state changed
     /// <para>
     ///
-    /// This event is emitted immediately after the zlw_foreign_toplevel_handle_v1
+    /// This event is emitted immediately after the zwlr_foreign_toplevel_handle_v1
     /// is created and each time the toplevel state changes, either because of a
     /// compositor action or because of a request in this protocol.
     /// 
