@@ -208,6 +208,8 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// compositor needs to configure the state of the surface but doesn't
     /// have any information about any previous or expected dimension.
     ///
+    /// The width and height must be greater than or equal to zero.
+    ///
     /// The states listed in the event specify how the width/height
     /// arguments should be interpreted, and possibly how it should be
     /// drawn.
@@ -240,6 +242,8 @@ public sealed partial class XdgToplevel : WaylandObject, IWaylandObjectFactory<X
     /// should decide its own window dimension. This may happen when the
     /// compositor needs to configure the state of the surface but doesn't
     /// have any information about any previous or expected dimension.
+    ///
+    /// The width and height must be greater than or equal to zero.
     ///
     /// The states listed in the event specify how the width/height
     /// arguments should be interpreted, and possibly how it should be
